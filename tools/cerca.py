@@ -1,33 +1,33 @@
 #!/usr/bin/env python3
-"""Candidate search: runs both retrieval networks on one cited case.
+"""Citation search tool used by the research team.
 
-    python tools/cerca.py --caso urgenda
+    python tools/cerca.py --caso cited-cases/urgenda.yaml
 
 Runs the TWO NETWORKS on the same cited case, merges the results and writes
-the CSV of candidates to be read.
+the CSV of candidates to read.
 
-    lexical network   exact and EXHAUSTIVE matching on the declared name
-                      forms. Not a ranking: it returns ALL occurrences.
-                      Returning only the top hundred when there are two
-                      hundred mentions would silently lose half of them.
-    semantic network  passages close in meaning to the semantic queries,
-                      to find texts that take up the reasoning WITHOUT
+    lexical network   exact, EXHAUSTIVE matching on the declared name forms.
+                      Not a ranking: it returns ALL occurrences. Returning
+                      the top hundred when there are two hundred mentions
+                      would silently lose a hundred.
+    semantic network  passages semantically close to the semantic queries,
+                      to find filings that take up the reasoning WITHOUT
                       naming the case. Here ranking is appropriate.
 
-Embedding prefixes are read from the index manifest, never hard-coded.
-`e5` is asymmetric: passages are encoded with `passage: `, queries with
-`query: `. A mismatch raises no error; it silently yields plausible but
-wrong results. The manifest records the prefixes to prevent this.
+Resident mode. With `--interattivo` the model stays loaded and subsequent
+queries take about two seconds instead of thirty.
 
-The reading window is the PAGE, not a fixed number of characters. In legal
-filings the reference that attributes a principle to a source may sit in a
-footnote at the bottom of the page, far from the sentence it supports. A
-600-character window would leave that footnote out, and the reader could not
-apply the rule "a declared attribution excludes implicit uptake".
+Prefixes are read from the index manifest, never hard-coded. `e5` is
+asymmetric: passages are prefixed `passage: `, queries `query: `. A mismatch
+does not raise an error; it silently yields plausible but wrong results.
+The manifest records the prefixes to prevent this.
 
-Outputs: index/candidati_<case>.csv, plus <name>.SCARTI.csv (rows removed by
-filters, with the reason) and <name>.ISTRUZIONI.md (codebook reading
-instructions).
+The reading window is the PAGE, not a character count. In legal filings the
+citation that attributes a principle may sit in a footnote at the bottom of
+the page, far from the sentence it supports. A 600-character window would
+leave that footnote out, and the reader could not apply the rule "a declared
+attribution excludes" -- classifying as implicit uptake a passage that
+openly cites another source.
 """
 
 import argparse
@@ -46,44 +46,50 @@ MD = HERE / 'markdown'
 INDEX = HERE / 'index'
 PAGE_RE = re.compile(r'<!--\s*page\s+(\d+)\s*-->')
 
-# Context (characters before/after the match) stored in the verbatim column.
-# The READING window is separate and wider: the whole page (see above).
+# Context around the occurrence written to the verbatim column.
+# The READING window is separate and wider: see the module docstring.
 PRIMA, DOPO = 200, 260
 
 
 from dimensioni import (dimensioni as calcola_dimensioni,
                         posizione as posizione_pdf, chiudi_pdf)
 
-# ── Cited case ─────────────────────────────────────────────────────────
+# ── Cited case ──────────────────────────────────────────────────────────
 
 def _uno_spazio(v):
-    """Collapse whitespace. Multi-line YAML blocks keep their newlines; a
-    query is a single sentence and newlines must not reach the embedding."""
+    """Collapse whitespace. A multi-line YAML block keeps its newlines; a
+    probe is ONE sentence, and newlines must not reach the embedding."""
     return re.sub(r'\s+', ' ', str(v or '')).strip()
 
 
 def leggi_caso(percorso: Path, con_alternative=False):
-    """Read the query specification: name forms (lexical variants) and semantic queries.
+    """Read the query specification: lexical variants and semantic queries.
 
-    Uses a real YAML parser. Only the declared fields are read, and each is
-    kept separate. The query embedding is built exclusively from `testo`
-    (one proposition per query). Other fields of the case file (`canonical`,
-    `seeds`, `lexical_markers`, exclusion rationales) are not embedding
-    material: they are for the researcher, the paper appendix and LLM
-    adjudication. Concatenating them would push queries (33-35 words) to
-    563-961 words, beyond the model's 512-token window, and truncate them
-    silently.
+    Uses a real YAML parser. A line-based reader would attach every
+    indented field (`canonical`, `seeds`, `probe_alternativa`,
+    `lexical_markers`, annotations) to the probe text: on a rich case file
+    the five 33-35-word probes grew to 563-961 words, beyond the model's
+    512-token window, and were silently truncated.
 
-    `con_alternative` adds `probe_alternativa` as a SEPARATE query whose
-    results are merged with those of the main query; texts are never
-    concatenated. On the five Urgenda queries the two formulations overlap
-    by 20-36%, and their union yields 64-80% more candidates."""
+    Only declared fields are read, each kept separate. The probe vector is
+    built exclusively from `testo` (one proposition per probe). Other
+    fields (`canonical`, `seeds`, `lexical_markers`, exclusion rationales)
+    are not embedding material -- an embedding compresses to a point and
+    does not read -- but documentation for researchers, the paper appendix
+    and LLM adjudication.
+
+    `con_alternative` adds `probe_alternativa` as a SEPARATE probe: a
+    separate search whose results are merged with the main probe's. It is
+    never concatenated to `testo`: results are summed, not texts. Measured
+    on the five Urgenda probes: overlap between the two formulations 20-36%,
+    union +64% to +80% candidates."""
     import yaml
     dati = yaml.safe_load(percorso.read_text(encoding='utf-8')) or {}
     conf = {'forme': [], 'sonde': [], 'escluse': []}
 
-    # PyYAML parses dates into `datetime.date`; the rest of the pipeline treats
-    # `data_decisione` as a string (`.strip()[:10]`), so normalise here.
+    # PyYAML parses dates into `datetime.date`. The rest of the pipeline treats
+    # `data_decisione` as a string (`.strip()[:10]`), so values are normalised
+    # here to keep input types from propagating.
     for chiave in ('nome', 'codebook_versione', 'data_decisione',
                    'escludi_case_id', 'case', 'versione_file'):
         if chiave in dati and dati[chiave] is not None:
@@ -105,8 +111,8 @@ def leggi_caso(percorso: Path, con_alternative=False):
                               'testo': _uno_spazio(s.get('testo'))})
         alt = _uno_spazio(s.get('probe_alternativa'))
         if con_alternative and alt:
-            # Separate id, so the CSV shows WHICH formulation retrieved the
-            # row; this is what measures whether the second formulation helps.
+            # Own id, so the CSV shows WHICH formulation retrieved the row:
+            # needed to assess whether the second formulation adds value.
             conf['sonde'].append({'id': f'{sid}__alt', 'titolo': f'{titolo} [2a formulazione]',
                                   'testo': alt})
 
@@ -116,8 +122,8 @@ def leggi_caso(percorso: Path, con_alternative=False):
         conf['escluse'].append({'per': str(e.get('per') or '').strip(),
                                 'id': str(e.get('id') or '').strip(),
                                 'testo': _uno_spazio(e.get('testo'))})
-        # An excluded formulation also applies to the alternative formulation
-        # of the same proposition.
+        # The exclusion also applies to the second formulation of the same
+        # proposition: same proposition, same neighbours.
         if con_alternative:
             conf['escluse'].append({'per': f"{str(e.get('per') or '').strip()}__alt",
                                     'id': str(e.get('id') or '').strip(),
@@ -125,7 +131,7 @@ def leggi_caso(percorso: Path, con_alternative=False):
     return conf
 
 
-# ── Document ───────────────────────────────────────────────────────────
+# ── Document ────────────────────────────────────────────────────────────
 
 def front_matter(testo: str):
     meta, fine = {}, testo.find('\n---\n', 4)
@@ -156,10 +162,11 @@ def pagina_di(marks, off):
 
 
 def blocco_pagina(testo: str, marks, off: int):
-    """Return (raw page text, offset of the match within it).
+    """Return (raw page text, offset of the occurrence within it).
 
-    Raw, i.e. page marker and whitespace untouched, because offsets must be
-    preserved. The cleaned version written to the CSV is `finestra_pagina`."""
+    Raw, i.e. with the page marker and whitespace untouched: POSITIONS are
+    needed here, and any substitution would shift them. The cleaned version
+    written to the CSV is produced by `finestra_pagina`."""
     inizio, fine = 0, len(testo)
     for i, (pos, _) in enumerate(marks):
         if pos <= off:
@@ -171,20 +178,20 @@ def blocco_pagina(testo: str, marks, off: int):
 
 
 def finestra_pagina(testo: str, marks, off: int):
-    """Text of the page containing the match, footnotes included."""
+    """Return the text of the page containing the occurrence, footnotes included."""
     return PAGE_RE.sub(' ', blocco_pagina(testo, marks, off)[0]).strip()
 
 
 # ── Lexical network ─────────────────────────────────────────────────────
 
-FUSIONE = 200   # matches closer than this (characters) form ONE citation
+FUSIONE = 200   # matches closer than this are ONE citation
 
 
 def e_nome(testo, m):
-    """Does the match name the case (rather than being only an identifier)?
+    """Does the match name the case (rather than being only one of its identifiers)?
 
-    Identifiers: docket numbers and ECLI ("19/00135", "C/09/456689", "1 BvR 2656/18", "ECLI:NL:HR:2019:2007") and
-    the name inside a web address ("www.urgenda.nl/..."). Everything else is a name, including non-Latin scripts."""
+    Identifiers: docket numbers and ECLI ("19/00135", "C/09/456689", "1 BvR 2656/18", "ECLI:NL:HR:2019:2007") and the
+    name inside a URL ("www.urgenda.nl/..."). Name: everything else, including non-Latin scripts."""
     s = m.group(0)
     if re.search(r'[^\x00-\x7f]', s):
         return True
@@ -196,16 +203,16 @@ def e_nome(testo, m):
 
 
 def fondi(testo, grezze):
-    """Group raw matches so that one citation yields one row. Two rules:
+    """Merge matches so that one citation yields one row. Two rules.
 
-    1. Matches within 200 characters of the start of the current group belong to the same citation.
-    2. An IDENTIFIER within 200 characters of the previous match continues the same citation. Long references
-       (e.g. "Urgenda c. Pays-Bas, C/09/456689 / HA ZA 13-1396 ; Cour d'appel... 19/00135") exceed 200
-       characters, and without this rule the trailing docket number would become a separate row; the same
-       applies to chains such as "1 BvR 2656/18, 1 BvR 78/20...".
-       A NAME beyond 200 characters always opens a new citation: consecutive footnotes citing the case
+    1. Matches within 200 characters of the start of the group are one citation.
+    2. An IDENTIFIER within 200 characters of the previous match continues the same citation. Without this rule a
+       long reference ("Urgenda c. Pays-Bas, C/09/456689 / HA ZA 13-1396 ; Cour d'appel... 200.178.245/01 ;
+       Hoge Raad... 19/00135") exceeds 200 characters and the trailing docket number becomes a separate row (a few
+       cases on Urgenda, dozens on Neubauer with chains like "1 BvR 2656/18, 1 BvR 78/20...").
+       The NAME, by contrast, always opens a new citation beyond 200 characters: consecutive footnotes
        ("324 Urgenda..., para. 5.7.5. 325 Urgenda..., paras. 5.7.5-5.7.6") are distinct citations of different
-       paragraphs, so chaining all matches transitively would be wrong."""
+       paragraphs. A fully chained merge rule was tested and rejected for this reason."""
     fuse, fine = [], None
     for m in grezze:
         if fuse and (m.start() - fuse[-1][0].start() < FUSIONE
@@ -219,15 +226,18 @@ def fondi(testo, grezze):
 
 
 def rete_lessicale(forme, escludi='', tipi=None):
-    """Every occurrence in every document; exhaustive by construction.
+    """Every occurrence, in every document. Exhaustive by construction.
 
-    Nearby matches are MERGED: a filing often writes "the court (ECLI:...,
-    case C/09/...) in Urgenda", i.e. one citation, three matches. Counting
-    them separately would inflate the data non-uniformly, favouring
-    documents that cite in full."""
+    Nearby matches are MERGED: a filing often writes "the court
+    (ECLI:..., case C/09/...) in Urgenda" -- one citation, three matches.
+    Counting them separately inflates the data non-uniformly: it inflates
+    most the filings that cite in full, i.e. those that give weight to the
+    precedent."""
     patt = re.compile('|'.join(re.escape(f) for f in forme), re.I)
-    # `escludi_case_id` may be a scalar or a LIST (one judgment can be split
-    # across several case_ids, e.g. Juliana). Both are accepted.
+    # `escludi_case_id` may be a scalar or a LIST (one proceeding can be split
+    # across several case_ids, e.g. Juliana). Both are accepted; otherwise a
+    # list would reach `.lower()` and fail, or an `in` on a list would
+    # silently exclude the wrong documents.
     esclusi = [escludi] if isinstance(escludi, str) else list(escludi or [])
     esclusi = [str(x).lower() for x in esclusi if str(x).strip()]
     fuori = []
@@ -260,10 +270,10 @@ def rete_lessicale(forme, escludi='', tipi=None):
     return fuori
 
 
-# ── Semantic network ─────────────────────────────────────────────────────
+# ── Semantic network ────────────────────────────────────────────────────
 
 class Semantica:
-    """Keeps the embedding model and the index in memory across queries."""
+    """Keeps the model and the index in memory between queries."""
 
     def __init__(self):
         man = json.loads((INDEX / 'manifesto.json').read_text(encoding='utf-8'))
@@ -281,7 +291,7 @@ class Semantica:
         self.m = SentenceTransformer(man['modello'], device=dev)
         self.m.max_seq_length = man.get('max_token', 512)
         print(f'  caricato in {time.time() - t0:.0f}s su {dev}', flush=True)
-        # Chunk metadata, used to map a hit back to document and page.
+        # Chunks map back to document and page.
         self.fr = {}
         with (INDEX / 'chunks.jsonl').open(encoding='utf-8') as f:
             for riga in f:
@@ -289,18 +299,20 @@ class Semantica:
                 self.fr[d['id']] = d
 
     def cerca(self, sonde, k=100, escluse=()):
-        """Return candidates for each query, with their similarity to excluded formulations.
+        """Return candidates, and how similar each is to what does NOT count.
 
-        Excluded formulations do not filter, they measure. Each query may
-        declare formulations that resemble it but say something else (e.g.
-        the ordinary civil-law duty of care, which appears in many judgments
-        unrelated to the cited case). Each candidate then carries both scores
-        and their difference.
+        EXCLUDED FORMULATIONS do not filter, they measure. Each probe may
+        declare one or more formulations that resemble it but say something
+        else -- e.g. the ordinary civil-law duty of care, which appears in
+        thousands of judgments unrelated to the cited case. Each candidate
+        then carries two scores and their difference.
 
-        Nothing is discarded automatically. A candidate closer to an excluded
-        formulation than to the query is still returned, with a negative
-        `margine` and `sospetto` set: these rows should be read first, as
-        they reveal poorly written queries."""
+        NOTHING IS DISCARDED AUTOMATICALLY. A candidate closer to an
+        excluded formulation than to the probe is still returned, with a
+        negative `margine` and `sospetto` set: these rows should be read
+        first. Discarding them silently would hide exactly the cases where
+        the probe is poorly written -- the information needed to rewrite
+        it."""
         Q = self.m.encode([self.pre_q + s['testo'] for s in sonde],
                           normalize_embeddings=True, convert_to_numpy=True,
                           show_progress_bar=False).astype(np.float16)
@@ -335,31 +347,38 @@ class Semantica:
         return fuori
 
 
-# ── Reranker ───────────────────────────────────────────────────────────
+# ── Reranker ────────────────────────────────────────────────────────────
 
 class Riordinatore:
-    """Cross-encoder reranker: reads the query and the passage together and
+    """Cross-encoder that reads the probe and the passage TOGETHER and
     scores whether the passage ASSERTS that proposition.
 
-    A bi-encoder compresses each text into a single vector that captures the
-    topic, not the structure of the proposition (subject, obligation vs.
-    observation, affirmation vs. negation). A statistic on national emission
-    shares and a norm on each State's responsibility for its own share thus
-    end up close together. A cross-encoder reads both texts side by side and
-    can separate them. Measured on the `propria_quota` query:
+    Rationale. The semantic network compresses each text into a single
+    point, which captures WHAT IS BEING DISCUSSED but not the structure of
+    the proposition: who the subject is, whether it states an obligation or
+    a fact, whether it affirms or denies. Hence "China's share is 11.6% of
+    global emissions" and "each State is responsible for its own share and
+    cannot evade it" end up close: same topic, but one is a statistic and
+    the other a norm, and the embedding cannot tell them apart.
+
+    A cross-encoder places the two texts SIDE BY SIDE and reads them
+    jointly, so it sees sentence structure.
+
+    Measured on probe `propria_quota`:
 
         0.9504  the norm ("each State is responsible for its own share...")
         0.7308  common but differentiated responsibilities (excluded formulation)
-        0.0833  a statistic on national emission shares
-        0.0086  a boilerplate regulation repeated sixty times
+        0.0833  the Chinese emission-share statistic
+        0.0086  an EPA regulation repeated sixty times
 
-    Statistic and noise drop by an order of magnitude. The excluded
-    formulation stays high, correctly, since it is a genuinely close
-    proposition; that case is handled by the excluded-formulation scores.
+    The statistic and the noise drop by an order of magnitude. The excluded
+    formulation does NOT -- it stays high, correctly, since it is a close
+    proposition; that case is handled by the excluded-formulation margin,
+    not by the reranker.
 
-    No GPU and no new index are needed: only the few hundred candidates
-    already retrieved are scored, not the 1.2 million chunks (about half a
-    second for four pairs on a laptop CPU)."""
+    No GPU and no new index are required: it only scores the few hundred
+    candidates already retrieved by the semantic network, not the 1.2
+    million chunks. About half a second for four pairs on a laptop."""
 
     MODELLO = 'BAAI/bge-reranker-v2-m3'
 
@@ -377,13 +396,18 @@ class Riordinatore:
         return [float(x) for x in _np.asarray(out).reshape(-1)]
 
 
-# ── Confidence of the semantic proposal ──────────────────────────────
+# ── Confidence of the semantic proposal ─────────────────────────────────
 #
-# Machine-proposed confidence derived from the reranker score (it is not a
-# self-assessment by the human reader). Thresholds measured on the 216
-# semantic candidates of the Urgenda run (`punteggio_riordino`): minimum
-# 0.051 (just above the 0.05 cut-off), median 0.40, 75th percentile 0.65.
-# Thresholds 0.2 and 0.6 split the set into three groups of comparable size.
+# Confidence is a machine proposal derived from the reranker score, in the
+# same group as the embedding and reranker scores; it is not a
+# self-assessment by the reader. A single field cannot hold both, so it is
+# written by the machine from its score.
+#
+# Thresholds were measured on the 216 semantic candidates of the Urgenda
+# run (`punteggio_riordino`). The observed minimum is 0.051, just above the
+# discard threshold (0.05): below that, a candidate never reaches this
+# point. Median 0.40, 75th percentile 0.65. Thresholds 0.2 and 0.6 split the
+# set into three groups of comparable size.
 def confidenza_da_riordino(v):
     if v is None or v == '':
         return ''
@@ -402,11 +426,12 @@ def confidenza_da_riordino(v):
 
 def main():
     ap = argparse.ArgumentParser()
-    # `--caso` accepts a short name (e.g. urgenda) or a path to the case file.
+    # A short case name (`--caso urgenda`) is accepted instead of the full path.
     ap.add_argument('--caso', required=True,
                     help='nome del caso citato (es. urgenda) o percorso del file')
-    # The codebook is not a parameter: a single codebook applies to all cases,
-    # so every coder applies the same criteria. It changes only by revision.
+    # The codebook is not a parameter: there is a single codebook for all
+    # cases, so every annotator applies the same criteria. It changes only
+    # through a revision.
     ap.add_argument('--uscita', default='')
     ap.add_argument('--k', type=int, default=100, help='candidati per semantic query')
     ap.add_argument('--solo-lessicale', action='store_true')
@@ -414,8 +439,10 @@ def main():
                     help='usa anche `probe_alternativa` come sonda a se stante '
                          '(ricerca separata, risultati uniti). Misurato il '
                          '2026-09-03: +64-80%% di candidati, sovrapposizione 20-36%%.')
-    # Restrict to decisions: invocation by litigants and adoption by courts
-    # are different outcomes; the corpus contains both filings and decisions.
+    # Restrict to court decisions. A case invoked by claimants in many
+    # countries but adopted by courts in few is a different finding, and the
+    # gap between the two counts is itself a result. The corpus contains both
+    # party filings and decisions; this option selects what to count.
     ap.add_argument('--solo-decisioni', action='store_true',
                     help='solo decisioni e ordinanze: cio che le corti hanno adottato')
     ap.add_argument('--senza-riordino', action='store_true',
@@ -428,7 +455,7 @@ def main():
                     help="tipi di atto separati da virgola (es. 'atto introduttivo,replica')")
     args = ap.parse_args()
 
-    # A short name resolves to cited-cases/<name>.yaml.
+    # A short name is resolved in the cited-cases folder.
     percorso = Path(args.caso)
     if not percorso.exists():
         percorso = HERE / 'cited-cases' / f'{args.caso}.yaml'
@@ -446,8 +473,8 @@ def main():
         tipi = {t.strip().lower() for t in args.tipo_atto.split(',') if t.strip()}
 
     # The codebook travels with the passages: its reading instructions are
-    # written next to the CSV, so every reader (human or model) sees them
-    # alongside the text to classify.
+    # written next to the CSV, so every reader (human or model) has them
+    # alongside the text to classify and applies the same criteria.
     cb_file = HERE / 'codebook' / 'citazioni.yaml'
     cb_testo = cb_file.read_text(encoding='utf-8') if cb_file.exists() else ''
     m = re.search(r'^versione:\s*(.+)$', cb_testo, re.M)
@@ -480,12 +507,14 @@ def main():
         sem = S.cerca(conf['sonde'], k=args.k, escluse=conf.get('escluse', ()))
         print(f'  {len(sem):,} candidati in {time.time() - t0:.0f}s\n', flush=True)
 
-    # MERGE. A passage found by both networks becomes ONE row with
-    # `rete = entrambe`, which lets us estimate how much of the result depends
-    # on each tool. A semantic candidate is merged with a lexical occurrence
-    # only if its CHUNK actually contains that occurrence (true overlap, not
-    # fixed-size position buckets, which would merge distinct citations in the
-    # same bucket and split adjacent ones across a boundary).
+    # MERGE. A passage found by both networks is ONE row, with
+    # `rete = entrambe`: recording the source allows estimating how much of
+    # the result depends on which tool.
+    # Merging uses true overlap, not fixed blocks: grouping by
+    # `char_start // 400` would merge distinct citations in the same block
+    # and split adjacent ones across a boundary, a non-uniform loss that
+    # depends on grid alignment. A semantic candidate is merged with a
+    # lexical occurrence only if its CHUNK actually contains it.
     per_file = {}
     for r in less:
         per_file.setdefault(r['file'], []).append(r)
@@ -519,9 +548,12 @@ def main():
             'meta': meta, 'file': d['file'], 'char_start': d['char_start'],
             'pagina': d.get('pagina', 1), 'forma': '',
             'verbatim': re.sub(r'\s+', ' ', d['testo'])[:460],
-            # Full chunk text for the reranker. The 460-character `verbatim`
-            # is a display column; truncated input would give the reranker
-            # ~115 tokens out of the 1024 it can read.
+            # Full chunk text for the reranker. The 460 characters above are a
+            # COLUMN width, to keep `citazione_testuale` readable in a CSV.
+            # The reranker judges whether the passage answers the probe, and
+            # context is what it is for: fed the truncated text (~115 tokens)
+            # it would see about a third of what it can read (1024 tokens).
+            # Two fields: one for reading, one for scoring.
             'verbatim_intero': re.sub(r'\s+', ' ', d['testo']),
             'finestra': finestra_pagina(testo, marks, d['char_start']),
             'rete': 'semantica', 'punteggio': r['punteggio'], 'sonda': r['sonda'],
@@ -549,21 +581,22 @@ def main():
             'sospetto': r.get('sospetto', ''),
             'forma_trovata': r['forma'],
             'citazione_testuale': r['verbatim'],
-            # Internal field for the reranker; removed before writing the CSV.
+            # Carried only for the reranker and removed before the CSV is
+            # written: it is input to a computation, not a column.
             'verbatim_intero': r.get('verbatim_intero', ''),
             'finestra_pagina': r['finestra'],
-            # MACHINE PROPOSALS: never edited, so that disagreement with the
-            # human reader can be measured.
+            # MACHINE PROPOSALS -- never modified. They are used to measure
+            # disagreement with the reader; overwriting them would lose it.
             'chi_cita_auto': r['dim']['chi_cita_auto'],
             'posizione_auto': '',
             'sede_auto': r['dim']['sede_auto'],
             'dimensioni_confidenza': r['dim']['dimensioni_confidenza'],
-            # READER DECISIONS: prefilled with the proposal; the reader only
-            # corrects them where the proposal is wrong.
+            # READER DECISIONS -- pre-filled with the proposal, so the
+            # reader only corrects where the proposal is wrong.
             'chi_parla': r['dim']['chi_cita_auto'],
             'posizione': '',
             'sede': r['dim']['sede_auto'],
-            # Left empty: no textual signal determines these.
+            # Not pre-filled: no textual signal determines these.
             'tipo_citazione': '', 'annidata': '',
             'proposizione_sostenuta': '', 'confidenza': '', 'note': '',
             'file': r['file'], 'char_start': r['char_start'],
@@ -572,11 +605,14 @@ def main():
         })
     # ── Temporal filter ─────────────────────────────────────────────
     #
-    # A document filed BEFORE the cited decision cannot take it up: an exact,
-    # cost-free filter. Earlier documents are not discarded silently: one
-    # expressing the same proposition is evidence that the principle predates
-    # the decision (an argument AGAINST derivation). They are written to the
-    # discard file, and with `--con-anteriori` they stay in the main CSV.
+    # A filing dated BEFORE the cited decision cannot take it up. This is a
+    # calendar fact, not an estimate: exact, free, and not reproducible by
+    # any model.
+    #
+    # Earlier documents are not thrown away. An earlier document expressing
+    # the same proposition is evidence that the principle pre-existed, i.e.
+    # an argument AGAINST derivation. They are written to the discard file
+    # with their reason, and kept in the main CSV with `--con-anteriori`.
     # Networks that found the case NAME: literal occurrences, not hypotheses.
     NOMINALI = ('lessicale', 'entrambe')
     scarti = []
@@ -586,8 +622,8 @@ def main():
         tenute = []
         for r in righe:
             d = (r.get('data') or '').strip()[:10]
-            # Rows found by name (lexical and 'entrambe') are exempt: the
-            # filter applies only to semantic hypotheses.
+            # Name rows ('lessicale' and 'entrambe') are exempt: the filter
+            # applies only to semantic hypotheses.
             if r['rete'] not in NOMINALI and d and d < dmin:
                 r['anteriore'] = 'si'
                 r['motivo_scarto'] = f'anteriore al {dmin}'
@@ -599,9 +635,10 @@ def main():
 
     # ── Deduplication ───────────────────────────────────────────────
     #
-    # 6% of corpus chunks are repeated text (the same filing or annex
-    # deposited several times); the most repeated appears sixty times. Keep
-    # the first occurrence and record the number of copies.
+    # About 6% of corpus chunks are repeated text: the same filing lodged
+    # several times, the same annexes; the most repeated appears sixty
+    # times. Presenting them as distinct candidates inflates counts and
+    # forces repeated reading. The first is kept and its copy count recorded.
     visti, uniche = {}, []
     for r in righe:
         k = re.sub(r'\s+', ' ', r['citazione_testuale']).strip().lower()[:400]
@@ -618,8 +655,8 @@ def main():
 
     # ── Reranking ───────────────────────────────────────────────────
     #
-    # Semantic candidates only: lexical rows are literal occurrences of the
-    # name, not hypotheses to be screened.
+    # Semantic candidates only: lexical ones are literal occurrences of the
+    # name, not hypotheses to screen.
     scartati_riordino = 0
     if not args.senza_riordino and any(r['rete'] != 'lessicale' for r in righe):
         print('\nriordino dei candidati semantici…', flush=True)
@@ -628,24 +665,26 @@ def main():
         try:
             R = Riordinatore()
             t0 = time.time()
-            # Pass the full chunk, not the truncated column (see
-            # `verbatim_intero`); fall back to `citazione_testuale` for rows
-            # without that field.
+            # The FULL chunk is passed, not the truncated column (see
+            # `verbatim_intero`). The fallback to `citazione_testuale` covers
+            # rows without that field (e.g. from an earlier version).
             coppie = [[testi_sonda.get(r['sonda'], r['sonda']),
                        r.get('verbatim_intero') or r['citazione_testuale']]
                       for r in da_riordinare]
             for r, v in zip(da_riordinare, R.punteggi(coppie)):
                 r['punteggio_riordino'] = round(v, 4)
-                # Never overwrite a confidence already set by hand; only an
-                # empty field receives the machine proposal.
+                # A confidence already set manually is not overwritten; only
+                # an empty field receives the machine proposal.
                 if not r.get('confidenza'):
                     r['confidenza'] = confidenza_da_riordino(r['punteggio_riordino'])
             print(f'  {len(coppie):,} coppie in {time.time() - t0:.0f}s', flush=True)
             prima = len(righe)
             tenute = []
             for r in righe:
-                # Rows found by name (lexical or 'entrambe') are never filtered
-                # by semantic scores; the score is still recorded as a signal.
+                # The cut NEVER applies to name rows, including 'entrambe' rows
+                # (which name the case AND resemble a probe): cutting them on a
+                # low reranker score would drop explicit citations. The score
+                # stays on the row as a hint.
                 if (r['rete'] in NOMINALI
                         or r.get('punteggio_riordino', 1.0) >= args.soglia_riordino):
                     tenute.append(r)
@@ -661,8 +700,8 @@ def main():
 
     righe.sort(key=lambda x: (x['file'], x['pagina']))
 
-    # Body vs. footnote position is read from the PDF, not the Markdown.
-    # Rows are sorted by file, so each PDF is opened only once.
+    # Body or footnote position is read from the PDF, not the markdown.
+    # Rows are sorted by file so each PDF is opened once.
     print('\ncorpo o nota (dal PDF)…', flush=True)
     t0 = time.time()
     try:
@@ -690,8 +729,9 @@ def main():
     out = HERE / (args.uscita or f'index/candidati_{Path(args.caso).stem}.csv')
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open('w', newline='', encoding='utf-8') as f:
-        # Drop the internal full-text field before writing: CSV columns are
-        # taken from the keys of the first row.
+        # Remove the full chunk text before writing: CSV columns are derived
+        # from the first row's keys, so a leftover service field would become
+        # a column in every output file. It was only needed by the reranker.
         for _r in righe:
             _r.pop('verbatim_intero', None)
         w = csv.DictWriter(f, fieldnames=list(righe[0].keys()))
@@ -728,13 +768,17 @@ def main():
     print(f'casi       : {len({r["case_id"] for r in righe}):,}')
     print(f'uscita     : {out}')
 
-    # ── Discarded rows are kept ─────────────────────────────────────
+    # ── Discards are kept ─────────────────────────────────────────────
     #
-    # Manual quality control samples rows already in the CSV and would never
-    # see rows removed earlier (below threshold, earlier than the decision,
-    # duplicates). They are written to a separate file with the reason, so
-    # that the control sample can include them and check whether the
-    # threshold discards relevant material.
+    # Rationale. The 20% manual check verifies how a row ALREADY IN THE CSV
+    # was classified; it never sees what the machine removed earlier
+    # (below-threshold candidates, earlier documents, copies). If those rows
+    # vanished they would be decisions made by the model alone, outside any
+    # check in the method.
+    #
+    # They are therefore written with their reason. The 20% sample must
+    # include a share of them: it is the only way to detect a threshold
+    # discarding good material.
     if scarti:
         fs = out.with_name(out.stem + '.SCARTI.csv')
         campi = list(righe[0].keys()) + ['motivo_scarto']
@@ -752,7 +796,7 @@ def main():
         ).most_common():
             print(f'   {v:>6,}  {k}')
 
-    # Codebook reading instructions, written next to the CSV.
+    # Reading instructions, written next to the CSV.
     istr = re.search(r'^istruzioni_lettura:\s*\|(.*)$', cb_testo, re.M | re.S)
     if istr:
         gemello = out.with_suffix('.ISTRUZIONI.md')

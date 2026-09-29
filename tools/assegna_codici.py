@@ -1,8 +1,9 @@
-"""Assign a unique, permanent code to every citation row.
+"""Assign a unique, permanent code to every lexical citation row.
 
-   Each lexical (and 'entrambe') row receives `codice` = <PREFIX>-<4-digit number>, ordered by document and by
-   position within the document, so individual results can be referenced and later published. Codes are never
-   reassigned: rows that already have one keep it, new rows continue after the highest number of the case.
+   Each lexical row (`proposto_rete` in 'lessicale', 'entrambe') receives `codice` = <PREFIX>-<4-digit number>,
+   numbered in order of document and position within the document. Codes are never reassigned: rows that already
+   have one keep it, new rows continue from the highest number used for the case. Stable codes allow individual
+   results to be referenced and published.
 
    Usage:  .venv/bin/python tools/assegna_codici.py [--scrivi]
 """
@@ -18,8 +19,8 @@ def main():
         tutte = [(d.reference, d.to_dict()) for d in db.collection('corpus_rows')
                  .where(filter=firestore.FieldFilter('caso_citato', '==', caso)).stream()]
         righe = [(ref, r) for ref, r in tutte if r.get('proposto_rete') in ('lessicale', 'entrambe')]
-        # The maximum is taken over ALL rows of the case, merged rows included (`proposto_rete = 'fusa'`):
-        # counting only lexical rows would let a number held by a merged row be reused.
+        # The maximum is taken over ALL rows of the case, including merged ones (`proposto_rete = 'fusa'`):
+        # counting only lexical rows would recycle a number still held by a merged row.
         gia = [int(m.group(1)) for _, r in tutte for m in [re.fullmatch(rf'{pre}-(\d+)', str(r.get('codice') or ''))] if m]
         n = max(gia, default=0)
         nuove = sorted([(ref, r) for ref, r in righe if not r.get('codice')],

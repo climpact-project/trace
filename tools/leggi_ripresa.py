@@ -1,19 +1,18 @@
-"""DeepSeek reads the uptake: which principles an explicit citation takes, and how far it extends in the document.
+"""DeepSeek reads the uptake: which principles a citation takes up and how far it extends in the filing.
 
-   For each lexical (name-based) citation the model receives the citation page with the end of the previous
-   page and the start of the next one, the list of the cited case's principles, the principles that the
-   paragraph map derives from the paragraph numbers cited, and up to MAX_VICINE NEIGHBOURING PAGES of the same
-   document that TRACE-Reranker scores at or above SOGLIA_VICINA for some principle. It returns:
-     - which principles the citation takes (possibly several; "nessuno"; "altro" with a sentence);
-     - for each neighbouring page, whether it continues the same uptake (same principle, same line of
-       reasoning started by the citation), with a verbatim sentence from the page.
-   Outputs are proposals for human coders, never training labels.
+   For each lexical citation DeepSeek receives the citation page with the previous and next pages, the list of
+   principles of the cited case with their paragraphs, the principles the paragraph map derives from the cited
+   paragraph numbers, and up to five NEARBY PAGES of the same filing that TRACE-Reranker scores closest to a
+   principle. It returns:
+     - which principles the citation takes up (possibly several; "nessuno"; "altro" with a sentence);
+     - for each nearby page, whether it continues the same uptake (same principle, same line of reasoning started
+       by the citation), with an evidence sentence from the page;
+     - the sentence of the filing that the citation supports.
+   Outputs are proposals for the team, never training labels.
 
    Phases:
-     prepara  local machine  -> training/principi/<caso>_ripresa_righe.jsonl
+     prepara  local machine -> training/principi/<caso>_ripresa_righe.jsonl
      leggi    GPU server, DeepSeek endpoint -> training/principi/<caso>_ripresa_deepseek.jsonl
-
-   Usage: python tools/leggi_ripresa.py prepara|leggi [--caso urgenda] [--letture 2] [--etichetta v2]
 """
 import argparse, collections, concurrent.futures as cf, datetime, gzip, json, pathlib, sys, threading, time
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -21,6 +20,13 @@ sys.path.insert(0, str(QUI/'tools'))
 P = QUI/'training'/'principi'
 SOGLIA_VICINA = 0.5
 MAX_VICINE = 3
+# Wide window (measured with `misura_finestra.py`): continuation is searched up to 10 pages on each side. Close to
+# the citation (2 pages before to 3 after) a reranker score of 0.5 suffices; further away 0.8 is required, the
+# threshold at which manual reading of a sample found true continuation in more than half of the cases within
+# 10 pages. At most 5 pages are kept.
+LARGA = 10
+SOGLIA_LONTANA = 0.8
+MAX_VICINE_LARGA = 5
 TAGLIO_VICINA = 3500
 
 
@@ -29,7 +35,8 @@ def prepara(caso):
     righe = [json.loads(l) for l in open(QUI/'training'/f'lessicali_{caso}_righe.jsonl', encoding='utf-8')]
     par = {json.loads(l)['id']: json.loads(l) for l in open(P/f'{caso}_da_paragrafi.jsonl', encoding='utf-8')}
     brano = collections.defaultdict(dict); vicina = collections.defaultdict(dict)
-    for f in sorted(P.glob(f'{caso}_punteggi_*.jsonl')):
+    # also the scores of all pages of the filings (from the window measurement; currently Urgenda only)
+    for f in sorted(P.glob(f'{caso}_punteggi_*.jsonl')) + sorted(P.glob(f'{caso}_finestra_punteggi_*.jsonl')):
         for l in open(f, encoding='utf-8'):
             x = json.loads(l)
             if x['dove'] == 'brano':
@@ -41,13 +48,13 @@ def prepara(caso):
     for r in righe:
         p = int(r.get('pagina') or 0)
         cand = []
-        for k in range(p - 2, p + 4):
+        for k in range(p - LARGA, p + LARGA + 1):
             pid = f"{r['document_id']}#p{k}"
-            if k != p and pid in vicina:
+            if k != p and k > 0 and pid in vicina:
                 m = max(vicina[pid].values())
-                if m >= SOGLIA_VICINA:
+                if m >= (SOGLIA_VICINA if -2 <= k - p <= 3 else SOGLIA_LONTANA):
                     cand.append((m, k, pid))
-        cand = sorted(cand, reverse=True)[:MAX_VICINE]
+        cand = sorted(cand, reverse=True)[:MAX_VICINE_LARGA]
         scelte[r['id']] = cand
         serve |= {c[2] for c in cand}
     testi = {}
@@ -116,8 +123,8 @@ def leggi(a):
     conf = yaml.safe_load(open(QUI/'cited-cases'/f'{a.caso}.yaml', encoding='utf-8'))
     principi = '\n'.join(f"- {s['id']}: {' '.join(s['titolo'].split())}. {' '.join(s['testo'].split())}" for s in conf['semantic_queries'])
     nome_caso = conf.get('nome') or a.caso
-    # With --etichetta the prompt also includes the case file (what the case decided, instance by instance and
-    # paragraph by paragraph); without it the model receives only the list of principles.
+    # The case file is included in this reading (from L05): what the case decided, instance by instance and
+    # paragraph by paragraph. Up to L04 the uptake reading received only the list of principles.
     fascicolo = ''
     if a.etichetta:
         testo_f = (QUI/'cited-cases'/f'{a.caso}-fascicolo.md').read_text(encoding='utf-8')
@@ -146,15 +153,20 @@ def leggi(a):
             try:
                 x = cli.chat.completions.create(model=a.modello, messages=[{'role': 'user', 'content': t}], max_tokens=8000,
                                                 extra_body={'chat_template_kwargs': {'thinking': True, 'reasoning_effort': 'low'}})
-                return x.choices[0].message.content or ''
+                # The reasoning trace is saved alongside the answer, so the portal can show why a principle or a
+                # page was proposed.
+                m = x.choices[0].message
+                return (m.content or ''), (getattr(m, 'reasoning_content', '') or '')
             except Exception as e:
                 time.sleep(5 * (k + 1)); ultimo = repr(e)[:200]
-        return ''
+        return '', ''
 
     def una(r):
         t = testo(r)
-        lett = [estrai_tollerante(chiama(t)) for _ in range(a.letture)]
-        return {'id': r['id'], 'data': datetime.date.today().isoformat(), 'letture': lett}
+        risposte = [chiama(t) for _ in range(a.letture)]
+        return {'id': r['id'], 'data': datetime.date.today().isoformat(),
+                'letture': [estrai_tollerante(x) for x, _ in risposte],
+                'ragionamenti': [y[:6000] for _, y in risposte]}
 
     blocco = threading.Lock(); t0 = time.time()
     with cf.ThreadPoolExecutor(a.paralleli) as ex, open(uscita, 'a', encoding='utf-8') as f:

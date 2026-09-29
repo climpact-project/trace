@@ -1,17 +1,15 @@
 """Measure what the continuation window misses.
 
-   The continuation of a citation is searched from two pages before to three pages after it, keeping at most
-   three pages scoring above 0.5 with TRACE-Reranker. This script checks whether anchored implicit uptakes fall
-   outside that window: the reranker scores ALL pages of the documents that cite Urgenda, and all pages of the
-   other documents of the same cases (e.g. a claim cites, the reply takes up the reasoning without citing).
-   It then counts where high-scoring pages lie relative to the citations and draws a sample for reading.
+   The continuation of a citation is searched from two pages before to three pages after, keeping at most three
+   pages scoring above 0.5 with TRACE-Reranker. To check whether implicit anchored uptakes fall outside that
+   window, the reranker scores ALL pages of the filings citing Urgenda, and all pages of the other filings in the
+   same proceedings (a claim cites, the reply takes it up without citing). The script then counts where the
+   high-scoring pages lie relative to the citations and draws a sample for manual reading.
 
    Phases:
      prepara  local machine -> training/principi/urgenda_finestra_coppie.jsonl
               (then: ripresa_punteggi.py punteggi --caso urgenda_finestra)
-     conta    local machine, after scoring -> training/principi/urgenda_finestra_misura.json and a sample
-
-   Usage: python tools/misura_finestra.py prepara | conta [--soglia 0.8]
+     conta    local machine, after scoring -> training/principi/urgenda_finestra_misura.json and a reading sample
 """
 import argparse, collections, gzip, json, pathlib, random, sys
 QUI = pathlib.Path(__file__).resolve().parent.parent

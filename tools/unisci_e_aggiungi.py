@@ -1,15 +1,18 @@
-"""Reconcile name-based (explicit) citations on the platform with a rerun of the name search.
+"""Name-matched citations: merge split citations and add missing ones.
 
-   The rerun (`index/nomi_<caso>_<date>b.csv`) follows two rules of `cerca.py`:
-   - rows that name the cited case ('entrambe') are exempt from the reranker cut and the date filter;
-   - adjacent matches are merged by distance from the PREVIOUS match, not from the first match of the group,
-     so a long reference (case name, docket numbers, ECLI) stays one citation (`cerca.fondi`).
-   This script compares the rerun with the live platform rows:
-   - a new-search group with no platform row -> NEW ROW, coded after the highest code of the case, assigned
-     round-robin to validators who still have rows of that case to do, one in five flagged as a blind sample;
-   - a group covered by two or more platform rows -> SPLIT CITATION: the already judged row (or the first one)
-     is kept; the others leave the queue with `proposto_rete = 'fusa'`, keeping code, data and restore fields
-     (`fusa_in`, `fusa_rete_prima`). Nothing is deleted and no judgment is modified.
+   Reconciles the platform with a re-run of the corrected name search (S02) in `cerca.py`, which fixed two issues:
+   - the reranker cut and the date filter were also applied to 'entrambe' rows, i.e. rows that name the case
+     (on Urgenda, 49 explicit citations discarded, 40 of which never reached the platform); the Korean and
+     Japanese forms of the name were also missing;
+   - merging of nearby matches measured distance only from the FIRST match of the group, so a long reference
+     ("Urgenda, C/09/456689, HA ZA 13-1396, 200.178.245/01, ECLI...") became two rows; now an identifier close to
+     the previous match continues the citation (`cerca.fondi`).
+   The new name search output (`index/nomi_<caso>_<data>b.csv`) is compared live with the platform:
+   - a new-search group with no platform row -> NEW ROW, with a code after the highest of the case, assigned
+     round-robin to annotators with pending rows of the case, one in five as a blind sample like the others;
+   - a group with two or more platform rows -> SPLIT CITATION: the judged row (or the first) is kept; the others
+     leave the queue with `proposto_rete = 'fusa'`, keeping code, data and a marker to restore them
+     (`fusa_in`, `fusa_rete_prima`). Nothing is deleted; no judgment is modified.
    Without --scrivi it prints the counts and writes nothing.
 
    Usage:  .venv/bin/python tools/unisci_e_aggiungi.py [--caso urgenda] [--scrivi]
@@ -26,8 +29,8 @@ ESECUZIONE = 'nomi__2026-09-29'
 
 
 def gruppi_del_documento(md, patt):
-    """Name matches in a document, grouped with the same rule as `cerca.fondi`.
-    Returns (text, matches, group index of each match, start offset of each group)."""
+    """Name matches and their groups, using the same rule as `cerca.fondi`.
+    Return (text, matches, group of each match, start of each group)."""
     testo = md.read_text(encoding='utf-8', errors='replace')
     meta, inizio = cerca.front_matter(testo)
     ms = list(patt.finditer(testo, inizio))
@@ -67,11 +70,11 @@ def main():
         for ref, r in nominali:
             file_di.setdefault(r['document_id'], r.get('file'))
 
-        # Mapping platform rows to groups. A row covers the matches within cerca.FUSIONE characters of its start
-        # (the rule it was created with). If the covered matches include the case NAME, the row represents that
-        # name's group and is kept. If they are ONLY identifiers (docket numbers, ECLI, the name inside a URL), the
-        # row is the tail of a split citation and is merged into its group's representative row. A new-search group
-        # covered by no row is a missing citation and is added.
+        # How a platform row is interpreted. A row covers the matches within 200 characters of its start (the rule
+        # it was created with). If these include the case NAME, the row represents that name's group and is kept.
+        # If they include ONLY identifiers (docket numbers, ECLI, the name inside a URL), it is the tail of a split
+        # citation and is merged into the row representing its group. A new-search group not covered by any row is
+        # a missing citation and is added.
         da_aggiungere, spezzate, orfane, piu_nomi = [], [], [], 0
         for doc in sorted(set(per_doc) | set(csv_doc)):
             md = QUI/file_di[doc]
@@ -94,8 +97,8 @@ def main():
                 tutte_g = sorted(rapp[g] + code[g], key=lambda x: int(x[1]['char_start']))
                 if not code[g] or len(tutte_g) < 2:
                     continue
-                # Keep the JUDGED row: first among rows with the name, then among tail rows (a judged tail row
-                # wins over an unjudged name row). Otherwise keep the first row with the name.
+                # Keep the JUDGED row: first among name rows, then among tails (a judged tail wins over an unjudged
+                # name row). Otherwise keep the first name row.
                 base = rapp[g] or code[g]
                 giudicate = [x for x in base if x[1].get('esito')] or [x for x in code[g] if x[1].get('esito')]
                 tieni = giudicate[0] if giudicate else sorted(base, key=lambda x: int(x[1]['char_start']))[0]
@@ -109,7 +112,7 @@ def main():
                     if riga is not None:
                         da_aggiungere.append(riga)
 
-        # New codes continue after the highest code of the case, merged rows included (codes are never reused).
+        # Code: next after the highest of the case, counting merged rows too (numbers are never reused).
         gia = [int(m.group(1)) for _, r in tutte for m in [re.fullmatch(rf'{pre}-(\d+)', str(r.get('codice') or ''))] if m]
         n = max(gia, default=0)
         chi = sorted({r['assegnato_a'] for _, r in nominali if r.get('assegnato_a') and not r.get('esito')})
@@ -126,7 +129,7 @@ def main():
             d.update({
                 'corroborazione': 'nome_presente', 'ordine': random.Random(rid).random(), 'codice': f'{pre}-{n:04d}',
                 'assegnato_a': chi[k % len(chi)] if chi else None, 'campione_cieco': rnd.random() < 0.20,
-                'incerta': False, 'provenienza': {'corpus': 'D01', 'estrazione': 'V10', 'tipo': '', 'principi': {},
+                'incerta': False, 'provenienza': {'corpus': 'D01', 'estrazione': 'S02', 'tipo': '', 'principi': {},
                                                   'composizione': '', 'seguito': ''},
                 'motivo_aggiunta': r.get('motivo_mancava', ''),
             })

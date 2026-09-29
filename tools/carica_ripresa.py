@@ -1,18 +1,19 @@
-"""Load uptake proposals onto lexical rows: principles taken and continuation on neighbouring pages.
+"""Load uptake proposals onto lexical rows: principles taken up and continuation on nearby pages.
 
-   Writes, only on lexical rows WITHOUT a human outcome (no human judgment is modified), the fields read by
-   the coding form (codebook 0.3-pilot, dimensions 6 and 7):
-     proposto_principi         principles pre-ticked: those of the cited paragraphs (paragraph map) plus those
-                               of DeepSeek's first reading; ["nessuno"] if the reading says none and no cited
+   Writes onto lexical rows WITHOUT a judgment (no human judgment is modified) the fields read by the annotation
+   view (codebook 0.3-pilot, dimensions 6 and 7):
+     proposto_principi         principles pre-selected: those of the cited paragraphs (paragraph map) plus those
+                               of the first DeepSeek reading; ["nessuno"] if the reading says none and no cited
                                paragraph supports one;
-     proposto_principi_fonti   for each principle, its source: paragrafo, lettura, reranker (passage score
-                               >= SOGLIA_RERANKER: lexically close, shown as a hint even when not ticked);
+     proposto_principi_fonti   source of each principle: paragraph, reading, reranker (passage score >= 0.5:
+                               lexically close, shown as a hint even when not selected);
      proposto_principio_altro  the reading's sentence when it answers "altro";
-     proposto_estensione       proposed neighbouring pages, with continues yes/no, principle and quoted sentence;
-     proposto_paragrafi        recognised cited paragraphs;
-     proposto_principi_motivo  the model's rationale for its choices, shown to validators;
-     proposto_ripresa_lettore  which components produced the proposal.
-   These are proposals: training labels come from human coders or the paragraph map, never from the LLM.
+     proposto_estensione       proposed nearby pages, with continues yes/no, principle and evidence sentence;
+     proposto_paragrafi        the recognised cited paragraphs;
+     proposto_principi_motivo  the reading's rationale for its choices;
+     proposto_ripresa_lettore  the proposing system.
+   These are proposals only: training labels come from human annotators or from the paragraph map, never from
+   DeepSeek.
 
    Usage:  .venv/bin/python tools/carica_ripresa.py --caso urgenda            preview
            .venv/bin/python tools/carica_ripresa.py --caso urgenda --scrivi   write
@@ -24,7 +25,7 @@ SOGLIA_RERANKER = 0.5
 
 
 def proposta(caso, rid, ids, par, brano, ds, cand, tipo=''):
-    """Proposed fields for one row (pure function, writes nothing)."""
+    """Return the proposed fields for one row (read-only)."""
     l = (ds.get(rid) or {}).get('letture') or [{}]
     l1 = l[0] if isinstance(l[0], dict) else {}
     fonti = collections.defaultdict(list)
@@ -43,16 +44,15 @@ def proposta(caso, rid, ids, par, brano, ds, cand, tipo=''):
         spuntati.append('altro')
     if not spuntati and 'nessuno' in lett:
         spuntati = ['nessuno']
-    # A chain mention (string citation) takes no principle (codebook, dimension 6). Citation type and principles
-    # come from separate readings, so this is enforced here. Hints (paragraph, reranker) stay in the sources,
-    # visible but not ticked.
+    # A chain mention takes up no principle (codebook, dimension 6). The type and uptake readings are separate
+    # calls, so the rule is enforced here. Hints (paragraph, reranker) stay in the sources, visible but unselected.
     in_catena = tipo == 'menzione_in_catena'
     if in_catena:
         spuntati = ['nessuno']
     vic = []
     pagine_cand = {v['pagina'] for v in (cand.get(rid) or {}).get('vicine', [])}
-    # Check that the quoted sentence really comes from the page: only 53-64% of the model's sentences on
-    # neighbouring pages are verbatim copies; the rest are its own wording. The flag is stored as 'testuale'.
+    # Check that the evidence sentence is actually on the page: only 53-64% of DeepSeek's evidence sentences for
+    # nearby pages are verbatim copies; the rest are paraphrases or translations.
     norm = lambda t: re.sub(r'\W+', ' ', str(t).lower()).strip()
     testi = {v['pagina']: norm(v.get('testo', '')) for v in (cand.get(rid) or {}).get('vicine', [])}
     for v in (l1.get('vicine') or []):
@@ -64,21 +64,22 @@ def proposta(caso, rid, ids, par, brano, ds, cand, tipo=''):
             prova = ' '.join(str(v.get('prova') or '').split())[:300]
             vic.append({'pagina': n, 'prosegue': bool(v.get('prosegue')), 'principio': v.get('principio') or '',
                         'prova': prova, 'testuale': bool(prova) and norm(prova)[:60] in testi.get(n, '')})
-    # No continuation without a principle: if the citation takes no principle (chain mention, or "nessuno"),
-    # nothing can continue it. Neighbouring pages stay listed, none ticked.
+    # No continuation without a principle: if the citation takes up no principle (chain mention, or "nessuno"),
+    # nothing can continue. Pages stay listed, none selected.
     if spuntati == ['nessuno']:
         vic = [dict(v, prosegue=False) for v in vic]
-    # Provenance (version register, `tools/registro_versioni.py`): for each principle, the versions that proposed
-    # it; V05 replaces V04 where the second reading exists.
-    lettura = 'V05' if (ds.get(rid) or {}).get('seconda') else 'V04'
-    codici = {'paragrafo': 'V01', 'lettura': lettura, 'reranker': 'V06'}
+    # Provenance (version registry, `tools/registro_versioni.py`): for each principle, the versions that proposed
+    # it; L05 instead of L04 where the second reading exists.
+    lettura = 'L05' if (ds.get(rid) or {}).get('seconda') else 'L04'
+    codici = {'paragrafo': 'R01', 'lettura': lettura, 'reranker': 'T01'}
     prov = {'provenienza.principi': {k: sorted({codici[f] for f in v}) for k, v in fonti.items() if v},
-            'provenienza.seguito': lettura if vic else '', 'provenienza.composizione': 'V07',
-            'provenienza.estrazione': 'V00', 'provenienza.corpus': 'D01',
+            'provenienza.seguito': lettura if vic else '', 'provenienza.composizione': 'R02',
+            # `estrazione` and `corpus` are not rewritten here: they are set when the row is created (S01 for rows
+            # from the first search, S02 for rows added by the corrected search).
             'proposto_punteggi_principi': {k: round(float(x), 4) for k, x in brano.get(rid, {}).items()},
             'proposto_testo_impronta': hashlib.sha256(((cand.get(rid) or {}).get('contesto') or '').encode('utf-8')).hexdigest()}
-    # The sentence of the document that the citation supports (V05), taken from the reading and checked against
-    # the page text; used to highlight it in the PDF and to decide the principle on the right sentence.
+    # The sentence of the filing supported by the citation (L05): copied from the reading and checked against the
+    # page text (used to highlight it in the PDF and to decide the principle on the right sentence).
     frase = ' '.join(str(l1.get('frase_sostenuta') or '').split())[:600]
     ctx = norm((cand.get(rid) or {}).get('contesto') or '')
     if frase:
@@ -87,7 +88,7 @@ def proposta(caso, rid, ids, par, brano, ds, cand, tipo=''):
     return {**prov, 'proposto_principi': spuntati, 'proposto_principi_fonti': {k: v for k, v in fonti.items() if v},
             'proposto_principio_altro': altro if 'altro' in spuntati else '', 'proposto_estensione': vic,
             'proposto_paragrafi': par.get(rid, {}).get('paragrafi', []),
-            # the model's rationale, shown to validators next to the proposal
+            # the reading's rationale, shown to the validator next to the proposal
             'proposto_principi_motivo': ('Menzione in catena: nessun principio proposto. ' if in_catena else '')
                                         + ' '.join(str(l1.get('motivo') or '').split())[:400],
             'proposto_ripresa_lettore': 'mappa dei paragrafi + DeepSeek V4 Flash 0731 + TRACE-Reranker, 27/09/2026'}
@@ -104,10 +105,11 @@ def carica(caso):
             if x['dove'] == 'brano':
                 brano[x['riga']][x['principio']] = x['punteggio']
     ds = {json.loads(l)['id']: json.loads(l) for l in open(P/f'{caso}_ripresa_deepseek.jsonl', encoding='utf-8')}
-    # where present, the second reading (footnote rule) replaces the first
-    f2 = P/f'{caso}_ripresa_deepseek_v2.jsonl'
-    if f2.exists():
-        ds.update({json.loads(l)['id']: dict(json.loads(l), seconda=True) for l in open(f2, encoding='utf-8')})
+    # The second reading (footnote rule), where present, replaces the first; `v10` is the same reading applied to
+    # rows added by the corrected search and to rows whose first reading was unparseable.
+    for f2 in (P/f'{caso}_ripresa_deepseek_v2.jsonl', P/f'{caso}_ripresa_deepseek_v10.jsonl'):
+        if f2.exists():
+            ds.update({json.loads(l)['id']: dict(json.loads(l), seconda=True) for l in open(f2, encoding='utf-8')})
     cand = {json.loads(l)['id']: json.loads(l) for l in open(P/f'{caso}_ripresa_righe.jsonl', encoding='utf-8')}
     return ids, par, brano, ds, cand
 
