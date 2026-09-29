@@ -1,0 +1,9 @@
+chat/
+*.key
+.deepseek_key
+.env*
+training/
+markdown/
+index/
+__pycache__/
+*.zip

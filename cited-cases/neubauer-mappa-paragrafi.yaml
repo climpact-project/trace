@@ -1,0 +1,1076 @@
+# PARAGRAPH MAP OF NEUBAUER (Klimabeschluss), version 1
+#
+# Companion to `neubauer-fascicolo.md`. Used to resolve citations such as «Neubauer, para. 192»,
+# «BVerfG, Rn. 203», «headnote 2c», and to know which probe and which link of the chain a passage supports.
+#
+# SOURCES. There is a single decision, in two versions in the corpus:
+#   DE  neubauer-et-al-v-germany-order_c68f  (German original, 110 pp.)  -> `pagina_de`
+#   EN  neubauer-et-al-v-germany-order_7977  (official English translation by the BVerfG, 78 pp.) -> `pagina_en`
+# `documento` is the German text, source of the canonical passages; English pages refer to _7977.
+# `pagina` = number of the markdown marker `<!-- page N -->`, which matches the PDF page.
+# «om.» in `pagina_en` = the Rn. is omitted in the English translation («[…]»).
+#
+# HOW THE NUMBERS WERE ESTABLISHED. Randnummern (Rn.) are identical in the two languages. In the
+# German PDF the margin number sits on the opening line of the paragraph: boundaries were counted on
+# the German text (e.g. Rn. 202 = «(b) So oder so...», Rn. 203 = «Dabei könnte sich der Staat ... nicht
+# entziehen», Rn. 204 = «Das Pariser Übereinkommen...») and checked against the Court's internal
+# cross-references (Rn. 225 -> «oben Rn. 203»; Rn. 182 -> «Rn. 154, 164, 177» and «Rn. 178»; Rn. 243 ->
+# «Rn. 192 ff.»; Rn. 247 -> «Rn. 194», «Rn. 228»; Rn. 246 -> «Rn. 198»; Rn. 210 -> «Rn. 201») and the
+# table of contents (Gliederung). In the English text the margin number is sometimes on the next page
+# for paragraphs spanning a page break (Rn. 198, 201, 203), and two Rn. may be merged into one
+# paragraph (205-206): the German text prevails. In the German text, passages spanning a page break
+# carry the page number and the numbers of the following Rn. inserted by the extraction; the pages
+# given here are those on which the paragraph begins and ends.
+#
+# CORRECTIONS WITH RESPECT TO `neubauer.yaml` (v1, not modified): see case file, 2.2 (Rn. 203 not 202;
+# 172 not 173; 187 not 188; 176 not 177 and 175 not 176; 179 not 180; 209 not 208; 205-206; 207; 120).
+#
+# PROBES: schutzpflicht_clima, vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale,
+# budget_co2_parametro, art20a_giustiziabile_autovincolo, protezione_extraterritoriale.
+# LINKS of the chain (case file, section 0):
+#   a = largely irreversible warming, cumulative CO2, finite remaining budget
+#   b = future-oriented Schutzpflicht for life and health, only objective towards posterity, mitigation
+#       embedded internationally plus adaptation, limited review: not violated
+#   c = Art. 20a justiciable, international dimension, concretised by the legislature in the Paris
+#       target, which binds it
+#   d = target translated into a remaining budget, global then national; no judicial figure; special
+#       diligence under uncertainty
+#   e = eingriffsähnliche Vorwirkung of the quantities allowed today on the future freedom of the same complainants
+#   f = proportionality between generations: no generation consumes the budget by offloading a radical reduction
+#   g = remedy: precautions, timely orientation, reservation of statute, order to legislate by 31/12/2022
+#   h = abroad: Schutzpflicht conceivable in principle, with different content, left open
+# Empty lists: the passage supports no probe or link (facts, procedure) or supports only an axis
+# not promoted to a probe (Leitsatz 2c and Rn. 199-204: Urgenda's propria_quota nested; Leitsatz 5 and
+# Rn. 259-265: reservation of statute).
+
+documenti:
+  de: neubauer-et-al-v-germany-order_c68f
+  en: neubauer-et-al-v-germany-order_7977
+
+voci:
+
+# ═══════════════════════════ LEITSÄTZE AND TENOR ═══════════════════════════
+
+  - paragrafo: "Leitsatz 1"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 1
+    pagina_en: 1
+    sintesi: "Art. 2(2) S. 1 GG protegge da ogni inquinamento, chiunque ne sia causa; il dovere di protezione copre i rischi del clima e puo' fondare un dovere oggettivo verso le generazioni future."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+    verbatim: "It can furthermore give rise to an objective duty to protect future generations."
+
+  - paragrafo: "Leitsatz 2, 2a"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 1
+    pagina_en: 1
+    sintesi: "Art. 20a obbliga alla protezione del clima e alla neutralita'; nessuna precedenza assoluta, bilanciamento con peso crescente col progredire del cambiamento."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+    verbatim: "Art. 20a of the Basic Law obliges the state to take climate action. This includes the aim of achieving climate neutrality."
+
+  - paragrafo: "Leitsatz 2b"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 1
+    pagina_en: 1
+    sintesi: "Sotto incertezza scientifica sui nessi causali, speciale diligenza del legislatore, anche per le generazioni future: tener conto di indizi sufficientemente affidabili di danni gravi o irreversibili."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+    verbatim: "a special duty of care imposed upon the legislator by Art. 20a of the Basic Law"
+
+  - paragrafo: "Leitsatz 2c"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 2
+    pagina_en: 2
+    sintesi: "Dimensione internazionale dell'obbligo; che nessuno Stato risolva da solo non toglie l'obbligo nazionale; azione internazionalmente orientata; lo Stato non si sottrae indicando le emissioni altrui (propria_quota di Urgenda con attribuzione, Rn. 203)."
+    sonde: []
+    anelli: [c]
+    verbatim: "The state cannot evade its responsibility by pointing to greenhouse gas emissions in other states."
+
+  - paragrafo: "Leitsatz 2d"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 2
+    pagina_en: 2
+    sintesi: "In esercizio della prerogativa di concretizzazione il legislatore ha fissato il target dell'art. 20a: ben sotto 2 gradi, possibilmente 1,5."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+
+  - paragrafo: "Leitsatz 2e"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 2
+    pagina_en: 2
+    sintesi: "Art. 20a e' norma giustiziabile che vincola il processo politico a favore degli interessi ecologici, anche per le generazioni future."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+    verbatim: "Art. 20a of the Basic Law is a justiciable legal provision designed to commit the political process to a favouring of ecological interests, partly with a view to future generations."
+
+  - paragrafo: "Leitsatz 3"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 2
+    pagina_en: 2
+    sintesi: "La compatibilita' con l'art. 20a e' condizione della giustificazione costituzionale di ogni interferenza statale con i diritti fondamentali."
+    sonde: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]
+    anelli: [f]
+
+  - paragrafo: "Leitsatz 4"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 2
+    pagina_en: 2
+    sintesi: "Obbligo di assicurare la liberta' nel tempo e di ripartire le chance di liberta' fra le generazioni; i diritti come garanzie intertemporali contro lo scarico unilaterale delle riduzioni sul futuro; art. 20a: lasciare le basi naturali in stato tale che i posteri non debbano una «radical abstinence»; transizione avviata per tempo con orientamento e certezza di pianificazione."
+    sonde: [vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale]
+    anelli: [e, f, g]
+    verbatim: "fundamental rights – as intertemporal guarantees of freedom – afford protection against the greenhouse gas reduction burdens imposed by Art. 20a of the Basic Law being unilaterally offloaded onto the future"
+
+  - paragrafo: "Leitsatz 5"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 3
+    pagina_en: 3
+    sintesi: "Le quantita' complessive di emissione per periodo le fissa il legislatore stesso; la mera approvazione parlamentare di regolamenti non sostituisce il procedimento legislativo, per la sua funzione di pubblicita'; il «dynamischer Grundrechtsschutz» di Kalkar non vale qui."
+    sonde: []
+    anelli: [g]
+    verbatim: "The legislator itself must set out the necessary provisions specifying the overall emission amounts that are allowed for certain periods."
+
+  - paragrafo: "Tenor 1-5"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 8
+    pagina_en: 6
+    sintesi: "1. Inammissibile il ricorso delle associazioni; 2. §§ 3(1) S. 2 e 4(1) S. 3 KSG con Anlage 2 incompatibili con i diritti fondamentali in quanto manca l'aggiornamento dei target dal 2031; 3. nel resto respinti; 4. legge entro il 31/12/2022, norme applicabili nel frattempo; 5. spese."
+    sonde: [vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale]
+    anelli: [g]
+    verbatim: "The legislator must enact provisions by no later than 31 December 2022 on the updating of reduction targets for periods from 2031 as set forth in the reasons."
+
+# ═══════════════════════════ A. FACTS (Rn. 1-89) ═══════════════════════════
+
+  - paragrafo: "1-15"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 13-24
+    pagina_en: 12-18
+    sintesi: "Oggetto dei ricorsi e basi giuridiche: KSG (scopo, target, carattere quadro), Accordo di Parigi (art. 2, 3, 4; NDC; UE -40% poi -55%), diritto UE (ETS, Effort Sharing), norme impugnate (§§ 3, 4, Anlage 2)."
+    sonde: []
+    anelli: []
+
+  - paragrafo: "16-17"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 24-25
+    pagina_en: 18-19
+    sintesi: "I rapporti IPCC come sintesi affidabile dello stato delle conoscenze, con procedura di qualita'; l'IPCC non fa ricerca propria. (OC-32/25 nota 27 li cita per questo.)"
+    sonde: [budget_co2_parametro]
+    anelli: [a]
+
+  - paragrafo: "18-21"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 25-27
+    pagina_en: 19-21
+    sintesi: "Effetto serra; rapporto quasi lineare fra gas emessi e temperatura; oltre 3 gradi al 2100 senza misure; effetti su ghiacci, circolazione atlantica, eventi estremi; punti di non ritorno."
+    sonde: []
+    anelli: [a]
+
+  - paragrafo: "22-28"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 27-29
+    pagina_en: 21-23
+    sintesi: "Conseguenze per persone e societa'; effetti gia' in atto in Germania (calore, mare, falde, siccita'); migrazioni climatiche verso l'Europa."
+    sonde: [schutzpflicht_clima]
+    anelli: [a]
+
+  - paragrafo: "29-31"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 29-30
+    pagina_en: 23-24
+    sintesi: "Fonti di emissione: paesi industrializzati; Germania 4,6% storico, 9,2 t pro capite, 1,1% della popolazione e quasi 2% delle emissioni annue; settori."
+    sonde: []
+    anelli: [a]
+
+  - paragrafo: "32"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 31
+    pagina_en: 24-25
+    sintesi: "La CO2 resta nell'atmosfera: ogni quantita' aggiuntiva non rimossa aumenta permanentemente la concentrazione; limitare il riscaldamento vuol dire limitare le emissioni cumulate."
+    sonde: [budget_co2_parametro, vorwirkung_liberta_intertemporale]
+    anelli: [a]
+    verbatim: "every additional amount of CO2 that enters the Earth’s atmosphere and is not then artificially removed"
+
+  - paragrafo: "33-34"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 31-32
+    pagina_en: 25
+    sintesi: "Riduzione delle emissioni; emissioni negative (CDR, CCS) ritenute dall'IPCC necessarie ma oggi difficili; adattamento come strategia che non limita il clima ma ne allevia gli effetti."
+    sonde: [schutzpflicht_clima]
+    anelli: [a]
+
+  - paragrafo: "35-36"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 32-33
+    pagina_en: 25-26
+    sintesi: "Quanto riscaldamento tollerare e' questione politica, non scientifica; dalla temperatura al budget con la fisica del clima: «carbon budget» o «CO2 budget»; cifre IPCC; il Sachverständigenrat calcola un budget tedesco per 1,75 gradi al 67%."
+    sonde: [budget_co2_parametro]
+    anelli: [a, d]
+    verbatim: "this amount is referred to as the “carbon budget” or “CO2 budget”"
+
+  - paragrafo: "37"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 33-34
+    pagina_en: 26-27
+    sintesi: "Quasi ogni condotta emette CO2 lungo tutta la catena del valore; la neutralita' richiede cambiamenti profondi e restrizioni nei modi di produrre, consumare, vivere."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [a, e]
+
+  - paragrafo: "38-89"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 34-48
+    pagina_en: 27-30
+    sintesi: "I quattro ricorsi e le osservazioni di Bundestag, Verdi e Governo (nell'inglese in gran parte omesse: 41-46, 48-53, 56-58, 61-66, 72-74, 80-84, 86-88). Rn. 78-89: i ricorrenti del Bangladesh e del Nepal; il Governo nega un nesso interno e una causalita' diretta."
+    sonde: [protezione_extraterritoriale]
+    anelli: []
+
+# ═══════════════════════════ B. ADMISSIBILITY (Rn. 90-142) ═══════════════════════════
+
+  - paragrafo: "90-95"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 48-50
+    pagina_en: 30-31
+    sintesi: "Sommario dell'ammissibilita'; oggetto ammissibile solo le norme del KSG, non l'omissione in se' dopo l'adozione della legge (93-95 in gran parte omesse nell'inglese)."
+    sonde: []
+    anelli: []
+
+  - paragrafo: "96-98"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 51
+    pagina_en: 31
+    sintesi: "Legittimazione delle persone fisiche per possibile violazione delle Schutzpflichten ex art. 2(2) e 14(1) GG e per la minaccia alla liberta' dopo il 2030; non art. 12(1)."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "99"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 51
+    pagina_en: 31-32
+    sintesi: "Possibile violazione del diritto a protezione: vita e salute protetti dall'inquinamento (Kalkar; CEDU Öneryıldız, Budayeva, Cordella) e dai rischi climatici; il carattere globale non rende impossibile o superfluo il contributo tedesco."
+    sonde: [schutzpflicht_clima]
+    anelli: [b, c]
+    verbatim: "this does not render it impossible or superfluous for Germany to make its own contribution towards protecting the climate"
+
+  - paragrafo: "100"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 51-52
+    pagina_en: 32
+    sintesi: "Possibile violazione del dovere di proteggere la proprieta' (art. 14(1)); non un dovere ulteriore per l'attivita' professionale (art. 12(1))."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "101"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 52
+    pagina_en: 32
+    sintesi: "Legittimazione dei ricorrenti del Bangladesh e del Nepal: se i diritti fondamentali obblighino a proteggere chi sta all'estero non e' ancora chiarito, ma non e' escluso a priori (rinvio a Rn. 173 ss.)."
+    sonde: [protezione_extraterritoriale]
+    anelli: [h]
+    verbatim: "The validity of German fundamental rights vis-à-vis these complainants does not appear to be ruled out from the outset"
+
+  - paragrafo: "102-107"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 52-53
+    pagina_en: 32-33
+    sintesi: "Le norme al 2030 possono violare le Schutzpflichten; non le altre: trasferimenti UE ex art. 5 Effort Sharing non sostanziati, § 4(5), § 4(6) (Rn. 111), §§ 8-9 (105-107 omesse nell'inglese)."
+    sonde: []
+    anelli: []
+
+  - paragrafo: "108"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 53
+    pagina_en: 33
+    sintesi: "Lesione attuale: il riscaldamento e' largamente irreversibile e puo' colpire i ricorrenti in vita; un rischio futuro fonda la lesione quando il corso, una volta avviato, non e' piu' correggibile (Kalkar, BVerfGE 140, 42)."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [a, e]
+
+  - paragrafo: "109"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 53
+    pagina_en: 33
+    sintesi: "I ricorrenti non fanno valere diritti dei non nati o delle generazioni future, che non hanno diritti fondamentali soggettivi (protezione oggettiva: Rn. 146); invocano i propri."
+    sonde: [schutzpflicht_clima, vorwirkung_liberta_intertemporale]
+    anelli: [b, e]
+    verbatim: "The complainants are not asserting the rights of unborn persons or even of entire future generations, neither of whom enjoy subjective fundamental rights"
+
+  - paragrafo: "110"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 53-54
+    pagina_en: 33
+    sintesi: "Non e' actio popularis: che moltissimi siano toccati non esclude la lesione individuale (VG Berlin Rn. 73; diversamente Carvalho, art. 263(4) TFUE). Citata da OC-32/25 nota 570."
+    sonde: []
+    anelli: []
+
+  - paragrafo: "111"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 54
+    pagina_en: 33-34
+    sintesi: "§ 4(6) KSG (regolamento post 2030) non tocca attualmente e direttamente: e' solo un'autorizzazione."
+    sonde: []
+    anelli: []
+
+  - paragrafo: "112"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 54
+    pagina_en: 34
+    sintesi: "L'art. 20a non fonda la legittimazione: e' Staatszielbestimmung, giustiziabile (Rn. 205 ss.) ma senza diritti soggettivi; il costituente del 1994 ha scelto di non creare un diritto ambientale soggettivo."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+    verbatim: "However, Art. 20a GG does not entail any subjective rights"
+
+  - paragrafo: "113-115"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 54-56
+    pagina_en: 34-35
+    sintesi: "«Minimo vitale ecologico» e «diritto a un futuro degno»: non decisi perche' comunque non violati; lo Stato non e' rimasto inerte (Parigi, KSG); resta aperta la questione dello scarico dei pesi sul dopo 2030."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "116"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 56
+    pagina_en: 35
+    sintesi: "Legittimazione per le liberta' fondamentali: dal 2031 possono gravare enormi pesi di riduzione, la cui misura e' gia' determinata dalle norme impugnate; questa Vorwirkung sulla liberta' futura puo' violare i diritti."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+    verbatim: "This advance effect on future freedom might have violated the fundamental rights of the complainants."
+
+  - paragrafo: "117"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 56
+    pagina_en: 35-36
+    sintesi: "Il KSG scarica sul post 2030 parti rilevanti delle riduzioni dovute ex art. 20a; praticamente ogni liberta' e' toccata; la misura del ragionevole (zumutbar) e' determinata dall'obbligo climatico, che giustifichera' restrizioni maggiori."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+
+  - paragrafo: "118"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 56-57
+    pagina_en: 36
+    sintesi: "Le quantita' ammesse fino al 2030 determinano gia' le restrizioni future, non solo di fatto ma con effetto giuridico anticipato: irreversibilita' della CO2 e divieto costituzionale di inerzia; il tempo rimasto decide la perdita di liberta'."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+    verbatim: "not just in factual terms, but with advance legal effects"
+
+  - paragrafo: "119"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 57
+    pagina_en: 36
+    sintesi: "Nesso causale diretto fra CO2 e riscaldamento; irreversibilita'; per fermarsi a una soglia resta un budget residuo mondiale."
+    sonde: [budget_co2_parametro]
+    anelli: [a]
+    verbatim: "The world has a so-called remaining CO2 budget."
+
+  - paragrafo: "120"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 57-58
+    pagina_en: 36-37
+    sintesi: "CANONICAL budget_co2_parametro. Un riscaldamento illimitato viola il Grundgesetz; il target di § 1 S. 3 KSG concretizza l'art. 20a; gli corrisponde un budget nazionale «albeit not precisely quantifiable»; esaurito il budget, emettere solo se l'interesse prevale; il peso dell'art. 20a cresce prima dell'esaurimento; le restrizioni future sono gia' «built into the generosity» della legge presente."
+    sonde: [budget_co2_parametro, vorwirkung_liberta_intertemporale]
+    anelli: [d, e]
+    verbatim: "The restrictions on freedom that will be necessary in the future are thus already built into the generosity of the current climate change legislation."
+
+  - paragrafo: "121"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 58
+    pagina_en: 37-38
+    sintesi: "Il tempo rimasto decide quanto la liberta' andra' ristretta: con alternative a zero emissioni le restrizioni sono minori; una transizione in tempi brevissimi sarebbe enorme (rinvio a Hoge Raad 7.4.3, esclusa prov_hogeraad_743_rinvio)."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+
+  - paragrafo: "122"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 58-59
+    pagina_en: 38
+    sintesi: "CANONICAL vorwirkung_liberta_intertemporale. Ogni consumo del budget riduce il residuo, le possibilita' di liberta' e il tempo per la trasformazione; e' possibile che i diritti fondamentali, come garanzie intertemporali di liberta', proteggano da norme che ammettono tale consumo senza riguardo alla liberta' futura."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+    verbatim: "the Basic Law’s fundamental rights – as intertemporal guarantees of freedom – afford protection against provisions that allow such consumption without taking sufficient account of the future freedom jeopardised as a result"
+
+  - paragrafo: "123-125"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 59
+    pagina_en: "38 (124-125 om.)"
+    sintesi: "Le norme al 2030 sono la causa della lesione considerata; Anlage 2 permette una stima grossolana del consumo del budget; una quota di riduzione per un anno-obiettivo dice poco da sola, ma la riduzione continua e' prescritta."
+    sonde: [vorwirkung_liberta_intertemporale, budget_co2_parametro]
+    anelli: [e]
+
+  - paragrafo: "126-128"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 60-61
+    pagina_en: 38-39
+    sintesi: "Sostanziazione: i ricorrenti hanno mostrato il consumo eccessivo del budget e la «Vollbremsung» che seguirebbe (parola loro); la Corte esamina tutti i diritti in gioco anche se solo 2656/18 parla di liberta' in generale; le associazioni non hanno sostanziato."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+
+  - paragrafo: "129-131"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 61
+    pagina_en: 39
+    sintesi: "Attualmente toccati perche' il rischio e' incorporato nella legge vigente e il consumo del budget e' irreversibile; un ricorso futuro potrebbe essere inutile; individualmente toccati perche' vivranno le misure post 2030; che tocchi tutti non esclude la lesione propria."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+    verbatim: "They are themselves capable of experiencing the measures necessary to reduce CO2 emissions after 2030."
+
+  - paragrafo: "132"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 61
+    pagina_en: 39-40
+    sintesi: "Diverso per i ricorrenti del Bangladesh e del Nepal: non sono soggetti alle misure tedesche future, quindi nessuna lesione delle loro liberta' per Vorwirkung."
+    sonde: [protezione_extraterritoriale, vorwirkung_liberta_intertemporale]
+    anelli: [h]
+
+  - paragrafo: "133-134"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 61-62
+    pagina_en: "40 (134 om.)"
+    sintesi: "Direttamente toccati: la lesione futura e' irreversibilmente incorporata nella legge attuale; non serve impugnare ogni singola misura, il legislatore e' tenuto alla sua regolazione d'insieme (134 solo in tedesco)."
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+
+  - paragrafo: "135-137"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 62-63
+    pagina_en: 40
+    sintesi: "Modo di vita climaticamente rispettoso non sostanziato; le associazioni non hanno azione come «advocates of nature»; l'art. 47 della Carta UE non cambia; la Decisione Effort Sharing forse rispettata grazie alla pandemia."
+    sonde: []
+    anelli: []
+
+  - paragrafo: "138-141"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 63-64
+    pagina_en: "41 (139-140 om.)"
+    sintesi: "Esaurimento dei rimedi (VG Berlin Rn. 46 ss.), sussidiarieta' (nessuna via amministrativa utile), diritto UE non determinante (Recht auf Vergessen I, Åkerberg)."
+    sonde: []
+    anelli: []
+
+  - paragrafo: "142"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 64
+    pagina_en: 41
+    sintesi: "Sommario del merito: successo parziale; Schutzpflichten non violate (I, II); violazione perche' le quantita' ammesse oggi possono produrre pesi rilevanti dopo (III); nessuna violazione dell'art. 20a; mancano le precauzioni per la liberta' nel tempo e fra le generazioni."
+    sonde: [schutzpflicht_clima, vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale]
+    anelli: [b, e, f]
+
+# ═══════════════════════════ C.I SCHUTZPFLICHT TOWARDS RESIDENTS (Rn. 143-172) ═══════════════════════════
+
+  - paragrafo: "143"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 64-65
+    pagina_en: 42
+    sintesi: "Le Schutzpflichten ex art. 2(2) e 14(1) verso i residenti esistono per i rischi climatici, ma la loro violazione non e' accertabile."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "144"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 65
+    pagina_en: 42
+    sintesi: "Lo Stato deve proteggere dal clima con misure che, in incardinamento internazionale, contribuiscano a fermare il riscaldamento, integrate da misure positive di adattamento."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+    verbatim: "These steps must be supplemented by positive measures aimed at alleviating the consequences of climate change (“adaptation measures”)."
+
+  - paragrafo: "145"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 65
+    pagina_en: 42
+    sintesi: "Schutzpflicht generale di vita e salute; le Schutzpflichten oggettive sono parte del diritto soggettivo e la loro violazione e' impugnabile con ricorso costituzionale."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "146"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 65
+    pagina_en: 42-43
+    sintesi: "CANONICAL schutzpflicht_clima. Il dovere non scatta solo a lesione avvenuta ma e' rivolto al futuro (Kalkar); puo' fondare un dovere verso le generazioni future, tanto piu' per processi irreversibili; ma questo dovere intergenerazionale e' di natura solo oggettiva perche' i posteri non sono titolari di diritti (Rn. 109)."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+    verbatim: "this duty to afford intergenerational protection has a solely objective dimension"
+
+  - paragrafo: "147"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 65-66
+    pagina_en: 42-43
+    sintesi: "La protezione copre gli inquinamenti chiunque ne sia causa; la CEDU (Öneryıldız, Budayeva, Cordella) impone obblighi positivi ma non piu' ampi dell'art. 2(2) GG (esclusa prov_cedu_obblighi_positivi)."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "148"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 66
+    pagina_en: 43
+    sintesi: "Il dovere include la protezione dai rischi climatici (VG Berlin Rn. 70); per i grandi rischi (calore, alluvioni, uragani) lo Stato e' obbligato verso i viventi e, in via oggettiva, verso le generazioni future."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+    verbatim: "the state is obliged to afford this protection to the current population and also, in light of objective legal requirements, to future generations"
+
+  - paragrafo: "149"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 66
+    pagina_en: 43
+    sintesi: "Primo pilastro: misure che limitano il riscaldamento; che la Germania non possa fermare il clima da sola non esclude in principio il dovere; la dimensione globale ne determina il contenuto: azione internazionalmente orientata in cui si incardinano le misure nazionali."
+    sonde: [schutzpflicht_clima]
+    anelli: [b, c]
+    verbatim: "does not, in principle, rule out the possibility of a duty of protection arising from fundamental rights"
+
+  - paragrafo: "150"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 66
+    pagina_en: 43
+    sintesi: "Secondo pilastro: dove il clima non e' evitabile o e' gia' cambiato, misure positive di adattamento per tenere i rischi entro il tollerabile (art. 2(1)(b) Parigi)."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "151-152"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 67
+    pagina_en: 43-44
+    sintesi: "Nessuna violazione accertabile. Controllo limitato: la Schutzpflicht e' indeterminata e il legislatore ha margine di valutazione e conformazione; violazione solo se nessuna precauzione, misure manifestamente inidonee o del tutto insufficienti, o gravemente carenti rispetto allo scopo (BVerfGE 142, 313)."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+    verbatim: "if no precautionary measures whatsoever have been taken, or if the adopted provisions and measures prove to be manifestly unsuitable or completely inadequate for achieving the required protection goal, or if the provisions and measures fall significantly short of the protection goal"
+
+  - paragrafo: "153-156"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 67-68
+    pagina_en: 44-45
+    sintesi: "Non manifestamente inidonee: la legge persegue la neutralita' al 2050 e il 55% e' un obiettivo intermedio; un obiettivo per un anno non basta da solo, ma il KSG impone riduzione continua e quantifica le emissioni fino al 2030."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "157"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 68
+    pagina_en: 45
+    sintesi: "Non del tutto insufficienti: lo sarebbe lasciar correre il clima affidandosi solo all'adattamento (Rechtbank 4.75, Hoge Raad 7.5.2); il legislatore deve proteggere soprattutto fermando il clima, e lo fa."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+    verbatim: "A completely inadequate approach would be to allow climate change to simply run its course, using nothing but adaptation measures"
+
+  - paragrafo: "158-163"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 68-70
+    pagina_en: 45-47
+    sintesi: "Non gravemente carenti: (a) il target di Parigi; il SR1.5 non afferma che si debba restare a 1,5 (scelta normativa) ma i punti di non ritorno lo raccomandano (Hoge Raad 4.2, 4.4; Corte suprema irlandese 3.7); data l'incertezza il legislatore ha margine; clima e salute non coincidono."
+    sonde: [schutzpflicht_clima, budget_co2_parametro]
+    anelli: [b]
+    verbatim: "this may be regarded as politically too unambitious"
+
+  - paragrafo: "164-165"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 70-71
+    pagina_en: 47-48
+    sintesi: "L'adattamento puo' integrare la protezione della salute (strategia tedesca: corridoi d'aria, alluvioni, valvole); ritenere che ben sotto 2 gradi piu' adattamento basti non eccede il margine, almeno oggi."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "166-168"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 71-72
+    pagina_en: 48-49
+    sintesi: "(b) Il percorso al 2030 potrebbe non bastare per 1,5 o 1,75 gradi e sembra nato dai 2 gradi (2010): questione per l'art. 20a (Rn. 196 ss., 230 ss.) e per le riduzioni post 2030 (Rn. 243 ss.), non violazione della Schutzpflicht sulla salute finche' neutralita' e riduzione continua restano."
+    sonde: [schutzpflicht_clima, budget_co2_parametro]
+    anelli: [b]
+
+  - paragrafo: "169-170"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 72-73
+    pagina_en: 49
+    sintesi: "(c) Le misure concrete portano forse al 51-52% e non al 55%, ma il deficit e' recuperabile (§ 4(3) KSG): nessuna violazione."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "171-172"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 73-74
+    pagina_en: 49-50
+    sintesi: "Proprieta' (art. 14(1)): dovere di proteggere terreni e case, con il radicamento sociale; stesso standard di controllo (ripetuto in Rn. 172: nessuna precauzione, manifestamente inidonee, del tutto insufficienti, gravemente carenti); ampio margine di bilanciamento; non violato. (neubauer.yaml lo etichetta Rn. 173.)"
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+# ═══════════════════════════ C.II COMPLAINANTS FROM BANGLADESH AND NEPAL (Rn. 173-181) ═══════════════════════════
+
+  - paragrafo: "173"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 74
+    pagina_en: 50
+    sintesi: "Nessuna violazione accertabile di una Schutzpflicht verso i ricorrenti che vivono in Bangladesh e in Nepal."
+    sonde: [protezione_extraterritoriale]
+    anelli: [h]
+
+  - paragrafo: "174"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 74
+    pagina_en: 50
+    sintesi: "CANONICAL protezione_extraterritoriale. Pensabile in principio, ma non da decidere, che le Schutzpflichten valgano verso di loro; sono particolarmente esposti; il riscaldamento si ferma solo con l'azione di tutti; anche la Germania deve andare alla neutralita'; il 2% tedesco e' in mano al legislatore tedesco."
+    sonde: [protezione_extraterritoriale]
+    anelli: [h]
+    verbatim: "Although it does appear conceivable in principle, there is no need to decide at this point"
+
+  - paragrafo: "175"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 74-75
+    pagina_en: 50-51
+    sintesi: "L'art. 1(3) GG non limita il vincolo al territorio (BND), ma contenuto e portata all'estero possono variare secondo la dimensione del diritto; quando i diritti fondino Schutzpflichten verso chi vive all'estero non e' chiarito; possibile aggancio: il contributo, pur piccolo, delle emissioni tedesche. (neubauer.yaml etichetta la chiusa come Rn. 176.)"
+    sonde: [protezione_extraterritoriale]
+    anelli: [h]
+    verbatim: "caused to some – albeit small – extent by greenhouse gas emissions emanating from Germany"
+
+  - paragrafo: "176"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 75
+    pagina_en: 51
+    sintesi: "CANONICAL bis protezione_extraterritoriale. Una Schutzpflicht verso di loro non avrebbe comunque lo stesso contenuto che verso chi vive in Germania: il contenuto della protezione verso chi sta all'estero puo' differire e richiedere modificazione e differenziazione (BND, 1. Leitsatz). (neubauer.yaml: Rn. 177.)"
+    sonde: [protezione_extraterritoriale]
+    anelli: [h]
+    verbatim: "would not in any case have the same content as that vis-à-vis people in Germany"
+
+  - paragrafo: "177"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 75
+    pagina_en: 51
+    sintesi: "In patria lo Stato adempie in due modi: misure che frenano il riscaldamento e adattamento; la combinazione e' scelta politica, frutto di bilanciamento."
+    sonde: [protezione_extraterritoriale, schutzpflicht_clima]
+    anelli: [b, h]
+
+  - paragrafo: "178"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 75-76
+    pagina_en: 51-52
+    sintesi: "Riducendo le proprie emissioni la Germania proteggerebbe anche chi sta all'estero, e non poterlo fare da sola non esclude il dovere (Rn. 149); ma all'estero non dispone dell'adattamento, praticamente impossibile per i limiti della sovranita': spetta agli Stati interessati (esempi IPCC)."
+    sonde: [protezione_extraterritoriale]
+    anelli: [h]
+    verbatim: "it is practically impossible for the German state to afford protection to people living abroad by implementing adaptation measures there"
+
+  - paragrafo: "179"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 76
+    pagina_en: 52
+    sintesi: "Cio' non esclude una responsabilita' politica o internazionale per la protezione nei paesi piu' poveri e colpiti (strategia di adattamento; art. 9(1) Parigi sulla finanza; art. 2(2) sulle responsabilita' differenziate). (neubauer.yaml: Rn. 180.)"
+    sonde: [protezione_extraterritoriale]
+    anelli: [h]
+
+  - paragrafo: "180-181"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 76-77
+    pagina_en: 52-53
+    sintesi: "Anche se il dovere esistesse, non sarebbe violato: non mancano misure, non sono manifestamente inidonee (Parigi, KSG, altre leggi); il criterio «significantly short» andrebbe modificato perche' mitigazione e adattamento vanno valutati insieme e all'estero il secondo manca; il dovere sarebbe adempiuto con l'impegno internazionale e la sua attuazione."
+    sonde: [protezione_extraterritoriale]
+    anelli: [h]
+
+# ═══════════════════════════ C.III INTERTEMPORAL GUARANTEE OF FREEDOM (Rn. 182-265) ═══════════════════════════
+
+  - paragrafo: "182"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 77
+    pagina_en: 53
+    sintesi: "Violazione: mancano precauzioni sufficienti per gestire in modo rispettoso dei diritti gli obblighi di riduzione, potenzialmente molto alti dopo il 2030 a causa delle emissioni ammesse fino ad allora."
+    sonde: [vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale]
+    anelli: [e, f]
+
+  - paragrafo: "183"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 78
+    pagina_en: 53-54
+    sintesi: "CANONICAL bis vorwirkung_liberta_intertemporale. La decisione di ammettere le quantita' fino al 2030 ha effetto anticipato simile a un'interferenza sulla liberta' protetta e richiede giustificazione; nessuna violazione dell'art. 20a; incostituzionali per rischio sproporzionato; obbligo di sicurezza della liberta' nel tempo e di ripartizione fra le generazioni; mancano regole minime post 2030 che orientino e incentivino."
+    sonde: [vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale]
+    anelli: [e, f, g]
+    verbatim: "has an advance interference-like effect (eingriffsähnliche Vorwirkung) on the freedom of the complainants"
+
+  - paragrafo: "184-185"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 78-79
+    pagina_en: 54
+    sintesi: "Tutta la liberta', anche quella che emette CO2, e' protetta (art. 2(1) GG); ma incontra i limiti dell'art. 20a e delle Schutzpflichten, dato che la CO2 e' irreversibile; esaurito il budget del target, la liberta' emissiva prevale solo se vince nel bilanciamento, con peso decrescente."
+    sonde: [vorwirkung_liberta_intertemporale, art20a_giustiziabile_autovincolo]
+    anelli: [e]
+
+  - paragrafo: "186"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 79
+    pagina_en: 54-55
+    sintesi: "Le norme che ammettono emissioni oggi creano un rischio giuridico irreversibile per la liberta' futura: ogni quantita' ammessa consuma il budget predeterminato costituzionalmente; un consumo rapido entro il 2030 accorcia il tempo per gli sviluppi tecnici e sociali."
+    sonde: [vorwirkung_liberta_intertemporale, budget_co2_parametro]
+    anelli: [e]
+    verbatim: "every amount of CO2 that is allowed today irreversibly depletes the remaining budget that was predetermined in accordance with constitutional law"
+
+  - paragrafo: "187"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 79-80
+    pagina_en: 55
+    sintesi: "Il rischio e' causato proprio dalle norme che fissano le quantita' (§§ 3(1) S. 2, 4(1) S. 3 KSG, Anlage 2): consumo inevitabile e irreversibile del budget; effetto anticipato non solo di fatto ma di diritto, perche' e' la Costituzione stessa a rendere piu' urgente il divieto a ogni consumo; giustificazione richiesta gia' ora. (neubauer.yaml: Rn. 188.)"
+    sonde: [vorwirkung_liberta_intertemporale]
+    anelli: [e]
+    verbatim: "This advance effect operates not only de facto but also de jure."
+
+  - paragrafo: "188-190"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 80
+    pagina_en: 55-56
+    sintesi: "Giustificazione in due passi: compatibilita' con le decisioni fondamentali della Costituzione, fra cui l'art. 20a (Leitsatz 3), e proporzionalita' verso la liberta' futura; il rischio sarebbe ingiustificabile se le norme violassero l'art. 20a."
+    sonde: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]
+    anelli: [f]
+
+  - paragrafo: "191"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 80-81
+    pagina_en: om.
+    sintesi: "Solo in tedesco: lo stesso potrebbe valere per la Schutzpflicht oggettiva verso vita e salute delle generazioni future (Rn. 146), violata da un'ammissione eccessiva di CO2; non occorre deciderlo perche' non chiede piu' dell'obbligo climatico."
+    sonde: [schutzpflicht_clima]
+    anelli: [b]
+
+  - paragrafo: "192"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 81
+    pagina_en: 56
+    sintesi: "CANONICAL proporzionalita_intergenerazionale. I diritti obbligano a ripartire nel tempo le riduzioni fino alla neutralita' in modo lungimirante, perche' le perdite di liberta' restino ragionevoli e i pesi non gravino unilateralmente sul futuro; nessuna generazione puo' consumare gran parte del budget con peso lieve lasciando alle successive una riduzione radicale (la «Vollbremsung» dei ricorrenti); l'impatto va valutato oggi, finche' si puo' cambiare rotta."
+    sonde: [proporzionalita_intergenerazionale]
+    anelli: [f]
+    verbatim: "one generation must not be allowed to consume large portions of the CO2 budget while bearing a relatively minor share of the reduction effort"
+
+  - paragrafo: "193"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 81
+    pagina_en: 56-57
+    sintesi: "L'art. 20a lo conferma: proteggere le basi naturali anche per le generazioni future riguarda pure la ripartizione dei pesi ambientali fra generazioni; lasciarle in stato tale che i posteri non debbano conservarle solo a prezzo di radicale astinenza."
+    sonde: [proporzionalita_intergenerazionale]
+    anelli: [f]
+    verbatim: "are not forced to engage in radical abstinence"
+
+  - paragrafo: "194"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 81-82
+    pagina_en: 57
+    sintesi: "Evitare una ripartizione miope e unilaterale a danno del futuro: consumare il budget con prudenza per guadagnare tempo per le trasformazioni; le norme sarebbero incostituzionali se lasciassero un consumo tale da rendere inevitabili perdite irragionevoli; anche sotto incertezza il rischio va contenuto (Kalkar); la proporzionalita' protegge prima dell'assoluta irragionevolezza."
+    sonde: [proporzionalita_intergenerazionale]
+    anelli: [f, g]
+    verbatim: "It is thus imperative to prevent an overly short-sighted and thus one-sided distribution of freedom and reduction burdens to the detriment of the future."
+
+  - paragrafo: "195"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 82
+    pagina_en: 57-58
+    sintesi: "Sommario: senza ulteriori precauzioni le norme non sono costituzionali; nessuna violazione dell'art. 20a accertabile (a); incostituzionali per il rischio non contenuto di gravi lesioni future; servono orientamento e incentivi per tecniche e pratiche neutrali (b)."
+    sonde: [proporzionalita_intergenerazionale, art20a_giustiziabile_autovincolo]
+    anelli: [f]
+
+  - paragrafo: "196-197"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 82-83
+    pagina_en: 58
+    sintesi: "Piano: l'art. 20a obbliga al clima (1), con dimensione internazionale (2), e' giustiziabile (3), il target e' concretizzato dal § 1 S. 3 KSG (4); nessuna violazione delle norme (bb) o delle misure (cc); nessun obbligo di istruttoria (dd); resta l'impegno per l'1,5 (ee)."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+
+  - paragrafo: "198"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 83-84
+    pagina_en: 58-59
+    sintesi: "L'art. 20a obbliga alla protezione del clima (Emissionshandel), che mira a una soglia di temperatura e quindi alla riduzione delle emissioni fino alla neutralita'; nessuna precedenza assoluta ma, data l'irreversibilita', superare la soglia e' giustificabile solo a condizioni strette; peso crescente nel bilanciamento."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+    verbatim: "Within the balancing process, the obligation to take climate action is accorded increasing weight as climate change intensifies."
+
+  - paragrafo: "199"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 84
+    pagina_en: 59
+    sintesi: "L'obbligo non e' invalidato dal carattere globale del problema; ha dimensione internazionale: cercare soluzioni sovranazionali (a) e prendere misure nazionali incardinate anche se da sole non risolvono (b)."
+    sonde: []
+    anelli: [c]
+
+  - paragrafo: "200"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 84
+    pagina_en: 59
+    sintesi: "Il fine dell'art. 20a e' raggiungibile solo in cooperazione: nessuno Stato ferma il riscaldamento da solo e le emissioni di ogni Stato contribuiscono allo stesso modo (Rechtbank Den Haag 4.90); soluzione possibile solo con misure mondiali. (Il fascicolo di Urgenda lo colloca in Rn. 199.)"
+    sonde: []
+    anelli: [c]
+    verbatim: "No state can stop global warming on its own. Furthermore, emissions from every state contribute to climate change in the same way"
+
+  - paragrafo: "201"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 84-85
+    pagina_en: 59-60
+    sintesi: "L'obbligo rinvia al livello internazionale: cercare soluzioni, negoziare, attuare le soluzioni concordate; obbliga al clima nazionale anche senza accordo formalizzato."
+    sonde: []
+    anelli: [c]
+
+  - paragrafo: "202"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 85
+    pagina_en: 60
+    sintesi: "Obiezione di causalita' respinta: la Germania non fermerebbe il clima da sola, il suo 2% e' un fattore piccolo, ma incardinate negli sforzi mondiali le sue misure possono contribuire a fermarlo. (Non e' la Rn. con le citazioni di Urgenda.)"
+    sonde: []
+    anelli: [c]
+    verbatim: "the obligation to take national climate action cannot be invalidated by arguing that such action would be incapable of stopping climate change"
+
+  - paragrafo: "203"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 85-86
+    pagina_en: 60-61
+    sintesi: "Lo Stato non si sottrae indicando le emissioni altrui (VG Berlin Rn. 74; BVerwG 7 C 26/04; Thomson NZ 133 s.; Gerechtshof Den Haag n. 64; Hoge Raad n. 5.7.7; Nono Circuito pp. 19 s.); dalla dipendenza dalla comunita' internazionale segue la necessita' costituzionale di misure proprie, possibilmente concordate; non creare incentivi a minare la cooperazione; fiducia reciproca. Urgenda annidata (fascicolo 5.4). (neubauer.yaml e urgenda-fascicolo: Rn. 202.)"
+    sonde: []
+    anelli: [c]
+    verbatim: "The state may not evade its responsibility here by pointing to greenhouse gas emissions in other states"
+
+  - paragrafo: "204"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 86
+    pagina_en: 61
+    sintesi: "Parigi si regge sulla fiducia reciproca: target comune senza misure vincolanti, meccanismo volontario e trasparente; la fiducia nella volonta' di adempiere e' la chiave della sua efficacia; la via dell'art. 20a passa per questo accordo. (Citata da Eicke in KlimaSeniorinnen come «§ 204».)"
+    sonde: []
+    anelli: [c]
+    verbatim: "The Paris Agreement very much relies on mutual trust as a precondition for effectiveness."
+
+  - paragrafo: "205"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 86-87
+    pagina_en: 61-62
+    sintesi: "CANONICAL art20a_giustiziabile_autovincolo. L'obiezione che l'art. 20a non offra un parametro giustiziabile e rimetta i target al legislatore non esclude il controllo; l'art. 20a e' norma giustiziabile, anche nel Klimaschutzgebot; il testo assegna alla legge una prerogativa di concretizzazione, ma non e' proclama non vincolante (Emissionshandel)."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+    verbatim: "Art. 20a GG is a justiciable legal provision."
+
+  - paragrafo: "206"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 87
+    pagina_en: 61-62
+    sintesi: "Il vincolo non va abbandonato lasciando la concretizzazione al solo legislatore: l'art. 20a fa da contrappeso al processo politico, organizzato in cicli elettorali e strutturalmente lento sugli interessi ecologici di lungo periodo, mentre le generazioni future, le piu' colpite, non hanno voce; impone vincoli sostanziali alla decisione democratica. (Nell'inglese fuso nel capoverso della Rn. 205.)"
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+    verbatim: "future generations - those who will be most affected - naturally have no voice of their own in shaping the current political agenda"
+
+  - paragrafo: "207"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 87
+    pagina_en: 62
+    sintesi: "L'art. 20a lascia ampio margine; non spetta in principio ai giudici ricavarne limiti quantificati di riscaldamento, quantita' di emissione o obiettivi di riduzione; ma non deve svuotarsi, e il controllo dei suoi confini resta alla Corte: non e' l'unica norma sottratta al sindacato. (neubauer.yaml: «Rn. 206-207».)"
+    sonde: [art20a_giustiziabile_autovincolo, budget_co2_parametro]
+    anelli: [c, d]
+    verbatim: "It is not, in principle, for the courts to translate the open wording of Art. 20a GG into quantifiable global warming limits and corresponding emission amounts or reduction targets."
+
+  - paragrafo: "208-210"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 88-89
+    pagina_en: 62-63
+    sintesi: "Il legislatore ha concretizzato il target in § 1 S. 3 KSG (ben sotto 2, possibilmente 1,5): e' la misura costituzionale anche per la Corte (208); testo del § 1 KSG (209, non 208 come in neubauer.yaml); e' la soglia di Parigi assunta deliberatamente, in un quadro in cui la Germania adempie l'art. 20a per via internazionale (210)."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+    verbatim: "The temperature limit specified in § 1 third sentence KSG is the relevant standard under constitutional law and must also form the basis of the Federal Constitutional Court’s review."
+
+  - paragrafo: "211-212"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 89-90
+    pagina_en: 63-64
+    sintesi: "Il legislatore non e' libero, ma con il target di Parigi resta nel margine, data l'incertezza documentata dall'IPCC; nuove conoscenze affidabili possono imporre altri target (controllo della Corte, dovere permanente di adeguamento); un arretramento andrebbe giustificato (art. 4(3) Parigi, § 3(3) KSG)."
+    sonde: [art20a_giustiziabile_autovincolo, budget_co2_parametro]
+    anelli: [c]
+
+  - paragrafo: "213"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 90-91
+    pagina_en: 64-65
+    sintesi: "CANONICAL bis art20a_giustiziabile_autovincolo. Il target del § 1 S. 3 KSG e' concretizzazione essenziale con funzione di orientamento anche per il controllo; il legislatore potrebbe ridefinirlo, ma non ogni norma incompatibile e' una nuova concretizzazione: un cambio di rotta dev'essere riconoscibile e discutibile pubblicamente, per la funzione di trasparenza del procedimento legislativo; finche' non lo ridefinisce cosi', e' tenuto alla propria concretizzazione."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+    verbatim: "it must be held to its own specification of the goal arising from constitutional law"
+
+  - paragrafo: "214-215"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 91
+    pagina_en: 65
+    sintesi: "Misurate sul target, le norme non violano l'art. 20a; ma il controllo non e' diretto: la temperatura va tradotta in emissioni con l'approccio del budget dell'IPCC (a); il calcolo del budget nazionale (b) comporta incertezze e valutazioni; margine del legislatore, non arbitrario: i dati affidabili di possibile superamento vanno considerati, non come misura esatta (c)."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+    verbatim: "the temperature measurement must be converted into an emission measurement"
+
+  - paragrafo: "216"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 91
+    pagina_en: 65
+    sintesi: "Due passi: dalla soglia (rapporto lineare, Rn. 32) al budget globale residuo, poi la quota attribuibile alla Germania, il budget nazionale residuo; IPCC e SRU li hanno calcolati e su questo si puo' misurare la compatibilita' delle quantita' ammesse."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+    verbatim: "The second step is to determine how much of this is attributable to Germany - this is the specific remaining national CO2 budget."
+
+  - paragrafo: "217-218"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 91-92
+    pagina_en: om.
+    sintesi: "Solo in tedesco: il Governo dichiara di non ragionare per budget nazionali ma non ne nega la validita'; obiettivi di riduzione senza un'idea della quantita' totale rischiano di superare la soglia, sarebbe fare clima «ins Blaue hinein» per tentativi; il Governo stesso ammette il budget come controllo di plausibilita' (ricezione: Hoge Raad 2.1, 4.6, 7.4.3; Corte suprema irlandese 4.3)."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+    verbatim: "Letztlich bedeutete dies, Klimaschutz ins Blaue hinein zu betreiben."
+
+  - paragrafo: "219"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 93
+    pagina_en: 66
+    sintesi: "Cifre: IPCC dal 2018, 420 Gt per 1,5 gradi al 67%, 1170 Gt per 2 gradi; SRU dal 2020, 6,7 Gt per la Germania per 1,75 gradi al 67% (esclusa prov_ipcc_budget)."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+
+  - paragrafo: "220-223"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 93-94
+    pagina_en: 66-67
+    sintesi: "Il calcolo SRU e' verificabile e fondato sull'IPCC ma con incertezze rilevanti sul budget globale (±400, ±250, -100, ±250 Gt; emissioni negative); nessun dato piu' preciso; i ricorrenti non dubitano dell'affidabilita' e nemmeno il Governo, che ritiene solo le incertezze troppo grandi per trarne conclusioni (polarita' polarita_incertezze_troppo_grandi)."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+
+  - paragrafo: "224-227"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 94-95
+    pagina_en: 67-68
+    sintesi: "Budget nazionale: criteri di ripartizione diversi (SRU: pro capite, 1,1%); l'art. 20a non ne fissa uno ne' la quota equa, ma la scelta non e' arbitraria e l'obbligo non cade perche' la quota e' indeterminabile; va scelta in modo da alimentare la fiducia reciproca (Rn. 203); indicazioni dal diritto internazionale (art. 2(2), 4(4) Parigi; art. 3 UNFCCC, CBDR); trasferimenti ex art. 6 Parigi ed emissioni negative incerti."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+    verbatim: "Nor can a specific constitutional obligation to reduce CO2 emissions be invalidated by simply arguing that Germany’s share of the reduction burden and of the global CO2 budget are impossible to determine."
+
+  - paragrafo: "228"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 95
+    pagina_en: 68
+    sintesi: "Le incertezze vanno in entrambe le direzioni: il budget residuo potrebbe essere anche piu' piccolo."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+
+  - paragrafo: "229"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 95-96
+    pagina_en: 68-69
+    sintesi: "Pur incerta, la quantificazione SRU va tenuta in conto dai target di legge; l'art. 20a lascia margine di valutazione ma non a piacere: sotto incertezza scientifica pone limiti e impone una speciale diligenza, anche in responsabilita' per le generazioni future: considerare gli indizi sufficientemente affidabili di danni gravi o irreversibili (art. 3(3) UNFCCC); le stime IPCC vanno considerate se indicano il possibile superamento della soglia."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+    verbatim: "the legislator must even take account of mere indications pointing to the possibility of serious or irreversible impairments, as long as these indications are sufficiently reliable"
+
+  - paragrafo: "230-235"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 96-97
+    pagina_en: 69-70
+    sintesi: "Applicazione: le norme reggono; ma con 6,7 Gt il budget sarebbe quasi esaurito nel 2030 (Anlage 2 vale circa 7 Gt CO2eq, oltre 6 Gt CO2, senza LULUCF e trasporti internazionali); neutralita' subito dopo il 2030 improbabile; con 1,75-2 gradi non escluso; 1,75 non realizza lo sforzo per l'1,5."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+
+  - paragrafo: "236-237"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 97-98
+    pagina_en: 70-71
+    sintesi: "Nessun superamento del margine accertabile: l'incertezza sul budget globale e nazionale e' troppo grande perche' la cifra SRU sia misura esatta del controllo; le stime IPCC vanno comunque considerate (Rn. 229) ma la violazione di questa diligenza non e' accertabile: budget largamente consumato, non superato; l'SRU ha scelto 1,75 e non 2 gradi."
+    sonde: [budget_co2_parametro]
+    anelli: [d]
+    verbatim: "currently too great to allow the budget size calculated by the Advisory Council to serve as an exact numerical benchmark for review by the Federal Constitutional Court"
+
+  - paragrafo: "238"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 98
+    pagina_en: 71
+    sintesi: "Che gli strumenti attuali non bastino per il 55% non e' violazione costituzionale: il § 3(1) S. 2 KSG non e' la concretizzazione dell'art. 20a (lo e' il § 1 S. 3); il deficit e' recuperabile."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+
+  - paragrafo: "239-241"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 99-100
+    pagina_en: "71 (240-241 om.)"
+    sintesi: "Nessun obbligo autonomo di istruttoria e motivazione dall'art. 20a; il procedimento parlamentare con la sua pubblicita' offre garanzia; conta che la compatibilita' delle quantita' sia motivabile in modo coerente."
+    sonde: [art20a_giustiziabile_autovincolo]
+    anelli: [c]
+
+  - paragrafo: "242"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 100
+    pagina_en: 71-72
+    sintesi: "Resta al legislatore l'impegno, dichiarato concretizzando l'art. 20a, di limitare il riscaldamento possibilmente a 1,5; il 55% sembra nato dai 2 gradi (Rn. 166)."
+    sonde: [art20a_giustiziabile_autovincolo, budget_co2_parametro]
+    anelli: [c, d]
+
+  - paragrafo: "243"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 100
+    pagina_en: 72
+    sintesi: "Incostituzionali in quanto creano un rischio non contenuto di lesioni future: violato il dovere, dalla proporzionalita', di ripartire nel tempo in modo lungimirante e rispettoso dei diritti le riduzioni fino alla neutralita' (rinvio a Rn. 192 ss.)."
+    sonde: [proporzionalita_intergenerazionale]
+    anelli: [f]
+    verbatim: "is spread out over time in a forward-looking manner that respects fundamental rights"
+
+  - paragrafo: "244-245"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 100-101
+    pagina_en: 72
+    sintesi: "Le quantita' fino al 2030 riducono molto le possibilita' successive: giustificabile solo con precauzioni per una transizione rispettosa della liberta' (1), un orizzonte di pianificazione favorevole allo sviluppo (2), requisiti per il percorso (3); il rischio di pesi gravi e' alto."
+    sonde: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]
+    anelli: [f]
+
+  - paragrafo: "246"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 101
+    pagina_en: 72-73
+    sintesi: "Con il calcolo SRU (1,75 gradi al 67%) dopo il 2030 resterebbe un budget minimo che basterebbe a malapena un altro anno; rispettarlo strettamente imporrebbe riduzioni oggi irragionevoli, anche senza precedenza assoluta del clima (Rn. 198). (OC-32/25 nota 394 rinvia a 246 e 265.)"
+    sonde: [proporzionalita_intergenerazionale, budget_co2_parametro]
+    anelli: [f]
+    verbatim: "would barely last for a further year"
+
+  - paragrafo: "247"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 101-102
+    pagina_en: 73
+    sintesi: "Quante possibilita' restino dopo il 2030 non e' accertabile con esattezza (Rn. 224 ss.); con un budget maggiore la transizione sarebbe ancora conformabile ai diritti, ma andrebbe avviata per tempo; potrebbe essere anche minore (Rn. 228): il legislatore deve prendere precauzioni (Rn. 194)."
+    sonde: [proporzionalita_intergenerazionale, budget_co2_parametro]
+    anelli: [f, g]
+
+  - paragrafo: "248-250"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 102-103
+    pagina_en: 73-74
+    sintesi: "Rispettare la liberta' futura richiede di avviare per tempo la transizione in tutti i settori; lo Stato non puo' fornire da solo tutti gli sviluppi ma deve creare condizioni e incentivi (Emissionshandel); margine, ma serve orientamento anche per il post 2030, con urgenza di sviluppo e certezza di pianificazione (esempio dei trasporti); il quadro nazionale conta anche in mercati internazionali. (Leitsatz 4, secondo capoverso.)"
+    sonde: [proporzionalita_intergenerazionale]
+    anelli: [g]
+    verbatim: "respecting future freedom requires that the transition to climate neutrality be initiated in good time"
+
+  - paragrafo: "251-255"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 103-104
+    pagina_en: 74-76
+    sintesi: "Il KSG affida il post 2030 a un regolamento del 2025 (§ 4(6)); la fissazione dev'essere trasparente, tempestiva e abbastanza lontana nel futuro (Corte suprema irlandese 6.45 ss.), per gradi e con dettaglio sufficiente; resta decisivo l'art. 20a: percorso verso la neutralita' entro il budget, con quantita' sempre decrescenti (art. 4(3) Parigi)."
+    sonde: [proporzionalita_intergenerazionale]
+    anelli: [g]
+    verbatim: "it is imperative under constitutional law that further reduction targets beyond 2030 are specified in good time, extending sufficiently far into the future"
+
+  - paragrafo: "256-258"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 104-105
+    pagina_en: "76 (257-258 om.)"
+    sintesi: "La tecnica del § 4(6) (quantita' annue decrescenti per regolamento) e' in principio idonea, ma la fissazione non e' regolata a sufficienza: una sola fissazione «nel 2025» per «ulteriori periodi», forse solo due anni, con cinque anni di preavviso; serve un processo ripetuto e lontano nel tempo."
+    sonde: [proporzionalita_intergenerazionale]
+    anelli: [g]
+
+  - paragrafo: "259-265"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 105-108
+    pagina_en: "76-77 (262-264 om.)"
+    sintesi: "Riserva di legge e art. 80(1) GG: se resta il regolamento, il legislatore deve fissare da se' la grandezza delle quantita' annue o criteri essenziali; le questioni essenziali per liberta' e uguaglianza spettano alla legge; il § 4(6) non dice quando e di quanto ridurre (263, solo tedesco: la ripartizione post 2030 comporta interferenze profonde, con la Corte irlandese 6.37 s.; il «dynamischer Grundrechtsschutz» non vale); la mera partecipazione del Bundestag non sostituisce il procedimento legislativo (265; Leitsatz 5)."
+    sonde: []
+    anelli: [g]
+    verbatim: "Mere parliamentary involvement cannot replace a legislative process"
+
+# ═══════════════════════════ D-E. CONSEQUENCES AND VOTE (Rn. 266-270) ═══════════════════════════
+
+  - paragrafo: "266-268"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 108-109
+    pagina_en: "77 (267-268 om.)"
+    sintesi: "Incostituzionali in quanto manca la regola sull'aggiornamento dei target dal 2031 fino alla neutralita'; successo dei ricorsi tedeschi, infondato 78/20; non nullita' ma incompatibilita' con efficacia provvisoria, perche' la nullita' toglierebbe ogni limite alle emissioni e consumerebbe ancora piu' budget; legge entro il 31/12/2022."
+    sonde: [proporzionalita_intergenerazionale]
+    anelli: [g]
+    verbatim: "der Gesetzgeber muss die Fortschreibung der Minderungsziele für Zeiträume nach 2030 jedoch bis zum 31. Dezember 2022 unter Beachtung der Maßgaben dieses Beschlusses näher regeln"
+
+  - paragrafo: "269-270"
+    documento: neubauer-et-al-v-germany-order_c68f
+    pagina_de: 109
+    pagina_en: 77
+    sintesi: "Spese (§ 34a BVerfGG); decisione unanime."
+    sonde: []
+    anelli: []
+    verbatim: "The decision is unanimous."

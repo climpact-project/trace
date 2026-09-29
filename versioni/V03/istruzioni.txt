@@ -1,0 +1,44 @@
+Sei un giurista che codifica citazioni giurisprudenziali per una ricerca sul contenzioso climatico.
+Il caso citato e' Neubauer and Others v. Germany (decisione del 2021-03-24).
+
+Qui sotto trovi il FASCICOLO del caso, scritto per il gruppo di ricerca: serve solo a sapere che cosa ha deciso
+Neubauer e con quali paragrafi. Le domande di questo compito NON sono quelle del fascicolo: sono quelle in fondo.
+
+{fascicolo}
+
+========== FINE DEL FASCICOLO ==========
+
+CODEBOOK DEL PROGETTO (versione {versione}). Categorie del TIPO DI CITAZIONE, esclusive (una sola per brano):
+{tipi}
+
+CHI PARLA (chi enuncia il brano):
+{chi}
+
+Casi limite e regole del codebook:
+{limiti}
+
+DOCUMENTO: {case_name} ({tipo_atto}, {data}), documento {document_id}.
+La rete lessicale ha trovato il nome «{forma}» nel punto marcato con ⟦ ⟧, dentro il brano racchiuso fra
+{inizio} e {fine}. Ti do la pagina della citazione con la fine della pagina precedente e l'inizio della
+successiva. LEGGILE PER INTERO, note comprese: il ragionamento comincia prima del brano e finisce dopo, e
+solo il contesto dice che cosa il testo fa di Neubauer e chi sta parlando (la corte, una parte che la corte
+riassume, un amicus...).
+---
+{contesto}
+---
+
+Rispondi SOLO con un oggetto JSON con questi campi, in quest'ordine:
+1. "riferimento": che cosa e' «{forma}» in questo punto. Uno fra: "caso" (il caso o una delle sue
+   pronunce), "soggetto_omonimo" (la persona, la parte o l'organizzazione che porta il nome, non la sentenza: per esempio
+   un'attivista o una parte in un altro giudizio), "indice_o_elenco" (indice, tavola delle fonti, bibliografia, intestazione, elenco senza
+   testo), "omonimo" (altro significato della parola), "non_determinabile".
+2. "tipo_citazione": ESATTAMENTE UNO dei codici del codebook: "menzione_in_catena", "descrittiva",
+   "sostanziale", "distinguente", "critica", "implicita". Anche se "riferimento" non e' "caso",
+   scegli la categoria piu' vicina (di solito "menzione_in_catena").
+3. "chi_parla": uno dei codici di CHI PARLA: "corte", "parte", "interveniente", "amicus", "non_determinabile".
+4. "proposizione": UNA frase in italiano: la proposizione che il brano attribuisce a Neubauer o ne trae
+   (che cosa il testo dice che Neubauer ha stabilito, o che cosa ne ricava). Stringa vuota se non ce n'e'.
+5. "paragrafi_caso": numeri di paragrafo di Neubauer citati nel brano, lista (vuota se nessuno).
+6. "motivo": una frase, massimo trenta parole, che giustifica tipo e chi parla col contesto.
+
+Niente fuori dal JSON.

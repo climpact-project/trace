@@ -1,0 +1,344 @@
+# CODEBOOK — CITATION TYPES
+#
+# PURPOSE. This file is the project's coding instrument. It defines the
+# categories, their boundaries and the rules for borderline cases. It applies
+# to all coders and all rounds of coding and is not rewritten for each search.
+#
+# WHY A FILE RATHER THAN AN AD-HOC INSTRUCTION. Coders who restate the same
+# criterion from memory produce different criteria. The divergence goes
+# unnoticed because the results still look plausible, and spot checks would
+# then measure variation in the wording rather than coding quality. With a
+# versioned file, "the same query" is genuinely the same.
+#
+# USAGE:
+#     cerca --codebook codebook/citazioni.yaml --bersaglio bersagli/urgenda.yaml
+#
+# The codebook (this file) defines HOW to classify. The target file defines
+# WHAT to search for. The former changes rarely and only through revision;
+# the latter changes with each cited case.
+#
+# STATUS: pilot. The categories below are to be refined against real
+# passages rather than approved in the abstract. Planned procedure: a sample
+# of difficult passages is drawn from the corpus, classified by an expert
+# coder, and definitions and borderline rules are revised accordingly.
+
+versione: 0.3-pilot
+data: 2026-09-27
+approvato_da: null          # must be set before production use
+
+# ── Dimension 1: what the citation does in the text ─────────────────────
+#
+# Categories are MUTUALLY EXCLUSIVE: each passage receives exactly one.
+# A passage that appears to fall into two is a borderline case and is
+# resolved by the corresponding rule in `casi_limite`.
+
+tipo_citazione:
+
+  - codice: menzione_in_catena
+    nome: Menzione in catena
+    definizione: >
+      Il precedente compare in un elenco di precedenti senza che il testo
+      ne tragga alcunche'. Non svolge lavoro argomentativo: toglierlo non
+      cambierebbe il ragionamento.
+    indizi: [ "elenco separato da punto e virgola", "'see also'", "'cfr.'", "nota a pie' di pagina che elenca piu' precedenti senza usarne nessuno" ]
+    # The footnote cue previously read "footnote without comment", which
+    # contradicted the footnote rule in `casi_limite` (a footnote supporting a
+    # sentence in the body text is substantive). Aligned with that rule.
+
+  - codice: descrittiva
+    nome: Descrittiva
+    definizione: >
+      Il testo riferisce che cosa il precedente ha deciso, senza applicarlo
+      al caso presente e senza farne propria la ragione.
+    indizi: [ "'the court in X held that'", "'X concerned'", "riassunto dei fatti o del dispositivo" ]
+
+  - codice: sostanziale
+    nome: Sostanziale
+    definizione: >
+      Il precedente e' impiegato per sostenere una proposizione che l'organo
+      giudicante o la parte fa propria. E' la categoria centrale della
+      ricerca.
+    indizi: [ "'as held in X'", "'following X'", "'consistent with X'", "il ragionamento prosegue applicando la regola" ]
+
+  - codice: distinguente
+    nome: Distinguente
+    definizione: >
+      Il precedente e' richiamato per affermare che nel caso presente non
+      si applica: diverso ordinamento, diversi presupposti, diverso petitum.
+      Non e' un rifiuto: e' una delimitazione.
+    indizi: [ "'unlike in X'", "'X is distinguishable'", "'does not apply'", "'si differenzia da'" ]
+
+  - codice: critica
+    nome: Critica
+    definizione: >
+      Il precedente e' richiamato per dissentire dal suo contenuto o per
+      contestarne la correttezza.
+    indizi: [ "'wrongly decided'", "'unpersuasive'", "'should not be followed'", "'erroneous'" ]
+
+  - codice: implicita
+    nome: Implicita
+    definizione: >
+      Il ragionamento del precedente e' ripreso senza che il precedente sia
+      mai nominato ne' citato. E' la categoria che nessuna ricerca testuale
+      puo' produrre.
+    indizi: [ "formula sostanziale corrispondente senza riferimento", "coincidenza di argomentazione", "stessa catena logica con presupposti specifici" ]
+
+# ── Dimension 2: who is speaking ─────────────────────────────────────────
+#
+# INDEPENDENT of Dimension 1 and always recorded. A substantive citation made
+# by a party and one made by the court carry very different weight;
+# conflating them makes the data unusable.
+
+chi_parla:
+  - codice: corte
+    nome: Organo giudicante
+  - codice: parte
+    nome: Parte del giudizio
+  - codice: interveniente
+    nome: Interveniente
+  - codice: amicus
+    nome: Amicus curiae
+  - codice: non_determinabile
+    nome: Non determinabile dal passaggio
+
+# ── Dimension 3: nesting ─────────────────────────────────────────────────
+
+annidata:
+  descrizione: >
+    Vero quando l'organo che redige il documento riporta un brano di un
+    altro provvedimento che a sua volta cita il bersaglio. Il caso va SEGNALATO, non assimilato a una citazione
+    diretta.
+  valori: [ "si", "no", "ambiguo" ]
+  fonte_intermedia: >
+    Quando identificabile, si registra il provvedimento intermedio.
+
+# ── Dimension 4: where the reference sits ────────────────────────────────
+#
+# PRE-FILLED BY THE SYSTEM. Derived from the PDF (font size and position on
+# the page), not from the extracted text, where this signal does not
+# survive. The reader corrects it only when it is wrong.
+#
+# WHY IT MATTERS. A footnote is where a text declares TO WHOM a principle is
+# attributed. A reference in a footnote and one in the body text do not
+# weigh the same, and pooling them is an error that becomes invisible
+# downstream.
+
+posizione:
+  - codice: corpo
+    nome: Nel testo corrente
+  - codice: nota
+    nome: In nota a pie' di pagina
+  - codice: non_determinabile
+    nome: Il PDF non distingue i due (pagina piatta, o testo da OCR)
+
+# ── Dimension 5: procedural setting of the passage ───────────────────────
+#
+# PRE-FILLED BY THE SYSTEM, from the document type and from the formulas a
+# court uses to attribute an argument to the party that raised it.
+#
+# WHY IT MATTERS. "The applicants invoke Urgenda", written in a judgment, is
+# not the court citing Urgenda: it is the court summarising a party's
+# submission. Counting both together inflates precisely the most debated
+# cases, those most invoked by parties, which are the cases of interest.
+
+sede:
+  - codice: motivazione
+    nome: Ragionamento dell organo giudicante
+  - codice: difese_riportate
+    nome: La corte riassume l argomento di una parte
+  - codice: dissenso
+    nome: Opinione dissenziente
+  - codice: concorrente
+    nome: Opinione concorrente
+  - codice: atto_di_parte
+    nome: Documento depositato da una parte o da un amicus
+  - codice: non_determinabile
+    nome: Il documento non ha struttura processuale (lettera, relazione, avviso)
+
+# ── Dimension 6: principle taken up ──────────────────────────────────────
+#
+# Added in codebook version 0.3.
+#
+# RATIONALE. Knowing that a document cites Urgenda is not enough: the research
+# asks WHAT it takes from it. A re-reading of earlier coding showed that
+# genuinely implicit uptake (without naming the case) is rare (3-4 out of ~400
+# coded pages) and that those who take up Urgenda almost always name it.
+# Coding therefore starts from the explicit citation and asks which principle
+# it takes.
+#
+# THE LIST OF PRINCIPLES IS NOT DEFINED HERE: it belongs to the cited case, in
+# its own file (`cited-cases/<caso>.yaml`, field `semantic_queries`: id, title,
+# text), with the supporting paragraphs in the paragraph map
+# (`cited-cases/<caso>-mappa-paragrafi.yaml`). This file holds the rules,
+# which are the same for every case.
+#
+# RULES.
+#   - MORE THAN ONE principle may be assigned: many citations refer to a group
+#     of paragraphs.
+#   - If the citation gives a paragraph number, the paragraph map applies,
+#     unless the text clearly says otherwise (the validator records this in a
+#     note).
+#   - "nessuno" (none): the citation takes no principle (chain mention,
+#     description of facts or outcome, example of successful litigation).
+#   - "altro" (other): the citation takes something not on the list (e.g.
+#     standing of associations, separation of powers, precautionary
+#     principle), described in one sentence. When many "altro" entries
+#     converge, they are promoted to a new principle of the case, with
+#     definition, paragraphs and date: the list grows from the data.
+
+principio_ripreso:
+  multiplo: true
+  lista: dal file del caso citato (semantic_queries)
+  valori_speciali:
+    - codice: nessuno
+      nome: Non prende nessun principio
+    - codice: altro
+      nome: Prende un principio che non e' nella lista (da scrivere)
+
+# ── Dimension 7: extent of the uptake ────────────────────────────────────
+#
+# Added in codebook version 0.3. Implicit uptake is no longer searched for
+# blindly across the corpus: it is searched for as a continuation of an
+# explicit citation. A document that cites Urgenda at p. 30 often develops
+# the same principle on the following pages without repeating the name.
+#
+# RULE. A neighbouring page (two before, three after) belongs to the uptake if
+# it DEVELOPS THE SAME PRINCIPLE WITHIN THE SAME LINE OF REASONING opened by
+# the citation. Discussing the same topic is not sufficient: if the document
+# has moved to another argument, or supports the same topic with another
+# source (general ECHR case law, the Paris Agreement, another case), the page
+# does not belong to the uptake.
+
+estensione:
+  valori: [pagine dello stesso documento che proseguono la ripresa]
+  finestra: {prima: 2, dopo: 3}
+
+# ── Borderline cases ─────────────────────────────────────────────────────
+#
+# This is the part that matters most. The easy categories are assigned
+# consistently by anyone; disagreement between coders arises here.
+casi_limite:
+
+  - questione: >
+      Una parte cita il bersaglio e l'organo giudicante ne riporta la difesa
+      riassumendola. Una riga o due?
+    regola: DA DECIDERE
+
+  - questione: >
+      Il bersaglio ha piu' gradi di giudizio. Vanno distinti?
+    regola: >
+      NO. Chi cita il bersaglio cita il
+      bersaglio, a prescindere dal grado. Non si registra il grado.
+
+  - questione: >
+      Citazione contenuta in una citazione (vedi `annidata`).
+    regola: >
+      Si registra come citazione del documento che la contiene, con
+      `annidata = si`.
+
+  - questione: >
+      Il passaggio nomina il bersaglio solo nel titolo di un allegato o
+      nell'indice del documento.
+    regola: DA DECIDERE
+
+  - questione: >
+      Il documento e' interamente dedicato al bersaglio (per esempio un
+      commento a quella sentenza). Ogni ripresa e' una citazione distinta?
+    regola: DA DECIDERE
+
+  - questione: >
+      Una nota a pie' di pagina cita il bersaglio a sostegno della frase del
+      corpo a cui e' agganciata. Sostanziale o menzione in catena?
+    regola: >
+      Di regola SOSTANZIALE: la nota dichiara la fonte di una proposizione che
+      il testo fa propria, quindi il bersaglio sostiene quella proposizione.
+      Resta MENZIONE IN CATENA quando il bersaglio e' uno di piu' precedenti
+      elencati nella stessa nota senza che nessuno venga usato (elenco
+      separato da punto e virgola, "see also", "cfr."): li' la nota non fa
+      lavoro argomentativo col bersaglio. Regola introdotta perche' il lettore
+      automatico e i validatori divergevano soprattutto in nota
+      (accordo 0,32 in nota contro 0,60 nel corpo).
+
+  - questione: >
+      La frase su cui si ragiona (quella della citazione, o quella di una pagina
+      vicina) ha una propria nota che la attribuisce a un'altra fonte: un altro
+      caso, un trattato, un rapporto.
+    regola: >
+      Il principio del caso citato e' quello della frase a cui e' agganciata la
+      nota che CITA IL CASO; di che cosa parla la pagina non basta. Una pagina
+      vicina la cui frase e' attribuita in nota a un'altra fonte non prosegue la
+      ripresa, anche se l'argomento e' lo stesso. Esempio:
+      memoriale per la Corte interamericana, Urgenda in un elenco alla nota 194
+      di p. 51; a p. 54 la frase sul fair share ha la nota 205, Klimaatzaak.
+
+# ── Output schema ────────────────────────────────────────────────────────
+#
+# The columns are FIXED. Free-text outputs from different coders cannot be
+# aggregated; the same columns filled by different coders can.
+
+uscita:
+  colonne:
+    - case_id                 # from the front matter, not inferred
+    - case_name
+    - giurisdizioni
+    - document_id
+    - tipo_atto               # from the front matter
+    - tipo_atto_sabin         # official label from the source database
+    - pagina
+    - citazione_testuale      # verbatim, verifiable
+    - tipo_citazione          # dimension 1
+    - chi_parla               # dimension 2
+    - posizione               # dimension 4 — pre-filled
+    - sede                    # dimension 5 — pre-filled
+    - chi_cita_auto           # machine proposals: NEVER edited
+    - posizione_auto
+    - sede_auto
+    - dimensioni_confidenza   # alta | media | bassa
+    - annidata                # dimension 3
+    - fonte_intermedia
+    - proposizione_sostenuta  # proposition the citation supports
+    - confidenza              # alta | media | bassa
+    - rete                    # lessicale | semantica | entrambe (lexical | semantic | both)
+    - file                    # file path, to reopen the document
+    - char_start
+    - char_end
+    - url_documento           # document page on the source website
+    - codebook_versione       # codebook version that produced the row
+    - indice_versione         # index version used
+
+# ── Reading instructions ─────────────────────────────────────────────────
+#
+# This is the text the tool hands to the reader (human or model) together
+# with each passage.
+
+istruzioni_lettura: |
+  Ti viene mostrato un passaggio con il contesto che lo circonda e i
+  metadati del documento.
+
+  1. Stabilisci se il passaggio riguarda davvero il bersaglio. Se non lo
+     riguarda, scartalo e dillo: un falso positivo scartato e' un esito
+     corretto, non un fallimento.
+  2. Attribuisci UNA sola categoria di `tipo_citazione`. Se ne vedi due,
+     e' un caso limite: applica la regola corrispondente, e se la regola
+     dice DA DECIDERE segnala il passaggio invece di scegliere.
+  3. `chi_parla`, `posizione` e `sede` arrivano GIA COMPILATE dal sistema.
+     Non vanno riscritte: vanno controllate, e corrette solo dove sono
+     sbagliate. Le colonne che finiscono in `_auto` sono la proposta della
+     macchina e non si toccano mai — servono a misurare quanto spesso il
+     lettore la corregge.
+  3ter. IL CAMPIONE DEL 20% DEVE COMPRENDERE ANCHE GLI SCARTI. Accanto al
+     CSV c'e' un file `.SCARTI.csv` con i candidati che il sistema ha
+     tolto da solo: sotto la soglia del riordinatore, anteriori alla
+     decisione citata, copie di un altro frammento. Quelle righe non le
+     legge nessun altro. Se il campione guardasse solo cio' che e' stato
+     tenuto, non ci si accorgerebbe mai di una soglia che butta via roba
+     buona: l'errore sarebbe invisibile per costruzione.
+  3bis. Comincia dalle righe con `dimensioni_confidenza: bassa`: sono
+     quelle in cui il sistema non ha trovato indizi e ha ripiegato.
+  4. Riporta la citazione TESTUALE, senza riscriverla e senza abbreviarla.
+     E' l'unico elemento che rende la riga verificabile.
+  5. Indica la pagina come risulta dai metadati, non contandola.
+  6. Se sei incerto, `confidenza: bassa`. Un'incertezza dichiarata e'
+     utilizzabile; un'incertezza nascosta no.
+
+  Non dedurre mai `case_id`, `tipo_atto` o `pagina`: vengono dai metadati.
