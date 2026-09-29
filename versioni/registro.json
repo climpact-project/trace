@@ -2,7 +2,7 @@
  {
   "code": "D01",
   "type": "corpus",
-  "name": "Climate Litigation Database, whole-database export",
+  "name": "Documents: Climate Litigation Database export",
   "task": "The documents: filings, pages, extracted text. Every citation comes from here.",
   "date": "2026-07-26",
   "status": "in use",
@@ -14,12 +14,15 @@
     "sha256": "01244e94af337b1384615ffb2e9aa11def00bee43e6dccf6c4dac22c46cdb9be"
    }
   ],
-  "note": "16,791 filings, 569,218 indexed pages. Text extracted with OCR where needed."
+  "note": "16,791 filings, 569,218 indexed pages. Text extracted with OCR where needed.",
+  "earlier_code": "",
+  "in_use": "in use",
+  "family": "data"
  },
  {
-  "code": "V00",
+  "code": "S01",
   "type": "rule",
-  "name": "Name search, first version (lexical and semantic networks)",
+  "name": "Name search, first version",
   "task": "Finds the citations (the name of the case in all its forms) and extracts page and passage.",
   "date": "2026-07-31",
   "status": "superseded by V10 for the rows that name the case",
@@ -37,10 +40,13 @@
     "sha256": "887a28b67601095f33c5eff2eeb3ac8f29dd8174281bec88cf3ab08567169c37"
    }
   ],
-  "note": "Name forms are in the case files. Two defects, corrected in V10: the semantic filters (reranker threshold, decision date) also applied to rows that name the case and were found by both networks; long references were split into two rows."
+  "note": "Name forms are in the case files. Two defects, corrected in V10: the semantic filters (reranker threshold, decision date) also applied to rows that name the case and were found by both networks; long references were split into two rows.",
+  "earlier_code": "V00",
+  "in_use": "replaced",
+  "family": "name search"
  },
  {
-  "code": "V10",
+  "code": "S02",
   "type": "rule",
   "name": "Name search, corrected",
   "task": "Finds the citations that name the case. No semantic filter on rows that name the case; an identifier (docket number, ECLI, web address) close to the previous match continues the same citation; Korean and Japanese forms of Urgenda.",
@@ -88,10 +94,52 @@
     "value": "all"
    }
   ],
-  "note": "Rows merged as parts of a split citation are kept, marked with the row they were merged into. Added rows do not yet carry machine readings."
+  "note": "Rows merged as parts of a split citation are kept, marked with the row they were merged into. Added rows do not yet carry machine readings.",
+  "earlier_code": "V10",
+  "in_use": "in use",
+  "family": "name search",
+  "changes_from": "S01",
+  "what_changes": "no semantic filter on rows that name the case; a long reference stays one citation; Korean and Japanese forms of Urgenda"
  },
  {
-  "code": "V01",
+  "code": "L01",
+  "type": "reader",
+  "name": "Citation reading, first version",
+  "task": "As L02, without the rule on footnotes. Two readings per row, on every citation of Urgenda.",
+  "cases": [
+   "urgenda"
+  ],
+  "date": "2026-09-27",
+  "status": "replaced by L02 (its readings are kept in the archive)",
+  "base_model": {
+   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "weights_index_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
+   "licence": "MIT"
+  },
+  "training": null,
+  "settings": {
+   "readings": 2,
+   "reasoning": "on, low effort",
+   "max_answer_tokens": 8000,
+   "parallel_requests": 48
+  },
+  "software": {
+   "torch": "2.14.0",
+   "transformers": "5.17.0",
+   "peft": "0.21.0",
+   "huggingface_hub": "1.33.0",
+   "openai (client)": "3.19.2",
+   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+  },
+  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
+  "note": "Replaced because the model and the coders disagreed mostly in footnotes (agreement 0.32 in footnotes against 0.60 in the body).",
+  "earlier_code": "V02a",
+  "in_use": "no longer used",
+  "family": "reading by an external model"
+ },
+ {
+  "code": "R01",
   "type": "rule",
   "name": "Paragraph map",
   "task": "Principle taken by a citation that names a paragraph (e.g. «para. 5.7.7»): no model involved; usable as a training label.",
@@ -123,12 +171,15 @@
     "value": "Urgenda 526, Neubauer 1,011, Future Generations 13"
    }
   ],
-  "note": "Paragraph numbers of up to three digits; the window after a mention stops at a semicolon."
+  "note": "Paragraph numbers of up to three digits; the window after a mention stops at a semicolon.",
+  "earlier_code": "V01",
+  "in_use": "in use",
+  "family": "rule without a model"
  },
  {
-  "code": "V02",
+  "code": "L02",
   "type": "reader",
-  "name": "DeepSeek V4 Flash 0731, citation reading",
+  "name": "Citation reading, Urgenda",
   "task": "For each citation: is it really the case? type of citation, speaker, proposition, reason. Two readings per row.",
   "cases": [
    "urgenda"
@@ -150,7 +201,7 @@
   },
   "instructions": [
    {
-    "file": "versioni/V02/istruzioni.txt",
+    "file": "versioni/L02/istruzioni.txt",
     "sha256": "40b6cd903b1723700a1d29bacc41cf637d58bff6061e5370d8782f0b36531221"
    },
    {
@@ -183,12 +234,17 @@
     "value": "0.568 (kappa 0.36)"
    }
   ],
-  "note": "Includes the codebook rule on footnotes."
+  "note": "Includes the codebook rule on footnotes.",
+  "earlier_code": "V02",
+  "in_use": "in use",
+  "family": "reading by an external model",
+  "changes_from": "L01",
+  "what_changes": "same model and settings; the instructions add the rule on footnotes"
  },
  {
-  "code": "V03",
+  "code": "L03",
   "type": "reader",
-  "name": "DeepSeek V4 Flash 0731, citation reading",
+  "name": "Citation reading, Neubauer and Future Generations",
   "task": "Same as V02, generalised to other cases: the name may also be a person or party carrying it.",
   "cases": [
    "neubauer",
@@ -211,7 +267,7 @@
   },
   "instructions": [
    {
-    "file": "versioni/V03/istruzioni.txt",
+    "file": "versioni/L03/istruzioni.txt",
     "sha256": "e6ada8fa02825301cb3a076f03283b4f8342c0a4de3fa9a1303cff1881b50db5"
    },
    {
@@ -239,12 +295,17 @@
   },
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
   "measures": [],
-  "note": "Applies to Neubauer and Future Generations."
+  "note": "Applies to Neubauer and Future Generations.",
+  "earlier_code": "V03",
+  "in_use": "in use",
+  "family": "reading by an external model",
+  "changes_from": "L02",
+  "what_changes": "same instructions, generalised to other cases: the name may be a person or a party"
  },
  {
-  "code": "V04",
+  "code": "L04",
   "type": "reader",
-  "name": "DeepSeek V4 Flash 0731, uptake reading",
+  "name": "Uptake reading",
   "task": "Which principles the citation takes, and which nearby pages continue the argument, with a supporting sentence and a comment.",
   "date": "2026-09-27",
   "status": "in use where V05 is not available",
@@ -255,7 +316,7 @@
   },
   "instructions": [
    {
-    "file": "versioni/V04/istruzioni.txt",
+    "file": "versioni/L04/istruzioni.txt",
     "sha256": "34387c360a31ae2c21e08b036de1fb9102196578762a7bb939f6072ee6dd766f"
    }
   ],
@@ -274,15 +335,18 @@
    "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
   },
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "note": "Instructions reconstructed from the V05 file by removing its two additions (footnote rule, verbatim quotation). Supporting sentences were verbatim in 53-64% of cases."
+  "note": "Instructions reconstructed from the V05 file by removing its two additions (footnote rule, verbatim quotation). Supporting sentences were verbatim in 53-64% of cases.",
+  "earlier_code": "V04",
+  "in_use": "in use",
+  "family": "reading by an external model"
  },
  {
-  "code": "V05",
+  "code": "L05",
   "type": "reader",
-  "name": "DeepSeek V4 Flash 0731, uptake reading, second version",
+  "name": "Uptake reading with the case dossier",
   "task": "As V04, with the case dossier and two rules: a sentence carrying a footnote to another source does not continue the uptake; the supporting sentence must be copied verbatim; the filing sentence that the citation supports is quoted.",
   "date": "2026-09-28",
-  "status": "queued (rows not yet judged)",
+  "status": "queued: rows to judge will receive it when the model runs",
   "base_model": {
    "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
    "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
@@ -290,7 +354,7 @@
   },
   "instructions": [
    {
-    "file": "versioni/V05/istruzioni.txt",
+    "file": "versioni/L05/istruzioni.txt",
     "sha256": "189349de11711b11e4e0083ada79722433ba13edd23e405882a7f3bdf20dc665"
    },
    {
@@ -321,10 +385,15 @@
    "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
   },
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "note": "Motivated by a continuation proposed across a footnote that cites another case."
+  "note": "Motivated by a continuation proposed across a footnote that cites another case.",
+  "earlier_code": "V05",
+  "in_use": "queued",
+  "family": "reading by an external model",
+  "changes_from": "L04",
+  "what_changes": "same model; the instructions add the case dossier, the footnote rule, verbatim quotation and the supported sentence; nearby pages up to ten pages away"
  },
  {
-  "code": "V06",
+  "code": "T01",
   "type": "model",
   "name": "TRACE-Reranker 0.1",
   "task": "Scores a principle against a text (citation passage, nearby pages): proposes principles and nearby pages to read.",
@@ -384,12 +453,15 @@
     "value": "0.787 (not a measure of implicit uptake)"
    }
   ],
-  "note": "Trained on labels that mixed argument and source: to be retrained on confirmed principles."
+  "note": "Trained on labels that mixed argument and source: to be retrained on confirmed principles.",
+  "earlier_code": "V06",
+  "in_use": "in use",
+  "family": "TRACE model trained by the project"
  },
  {
-  "code": "V07",
+  "code": "R02",
   "type": "rule",
-  "name": "Composition of the proposals",
+  "name": "Rules that put the proposals together",
   "task": "Combines V01, V02-V05 and V06 into the proposals shown to coders, with the codebook rules.",
   "date": "2026-09-28",
   "status": "in use",
@@ -409,10 +481,13 @@
    "no continuation page is ticked when the citation takes no principle",
    "the sentence under a nearby page is shown as a quotation only if it is verbatim in the page; otherwise it is labelled as a machine summary"
   ],
-  "note": "Writes only to rows without a human judgment."
+  "note": "Writes only to rows without a human judgment.",
+  "earlier_code": "V07",
+  "in_use": "in use",
+  "family": "rule without a model"
  },
  {
-  "code": "V08",
+  "code": "T02",
   "type": "model",
   "name": "TRACE-Reader v0",
   "task": "The reader task on a single GPU: type, speaker, proposition, reason.",
@@ -456,10 +531,13 @@
     "value": "type 0.596 (kappa 0.39) on 317 rows; DeepSeek 0.568"
    }
   ],
-  "note": "Distilled from DeepSeek readings."
+  "note": "Distilled from DeepSeek readings.",
+  "earlier_code": "V08",
+  "in_use": "experimental",
+  "family": "TRACE model trained by the project"
  },
  {
-  "code": "V09",
+  "code": "T03",
   "type": "model",
   "name": "TRACE-Reader v1",
   "task": "The reader task on a single GPU: type, speaker, proposition, reason, principles and nearby pages.",
@@ -503,6 +581,11 @@
     "value": "type 0.599; principles: at least one correct 0.79 on 101 rows with a paragraph (DeepSeek 0.86)"
    }
   ],
-  "note": "Distilled from DeepSeek readings."
+  "note": "Distilled from DeepSeek readings.",
+  "earlier_code": "V09",
+  "in_use": "experimental",
+  "family": "TRACE model trained by the project",
+  "changes_from": "T02",
+  "what_changes": "same base and method; also learns principles and nearby pages, with longer texts (8,192 tokens)"
  }
 ]
