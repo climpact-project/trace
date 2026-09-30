@@ -63,4 +63,4 @@ Code: MIT (see `LICENSE`). Case files, codebook and registry: CC BY 4.0.
 
 ## Citation
 
-Naglieri, G., Buono, E., Garofalo, C., Saracino, C. (2026). TRACE 0.1: tracing how climate judgments are taken up in later litigation. CLIMPACT, University of Bari. Zenodo. DOI: [pending].
+Naglieri, G., Buono, E., Garofalo, C., Saracino, C. (2026). TRACE 0.1: A Language Model for Climate Litigation Research. CLIMPACT, University of Bari. Zenodo. DOI: [pending].
