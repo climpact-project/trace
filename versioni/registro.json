@@ -15,17 +15,16 @@
    }
   ],
   "note": "16,791 filings, 569,218 indexed pages. Text extracted with OCR where needed.",
-  "earlier_code": "",
   "in_use": "in use",
+  "earlier_code": "",
   "family": "data"
  },
  {
   "code": "S01",
   "type": "rule",
   "name": "Name search, first version",
-  "task": "Finds the citations (the name of the case in all its forms) and extracts page and passage.",
+  "task": "Finds the citations (the name of the case in all its forms) and extracts page and passage. The rows and the passage shown come from here.",
   "date": "2026-07-31",
-  "status": "superseded by V10 for the rows that name the case",
   "instructions": [
    {
     "file": "cited-cases/urgenda.yaml",
@@ -40,9 +39,25 @@
     "sha256": "887a28b67601095f33c5eff2eeb3ac8f29dd8174281bec88cf3ab08567169c37"
    }
   ],
-  "note": "Name forms are in the case files. Two defects, corrected in V10: the semantic filters (reranker threshold, decision date) also applied to rows that name the case and were found by both networks; long references were split into two rows.",
-  "earlier_code": "V00",
+  "status": "replaced by S02 for the rows that name the case (29 September 2026); the July semantic search is paused since 27 September 2026",
+  "note": "Name forms are in the case files (74 for Urgenda). Urgenda rows from the run of 3 September, Neubauer and Future Generations from 23 September. Two defects, corrected in S02: the semantic filters (reranker threshold, decision date) also applied to rows that name the case and were found by both networks; long references were split into two rows. Code: `cerca.py` as it was on 28 September 2026, the last version before the S02 corrections; the runs of 3 and 23 September may have used an earlier revision.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
+  "source_code": [
+   {
+    "file": "versioni/S01/cerca.py",
+    "sha256": "2908428151184008b9b664ab6d4ec986eb647ba14461f71a9918423d65776640"
+   }
+  ],
   "in_use": "replaced",
+  "earlier_code": "V00",
   "family": "name search"
  },
  {
@@ -51,7 +66,7 @@
   "name": "Name search, corrected",
   "task": "Finds the citations that name the case. No semantic filter on rows that name the case; an identifier (docket number, ECLI, web address) close to the previous match continues the same citation; Korean and Japanese forms of Urgenda.",
   "date": "2026-09-29",
-  "status": "in use",
+  "status": "in use: rows added and rows merged in the platform",
   "instructions": [
    {
     "file": "cited-cases/urgenda.yaml",
@@ -73,7 +88,7 @@
    },
    {
     "file": "tools/unisci_e_aggiungi.py",
-    "sha256": "8b62fb23bfc0b50128f896926d1a58319e5f640d68d1a7ff2b3c48732119bb5b"
+    "sha256": "88e2c67806c7cd4c639b94352b09072d20ed7e3ca6f2b70a65d3be4e39ee7e8b"
    },
    {
     "file": "tools/assegna_codici.py",
@@ -91,12 +106,21 @@
    },
    {
     "name": "rows already judged, found again by the new search",
-    "value": "all"
+    "value": "all (Urgenda 380, Neubauer 12, Future Generations 5)"
    }
   ],
-  "note": "Rows merged as parts of a split citation are kept, marked with the row they were merged into. Added rows do not yet carry machine readings.",
-  "earlier_code": "V10",
+  "note": "Merged rows stay in the database marked as merged, with the row they were merged into. Added rows did not carry machine readings until the rereading of 30 September.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
   "in_use": "in use",
+  "earlier_code": "V10",
   "family": "name search",
   "changes_from": "S01",
   "what_changes": "no semantic filter on rows that name the case; a long reference stays one citation; Korean and Japanese forms of Urgenda"
@@ -106,24 +130,9 @@
   "type": "reader",
   "name": "Citation reading, first version",
   "task": "As L02, without the rule on footnotes. Two readings per row, on every citation of Urgenda.",
-  "cases": [
-   "urgenda"
-  ],
-  "date": "2026-09-27",
+  "date": "2026-09-26",
   "status": "replaced by L02 (its readings are kept in the archive)",
-  "base_model": {
-   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
-   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
-   "weights_index_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
-   "licence": "MIT"
-  },
-  "training": null,
-  "settings": {
-   "readings": 2,
-   "reasoning": "on, low effort",
-   "max_answer_tokens": 8000,
-   "parallel_requests": 48
-  },
+  "note": "Replaced because the external reader and the coders disagreed mostly in footnotes (agreement 0.32 in footnotes against 0.60 in the body). The code of this first reading was not kept apart: it is `classifica_lessicali.py` before the footnote rule (L02).",
   "software": {
    "torch": "2.14.0",
    "transformers": "5.17.0",
@@ -132,17 +141,65 @@
    "openai (client)": "3.19.2",
    "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "note": "Replaced because the model and the coders disagreed mostly in footnotes (agreement 0.32 in footnotes against 0.60 in the body).",
-  "earlier_code": "V02a",
   "in_use": "no longer used",
-  "family": "reading by an external model"
+  "earlier_code": "V02a",
+  "family": "reading by an external model",
+  "base_model": {
+   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "weights_index_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
+   "licence": "MIT"
+  },
+  "settings": {
+   "readings": 2,
+   "reasoning": "on, low effort",
+   "max_answer_tokens": 8000,
+   "parallel_requests": 48
+  },
+  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)"
+ },
+ {
+  "code": "R03",
+  "type": "rule",
+  "name": "Choice of the nearby pages to read",
+  "task": "On top of the T01 scores: a page up to 10 pages before or after the citation enters the uptake reading if its highest score on a principle is at least 0.5 (from 2 pages before to 3 after) or 0.8 (further away); at most 5 pages per citation.",
+  "date": "2026-09-29",
+  "status": "in use",
+  "source_code": [
+   {
+    "file": "tools/leggi_ripresa.py",
+    "sha256": "7d2a7290a9fd079948c77e0bfe12e47f3ca6df2e48c8bdb92633bb70e635e2aa"
+   }
+  ],
+  "measures": [
+   {
+    "name": "threshold 0.8 for the far pages",
+    "value": "measured: on the pages read 4 to 10 pages from the citation, above 0.8 more than half are real continuation"
+   },
+   {
+    "name": "threshold 0.5 for the near pages",
+    "value": "not measured: inherited from the previous system, to be calibrated on the team's judgments"
+   }
+  ],
+  "note": "A rule, not a model: calibrating it does not retrain T01. If T01 is retrained, the thresholds are recalibrated. The codebook 0.3-pilot (dimension 7) still writes the window {before: 2, after: 3}: it will say 10 in the next version of the codebook, not in the file registered for L02 and L03, whose fingerprint is not touched.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
+  "in_use": "in use",
+  "earlier_code": "",
+  "family": "rule without a model"
  },
  {
   "code": "R01",
   "type": "rule",
   "name": "Paragraph map",
-  "task": "Principle taken by a citation that names a paragraph (e.g. «para. 5.7.7»): no model involved; usable as a training label.",
+  "task": "Principle taken by a citation that names a paragraph («para. 5.7.7»): no model involved; usable as a training label.",
   "date": "2026-09-28",
   "status": "in use",
   "source_code": [
@@ -171,9 +228,18 @@
     "value": "Urgenda 526, Neubauer 1,011, Future Generations 13"
    }
   ],
-  "note": "Paragraph numbers of up to three digits; the window after a mention stops at a semicolon.",
-  "earlier_code": "V01",
+  "note": "Corrected on 28 September 2026: it read two-digit numbers only and ran past the semicolon.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
   "in_use": "in use",
+  "earlier_code": "V01",
   "family": "rule without a model"
  },
  {
@@ -202,21 +268,23 @@
   "instructions": [
    {
     "file": "versioni/L02/istruzioni.txt",
-    "sha256": "40b6cd903b1723700a1d29bacc41cf637d58bff6061e5370d8782f0b36531221"
+    "sha256": "40b6cd903b1723700a1d29bacc41cf637d58bff6061e5370d8782f0b36531221",
+    "reconstructed": "text regenerated by classifica_lessicali.modulo() from the current files, not saved at run time: the registered codebook is the file of 28 September 2026 17:08 (0.3-pilot), while the L02 readings are of 27 September and the rows carry «codebook 0.2-pilot»"
    },
    {
     "file": "cited-cases/urgenda-fascicolo.md",
     "sha256": "a209dc40dd072bc6e1e26df97af1f664da616bd5189f6e48643c4c512340e895"
    },
    {
-    "file": "codebook/citazioni.yaml (versione 0.3-pilot)",
-    "sha256": "73e81470f06273d9048234d32eb5d9cc58c624fc0321ebbe5d20708697f69ae4"
+    "file": "codebook/citazioni.yaml (version 0.3-pilot)",
+    "sha256": "73e81470f06273d9048234d32eb5d9cc58c624fc0321ebbe5d20708697f69ae4",
+    "note": "file of 28 September 2026 17:08, later than the L02 readings (27 September) and the L03 readings of the morning of 28 September"
    }
   ],
   "source_code": [
    {
     "file": "tools/classifica_lessicali.py",
-    "sha256": "2ecee127a09a4af0c9c99be5f167ca262d0698ba717eb0373e32556c397e8198"
+    "sha256": "57cced9eacb0492984700c017222be51a9ebedc84f1ffabbf1f3b6b5e4213240"
    }
   ],
   "software": {
@@ -230,13 +298,13 @@
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
   "measures": [
    {
-    "name": "agreement with human coders on type (Urgenda, 317 rows, first reading)",
+    "name": "agreement with human coders on type (Urgenda, 317 rows, reading 1)",
     "value": "0.568 (kappa 0.36)"
    }
   ],
-  "note": "Includes the codebook rule on footnotes.",
-  "earlier_code": "V02",
+  "note": "Version with the principal investigator's rule on footnotes (§63.23).",
   "in_use": "in use",
+  "earlier_code": "V02",
   "family": "reading by an external model",
   "changes_from": "L01",
   "what_changes": "same model and settings; the instructions add the rule on footnotes"
@@ -245,7 +313,7 @@
   "code": "L03",
   "type": "reader",
   "name": "Citation reading, Neubauer and Future Generations",
-  "task": "Same as V02, generalised to other cases: the name may also be a person or party carrying it.",
+  "task": "For each citation: is it really the case? type of citation, speaker, proposition, reason. Two readings per row.",
   "cases": [
    "neubauer",
    "future-generations"
@@ -268,21 +336,23 @@
   "instructions": [
    {
     "file": "versioni/L03/istruzioni.txt",
-    "sha256": "e6ada8fa02825301cb3a076f03283b4f8342c0a4de3fa9a1303cff1881b50db5"
+    "sha256": "e6ada8fa02825301cb3a076f03283b4f8342c0a4de3fa9a1303cff1881b50db5",
+    "reconstructed": "text regenerated by classifica_lessicali.modulo() from the current files, not saved at run time: the registered codebook is the file of 28 September 2026 17:08 (0.3-pilot), while the L02 readings are of 27 September and the rows carry «codebook 0.2-pilot»"
    },
    {
     "file": "cited-cases/neubauer-fascicolo.md",
     "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67"
    },
    {
-    "file": "codebook/citazioni.yaml (versione 0.3-pilot)",
-    "sha256": "73e81470f06273d9048234d32eb5d9cc58c624fc0321ebbe5d20708697f69ae4"
+    "file": "codebook/citazioni.yaml (version 0.3-pilot)",
+    "sha256": "73e81470f06273d9048234d32eb5d9cc58c624fc0321ebbe5d20708697f69ae4",
+    "note": "file of 28 September 2026 17:08, later than the L02 readings (27 September) and the L03 readings of the morning of 28 September"
    }
   ],
   "source_code": [
    {
     "file": "tools/classifica_lessicali.py",
-    "sha256": "2ecee127a09a4af0c9c99be5f167ca262d0698ba717eb0373e32556c397e8198"
+    "sha256": "57cced9eacb0492984700c017222be51a9ebedc84f1ffabbf1f3b6b5e4213240"
    }
   ],
   "software": {
@@ -295,9 +365,9 @@
   },
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
   "measures": [],
-  "note": "Applies to Neubauer and Future Generations.",
-  "earlier_code": "V03",
+  "note": "Same instructions, generalised to the case: the name may also be the person (Luisa Neubauer). Applies to Future Generations too.",
   "in_use": "in use",
+  "earlier_code": "V03",
   "family": "reading by an external model",
   "changes_from": "L02",
   "what_changes": "same instructions, generalised to other cases: the name may be a person or a party"
@@ -305,10 +375,10 @@
  {
   "code": "L04",
   "type": "reader",
-  "name": "Uptake reading",
-  "task": "Which principles the citation takes, and which nearby pages continue the argument, with a supporting sentence and a comment.",
+  "name": "Uptake reading, first version: the principles",
+  "task": "Which principles the citation takes, and which nearby pages continue the uptake, with a quotation and a comment.",
   "date": "2026-09-27",
-  "status": "in use where V05 is not available",
+  "status": "in use for the principles since 30 September 2026 (with the principal investigator's approval, §63.35): the principles proposed on the rows to judge come again from L04; everything else in the row from L05 (or L07 for the continuation)",
   "base_model": {
    "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
    "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
@@ -317,13 +387,20 @@
   "instructions": [
    {
     "file": "versioni/L04/istruzioni.txt",
-    "sha256": "34387c360a31ae2c21e08b036de1fb9102196578762a7bb939f6072ee6dd766f"
+    "sha256": "ff4dd2ea780fd16a527138e42822b82b739d76b8da7f5424c37650013af00118",
+    "reconstructed": "text reconstructed on 30 September 2026 by tools/leggi_l04.py (the current file without the three additions of 28 September); the text given to the model on 27 and 28 September was not saved. That question 3 was absent is proved by the absence of the field frase_sostenuta in every L04 reading"
    }
   ],
   "source_code": [
    {
-    "file": "tools/leggi_ripresa.py",
-    "sha256": "fb8072f6e49e52406bbb3fd38dfdaf7b9bb53ea721240cf59af92c980549519f"
+    "file": "versioni/L04/leggi_ripresa.py",
+    "sha256": "fb8072f6e49e52406bbb3fd38dfdaf7b9bb53ea721240cf59af92c980549519f",
+    "note": "copy of versioni/V04/leggi_ripresa.py (file of 28 September 2026 22:57), the closest to the code of the readings of 27 and 28 September: narrow window (2 pages before to 3 after, at most 3 pages). The exact code of those readings was not kept"
+   },
+   {
+    "file": "tools/leggi_l04.py",
+    "sha256": "87c205413d22168d57805f4f573e633107d71d88fbbdefeb6b4f65ea1a57a2e7",
+    "note": "the reading of 30 September 2026 of the rows L04 had never read: same instructions, but it imports the current leggi_ripresa.py, so wide window (R03, up to 5 pages within 10)"
    }
   ],
   "software": {
@@ -335,18 +412,25 @@
    "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
   },
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "note": "Instructions reconstructed from the V05 file by removing its two additions (footnote rule, verbatim quotation). Supporting sentences were verbatim in 53-64% of cases.",
-  "earlier_code": "V04",
+  "note": "Readings: Urgenda on 27 September 2026 (file of 20:49); Neubauer and Future Generations on 28 September 2026 at 15:32, with a text that may differ from Urgenda's (not saved). Quotations copied from the page in 64% of cases (measured on 30 September on Urgenda). Since 30 September it is again the source of the principles proposed on the rows to judge (§63.35). The rows it had never read were read on 30 September with `tools/leggi_l04.py`; the review of the evening of 30 September still counts 38 rows to judge with no L04 reading at all (15 Urgenda, 23 Neubauer) and 207 with an empty list of principles, which the completeness check does not flag.",
+  "settings": {
+   "readings": 2,
+   "reasoning": "on, low effort",
+   "max_answer_tokens": 8000,
+   "parallel_requests": 48,
+   "temperature": "the model default"
+  },
   "in_use": "in use",
+  "earlier_code": "V04",
   "family": "reading by an external model"
  },
  {
   "code": "L05",
   "type": "reader",
-  "name": "Uptake reading with the case dossier",
-  "task": "As V04, with the case dossier and two rules: a sentence carrying a footnote to another source does not continue the uptake; the supporting sentence must be copied verbatim; the filing sentence that the citation supports is quoted.",
+  "name": "Uptake reading with the case dossier: continuation, quotes, supported sentence",
+  "task": "As L04, with the case dossier and two rules: a sentence carrying a footnote to another source does not continue; the quotation must be copied verbatim. Plus question 3: the sentence of the filing that the citation supports.",
   "date": "2026-09-28",
-  "status": "queued: rows to judge will receive it when the model runs",
+  "status": "in use since the evening of 29 September 2026 for the continuation, the quotations and the supported sentence (window up to 10 pages, R03). Not for the principles, since 30 September: it decides on the footnote sentence alone and does worse than L04 against the principal investigator's judgments (§63.35)",
   "base_model": {
    "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
    "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
@@ -373,7 +457,7 @@
   "source_code": [
    {
     "file": "tools/leggi_ripresa.py",
-    "sha256": "fb8072f6e49e52406bbb3fd38dfdaf7b9bb53ea721240cf59af92c980549519f"
+    "sha256": "7d2a7290a9fd079948c77e0bfe12e47f3ca6df2e48c8bdb92633bb70e635e2aa"
    }
   ],
   "software": {
@@ -385,12 +469,118 @@
    "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
   },
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "note": "Motivated by a continuation proposed across a footnote that cites another case.",
+  "note": "Instructions of the evening of 28 September 2026; readings run on 29 September 2026. The footnote rule comes from a case flagged by the principal investigator: brief to the Inter-American Court, p. 51 and p. 54 (Klimaatzaak at footnote 205).",
+  "settings": {
+   "readings": 2,
+   "reasoning": "on, low effort",
+   "max_answer_tokens": 8000,
+   "parallel_requests": 48,
+   "temperature": "the model default"
+  },
+  "in_use": "in use",
   "earlier_code": "V05",
-  "in_use": "queued",
   "family": "reading by an external model",
   "changes_from": "L04",
-  "what_changes": "same model; the instructions add the case dossier, the footnote rule, verbatim quotation and the supported sentence; nearby pages up to ten pages away"
+  "what_changes": "same model; the instructions add the case dossier, the footnote rule, the verbatim quotation and the supported sentence"
+ },
+ {
+  "code": "L06",
+  "type": "reader",
+  "name": "Uptake reading, test: principle decided on the whole passage",
+  "task": "As L05, but the principle is decided on the reasoning in which the citation stands, not on the footnote sentence alone.",
+  "date": "2026-09-30",
+  "status": "experiment on 120 rows of Urgenda (4 readings): does not beat L04 against the principal investigator's judgments, not in the platform",
+  "base_model": {
+   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licence": "MIT"
+  },
+  "instructions": [
+   {
+    "file": "versioni/L06/istruzioni.txt",
+    "sha256": "763cb5b6f888b5a2c0aadae66954011cce6980b6ded00836317b250a7a6bc0f1"
+   }
+  ],
+  "source_code": [
+   {
+    "file": "tools/leggi_l06.py",
+    "sha256": "0e91499a3a7dd3f98454aaabb6380d4c0645b4a7500849ff8b977e51d2203add"
+   }
+  ],
+  "software": {
+   "torch": "2.14.0",
+   "transformers": "5.17.0",
+   "peft": "0.21.0",
+   "huggingface_hub": "1.33.0",
+   "openai (client)": "3.19.2",
+   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+  },
+  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
+  "measures": [
+   {
+    "name": "principles identical to the principal investigator's judgments of 28 September (one reading / 2 readings out of 4)",
+    "value": "13 / 17 on the 35 of his rows present among the 120 (recount of the evening of 30 September); L04 on the same 38 rows: 25. The project document reports 14 / 18 and L04 26 on a base that was never fixed; the rows judged by the principal investigator must be frozen in a dated file before any new measure"
+   }
+  ],
+  "note": "An experiment, not a version in use: the judgments used as reference were given with the proposals visible.",
+  "settings": {
+   "readings": 4,
+   "reasoning": "on, low effort",
+   "max_answer_tokens": 8000,
+   "parallel_requests": 48,
+   "temperature": "the model default"
+  },
+  "in_use": "experimental",
+  "earlier_code": "",
+  "family": "reading by an external model",
+  "changes_from": "L05",
+  "what_changes": "the principle is decided on the passage, not on the footnote sentence alone"
+ },
+ {
+  "code": "L07",
+  "type": "reader",
+  "name": "Continuation reread on the proposed principles",
+  "task": "Only the continuation question, with the L05 instructions, taking as fixed the principles the row proposes (from L04).",
+  "date": "2026-09-30",
+  "status": "in use since 30 September 2026 on the rows to judge where the L04 principles differ from the L05 ones and there are candidate pages",
+  "base_model": {
+   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licence": "MIT"
+  },
+  "instructions": [
+   {
+    "file": "versioni/L07/istruzioni.txt",
+    "sha256": "12640d3313d2a42111e780d6b63c8e3dc7907c9a23c6dfd9fcff4c3b8cf84137"
+   }
+  ],
+  "source_code": [
+   {
+    "file": "tools/leggi_seguito.py",
+    "sha256": "258dad28edebc63da8b65241824709d6f68689f19b79b02015fc12f6433e0154"
+   }
+  ],
+  "software": {
+   "torch": "2.14.0",
+   "transformers": "5.17.0",
+   "peft": "0.21.0",
+   "huggingface_hub": "1.33.0",
+   "openai (client)": "3.19.2",
+   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+  },
+  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
+  "settings": {
+   "readings": 1,
+   "reasoning": "on, low effort",
+   "max_answer_tokens": 8000,
+   "parallel_requests": 48,
+   "temperature": "the model default"
+  },
+  "in_use": "in use",
+  "earlier_code": "",
+  "family": "reading by an external model",
+  "changes_from": "L05",
+  "what_changes": "only the continuation question, with the principles of the row given as fixed"
  },
  {
   "code": "T01",
@@ -420,7 +610,7 @@
   ],
   "training": {
    "date": "2026-09-22",
-   "data": "263 team judgments on semantic rows of Urgenda (frozen split)",
+   "data": "263 team judgments on the semantic rows of Urgenda (split frozen on 22 September)",
    "rows": 263,
    "settings": "LoRA rank 16 on q,k,v,o; 2 epochs; three seeds averaged; «uptake» instruction; 2,560 tokens"
   },
@@ -449,50 +639,60 @@
     "value": "0.69 (random 0.37)"
    },
    {
-    "name": "AUC on 133 semantic test rows",
-    "value": "0.787 (not a measure of implicit uptake)"
+    "name": "AUC on the 133 semantic test rows",
+    "value": "0.787: NOT a measure of implicit uptake (§63.24)"
    }
   ],
-  "note": "Trained on labels that mixed argument and source: to be retrained on confirmed principles.",
-  "earlier_code": "V06",
+  "note": "Trained on July labels that mixed argument and source (§63.24): to be retrained on confirmed principles.",
   "in_use": "in use",
+  "earlier_code": "V06",
   "family": "TRACE model trained by the project"
  },
  {
   "code": "R02",
   "type": "rule",
   "name": "Rules that put the proposals together",
-  "task": "Combines V01, V02-V05 and V06 into the proposals shown to coders, with the codebook rules.",
+  "task": "Puts together R01, the readings L02-L05 and L07 and the T01 scores into the proposals the team sees, with the codebook rules.",
   "date": "2026-09-28",
-  "status": "in use",
+  "status": "in use (rule added on 30 September 2026)",
   "source_code": [
    {
     "file": "tools/carica_ripresa.py",
-    "sha256": "c83380c02a9c518a491e66b286bd361ceb68553f70847ee74d2e3a0cc1606f1b"
+    "sha256": "7f0079009de7fdea0b907f65a02fa39d9b0e16c4b9a3ab1a902313cf2e4937bd"
    },
    {
     "file": "tools/carica_lessicali.py",
-    "sha256": "cc8a1c88b10710521e983fb695d1ae64ff08a7d7d5479d5bbd0425a2dfaa0f3f"
+    "sha256": "6844d6f22f6d63e76fcbb9beb3e53c4c53f894fb2b0416b561dbbe596f8e30e5"
    }
   ],
   "rules": [
-   "ticked principles: those from the paragraph map (V01) and from the reading (V04/V05); the reranker (V06) is a hint and never ticks",
+   "ticked principles: those from the paragraph map (R01) and from the reading (L04 since 30 September; L05 before); the reranker (T01) is a hint and never ticks",
    "chain mention: principle «none»; hints remain visible",
    "no continuation page is ticked when the citation takes no principle",
-   "the sentence under a nearby page is shown as a quotation only if it is verbatim in the page; otherwise it is labelled as a machine summary"
+   "the sentence under a nearby page is shown as a quotation only if it is found verbatim in the page",
+   "since 30 September 2026: a page ticked on a principle the row does not propose stays listed, it is not removed"
   ],
-  "note": "Writes only to rows without a human judgment.",
-  "earlier_code": "V07",
+  "note": "Writes only on rows without a human judgment. Open defect (review of 30 September 2026, point 2): principles written by the reader without the case prefix are silently dropped when compared with the ids of the case file; the prefix correction exists only for the continuation pages.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
   "in_use": "in use",
+  "earlier_code": "V07",
   "family": "rule without a model"
  },
  {
   "code": "T02",
   "type": "model",
   "name": "TRACE-Reader v0",
-  "task": "The reader task on a single GPU: type, speaker, proposition, reason.",
+  "task": "The external reader's work on a single GPU: type, speaker, proposition, reason",
   "date": "2026-09-27",
-  "status": "experimental",
+  "status": "experimental (the proposals in the platform still come from the external reader)",
   "base_model": {
    "name": "Qwen/Qwen3-14B",
    "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
@@ -506,7 +706,7 @@
   ],
   "training": {
    "date": "2026-09-27",
-   "data": "1,120 DeepSeek readings (V02, V04) of Urgenda citations with two agreeing readings on type; all test rows excluded",
+   "data": "1,120 readings by the external reader (L02, L04) of Urgenda citations with two readings agreeing on the type; every test row excluded",
    "rows": 1120,
    "settings": "LoRA rank 16 on attention and MLP; 2 epochs; lr 1e-4; gradient accumulation 8; 6,144 tokens"
   },
@@ -527,22 +727,34 @@
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
   "measures": [
    {
-    "name": "agreement with human coders",
+    "name": "agreement with human coders (rows judged with DeepSeek's proposals visible)",
     "value": "type 0.596 (kappa 0.39) on 317 rows; DeepSeek 0.568"
    }
   ],
-  "note": "Distilled from DeepSeek readings.",
-  "earlier_code": "V08",
+  "adoption_rule": [
+   {
+    "date": "2026-09-27",
+    "rule": "on the 317 rows of Urgenda with a type given by people, if TRACE-Reader matches or beats the external reader it makes the proposals (§63.26)",
+    "outcome": "TRACE-Reader v0 0.596 against DeepSeek 0.568: passed, but NOT applied, because those 317 rows had been judged with DeepSeek's proposals visible and the principal investigator asked for a measure taken without proposals"
+   },
+   {
+    "date": "2026-09-30",
+    "rule": "replaces the external reader only if it matches it on the rows the team judges without proposals (one-in-five sample); rows with a comparable type on the evening of 30 September: zero",
+    "outcome": "waiting for the judgments given without proposals"
+   }
+  ],
+  "note": "Distilled from DeepSeek readings, declared. The human test labels are by one person and were given with DeepSeek's proposals visible.",
   "in_use": "experimental",
+  "earlier_code": "V08",
   "family": "TRACE model trained by the project"
  },
  {
   "code": "T03",
   "type": "model",
   "name": "TRACE-Reader v1",
-  "task": "The reader task on a single GPU: type, speaker, proposition, reason, principles and nearby pages.",
+  "task": "The external reader's work on a single GPU: type, speaker, proposition, reason, principles and nearby pages",
   "date": "2026-09-28",
-  "status": "experimental",
+  "status": "experimental (the proposals in the platform still come from the external reader)",
   "base_model": {
    "name": "Qwen/Qwen3-14B",
    "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
@@ -556,7 +768,7 @@
   ],
   "training": {
    "date": "2026-09-28",
-   "data": "1,120 DeepSeek readings (V02, V04) of Urgenda citations with two agreeing readings on type; all test rows excluded",
+   "data": "1,120 readings by the external reader (L02, L04) of Urgenda citations with two readings agreeing on the type; every test row excluded",
    "rows": 1120,
    "settings": "LoRA rank 16 on attention and MLP; 2 epochs; lr 1e-4; gradient accumulation 8; 8,192 tokens"
   },
@@ -577,13 +789,25 @@
   "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
   "measures": [
    {
-    "name": "agreement with human coders",
-    "value": "type 0.599; principles: at least one correct 0.79 on 101 rows with a paragraph (DeepSeek 0.86)"
+    "name": "agreement with human coders (rows judged with DeepSeek's proposals visible)",
+    "value": "type 0.599; principles: at least one correct 0.79 on the 101 rows with a paragraph (DeepSeek 0.86, helped by the paragraph map)"
    }
   ],
-  "note": "Distilled from DeepSeek readings.",
-  "earlier_code": "V09",
+  "adoption_rule": [
+   {
+    "date": "2026-09-27",
+    "rule": "on the 317 rows of Urgenda with a type given by people, if TRACE-Reader matches or beats the external reader it makes the proposals (§63.26)",
+    "outcome": "TRACE-Reader v0 0.596 against DeepSeek 0.568: passed, but NOT applied, because those 317 rows had been judged with DeepSeek's proposals visible and the principal investigator asked for a measure taken without proposals"
+   },
+   {
+    "date": "2026-09-30",
+    "rule": "replaces the external reader only if it matches it on the rows the team judges without proposals (one-in-five sample); rows with a comparable type on the evening of 30 September: zero",
+    "outcome": "waiting for the judgments given without proposals"
+   }
+  ],
+  "note": "Distilled from DeepSeek readings, declared. The human test labels are by one person and were given with DeepSeek's proposals visible.",
   "in_use": "experimental",
+  "earlier_code": "V09",
   "family": "TRACE model trained by the project",
   "changes_from": "T02",
   "what_changes": "same base and method; also learns principles and nearby pages, with longer texts (8,192 tokens)"

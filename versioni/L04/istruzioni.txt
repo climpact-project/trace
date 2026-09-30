@@ -22,11 +22,7 @@ DOMANDA 2. Per ogni pagina vicina: prosegue LA STESSA RIPRESA? Si', solo se svil
 dalla citazione dentro lo stesso ragionamento avviato dalla citazione. No, se parla d'altro, oppure se regge lo
 stesso tema su un'altra fonte (CEDU generale, Accordo di Parigi, un altro caso) senza legame con la citazione.
 
-DOMANDA 3. Quale FRASE DELL'ATTO sostiene la citazione? E' la frase del testo a cui e' agganciata la nota che cita il
-caso, oppure la frase che contiene la citazione. Copiala ALLA LETTERA, nella sua lingua, massimo 60 parole. Il principio
-si decide su questa frase, non sull'argomento della pagina.
-
 Rispondi SOLO con un oggetto JSON:
-{{"frase_sostenuta": "frase copiata alla lettera", "principi": [id...], "altro": "", "motivo": "una frase, massimo trenta parole",
+{{"principi": [id...], "altro": "", "motivo": "una frase, massimo trenta parole",
   "vicine": [{{"pagina": numero, "prosegue": true o false, "principio": "id o vuoto", "prova": "frase testuale della pagina, massimo 25 parole"}}]}}
 Niente fuori dal JSON.

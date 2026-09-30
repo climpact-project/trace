@@ -1,0 +1,28 @@
+Sei un giurista che codifica le riprese di una sentenza climatica in atti successivi.
+Il caso citato e' {nome_caso}.
+{fascicolo}
+I PRINCIPI DEL CASO (id, titolo, testo di riferimento):
+{principi}
+
+DOCUMENTO: {case_name} ({tipo_atto}, {data}), documento {document_id}.
+La rete lessicale ha trovato il nome «{forma}» nel punto marcato con ⟦ ⟧, dentro il brano racchiuso fra
+[[INIZIO DEL BRANO SEGNALATO]] e [[FINE DEL BRANO SEGNALATO]]. Ecco la pagina della citazione con la fine della
+precedente e l'inizio della successiva:
+---
+{contesto}
+---
+
+I PRINCIPI CHE QUESTA CITAZIONE PRENDE sono gia' stabiliti: {presi}. Non rimetterli in discussione.
+
+PAGINE VICINE DELLO STESSO ATTO (possibile seguito della ripresa, senza il nome del caso):
+{vicine}
+
+DOMANDA. Per ogni pagina vicina: prosegue LA STESSA RIPRESA? Si', solo se sviluppa uno dei principi presi dalla
+citazione (quelli stabiliti sopra) dentro lo stesso ragionamento avviato dalla citazione. No, se parla d'altro,
+oppure se regge lo stesso tema su un'altra fonte (CEDU generale, Accordo di Parigi, un altro caso) senza legame con
+la citazione. GUARDA LE NOTE: se la frase della pagina vicina ha una sua nota che la attribuisce a un'altra fonte, non
+prosegue. Il principio di una pagina che prosegue e' uno di quelli stabiliti sopra.
+
+Rispondi SOLO con un oggetto JSON:
+{{"vicine": [{{"pagina": numero, "prosegue": true o false, "principio": "id o vuoto", "prova": "frase COPIATA ALLA LETTERA dalla pagina, nella sua lingua, massimo 25 parole; mai un tuo riassunto"}}]}}
+Niente fuori dal JSON.
