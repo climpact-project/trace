@@ -44,6 +44,161 @@ A **citation code** (`URG-0146`) says which citation; it never changes. A **vers
 
 Code comments are in Italian, the working language of the team, as are the instructions given to the language models, the case files and the codebook.
 
+## The tools in reading order
+
+Numbered by phase; each link opens the file in `tools/`. The same order is in `tools/ordine/` (numbered links) and inside the code archive.
+
+
+**1. Il corpus: dal PDF al testo, OCR, indice delle pagine**
+
+1. [`build_markdown.py`](tools/build_markdown.py)
+2. [`diagnosi_testo.py`](tools/diagnosi_testo.py)
+3. [`ripara_ocr.py`](tools/ripara_ocr.py)
+4. [`pdf_ricercabili.py`](tools/pdf_ricercabili.py)
+5. [`applica_ocr.py`](tools/applica_ocr.py)
+6. [`posizione_dopo_ocr.py`](tools/posizione_dopo_ocr.py)
+7. [`build_chunks.py`](tools/build_chunks.py)
+8. [`build_index.py`](tools/build_index.py)
+9. [`riaggancia_frammenti.py`](tools/riaggancia_frammenti.py)
+10. [`indice_pagine.py`](tools/indice_pagine.py)
+
+**2. Il caso citato: sonde, mappa dei paragrafi, forme del nome**
+
+11. [`sonde.py`](tools/sonde.py)
+12. [`principi_da_paragrafi.py`](tools/principi_da_paragrafi.py)
+13. [`controlla_mappe.py`](tools/controlla_mappe.py)
+14. [`aggiorna_formulazioni.py`](tools/aggiorna_formulazioni.py)
+15. [`formulazioni_provenienza.py`](tools/formulazioni_provenienza.py)
+
+**3. La ricerca per nome e le righe in piattaforma**
+
+16. [`cerca.py`](tools/cerca.py)
+17. [`estrai_citazioni.py`](tools/estrai_citazioni.py)
+18. [`unisci_e_aggiungi.py`](tools/unisci_e_aggiungi.py)
+19. [`cerca_in_ocr.py`](tools/cerca_in_ocr.py)
+20. [`pubblica.py`](tools/pubblica.py)
+21. [`assegna_codici.py`](tools/assegna_codici.py)
+22. [`coda_uptakes.py`](tools/coda_uptakes.py)
+
+**4. Il tipo di citazione (lettura L03 di DeepSeek)**
+
+23. [`giudica_llm.py`](tools/giudica_llm.py)
+24. [`classifica_lessicali.py`](tools/classifica_lessicali.py)
+25. [`carica_lessicali.py`](tools/carica_lessicali.py)
+
+**5. Il principio ripreso e le pagine attorno (TRACE-Reranker, letture L04 e L05)**
+
+26. [`prepara_training.py`](tools/prepara_training.py)
+27. [`prova_riordinatori.py`](tools/prova_riordinatori.py)
+28. [`ripresa_punteggi.py`](tools/ripresa_punteggi.py)
+29. [`coppie_ocr.py`](tools/coppie_ocr.py)
+30. [`prepara_l05.py`](tools/prepara_l05.py)
+31. [`leggi_ripresa.py`](tools/leggi_ripresa.py)
+32. [`leggi_l04.py`](tools/leggi_l04.py)
+33. [`leggi_seguito.py`](tools/leggi_seguito.py)
+34. [`freni.py`](tools/freni.py)
+35. [`carica_ripresa.py`](tools/carica_ripresa.py)
+
+**6. I controlli**
+
+36. [`controllo_completezza.py`](tools/controllo_completezza.py)
+37. [`controllo_finestra.py`](tools/controllo_finestra.py)
+38. [`controllo_scarti.py`](tools/controllo_scarti.py)
+39. [`freni_prova.py`](tools/freni_prova.py)
+40. [`salva_giudizi.py`](tools/salva_giudizi.py)
+
+**7. Le riprese senza il nome (ricerca semantica, lettura L06)**
+
+41. [`distilla.py`](tools/distilla.py)
+42. [`semantica2.py`](tools/semantica2.py)
+43. [`unisci_candidati.py`](tools/unisci_candidati.py)
+
+**8. Le misure: sonde, stabilita'**
+
+44. [`prova_sonde_reranker.py`](tools/prova_sonde_reranker.py)
+45. [`prova_sonde_alternative.py`](tools/prova_sonde_alternative.py)
+46. [`confronta_sonde.py`](tools/confronta_sonde.py)
+47. [`stabilita_deepseek.py`](tools/stabilita_deepseek.py)
+
+**9. Registro, risultati, mappa, diario**
+
+48. [`registro_versioni.py`](tools/registro_versioni.py)
+49. [`calcola_risultati.py`](tools/calcola_risultati.py)
+50. [`carica_archivio.py`](tools/carica_archivio.py)
+51. [`aggiorna_dati_mappa.py`](tools/aggiorna_dati_mappa.py)
+52. [`traduci_mappa.py`](tools/traduci_mappa.py)
+53. [`pacchetto_pagina_trace.py`](tools/pacchetto_pagina_trace.py)
+54. [`diario_pagina.py`](tools/diario_pagina.py)
+
+**10. I cicli automatici (launchd sul Mac, coda di ReCaS)**
+
+55. [`ciclo_casi_nuovi.sh`](tools/ciclo_casi_nuovi.sh)
+56. [`ciclo_p05.sh`](tools/ciclo_p05.sh)
+57. [`ciclo_p09_cig.sh`](tools/ciclo_p09_cig.sh)
+58. [`ciclo_semantica_casi_nuovi.sh`](tools/ciclo_semantica_casi_nuovi.sh)
+59. [`ciclo_ocr3.sh`](tools/ciclo_ocr3.sh)
+60. [`ciclo_ocr3_rifai.sh`](tools/ciclo_ocr3_rifai.sh)
+61. [`ciclo_giapponese.sh`](tools/ciclo_giapponese.sh)
+62. [`ciclo_cal.py`](tools/ciclo_cal.py)
+63. [`carica_blocco.py`](tools/carica_blocco.py)
+
+**11. Storia: prove e modelli di luglio-settembre, non piu' nella pipeline (l'addestramento dei modelli T01 e T03 e' qui)**
+
+64. [`addestra_categoria.py`](tools/addestra_categoria.py)
+65. [`addestra_citazioni.py`](tools/addestra_citazioni.py)
+66. [`addestra_primo_qwen.py`](tools/addestra_primo_qwen.py)
+67. [`addestra_recupero.py`](tools/addestra_recupero.py)
+68. [`addestra_riordino.py`](tools/addestra_riordino.py)
+69. [`audit_giudizi.py`](tools/audit_giudizi.py)
+70. [`cal_dati.py`](tools/cal_dati.py)
+71. [`cal_riordinatore.py`](tools/cal_riordinatore.py)
+72. [`cartella_condivisa.py`](tools/cartella_condivisa.py)
+73. [`cartella_ricerca_manuale.py`](tools/cartella_ricerca_manuale.py)
+74. [`catalogo_e5_indice.py`](tools/catalogo_e5_indice.py)
+75. [`catalogo_parziale.py`](tools/catalogo_parziale.py)
+76. [`categoria_llm.py`](tools/categoria_llm.py)
+77. [`cerca_pagine.py`](tools/cerca_pagine.py)
+78. [`combina_lettori.py`](tools/combina_lettori.py)
+79. [`confronta_lettori.py`](tools/confronta_lettori.py)
+80. [`confronta_modelli.py`](tools/confronta_modelli.py)
+81. [`confronta_posti.py`](tools/confronta_posti.py)
+82. [`coppie_citazioni.py`](tools/coppie_citazioni.py)
+83. [`crea_prova.py`](tools/crea_prova.py)
+84. [`decisore_osservazioni.py`](tools/decisore_osservazioni.py)
+85. [`deepseek_api.py`](tools/deepseek_api.py)
+86. [`deepseek_giro2.py`](tools/deepseek_giro2.py)
+87. [`deepseek_giro3.py`](tools/deepseek_giro3.py)
+88. [`deepseek_tutto.py`](tools/deepseek_tutto.py)
+89. [`dimensioni.py`](tools/dimensioni.py)
+90. [`fase2_urgenda.py`](tools/fase2_urgenda.py)
+91. [`finestra_coppie_remoto.py`](tools/finestra_coppie_remoto.py)
+92. [`gara_jina.py`](tools/gara_jina.py)
+93. [`gara_modelli.py`](tools/gara_modelli.py)
+94. [`gara_parte2.py`](tools/gara_parte2.py)
+95. [`gara_terza.py`](tools/gara_terza.py)
+96. [`giudica_deepseek.py`](tools/giudica_deepseek.py)
+97. [`gpu_costruisci.sh`](tools/gpu_costruisci.sh)
+98. [`leggi_l06.py`](tools/leggi_l06.py)
+99. [`misura_finestra.py`](tools/misura_finestra.py)
+100. [`notte.sh`](tools/notte.sh)
+101. [`pausa_semantiche.py`](tools/pausa_semantiche.py)
+102. [`prepara_distilla_ds.py`](tools/prepara_distilla_ds.py)
+103. [`prova_cieca.py`](tools/prova_cieca.py)
+104. [`prova_implicita.py`](tools/prova_implicita.py)
+105. [`prova_pipeline_primo.py`](tools/prova_pipeline_primo.py)
+106. [`prova_prefissi.py`](tools/prova_prefissi.py)
+107. [`prova_recupero_grande.py`](tools/prova_recupero_grande.py)
+108. [`prova_unita.py`](tools/prova_unita.py)
+109. [`puntamento.py`](tools/puntamento.py)
+110. [`quanto_leggere.py`](tools/quanto_leggere.py)
+111. [`reader.py`](tools/reader.py)
+112. [`rivedi_altrove.py`](tools/rivedi_altrove.py)
+113. [`rivedi_dopo_l05.py`](tools/rivedi_dopo_l05.py)
+114. [`scrivi_revisione.py`](tools/scrivi_revisione.py)
+115. [`settembre_in_uptakes.py`](tools/settembre_in_uptakes.py)
+116. [`sezioni_atto.py`](tools/sezioni_atto.py)
+117. [`sezioni_llm.py`](tools/sezioni_llm.py)
+
 ## Limits
 
 - **No agreement figure published so far is a blind measure.** The figures the platform computes (machine and team agree on the type in about 93% of judged rows, a proposed principle is confirmed in about 97%, a proposed continuation page in about 94%) come from judgments given with the machine's proposals visible on the screen: leaving a ticked principle ticked counts as agreement. They say how often people changed a proposal, not how often the machine is right. Rows shown without any proposal are being judged now, and a blind figure will be published only when that sample has a base.
