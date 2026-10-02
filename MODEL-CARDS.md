@@ -56,9 +56,9 @@ TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 
 
 ## Common to all
 
-- Source corpus (code D01): Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law School) with Climate Policy Radar, whole-database export `CCC-whole_data_dump-2026-07-26`; use authorised by Maria Antonia Tigre (Sabin Center). The texts of the filings are not redistributed.
+- Source corpus (code D01): Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law School) with Climate Policy Radar, read through its public API (snapshot of 26 July 2026). The texts of the filings are not redistributed.
 - Hardware: NVIDIA H100 80GB, ReCaS-Bari data centre (INFN and University of Bari).
 - Every version is recorded with base model revision, weight fingerprints, training data, settings, instructions and code in the TRACE registry, with a note where a text is reconstructed rather than copied.
 - Terms used here: «external reader» is DeepSeek V4 Flash (codes L); «TRACE-Reader» is T02 and T03; «uptake» is the relation between a citation and the cited case; «continuation» is a nearby page that carries the same uptake on; «case file» is the list of a case's principles (`cited-cases/*.yaml`); «dossier» is the case summary given to the reader (`*-fascicolo.md`); «test rows» is the fixed evaluation set; «judged without proposals» is the one-in-five sample shown with no machine proposal.
-- Authors: G. Naglieri, E. Buono, C. Garofalo, C. Saracino (CLIMPACT, University of Bari).
-- Citation: Naglieri, G., Buono, E., Garofalo, C., Saracino, C. (2026). CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. CLIMPACT, University of Bari. Zenodo. DOI: [pending].
+- Authors: G. Naglieri, E. Buono, C. Garofalo, C. Saracino, L. Dell'Atti (CLIMPACT, University of Bari).
+- Citation: Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L. (2026). CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. CLIMPACT, University of Bari. Zenodo. DOI: [pending].

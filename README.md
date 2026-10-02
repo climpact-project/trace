@@ -8,7 +8,7 @@ This repository holds the code, the case files, the codebook and the registry of
 
 For any climate judgment (the *cited case*; so far Urgenda, Neubauer and Future Generations), TRACE finds every later filing that cites it and records, for each citation, what the citing text does with it. Every step has a version code (see below).
 
-1. **Documents (D01).** The Climate Litigation Database, whole-database export, with the text of every page.
+1. **Documents (D01).** The Climate Litigation Database, read through its public API, with the text of every page.
 2. **Name search (S02).** A plain text search, with no AI, looks for the name of the case in every page, in all the forms it takes: names, ECLI numbers, docket numbers, translations, other scripts, common OCR errors. Each hit becomes a citation with a permanent code: `URG-0146`, `NEU-0412`, `FGC-0033`. Most rows in the platform were found by the first version of the search (S01) and found again by S02, which added and merged the rows the first version had missed or split.
 3. **Paragraph map (R01).** When the citation points to a paragraph of the judgment (`para. 5.7.7`), a hand-written map gives the principle that paragraph holds. No model is involved.
 4. **Citation reading (L02, L03).** The external reader (DeepSeek V4 Flash) reads the citation in context and proposes: is it really the judgment; what the citation does (chain mention, descriptive, substantive, distinguishing, critical); who speaks; the proposition it supports.
@@ -26,7 +26,7 @@ A **citation code** (`URG-0146`) says which citation; it never changes. A **vers
 
 | Letter | Kind | Codes |
 |---|---|---|
-| D | data | D01 the database export |
+| D | data | D01 the database snapshot (public API) |
 | S | name search | S01 first version (replaced), S02 corrected (in use) |
 | R | rules without a model | R01 paragraph map, R02 composition, R03 choice of the nearby pages to read |
 | L | readings by an external model | L01 (replaced), L02 Urgenda, L03 Neubauer and Future Generations, L04 uptake reading (the principles), L05 uptake reading with the dossier (continuation, quotations, supported sentence), L06 experiment (not in use), L07 continuation reread on the proposed principles |
@@ -55,7 +55,7 @@ One name for each thing, in every document of this release: **uptake** (the rela
 
 ## Data
 
-The documents come from the Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law School) with Climate Policy Radar, whole-database export `CCC-whole_data_dump-2026-07-26`; use authorised by Maria Antonia Tigre (Sabin Center). The texts of the filings are not redistributed here. Data provided by the Sabin Center for Climate Change Law. Platform operated by Climate Policy Radar.
+The documents come from the Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law School) with Climate Policy Radar, read through its public API (snapshot of 26 July 2026). The texts of the filings are not redistributed here. Data provided by the Sabin Center for Climate Change Law. Platform operated by Climate Policy Radar.
 
 ## Licence
 
@@ -63,4 +63,4 @@ Code: MIT (see `LICENSE`). Case files, codebook and registry: CC BY 4.0.
 
 ## Citation
 
-Naglieri, G., Buono, E., Garofalo, C., Saracino, C. (2026). CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. CLIMPACT, University of Bari. Zenodo. DOI: [pending].
+Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L. (2026). CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. CLIMPACT, University of Bari. Zenodo. DOI: [pending].
