@@ -1,0 +1,1135 @@
+# CASO CITATO — URGENDA (query specification, versione 2)
+#
+# Che cosa cercare. Il codebook (`codebook/citazioni.yaml`) dice invece COME classificare
+# cio' che si trova. Qui si dice solo CHE COSA cercare. Nessuna classificazione e nessun
+# `tipo_citazione` e' assegnato in questo file: il codebook e' `0.2-pilot`, `approvato_da: null`.
+#
+# STORIA DEL FILE. Versione 1 = pilota (luglio 2026): cinque sonde con `testo` ricavato dalla
+# sentenza di Cassazione (due dal suo riassunto iniziale, una verbatim dal par. 8.2.6, due
+# parafrasate), dieci formulazioni escluse senza ragione scritta,
+# quattordici forme senza esclusioni. Questa versione 2 (2 settembre 2026) conserva le CINQUE
+# PROPOSIZIONI del pilota e le riscrive secondo TRACE-RIFERIMENTO-COMPLETO.md (25/08/2026) e
+# secondo il formato dei tre file del 28 agosto (`leghari.yaml`, `greenpeace-nordic.yaml`,
+# `juliana.yaml`): canonical verbatim con documento e pagina, seeds, probe 25-35 parole,
+# probe_alternativa, lexical_markers, esclusioni con ragione (minimo tre, una di polarita'),
+# forme lessicali con esclusioni motivate, scheda del caso ancora (guida §2).
+#
+# COMPATIBILITA' CON LA PIPELINE (guida §15.1). `leggi_caso()` in `tools/cerca.py` non e' un
+# parser YAML completo: toglie i commenti e legge `nome`, `codebook_versione`, `data_decisione`,
+# `escludi_case_id`, `forme`, `semantic_queries` come {id, titolo, testo}, `formulazioni_escluse`
+# con `per`. Il portale (`sondeDelCaso`) estrae i `titolo:` dentro il blocco `semantic_queries:`.
+# Questo file CONSERVA quelle chiavi con quel significato, e aggiunge accanto i campi documentali:
+#   pipeline            | qui                                   | nei tre file del 28 agosto
+#   nome                | nome                                  | official_name
+#   data_decisione      | data_decisione (+ data_soglia_motivazione) | data_soglia
+#   forme (lista piatta)| forme (lista piatta, categorie nei commenti) + forme_escluse | lexical_variants.* + EXCLUSIONS
+#   titolo              | titolo                                | etichetta
+#   testo (la sonda)    | testo  — messo PRIMA di seeds, perche' anche i seed hanno un campo `testo` | probe
+#   formulazioni_escluse| formulazioni_escluse (blocco unico, con `per`, + `ragione`) | exclusions annidate per sonda
+# Se i tre file vengono allineati a queste chiavi, la pipeline li legge senza modifiche al
+# lettore. Se invece il PI preferisce lo schema annidato, va modificato `leggi_caso()`. Decisione
+# al PI: NOTE-PER-PI-URGENDA.md, domanda 1.
+#
+# DECISIONE DEL PI (30 luglio 2026): il grado di giudizio NON si distingue. Chi cita Urgenda cita
+# Urgenda, che si riferisca al Tribunale dell'Aja (2015), alla Corte d'appello (2018) o alla
+# Cassazione (2019). La regola vale per il lato CITANTE. Per il lato CITATO, ogni canonical porta
+# il documento e il grado da cui viene, perche' le cinque proposizioni non sono enunciate dai tre
+# giudici nello stesso modo, e una (il dovere di diligenza civilistico) solo dal primo grado.
+#
+# CONVENZIONE REDAZIONALE SUI VERBATIM. `canonical` e `seeds.testo` sono estratti
+# programmaticamente dai markdown del corpus e verificati token per token. Ogni scostamento e'
+# dichiarato in `nota_verbatim` con tre categorie: `omissione` (citazione interna, inciso o
+# proposizione reggente omessi), `corpus_legge` (corruzione OCR corretta: qui nessuna, i tre
+# documenti fonte sono PDF con testo nativo), `salto_pagina` (NUOVA, proposta: intestazione di
+# stampa e numeri di paragrafo a margine che l'estrazione inserisce dentro un passaggio a cavallo
+# di due pagine; usata una sola volta, su un seed). I riferimenti interni della corte
+# ("see above in para. 5.2.2") NON sono omessi: fanno parte del testo.
+#
+# LINGUA. Sonde in inglese: le tre pronunce sono lette all'estero nella traduzione inglese
+# pubblicata su rechtspraak.nl, ed e' quel lessico che chi le riprende riecheggia (regola 5.5).
+# Le sonde sono scritte come passaggi di sentenza, dichiarativi, non come domande: il manifesto
+# dell'indice porta `prefisso_domanda: "passage: "` (guida §13.2), quindi la sonda viene
+# incorporata come se fosse un passaggio.
+
+nome: Urgenda Foundation v. State of the Netherlands
+non_english_name: Stichting Urgenda tegen De Staat der Nederlanden (Ministerie van Economische Zaken en Klimaat)
+case: urgenda-foundation-v-state-of-the-netherlands_3297
+codebook_versione: 0.2-pilot
+stato: bozza-da-approvare
+versione_file: 2
+data_versione: 2026-09-02
+# CORREZIONE DEI NUMERI DI PARAGRAFO (23/09/2026). Trovate scrivendo il fascicolo del caso
+# (`urgenda-fascicolo.md`, § 2.2) e verificate sui testi: il canonical di `ordine_non_legge` e' il
+# par. 8.2.6 della Hoge Raad (rimanda a «8.2.4 above»; l'8.2.7 e' l'applicazione al caso, ed e' il
+# seme che resta 8.2.7); il passo su due diligence e Jugheli e' il 5.3.3, non il 5.3.4; il seme
+# «source of interpretation» del Rechtbank e' il 4.46, non il 4.45 (lo dice la sentenza stessa al
+# 4.109: «In 4.45 and 4.46 ...»). Cambiati solo i numeri, nessun testo: le ricerche non cambiano.
+# Deciso dall'esecutore su delega del PI. Copia precedente: urgenda-prima-correzione-paragrafi-2026-09-23.yaml.bak
+
+# ── Scheda del caso ancora (guida §2: da registrare per ogni caso, PRIMA di ogni conteggio) ──
+caso_ancora:
+  posizione_nella_lista: 1              # unico caso gia' costruito (guida §2, decisione PI 27/08/2026)
+  motivazione_selezione: >
+    DA SCRIVERE DAL PI. La guida (§2) prescrive che la motivazione sia enunciata su basi
+    indipendenti dal corpus e prima di qualunque conteggio di citazioni; per Urgenda un
+    conteggio esiste gia' (run del 31/07 e del 25/08/2026), quindi la motivazione va scritta
+    dichiarando che e' posteriore. Proposta dell'esecutore, NON decisa: prima decisione in cui
+    una corte ordina a uno Stato una riduzione quantificata delle emissioni su base non
+    legislativa; rende disponibili in forma nuova la responsabilita' per la propria quota, gli
+    obblighi positivi convenzionali applicati a un rischio globale e differito, e l'ordine di
+    risultato che non prescrive i mezzi.
+  famiglia_giuridica: civil law (Paesi Bassi)
+  data_prima_pronuncia: 2015-06-24      # Rechtbank Den Haag
+  data_ultima_pronuncia: 2019-12-20     # Hoge Raad
+  esito: accolto                        # ordine di riduzione confermato in tre gradi
+  caso_perso: false
+  caso_di_controllo: false
+  documenti_corpus_successivi_alla_decisione: null   # denominatore (guida §2): da calcolare dalla pipeline, non stimato qui
+
+docket_numbers:
+  - C/09/456689 / HA ZA 13-1396          # Rechtbank Den Haag
+  - 200.178.245/01                       # Gerechtshof Den Haag
+  - 19/00135                             # Hoge Raad
+
+identifiers:
+  - "ECLI:NL:RBDHA:2015:7145"            # Rechtbank, 24 giugno 2015, originale olandese
+  - "ECLI:NL:RBDHA:2015:7196"            # Rechtbank, traduzione inglese
+  - "ECLI:NL:GHDHA:2018:2591"            # Hof, 9 ottobre 2018, originale olandese
+  - "ECLI:NL:GHDHA:2018:2610"            # Hof, traduzione inglese
+  - "ECLI:NL:HR:2019:2006"               # Hoge Raad, 20 dicembre 2019, originale olandese
+  - "ECLI:NL:HR:2019:2007"               # Hoge Raad, traduzione inglese
+  - "ECLI:NL:PHR:2019:887"               # conclusie PG, 13 settembre 2019, olandese — VOCE `conclusioni`, non corte (guida §6)
+  - "ECLI:NL:PHR:2019:1026"              # conclusie PG, traduzione inglese — idem
+  - "[2015] HAZA C/09/00456689"          # forma del campo `numero_causa` del corpus (etichetta di caso, copiata su tutti i documenti compresa la Cassazione)
+
+# Gli atti del giudizio Urgenda stesso non citano un precedente: nominano se stessi. Si escludono
+# e si contano a parte (785 passaggi nel pilota). Il pilota aveva `escludi_case_id: urgenda`
+# (scalare, sottostringa). Nei nove documenti del fascicolo caricati il 2/9/2026 compare UN SOLO
+# case_id: il giudizio non risulta spezzato come Juliana. Da confermare sul corpus intero
+# (NOTE-PER-PI 28/08, § 3.4).
+escludi_case_id:
+  - urgenda-foundation-v-state-of-the-netherlands_3297
+
+# ── Data soglia ─────────────────────────────────────────────────────────────────────────────
+# Chiave della pipeline: `data_decisione`. E' la soglia del filtro temporale (guida §19).
+data_decisione: 2015-06-24
+data_soglia_motivazione: >
+  Prima delle tre pronunce (Rechtbank Den Haag, 24 giugno 2015). Decisione del PI del 30 luglio
+  2026: chi cita Urgenda la cita a prescindere dal grado, quindi la soglia segue il giudizio e
+  non la proposizione. Conseguenza da tenere presente in lettura: quattro canonical su cinque
+  vengono dalla Cassazione (20 dicembre 2019) e uno dal primo grado; fra il 24 giugno 2015 e il
+  20 dicembre 2019 la rete semantica restituira' candidati che non possono riprendere le
+  formulazioni della Cassazione ma possono riprendere il primo grado o la Corte d'appello, che
+  le enunciano in altra forma (vedi i seed di ciascuna sonda). I candidati anteriori al 24
+  giugno 2015 non si buttano: sono l'argomento CONTRO la derivazione e si rileggono con
+  `--con-anteriori`.
+
+# ── Documenti del fascicolo nel corpus (nove, tutti sotto lo stesso case_id) ───────────────
+fonte_primaria:
+  - documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    file_origine: 20150624_2015-HAZA-C0900456689_decision.pdf
+    descrizione: Rechtbank Den Haag, 24 giugno 2015, traduzione inglese, 55 pagine, testo nativo
+    ruolo: fonte del canonical di `dovere_diligenza` e di seed per tutte le sonde
+  - documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    file_origine: 20181009_2015-HAZA-C0900456689_decision-3.pdf
+    descrizione: Gerechtshof Den Haag, 9 ottobre 2018, traduzione inglese non ufficiale, 19 pagine, testo nativo
+    ruolo: fonte di seed; enuncia la formulazione IBRIDA "duty of care under Articles 2 and 8 ECHR"
+  - documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    file_origine: 20200113_2015-HAZA-C0900456689_judgment-1.pdf
+    descrizione: Hoge Raad, 20 dicembre 2019, traduzione inglese, 47 pagine, testo nativo, stampa da rechtspraak.nl con intestazioni di pagina
+    ruolo: fonte dei canonical di `propria_quota`, `obblighi_positivi`, `ordine_non_legge`, `target_giudiziale`
+fonte_originale_olandese:
+  - documento: urgenda-foundation-v-state-of-the-netherlands-decision_4fc2      # Hof, 9 ottobre 2018, olandese, 20 pagine
+  - documento: urgenda-foundation-v-state-of-the-netherlands-judgment_4966      # Hoge Raad, 20 dicembre 2019, olandese, 41 pagine
+  # L'originale olandese del Rechtbank 2015 NON e' fra i nove documenti caricati: verificare se e' nel corpus.
+fonte_esclusa:
+  - documento: urgenda-foundation-v-state-of-the-netherlands-opinion_9d44       # conclusie PG Langemeijer/Wissink, 13 settembre 2019, inglese, 140 pagine
+    ragione: >
+      VOCE `conclusioni`, non `corte` (guida §6: l'errore di attribuzione alla corte fu scoperto
+      proprio su Urgenda). Nel corpus porta `tipo_atto: decisione`: difetto di metadato. Nessun
+      canonical e nessun seed viene da qui.
+  - documento: urgenda-foundation-v-state-of-the-netherlands-opinion_a9e2       # idem, olandese, 141 pagine
+    ragione: idem
+atti_di_parte:
+  - documento: urgenda-foundation-v-state-of-the-netherlands-appeal_7b30        # Procesinleiding dello Stato in cassazione, 8 gennaio 2019, olandese, 56 pagine — voce `parte`
+  - documento: urgenda-foundation-v-state-of-the-netherlands-appeal_2adc        # Verweerschrift di Urgenda in cassazione, 12 aprile 2019, olandese, 228 pagine — voce `parte`; nel corpus `tipo_atto: atto introduttivo` derivato dal nome file Sabin "appeal": e' una difesa, difetto di metadato
+
+# ── Forme testuali (lexical variants) ──────────────────────────────────────────────────────
+#
+# Chiave della pipeline: `forme`, lista piatta. La categoria di ogni forma sta nel commento
+# (i commenti sono tolti prima della lettura). La rete lessicale e' esaustiva per costruzione:
+# restituisce tutte le occorrenze letterali delle forme dichiarate. Cio' che non elenchiamo non
+# esiste. Stato di ogni variante OCR: OSSERVATA (nel corpus o nel fascicolo stesso) o PREVISTA
+# (derivata dal modello di errore documentato: r->1, r->t, g->u, g->c, p->n, caduta della
+# maiuscola iniziale). La ricerca e' esatta e insensibile agli a-capo dopo `textnorm.normalize()`.
+forme:
+  # forme brevi
+  - Urgenda
+  - Urgenda-                             # prefisso: copre i composti olandesi OSSERVATI nel fascicolo: Urgenda-zaak, Urgenda-arrest, Urgenda-uitspraak, Urgenda-vonnis
+  - the Urgenda case                     # OSSERVATA (Hof EN p. 8, citazione della NEV; conclusie EN)
+  - the Urgenda judgment                 # OSSERVATA (conclusie EN)
+  - the Urgenda decision                 # OSSERVATA (verweerschrift)
+  - the Urgenda ruling
+  - Urgenda case
+  - Urgenda judgment
+  - Urgenda ruling
+  - Urgenda decision
+  - Urgenda litigation
+  - Klimaatzaak Urgenda                  # OSSERVATA: inhoudsindicatie HR (nl e en) e Hof nl
+  - Climate case Urgenda                 # OSSERVATA: inhoudsindicatie Hof EN
+  - zaak Urgenda                         # OSSERVATA: HR nl/en, Hof nl, conclusie
+  # denominazioni delle parti e varianti dei connettivi
+  - Urgenda Foundation
+  - Stichting Urgenda                    # OSSERVATA: rubrica HR, conclusie, atti di parte
+  - Urgenda Foundation v. State of the Netherlands
+  - Urgenda Foundation v. the State of the Netherlands
+  - Urgenda Foundation v. The State of the Netherlands
+  - Urgenda Foundation v The State of the Netherlands
+  - Urgenda Foundation vs. State of the Netherlands
+  - Urgenda v. State of the Netherlands
+  - Urgenda v. the Netherlands
+  - Urgenda v. Netherlands
+  - Urgenda v the Netherlands
+  - Urgenda Foundation v. Kingdom of the Netherlands   # denominazione ricorrente in dottrina e in atti di common law; NON osservata nel fascicolo
+  - Urgenda v. Kingdom of the Netherlands
+  - State of the Netherlands v. Urgenda Foundation      # rubrica invertita in appello e cassazione (lo Stato e' appellante/ricorrente)
+  - State of the Netherlands v. Urgenda
+  - The Netherlands v. Urgenda
+  - Netherlands v. Urgenda
+  - Stichting Urgenda v. Staat der Nederlanden
+  - Staat der Nederlanden v. Stichting Urgenda
+  - Staat der Nederlanden/Stichting Urgenda
+  - Staat/Urgenda                        # forma abbreviata olandese di citazione (NON osservata nel fascicolo)
+  - Urgenda/Staat
+  # identificativi
+  - "ECLI:NL:RBDHA:2015:7145"
+  - "ECLI:NL:RBDHA:2015:7196"
+  - "ECLI:NL:RBDHA: 2015:7145"           # OSSERVATA con spazio dopo i due punti (Hof EN p. 2 e Hof nl)
+  - "ECLI:NL:GHDHA:2018:2591"
+  - "ECLI:NL:GHDHA:2018:2610"
+  - "ECLI:NL:HR:2019:2006"
+  - "ECLI:NL:HR:2019:2007"
+  - "ECLI:NL:PHR:2019:887"               # conclusie: chi la cita cita il fascicolo Urgenda, voce `conclusioni`
+  - "ECLI:NL:PHR:2019:1026"
+  - C/09/456689
+  - C/09/456689 / HA ZA 13-1396
+  - HA ZA 13-1396
+  - 200.178.245/01
+  - 200.178.245
+  - 19/00135
+  # varianti OCR e di estrazione
+  - Lirgenda                             # OSSERVATA nel corpus (Duarte Agostinho): U letta come L
+  - Urgcnda                              # pilota: e letta come c
+  - Uruenda                              # OSSERVATA nel corpus (NOTE-PER-PI 28/08, § 2.3): g->u
+  - urcenda                              # OSSERVATA nel corpus (idem): g->c e caduta della maiuscola
+  - "ECLI:NL:HR(2019(2007"               # OSSERVATA solo nel fascicolo stesso (94 occorrenze nelle intestazioni di stampa di HR EN): i due punti resi come parentesi. Artefatto del PDF di stampa da rechtspraak.nl; puo' ripresentarsi su altre stampe dello stesso tipo, non e' stato verificato altrove
+  - U1genda                              # PREVISTA (r->1)
+  - Utgenda                              # PREVISTA (r->t)
+  - rgenda                               # PREVISTA (caduta della maiuscola iniziale, come l'osservato `reenpeace`)
+  # traduzioni del nome del caso
+  - Urgenda c. Paesi Bassi
+  - Fondazione Urgenda c. Stato dei Paesi Bassi
+  - caso Urgenda
+  - sentenza Urgenda
+  - Urgenda c. Pays-Bas
+  - Fondation Urgenda c. État des Pays-Bas
+  - affaire Urgenda
+  - arrêt Urgenda
+  - Urgenda gegen die Niederlande
+  - Stiftung Urgenda gegen den Staat der Niederlande
+  - Urgenda-Urteil
+  - Urgenda-Entscheidung
+  - Fundación Urgenda c. Estado de los Países Bajos
+  - caso Urgenda contra Países Bajos
+  - Fundação Urgenda c. Estado dos Países Baixos
+  # forme in altre scritture (29/9/2026). Mancavano: il ricorso giapponese e due pareri della
+  # Commissione coreana per i diritti umani nominano Urgenda SOLO cosi', e la rete lessicale
+  # non li vedeva. Trovate leggendo le pagine che il reranker metteva fuori dalla finestra.
+  - 우르헨다                              # OSSERVATA (coreano: ricorsi Do-Hyun Kim, Woodpecker, pareri della Commissione nazionale)
+  - アジェンダ財団                        # OSSERVATA (giapponese: Youth Climate Case Japan, ricorso)
+  - アジェンダ事件                        # OSSERVATA (giapponese: idem, e altro atto dello stesso caso). NON la sola アジェンダ: vuol dire «agenda»
+
+found_in_corpus: []   # da riempire da `proposto_forma_trovata` delle run del 31/07 e 25/08/2026 (guida §26.2): forme davvero usate da altri documenti
+
+forme_escluse:
+  - forma: urgency
+    ragione: >
+      Token a distanza di edit 2 da "Urgenda", 67 occorrenze nella scansione del sotto-corpus
+      (NOTE-PER-PI 28/08, § 2.3). Non e' una variante ma una parola inglese. La ricerca esatta
+      non la pesca comunque; la ragione va scritta perche' e' cio' che rende difendibile la
+      lista (guida §15.1).
+  - forma: urgent
+    ragione: Idem, 66 occorrenze.
+  - forma: agenda
+    ragione: Idem, 33 occorrenze. Da non confondere con l'etimo dichiarato dal Hof ("Urgenda ('Urgent Agenda')", p. 2).
+  - forma: Uganda
+    ragione: Idem, 5 occorrenze. Nome di Stato.
+  - forma: Brenda
+    ragione: Idem, 7 occorrenze. Nome proprio.
+  - forma: Stichting
+    ragione: Ogni fondazione olandese. Da sola produce omonimia certa.
+  - forma: State of the Netherlands
+    ragione: Convenuto in OGNI causa olandese contro lo Stato (Milieudefensie, Klimaatzaak, Greenpeace NL). Nome dello Stato, non del caso.
+  - forma: Dutch State
+    ragione: Idem.
+  - forma: Klimaatzaak
+    ragione: >
+      PROCEDIMENTO DIVERSO. Da sola e' il nome del caso BELGA (VZW Klimaatzaak v. Kingdom of
+      Belgium), presente nel corpus con i propri documenti. Nel fascicolo Urgenda compare solo
+      nel composto "Klimaatzaak Urgenda", che resta fra le forme.
+  - forma: the Dutch climate case
+    ragione: >
+      Denominazione giornalistica. Copre anche Milieudefensie et al. v. Royal Dutch Shell
+      ("the Dutch Shell case", spesso presentato come "Urgenda 2.0") e il contenzioso olandese
+      successivo. Non usata nelle citazioni formali.
+  - forma: the Hague climate case
+    ragione: Idem; l'Aja e' sede anche del giudizio Shell.
+  - forma: Milieudefensie
+    ragione: Parte di un procedimento diverso (Shell), citato spesso ACCANTO a Urgenda ma non e' Urgenda.
+  - forma: Urgenda 2.0
+    ragione: Soprannome del giudizio Shell, non di questo.
+  - forma: HAZA C/09/00456689
+    ragione_nota: >
+      NON esclusa: e' compresa in "[2015] HAZA C/09/00456689" fra gli `identifiers`. Segnalata
+      perche' e' la forma del metadato Sabin, non della sentenza (che scrive "C/09/456689 / HA
+      ZA 13-1396"); improbabile nei testi, tenuta per completezza.
+  - forma: Urgenda
+    ragione_nota: >
+      NON esclusa. Resta forma breve principale, ma e' anche il nome dell'organizzazione: un
+      documento puo' nominare la fondazione (le sue campagne, i suoi rapporti sulla transizione) senza
+      citare il giudizio. Nel corpus contenzioso il caso e' quasi sempre il giudizio; le
+      occorrenze vanno comunque riviste a mano alla prima esecuzione, come per "Juliana".
+
+# FALSO POSITIVO SISTEMATICO DA DICHIARARE (guida §14): la table of authorities delle memorie di
+# common law. Misurato su Urgenda nel diario: 21 righe su 1.826, l'1,2%. La pipeline la esclude
+# in automatico ("riconosciuto dai punti di guida e dall'intestazione"); il blocco qui e'
+# documentazione, non istruzione.
+falso_positivo_dichiarato:
+  tipo: table of authorities
+  misurato_su: run pilota Urgenda (METODO-RECUPERO, via guida §14)
+  righe_con_nome: 1826
+  righe_voce_indice: 21
+  quota: 0.012
+
+# ── Sonde (semantic queries) ───────────────────────────────────────────────────────────────
+#
+# UNA PROPOSIZIONE PER SONDA, MA ARTICOLATA (25-35 parole). Verificato misurando sulle sonde
+# di questo stesso pilota (guida §14, lezione 4): la formulazione estesa batte la breve su
+# propria_quota (0,688 vs 0,630), ordine_non_legge (0,682 vs 0,597), dovere_diligenza (0,677
+# vs 0,603), con insiemi di risultati quasi disgiunti. Diluisce comporre proposizioni DIVERSE,
+# non articolare la stessa.
+#
+# NESSUNA CONTIENE IL NOME DEL CASO, ne' numeri, date o fatti del giudizio (il 25%, il 2020, il
+# 450 ppm). I numeri degli articoli CEDU restano in `obblighi_positivi`: non sono un fatto del
+# giudizio ma l'identita' dottrinale della proposizione (famiglia convenzionale contro famiglia
+# civilistica e famiglia del due process). La `probe_alternativa` di quella sonda li omette
+# apposta: la coppia misura esattamente questa scelta (§ 5.6).
+#
+# GLI ID SONO QUELLI DEL PILOTA, senza prefisso `urgenda.`: le righe gia' pubblicate su Firestore
+# (run del 25/08/2026) portano `sonda: propria_quota` ecc., e i tre file del 28 agosto li
+# citano cosi' nelle loro esclusioni. Uniformare (prefisso qui o rimozione la') e' la domanda 2
+# di NOTE-PER-PI-URGENDA.md.
+#
+# PROVENIENZA DEI CANONICAL, per grado. Non e' un dettaglio: la sonda del pilota
+# `dovere_diligenza` era stata dichiarata "estratta dalla Cassazione", ma la Cassazione non
+# fonda mai il proprio decisum su un duty of care civilistico; usa "duty of care" solo nel
+# riassunto dei gradi inferiori (pp. 14-19). Il dovere di diligenza ex art. 6:162 BW e' del
+# Rechtbank 2015; la Corte d'appello lo ribattezza "duty of care under Articles 2 and 8 ECHR"
+# (formulazione ibrida); la Cassazione parla di obblighi positivi. Quindi:
+#   propria_quota       -> Hoge Raad 5.7.5-5.7.7 (p. 28-29); anticipata da Rechtbank 4.79 e Hof 62, 64
+#   obblighi_positivi   -> Hoge Raad 5.6.2 (p. 26); anticipata da Hof 41-45
+#   dovere_diligenza    -> Rechtbank 4.83 (p. 49) — SOLO primo grado nella forma civilistica
+#   ordine_non_legge    -> Hoge Raad 8.2.6 (p. 41); anticipata da Rechtbank 4.101 e Hof 68
+#   target_giudiziale   -> Hoge Raad 6.4 (p. 31); anticipata da Rechtbank 4.86 e Hof 53
+
+semantic_queries:
+
+  - id: propria_quota
+    titolo: "Responsabilita' per la propria quota: il piccolo contributo non esonera"
+    testo: |
+      Each country is responsible for its own share of global emissions and cannot escape
+      that responsibility by arguing that its emissions are relatively small and that
+      reducing them makes little difference on a global scale.
+    probe_alternativa: |
+      A state's partial responsibility for a global harm does not lapse because others fail
+      to act or because its own contribution to worldwide emissions is minor; each state
+      answers for its part.
+    canonical: |
+      Nor can the assertion that a country’s own share in global greenhouse gas emissions is
+      very small and that reducing emissions from one’s own territory makes little
+      difference on a global scale, be accepted as a defence. Indeed, acceptance of these
+      defences would mean that a country could easily evade its partial responsibility by
+      pointing out other countries or its own small share.
+    canonical_pagina: 29
+    canonical_paragrafo: 5.7.7
+    canonical_documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    canonical_grado: Hoge Raad, 20 dicembre 2019
+    seeds:
+      - testo: >
+          This approach justifies partial responsibility: each country is responsible for
+          its part and can therefore be called to account in that respect.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 28
+        paragrafo: 5.7.5
+      - testo: >
+          Each country is thus responsible for its own share. That means that a country
+          cannot escape its own share of the responsibility to take measures by arguing that
+          compared to the rest of the world, its own emissions are relatively limited in
+          scope and that a reduction of its own emissions would have very little impact on a
+          global scale.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 4
+        paragrafo: Summary of the Decision, "Global problem and national responsibility"
+        avvertenza: >
+          Riassunto redatto dalla corte stessa in testa alla sentenza, che dichiara (p. 3) di
+          non sostituire i motivi e di non rifletterli per intero. E' la versione piu'
+          riecheggiata all'estero e la fonte, con lievi ritocchi, del `testo` della sonda nel
+          pilota. Vale come seme, non come canonical.
+      - testo: >
+          The defence that a duty to reduce greenhouse gas emissions on the part of the
+          individual states does not help because other countries will continue their
+          emissions cannot be accepted for this reason either: no reduction is negligible.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 29
+        paragrafo: 5.7.8
+      - testo: >
+          The Court, too, acknowledges that this is a global problem and that the State
+          cannot solve this problem on its own. However, this does not release the State
+          from its obligation to take measures in its territory, within its capabilities,
+          which in concert with the efforts of other states provide protection from the
+          hazards of dangerous climate change.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+        pagina: 16
+        paragrafo: 62
+      - testo: >
+          After all, each state held accountable would then be able to argue that it does
+          not have to take measures if other states do not so either. That is a consequence
+          that cannot be accepted, also because Urgenda does not have the option to summon
+          all eligible states to appear in a Dutch court.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+        pagina: 17
+        paragrafo: 64
+        avvertenza: Nomina la parte; e' la formulazione in chiave di effettivita' del rimedio.
+      - testo: >
+          The fact that the amount of the Dutch emissions is small compared to other
+          countries does not affect the obligation to take precautionary measures in view of
+          the State’s obligation to exercise care. After all, it has been established that
+          any anthropogenic greenhouse gas emission, no matter how minor, contributes to an
+          increase of CO2 levels in the atmosphere and therefore to hazardous climate
+          change.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+        pagina: 48
+        paragrafo: 4.79
+        avvertenza: >
+          Primo grado, 2015: la proposizione esiste gia' qui in forma civilistica ("obligation to
+          exercise care"), con il richiamo analogico alla sentenza Kalimijnen (HR 23 settembre
+          1988). Un documento fra il 2015 e il 2019 che la riprende riprende questo.
+    lexical_markers:
+      en: [own share, partial responsibility, its part, small share, no reduction is negligible, escape its responsibility, drop in the ocean]
+      nl: [eigen aandeel, deelverantwoordelijkheid, zijn deel]
+      it: [propria quota, responsabilita' parziale, goccia nel mare]
+      de: [eigener Anteil, Teilverantwortung]
+      fr: [sa part de responsabilite, propre part]
+
+  - id: obblighi_positivi
+    titolo: "Obblighi positivi ex artt. 2 e 8 CEDU contro un rischio climatico differito e diffuso"
+    testo: |
+      Articles 2 and 8 ECHR oblige the State to take appropriate measures against the real
+      and immediate risk of dangerous climate change, although it materialises only decades
+      from now and threatens the population at large.
+    probe_alternativa: |
+      The rights to life and to private and family life oblige the State to take suitable
+      measures against an environmental hazard endangering the population as a whole that
+      may materialise only in the long term.
+    canonical: |
+      no other conclusion can be drawn but that the State is required pursuant to Articles 2
+      and 8 ECHR to take measures to counter the genuine threat of dangerous climate change
+      if this were merely a national problem. Given the findings above in paras. 4.2- 4.7,
+      after all, this constitutes a 'real and immediate risk' as referred to above in para.
+      5.2.2 and it entails the risk that the lives and welfare of Dutch residents could be
+      seriously jeopardised.
+    canonical_pagina: 26
+    canonical_paragrafo: 5.6.2
+    canonical_documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    canonical_grado: Hoge Raad, 20 dicembre 2019
+    nota_verbatim:
+      omissione: >
+        Il periodo si apre nel testo con "Pursuant to the findings above in paras. 5.2.1-5.3.4,",
+        qui omesso. "4.2- 4.7" con lo spazio e' cosi' nel corpus (a capo del PDF).
+    seeds:
+      - testo: >
+          The fact that this risk will only be able to materialise a few decades from now
+          and that it will not impact specific persons or a specific group of persons but
+          large parts of the population does not mean – contrary to the State's assertions –
+          that Articles 2 and 8 ECHR offer no protection from this threat (see above in
+          para. 5.3.1 and the conclusion of paras. 5.2.2 and 5.2.3). This is consistent with
+          the precautionary principle (see para. 5.3.2, above). The mere existence of a
+          sufficiently genuine possibility that this risk will materialise means that
+          suitable measures must be taken.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 26
+        paragrafo: 5.6.2
+        nota_verbatim:
+          omissione: >
+            Fra il canonical e questo passo il testo reca la frase "The same applies to, inter
+            alia, the possible sharp rise in the sea level, which could render part of the
+            Netherlands uninhabitable.", omessa perche' fatto del caso.
+        avvertenza: >
+          E' la mossa distintiva (rischio che si materializza fra decenni e colpisce larghe
+          parti della popolazione), enunciata in forma di doppia negazione: da sola sta
+          vicinissima alla polarita' esclusa. Per questo e' seme e non canonical.
+      - testo: >
+          The term 'immediate' does not refer to imminence in the sense that the risk must
+          materialise within a short period of time, but rather that the risk in question is
+          directly threatening the persons involved. The protection of Article 2 ECHR also
+          regards risks that may only materialise in the longer term.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 23
+        paragrafo: 5.2.2
+      - testo: >
+          the State is obliged on the basis of Articles 2 and 8 ECHR to take appropriate
+          measures against the threat of dangerous climate change, in accordance with its
+          share as referred to in 5.8 above.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 29
+        paragrafo: 5.9.1
+        nota_verbatim:
+          omissione: 'Omessa la reggente "It follows from the above that, as the Court of Appeal has ruled,".'
+      - testo: >
+          the Supreme Court finds that Articles 2 and 8 ECHR relating to the risk of climate
+          change should be interpreted in such a way that these provisions oblige the
+          contracting states to do ‘their part’ to counter that danger.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 29
+        paragrafo: 5.8
+        nota_verbatim:
+          omissione: 'Omessa la reggente "In view of the considerations in 5.7.2-5.7.9 above,".'
+      - testo: >
+          According to the case law of the European Court of Human Rights (ECtHR), a
+          contracting state is obliged by these provisions to take suitable measures if a
+          real and immediate risk to people's lives or welfare exists and the state is aware
+          of that risk. The obligation to take suitable measures also applies when it comes
+          to environmental hazards that threaten large groups or the population as a whole,
+          even if the hazards will only materialise over the long term.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 4
+        paragrafo: Summary of the Decision, "Protection of human rights based on the ECHR"
+        avvertenza: Riassunto della corte, non i motivi (vedi propria_quota).
+      - testo: >
+          the Court believes that it is appropriate to speak of a real threat of dangerous
+          climate change, resulting in the serious risk that the current generation of
+          citizens will be confronted with loss of life and/or a disruption of family life.
+          As has been considered above by the Court, it follows from Articles 2 and 8 ECHR
+          that the State has a duty to protect against this real threat.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+        pagina: 13
+        paragrafo: 45
+        nota_verbatim:
+          omissione: 'Omessa la reggente "As is evident from the above,".'
+      - testo: >
+          In short, the State has a positive obligation to protect the lives of citizens
+          within its jurisdiction under Article 2 ECHR, while Article 8 ECHR creates the
+          obligation to protect the right to home and private life. This obligation applies
+          to all activities, public and non-public, which could endanger the rights
+          protected in these articles, and certainly in the face of industrial activities
+          which by their very nature are dangerous. If the government knows that there is a
+          real and imminent threat, the State must take precautionary measures to prevent
+          infringement as far as possible.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+        pagina: 12
+        paragrafo: 43
+        avvertenza: >
+          La Corte d'appello scrive "real and imminent threat"; la Cassazione "real and immediate
+          risk". Entrambe le forme vanno tenute presenti in lettura.
+    lexical_markers:
+      en: [Articles 2 and 8 ECHR, positive obligation, real and immediate risk, real and imminent threat, dangerous climate change, lives and welfare, a few decades from now, large parts of the population]
+      nl: [positieve verplichting, art. 2 en 8 EVRM, gevaarlijke klimaatverandering, reeel en onmiddellijk]
+      it: [obblighi positivi, artt. 2 e 8 CEDU, rischio reale e immediato, cambiamento climatico pericoloso]
+      de: [positive Schutzpflicht, Art. 2 und 8 EMRK]
+      fr: [obligations positives, articles 2 et 8 CEDH, risque reel et immediat]
+
+  - id: dovere_diligenza
+    titolo: "Dovere di diligenza civilistico: mitigazione insufficiente come illecito verso i cittadini"
+    testo: |
+      By failing to take sufficient mitigation measures against the high risk of dangerous
+      climate change, the State falls short of the standard of due care owed to its citizens
+      and acts negligently and therefore unlawfully.
+    probe_alternativa: |
+      The doctrine of hazardous negligence, developed for private tortfeasors, supplies the
+      criteria for holding that a government which controls national emissions owes and
+      breaches a duty of care to prevent dangerous climate change.
+    canonical: |
+      Due to the severity of the consequences of climate change and the great risk of
+      hazardous climate change occurring – without mitigating measures – the court concludes
+      that the State has a duty of care to take mitigation measures.
+    canonical_pagina: 49
+    canonical_paragrafo: 4.83
+    canonical_documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    canonical_grado: Rechtbank Den Haag, 24 giugno 2015
+    nota_fonte: >
+      Il pilota dichiarava i canonical "estratti dalla sentenza di Cassazione". Per questa sonda
+      non era possibile: la Cassazione usa "duty of care" solo riassumendo il primo grado (p. 14,
+      par. 2.3.1) e la Corte d'appello (p. 19, par. 2.3.2), e fonda il proprio decisum sugli
+      obblighi positivi CEDU. La proposizione civilistica e' del Rechtbank, che la costruisce
+      sull'art. 6:162 BW e sulla giurisprudenza Kelderluik (4.53-4.54), usando gli artt. 2 e 8
+      CEDU come fonte di interpretazione della norma aperta (4.46). Il grado di provenienza qui
+      conta per la lettura dei risultati, non per il filtro temporale (regola del PI).
+    seeds:
+      - testo: >
+          However, both articles and their interpretation given by the ECtHR, particularly
+          with respect to environmental right issues, can serve as a source of
+          interpretation when detailing and implementing open private-law standards in the
+          manner described above, such as the unwritten standard of care of Book 6, Section
+          162 of the Dutch Civil Code.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+        pagina: 40
+        paragrafo: 4.46
+        avvertenza: E' il passaggio che fissa la famiglia dottrinale (norma aperta privatistica, CEDU come fonte interpretativa).
+      - testo: >
+          In the first place, it has to be assessed whether there is a unlawful hazardous
+          negligence on the part of the State. Secondly, the State’s discretionary power is
+          relevant in assessing the government’s actions. From case law about government
+          liability it follows that the court has to assess fully whether or not the State
+          has exercised or exercises sufficient care, but that this does not alter the fact
+          that the State has the discretion to determine how it fulfils its duty of care.
+          However, this discretionary power vested in the State is not unlimited: the
+          State’s care may not be below standard.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+        pagina: 43
+        paragrafo: 4.53
+      - testo: >
+          Based on the foregoing, the court concludes that the State – apart from the
+          defence to be discussed below – has acted negligently and therefore unlawfully
+          towards Urgenda by starting from a reduction target for 2020 of less than 25%
+          compared to the year 1990.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+        pagina: 50
+        paragrafo: 4.93
+        avvertenza: Contiene numeri e il nome della parte; vale come seme, e' la conclusione che chi cita il primo grado ripete.
+      - testo: >
+          All of the above leads to the conclusion that the State is acting unlawfully
+          (because in contravention of the duty of care under Articles 2 and 8 ECHR) by
+          failing to pursue a more ambitious reduction as of end-2020, and that the State
+          should reduce emissions by at least 25% by end-2020.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+        pagina: 19
+        paragrafo: 76
+        avvertenza: >
+          FORMULAZIONE IBRIDA della Corte d'appello: lessico di questa sonda ("duty of care"),
+          famiglia di `obblighi_positivi` (artt. 2 e 8 CEDU). Il Hof la introduce al par. 41
+          ("the positive obligation ... (in short: a duty of care)"). Chi la riecheggia riprende
+          Urgenda, ma va letto su entrambe le sonde; l'esclusa `dovere_di_diligenza_convenzionale`
+          misura la distanza.
+      - testo: >
+          The State may act unlawfully by violating its duty of care to prevent dangerous
+          climate change. (paras. 4.52-4.53)
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 14
+        paragrafo: 2.3.1
+        avvertenza: >
+          Riassunto del primo grado fatto dalla Cassazione: paternita' del Rechtbank, non della
+          Cassazione. Serve a mostrare che la formulazione civilistica compare nel documento del
+          2019 solo in forma riportata.
+    lexical_markers:
+      en: [duty of care, standard of due care, hazardous negligence, acts unlawfully, negligently, unwritten standard of care, Kelderluik]
+      nl: [zorgplicht, maatschappelijke zorgvuldigheid, gevaarzetting, onrechtmatige daad, art. 6:162 BW, Kelderluik]
+      it: [dovere di diligenza, negligenza pericolosa, illecito civile, responsabilita' civile dello Stato]
+      de: [Sorgfaltspflicht, Verkehrssicherungspflicht]
+      fr: [devoir de diligence, faute civile]
+
+  - id: ordine_non_legge
+    titolo: "L'ordine di risultato non equivale a un ordine di legiferare"
+    testo: |
+      A court may order the public body to take measures to achieve a certain goal, as long
+      as that order does not amount to an order to create legislation with a particular
+      content.
+    probe_alternativa: |
+      Where the government is legally obliged to act, the courts may order compliance while
+      leaving it free to choose the measures and any legislation required; only an order
+      dictating specific legislative content is impermissible.
+    canonical: |
+      Therefore, the courts are not prevented to issue a declaratory decision to the effect
+      that the omission of legislation is unlawful (see 8.2.4 above). They may also order
+      the public body in question to take measures in order to achieve a certain goal, as
+      long as that order does not amount to an order to create legislation with a particular
+      content.
+    canonical_pagina: 41
+    canonical_paragrafo: 8.2.6
+    canonical_documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    canonical_grado: Hoge Raad, 20 dicembre 2019
+    seeds:
+      - testo: >
+          If the government is obliged to do something, it may be ordered to do so by the
+          courts, as anyone may be, at the request of the entitled party (Article 3:296
+          DCC). This is a fundamental rule of constitutional democracy, which has been
+          enshrined in our legal order.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 40
+        paragrafo: 8.2.1
+      - testo: >
+          In view of the constitutional relationships, it is solely for the legislator
+          concerned to determine for itself whether legislation with a particular content
+          will be enacted. Therefore, the courts cannot order the legislator to create
+          legislation with a particular content.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 40
+        paragrafo: 8.2.4
+        avvertenza: >
+          E' il LIMITE, enunciato dalla stessa corte: la meta' negativa della proposizione.
+      - testo: >
+          Indeed, this order does not amount to an order to take specific legislative
+          measures, but leaves the State free to choose the measures to be taken in order to
+          achieve a 25% reduction in greenhouse gas emissions by 2020. This is not altered
+          by the fact that many of the possible measures to be taken will require
+          legislation, as argued by the State. After all, it remains for the State to
+          determine what measures will be taken and what legislation will be enacted to
+          achieve that reduction.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 41
+        paragrafo: 8.2.7
+        avvertenza: Contiene i numeri del caso; vale come seme.
+      - testo: >
+          Even if it were correct to hold that compliance with the order can only be
+          achieved through creating legislation by parliament or lower government bodies,
+          the order in no way prescribes the content of such legislation. For this reason
+          alone, the order is not an ‘order to create legislation’.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+        pagina: 17
+        paragrafo: 68
+      - testo: >
+          In this, it is relevant to note that the claim discussed here is not intended to
+          order or prohibit the State from taking certain legislative measures or adopting a
+          certain policy. If the claim is allowed, the State will retain full freedom, which
+          is pre-eminently vested in it, to determine how to comply with the order
+          concerned.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+        pagina: 52
+        paragrafo: 4.101
+        avvertenza: >
+          Primo grado, 2015: la proposizione esiste gia' qui ("retain full freedom ... to
+          determine how to comply").
+    lexical_markers:
+      en: [order to create legislation, particular content, free to choose the measures, order to take measures, declaratory decision, how to comply with the order]
+      nl: [bevel tot wetgeving, wetgevingsbevel, bepaalde inhoud, vrij in de keuze van de maatregelen, art. 3:296 BW]
+      it: [ordine di legiferare, contenuto determinato, liberta' nella scelta dei mezzi, obbligo di risultato]
+      de: [Gesetzgebungsauftrag, Wahl der Mittel]
+      fr: [injonction de legiferer, choix des mesures]
+
+  - id: target_giudiziale
+    titolo: "Il giudice puo' fissare il minimo quantificato ricavandolo dal consenso scientifico e internazionale"
+    testo: |
+      A court may require the State to achieve a specified minimum reduction of emissions by
+      a given date, derived from the consensus of climate science and the international
+      community on the State's minimum fair share.
+    probe_alternativa: |
+      Judicial restraint permits the courts, in clear-cut cases, to establish the lower
+      limit of a state's fair share of emission reductions and to order that concrete
+      minimum rather than merely to require greater efforts.
+    canonical: |
+      Under certain circumstances, there may also be such clear views, agreements and/or
+      consensus in an international context about the distribution of measures among
+      countries that the courts can establish what – in accordance with the widely supported
+      view of states and international organisations, which view is also based on the
+      insights of climate science – can in any case be regarded as the State’s minimum fair
+      share.
+    canonical_pagina: 31
+    canonical_paragrafo: 6.4
+    canonical_documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    canonical_grado: Hoge Raad, 20 dicembre 2019
+    seeds:
+      - testo: >
+          the courts can assess whether the measures taken by the State are too little in
+          view of what is clearly the lower limit of its share in the measures to be taken
+          worldwide against dangerous climate change. It is clear, for example, in view of
+          what has been considered above in 5.7.2-5.8, that the State cannot at any rate do
+          nothing at all and that the courts can rule that the State is in breach of its
+          obligation referred to in 5.9.1 above if it does nothing.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 30-31
+        paragrafo: 6.3
+        nota_verbatim:
+          omissione: >
+            Omessa la reggente "Although determining the share to be contributed by the
+            Netherlands in the reduction of greenhouse gas emissions is, in that context too, in
+            principle, a matter for the government and parliament,".
+          salto_pagina: >
+            Il passo e' a cavallo delle pagine 30 e 31. Nel corpus, fra "measures to be taken" e
+            "worldwide against", l'estrazione inserisce l'intestazione di stampa ("1/13/20, 1(48
+            PM ECLI:NL:HR(2019(2007, Hoge Raad, 19/00135 (Engels) Page 31 of 47 https://...")
+            e i numeri di paragrafo a margine ("6.4 6.5 6.6 7.1"). Qui rimossi. Categoria
+            NUOVA rispetto alla convenzione del 28 agosto: vedi NOTE-PER-PI-URGENDA.md, domanda 5.
+      - testo: >
+          In determining the State’s minimum obligations, the courts must observe restraint,
+          especially if rules or agreements are involved that are not binding in themselves.
+          It is therefore only in clear-cut cases that the courts can rule, on the grounds
+          referred to above in 6.3-6.5, that the State has a legal obligation to take
+          measures.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 31
+        paragrafo: 6.6
+        avvertenza: >
+          Il limite della proposizione ("only in clear-cut cases"): va letto insieme al canonical.
+      - testo: >
+          In the context of the positive obligation on the State under Articles 2 and 8 ECHR
+          to take appropriate measures to prevent dangerous climate change, this target can
+          therefore be regarded as an absolute minimum. As the State has not been able to
+          provide a proper substantiation of its claim that deviating from that target is
+          nevertheless responsible (see 7.4.6 above), it must adhere to the target of 25%.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 38
+        paragrafo: 7.5.1
+        avvertenza: Contiene il numero del caso; vale come seme ("absolute minimum", "must adhere").
+      - testo: >
+          the order which the Court of Appeal issued to the State was limited to the lower
+          limit (25%) of the internationally endorsed, minimum necessary reduction of 25-40%
+          in 2020.
+        documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+        pagina: 6
+        paragrafo: Summary of the Decision, "The courts and the political domain"
+        nota_verbatim:
+          omissione: 'Omessa la reggente "Furthermore,".'
+        avvertenza: Riassunto della corte, non i motivi.
+      - testo: >
+          According to the scientific standard, a reduction target of this magnitude is the
+          absolute minimum and sufficiently effective, for the Netherlands, to avert the
+          danger of hazardous climate change, but the obligation to adhere to a higher
+          percentage clashes with the discretionary power vested in the State, also with due
+          regard for the limitation discussed here.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+        pagina: 49
+        paragrafo: 4.86
+        avvertenza: >
+          Primo grado, 2015: gia' qui il minimo e' quantificato come "absolute minimum" derivato
+          dallo standard scientifico, e il di piu' e' negato per rispetto della discrezionalita'.
+      - testo: >
+          The Court is of the opinion that a reduction obligation of at least 25% by
+          end-2020, as ordered by the district court, is in line with the State’s duty of
+          care.
+        documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+        pagina: 15
+        paragrafo: 53
+    lexical_markers:
+      en: [minimum fair share, lower limit, absolute minimum, clear-cut cases, common ground, reduction order, reduction target, at least]
+      nl: [ondergrens, minimale fair share, reductiebevel, reductiedoelstelling]
+      it: [quota minima equa, limite inferiore, minimo assoluto, obiettivo quantificato, ordine di riduzione]
+      de: [Untergrenze, Mindestreduktion, Reduktionsanordnung]
+      fr: [limite inferieure, part equitable minimale, injonction de reduction]
+
+# TOLTE NEL PILOTA E NON REINTRODOTTE, con la ragione del pilota confermata:
+# - "la scienza come fonte dell'obbligo": in Urgenda la conoscenza scientifica fonda la
+#   prevedibilita' del danno DENTRO l'analisi del dovere, non e' una proposizione autonoma;
+# - "riduzione del 25% entro il 2020": fatto del giudizio, non proposizione trasferibile;
+#   sostituita da `target_giudiziale`.
+# ASSI NON COPERTI dalle cinque sonde, emersi rileggendo i tre gradi e NON promossi a sonda
+# senza decisione del PI (NOTE-PER-PI-URGENDA.md, domanda 4): l'onere dello Stato di motivare
+# una politica sotto il minimo di consenso (HR 6.5, 7.4.6; Hof 52); l'effetto riflesso degli
+# obblighi internazionali nelle norme aperte di diritto interno (Rechtbank 4.43-4.44); la
+# legittimazione collettiva ex art. 3:305a BW che aggira il requisito di vittima ex art. 34
+# CEDU (HR 5.9.2-5.9.3; Hof 35-36).
+
+# ── Formulazioni escluse ───────────────────────────────────────────────────────────────────
+#
+# Chiave della pipeline: `formulazioni_escluse`, blocco unico, ogni voce con `per`. Il campo
+# `ragione` e' aggiunto (nel pilota mancava: era la prima lacuna dichiarata dal diario).
+#
+# NON FILTRANO, MISURANO. Ogni candidato esce con il punteggio verso la sonda, il punteggio
+# verso l'esclusa piu' vicina e il `margine`; margine negativo = riga marcata `sospetto`, non
+# scartata (guida §18.2, §18.3). Il riordinatore non separa le escluse (0,73 alla CBDR contro
+# 0,95 alla norma): le governa solo questo confronto. Minimo tre per sonda, mai una sola (guida
+# §46.1); una di POLARITA' per sonda (handoff 28/08, § 6): la versione negativa o derisoria della
+# proposizione occupa una posizione contigua a quella affermativa e il vettore non la vede.
+#
+# ORIGINE. Le dieci del pilota (indicazioni del PI, 30 luglio 2026) sono conservate con la
+# stessa formulazione, salvo dove indicato. Le aggiunte sono di tre tipi: la POLARITA'; le
+# sonde VICINE degli altri tre file (Juliana, Greenpeace Nordic), con rinvio incrociato, perche'
+# la coppia va misurata (§ 5.6); le formulazioni che stanno DENTRO il fascicolo Urgenda come
+# difesa dello Stato o come premessa attribuita alla CEDU (paternita' dichiarata, § 6).
+
+formulazioni_escluse:
+
+  # -- propria_quota --------------------------------------------------------------------------
+  - per: propria_quota
+    id: responsabilita_comuni_differenziate
+    testo: >
+      The principle of common but differentiated responsibilities and respective capabilities,
+      under which developed and developing countries bear different treaty commitments according
+      to their circumstances.
+    ragione: >
+      Pilota. MISURATA: il riordinatore le da' 0,73 contro 0,95 alla norma (guida §18.2): e' la
+      vicina che solo il margine governa. Ripartisce responsabilita' fra Stati per capacita' e
+      sviluppo; non dice che il piccolo contributo non esonera. E' anche il falso amico
+      segnalato su CCLW (equita' FRA Stati contro obbligo verso i PROPRI residenti, guida §46.1).
+  - per: propria_quota
+    id: causalita_concorrente_civilistica
+    testo: >
+      Where several tortfeasors each contribute a small part of an indivisible injury, liability
+      may be apportioned among them according to their respective market share or contribution
+      to the risk.
+    ragione: >
+      Pilota. Stessa struttura (contributo parziale a un danno indivisibile), proposizione
+      diversa: riguarda l'apporzionamento del risarcimento, non il dovere di agire. Il Rechtbank
+      la richiama per analogia (Kalimijnen, 4.79): chi la enuncia da sola attribuisce ad altra
+      autorita'.
+  - per: propria_quota
+    id: no_harm_transfrontaliero
+    testo: >
+      Every State has the obligation to ensure that activities within its jurisdiction or
+      control do not cause significant damage to the environment of other States or of areas
+      beyond national jurisdiction.
+    ragione: >
+      La Cassazione lo cita come fondamento della responsabilita' parziale (5.7.5, preambolo
+      UNFCCC): paternita' dichiarata al diritto internazionale generale. Chi enuncia il no-harm
+      da solo non riprende la propria quota. Gia' esclusa, con direzione opposta, in
+      `greenpeace-nordic.emissioni_estere_rilevanti`.
+  - per: propria_quota
+    id: contributo_sostanziale_legittimazione
+    testo: >
+      Where the defendant is responsible for a substantial share of worldwide emissions, the
+      reasoning that denies causation for minor contributors whose effect is scientifically
+      indiscernible does not apply.
+    ragione: >
+      E' `juliana.causalita_contributo_sostanziale`, che a sua volta esclude questa sonda: asse
+      della TRACCIABILITA' ai fini della legittimazione, non della responsabilita' nel merito.
+      Un ordinamento puo' adottare l'una e non l'altra. Coppia da misurare (§ 5.6).
+  - per: propria_quota
+    id: polarita_goccia_nel_mare
+    testo: >
+      A state whose emissions represent only a negligible fraction of the global total cannot be
+      required to reduce them, since its own reduction would make no measurable difference to
+      global climate change.
+    ragione: >
+      POLARITA'. E' la difesa dello Stato che la Cassazione respinge (5.7.7) e il Rechtbank prima
+      di lei (4.78-4.79), con lo stesso lessico. Forma derisoria nel dissenso Roberts in
+      Massachusetts v. EPA; forma vincente nella redressability del Nono Circuito in Juliana.
+      Senza questa esclusa la sonda conta chi accoglie la difesa come chi la respinge.
+
+  # -- obblighi_positivi ----------------------------------------------------------------------
+  - per: obblighi_positivi
+    id: obblighi_positivi_generici
+    testo: >
+      The State has a positive obligation under the Convention to take operational measures to
+      protect an individual whose life is at real and immediate risk from the criminal acts of
+      another individual.
+    ragione: >
+      Pilota. Matrice Osman del "real and immediate risk": stesso lessico, rischio individuale,
+      imminente, da atti criminali di terzi. Urgenda estende a un rischio collettivo e differito
+      (5.2.2, 5.6.2). Paternita' dichiarata alla Corte EDU.
+  - per: obblighi_positivi
+    id: inquinamento_industriale_locale
+    testo: >
+      Severe environmental pollution from an industrial installation may affect individuals'
+      well-being and prevent them from enjoying their homes, so as to affect their private and
+      family life adversely.
+    ragione: >
+      Pilota. Lopez Ostra/Fadeyeva: art. 8 ambientale localizzato. La Cassazione la cita come
+      premessa (5.2.3). Chi enuncia solo questo attribuisce alla Corte EDU e non compie il
+      passaggio al rischio climatico globale.
+  - per: obblighi_positivi
+    id: creazione_del_pericolo
+    testo: >
+      Although the state ordinarily owes no affirmative duty to protect, a government that
+      created the danger, knew that its acts caused it, and then failed to act with deliberate
+      indifference may be held constitutionally liable.
+    ragione: >
+      E' `juliana.creazione_del_pericolo`, che a sua volta esclude questa sonda. Stessa funzione
+      (fondare un dovere positivo di agire), famiglia opposta: nel due process il dovere nasce
+      perche' lo Stato ha CREATO il pericolo, nella CEDU dalla conoscenza del rischio.
+  - per: obblighi_positivi
+    id: margine_di_apprezzamento_ambientale
+    testo: >
+      In matters of general environmental policy the national authorities enjoy a wide margin of
+      appreciation, and it is not for the court to substitute its own assessment of which
+      measures are necessary to protect the environment.
+    ragione: >
+      La versione deferenziale della stessa giurisprudenza CEDU, riportata dal Rechtbank
+      (Manuale del Consiglio d'Europa, 4.49) e dal Hof (42: "wide margin of appreciation"). Stessa
+      famiglia, proposizione che limita invece di fondare; il vettore non vede il segno. Vicina
+      anche di `greenpeace-nordic.valvola_di_sicurezza`.
+  - per: obblighi_positivi
+    id: polarita_rischio_globale_fuori_ambito
+    testo: >
+      Articles 2 and 8 of the Convention afford no protection against a hazard that is global in
+      cause and effect, will materialise only decades from now and does not threaten specific
+      identifiable persons but the population at large.
+    ragione: >
+      POLARITA'. E' la tesi dello Stato riportata e respinta in 5.1 e 5.6.2 con lo stesso lessico;
+      e' anche, in parte, la posizione del Rechtbank sull'invocabilita' diretta (4.45: Urgenda
+      non e' vittima ex art. 34 CEDU), cioe' sta DENTRO il fascicolo. Sara' la formulazione di chi
+      distingue Urgenda negando l'applicabilita' della CEDU ai rischi diffusi.
+
+  # -- dovere_diligenza -----------------------------------------------------------------------
+  - per: dovere_diligenza
+    id: negligenza_civilistica_ordinaria
+    testo: >
+      A duty of care owed by one private party to another under the ordinary law of negligence,
+      arising from proximity and foreseeability of harm between individuals, without any
+      obligation of the State towards the population.
+    ragione: >
+      Pilota. E' la matrice (Kelderluik, gevaarzetting) da cui il Rechtbank deriva i criteri
+      (4.54): da sola e' responsabilita' civile fra privati. Paternita' dichiarata.
+  - per: dovere_diligenza
+    id: due_diligence_transfrontaliera
+    testo: >
+      The customary international obligation of a State to exercise due diligence so as to
+      prevent activities within its territory from causing significant transboundary harm to the
+      territory of other States.
+    ragione: >
+      Pilota. MISURATA: due diligence e duty of care, entrambi "dovere di diligenza" in italiano,
+      hanno dato 2 risultati in comune su 15 (guida §14, lezione 1). Famiglia del diritto
+      internazionale; la prima versione della sonda aveva pescato questo.
+  - per: dovere_diligenza
+    id: dovere_di_diligenza_convenzionale
+    testo: >
+      The State fails to fulfil its duty of care under Articles 2 and 8 of the Convention by not
+      pursuing a more ambitious reduction of greenhouse gas emissions and therefore acts
+      unlawfully.
+    ragione: >
+      FORMULAZIONE IBRIDA della Corte d'appello (73, 76): lessico di questa sonda, famiglia di
+      `obblighi_positivi`. E' ripresa di Urgenda, ma dell'altro asse: un candidato che cade qui
+      va letto su `obblighi_positivi`, non scartato. L'esclusa resta perche' il compito e'
+      misurare la distanza fra i due assi, non filtrare.
+  - per: dovere_diligenza
+    id: due_diligence_buon_governo
+    testo: >
+      In pursuing its policy the State must observe due diligence and good governance, and the
+      court may review whether that policy is consistent, timely and properly substantiated.
+    ragione: >
+      Terza famiglia con la stessa parola: la due diligence PROCEDURALE della giurisprudenza CEDU
+      (Jugheli), che la Cassazione fa propria in 5.3.3 e 6.5. Non e' l'illecito civilistico; e' un
+      asse candidato a sonda propria (onere di motivazione), non decisa.
+  - per: dovere_diligenza
+    id: polarita_dovere_costituzionale_non_azionabile
+    testo: >
+      The constitutional duty of the State to protect and improve the living environment leaves
+      the government a wide discretion and does not give rise to an enforceable duty of care
+      towards individuals in tort.
+    ragione: >
+      POLARITA'. E' la difesa dello Stato e, in parte, cio' che il Rechtbank stesso dice dell'art.
+      21 Cost. (4.36, 4.52: nessun obbligo giuridico verso Urgenda da quella norma), prima di
+      fondare il dovere sull'art. 6:162 BW. Stesso lessico, segno rovesciato.
+
+  # -- ordine_non_legge -----------------------------------------------------------------------
+  - per: ordine_non_legge
+    id: separazione_poteri_generica
+    testo: >
+      Under the separation of powers the courts must not substitute their own judgment for that
+      of the legislature and the executive on questions of political and budgetary discretion.
+    ragione: >
+      Pilota, su indicazione del PI (cercata cosi' "pesca qualunque cosa"). Il riordinatore non
+      la separa. Manca il punto specifico: non dice nulla sulla FORMA che l'ordine puo' assumere.
+      Esclusa anche in `leghari.diritti_come_strumentario`, `greenpeace-nordic.valvola_di_sicurezza`,
+      `juliana.rimedio_praticabile`.
+  - per: ordine_non_legge
+    id: giustiziabilita_legittimazione
+    testo: >
+      The claim is non-justiciable because the plaintiffs lack standing and the question
+      presented is a political question committed to the elected branches rather than to the
+      courts.
+    ragione: >
+      Pilota. Unisce legittimazione e political question, che sono analisi distinte. Esclusa anche
+      in `juliana.non_e_questione_politica`.
+  - per: ordine_non_legge
+    id: rimedio_praticabile_mezzi
+    testo: >
+      Separation of powers may permit a court to order the government to ameliorate the
+      claimants' injuries while limiting the court's ability to specify precisely how that result
+      is to be achieved.
+    ragione: >
+      E' `juliana.rimedio_praticabile`, il vicino PIU' PROSSIMO dell'intero impianto
+      (NOTE-PER-PI 28/08, § 5-bis): stessa famiglia (limiti alla confezione del rimedio), limite
+      diverso. Urgenda esclude l'ordine di legiferare con un certo contenuto; Aiken esclude la
+      prescrizione dei mezzi. PRIMA COPPIA da misurare (§ 5.6): se pescano le stesse cose, il
+      confronto Urgenda/Juliana su questo asse non e' informativo.
+  - per: ordine_non_legge
+    id: dichiarativa_senza_ordine
+    testo: >
+      The court may declare that the failure to legislate is unlawful but may not issue any order
+      to the public body, since whether and how to act belongs exclusively to the political
+      branches.
+    ragione: >
+      La META' della proposizione: la Cassazione ammette la dichiarativa (8.2.4) E l'ordine di
+      risultato (8.2.7). Sta vicinissima perche' riproduce la prima frase del canonical; un
+      ordinamento che si ferma alla dichiarativa non riprende la mossa di Urgenda.
+  - per: ordine_non_legge
+    id: polarita_ordine_di_legiferare_dissimulato
+    testo: >
+      An order requiring the State to achieve a specified emissions reduction that can in
+      practice only be met by legislation is in substance an order to create legislation and is
+      therefore impermissible.
+    ragione: >
+      POLARITA'. Motivo di cassazione 9 dello Stato (HR 8.1) e difesa in appello (Hof 68), respinti
+      con lo stesso lessico. Chi la enuncia per negare l'ordine e chi per introdurne il limite
+      occupano la stessa posizione nello spazio dei significati.
+
+  # -- target_giudiziale ----------------------------------------------------------------------
+  - per: target_giudiziale
+    id: controllo_di_un_target_legislativo
+    testo: >
+      The court reviews whether the government has complied with the emission reduction target
+      already fixed by the legislature, without itself determining what that target should be.
+    ragione: >
+      Pilota. Il minimo viene dalla legge, non dal giudice (modello Friends of the Irish
+      Environment 2020, Friends of the Earth v. BEIS 2022). Stesso oggetto, fonte del vincolo
+      diversa: e' esattamente la distinzione che la sonda esiste per misurare.
+  - per: target_giudiziale
+    id: ordine_generico_di_fare_di_piu
+    testo: >
+      The State is ordered to take additional and more ambitious measures against climate change,
+      without any specified quantity or deadline being imposed by the court.
+    ragione: >
+      Pilota. L'ordine senza quantificazione: e' cio' da cui la sonda si distingue ("rather than
+      merely to require greater efforts"). Il Rechtbank stesso lo rifiuta come insufficiente
+      (4.86: il di piu' clashes with discretion, il minimo no).
+  - per: target_giudiziale
+    id: equita_fra_stati
+    testo: >
+      The fair distribution of mitigation efforts among states must reflect their historical
+      responsibility, level of development and capabilities, in accordance with the principle of
+      common but differentiated responsibilities.
+    ragione: >
+      "Fair share" come burden-sharing FRA Stati (equita' internazionale), che la Cassazione
+      stessa dice appartenere al dominio politico (6.2). La sonda parla del minimo fair share
+      azionabile dai PROPRI residenti. Falso amico segnalato su CCLW (guida §46.1).
+  - per: target_giudiziale
+    id: target_autoimposto
+    testo: >
+      The government is held to the emission reduction commitments it has itself announced or
+      pledged, and may not silently abandon a target it previously adopted without
+      justification.
+    ragione: >
+      La fonte del minimo e' l'impegno dello Stato stesso, non il consenso scientifico e
+      internazionale. Urgenda usa il vecchio obiettivo nazionale del 30% solo come conferma
+      (Hof 52, 72; HR 7.4.1); altre corti ne fanno la ratio. Vicina, ma dice altro sulla
+      provenienza del vincolo.
+  - per: target_giudiziale
+    id: polarita_quantificazione_politica
+    testo: >
+      Determining the level and pace of emission reductions is a matter of political discretion;
+      the courts lack the standards to fix a percentage or a deadline and cannot order the State
+      to achieve a quantified target.
+    ragione: >
+      POLARITA'. Difesa dello Stato (Hof 30; HR 8.3.1) e formulazione vincente altrove:
+      redressability in Juliana (Nono Circuito), primo grado belga del Klimaatzaak (2021),
+      valvola di sicurezza in Greenpeace Nordic. Nei documenti che oppongono Urgenda a quei casi
+      compare accanto alla sonda, e il vettore non la separa.
+
+# ── Nota analitica, da non trattare come regola di stesura ─────────────────────────────────
+#
+# Urgenda e' l'unico caso ancora deciso in tre gradi con esito costante e l'unico gia' eseguito
+# nella pipeline. Due cose incidono sulla lettura dei risultati e non sulla stesura:
+# 1. Fra il 24 giugno 2015 e il 20 dicembre 2019 i candidati riprendono il primo grado o la
+#    Corte d'appello; la formulazione civilistica (`dovere_diligenza`) e' l'unica che il
+#    contenzioso successivo tende ad ABBANDONARE (le riprese piu' note passano agli artt. 2 e 8
+#    CEDU o a norme costituzionali): un calo delle riprese di quella sonda dopo il 2018 e' un
+#    dato, non un difetto della sonda.
+# 2. La sentenza della Corte EDU in KlimaSeniorinnen (9 aprile 2024) riformula gli obblighi
+#    positivi climatici con lessico proprio, DA VERIFICARE sul testo della sentenza (non e' nel
+#    fascicolo caricato). Se confermato, dal 2024 le riprese di `obblighi_positivi` possono
+#    attribuire la proposizione alla Corte EDU e non a Urgenda: e' il criterio della paternita'
+#    dichiarata (§ 6), e va misurato, non presunto.
+nota_analitica:
+  spartiacque_possibili: [2018-10-09, 2019-12-20, 2024-04-09]
+  effetto_atteso: >
+    Possibile spostamento della ricezione dall'asse civilistico a quello convenzionale dopo il
+    2018, e possibile riattribuzione alla Corte EDU dopo il 2024. Da verificare, non da
+    presupporre.

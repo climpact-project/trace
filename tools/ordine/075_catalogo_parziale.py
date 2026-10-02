@@ -1,0 +1,1 @@
+../catalogo_parziale.py

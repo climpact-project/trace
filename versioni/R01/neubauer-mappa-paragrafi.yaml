@@ -1,47 +1,46 @@
-# PARAGRAPH MAP OF NEUBAUER (Klimabeschluss), version 1
+# MAPPA DEI PARAGRAFI DI NEUBAUER (Klimabeschluss) — versione 1, 23 settembre 2026, scritta da Claude Fable 5.1
 #
-# Companion to `neubauer-fascicolo.md`. Used to resolve citations such as «Neubauer, para. 192»,
-# «BVerfG, Rn. 203», «headnote 2c», and to know which probe and which link of the chain a passage supports.
+# Compagna di `neubauer-fascicolo.md`. Serve a decifrare citazioni del tipo «Neubauer, para. 192»,
+# «BVerfG, Rn. 203», «headnote 2c» e a sapere quale sonda e quale anello della catena un passo sostiene.
 #
-# SOURCES. There is a single decision, in two versions in the corpus:
-#   DE  neubauer-et-al-v-germany-order_c68f  (German original, 110 pp.)  -> `pagina_de`
-#   EN  neubauer-et-al-v-germany-order_7977  (official English translation by the BVerfG, 78 pp.) -> `pagina_en`
-# `documento` is the German text, source of the canonical passages; English pages refer to _7977.
-# `pagina` = number of the markdown marker `<!-- page N -->`, which matches the PDF page.
-# «om.» in `pagina_en` = the Rn. is omitted in the English translation («[…]»).
+# FONTI. La pronuncia e' una sola, in due versioni del corpus:
+#   DE  neubauer-et-al-v-germany-order_c68f  (originale tedesco, 110 pp.)  -> `pagina_de`
+#   EN  neubauer-et-al-v-germany-order_7977  (traduzione inglese ufficiale del BVerfG, 78 pp.) -> `pagina_en`
+# `documento` e' il tedesco, fonte dei canonical; le pagine inglesi si riferiscono a _7977.
+# `pagina` = numero del marcatore `<!-- page N -->` del markdown, che coincide con la pagina del PDF.
+# «om.» in `pagina_en` = la Rn. e' omessa nella traduzione inglese («[…]»).
 #
-# HOW THE NUMBERS WERE ESTABLISHED. Randnummern (Rn.) are identical in the two languages. In the
-# German PDF the margin number sits on the opening line of the paragraph: boundaries were counted on
-# the German text (e.g. Rn. 202 = «(b) So oder so...», Rn. 203 = «Dabei könnte sich der Staat ... nicht
-# entziehen», Rn. 204 = «Das Pariser Übereinkommen...») and checked against the Court's internal
-# cross-references (Rn. 225 -> «oben Rn. 203»; Rn. 182 -> «Rn. 154, 164, 177» and «Rn. 178»; Rn. 243 ->
-# «Rn. 192 ff.»; Rn. 247 -> «Rn. 194», «Rn. 228»; Rn. 246 -> «Rn. 198»; Rn. 210 -> «Rn. 201») and the
-# table of contents (Gliederung). In the English text the margin number is sometimes on the next page
-# for paragraphs spanning a page break (Rn. 198, 201, 203), and two Rn. may be merged into one
-# paragraph (205-206): the German text prevails. In the German text, passages spanning a page break
-# carry the page number and the numbers of the following Rn. inserted by the extraction; the pages
-# given here are those on which the paragraph begins and ends.
+# COME SONO STATI STABILITI I NUMERI. Le Randnummern (Rn.) sono identiche nelle due lingue. Nel PDF
+# tedesco il numero a margine sta alla riga d'apertura del capoverso: i confini sono stati contati sul
+# tedesco (per es. Rn. 202 = «(b) So oder so...», Rn. 203 = «Dabei könnte sich der Staat ... nicht
+# entziehen», Rn. 204 = «Das Pariser Übereinkommen...») e controllati sui rinvii interni della Corte
+# (Rn. 225 -> «oben Rn. 203»; Rn. 182 -> «Rn. 154, 164, 177» e «Rn. 178»; Rn. 243 -> «Rn. 192 ff.»;
+# Rn. 247 -> «Rn. 194», «Rn. 228»; Rn. 246 -> «Rn. 198»; Rn. 210 -> «Rn. 201») e sull'indice (Gliederung).
+# Nell'inglese il numero a margine e' talvolta sulla pagina successiva per i capoversi a cavallo
+# (Rn. 198, 201, 203) e due Rn. possono essere fuse in un capoverso (205-206): fa fede il tedesco.
+# Nel tedesco i passi a cavallo di pagina portano il numero di pagina e i numeri delle Rn. seguenti
+# inseriti dall'estrazione; le pagine qui indicate sono quelle in cui il capoverso comincia e finisce.
 #
-# CORRECTIONS WITH RESPECT TO `neubauer.yaml` (v1, not modified): see case file, 2.2 (Rn. 203 not 202;
-# 172 not 173; 187 not 188; 176 not 177 and 175 not 176; 179 not 180; 209 not 208; 205-206; 207; 120).
+# CORREZIONI RISPETTO A `neubauer.yaml` (v. 1, non modificato): v. fascicolo, 2.2 (Rn. 203 non 202;
+# 172 non 173; 187 non 188; 176 non 177 e 175 non 176; 179 non 180; 209 non 208; 205-206; 207; 120).
 #
-# PROBES: schutzpflicht_clima, vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale,
+# SONDE: schutzpflicht_clima, vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale,
 # budget_co2_parametro, art20a_giustiziabile_autovincolo, protezione_extraterritoriale.
-# LINKS of the chain (case file, section 0):
-#   a = largely irreversible warming, cumulative CO2, finite remaining budget
-#   b = future-oriented Schutzpflicht for life and health, only objective towards posterity, mitigation
-#       embedded internationally plus adaptation, limited review: not violated
-#   c = Art. 20a justiciable, international dimension, concretised by the legislature in the Paris
-#       target, which binds it
-#   d = target translated into a remaining budget, global then national; no judicial figure; special
-#       diligence under uncertainty
-#   e = eingriffsähnliche Vorwirkung of the quantities allowed today on the future freedom of the same complainants
-#   f = proportionality between generations: no generation consumes the budget by offloading a radical reduction
-#   g = remedy: precautions, timely orientation, reservation of statute, order to legislate by 31/12/2022
-#   h = abroad: Schutzpflicht conceivable in principle, with different content, left open
-# Empty lists: the passage supports no probe or link (facts, procedure) or supports only an axis
-# not promoted to a probe (Leitsatz 2c and Rn. 199-204: Urgenda's propria_quota nested; Leitsatz 5 and
-# Rn. 259-265: reservation of statute).
+# ANELLI della catena (fascicolo, sezione 0):
+#   a = riscaldamento largamente irreversibile, CO2 cumulata, budget residuo finito
+#   b = Schutzpflicht di vita e salute rivolta al futuro, solo oggettiva verso i posteri, mitigazione
+#       internazionalmente incardinata piu' adattamento, controllo limitato: non violata
+#   c = art. 20a giustiziabile, dimensione internazionale, concretizzato dal legislatore nel target di
+#       Parigi che lo vincola
+#   d = target tradotto in budget residuo, globale poi nazionale; nessuna cifra giudiziale; speciale
+#       diligenza sotto incertezza
+#   e = eingriffsähnliche Vorwirkung delle quantita' ammesse oggi sulla liberta' futura degli stessi ricorrenti
+#   f = proporzionalita' fra generazioni: nessuna generazione consuma il budget scaricando una riduzione radicale
+#   g = rimedio: precauzioni, orientamento tempestivo, riserva di legge, ordine di legiferare entro il 31/12/2022
+#   h = estero: Schutzpflicht pensabile in principio, di contenuto diverso, lasciata aperta
+# Liste vuote: il passo non sostiene nessuna sonda ne' anello (fatti, procedura) o sostiene solo un asse
+# non promosso a sonda (Leitsatz 2c e Rn. 199-204: propria_quota di Urgenda annidata; Leitsatz 5 e
+# Rn. 259-265: riserva di legge).
 
 documenti:
   de: neubauer-et-al-v-germany-order_c68f
@@ -49,7 +48,7 @@ documenti:
 
 voci:
 
-# ═══════════════════════════ LEITSÄTZE AND TENOR ═══════════════════════════
+# ═══════════════════════════ LEITSÄTZE E TENOR ═══════════════════════════
 
   - paragrafo: "Leitsatz 1"
     documento: neubauer-et-al-v-germany-order_c68f
@@ -139,7 +138,7 @@ voci:
     anelli: [g]
     verbatim: "The legislator must enact provisions by no later than 31 December 2022 on the updating of reduction targets for periods from 2031 as set forth in the reasons."
 
-# ═══════════════════════════ A. FACTS (Rn. 1-89) ═══════════════════════════
+# ═══════════════════════════ A. FATTI (Rn. 1-89) ═══════════════════════════
 
   - paragrafo: "1-15"
     documento: neubauer-et-al-v-germany-order_c68f
@@ -223,7 +222,7 @@ voci:
     sonde: [protezione_extraterritoriale]
     anelli: []
 
-# ═══════════════════════════ B. ADMISSIBILITY (Rn. 90-142) ═══════════════════════════
+# ═══════════════════════════ B. AMMISSIBILITA' (Rn. 90-142) ═══════════════════════════
 
   - paragrafo: "90-95"
     documento: neubauer-et-al-v-germany-order_c68f
@@ -451,7 +450,7 @@ voci:
     sonde: [schutzpflicht_clima, vorwirkung_liberta_intertemporale, proporzionalita_intergenerazionale]
     anelli: [b, e, f]
 
-# ═══════════════════════════ C.I SCHUTZPFLICHT TOWARDS RESIDENTS (Rn. 143-172) ═══════════════════════════
+# ═══════════════════════════ C.I SCHUTZPFLICHT VERSO I RESIDENTI (Rn. 143-172) ═══════════════════════════
 
   - paragrafo: "143"
     documento: neubauer-et-al-v-germany-order_c68f
@@ -588,7 +587,7 @@ voci:
     sonde: [schutzpflicht_clima]
     anelli: [b]
 
-# ═══════════════════════════ C.II COMPLAINANTS FROM BANGLADESH AND NEPAL (Rn. 173-181) ═══════════════════════════
+# ═══════════════════════════ C.II RICORRENTI DEL BANGLADESH E DEL NEPAL (Rn. 173-181) ═══════════════════════════
 
   - paragrafo: "173"
     documento: neubauer-et-al-v-germany-order_c68f
@@ -658,7 +657,7 @@ voci:
     sonde: [protezione_extraterritoriale]
     anelli: [h]
 
-# ═══════════════════════════ C.III INTERTEMPORAL GUARANTEE OF FREEDOM (Rn. 182-265) ═══════════════════════════
+# ═══════════════════════════ C.III GARANZIA INTERTEMPORALE DELLA LIBERTA' (Rn. 182-265) ═══════════════════════════
 
   - paragrafo: "182"
     documento: neubauer-et-al-v-germany-order_c68f
@@ -1055,7 +1054,7 @@ voci:
     anelli: [g]
     verbatim: "Mere parliamentary involvement cannot replace a legislative process"
 
-# ═══════════════════════════ D-E. CONSEQUENCES AND VOTE (Rn. 266-270) ═══════════════════════════
+# ═══════════════════════════ D-E. CONSEGUENZE E VOTO (Rn. 266-270) ═══════════════════════════
 
   - paragrafo: "266-268"
     documento: neubauer-et-al-v-germany-order_c68f

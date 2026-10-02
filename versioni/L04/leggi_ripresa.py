@@ -1,19 +1,17 @@
-"""DeepSeek reads the uptake: which principles an explicit citation takes, and how far it extends in the document.
+"""DEEPSEEK LEGGE LA RIPRESA: QUALI PRINCIPI PRENDE LA CITAZIONE E FIN DOVE ARRIVA NELL'ATTO (27/09/2026).
 
-   For each lexical (name-based) citation the model receives the citation page with the end of the previous
-   page and the start of the next one, the list of the cited case's principles, the principles that the
-   paragraph map derives from the paragraph numbers cited, and up to MAX_VICINE NEIGHBOURING PAGES of the same
-   document that TRACE-Reranker scores at or above SOGLIA_VICINA for some principle. It returns:
-     - which principles the citation takes (possibly several; "nessuno"; "altro" with a sentence);
-     - for each neighbouring page, whether it continues the same uptake (same principle, same line of
-       reasoning started by the citation), with a verbatim sentence from the page.
-   Outputs are proposals for human coders, never training labels.
+   Sistema nuovo (§63.25). Per ogni citazione lessicale DeepSeek riceve la pagina della citazione con la
+   precedente e la successiva, la lista dei principi del caso citato con i loro paragrafi, i principi che la
+   mappa dei paragrafi ricava dai numeri citati, e fino a tre PAGINE VICINE dello stesso atto che il
+   TRACE-Reranker giudica piu' vicine a un principio. Dice:
+     - quali principi la citazione prende (anche piu' d'uno; «nessuno»; «altro» con una frase);
+     - per ogni pagina vicina, se prosegue la stessa ripresa (stesso principio, stesso ragionamento avviato
+       dalla citazione) o no, con una frase della pagina.
+   Sono proposte per il team, mai etichette di addestramento (regola del progetto).
 
-   Phases:
-     prepara  local machine  -> training/principi/<caso>_ripresa_righe.jsonl
-     leggi    GPU server, DeepSeek endpoint -> training/principi/<caso>_ripresa_deepseek.jsonl
-
-   Usage: python tools/leggi_ripresa.py prepara|leggi [--caso urgenda] [--letture 2] [--etichetta v2]
+   Fasi:
+     prepara  Mac  -> training/principi/<caso>_ripresa_righe.jsonl
+     leggi    ReCaS, coda di DeepSeek -> training/principi/<caso>_ripresa_deepseek.jsonl
 """
 import argparse, collections, concurrent.futures as cf, datetime, gzip, json, pathlib, sys, threading, time
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -116,8 +114,8 @@ def leggi(a):
     conf = yaml.safe_load(open(QUI/'cited-cases'/f'{a.caso}.yaml', encoding='utf-8'))
     principi = '\n'.join(f"- {s['id']}: {' '.join(s['titolo'].split())}. {' '.join(s['testo'].split())}" for s in conf['semantic_queries'])
     nome_caso = conf.get('nome') or a.caso
-    # With --etichetta the prompt also includes the case file (what the case decided, instance by instance and
-    # paragraph by paragraph); without it the model receives only the list of principles.
+    # IL FASCICOLO DEL CASO anche in questa lettura (PI, 28/09/2026): che cosa ha deciso il caso, grado per grado e
+    # paragrafo per paragrafo. Fino a V04 la lettura della ripresa riceveva solo l'elenco dei principi.
     fascicolo = ''
     if a.etichetta:
         testo_f = (QUI/'cited-cases'/f'{a.caso}-fascicolo.md').read_text(encoding='utf-8')

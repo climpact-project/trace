@@ -1,0 +1,685 @@
+# MAPPA DEI PARAGRAFI DEL PARERE CIG SUL CLIMA (Obligations of States in respect of Climate Change, 23/7/2025)
+# Proposta del 01/10/2026, scritta da Claude (Opus 5.5) per il PI; sonde nella seconda versione indicata dal PI.
+#
+# Compagna di `cig-parere-clima-fascicolo.md` e di `cig-parere-clima.yaml`. Serve a decifrare citazioni del tipo
+# «ICJ AO, para. 427», «Obligations of States in respect of Climate Change, paras 280-300», «§ 403», «¶¶ 388-89»,
+# «[438]», «Parágrafo 242», e a sapere quale sonda un passo sostiene.
+#
+# FONTE. Un solo documento del corpus: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-
+# climate-change-decision_af16 (140 pp.). Testo INGLESE; la copertina porta anche il titolo francese, ma il testo
+# francese, che fa fede (§ 457), non e' nel corpus [non verificato nel corpus].
+# `pagina` = numero del marcatore `<!-- page N -->` del markdown, che coincide con la pagina del PDF.
+# `pagina_stampa` = numero a pie' di pagina dell'edizione della Corte («- 73 -»): pagina PDF meno 7.
+# Le pagine di un gruppo vanno dalla pagina in cui comincia il primo paragrafo a quella in cui finisce l'ultimo;
+# quando dopo un paragrafo comincia un titolo di sezione, la pagina finale puo' essere quella del titolo.
+#
+# NUMERAZIONE. I paragrafi sono quelli della Corte, da 1 a 457, contati in sequenza sul testo (nessun salto, nessun
+# doppione). Il § 457 e' il dispositivo; le citazioni del tipo «operative para. 3(E)» o «457(3)(A)(f)» vanno lette sul
+# punto citato: il § 457 non porta una sonda sola.
+#
+# SONDE (seconda versione, approvata dal PI il 01/10/2026: solo principi DISTINTIVI, propri di questo parere; prefisso
+# `cig-parere-clima.` nel file del caso): obiettivo_1_5, ndc_discrezionalita_limitata, diligenza_stringente_clima,
+# non_lex_specialis, fossili_illecito, erga_omnes, continuita_stato.
+# Ogni paragrafo porta al massimo UNA sonda: gli intervalli delle sonde non si sovrappongono.
+# Liste vuote: fatti, procedura, scienza, ambito delle domande, tesi dei partecipanti, e i principi GENERICI che il
+# PI ha escluso dalle sonde (cooperazione, diritti umani e ambiente, adattamento, CBDR-RC, equita' intergenerazionale,
+# UNCLOS). Il dispositivo (§ 457) non porta sonde: la sua sintesi dice quali sottopunti corrispondono a quale sonda.
+# La prima versione della mappa (sette sonde diverse) e' sostituita da questa.
+# `verbatim`, dove c'e', e' una frase breve ritrovata identica nel testo del corpus (spazi normalizzati).
+
+documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+voci:
+- paragrafo: 1-36
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 13-34
+  pagina_stampa: 6-27
+  sintesi: 'Procedura: la risoluzione 77/276 dell''Assemblea generale (29/3/2023), le ordinanze sui termini, le memorie
+    e i commenti scritti, l''incontro con gli autori dell''IPCC, le udienze di dicembre 2024 e le domande dei giudici.'
+  sonde: []
+- paragrafo: 37-43
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 34-35
+  pagina_stampa: 27-28
+  sintesi: 'Competenza: la richiesta pone questioni giuridiche; la Corte e'' competente a rendere il parere.'
+  sonde: []
+- paragrafo: 44-49
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 35-36
+  pagina_stampa: 28-29
+  sintesi: 'Discrezionalita'': nessuna ragione decisiva per rifiutare; la risoluzione e'' stata adottata senza voto; la
+    Corte dichiara il diritto esistente e non legifera.'
+  sonde: []
+- paragrafo: 50-71
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 36-41
+  pagina_stampa: 29-34
+  sintesi: 'Contesto storico: dalla risoluzione 2398 (1968) e da Stoccolma (1972) all''IPCC, all''UNFCCC, a Kyoto, a Parigi
+    e alla risoluzione 77/276.'
+  sonde: []
+- paragrafo: 72-74
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 41-42
+  pagina_stampa: 34-35
+  sintesi: Le conseguenze del cambiamento climatico; la Corte si fonda soprattutto sui rapporti dell'IPCC, migliore scienza
+    disponibile secondo i partecipanti.
+  sonde: []
+- paragrafo: 75-87
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 42-46
+  pagina_stampa: 35-39
+  sintesi: 'Definizioni e risultanze dell''IPCC: sistema climatico, cambiamento climatico, gas serra, riscaldamento di 1,1
+    gradi causato dall''uomo, rischi crescenti a ogni incremento, mitigazione e adattamento e loro limiti.'
+  sonde: []
+- paragrafo: 88-93
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 46-47
+  pagina_stampa: 39-40
+  sintesi: Le due domande dell'Assemblea generale; la Corte non le riformula ma ne chiarisce portata e significato.
+  sonde: []
+- paragrafo: 94-95
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 47-48
+  pagina_stampa: 40-41
+  sintesi: 'Ambito materiale: la condotta rilevante comprende tutte le azioni e omissioni degli Stati, e degli attori non
+    statali sotto la loro giurisdizione o controllo, che danneggiano il sistema climatico, compresi consumo e produzione;
+    sono i partecipanti, non la Corte, a nominare produzione, licenze e sussidi ai combustibili fossili (l''elemento torna,
+    detto dalla Corte, al § 427).'
+  sonde: []
+  verbatim: including both consumption and production activities
+- paragrafo: 96-97
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 48-49
+  pagina_stampa: 41-42
+  sintesi: Ambito territoriale globale; i problemi temporali (non retroattivita', nascita delle norme consuetudinarie) restano
+    alla valutazione in concreto.
+  sonde: []
+- paragrafo: 98-100
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '49'
+  pagina_stampa: '42'
+  sintesi: 'Domanda (a): gli obblighi dell''intero diritto internazionale; la Corte identifica il diritto esistente e non
+    anticipa il legislatore.'
+  sonde: []
+- paragrafo: 101-111
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 49-52
+  pagina_stampa: 42-45
+  sintesi: 'Domanda (b): conseguenze giuridiche dei soli fatti illeciti secondo le regole sulla responsabilita''; nessun
+    giudizio su singoli Stati; gli Stati piu'' vulnerabili hanno gli stessi rimedi; innalzamento del mare rinviato alla
+    domanda (a); i diritti degli individui dipendono dai trattati che li prevedono.'
+  sonde: []
+- paragrafo: 112-115
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 52-53
+  pagina_stampa: 45-46
+  sintesi: 'Diritto applicabile: la Carta delle Nazioni Unite e il dovere di cooperare in buona fede.'
+  sonde: []
+- paragrafo: 116-121
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 53-54
+  pagina_stampa: 46-47
+  sintesi: I tre trattati sul clima (UNFCCC, Kyoto, Parigi) si completano; Kyoto non e' estinto.
+  sonde: []
+- paragrafo: 122-124
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '54'
+  pagina_stampa: '47'
+  sintesi: UNCLOS fa parte del diritto applicabile; richiamo al parere ITLOS del 21 maggio 2024.
+  sonde: []
+- paragrafo: 125-130
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 54-55
+  pagina_stampa: 47-48
+  sintesi: Trattati sull'ozono, Convenzione sulla biodiversita' e sulla desertificazione fanno parte del diritto applicabile;
+    gli altri trattati settoriali e regionali restano fuori dall'esame.
+  sonde: []
+- paragrafo: 131-133
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 55-56
+  pagina_stampa: 48-49
+  sintesi: 'Dovere di prevenire danni significativi: lo riconoscono i partecipanti (Pulp Mills); due posizioni sulla sua
+    applicazione al clima.'
+  sonde: []
+- paragrafo: 134-139
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 56-57
+  pagina_stampa: 49-50
+  sintesi: Il dovere non e' limitato ai danni transfrontalieri diretti e si applica al sistema climatico; e' obbligo di
+    diligenza; rischio universale e urgente, standard generale; diligenza stringente e vigilanza accresciuta.
+  sonde:
+  - diligenza_stringente_clima
+  verbatim: the standard of due diligence for preventing significant harm to the climate system is stringent
+- paragrafo: 140-142
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 57-58
+  pagina_stampa: 50-51
+  sintesi: 'Dovere consuetudinario di cooperare per la protezione dell''ambiente: carattere consuetudinario accertato, legato
+    al dovere di prevenzione, principio guida per interpretare altre regole.'
+  sonde: []
+  verbatim: the duty of States to co-operate for the protection of the environment is a rule whose customary character has
+    been established
+- paragrafo: 143-145
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 58-59
+  pagina_stampa: 51-52
+  sintesi: 'Il diritto internazionale dei diritti umani (Patti del 1966 e diritti consuetudinari) fa parte del diritto applicabile:
+    protezione dell''ambiente e diritti umani sono interdipendenti.'
+  sonde: []
+- paragrafo: 146-147
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '59'
+  pagina_stampa: '52'
+  sintesi: 'Principi guida: lo sviluppo sostenibile orienta l''interpretazione dei trattati e delle regole consuetudinarie.'
+  sonde: []
+- paragrafo: 148-151
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 59-60
+  pagina_stampa: 52-53
+  sintesi: 'Responsabilita'' comuni ma differenziate e rispettive capacita'': ripartizione equa degli oneri secondo contributi
+    storici e attuali e capacita''; non crea obblighi nuovi ma orienta l''interpretazione.'
+  sonde: []
+- paragrafo: 152-154
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 60-61
+  pagina_stampa: 53-54
+  sintesi: Equita' come principio infra legem, non contra o extra legem.
+  sonde: []
+- paragrafo: 155-157
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 61-62
+  pagina_stampa: 54-55
+  sintesi: 'Equita'' intergenerazionale: le generazioni presenti come fiduciarie dell''umanita''; vale come guida interpretativa
+    infra legem e chiede di considerare gli interessi delle generazioni future.'
+  sonde: []
+  verbatim: present generations are trustees of humanity
+- paragrafo: '158'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '62'
+  pagina_stampa: '55'
+  sintesi: Approccio o principio di precauzione (Rio, principio 15; art. 3(3) UNFCCC).
+  sonde: []
+- paragrafo: 159-160
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 62-63
+  pagina_stampa: 55-56
+  sintesi: Il principio chi inquina paga non fa parte del diritto applicabile fra Stati; resta aperta la responsabilita'
+    oggettiva per atti non illeciti.
+  sonde: []
+- paragrafo: '161'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '63'
+  pagina_stampa: '56'
+  sintesi: 'Conclusione: sviluppo sostenibile, CBDR-RC, equita'', equita'' intergenerazionale e precauzione sono principi
+    guida per interpretare e applicare le regole.'
+  sonde: []
+- paragrafo: 162-164
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 63-64
+  pagina_stampa: 56-57
+  sintesi: 'Lex specialis: le posizioni dei partecipanti (i trattati sul clima come unico diritto applicabile, o parte di
+    un insieme piu'' ampio).'
+  sonde: []
+- paragrafo: 165-171
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 64-65
+  pagina_stampa: 57-58
+  sintesi: 'Lex specialis come massima di interpretazione: servono un''incompatibilita'' effettiva o un''intenzione riconoscibile
+    di escludere; nessuna delle due nei trattati sul clima; non sono l''unico diritto applicabile.'
+  sonde:
+  - non_lex_specialis
+  verbatim: the principle of lex specialis does not lead to a general exclusion by the climate change treaties of other
+    rules of international law
+- paragrafo: 172-173
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 65-66
+  pagina_stampa: 58-59
+  sintesi: Elenco del diritto applicabile piu' direttamente rilevante; senza pregiudizio per commercio, investimenti e diritto
+    umanitario.
+  sonde: []
+- paragrafo: 174-186
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 66-69
+  pagina_stampa: 59-62
+  sintesi: 'I trattati sul clima: obblighi di condotta e di risultato non impermeabili; interpretazione secondo la Convenzione
+    di Vienna; i principi dell''art. 3 UNFCCC orientano l''interpretazione; effetti giuridici delle decisioni delle COP;
+    mitigazione, adattamento, cooperazione.'
+  sonde: []
+- paragrafo: 187-195
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 69-72
+  pagina_stampa: 62-65
+  sintesi: 'Rapporto fra UNFCCC, Kyoto e Parigi: non opera la lex posterior; i tre trattati sono compatibili e si sostengono
+    a vicenda.'
+  sonde: []
+- paragrafo: 196-206
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 72-75
+  pagina_stampa: 65-68
+  sintesi: 'UNFCCC: obiettivo ultimo dell''art. 2; obblighi di mitigazione dell''art. 4(1) per tutte le parti e dell''art.
+    4(2) per l''Allegato I, giuridicamente vincolanti, di condotta e di risultato.'
+  sonde: []
+- paragrafo: 207-208
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 75-76
+  pagina_stampa: 68-69
+  sintesi: 'Obblighi di condotta e di risultato sono tutti vincolanti; adottare politiche e misure come mera formalita''
+    non adempie l''obbligo: devono essere idonee a raggiungere lo scopo.'
+  sonde: []
+  verbatim: the adoption of a policy, and the taking of related measures, as a mere formality is not sufficient to discharge
+    the obligation of result
+- paragrafo: 209-213
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 76-77
+  pagina_stampa: 69-70
+  sintesi: 'UNFCCC, adattamento: obblighi vincolanti per tutte le parti; assistenza dell''Allegato II ai paesi vulnerabili;
+    margine nell''attuazione degli artt. 4(8) e 4(9).'
+  sonde: []
+- paragrafo: 214-218
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 77-78
+  pagina_stampa: 70-71
+  sintesi: 'UNFCCC, cooperazione e assistenza: la cooperazione internazionale e'' indispensabile; il dovere consuetudinario
+    si riflette nell''art. 4; obbligo di condotta valutato con la diligenza, adeguatezza dei trasferimenti decisa in buona
+    fede caso per caso.'
+  sonde: []
+  verbatim: international co-operation is indispensable in the field of climate change
+- paragrafo: 219-221
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 78-79
+  pagina_stampa: 71-72
+  sintesi: 'Kyoto: impegni quantificati dell''Allegato B per due periodi; il Protocollo resta in vigore e l''inadempimento
+    degli impegni puo'' essere un fatto illecito.'
+  sonde: []
+- paragrafo: '222'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '79'
+  pagina_stampa: '72'
+  sintesi: Introduzione agli obblighi dell'Accordo di Parigi.
+  sonde: []
+- paragrafo: 223-225
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 79-81
+  pagina_stampa: 72-74
+  sintesi: 'Accordo di Parigi: l''obiettivo di temperatura concretizza l''obiettivo dell''UNFCCC; le decisioni 1/CMA.3 e
+    1/CMA.5 sono accordi successivi; 1,5 gradi e'' l''obiettivo primario di temperatura concordato dalle parti, coerente
+    con la migliore scienza disponibile; l''obiettivo e'' il mezzo per lo scopo della Convenzione.'
+  sonde:
+  - obiettivo_1_5
+  verbatim: the 1.5°C threshold to be the parties’ agreed primary temperature goal
+- paragrafo: '226'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '81'
+  pagina_stampa: '74'
+  sintesi: 'CBDR-RC nell''Accordo di Parigi: l''inciso «in the light of different national circumstances» riconosce che
+    lo status di paese sviluppato o in via di sviluppo non e'' statico.'
+  sonde: []
+- paragrafo: '227'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '81'
+  pagina_stampa: '74'
+  sintesi: Le disposizioni di Parigi su finanza, tecnologia e capacita' a favore dei paesi in via di sviluppo riflettono
+    un dovere di cooperare.
+  sonde: []
+- paragrafo: 228-229
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '81'
+  pagina_stampa: '74'
+  sintesi: Gli obblighi di condotta di Parigi si valutano sulla diligenza e sui migliori sforzi con tutti i mezzi a disposizione.
+  sonde: []
+- paragrafo: 230-231
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 81-82
+  pagina_stampa: 74-75
+  sintesi: 'Art. 4(1): picco globale al piu'' presto e riduzioni rapide verso lo zero netto; l''obiettivo di temperatura
+    e'' rivolto alle parti nel loro insieme ed e'' il contesto per interpretare gli altri obblighi (non vi si qualifica
+    l''1,5).'
+  sonde: []
+- paragrafo: '232'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '82'
+  pagina_stampa: '75'
+  sintesi: 'Art. 5: pozzi e serbatoi, compresi i boschi.'
+  sonde: []
+- paragrafo: 233-235
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 82-83
+  pagina_stampa: 75-76
+  sintesi: 'Art. 4(2): preparare, comunicare e mantenere NDC successivi, comunicarli ogni cinque anni, contabilizzarli e
+    registrarli sono obblighi di risultato procedurali.'
+  sonde: []
+- paragrafo: '236'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '83'
+  pagina_stampa: '76'
+  sintesi: 'La mera presentazione formale degli NDC non basta: anche il contenuto conta per l''adempimento.'
+  sonde:
+  - ndc_discrezionalita_limitata
+- paragrafo: 237-249
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 83-86
+  pagina_stampa: 76-79
+  sintesi: 'Contenuto degli NDC: l''art. 4(3) e'' prescrittivo; ogni NDC deve progredire e riflettere la massima ambizione
+    possibile; discrezionalita'' limitata; diligenza stringente; tutti gli NDC insieme devono poter raggiungere l''obiettivo
+    di 1,5 gradi; lo standard varia con contributi storici e circostanze nazionali.'
+  sonde:
+  - ndc_discrezionalita_limitata
+  verbatim: the discretion of parties in the preparation of their NDCs is limited
+- paragrafo: 250-254
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 86-87
+  pagina_stampa: 79-80
+  sintesi: 'Art. 4(2), seconda frase: perseguire misure interne di mitigazione e'' obbligo di condotta sostanziale; diligenza
+    stringente, anche verso le attivita'' dei privati; misure ragionevolmente idonee a raggiungere gli NDC.'
+  sonde: []
+- paragrafo: 255-259
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 87-88
+  pagina_stampa: 80-81
+  sintesi: 'Adattamento nell''Accordo di Parigi: art. 7(9) vincolante; adempimento valutato con la diligenza e i migliori
+    sforzi secondo la scienza; complementare alla mitigazione.'
+  sonde: []
+- paragrafo: 260-267
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 88-90
+  pagina_stampa: 81-83
+  sintesi: 'Cooperazione nell''Accordo di Parigi: il dovere consuetudinario rafforza quello pattizio; liberta'' nella scelta
+    dei mezzi; finanza (art. 9) a un livello che permetta gli obiettivi dell''art. 2; tecnologia e rafforzamento delle capacita''.'
+  sonde: []
+- paragrafo: 268-269
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 90-91
+  pagina_stampa: 83-84
+  sintesi: 'Sintesi: i trattati sul clima stabiliscono obblighi stringenti; UNFCCC e Kyoto.'
+  sonde: []
+- paragrafo: '270'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '91'
+  pagina_stampa: '84'
+  sintesi: 'Sintesi sull''Accordo di Parigi: l''obiettivo e'' «primarily» contenere l''aumento a 1,5 gradi, specificazione
+    dell''obiettivo dell''UNFCCC; seguono mitigazione, NDC sempre piu'' esigenti e capaci insieme di raggiungerlo, massima
+    ambizione.'
+  sonde:
+  - obiettivo_1_5
+  verbatim: an objective of primarily holding the increase in the global average temperature to 1.5°C
+- paragrafo: 271-272
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 91-92
+  pagina_stampa: 84-85
+  sintesi: Introduzione alla consuetudine; storia della regola di prevenzione dal Trail Smelter a Pulp Mills.
+  sonde: []
+- paragrafo: 273-279
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 92-94
+  pagina_stampa: 85-87
+  sintesi: Il sistema climatico va protetto per le generazioni presenti e future; rischio significativo valutato su probabilita'
+    e gravita'; effetti cumulativi; l'accumulo di gas serra causa danno significativo; la natura diffusa delle condotte
+    non esclude l'applicazione del dovere.
+  sonde:
+  - diligenza_stringente_clima
+  verbatim: does not preclude the application of the duty to prevent significant harm to the climate system
+- paragrafo: 280-289
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 94-97
+  pagina_stampa: 87-90
+  sintesi: 'Diligenza come standard di condotta: misure regolatorie per riduzioni profonde, rapide e durature e misure di
+    adattamento; regolare gli operatori pubblici e privati con controlli effettivi; informazione scientifica e tecnologica;
+    regole e standard internazionali, anche decisioni delle COP; elementi sostanziali e procedurali.'
+  sonde:
+  - diligenza_stringente_clima
+  verbatim: deep, rapid, and sustained reductions of GHG emissions
+- paragrafo: 290-292
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '97'
+  pagina_stampa: '90'
+  sintesi: 'Capacita'' diverse: le capacita'' sono fattore chiave della diligenza dovuta; i paesi sviluppati devono fare
+    di piu''; la differenza non si riduce alla distinzione sviluppati e in via di sviluppo; la diligenza cresce con lo sviluppo;
+    i mezzi disponibili non giustificano ritardi.'
+  sonde:
+  - diligenza_stringente_clima
+  verbatim: cannot justify undue delay or a general exemption from the obligation to exercise due diligence
+- paragrafo: 293-294
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 97-98
+  pagina_stampa: 90-91
+  sintesi: 'Precauzione: nessun rinvio delle misure per incertezza scientifica; con l''ITLOS, la precauzione e'' parte integrante
+    della diligenza.'
+  sonde:
+  - diligenza_stringente_clima
+- paragrafo: 295-298
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 98-99
+  pagina_stampa: 91-92
+  sintesi: 'Valutazione del rischio e VIA: obbligo procedurale distinto; la VIA nei casi transfrontalieri esprime una regola
+    piu'' generale; procedure generali per i gas serra, ma VIA specifiche per le singole attivita'' particolarmente significative,
+    anche per gli effetti a valle.'
+  sonde:
+  - diligenza_stringente_clima
+- paragrafo: 299-300
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 99-100
+  pagina_stampa: 92-93
+  sintesi: Notifica e consultazione in buona fede, soprattutto per cambi di politica sullo sfruttamento di risorse legate
+    ai gas serra; lo standard si determina oggettivamente.
+  sonde:
+  - diligenza_stringente_clima
+- paragrafo: 301-308
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 100-102
+  pagina_stampa: 93-95
+  sintesi: 'Dovere di cooperare: il sistema climatico e'' risorsa condivisa da tutti; buona fede; misure individuali in
+    cooperazione; sforzi verso forme di azione collettiva; importanza per l''obiettivo collettivo di temperatura; la discrezionalita''
+    non giustifica contributi puramente volontari; la cooperazione e'' obbligo giuridico, non scelta.'
+  sonde: []
+  verbatim: Co-operation is not a matter of choice for States but a pressing need and a legal obligation
+- paragrafo: '309'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '102'
+  pagina_stampa: '95'
+  sintesi: Introduzione al rapporto fra trattati e consuetudine.
+  sonde: []
+- paragrafo: 310-315
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 102-104
+  pagina_stampa: 95-97
+  sintesi: 'Trattati e consuetudine: esistenza separata ma interpretazione in un unico insieme compatibile; si informano
+    a vicenda; l''adempimento pieno dei trattati fa presumere l''adempimento sostanziale della consuetudine, senza esaurirla;
+    lo Stato non parte deve dimostrare la propria conformita''.'
+  sonde:
+  - non_lex_specialis
+  verbatim: they establish independent obligations that do not necessarily overlap
+- paragrafo: 316-334
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 104-108
+  pagina_stampa: 97-101
+  sintesi: 'Altri trattati ambientali: ozono e Montreal con l''emendamento di Kigali, biodiversita'', desertificazione;
+    obblighi che contribuiscono alla protezione del sistema climatico; ruolo di ICAO e altre organizzazioni.'
+  sonde: []
+- paragrafo: '335'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '108'
+  pagina_stampa: '101'
+  sintesi: I trattati ambientali, quelli sul clima e la consuetudine si informano a vicenda e vanno considerati insieme
+    nell'attuazione.
+  sonde:
+  - non_lex_specialis
+- paragrafo: 336-353
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 108-111
+  pagina_stampa: 101-104
+  sintesi: 'UNCLOS: le emissioni di gas serra sono inquinamento marino; artt. 192, 194, 197, 206 con diligenza stringente,
+    sulla scia del parere ITLOS; adempiere UNFCCC e Parigi non basta necessariamente per l''art. 194(1).'
+  sonde: []
+- paragrafo: '354'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 111-112
+  pagina_stampa: 104-105
+  sintesi: UNCLOS, trattati sul clima, altri trattati ambientali e consuetudine si informano a vicenda.
+  sonde:
+  - non_lex_specialis
+- paragrafo: 355-357
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '112'
+  pagina_stampa: '105'
+  sintesi: 'Innalzamento del mare: le preoccupazioni dei partecipanti per zone marittime e statualita''; per l''IPCC e''
+    inevitabile; legame con integrita'' territoriale, sovranita'' sulle risorse e autodeterminazione.'
+  sonde: []
+- paragrafo: 358-363
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 112-114
+  pagina_stampa: 105-107
+  sintesi: Le zone marittime una volta stabilite e pubblicate non vanno aggiornate per l'innalzamento del mare (UNCLOS non
+    lo richiede; prassi degli Stati, rapporto ILC 2025); la scomparsa di un elemento costitutivo, come il territorio, non
+    comporta necessariamente la perdita della statualita'.
+  sonde:
+  - continuita_stato
+  verbatim: would not necessarily entail the loss of its statehood
+- paragrafo: 364-365
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '114'
+  pagina_stampa: '107'
+  sintesi: 'Il dovere di cooperare ha speciale rilievo per l''innalzamento del mare: obbligo giuridico di lavorare insieme
+    verso soluzioni eque.'
+  sonde: []
+- paragrafo: 366-368
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 114-115
+  pagina_stampa: 107-108
+  sintesi: 'Altri strumenti sul mare: MARPOL e IMO; l''Accordo BBNJ non ancora in vigore.'
+  sonde: []
+- paragrafo: 369-386
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 115-119
+  pagina_stampa: 108-112
+  sintesi: 'Effetti avversi del cambiamento climatico sui diritti umani: la protezione dell''ambiente e'' precondizione
+    dei diritti; diritto alla vita (Teitiota, non-refoulement), alla salute, a un tenore di vita adeguato, alla vita privata
+    e familiare (adattamento tardivo, Billy c. Australia), diritti di donne, bambini e popoli indigeni; richiamo a OC-32/25
+    e KlimaSeniorinnen.'
+  sonde: []
+  verbatim: the protection of the environment is a precondition for the enjoyment of human rights
+- paragrafo: 387-393
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 119-121
+  pagina_stampa: 112-114
+  sintesi: 'Diritto a un ambiente pulito, sano e sostenibile: da Stoccolma e Rio alle carte regionali, alle costituzioni
+    e alla risoluzione 76/300; e'' inerente al godimento degli altri diritti ed essenziale per esso.'
+  sonde: []
+  verbatim: the human right to a clean, healthy and sustainable environment is essential for the enjoyment of other human
+    rights
+- paragrafo: 394-402
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 121-122
+  pagina_stampa: 114-115
+  sintesi: 'Ambito territoriale dei trattati sui diritti umani: il Patto sui diritti civili e politici si applica dove lo
+    Stato esercita giurisdizione fuori dal territorio (Muro, 2004); la Corte non precisa quando, perche'' dipende da ciascun
+    trattato.'
+  sonde: []
+- paragrafo: '403'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '122'
+  pagina_stampa: '115'
+  sintesi: 'Il pieno godimento dei diritti umani non e'' assicurato senza proteggere il sistema climatico: gli Stati devono
+    adottare misure necessarie di mitigazione e adattamento, standard e leggi, regolazione dei privati.'
+  sonde: []
+  verbatim: the full enjoyment of human rights cannot be ensured without the protection of the climate system
+- paragrafo: '404'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 122-123
+  pagina_stampa: 115-116
+  sintesi: Diritti umani, trattati sul clima, altri trattati ambientali e consuetudine si informano a vicenda.
+  sonde:
+  - non_lex_specialis
+- paragrafo: 405-406
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: '123'
+  pagina_stampa: '116'
+  sintesi: 'Domanda (b): conseguenze dei fatti illeciti, non degli atti leciti dannosi; la Corte traccia il quadro generale
+    e non accerta responsabilita'' individuali.'
+  sonde: []
+- paragrafo: 407-409
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 123-124
+  pagina_stampa: 116-117
+  sintesi: 'Diritto applicabile alla responsabilita'': gli Articoli ILC; la violazione degli obblighi della domanda (a)
+    impegna la responsabilita''; lo Stato che non esercita la diligenza dovuta per prevenire danni significativi commette
+    un fatto illecito.'
+  sonde: []
+  verbatim: commits an internationally wrongful act entailing its responsibility
+- paragrafo: 410-420
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 124-127
+  pagina_stampa: 117-120
+  sintesi: 'Nessuna lex specialis sulla responsabilita'': il meccanismo per perdite e danni (art. 8), il comitato di attuazione
+    (art. 15) e la clausola sulle controversie (art. 24 e art. 14 UNFCCC) non escludono le regole generali; la responsabilita''
+    anche per perdite e danni si determina con le regole consuetudinarie. Riguarda la responsabilita'' (le sue conseguenze
+    e la sua invocazione), non gli obblighi primari: per questo sta con la sonda erga_omnes.'
+  sonde:
+  - erga_omnes
+  verbatim: do not support the proposition that the parties intended to exclude the general rules on State responsibility
+- paragrafo: 421-426
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 127-129
+  pagina_stampa: 120-122
+  sintesi: Specificita' del clima per la responsabilita' (molti Stati, lunghi periodi); attribuzione e causalita' da chiarire;
+    temporalita' alla valutazione in concreto; due sensi di «attribuzione»; le tesi dei partecipanti sulla difficolta' di
+    attribuire.
+  sonde: []
+- paragrafo: 427-432
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 129-130
+  pagina_stampa: 122-123
+  sintesi: 'Attribuzione: l''illecito non e'' l''emissione in se'' ma la violazione degli obblighi; il mancato intervento,
+    anche con produzione, consumo, licenze o sussidi ai fossili, puo'' essere illecito attribuibile; per i privati si attribuisce
+    allo Stato il proprio difetto di regolazione; il contributo di ciascuno Stato e'' determinabile; pluralita'' di Stati
+    responsabili e lesi.'
+  sonde:
+  - fossili_illecito
+  verbatim: the granting of fossil fuel exploration licences or the provision of fossil fuel subsidies
+- paragrafo: 433-438
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 130-132
+  pagina_stampa: 123-125
+  sintesi: 'Causalita'': non e'' requisito della responsabilita'' ma della riparazione; non impossibile ne'' presunta; nesso
+    sufficientemente diretto e certo, flessibile; due elementi, il primo affidabile alla scienza; accertamento in concreto.'
+  sonde:
+  - fossili_illecito
+  verbatim: a sufficiently direct and certain causal nexus
+- paragrafo: 439-443
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 132-133
+  pagina_stampa: 125-126
+  sintesi: 'Obblighi erga omnes ed erga omnes partes: tutti gli Stati hanno interesse alla protezione dei beni comuni globali;
+    ogni Stato puo'' invocare la responsabilita''; lo Stato non leso chiede cessazione, garanzie e riparazione a favore
+    dei lesi.'
+  sonde:
+  - erga_omnes
+  verbatim: are obligations erga omnes
+- paragrafo: 444-455
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 133-136
+  pagina_stampa: 126-129
+  sintesi: 'Conseguenze: tutta la gamma della responsabilita''; dovere di adempiere che continua (un giudice puo'' ordinare
+    un NDC conforme); cessazione, anche revocando misure, e garanzie di non ripetizione; riparazione piena con restituzione
+    (infrastrutture, ecosistemi), indennizzo anche con somma globale secondo equita'', soddisfazione.'
+  sonde:
+  - erga_omnes
+  verbatim: a competent court or tribunal could order that State to perform its obligations by adopting an NDC
+- paragrafo: '456'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 136-137
+  pagina_stampa: 129-130
+  sintesi: 'Considerazione finale: un problema esistenziale di proporzioni planetarie; il diritto internazionale ha un ruolo
+    importante ma limitato.'
+  sonde: []
+- paragrafo: '457'
+  documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  pagina: 137-140
+  pagina_stampa: 130-133
+  sintesi: 'Dispositivo, all''unanimita'': (1) competenza; (2) risposta alla richiesta; (3) A obblighi dei trattati sul
+    clima, lettere a-h; B consuetudine, a prevenzione e b cooperazione; C ozono, biodiversita'', desertificazione; D UNCLOS;
+    E diritti umani; (4) violazione e fatto illecito, dovere di adempiere, cessazione, garanzie, riparazione piena con nesso
+    causale sufficientemente diretto e certo. Corrispondenze con le sonde (il § 457 non ne porta nessuna): (3)A(e) e (3)A(f),
+    NDC capaci insieme di 1,5 gradi, a ndc_discrezionalita_limitata (la (f) nomina anche l''1,5, cfr. obiettivo_1_5); (3)B(a),
+    prevenzione con diligenza, a diligenza_stringente_clima; (4) a fossili_illecito (violazione come fatto illecito) e a
+    erga_omnes (cessazione, garanzie, riparazione). Non hanno un sottopunto del dispositivo: non_lex_specialis, continuita_stato,
+    e la parte erga omnes in senso stretto.'
+  sonde: []

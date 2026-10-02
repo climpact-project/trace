@@ -1,18 +1,19 @@
-"""Load DeepSeek citation-type proposals onto lexical rows on the platform.
+"""LE PROPOSTE DI DEEPSEEK SULLE RIGHE LESSICALI VANNO IN PIATTAFORMA (27/09/2026, decisione del PI).
 
-   Agreement between the model's reading and validators is only 57%, but a proposal is still useful: coders
-   confirm or correct it, and the corrections are the data used to train a classifier.
+   PERCHE'. La seconda lettura concorda con i validatori solo al 57% (§63.23), ma il PI ha deciso: meglio avere
+   la proposta che no. Le persone la confermano o la correggono, e sono proprio le correzioni i dati con cui
+   addestrare un classificatore; senza proposta non c'e' niente da correggere.
 
-   Writes only on lexical rows of the case WITHOUT a human outcome and without an existing proposed type
-   (no human judgment is modified, nothing is overwritten):
-     proposto_tipo_citazione, proposto_chi_parla, proposto_proposizione   from the first reading;
-     proposto_confidenza   'alta' if both readings give the same type, otherwise 'bassa';
-     proposto_note         appended to existing notes: both readings, the referent, the rationale;
-     proposto_lettore      model and codebook version of the reading.
-   The platform pre-fills the coding form from the proposal (`bozzaIniziale`).
+   CHE COSA SCRIVE, solo sulle righe lessicali di Urgenda SENZA esito e senza tipo gia' proposto (non tocca
+   nessun giudizio umano e non sovrascrive):
+     proposto_tipo_citazione, proposto_chi_parla, proposto_proposizione   dalla prima lettura;
+     proposto_confidenza   'alta' se le due letture danno lo stesso tipo, altrimenti 'bassa';
+     proposto_note         in coda alle note gia' presenti: le due letture, il riferimento, il motivo;
+     proposto_lettore      modello e codebook della lettura.
+   La piattaforma riempie gia' il modulo dalla proposta (`bozzaIniziale`): chi conferma non riscrive.
 
-   Usage:  .venv/bin/python tools/carica_lessicali.py [--caso urgenda] [--etichetta v2]            preview only
-           .venv/bin/python tools/carica_lessicali.py [--caso urgenda] [--etichetta v2] --scrivi   write
+   Uso:  .venv/bin/python tools/carica_lessicali.py            anteprima, non scrive
+         .venv/bin/python tools/carica_lessicali.py --scrivi   scrive
 """
 import argparse, collections, json, pathlib
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -66,7 +67,9 @@ def main():
                  'proposto_proposizione': ' '.join(str(p.get('proposizione') or '').split()),
                  'proposto_confidenza': 'alta' if concordi else 'bassa',
                  'proposto_note': (vecchia + '\n' + nota) if vecchia else nota,
-                 'proposto_lettore': lettore}
+                 'proposto_lettore': lettore,
+                 # la versione che ha letto il tipo (registro: L02 Urgenda, L03 gli altri casi), dal 29/09 scritta qui
+                 'provenienza.tipo': 'L02' if a.caso == 'urgenda' else 'L03'}
         scritture.append((d.reference, campi))
         conti['da scrivere'] += 1; conti[f'tipo {tipo}'] += 1; conti['concordi' if concordi else 'discordi'] += 1
     print(json.dumps(dict(conti), ensure_ascii=False, indent=1))

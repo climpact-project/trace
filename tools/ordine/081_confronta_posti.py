@@ -1,0 +1,1 @@
+../confronta_posti.py

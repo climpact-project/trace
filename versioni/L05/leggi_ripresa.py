@@ -1,26 +1,32 @@
-"""DeepSeek reads the uptake: which principles an explicit citation takes, and how far it extends in the document.
+"""DEEPSEEK LEGGE LA RIPRESA: QUALI PRINCIPI PRENDE LA CITAZIONE E FIN DOVE ARRIVA NELL'ATTO (27/09/2026).
 
-   For each lexical (name-based) citation the model receives the citation page with the end of the previous
-   page and the start of the next one, the list of the cited case's principles, the principles that the
-   paragraph map derives from the paragraph numbers cited, and up to MAX_VICINE NEIGHBOURING PAGES of the same
-   document that TRACE-Reranker scores at or above SOGLIA_VICINA for some principle. It returns:
-     - which principles the citation takes (possibly several; "nessuno"; "altro" with a sentence);
-     - for each neighbouring page, whether it continues the same uptake (same principle, same line of
-       reasoning started by the citation), with a verbatim sentence from the page.
-   Outputs are proposals for human coders, never training labels.
+   Sistema nuovo (§63.25). Per ogni citazione lessicale DeepSeek riceve la pagina della citazione con la
+   precedente e la successiva, la lista dei principi del caso citato con i loro paragrafi, i principi che la
+   mappa dei paragrafi ricava dai numeri citati, e fino a tre PAGINE VICINE dello stesso atto che il
+   TRACE-Reranker giudica piu' vicine a un principio. Dice:
+     - quali principi la citazione prende (anche piu' d'uno; «nessuno»; «altro» con una frase);
+     - per ogni pagina vicina, se prosegue la stessa ripresa (stesso principio, stesso ragionamento avviato
+       dalla citazione) o no, con una frase della pagina.
+   Sono proposte per il team, mai etichette di addestramento (regola del progetto).
 
-   Phases:
-     prepara  local machine  -> training/principi/<caso>_ripresa_righe.jsonl
-     leggi    GPU server, DeepSeek endpoint -> training/principi/<caso>_ripresa_deepseek.jsonl
-
-   Usage: python tools/leggi_ripresa.py prepara|leggi [--caso urgenda] [--letture 2] [--etichetta v2]
+   Fasi:
+     prepara  Mac  -> training/principi/<caso>_ripresa_righe.jsonl
+     leggi    ReCaS, coda di DeepSeek -> training/principi/<caso>_ripresa_deepseek.jsonl
 """
 import argparse, collections, concurrent.futures as cf, datetime, gzip, json, pathlib, sys, threading, time
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from freni import leggibile
 QUI = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(QUI/'tools'))
 P = QUI/'training'/'principi'
 SOGLIA_VICINA = 0.5
 MAX_VICINE = 3
+# LA FINESTRA LARGA (29/09/2026, misura `misura_finestra.py`, §63.28): il seguito si cerca fino a 10 pagine per lato.
+# Vicino alla citazione (da 2 prima a 3 dopo) basta 0,5 come prima; piu' lontano serve 0,8, la soglia a cui la
+# lettura del campione ha trovato seguito vero in piu' della meta' dei casi entro 10 pagine. Al massimo 5 pagine.
+LARGA = 10
+SOGLIA_LONTANA = 0.8
+MAX_VICINE_LARGA = 5
 TAGLIO_VICINA = 3500
 
 
@@ -29,7 +35,8 @@ def prepara(caso):
     righe = [json.loads(l) for l in open(QUI/'training'/f'lessicali_{caso}_righe.jsonl', encoding='utf-8')]
     par = {json.loads(l)['id']: json.loads(l) for l in open(P/f'{caso}_da_paragrafi.jsonl', encoding='utf-8')}
     brano = collections.defaultdict(dict); vicina = collections.defaultdict(dict)
-    for f in sorted(P.glob(f'{caso}_punteggi_*.jsonl')):
+    # anche i punteggi di tutte le pagine degli atti (la misura della finestra, per ora solo Urgenda)
+    for f in sorted(P.glob(f'{caso}_punteggi_*.jsonl')) + sorted(P.glob(f'{caso}_finestra_punteggi_*.jsonl')):
         for l in open(f, encoding='utf-8'):
             x = json.loads(l)
             if x['dove'] == 'brano':
@@ -41,13 +48,13 @@ def prepara(caso):
     for r in righe:
         p = int(r.get('pagina') or 0)
         cand = []
-        for k in range(p - 2, p + 4):
+        for k in range(p - LARGA, p + LARGA + 1):
             pid = f"{r['document_id']}#p{k}"
-            if k != p and pid in vicina:
+            if k != p and k > 0 and pid in vicina:
                 m = max(vicina[pid].values())
-                if m >= SOGLIA_VICINA:
+                if m >= (SOGLIA_VICINA if -2 <= k - p <= 3 else SOGLIA_LONTANA):
                     cand.append((m, k, pid))
-        cand = sorted(cand, reverse=True)[:MAX_VICINE]
+        cand = sorted(cand, reverse=True)[:MAX_VICINE_LARGA]
         scelte[r['id']] = cand
         serve |= {c[2] for c in cand}
     testi = {}
@@ -66,7 +73,9 @@ def prepara(caso):
                 'data': r.get('data'), 'pagina': r.get('pagina'), 'forma': r.get('forma'), 'contesto': r['contesto'],
                 'principi_paragrafi': par.get(r['id'], {}).get('principi', []), 'paragrafi': par.get(r['id'], {}).get('paragrafi', []),
                 'punteggi_brano': brano.get(r['id'], {}),
-                'vicine': [{'pagina': k, 'punteggi': vicina[pid], 'testo': testi.get(pid, '')[:TAGLIO_VICINA]} for _, k, pid in sorted(cand, key=lambda c: c[1])],
+                # IL FRENO 1 (30/09/2026, `freni.py`): una pagina senza parole vere (caratteri rotti) non arriva al modello
+                'vicine': [{'pagina': k, 'punteggi': vicina[pid], 'testo': testi.get(pid, '')[:TAGLIO_VICINA]} for _, k, pid in sorted(cand, key=lambda c: c[1]) if leggibile(testi.get(pid, ''))[0]],
+                'vicine_illeggibili': [k for _, k, pid in sorted(cand, key=lambda c: c[1]) if not leggibile(testi.get(pid, ''))[0]],
             }, ensure_ascii=False) + '\n')
     print(dict(n), '->', P/f'{caso}_ripresa_righe.jsonl')
 
@@ -116,8 +125,8 @@ def leggi(a):
     conf = yaml.safe_load(open(QUI/'cited-cases'/f'{a.caso}.yaml', encoding='utf-8'))
     principi = '\n'.join(f"- {s['id']}: {' '.join(s['titolo'].split())}. {' '.join(s['testo'].split())}" for s in conf['semantic_queries'])
     nome_caso = conf.get('nome') or a.caso
-    # With --etichetta the prompt also includes the case file (what the case decided, instance by instance and
-    # paragraph by paragraph); without it the model receives only the list of principles.
+    # IL FASCICOLO DEL CASO anche in questa lettura (PI, 28/09/2026): che cosa ha deciso il caso, grado per grado e
+    # paragrafo per paragrafo. Fino a V04 la lettura della ripresa riceveva solo l'elenco dei principi.
     fascicolo = ''
     if a.etichetta:
         testo_f = (QUI/'cited-cases'/f'{a.caso}-fascicolo.md').read_text(encoding='utf-8')
@@ -125,7 +134,8 @@ def leggi(a):
                      "quali paragrafi. Le domande sono quelle in fondo.\n\n" + testo_f + "\n\n========== FINE DEL FASCICOLO ==========\n")
     suf = f'_{a.etichetta}' if a.etichetta else ''
     righe = [json.loads(l) for l in open(P/f'{a.caso}_ripresa_righe{suf}.jsonl', encoding='utf-8')]
-    uscita = P/f'{a.caso}_ripresa_deepseek{suf}.jsonl'
+    # una seconda uscita per le stesse righe (29/09/2026: rilettura per salvare il ragionamento, perso col nome sbagliato)
+    uscita = P/f'{a.caso}_ripresa_deepseek{suf}{a.uscita_suffisso}.jsonl'
     fatte = {json.loads(l)['id'] for l in open(uscita, encoding='utf-8')} if uscita.exists() else set()
     da_fare = [r for r in righe if r['id'] not in fatte]
     print(f'{len(righe)} righe, {len(fatte)} fatte, {len(da_fare)} da fare', flush=True)
@@ -146,15 +156,20 @@ def leggi(a):
             try:
                 x = cli.chat.completions.create(model=a.modello, messages=[{'role': 'user', 'content': t}], max_tokens=8000,
                                                 extra_body={'chat_template_kwargs': {'thinking': True, 'reasoning_effort': 'low'}})
-                return x.choices[0].message.content or ''
+                # IL RAGIONAMENTO SI SALVA (29/09/2026): fino a L04 si teneva solo la risposta, e il portale non poteva
+                # mostrare perche' la macchina aveva proposto un principio o una pagina.
+                m = x.choices[0].message
+                return (m.content or ''), (getattr(m, 'reasoning_content', None) or getattr(m, 'reasoning', None) or (getattr(m, 'model_extra', None) or {}).get('reasoning') or '')
             except Exception as e:
                 time.sleep(5 * (k + 1)); ultimo = repr(e)[:200]
-        return ''
+        return '', ''
 
     def una(r):
         t = testo(r)
-        lett = [estrai_tollerante(chiama(t)) for _ in range(a.letture)]
-        return {'id': r['id'], 'data': datetime.date.today().isoformat(), 'letture': lett}
+        risposte = [chiama(t) for _ in range(a.letture)]
+        return {'id': r['id'], 'data': datetime.date.today().isoformat(),
+                'letture': [estrai_tollerante(x) for x, _ in risposte],
+                'ragionamenti': [y[:6000] for _, y in risposte]}
 
     blocco = threading.Lock(); t0 = time.time()
     with cf.ThreadPoolExecutor(a.paralleli) as ex, open(uscita, 'a', encoding='utf-8') as f:
@@ -169,6 +184,7 @@ def leggi(a):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('fase', choices=['prepara', 'leggi'])
     ap.add_argument('--caso', default='urgenda'); ap.add_argument('--letture', type=int, default=2)
+    ap.add_argument('--uscita-suffisso', default='', help='suffisso in piu\' per il file di uscita (stesso ingresso)')
     ap.add_argument('--etichetta', default='', help="v2 (28/09): seconda lettura con la regola delle note, solo sulle righe da fare")
     ap.add_argument('--paralleli', type=int, default=48); ap.add_argument('--modello', default='deepseek-v4-flash')
     ap.add_argument('--base-url', default='http://127.0.0.1:8000/v1'); ap.add_argument('--chiave-file', default=str(QUI/'chat'/'chiave'))

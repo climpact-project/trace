@@ -1,14 +1,13 @@
-"""First stage of the retrieval chain: page-level dense search over the whole corpus.
+"""IL PRIMO PASSO DELLA CATENA NUOVA: cercare per pagine in tutto il corpus (§63.7, §63.14).
 
-   For each semantic probe of the cited case, the query is encoded by the embedding model with the chosen
-   LoRA adapter (vectors averaged over three seeds), compared with ALL pages of the base model's index, and
-   the top K are kept, excluding documents of the cited case itself. Output: a CSV of candidates for the
-   reranker and the LLM reader. Nothing is published to the platform.
+   Per ogni sonda semantica del caso citato: la domanda passa per il modello con l'adattatore scelto
+   (media dei vettori dei tre semi), si confronta con TUTTE le pagine dell'indice del modello di base,
+   e si tengono le prime K, tolti gli atti del caso citato stesso. Uscita: un CSV di candidate per il
+   riordinatore e il lettore. NON pubblica niente sulla piattaforma.
 
-   Usage (GPU): python3 tools/cerca_pagine.py --caso urgenda --modello pplx4b \
-                    --adattatore 'training/lora_distilla_rrds_pplx4b_{seme}/passata_1' --k 500
-   Options: --mescola for WiSE-FT weight interpolation, --finestre for window-level scoring,
-   --posti-di to report the ranks of known pages instead of writing the CSV.
+   Uso (GPU): python3 tools/cerca_pagine.py --caso urgenda --modello pplx4b \
+                  --adattatore 'training/lora_distilla_rrds_pplx4b_{seme}/passata_1' --k 500
+   (adattatore scelto il 26/09/2026: DIARIO-ADDESTRAMENTO-CITAZIONI.md §9, documento unico §63.14)
 """
 import argparse, csv, gzip, json, pathlib, sys
 import numpy as np
@@ -37,18 +36,18 @@ def main():
     from peft import PeftModel
     NOME, POOL, PQ, CART = MODELLI[a.modello]; PQ = PQ.replace('{ISTR}', ISTR)
     conf = yaml.safe_load(open(QUI/'cited-cases'/f'{a.caso}.yaml', encoding='utf-8'))
-    # Whitespace is normalised: probes wrap across lines in the case file but are single-line in the rows the
-    # adapters were trained and evaluated on, so the query text must match exactly.
+    # Spazi normalizzati (26/09/2026): nel file del caso la sonda va a capo, nelle righe su cui gli
+    # adattatori sono stati addestrati e misurati e' su una riga sola. Cosi' il testo e' identico.
     sonde = [(q['id'], ' '.join(q['testo'].split())) for q in conf.get('semantic_queries') or []]
     if a.alternative:
-        # also search with the alternative wording of each probe (id `<probe>__alt`, as in the training and test
-        # rows): about a third of the confirmed pages were retrieved only through it
+        # anche la seconda formulazione di ogni sonda, come la catena di luglio (id `<sonda>__alt`, come nelle
+        # righe di addestramento e di prova): il 26/09 un terzo delle pagine confermate veniva da li'
         sonde += [(q['id'] + '__alt', ' '.join(q['probe_alternativa'].split()))
                   for q in conf.get('semantic_queries') or [] if q.get('probe_alternativa')]
     escludi = set(conf.get('escludi_case_id') or [])
     if a.finestre:
-        # Window-level scoring: with a whole-page vector the sentence that takes up the case is diluted by the
-        # rest of the page; here each window has its own vector and a page takes the score of its best window.
+        # LE FINESTRE (26/09/2026): per pagina intera la frase che riprende il caso annega nel resto della
+        # pagina; qui ogni finestra ha il suo vettore e la pagina prende il punteggio della migliore.
         d = QUI/'index'/f'finestre_{a.modello}'; parti = sorted(d.glob('vettori_*.npy'), key=lambda x: int(x.stem.split('_')[1]))
         Vw = np.concatenate([np.load(x) for x in parti])
         wids = sum((json.load(open(d/f"ids_{x.stem.split('_')[1]}.json")) for x in parti), [])
@@ -68,8 +67,8 @@ def main():
     tok = AutoTokenizer.from_pretrained(NOME, padding_side='left', trust_remote_code=True)
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
-    # WiSE-FT (Wortsman et al. 2022): interpolate fine-tuned and original model IN WEIGHT SPACE. With LoRA this
-    # means scaling the adapter's update by a factor between 0 (original) and 1 (fine-tuned).
+    # WiSE-FT (Wortsman et al. 2022), 26/09/2026: il modello addestrato mescolato con l'originale NEI PESI. Con
+    # LoRA vuol dire scalare la correzione dell'adattatore per un peso fra 0 (originale) e 1 (addestrato).
     mescole = [float(x) for x in a.mescola.split(',')] if (a.mescola and a.adattatore) else [1.0]
     QQ = {l: [] for l in mescole}
     semi = (1, 2, 3) if '{seme}' in a.adattatore else (None,)
@@ -95,14 +94,14 @@ def main():
         del m; torch.cuda.empty_cache()
     QQ = {l: F.normalize(torch.stack(v).mean(0), dim=-1).half() for l, v in QQ.items()}
     Q = QQ[mescole[0]]
-    # document -> case, from the page file (case_id is the second path component: markdown/<case_id>/...)
+    # documento -> caso: dal file delle pagine (il case_id sta nel percorso markdown/<case_id>/...)
     caso_di = {}
     with gzip.open(QUI/'index'/'pagine'/'pagine.jsonl.gz', 'rt', encoding='utf-8') as f:
         for l in f:
             x = json.loads(l); caso_di.setdefault(x['doc'], x['file'].split('/')[1])
     if a.posti_di:
-      # Rank of known pages (e.g. human-confirmed uptakes), probe by probe, over the full index minus the cited
-      # case's own documents: used to derive the K needed instead of choosing it.
+      # A CHE POSTO stanno pagine note (per esempio le riprese confermate dalle persone), sonda per sonda,
+      # nell'indice intero tolti gli atti del caso citato: serve a dire quale k servirebbe, invece di sceglierlo.
       cerca = json.load(open(a.posti_di)); pos = {pid: n for n, pid in enumerate(ids)}
       tenute = np.array([caso_di.get(pid.split('#')[0]) not in escludi for pid in ids])
       for l, Q in QQ.items():

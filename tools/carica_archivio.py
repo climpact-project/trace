@@ -1,17 +1,17 @@
-"""Load the TRACE archive into the database so that every artefact is inspectable from the portal.
+"""L'ARCHIVIO DI TRACE IN BANCA DATI (29/09/2026, richiesta del PI: «vedere tutto di tutto» nel portale).
 
-   Rows (`corpus_rows`) and the version registry are already in the database; this script loads the remaining
-   material into separate collections (rows are not modified):
-     trace_letture/<row>        every machine reading of that row, in full: the two DeepSeek readings of the type
-                                (with reasoning), the two readings of the uptake, TRACE-Reader answers where the row
-                                was in the test set; each with its version code and source file
-     trace_misure/<id>          measurements: continuation window, audit of semantic judgments, re-reading of the
-                                102 rows, DeepSeek agreement, Reader and reranker experiments, Uptakes judgments
-     trace_file/<id>            method files: codebook, cases, paragraph maps, case files
-     trace_addestramenti/<T..>  the rows each model was trained and tested on
-   Idempotent: re-running overwrites with the current state of the files.
+   Fino a oggi in banca dati c'erano le righe con la proposta finale e il registro delle versioni; il resto viveva
+   solo nei file del Mac. Qui si carica, in collezioni a parte (le righe non si toccano):
+     trace_letture/<riga>       ogni lettura della macchina su quella riga, per intero: le due letture di DeepSeek sul
+                                tipo (con il ragionamento), le due sulla ripresa, le risposte del TRACE-Reader dove la
+                                riga era nella prova; ciascuna col codice di versione e il file da cui viene
+     trace_misure/<id>          le misure: finestra del seguito, controllo dei giudizi semantici, rilettura delle 102
+                                righe, accordo di DeepSeek, prove del Reader e dei riordinatori, giudizi del PI su Uptakes
+     trace_file/<id>            i file del metodo: codebook, casi, mappe dei paragrafi, fascicoli
+     trace_addestramenti/<V..>  su quali righe e' stato addestrato e provato ciascun modello
+   Si puo' rilanciare: sovrascrive con lo stato attuale dei file.
 
-   Usage:  .venv/bin/python tools/carica_archivio.py [--scrivi]
+   Uso:  .venv/bin/python tools/carica_archivio.py [--scrivi]
 """
 import argparse, collections, json, pathlib
 from google.cloud import firestore
@@ -19,7 +19,7 @@ QUI = pathlib.Path(__file__).resolve().parent.parent
 T = QUI/'training'
 P = T/'principi'
 CASI = ('urgenda', 'neubauer', 'future-generations')
-MAX = 900_000  # below the 1 MiB Firestore document limit
+MAX = 900_000  # sotto il megabyte di un documento di Firestore
 
 
 def jl(f):
@@ -27,7 +27,7 @@ def jl(f):
 
 
 def letture():
-    """Return {row: [reading, ...]} with version, file and content."""
+    """{riga: [lettura, ...]} con versione, file e contenuto."""
     L = collections.defaultdict(list)
     fonti = []
     for c in CASI:
@@ -36,18 +36,29 @@ def letture():
             fonti.append((T/'lessicali_urgenda_deepseek.jsonl', 'tipo', 'L01'))
             fonti.append((T/'lessicali_urgenda_deepseek_glm.jsonl', 'tipo', 'prova di GLM-5.3-Flash (scartato)'))
             fonti.append((T/'lessicali_urgenda_deepseek_v2.jsonl', 'tipo', 'L02'))
+            fonti.append((T/'lessicali_urgenda_deepseek_ocr2.jsonl', 'tipo', 'L02 (righe nuove o rilette sul testo OCR, 01/10)'))
         else:
             fonti.append((T/f'lessicali_{c}_deepseek.jsonl', 'tipo', 'L03'))
+            fonti.append((T/f'lessicali_{c}_deepseek_ocr2.jsonl', 'tipo', 'L03 (righe nuove o rilette sul testo OCR, 01/10)'))
         fonti.append((T/f'lessicali_{c}_deepseek_v10.jsonl', 'tipo', f'{tipo} (righe aggiunte o rilette il 29/09)'))
         fonti.append((P/f'{c}_ripresa_deepseek.jsonl', 'ripresa', 'L04'))
         fonti.append((P/f'{c}_ripresa_deepseek_v2.jsonl', 'ripresa', 'L05'))
         fonti.append((P/f'{c}_ripresa_deepseek_v10.jsonl', 'ripresa', 'L05 (righe aggiunte o rilette il 29/09)'))
+        fonti.append((P/f'{c}_ripresa_deepseek_l04nuove.jsonl', 'ripresa', 'L04 (righe che L04 non aveva letto, lette il 30/09)'))
+        fonti.append((P/f'{c}_ripresa_deepseek_l06prova.jsonl', 'ripresa', 'L06 (prova del 30/09, non in piattaforma)'))
+        fonti.append((P/f'{c}_seguito_l07.jsonl', 'seguito', 'L07'))
+        fonti.append((P/f'{c}_ripresa_deepseek_l04ocr.jsonl', 'ripresa', 'L04 (righe trovate dopo l\'OCR, lette il 01/10)'))
+        fonti.append((P/f'{c}_ripresa_deepseek_ocr.jsonl', 'ripresa', 'L05 (righe trovate dopo l\'OCR, lette il 01/10)'))
+        fonti.append((P/f'{c}_ripresa_deepseek_l04ocr2.jsonl', 'ripresa', 'L04 (righe nuove o rilette sul testo OCR, 01/10)'))
+        fonti.append((P/f'{c}_ripresa_deepseek_ocr2.jsonl', 'ripresa', 'L05 (righe nuove o rilette sul testo OCR, 01/10)'))
     for f, cosa, ver in fonti:
         for x in jl(f):
             e = {'cosa': cosa, 'versione': ver, 'file': str(f.relative_to(QUI)), 'data': x.get('data', ''),
                  'modello': x.get('modello', ''), 'letture': json.dumps(x.get('letture'), ensure_ascii=False)}
-            if x.get('ragionamenti'):
-                e['ragionamenti'] = [str(r)[:4000] for r in x['ragionamenti']]
+            # solo i ragionamenti non vuoti: fino al 29/09 il campo si leggeva col nome sbagliato e restava vuoto
+            rag = [str(r)[:4000] for r in (x.get('ragionamenti') or []) if str(r).strip()]
+            if rag:
+                e['ragionamenti'] = rag
             L[x['id']].append(e)
     for v, f in (('T02 (TRACE-Reader v0)', 'valuta_v0_p2.jsonl'), ('T03 (TRACE-Reader v1)', 'valuta_v1_p2.jsonl'),
                  ('Qwen3-14B senza addestramento', 'valuta_base_p2.jsonl')):
@@ -127,7 +138,7 @@ def main():
         doc['testo'] = t if len(t.encode()) <= MAX else t[:MAX // 2]
         doc['tagliato'] = len(t.encode()) > MAX
         scr.append(('trace_misure', mid, doc))
-    # every file referenced by the registry (model instructions, executed code), so it can be opened from the portal
+    # ogni file citato dal registro (istruzioni date ai modelli, codice eseguito): cosi' dal portale si apre
     reg = json.load(open(QUI/'versioni'/'registro.json', encoding='utf-8'))
     gia = {f for _, _, f in FILE}
     for v in reg:

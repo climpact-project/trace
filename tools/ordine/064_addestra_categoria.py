@@ -1,0 +1,1 @@
+../addestra_categoria.py

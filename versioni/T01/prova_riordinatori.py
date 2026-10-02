@@ -1,21 +1,22 @@
-"""Reranker comparison: more context, and a larger reranker.
+"""I RIORDINATORI A CONFRONTO — piu' contesto, e un riordinatore piu' grande.
 
-   The reranker reads a proposition and a passage together and scores whether the passage takes up the
-   proposition. The baseline is `bge-reranker-v2-m3` (568M parameters) fine-tuned on team judgments:
-   AUC 0.756 on the 137 test rows. Two experiments:
+   PERCHE'. Il riordinatore e' il pezzo destinato a prendere il posto dell'LLM
+   (§59.1 del documento unico): legge proposizione e passaggio insieme. Oggi e'
+   `bge-reranker-v2-m3` (568 milioni di parametri) addestrato sui giudizi del
+   gruppo: AUC 0,756 sulle 137 righe di prova (§58.7). Due domande:
 
-     1. More context. Scoring the full page instead of a fragment accounted for almost half of the earlier
-        gain. This tests whether the page plus the next one, or plus the previous and next, helps further,
-        using the five adapters trained on the corrected labels, without retraining.
-     2. A larger reranker. `Qwen3-Reranker` (4B and 8B) is built on an LLM and accepts an instruction.
-        Evaluated zero-shot, with the default instruction and with one that asks for uptake of the reasoning
-        rather than topical similarity; then fine-tuned with LoRA on the 263 training rows, three seeds.
+     1. PIU' CONTESTO. Dargli la pagina invece del frammento valeva quasi meta'
+        del guadagno (§57.2). La pagina con la successiva, o con quella prima e
+        quella dopo, vale ancora di piu'? Si prova con i cinque adattatori
+        addestrati sulle etichette corrette, senza riaddestrarli.
+     2. UN RIORDINATORE PIU' GRANDE. `Qwen3-Reranker` (4 e 8 miliardi) e'
+        costruito sopra un LLM e accetta un'istruzione. Prima cosi' com'e',
+        con l'istruzione di serie e con una che chiede la ripresa del
+        ragionamento e non la somiglianza di argomento; poi addestrato con LoRA
+        sulle 263 righe di addestramento, tre semi.
 
-   All results use the same 137 test rows, corrected labels and the same frozen split. No test row is ever
-   used for training.
-
-   Usage:  python tools/prova_riordinatori.py [--parti contesto,qwen_zero,qwen_lora,qwen4_salva]
-   Scores are appended to training/prova_riordinatori.json.
+   Tutto sulle stesse 137 righe di prova, etichette corrette, stessa divisione
+   congelata. Nessuna riga di prova entra mai nell'addestramento.
 """
 import argparse, gc, json, pathlib, time
 import numpy as np
@@ -133,9 +134,9 @@ class QwenRiordinatore:
 
 
 def addestra_qwen(nome, tr, te, y_te, istr, maxlen, seme, epoche=3, lotto=4, lr=1e-4, rango=16, salva=None):
-    """LoRA fine-tuning of a Qwen reranker. The loss is cross-entropy over the two
-    "no"/"yes" logits at the last position, i.e. exactly the score the model
-    produces at inference. Three epochs, as in the bge training protocol."""
+    """LoRA sul riordinatore Qwen: la perdita e' l'entropia incrociata sulle due
+    uscite «no»/«si'» all'ultima posizione, cioe' esattamente il punteggio che
+    il modello da' in uso. Stesse tre passate del protocollo della §58.7."""
     from peft import LoraConfig, get_peft_model
     torch.manual_seed(seme); rnd = np.random.default_rng(seme)
     q = QwenRiordinatore(nome)
@@ -157,8 +158,9 @@ def addestra_qwen(nome, tr, te, y_te, istr, maxlen, seme, epoche=3, lotto=4, lr=
         s = q.punteggi(coppie_te, istr, maxlen)
         riga(f'    {nome.split("/")[-1]} LoRA seme {seme} dopo passata {ep+1} (perdita {somma/len(tr):.3f})', y_te, s)
         if salva:
-            # Save the adapter and its test scores after every epoch, so that an
-            # interrupted job does not lose the weights.
+            # I PESI SI SALVANO QUANDO ESCONO, ogni passata: il 22/09 gli adattatori
+            # sono andati persi con lo spegnimento del pod (§57.9), e il 23/09 la
+            # prima prova di questo riordinatore non li salvava affatto.
             q.m.save_pretrained(str(salva/f'passata_{ep+1}'))
             (salva/f'passata_{ep+1}'/'punteggi_prova.json').write_text(json.dumps(s.tolist()), encoding='utf-8')
     q.libera()

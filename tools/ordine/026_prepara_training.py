@@ -1,0 +1,1 @@
+../prepara_training.py

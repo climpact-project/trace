@@ -1,0 +1,1476 @@
+# CASO CITATO — NEUBAUER E ALTRI c. GERMANIA (Klimabeschluss), query specification v1
+#
+# Bundesverfassungsgericht, Erster Senat, Beschluss vom 24. März 2021, 1 BvR 2656/18, 1 BvR 78/20,
+# 1 BvR 96/20, 1 BvR 288/20. Scritto il 23 settembre 2026 direttamente con le regole del Registro
+# di Urgenda (v. `future-generations.yaml` v2 per la loro enunciazione): sonda che porta la via e
+# non la conclusione (`elemento_proprio`), escluse solo di polarita' e di provenienza, verbatim
+# dove la fonte e' nel fascicolo, una formulazione per default, marcatori nelle lingue del corpus,
+# frasi della sentenza come ricerca separata, atti del caso esclusi anche dalla ricerca allargata.
+#
+# LINGUA (decisione del ricercatore, 23/9/2026). Verbatim dall'ORIGINALE TEDESCO per i canonical;
+# seed dalla traduzione inglese UFFICIALE del Bundesverfassungsgericht (78 pp., con lacune «[…]»
+# dichiarate), che e' quella che le corti straniere leggono; sonde in inglese; `probe_de` con la
+# formulazione tedesca, PROVA come `probe_alternativa` (il corpus ha documenti tedeschi: i cinque
+# ricorsi di questo fascicolo, e i casi austriaci e svizzeri). Dove la traduzione ufficiale omette
+# un Randnummer (per es. Rn. 186-189, ridotti), il seed manca e lo si dice.
+#
+# TESTO NATIVO, NIENTE OCR: nessun `corpus_legge`. In compenso entrambe le versioni portano la
+# SILLABAZIONE di fine riga del PDF («Ver- pflichtung», «sen- tence»): i trattini sono ricongiunti e
+# ogni ricongiunzione e' elencata in `nota_verbatim.sillabazione` (categoria NUOVA, proposta al PI:
+# NOTE, domanda 1). I tre trattini reali spezzati a fine riga («decision- making») sono conservati.
+# A cavallo di pagina l'estrazione inserisce numero di pagina e numeri di Randnummer: `salto_pagina`.
+#
+# DALLE QUATTRO PROPOSIZIONI DEL RICERCATORE A SEI SONDE. «Obbligo costituzionale di protezione» ->
+# `schutzpflicht_clima` (con il punto proprio: verso le generazioni future e' SOLO oggettiva). «Non
+# imporre oneri sproporzionati a chi vivra' dopo» -> `proporzionalita_intergenerazionale`. «Target
+# conforme al budget» -> `budget_co2_parametro`. «Intertemporale Freiheitssicherung, verticale e
+# orizzontale» -> due sonde: `vorwirkung_liberta_intertemporale` (diacronica: la Vorwirkung sulle
+# stesse persone nel tempo) e `protezione_extraterritoriale` (orizzontale: i ricorrenti del
+# Bangladesh e del Nepal, Rn. 173-181). Aggiunta dall'esecutore, come per la Colombia, la sonda
+# `art20a_giustiziabile_autovincolo` (Leitsatz 2e, Rn. 205-207, 213): e' l'asse su cui il caso e'
+# citato dalle corti che devono decidere se un obiettivo climatico costituzionale sia sindacabile,
+# e contiene la regola «il legislatore e' vincolato alla propria concretizzazione» che e' lo
+# specchio dell'esclusa `target_autoimposto` di Urgenda. Da togliere se il PI non la vuole.
+#
+# ASSE NON PROMOSSO, con paternita' DICHIARATA ad altri: «lo Stato non puo' sottrarsi alla propria
+# responsabilita' indicando le emissioni di altri Stati» (Leitsatz 2c, Rn. 202). Il BVerfG lo dice
+# citando espressamente VG Berlin, BVerwG, Thomson (Nuova Zelanda), Hof Den Haag n. 64, Hoge Raad
+# n. 5.7.7 e il Nono Circuito: e' `propria_quota` di Urgenda ripresa con attribuzione. Il passaggio
+# (EN p. 60) va nel file di Urgenda come ESCLUSA DI PROVENIENZA verbatim di quella sonda, non qui.
+# Secondo asse non promosso: Leitsatz 5 (le quantita' di emissione le fissa il legislatore
+# parlamentare, non l'esecutivo per regolamento; Wesentlichkeitstheorie). Terzo: il dovere di
+# «orientamento tempestivo e certezza di pianificazione» per la transizione (Rn. 248-250).
+
+nome: Neubauer and Others v. Germany
+non_english_name: Neubauer u.a. gegen Bundesrepublik Deutschland (Klimabeschluss)
+case: neubauer-et-al-v-germany_0a3e
+codebook_versione: 0.2-pilot
+stato: bozza-da-approvare
+versione_file: 1
+data_versione: 2026-09-23
+
+politica_formulazioni:
+  eseguita_per_default: testo
+  probe_alternativa: prova — eseguire una volta, misurare da sola, tenere solo se rende almeno quanto testo (registro, 2)
+  probe_de: prova — idem; formulazione nella lingua dell'originale e dei documenti tedeschi del corpus
+  domande_contrarie: >
+    Le escluse di questo file sono il primo insieme di domande contrarie; dopo la prima validazione
+    le righe bocciate dal gruppo sostituiscono le `redazionale` e si aggiungono alle `verbatim`.
+
+frasi_della_sentenza:
+  eseguire_come_ricerca_separata: true
+  cosa: i campi `canonical`, `canonical_bis` e `seeds.testo` di ogni sonda, ciascuno come query autonoma
+  mai: incollarli dentro `testo`
+  nota: >
+    Per questo caso la ricerca per frasi e' particolarmente informativa: i Leitsätze (pp. 1-3 EN)
+    circolano tal quali nelle citazioni straniere, e sono seed dichiarati.
+
+caso_ancora:
+  posizione_nella_lista: 2              # guida §2, decisione PI 27/08/2026
+  misurato: 97 casi del corpus lo nominano (19/09/2026), terzo dopo Juliana e Urgenda
+  motivazione_selezione: >
+    DA SCRIVERE DAL PI. Proposta dell'esecutore, NON decisa: prima corte costituzionale che fonda
+    l'incostituzionalita' di una legge climatica non sull'insufficienza presente della protezione
+    ma sull'effetto anticipato di interferenza (eingriffsähnliche Vorwirkung) che le quantita' di
+    emissione ammesse oggi hanno sulla liberta' futura; rende disponibili la costruzione dei diritti
+    fondamentali come garanzia intertemporale di liberta', la proporzionalita' fra generazioni nel
+    consumo del budget, la giustiziabilita' di un obiettivo climatico costituzionale e il vincolo
+    del legislatore alla propria concretizzazione del target.
+  famiglia_giuridica: civil law, costituzionalismo tedesco (Grundgesetz)
+  data_prima_pronuncia: 2021-03-24
+  data_ultima_pronuncia: 2021-03-24
+  esito: parzialmente accolto            # accolto sulla Vorwirkung/proporzionalita' (§ 3 Abs. 1 S. 2, § 4 Abs. 1 S. 3 KSG incostituzionali in parte); respinto sulle Schutzpflichten; inammissibile per le associazioni
+  caso_perso: false
+  caso_di_controllo: false
+  documenti_corpus_successivi_alla_decisione: null
+  percorsi_di_lettura: >
+    Due percorsi separati (registro, "Dove sta il passaggio"): documenti che nominano il caso;
+    corpus intero. Due strade di citazione (nota del PI nel file precedente): fuori dalla Germania
+    «Neubauer», dentro il numero di registro o «Klimabeschluss» senza le parti.
+
+docket_numbers:
+  - 1 BvR 2656/18
+  - 1 BvR 78/20
+  - 1 BvR 96/20
+  - 1 BvR 288/20
+identifiers:
+  - "ECLI:DE:BVerfG:2021:rs20210324.1bvr265618"
+  - BVerfGE 157, 30                      # citazione ufficiale nella raccolta: DA VERIFICARE sul corpus prima dell'uso
+
+escludi_case_id:
+  - neubauer-et-al-v-germany_0a3e      # il file precedente aveva `neubauer-et-al-v-germany` senza suffisso: non corrisponde al case_id del corpus
+
+data_decisione: 2021-03-24
+data_soglia_motivazione: >
+  Unica pronuncia del giudizio. I cinque ricorsi (2018-2020) sono atti di parte: chi li riprende
+  prima del 24 marzo 2021 riprende i ricorrenti, non la Corte. Nessuna domanda aperta sulla soglia.
+
+fonte_primaria:
+  - documento: neubauer-et-al-v-germany-order_c68f
+    file_origine: 20210324_11817_order.pdf
+    descrizione: Beschluss del Primo Senato, originale tedesco, 110 pp., testo nativo con sillabazione di fine riga
+    ruolo: fonte di tutti i canonical
+  - documento: neubauer-et-al-v-germany-order_7977
+    file_origine: 20210324_11817_order-1.pdf
+    descrizione: traduzione inglese ufficiale del Bundesverfassungsgericht, 78 pp., con omissioni dichiarate «[…]» e Randnummern a margine
+    ruolo: fonte dei seed e delle escluse verbatim in inglese; e' la versione che le corti straniere leggono
+atti_di_parte:
+  - documento: neubauer-et-al-v-germany-complaint_0dcc    # Verfassungsbeschwerde 22 novembre 2018 (1 BvR 2656/18), tedesco, 134 pp.
+  - documento: neubauer-et-al-v-germany-complaint_d92e    # ricorso 13 gennaio 2020, tedesco, 154 pp.
+  - documento: neubauer-et-al-v-germany-complaint_ba67    # ricorso 13 gennaio 2020 (variante -1), tedesco, 165 pp.
+  - documento: neubauer-et-al-v-germany-complaint_027e    # ricorso 6 febbraio 2020 (variante -1), tedesco, 144 pp.
+  - documento: neubauer-et-al-v-germany-complaint_ded4    # ricorso 6 febbraio 2020, INGLESE, 132 pp.: traduzione di un ricorso, `lingue: English`
+  # Voce `parte` per tutti e cinque. `tipo_atto_sabin` e' vuoto su tutti e sette i documenti del fascicolo.
+  # Quali dei tre numeri di ruolo del 2020 corrispondano ai quattro ricorsi 2020 non e' ricostruibile dai metadati: da verificare sui testi.
+
+# ── Forme testuali (lexical variants) ────────────────────────────────────────────────────────
+forme:
+  - Neubauer                             # OSSERVATA: 97 casi (19/09/2026). E' anche un cognome comune tedesco: le occorrenze vanno riviste a mano alla prima esecuzione
+  - Neubauer and Others
+  - Neubauer and Others v. Germany
+  - Neubauer et al
+  - Neubauer et al.
+  - Neubauer, et al. v. Germany          # denominazione Sabin
+  - Neubauer et al. v. Germany
+  - Neubauer v. Germany
+  - Neubauer v Germany
+  - Neubauer u.a.
+  - Neubauer u. a.
+  - Neubauer and Others v Germany
+  - 1 BvR 2656/18                        # OSSERVATA nella dottrina tedesca
+  - 1 BvR 78/20
+  - 1 BvR 96/20
+  - 1 BvR 288/20
+  - "2656/18"
+  - "BvR 2656/18"
+  - Klimabeschluss                       # OSSERVATA nella dottrina tedesca, senza le parti
+  - Klima-Beschluss
+  - Klimaschutzbeschluss
+  - Klimaschutz-Beschluss
+  - Klimabeschluss des Bundesverfassungsgerichts
+  - German Climate Case
+  - German climate case
+  - German Constitutional Court climate
+  - German Federal Constitutional Court climate
+  - German Climate Protection Act case
+  - Federal Constitutional Court, Order of 24 March 2021
+  - Order of the First Senate of 24 March 2021
+  - BVerfG, 24 March 2021
+  - BVerfG, Beschluss vom 24. März 2021
+  - Bundesverfassungsgericht, Beschluss vom 24. März 2021
+  - Beschluss des Ersten Senats vom 24. März 2021
+  - BVerfG, Beschluss v. 24.3.2021
+  - BVerfG v. 24.3.2021
+  - "24.03.2021 - 1 BvR"
+  - "ECLI:DE:BVerfG:2021:rs20210324.1bvr265618"
+  - BVerfGE 157, 30                      # DA VERIFICARE
+  - Neubauer c. Germania
+  - Neubauer c. Allemagne
+  - Neubauer c. Alemania
+  - Neubauer gegen Deutschland
+  - caso Neubauer
+  - sentenza Neubauer
+  - affaire Neubauer
+  - Neubauer-Entscheidung
+  - Neubauer-Beschluss
+  # varianti PREVISTE (nessuna osservata): errore di modello r->n, u->n, b->h
+  - Neubaner
+  - Nenbauer
+  - Neuhauer
+
+found_in_corpus:
+  - Neubauer                             # 97 casi, conteggio del 19/09/2026 (dal file precedente)
+
+forme_escluse:
+  - forma: Bundesverfassungsgericht
+    ragione: La corte, non il caso; centinaia di decisioni citate nel corpus tedesco.
+  - forma: BVerfG
+    ragione: Idem.
+  - forma: Klimaschutzgesetz
+    ragione: La legge impugnata, citata in ogni causa tedesca successiva (KlimaSeniorinnen, DUH, i ricorsi contro le Länder) senza che si citi il Beschluss.
+  - forma: KSG
+    ragione: Idem; anche sigla di altro.
+  - forma: Federal Climate Change Act
+    ragione: Idem in inglese.
+  - forma: Klimaurteil
+    ragione: Denominazione giornalistica usata per molte decisioni (anche Urgenda, KlimaSeniorinnen); non identifica.
+  - forma: intertemporale Freiheitssicherung
+    ragione_nota: >
+      NON forma lessicale: e' la proposizione, non il nome del caso. Sta in `lexical_markers` della
+      sonda e nella rete semantica. Metterla fra le forme conterebbe come citazione lessicale ogni
+      ripresa implicita, confondendo le due reti.
+  - forma: Luisa Neubauer
+    ragione_nota: >
+      NON esclusa ma segnalata: la prima ricorrente e' una figura pubblica (Fridays for Future);
+      «Luisa Neubauer» in un documento puo' nominare la persona e non il caso. Coperta da «Neubauer»;
+      da rivedere a mano.
+  - forma: Fridays for Future
+    ragione: Movimento; non e' parte formale e compare in contesti che non citano il caso.
+  - forma: Germany
+    ragione: Ovvio; resta solo nelle forme composte.
+
+falso_positivo_dichiarato:
+  tipo: riassunti Sabin nell'indice e citazioni-di-catena
+  nota: >
+    Il caso e' citato in elenco con Urgenda e KlimaSeniorinnen in quasi ogni memoria europea
+    successiva al 2021 ("see Urgenda; Neubauer; KlimaSeniorinnen"): si attende molta
+    `menzione_in_catena`. Da dichiarare come per Urgenda (table of authorities, 1,2%).
+
+# ── Sonde (semantic queries) ────────────────────────────────────────────────────────────────
+# Nessuna contiene il nome del caso, i numeri del giudizio (2030, 2031, 1,5 °C, 2 °C, 55%, 2%,
+# 6,7 gigatonnellate, § 3 e § 4 KSG) o «Germany/Bangladesh/Nepal». Si cerca la via, non il fatto.
+
+semantic_queries:
+
+  - id: neubauer.schutzpflicht_clima
+    titolo: "Dovere di protezione (Art. 2 Abs. 2 GG) contro i rischi climatici: mitigazione, adattamento, dimensione solo oggettiva verso le generazioni future"
+    testo: |
+      The fundamental right to life and physical integrity obliges the State to protect
+      against the risks of climate change through mitigation embedded in international
+      action and adaptation, an objective duty that extends to future generations.
+    probe_de: |
+      Die grundrechtliche Schutzpflicht für Leben und körperliche Unversehrtheit umfasst den
+      Schutz vor den Gefahren des Klimawandels durch international eingebettete Minderung
+      und Anpassung und begründet objektivrechtlich eine Schutzverpflichtung auch gegenüber
+      künftigen Generationen.
+    probe_alternativa: |
+      Since future generations do not yet carry fundamental rights, the duty to protect them
+      from climate change has a solely objective dimension, all the more where irreversible
+      processes are at stake.
+    elemento_proprio: >
+      Non «lo Stato deve proteggere dal clima» (CEDU, Urgenda, ogni costituzione) ma: il dovere e'
+      rivolto al futuro e puo' fondare una protezione delle generazioni future che e' SOLO
+      oggettiva, perche' chi non e' nato non e' titolare di diritti; si adempie con mitigazione
+      internazionalmente incardinata E adattamento; e' violato solo se le misure mancano del
+      tutto o sono manifestamente inidonee. E' l'esatto rovescio della Colombia (generazioni
+      future titolari).
+    canonical: |
+      Die Schutzpflicht des Staates aus Art. 2 Abs. 2 Satz 1 GG greift nicht erst dann ein,
+      wenn Verletzungen bereits eingetreten sind, sondern ist auch in die Zukunft gerichtet
+      (vgl. BVerfGE 49, 89 <140 ff.>; 53, 30 <57>; 56, 54 <78>; 121, 317 <356>). Die Pflicht
+      zum Schutz vor Lebens- und Gesundheitsgefahren kann eine Schutzverpflichtung auch in
+      Bezug auf künftige Generationen begründen (vgl. H. Hofmann, ZRP 1986, 87 <88>; Appel,
+      Staatliche Zukunfts- und Entwicklungsvorsorge, 2005, S. 116 ff. m.w.N.; Kleiber, Der
+      grundrechtliche Schutz künftiger Generationen, 2014, S. 283 ff.; Murswiek/Rixen, in:
+      Sachs, GG, 8. Aufl. 2018, Art. 2 Rn. 202). Das gilt erst recht, wenn unumkehrbare
+      Entwicklungen in Rede stehen. Diese intergenerationelle Schutzverpflichtung ist
+      allerdings allein objektivrechtlicher Natur, weil künftige Generationen weder in ihrer
+      Gesamtheit noch als Summe der einzelnen erst künftig lebenden Menschen aktuell
+      grundrechtsfähig sind (oben Rn. 109;
+    canonical_pagina: 65
+    canonical_paragrafo: Rn. 146
+    canonical_documento: neubauer-et-al-v-germany-order_c68f
+    canonical_grado: Bundesverfassungsgericht, Erster Senat, Beschluss vom 24. März 2021 (1 BvR 2656/18 u.a.)
+    nota_verbatim:
+      omissione: >
+        Il periodo prosegue con i riferimenti dottrinali «vgl. Calliess [...]; Gärditz
+        [...]» e la parentesi chiusa, omessi.
+      sillabazione: >
+        3 trattini di fine riga ricongiunti: «Schutzverpflich- tung»; «Gene- rationen»;
+        «leben- den».
+    seeds:
+      - testo: >
+          The state’s duty of protection arising from Art. 2(2) first sentence GG does not
+          take effect only after violations have already occurred. It is also oriented
+          towards the future (cf. BVerfGE 49, 89 <140 et seq.>; 53, 30 <57>; 56, 54 <78>;
+          121, 317 <356>). The duty to afford protection against risks to life and health
+          can also establish a duty to protect future generations ([references to German
+          legal scholarship]). This is all the more applicable where irreversible processes
+          are at stake. However, this duty to afford intergenerational protection has a
+          solely objective dimension because future generations – either as a whole or as
+          the sum of individuals not yet born – do not yet carry any fundamental rights in
+          the present (see para. 109 above;
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 42
+        paragrafo: Rn. 146 (EN p. 42)
+        nota_verbatim:
+          omissione: >
+            Omessa la chiusa «[...]).» con i riferimenti dottrinali.
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «af- ford».
+        avvertenza: >
+          Traduzione ufficiale del canonical.
+      - testo: >
+          The fundamental right to the protection of life and health enshrined in Art. 2(2)
+          first sentence GG obliges the state to afford protection against the risks of
+          climate change. The state must combat the considerable potential risks emanating
+          from climate change by taking steps which – with the help of international
+          involvement – contribute to stopping human-induced global warming and limiting the
+          ensuing climate change. These steps must be supplemented by positive measures
+          aimed at alleviating the consequences of climate change (“adaptation measures”).
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 42
+        paragrafo: Rn. 144 (EN p. 42)
+        nota_verbatim:
+          sillabazione: >
+            3 trattini di fine riga ricongiunti: «cli- mate»; «con- tribute»; «alleviat-
+            ing».
+      - testo: >
+          The state’s duty of protection arising from Art. 2(2) first sentence GG also
+          includes the duty to protect life and health against the risks posed by climate
+          change (see also VG Berlin, Judgment of 31 October 2019 - 10 K 412.18 - para. 70;
+          […]). In view of the considerable risks that increasingly severe climate change
+          may also entail for the legal interests protected under Art. 2(2) first sentence
+          GG – for example through heat waves, floods or hurricanes (see para. 22 ff. above)
+          – the state is obliged to afford this protection to the current population and
+          also, in light of objective legal requirements, to future generations.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 43
+        paragrafo: Rn. 148 (EN p. 43)
+        nota_verbatim:
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «require- ments».
+      - testo: >
+          Given the leeway afforded to the legislator in fulfilling duties of protection
+          arising from fundamental rights, constitutional law is only violated if no
+          precautionary measures whatsoever are taken, or if the adopted provisions and
+          measures prove to be manifestly unsuitable or completely inadequate for achieving
+          the required protection goal, or if the provisions and measures fall significantly
+          short of the protection goal
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 50
+        paragrafo: Rn. 173 (EN p. 50)
+        nota_verbatim:
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «protec- tion».
+        avvertenza: >
+          Lo STANDARD di controllo (Untermaßverbot): parte della proposizione, non la sua
+          negazione.
+      - testo: >
+          The protection of life and physical integrity under Art. 2(2) first sentence of
+          the Basic Law encompasses protection against impairments of constitutionally
+          guaranteed interests caused by environmental pollution, regardless of who or what
+          circumstances are the cause. The state’s duty of protection arising from Art. 2(2)
+          first sentence of the Basic Law also encompasses the duty to protect life and
+          health against the risks posed by climate change. It can furthermore give rise to
+          an objective duty to protect future generations.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 1
+        paragrafo: Leitsatz 1 (EN p. 1)
+        nota_verbatim:
+          sillabazione: >
+            2 trattini di fine riga ricongiunti: «sen- tence»; «pol- lution».
+        avvertenza: >
+          I Leitsätze circolano tal quali nelle citazioni straniere.
+    lexical_markers:
+      contati_sul_corpus: false
+      en: [duty of protection, duties of protection, life and physical integrity, adaptation measures, objective duty, future generations, manifestly unsuitable]
+      de: [Schutzpflicht, grundrechtliche Schutzpflichten, körperliche Unversehrtheit, Anpassungsmaßnahmen, objektivrechtlich, künftige Generationen, Untermaßverbot]
+      falsi_amici:
+        - marcatore: duty of care
+          ragione: e' il lessico di Urgenda (Rechtbank, civilistico) e di Leghari; il BVerfG dice Schutzpflicht/duty of protection
+        - marcatore: positive obligation
+          ragione: lessico CEDU; il BVerfG lo usa solo riportando la Corte EDU (Rn. 147)
+
+  - id: neubauer.vorwirkung_liberta_intertemporale
+    titolo: "Vorwirkung: le quantità di emissione ammesse oggi interferiscono già con la libertà futura; i diritti fondamentali come garanzia intertemporale di libertà"
+    testo: |
+      Because every emission allowed today irreversibly consumes the remaining budget and
+      narrows future freedom, current emission allowances have an advance interference-like
+      effect on fundamental rights as intertemporal guarantees of freedom.
+    probe_de: |
+      Weil jeder heute zugelassene Verbrauch das Restbudget unumkehrbar verringert und die
+      künftige Freiheit verengt, entfalten die aktuellen Emissionsmengenregelungen
+      eingriffsähnliche Vorwirkung auf die Grundrechte als intertemporale
+      Freiheitssicherung.
+    probe_alternativa: |
+      Restrictions on freedom that will become necessary in the future are already built
+      into the generosity of present climate legislation, so today's allowances require
+      constitutional justification now.
+    elemento_proprio: >
+      La COSTRUZIONE, non il principio: ogni consumo del budget riduce irreversibilmente cio' che
+      resta, quindi la legge di oggi ha «eingriffsähnliche Vorwirkung» sui diritti degli STESSI
+      ricorrenti nel futuro, e va giustificata ORA. E' cio' che rende ammissibile il ricorso senza
+      diritti delle generazioni future (che il BVerfG nega, v. schutzpflicht_clima). Chi riprende
+      «intertemporal guarantees of freedom» riprende questo.
+    canonical: |
+      Jeder konkrete Verbrauch verbleibender CO2-Mengen verringert das Restbudget und die
+      Möglichkeiten weiteren CO2-relevanten Freiheitsgebrauchs und verkürzt zugleich die
+      Zeit für die Initiierung und Realisierung soziotechnischer Transformation. Es
+      erscheint jedenfalls möglich, dass die Grundrechte des Grundgesetzes als
+      intertemporale Freiheitssicherung vor Regelungen schützen, die solchen Verbrauch
+      zulassen, ohne dabei hinreichend Rücksicht auf die hierdurch gefährdete künftige
+      Freiheit zu nehmen
+    canonical_pagina: 58-59
+    canonical_paragrafo: Rn. 122
+    canonical_documento: neubauer-et-al-v-germany-order_c68f
+    canonical_grado: Bundesverfassungsgericht, Erster Senat, Beschluss vom 24. März 2021 (1 BvR 2656/18 u.a.)
+    nota_verbatim:
+      sillabazione: >
+        4 trattini di fine riga ricongiunti: «Restbud- get»; «inter- temporale»; «zu-
+        lassen»; «Frei- heit».
+      salto_pagina: >
+        Passo a cavallo di due pagine: rimossi il numero di pagina e i numeri di paragrafo a
+        margine inseriti dall'estrazione («58/110 123 124 125»).
+    canonical_bis: |
+      Die Entscheidung des Gesetzgebers, bis zum Jahr 2030 die in § 3 Abs. 1 Satz 2 und § 4
+      Abs. 1 Satz 3 KSG in Verbindung mit Anlage 2 geregelte Menge an CO2-Emissionen
+      zuzulassen, entfaltet eingriffsähnliche Vorwirkung auf die durch das Grundgesetz
+      umfassend geschützte Freiheit der Beschwerdeführenden und bedarf
+      verfassungsrechtlicher Rechtfertigung (1).
+    canonical_bis_pagina: 78
+    canonical_bis_paragrafo: Rn. 183
+    seeds:
+      - testo: >
+          Every consumed part of the CO2 allowance reduces the remaining budget, narrows the
+          possibilities for any other CO2-relevant exercise of freedom and shortens the time
+          left for initiating and completing a socio-technological transformation. It does
+          at least seem possible that the Basic Law’s fundamental rights – as intertemporal
+          guarantees of freedom – afford protection against provisions that allow such
+          consumption without taking sufficient account of the future freedom jeopardised as
+          a result
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 38
+        paragrafo: Rn. 122 (EN p. 38)
+        nota_verbatim:
+          omissione: >
+            Omessa la parentesi finale con i riferimenti a BVerfGE 129, 124 ecc.
+          sillabazione: >
+            3 trattini di fine riga ricongiunti: «nar- rows»; «con- sumption»; «re- sult».
+      - testo: >
+          The legislator’s decision to allow the amounts of CO2 specified in § 3(1) second
+          sentence and § 4(1) third sentence KSG in conjunction with Annex 2 to be emitted
+          until the year 2030 has an advance interference-like effect (eingriffsähnliche
+          Vorwirkung) on the freedom of the complainants – freedom that is comprehensively
+          protected under the Basic Law. As such, the decision requires constitutional
+          justification (1).
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 53
+        paragrafo: Rn. 183 (EN p. 53)
+        nota_verbatim:
+          sillabazione: >
+            2 trattini di fine riga ricongiunti: «Vor- wirkung»; «pro- tected».
+      - testo: >
+          This advance effect operates not only de facto but also de jure. As the finite CO2
+          budget is increasingly consumed, it is constitutional law itself which makes it
+          all the more urgent to prohibit any further exercise of freedom involving CO2
+          emissions.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 55
+        paragrafo: Rn. 188 (EN p. 55)
+        avvertenza: >
+          La Vorwirkung e' giuridica, non solo fattuale: e' il diritto costituzionale stesso
+          che con ogni consumo rende piu' urgente il divieto. La traduzione ufficiale riduce
+          qui il tedesco.
+      - testo: >
+          The restrictions on freedom that will be necessary in the future are thus already
+          built into the generosity of the current climate change legislation. Climate
+          action measures that are presently being avoided out of respect for current
+          freedom will have to be taken in future – under possibly even more unfavourable
+          conditions – and would then curtail the exact same needs and freedoms but with far
+          greater severity.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 37
+        paragrafo: Rn. 120 (EN p. 37)
+        nota_verbatim:
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «ac- tion».
+      - testo: >
+          Under certain conditions, the Basic Law imposes an obligation to safeguard
+          fundamental freedom over time and to spread the opportunities associated with
+          freedom proportionately across generations. In their subjective dimension,
+          fundamental rights – as intertemporal guarantees of freedom – afford protection
+          against the greenhouse gas reduction burdens imposed by Art. 20a of the Basic Law
+          being unilaterally offloaded onto the future.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 2
+        paragrafo: Leitsatz 4 (EN p. 2)
+        nota_verbatim:
+          sillabazione: >
+            3 trattini di fine riga ricongiunti: «safe- guard»; «guaran- tees»; «reduc-
+            tion».
+    lexical_markers:
+      contati_sul_corpus: false
+      en: [intertemporal guarantees of freedom, intertemporal, advance interference-like effect, advance effect, future freedom, remaining budget, offloaded onto the future]
+      de: [intertemporale Freiheitssicherung, eingriffsähnliche Vorwirkung, Vorwirkung, künftige Freiheit, Restbudget, Freiheitseinbußen]
+      falsi_amici:
+        - marcatore: intergenerational
+          ragione: da solo pesca Colombia, Rio 3, Brundtland; il marcatore proprio e' «intertemporal»
+
+  - id: neubauer.proporzionalita_intergenerazionale
+    titolo: "Proporzionalità fra generazioni: nessuna generazione può consumare il budget lasciando alle successive una riduzione radicale"
+    testo: |
+      Proportionality forbids one generation from consuming large portions of the carbon
+      budget under a comparatively mild reduction burden while leaving subsequent
+      generations a radical reduction burden and serious losses of freedom.
+    probe_de: |
+      Aus dem Gebot der Verhältnismäßigkeit folgt, dass nicht einer Generation zugestanden
+      werden darf, unter milder Reduktionslast große Teile des CO2-Budgets zu verbrauchen
+      und nachfolgenden Generationen eine radikale Reduktionslast zu überlassen.
+    probe_alternativa: |
+      The natural foundations of life must be left in such condition that future generations
+      who wish to preserve them are not forced into radical abstinence; reduction burdens
+      must not be offloaded onto the future.
+    elemento_proprio: >
+      Lo STANDARD di giustificazione: proporzionalita' applicata alla distribuzione nel tempo del
+      budget; la «Vollbremsung» dei ricorrenti; l'art. 20a come conferma (non forzare la posterita'
+      a «radikale Enthaltsamkeit»). Non e' Brundtland (politica), non e' T-411 (patrimonio da
+      consegnare), non e' la Colombia (obbligo di non-fare).
+    canonical: |
+      Aus dem Gebot der Verhältnismäßigkeit folgt, dass nicht einer Generation zugestanden
+      werden darf, unter vergleichsweise milder Reduktionslast große Teile des CO2-Budgets
+      zu verbrauchen, wenn damit zugleich den nachfolgenden Generationen eine – von den
+      Beschwerdeführenden als „Vollbremsung“ bezeichnete – radikale Reduktionslast
+      überlassen und deren Leben schwerwiegenden Freiheitseinbußen ausgesetzt würde.
+    canonical_pagina: 81
+    canonical_paragrafo: Rn. 192
+    canonical_documento: neubauer-et-al-v-germany-order_c68f
+    canonical_grado: Bundesverfassungsgericht, Erster Senat, Beschluss vom 24. März 2021 (1 BvR 2656/18 u.a.)
+    nota_verbatim:
+      sillabazione: >
+        3 trattini di fine riga ricongiunti: «Re- duktionslast»; «Vollbrem- sung»; «schwer-
+        wiegenden».
+    seeds:
+      - testo: >
+          It follows from the principle of proportionality that one generation must not be
+          allowed to consume large portions of the CO2 budget while bearing a relatively
+          minor share of the reduction effort, if this would involve leaving subsequent
+          generations with a drastic reduction burden and expose their lives to serious
+          losses of freedom
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 56
+        paragrafo: Rn. 192 (EN p. 56)
+        avvertenza: >
+          Traduzione ufficiale del canonical.
+      - testo: >
+          Fundamental rights oblige the legislator to manage the CO2 emission reductions
+          that are constitutionally required under Art. 20a GG in a forward-looking way to
+          the point of climate neutrality such that the associated losses of freedom
+          continue to be reasonable despite the ever-increasing climate action requirements,
+          and the reduction burdens are not unevenly distributed over time and between
+          generations to the detriment of the future
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 56
+        paragrafo: Rn. 192 (EN p. 56)
+        nota_verbatim:
+          omissione: >
+            Omessa la chiusa «([references to German legal scholarship])».
+          sillabazione: >
+            3 trattini di fine riga ricongiunti: «forward- looking (trattino reale,
+            conservato)»; «free- dom»; «require- ments».
+      - testo: >
+          The objective protection mandate of Art. 20a GG encompasses the necessity to treat
+          the natural foundations of life with such care and to leave them in such condition
+          that future generations who wish to carry on preserving these foundations are not
+          forced to engage in radical abstinence
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 56-57
+        paragrafo: Rn. 193 (EN pp. 56-57)
+        nota_verbatim:
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «fu- ture».
+          salto_pagina: >
+            Passo a cavallo di due pagine: rimossi il numero di pagina e i numeri di
+            paragrafo a margine inseriti dall'estrazione («56/78 194 195»).
+        avvertenza: >
+          La conferma dall'art. 20a: «radical abstinence».
+      - testo: >
+          It is thus imperative to prevent an overly short-sighted and thus one-sided
+          distribution of freedom and reduction burdens to the detriment of the future. This
+          demands that the limited remaining CO2 budget be consumed in a sufficiently
+          prudent manner, thereby helping to gain the critical time needed to initiate the
+          transformations that – by making CO2-neutral forms of alternative behaviour
+          available – are necessary to alleviate the losses of freedom arising from the
+          reduction of CO2 emissions and the restrictions on any CO2-relevant exercise of
+          freedom.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 57
+        paragrafo: Rn. 194 (EN p. 57)
+        nota_verbatim:
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «distribu- tion».
+      - testo: >
+          In this respect, the legislator has violated its duty, arising from the principle
+          of proportionality, to ensure that the reduction of CO2 emissions to the point of
+          climate neutrality that is constitutionally necessary under Art. 20a GG is spread
+          out over time in a forward-looking manner that respects fundamental rights (on the
+          requirements, see para. 192 ff. above).
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 72
+        paragrafo: Rn. 243 (EN p. 72)
+        nota_verbatim:
+          sillabazione: >
+            2 trattini di fine riga ricongiunti: «leg- islator»; «constitutional- ly».
+        avvertenza: >
+          Il dispositivo motivato: violazione del dovere di ripartire la riduzione nel
+          tempo.
+    lexical_markers:
+      contati_sul_corpus: false
+      en: [principle of proportionality, reduction burden, one generation, subsequent generations, radical abstinence, emergency stop, spread out over time]
+      de: [Verhältnismäßigkeit, Reduktionslast, Vollbremsung, radikale Enthaltsamkeit, zwischen den Generationen, zulasten der Zukunft]
+      falsi_amici:
+        - marcatore: proportionality
+          ragione: in ogni sentenza costituzionale ed europea; il marcatore e' la coppia con «generation/burden»
+
+  - id: neubauer.budget_co2_parametro
+    titolo: "Il budget di CO₂ come parametro: la soglia di temperatura tradotta in budget nazionale residuo, con dovere di cura sotto incertezza"
+    testo: |
+      The constitutionally relevant temperature limit is converted into a remaining national
+      carbon budget derived from the global budget; despite uncertainties, reliable
+      indications that the limit may be exceeded must inform the allowed emission amounts.
+    probe_de: |
+      Die verfassungsrechtlich maßgebliche Temperaturschwelle wird in ein aus dem globalen
+      Restbudget abgeleitetes nationales CO2-Restbudget übersetzt; trotz Ungewissheiten muss
+      der Gesetzgeber belastbare Hinweise auf eine mögliche Überschreitung bei den
+      Emissionsmengen berücksichtigen.
+    probe_alternativa: |
+      Under scientific uncertainty about environmental causal relationships, a special duty
+      of care requires the legislator to take account of sufficiently reliable indications
+      of serious or irreversible impairments when setting emission amounts.
+    elemento_proprio: >
+      La CATENA temperatura -> budget globale -> budget nazionale (IPCC, SRU) usata come parametro
+      di controllo costituzionale, con la doppia clausola: il budget non e' quantificabile con
+      esattezza, quindi il legislatore ha margine, ma sotto incertezza vale una «besondere
+      Sorgfaltspflicht» che impone di tenere conto di indizi affidabili di superamento. Diverso da
+      Urgenda (il minimo dal consenso scientifico-internazionale, ordinato dal giudice): qui il
+      giudice non fissa la cifra.
+    canonical: |
+      Dieser Temperaturschwelle entspricht ein, wenn auch nicht eindeutig quantifizierbares,
+      aus dem globalen Restbudget abgeleitetes nationales CO2-Restbudget (unten Rn. 216
+      ff.). Ist dieses nationale CO2-Budget aufgebraucht, dürften weitere CO2-Emissionen nur
+      noch zugelassen werden, wenn das Interesse daran verfassungsrechtlich insbesondere
+      gegenüber dem Klimaschutzgebot des Art. 20a GG überwiegt (siehe unten Rn. 198).
+    canonical_pagina: 57
+    canonical_paragrafo: Rn. 120
+    canonical_documento: neubauer-et-al-v-germany-order_c68f
+    canonical_grado: Bundesverfassungsgericht, Erster Senat, Beschluss vom 24. März 2021 (1 BvR 2656/18 u.a.)
+    nota_verbatim:
+      sillabazione: >
+        1 trattini di fine riga ricongiunti: «verfas- sungsrechtlich».
+    seeds:
+      - testo: >
+          This temperature limit correlates with an – albeit not precisely quantifiable –
+          remaining national CO2 budget that is derived from the remaining global budget
+          (see para. 216 ff. below). Once this national CO2 budget has been used up, any
+          further CO2 emissions may only be allowed if the interest in doing so takes
+          constitutional precedence over, in particular, the obligation to take climate
+          action arising from Art. 20a GG (see para. 198 below).
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 37
+        paragrafo: Rn. 120-121 (EN p. 37)
+        nota_verbatim:
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «in- terest».
+        avvertenza: >
+          Traduzione ufficiale del canonical.
+      - testo: >
+          In order to serve as a benchmark for evaluating the level of CO2 emissions, the
+          temperature measurement must be converted into an emission measurement. Despite
+          the inherent difficulties of precise quantification, this type of conversion is
+          used in the IPCC’s budget approach (a). However, the process of calculating a
+          remaining national budget on the basis of this conversion (b) is associated with
+          considerable uncertainties and involves evaluations being made. Some
+          decision-making leeway is therefore retained by the legislator, although the
+          legislator is not entirely free when it comes to using this leeway. If reliable
+          data suggest that the constitutionally relevant temperature limit might be
+          exceeded, such data must be taken into account - albeit not as highly precise
+          measurements (c).
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 65
+        paragrafo: Rn. 215 (EN p. 65)
+        nota_verbatim:
+          sillabazione: >
+            4 trattini di fine riga ricongiunti: «emis- sion»; «associ- ated»; «de- cision»;
+            «tak- en».
+      - testo: >
+          The temperature limit of well below 2°C and preferably 1.5°C can, in principle, be
+          converted into a corresponding global CO2 emission amount which can then be
+          allocated to states. As has already been seen, this type of conversion is
+          permissible due to the roughly linear relationship between the total amount of
+          anthropogenic CO2 emissions accumulated over time and the global temperature
+          increase (see para. 32 above). In order to perform this conversion, the first step
+          is to ascertain the amount of global emissions that can still be produced if the
+          temperature is to be kept within the specified limit - this amount is the specific
+          remaining global CO2 budget. The second step is to determine how much of this is
+          attributable to Germany - this is the specific remaining national CO2 budget.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 65
+        paragrafo: Rn. 216 (EN p. 65)
+        nota_verbatim:
+          sillabazione: >
+            2 trattini di fine riga ricongiunti: «sec- ond»; «spe- cific».
+        avvertenza: >
+          La conversione in due passi: budget globale, poi quota nazionale. Il testo
+          prosegue oltre il seed con la sostanza numerica (SRU), omessa perche' fatto del
+          caso.
+      - testo: >
+          Even though the Advisory Council’s specific quantification of the remaining budget
+          contains significant uncertainties, it must be taken into consideration by the
+          reduction targets set down in the legislation. Since uncertainties persist with
+          regard to how the correlation between CO2 emissions and global warming should be
+          precisely quantified, Art. 20a GG leaves the legislator with a margin of
+          evaluation (cf. BVerfGE 128, 1 <39>; on fundamental rights, see also BVerfGE 49,
+          89 <131 f.>; 83, 130 <141 f.>). The size of the remaining emission budget required
+          for compliance with the temperature limit cannot be currently determined with
+          enough accuracy to enable the budget size stated by the Advisory Council to serve
+          as an exact numerical benchmark for the review by the Federal Constitutional
+          Court. However, the legislator is not entirely free when it comes to using this
+          margin of evaluation. Rather, if there is scientific uncertainty regarding causal
+          relationships of environmental relevance, Art. 20a GG places constraints on the
+          legislator’s decisions – especially those with irreversible consequences for the
+          environment – and imposes a special duty of care
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 68
+        paragrafo: Rn. 229 (EN p. 68)
+        nota_verbatim:
+          omissione: >
+            Il periodo prosegue a p. 69 con i riferimenti dottrinali, omessi.
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «pre- cisely».
+      - testo: >
+          In particular, Art. 20a GG does not specify what share of the overall burden would
+          be appropriate for Germany in light of fairness considerations. However, this does
+          not make it permissible under constitutional law for Germany’s required
+          contribution to be chosen arbitrarily. Nor can a specific constitutional
+          obligation to reduce CO2 emissions be invalidated by simply arguing that Germany’s
+          share of the reduction burden and of the global CO2 budget are impossible to
+          determine.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 67
+        paragrafo: Rn. 225 (EN p. 67)
+        avvertenza: >
+          La quota nazionale non e' determinabile con esattezza, ma cio' non rende
+          arbitraria la scelta ne' annulla l'obbligo.
+      - testo: >
+          If there is scientific uncertainty regarding causal relationships of environmental
+          relevance, a special duty of care imposed upon the legislator by Art. 20a of the
+          Basic Law – also for the benefit of future generations – entails an obligation to
+          take account of sufficiently reliable indications pointing to the possibility of
+          serious or irreversible impairments.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 1
+        paragrafo: Leitsatz 2b (EN p. 1)
+        nota_verbatim:
+          sillabazione: >
+            4 trattini di fine riga ricongiunti: «envi- ronmental»; «legisla- tor»; «genera-
+            tions»; «impair- ments».
+    lexical_markers:
+      contati_sul_corpus: false
+      en: [remaining CO2 budget, remaining budget, national budget, temperature limit, converted, special duty of care, reliable indications]
+      de: [CO2-Restbudget, Restbudget, nationales CO2-Budget, Temperaturschwelle, Übersetzung, besondere Sorgfaltspflicht, belastbare Hinweise]
+      falsi_amici:
+        - marcatore: carbon budget
+          ragione: in ogni documento IPCC e in ogni NDC; da solo non discrimina la fonte, il marcatore e' «remaining/national» con «constitution»
+        - marcatore: budget
+          ragione: budget finanziario in migliaia di atti
+
+  - id: neubauer.art20a_giustiziabile_autovincolo
+    titolo: "L'obiettivo climatico costituzionale è norma giustiziabile che vincola la politica; il legislatore è tenuto alla propria concretizzazione del target"
+    testo: |
+      The constitutional climate objective is a justiciable norm that binds a political
+      process structurally prone to short-termism, and the legislature is held to its own
+      specification of the temperature target unless it transparently redefines it.
+    probe_de: |
+      Das Klimaschutzgebot ist eine justiziable Rechtsnorm, die den auf Wahlperioden
+      angelegten politischen Prozess bindet; der Gesetzgeber muss sich an seiner eigenen
+      Konkretisierung des Temperaturziels festhalten lassen, solange er es nicht transparent
+      neu bestimmt.
+    probe_alternativa: |
+      Environmental protection is elevated to constitutional rank because democratic
+      politics follows election cycles and future generations have no voice; the
+      constitution therefore imposes substantive constraints on climate decision-making.
+    elemento_proprio: >
+      Due mosse tenute insieme: (a) l'art. 20a e' norma giustiziabile e non proclama, perche' il
+      processo democratico e' strutturalmente miope (cicli elettorali) e le generazioni future non
+      hanno voce; (b) il legislatore che ha concretizzato l'obiettivo (1,5-2 °C via § 1 KSG) vi resta
+      vincolato finche' non lo ridefinisce in modo riconoscibile e trasparente. La (b) e' lo
+      specchio dell'esclusa `target_autoimposto` di Urgenda. Sonda aggiunta dall'esecutore.
+    canonical: |
+      Art. 20a GG ist eine justiziable Rechtsnorm. Das gilt auch für das darin enthaltene
+      Klimaschutzgebot. Zwar bedarf der konkrete Gehalt des Art. 20a GG weiterer
+      Konkretisierung. Bereits der Wortlaut des Art. 20a GG („Der Staat schützt […] die
+      natürlichen Lebensgrundlagen […] durch die Gesetzgebung […].“) weist auf die besondere
+      Bedeutung der Gesetzgebung hin, der hier eine Konkretisierungsprärogative zukommt
+    canonical_pagina: 86
+    canonical_paragrafo: Rn. 205
+    canonical_documento: neubauer-et-al-v-germany-order_c68f
+    canonical_grado: Bundesverfassungsgericht, Erster Senat, Beschluss vom 24. März 2021 (1 BvR 2656/18 u.a.)
+    nota_verbatim:
+      omissione: >
+        Il periodo prosegue con i riferimenti dottrinali «(vgl. Steinberg [...])», omessi.
+      sillabazione: >
+        4 trattini di fine riga ricongiunti: «enthal- tene»; «na- türlichen»; «beson- dere»;
+        «zu- kommt».
+    canonical_bis: |
+      Solange der Gesetzgeber das grundlegende Klimaschutzziel nicht erkennbar und in einem
+      transparenten Verfahren neu bestimmt, muss er sich an seiner eigenen Konkretisierung
+      des verfassungsrechtlichen Ziels festhalten lassen.
+    canonical_bis_pagina: 91
+    canonical_bis_paragrafo: Rn. 213
+    nota_verbatim_bis:
+      sillabazione: >
+        2 trattini di fine riga ricongiunti: «Ge- setzgeber»; «transpa- renten».
+    seeds:
+      - testo: >
+          Art. 20a GG is a justiciable legal provision. The same applies to the obligation
+          to take climate action contained therein. It is true that the content of Art. 20a
+          GG requires further specification. The particular significance accorded to
+          legislation is already evident from the wording of Art. 20a GG (“[…] the state
+          shall protect the natural foundations of life […] by legislation […]”), with the
+          legislator enjoying a prerogative to specify the law here ([…]). However, this
+          does not mean that Art. 20a GG is a non-binding proclamation. It is a legal
+          provision and is binding on the legislator (cf. BVerfGE 118, 79 <110> - Emissions
+          Trading; [references to German legal scholarship]). This binding effect may not be
+          abandoned by leaving the task of specifying the protection mandate arising from
+          Art. 20a GG to the legislator alone ([...]). Even though Art. 20a GG does give the
+          legislator a role in specifying its material content, it does so partly in order
+          to provide a counterweight to the political process. The Constitution sets limits
+          here on the leeway enjoyed in the political decision-making process to determine
+          whether environmental protection measures should be taken or not. In Art. 20a GG,
+          environmental protection is elevated to a matter of constitutional significance
+          because the democratic political process is organised along more short-term lines
+          based on election cycles, placing it at a structural risk of being less responsive
+          to tackling the ecological issues that need to be pursued over the long term. It
+          is also because future generations - those who will be most affected - naturally
+          have no voice of their own in shaping the current political agenda. In view of
+          these institutional conditions, Art. 20a GG imposes substantive constraints on
+          democratic decision-making
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 61-62
+        paragrafo: Rn. 205 (EN pp. 61-62)
+        nota_verbatim:
+          sillabazione: >
+            7 trattini di fine riga ricongiunti: «oblig- ation»; «al- ready»; «non- binding
+            (trattino reale, conservato)»; «BVer- fGE»; «pro- tection»; «de- termine»;
+            «decision- making (trattino reale, conservato)».
+          salto_pagina: >
+            Passo a cavallo di due pagine: rimossi il numero di pagina e i numeri di
+            paragrafo a margine inseriti dall'estrazione («61/78 206 207 208 209»).
+        avvertenza: >
+          Traduzione ufficiale; contiene la ratio istituzionale (cicli elettorali,
+          generazioni future senza voce).
+      - testo: >
+          Unless the legislator redefines the fundamental climate goal in a recognisable way
+          and in a transparent process, it must be held to its own specification of the goal
+          arising from constitutional law.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 65
+        paragrafo: Rn. 213 (EN p. 65)
+        avvertenza: >
+          Traduzione ufficiale del canonical_bis: l'autovincolo.
+      - testo: >
+          It is not, in principle, for the courts to translate the open wording of Art. 20a
+          GG into quantifiable global warming limits and corresponding emission amounts or
+          reduction targets. At the same time, however, Art. 20a GG may not be drained of
+          substance as an obligation to take climate action. In this respect too, it remains
+          for the Federal Constitutional Court to review whether the boundaries of Art. 20a
+          GG are respected ([...]). There is nothing to indicate that Art. 20a GG - as a
+          singular exception among the provisions of the Basic Law - is beyond the scope of
+          judicial review with regard to how its regulatory content is interpreted and
+          applied.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 62
+        paragrafo: Rn. 206-207 (EN p. 62)
+        nota_verbatim:
+          sillabazione: >
+            3 trattini di fine riga ricongiunti: «quan- tifiable»; «tar- gets»; «Consti-
+            tutional».
+        avvertenza: >
+          Il LIMITE: non spetta ai giudici tradurre l'art. 20a in cifre; ma l'art. 20a non
+          e' fuori dal controllo.
+      - testo: >
+          Art. 20a of the Basic Law is a justiciable legal provision designed to commit the
+          political process to a favouring of ecological interests, partly with a view to
+          future generations.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 2
+        paragrafo: Leitsatz 2e (EN p. 2)
+    lexical_markers:
+      contati_sul_corpus: false
+      en: [justiciable, justiciable legal provision, binds the political process, election cycles, own specification, transparent process, no voice of their own]
+      de: [justiziable Rechtsnorm, Klimaschutzgebot, Konkretisierungsprärogative, eigenen Konkretisierung, Staatszielbestimmung, Wahlperioden]
+      falsi_amici:
+        - marcatore: political question
+          ragione: dottrina statunitense (Juliana); il BVerfG non la usa, e la negazione della giustiziabilita' ha qui altra forma
+
+  - id: neubauer.protezione_extraterritoriale
+    titolo: "Dovere di protezione verso chi vive all'estero: pensabile in principio, di contenuto diverso, lasciato aperto (ricorrenti del Bangladesh e del Nepal)"
+    testo: |
+      It is conceivable that duties of protection oblige the State towards persons abroad
+      exposed to warming caused partly by its emissions, though such a duty would differ in
+      content since adaptation abroad is impossible.
+    probe_de: |
+      Es erscheint denkbar, dass grundrechtliche Schutzpflichten den Staat auch gegenüber im
+      Ausland lebenden Menschen verpflichten, die der durch seine Emissionen mitverursachten
+      Erderwärmung ausgesetzt sind; eine solche Pflicht wäre jedoch nicht gleichen Inhalts.
+    probe_alternativa: |
+      The binding effect of fundamental rights on State authority is not confined to
+      national territory, but the scope of protection owed to people abroad may require
+      modification and differentiation.
+    elemento_proprio: >
+      Il PUNTO LASCIATO APERTO con la sua motivazione: i diritti fondamentali vincolano lo Stato
+      anche fuori dal territorio; una Schutzpflicht verso chi vive all'estero e' «prinzipiell
+      denkbar» perche' le emissioni tedesche contribuiscono al danno; ma il suo contenuto sarebbe
+      diverso, perche' lo Stato non puo' attuare misure di adattamento altrove. E' la dimensione
+      orizzontale (intragenerazionale) della giustizia climatica in questo caso, e la formulazione
+      che Duarte Agostinho e Sacchi ridiscutono.
+    canonical: |
+      Es erscheint prinzipiell denkbar, bedarf hier aber letztlich keiner Entscheidung, dass
+      grundrechtliche Schutzpflichten den Staat auch gegenüber den in Bangladesch und in
+      Nepal lebenden Beschwerdeführenden verpflichten, gegen Beeinträchtigungen durch den
+      globalen Klimawandel vorzugehen. Die Beschwerdeführenden sind in ihrer Heimat den
+      Folgen der durch weltweite Treibhausgasemissionen verursachten Erderwärmung in
+      besonderem Maße ausgesetzt. Die weitere Erderwärmung ist wegen der globalen Wirkung
+      von Treibhausgasen nur durch Klimaschutzanstrengungen aller Staaten anzuhalten. Es
+      müssen dafür auch in Deutschland die Emissionen von Treibhausgasen auf ein
+      klimaneutrales Maß reduziert werden. Die von Deutschland ausgehenden
+      Treibhausgasemissionen betragen aktuell jährlich knapp 2 % der weltweiten
+      Treibhausgasemissionen (BMU, Klimaschutz in Zahlen, Ausgabe 2020, S. 12); diese zu
+      beschränken, liegt in der Hand des deutschen Gesetzgebers.
+    canonical_pagina: 74
+    canonical_paragrafo: Rn. 174
+    canonical_documento: neubauer-et-al-v-germany-order_c68f
+    canonical_grado: Bundesverfassungsgericht, Erster Senat, Beschluss vom 24. März 2021 (1 BvR 2656/18 u.a.)
+    nota_verbatim:
+      sillabazione: >
+        3 trattini di fine riga ricongiunti: «Beeinträchtigun- gen»; «we- gen»; «welt-
+        weiten».
+    canonical_bis: |
+      Eine Schutzpflicht gegenüber den in Bangladesch und in Nepal lebenden
+      Beschwerdeführenden wäre hier jedenfalls nicht gleichen Inhalts wie gegenüber Menschen
+      im Inland. Generell kann sich der Inhalt grundrechtlicher Schutzgebote gegenüber im
+      Ausland lebenden Menschen von dem Gehalt des Grundrechtsschutzes gegenüber im Inland
+      Lebenden unterscheiden; er bedarf unter Umständen der Modifikation und Differenzierung
+    canonical_bis_pagina: 75
+    canonical_bis_paragrafo: Rn. 177
+    nota_verbatim_bis:
+      sillabazione: >
+        4 trattini di fine riga ricongiunti: «Be- schwerdeführenden»; «Men- schen»; «gegen-
+        über»; «Modi- fikation».
+    seeds:
+      - testo: >
+          Although it does appear conceivable in principle, there is no need to decide at
+          this point whether duties of protection arising from fundamental rights also place
+          the German state under an obligation vis-à-vis the complainants living in
+          Bangladesh and in Nepal to take action against impairments caused by global
+          climate change. In their own countries, the complainants are particularly exposed
+          to the consequences of global warming caused by global greenhouse gas emissions.
+          Since greenhouse gas emissions have a global impact, further global warming can
+          only be prevented if all states take climate action. This means that greenhouse
+          gas emissions must be reduced to climate-neutral levels in Germany also.
+          Greenhouse gas emissions in Germany currently account for just under 2% of annual
+          global levels (BMU, Climate Action in Figures, 2020 edition, p. 12). It is for the
+          German legislator to limit these emissions.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 50
+        paragrafo: Rn. 174 (EN p. 50)
+        nota_verbatim:
+          sillabazione: >
+            3 trattini di fine riga ricongiunti: «re- duced»; «Ger- many»; «Ac- tion».
+        avvertenza: >
+          Traduzione ufficiale del canonical; contiene la cifra del 2%, fatto del caso.
+      - testo: >
+          While Art. 1(3) GG makes fundamental rights binding on the German state, it does
+          not explicitly restrict this binding effect to German territory. Rather, the
+          binding effect of the Basic Law’s fundamental rights on German state authority is
+          comprehensive
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 50
+        paragrafo: Rn. 175 (EN p. 50)
+      - testo: >
+          One possible factor capable of establishing a constitutional duty of protection
+          here would be that the severe impairments already or potentially faced by the
+          complainants due to climate change are caused to some – albeit small – extent by
+          greenhouse gas emissions emanating from Germany
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 51
+        paragrafo: Rn. 176 (EN p. 51)
+        nota_verbatim:
+          sillabazione: >
+            1 trattini di fine riga ricongiunti: «pro- tection».
+        avvertenza: >
+          Il possibile fondamento: il contributo, pur piccolo, delle emissioni tedesche.
+      - testo: >
+          A duty of protection vis-à-vis the complainants living in Bangladesh and in Nepal
+          would not in any case have the same content as that vis-à-vis people in Germany.
+          In general, the content of fundamental rights protection vis-à-vis people living
+          abroad may differ from the content of fundamental rights protection vis-à-vis
+          people living in Germany. Under certain circumstances, modification and
+          differentiation are required
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 51
+        paragrafo: Rn. 177 (EN p. 51)
+        nota_verbatim:
+          omissione: >
+            Omessa la parentesi finale con i riferimenti (BVerfGE 100, 313; BND; dottrina).
+      - testo: >
+          However, with regard to people living abroad, the German state would not have the
+          same options at its disposal for taking any additional protective action. Given
+          the limits of German sovereignty under international law, it is practically
+          impossible for the German state to afford protection to people living abroad by
+          implementing adaptation measures there ([...]). Rather, it is the task of the
+          states concerned to select and implement the necessary measures.
+        documento: neubauer-et-al-v-germany-order_7977
+        pagina: 51
+        paragrafo: Rn. 178 (EN p. 51)
+        avvertenza: >
+          La ragione della differenza di contenuto: l'adattamento all'estero e' impossibile.
+    lexical_markers:
+      contati_sul_corpus: false
+      en: [people living abroad, persons abroad, conceivable in principle, not confined to German territory, same content, adaptation measures abroad]
+      de: [im Ausland lebende, prinzipiell denkbar, nicht gleichen Inhalts, Grundrechtsbindung, Staatsgebiet, Anpassungsmaßnahmen]
+      falsi_amici:
+        - marcatore: extraterritorial
+          ragione: il BVerfG non usa la parola; e' il lessico CEDU (Duarte Agostinho) e ONU (Sacchi); da solo pesca quelli
+        - marcatore: jurisdiction
+          ragione: art. 1 CEDU; altra famiglia
+
+# ── Formulazioni escluse ────────────────────────────────────────────────────────────────────
+# Due tipi: POLARITA' e PROVENIENZA. `origine: verbatim` dal corpus (con documento e pagina): qui il
+# BVerfG cita per esteso Corte EDU, IPCC, Accordo di Parigi, la propria giurisprudenza (Kalkar,
+# BND), Urgenda e la posizione del Governo federale; le escluse incrociate con la Colombia sono
+# verbatim dal fascicolo colombiano (documento e pagina di quel corpus). `origine: redazionale`
+# da sostituire con passaggi veri bocciati dopo la prima validazione.
+
+formulazioni_escluse:
+
+  # -- schutzpflicht_clima ---------------------------------------------------------------------
+  - per: neubauer.schutzpflicht_clima
+    id: prov_cedu_obblighi_positivi
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte EDU, Öneryildiz, Budayeva, Cordella, citate dal BVerfG a Rn. 147 (EN pp. 42-43)'
+    testo: >
+      According to the case-law of the European Court of Human Rights, the European
+      Convention on Human Rights also imposes positive obligations on the state to protect
+      life and health against risks posed by environmental pollution (on Art. 2 ECHR, see
+      ECtHR, Öneryildiz v. Turkey, Judgment of 30 November 2004, no. 48939/99, para. 89 ff.;
+      ECtHR, Budayeva and Others v. Russia, Judgment of 20 March 2008, no. 15339/02, para.
+      128 ff.; on Art. 8 ECHR, see ECtHR, Cordella and Others v. Italy, Judgment of 24
+      January 2019, nos. 54414/13 and 54264/15, para. 157 ff. with further references; […]).
+      However, as far as is apparent, this does not lead to protection of greater scope than
+      that afforded under Art. 2(2) first sentence GG.
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 42-43
+    nota_verbatim:
+      sillabazione: >
+        1 trattini di fine riga ricongiunti: «pro- tect».
+      salto_pagina: >
+        Passo a cavallo di due pagine: rimossi il numero di pagina e i numeri di paragrafo a
+        margine inseriti dall'estrazione («42/78 148 149 150 151 152»).
+    ragione: >
+      La stessa conclusione (obbligo positivo di protezione da rischi ambientali) presa
+      dalla CEDU: il BVerfG la riporta e dichiara che non va oltre l'art. 2 Abs. 2 GG. Chi
+      la enuncia cosi' cita Strasburgo.
+  - per: neubauer.schutzpflicht_clima
+    id: prov_kalkar_futuro
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'BVerfGE 49, 89 (Kalkar) e giurisprudenza costante, citate a Rn. 146 (EN p. 42)'
+    testo: >
+      The state’s duty of protection arising from Art. 2(2) first sentence GG does not take
+      effect only after violations have already occurred. It is also oriented towards the
+      future (cf. BVerfGE 49, 89 <140 et seq.>; 53, 30 <57>; 56, 54 <78>; 121, 317 <356>).
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 42
+    ragione: >
+      Il dovere di protezione rivolto al futuro e' giurisprudenza del 1978: paternita'
+      dichiarata alla stessa Corte. Chi cita Kalkar per il futuro non riprende il
+      Klimabeschluss.
+  - per: neubauer.schutzpflicht_clima
+    id: prov_urgenda_obblighi_positivi
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Urgenda (HR 2019), cfr. urgenda.obblighi_positivi'
+    testo: >
+      Articles 2 and 8 ECHR oblige the State to take appropriate measures against the real
+      and immediate risk of dangerous climate change, although it materialises only decades
+      from now and threatens the population at large.
+    ragione: >
+      Altro caso, famiglia convenzionale: stessa conclusione, altra fonte e senza la
+      dimensione oggettiva verso le generazioni future. Coppia da misurare.
+  - per: neubauer.schutzpflicht_clima
+    id: polarita_generazioni_future_titolari
+    tipo: polarita
+    origine: verbatim
+    fonte: 'Corte Suprema de Justicia de Colombia, STC4360-2018, p. 21 — cfr. future-generations.generazioni_future_obbligo'
+    testo: >
+      Lo planteado entonces, formula una relación jurídica obligatoria de los derechos
+      ambientales de las generaciones futuras, como la prestación de “no-hacer”, cuyo efecto
+      se traduce en una limitación de la libertad de acción de las generaciones presentes,
+      al tiempo que esta exigencia implícitamente les atribuye nuevas cargas de compromiso
+      ambiental, a tal punto que asuman una actitud de cuidado y custodia de los bienes
+      naturales y del mundo humano futuro”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 21
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «relación juridica» letto «relación jurídica»; «futuro”4.» letto
+        «futuro”.».
+    ragione: >
+      POLARITA' per il punto proprio: la Colombia costruisce i diritti ambientali delle
+      generazioni future come relazione giuridica obbligatoria; il BVerfG nega che chi non
+      e' nato sia titolare di diritti. Stesso tema, segno opposto; verbatim dal fascicolo
+      colombiano.
+  - per: neubauer.schutzpflicht_clima
+    id: polarita_rischio_diffuso_non_giustiziabile
+    tipo: polarita
+    origine: redazionale
+    fonte: 'Tribunale federale svizzero, KlimaSeniorinnen (5 maggio 2020); Corte EDU, Duarte Agostinho (2024) — testi NON nel fascicolo'
+    testo: >
+      The general risk of climate change affects everyone and is too diffuse to found a
+      justiciable duty of protection towards identifiable individuals whose rights are not
+      yet impaired with sufficient intensity.
+    ragione: >
+      POLARITA'. La formulazione con cui altre corti negano la Schutzpflicht climatica.
+      REDAZIONALE: da sostituire con il passaggio vero.
+
+  # -- vorwirkung_liberta_intertemporale --------------------------------------------------------
+  - per: neubauer.vorwirkung_liberta_intertemporale
+    id: prov_hogeraad_743_rinvio
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Hoge Raad, Urgenda, n. 7.4.3, citato dal BVerfG a Rn. 121 (EN p. 38)'
+    testo: >
+      If a society that is geared towards a CO2-intensive lifestyle is forced to switch to
+      climate-neutral behaviour within an extremely short period of time, the restrictions
+      on freedom are likely to be enormous ([...], see also Federal Government, Denkschrift
+      zum Übereinkommen von Paris vom 12. Dezember 2015, BTDrucks 18/ 9650, p. 30 para. 8;
+      IPCC, Special Report, Global Warming of 1.5°C, Summary for Policymakers, 2018, p. 18
+      para. D.1.3; [...]; similarly Hoge Raad of the Netherlands, Judgment of 20 December
+      2019, 19/00135, no. 7.4.3).
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 38
+    nota_verbatim:
+      sillabazione: >
+        1 trattini di fine riga ricongiunti: «re- strictions».
+    ragione: >
+      La premessa «piu' tardi si agisce, piu' drastiche le restrizioni» e' dichiarata comune
+      a Urgenda e al Governo federale: chi la enuncia riprende la premessa, non la
+      costruzione della Vorwirkung.
+  - per: neubauer.vorwirkung_liberta_intertemporale
+    id: prov_colombia_obbligo_non_fare
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Suprema de Justicia de Colombia, STC4360-2018, p. 21'
+    testo: >
+      Lo planteado entonces, formula una relación jurídica obligatoria de los derechos
+      ambientales de las generaciones futuras, como la prestación de “no-hacer”, cuyo efecto
+      se traduce en una limitación de la libertad de acción de las generaciones presentes,
+      al tiempo que esta exigencia implícitamente les atribuye nuevas cargas de compromiso
+      ambiental, a tal punto que asuman una actitud de cuidado y custodia de los bienes
+      naturales y del mundo humano futuro”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 21
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «relación juridica» letto «relación jurídica»; «futuro”4.» letto
+        «futuro”.».
+    ragione: >
+      Stessa conclusione (le generazioni future limitano la liberta' delle presenti) da
+      altra fonte e con altra tecnica (obbligo di non-fare fondato su solidarieta' e valore
+      intrinseco, non Vorwirkung sui diritti dei viventi). Verbatim dal fascicolo
+      colombiano.
+  - per: neubauer.vorwirkung_liberta_intertemporale
+    id: prov_brundtland
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Rapporto Brundtland 1987 / Rio 1992 Principio 3 — testi NON nel fascicolo'
+    testo: >
+      Sustainable development is development that meets the needs of the present without
+      compromising the ability of future generations to meet their own needs.
+    ragione: >
+      Principio di politica senza costruzione giuridica. REDAZIONALE.
+  - per: neubauer.vorwirkung_liberta_intertemporale
+    id: polarita_restrizioni_future_ipotetiche
+    tipo: polarita
+    origine: redazionale
+    fonte: 'obiezione di ammissibilita'' (posizione del Governo federale e del Bundestag nel procedimento) — testo NON nel fascicolo in forma citabile'
+    testo: >
+      Future restrictions that depend on later legislative decisions are hypothetical; a
+      statute that presently permits emissions does not interfere with fundamental rights
+      and cannot be challenged now.
+    ragione: >
+      POLARITA'. La negazione della Vorwirkung: nessuna interferenza attuale, nessuna
+      legittimazione. REDAZIONALE.
+
+  # -- proporzionalita_intergenerazionale -------------------------------------------------------
+  - per: neubauer.proporzionalita_intergenerazionale
+    id: prov_T411_patrimonio
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional de Colombia, T-411/1992, citata in STC4360-2018 p. 28'
+    testo: >
+      Al fin y al cabo el patrimonio natural de un país, al igual que ocurre con el
+      histórico - artístico, pertenece a las personas que en él viven, pero también a las
+      generaciones venideras, puesto que estamos en la obligación y el desafío de entregar
+      el legado que hemos recibido en condiciones óptimas a nuestros descendientes”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 28
+    ragione: >
+      La stessa conclusione (consegnare ai discendenti cio' che si e' ricevuto) nella forma
+      patrimoniale colombiana del 1992; verbatim dal fascicolo colombiano. Altra fonte,
+      altra tecnica (nessuna proporzionalita').
+  - per: neubauer.proporzionalita_intergenerazionale
+    id: prov_rio_principio3
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Dichiarazione di Rio 1992, Principio 3 — testo NON nel fascicolo'
+    testo: >
+      The right to development must be fulfilled so as to equitably meet developmental and
+      environmental needs of present and future generations.
+    ragione: >
+      Il principio in astratto, nella fonte internazionale. REDAZIONALE.
+  - per: neubauer.proporzionalita_intergenerazionale
+    id: prov_juliana_public_trust
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Juliana v. United States (Aiken, 2016), cfr. juliana.public_trust_federale'
+    testo: >
+      The government holds essential natural resources in trust for present and future
+      generations and, as trustee, may not substantially impair them.
+    ragione: >
+      Stesso beneficiario, tecnica di common law. Coppia da misurare.
+  - per: neubauer.proporzionalita_intergenerazionale
+    id: polarita_distribuzione_politica
+    tipo: polarita
+    origine: redazionale
+    fonte: 'obiezione classica (separazione dei poteri) — nessun testo nel fascicolo'
+    testo: >
+      How the burden of emission reductions is distributed over time is a matter of
+      political discretion; the present generation owes no constitutionally enforceable duty
+      of restraint towards future generations.
+    ragione: >
+      POLARITA'. REDAZIONALE.
+
+  # -- budget_co2_parametro --------------------------------------------------------------------
+  - per: neubauer.budget_co2_parametro
+    id: prov_ipcc_budget
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'IPCC, Special Report 1.5 °C (2018), Tab. 2.2, e SRU Umweltgutachten 2020, citati a Rn. 219 (EN p. 66)'
+    testo: >
+      The IPCC has provided numerical figures quantifying the size of the remaining global
+      CO2 budget for different temperature limits and different probabilities of staying
+      within those limits. For example, with a 67% probability of limiting global warming to
+      1.5°C, it has estimated the remaining global CO2 budget from 2018 onwards as being 420
+      gigatonnes. For a 2°C target, it has estimated the remaining budget from 2018 onwards
+      as being 1,170 gigatonnes (IPCC, Special Report, Global Warming of 1.5°C, 2018,
+      Chapter 2, p. 108, Table 2.2).
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 66
+    nota_verbatim:
+      sillabazione: >
+        1 trattini di fine riga ricongiunti: «stay- ing».
+    ragione: >
+      Il budget come CONCETTO e come CIFRE viene dall'IPCC e dal SRU: chi riporta i
+      gigatonnellate riprende l'IPCC. La sonda cerca l'uso del budget come parametro
+      costituzionale.
+  - per: neubauer.budget_co2_parametro
+    id: prov_paris_target_ksg
+    tipo: provenienza
+    origine: verbatim
+    fonte: '§ 1 Satz 3 KSG, che riporta l''art. 2(1)(a) dell''Accordo di Parigi, citato a Rn. 208 (EN p. 62)'
+    testo: >
+      The basis of the Act is the obligation according to the Paris Agreement, under the
+      United Nations Framework Convention on Climate Change, to limit the increase in the
+      global average temperature to well below two degrees Celsius and, if possible, to 1.5
+      degrees Celsius, above the pre-industrial level so as to minimise the effects of
+      worldwide climate change, as well as the commitment made by the Federal Republic of
+      Germany at the United Nations Climate Action Summit in New York on 23 September 2019
+      to pursue the long-term goal of greenhouse gas neutrality by 2050.
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 62
+    nota_verbatim:
+      sillabazione: >
+        1 trattini di fine riga ricongiunti: «Unit- ed».
+    ragione: >
+      La soglia di temperatura e' di PARIGI, recepita dalla legge: chi la enuncia riprende
+      Parigi o il KSG. E' il primo anello della catena, non la conversione in budget.
+  - per: neubauer.budget_co2_parametro
+    id: prov_cbdr_ripartizione
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Art. 2(2) e 4(4) PA; art. 3 UNFCCC (CBDR), citati a Rn. 225 (EN pp. 67-68)'
+    testo: >
+      Certain indications regarding the distribution method can be derived from
+      international law, such as from Art. 2(2) and Art. 4(4) PA (on the principle of common
+      but differentiated responsibilities, see also Art. 3 nos. 1 and 4 of the United
+      Nations Framework Convention on Climate Change of 9 May 1992 (BGBl II 1993 p. 1784,
+      UNTS Vol. 1771, p. 107, which entered into force on 21 May 1994), as well as from the
+      third recital of the preamble to the Paris Agreement).
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 67-68
+    nota_verbatim:
+      salto_pagina: >
+        Passo a cavallo di due pagine: rimossi il numero di pagina e i numeri di paragrafo a
+        margine inseriti dall'estrazione («67/78 226 227 228 229»).
+    ragione: >
+      La RIPARTIZIONE del budget fra Stati (per capita, CBDR) viene dal diritto
+      internazionale e il BVerfG lo dice. E' il falso amico misurato su Urgenda
+      (`equita_fra_stati`).
+  - per: neubauer.budget_co2_parametro
+    id: prov_urgenda_target_giudiziale
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Urgenda (HR 2019), cfr. urgenda.target_giudiziale'
+    testo: >
+      A court may require the State to achieve a specified minimum reduction of emissions by
+      a given date, derived from the consensus of climate science and the international
+      community on the State's minimum fair share.
+    ragione: >
+      Altro caso: il minimo lo fissa il giudice; qui il giudice usa il budget come parametro
+      ma nega di poter tradurre l'art. 20a in cifre (Rn. 206). Coppia da misurare.
+  - per: neubauer.budget_co2_parametro
+    id: polarita_incertezze_troppo_grandi
+    tipo: polarita
+    origine: verbatim
+    fonte: 'Posizione del Governo federale, riportata dal BVerfG a Rn. 223 (EN p. 67)'
+    testo: >
+      The Federal Government does not doubt this either. It simply regards the uncertainties
+      as being too large for conclusions to be drawn from the estimates.
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 67
+    nota_verbatim:
+      sillabazione: >
+        1 trattini di fine riga ricongiunti: «uncertain- ties».
+    ragione: >
+      POLARITA', dentro il fascicolo: le incertezze sono troppo grandi per trarre
+      conclusioni dalle stime. Stesso lessico, segno rovesciato; il BVerfG risponde a Rn.
+      229.
+
+  # -- art20a_giustiziabile_autovincolo --------------------------------------------------------
+  - per: neubauer.art20a_giustiziabile_autovincolo
+    id: polarita_20a_non_giustiziabile
+    tipo: polarita
+    origine: verbatim
+    fonte: 'Obiezione riportata e respinta dal BVerfG a Rn. 205 (EN p. 61)'
+    testo: >
+      The Federal Constitutional Court is not excluded from reviewing § 3(1) third sentence
+      and § 4(1) third sentence KSG in conjunction with Annex 2 by the fact that Art. 20a GG
+      does not contain any justiciable standard that would enable specific greenhouse gas
+      reduction targets to be assessed within the framework of constitutional law, but
+      rather places the determination of such targets entirely in the hands of the
+      legislator.
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 61
+    nota_verbatim:
+      sillabazione: >
+        2 trattini di fine riga ricongiunti: «sen- tence»; «green- house».
+    ragione: >
+      POLARITA', dentro il fascicolo: l'art. 20a non conterrebbe alcun parametro
+      giustiziabile e rimetterebbe i target interamente al legislatore. E' la frase della
+      Corte che descrive l'obiezione; stesso lessico della sonda, segno rovesciato.
+  - per: neubauer.art20a_giustiziabile_autovincolo
+    id: prov_paris_target_ksg_bis
+    tipo: provenienza
+    origine: verbatim
+    fonte: '§ 1 Satz 3 KSG / art. 2(1)(a) PA, citato a Rn. 208 (EN p. 62)'
+    testo: >
+      The basis of the Act is the obligation according to the Paris Agreement, under the
+      United Nations Framework Convention on Climate Change, to limit the increase in the
+      global average temperature to well below two degrees Celsius and, if possible, to 1.5
+      degrees Celsius, above the pre-industrial level so as to minimise the effects of
+      worldwide climate change, as well as the commitment made by the Federal Republic of
+      Germany at the United Nations Climate Action Summit in New York on 23 September 2019
+      to pursue the long-term goal of greenhouse gas neutrality by 2050.
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 62
+    nota_verbatim:
+      sillabazione: >
+        1 trattini di fine riga ricongiunti: «Unit- ed».
+    ragione: >
+      L'obiettivo cui il legislatore e' vincolato viene da PARIGI attraverso la legge: chi
+      cita il target cita Parigi. La sonda cerca il VINCOLO alla propria concretizzazione,
+      non il target.
+  - per: neubauer.art20a_giustiziabile_autovincolo
+    id: prov_urgenda_target_autoimposto
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Urgenda (Hof 52, 72; HR 7.4.1) — cfr. l''esclusa target_autoimposto di Urgenda'
+    testo: >
+      The government is held to the emission reduction commitments it has itself announced
+      or pledged, and may not silently abandon a target it previously adopted without
+      justification.
+    ragione: >
+      Stessa mossa (vincolo al target autoimposto) in altro caso, dove pero' e' conferma e
+      non ratio. La coppia misura se il corpus distingue le due.
+  - per: neubauer.art20a_giustiziabile_autovincolo
+    id: prov_leghari_inattuazione
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Leghari (2015), cfr. leghari.inattuazione_offende_diritti'
+    testo: >
+      The failure to implement the State's own climate policy and framework offends the
+      fundamental rights of citizens and calls for judicial oversight of implementation.
+    ragione: >
+      Altro caso: il vincolo alla politica adottata dallo Stato stesso, in chiave di diritti
+      e di attuazione, non di giustiziabilita' di un obiettivo costituzionale.
+
+  # -- protezione_extraterritoriale ------------------------------------------------------------
+  - per: neubauer.protezione_extraterritoriale
+    id: prov_bnd_vincolo_estero
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'BVerfGE 154, 152 (BND – Ausland-Ausland-Fernmeldeaufklärung), citata a Rn. 175 (EN p. 50)'
+    testo: >
+      Rather, the binding effect of the Basic Law’s fundamental rights on German state
+      authority is comprehensive (BVerfGE 154, 152 <215 f., para. 88 f.> – BND –
+      Surveillance of Foreign Telecommunications; cf. BVerfGE 6, 32 <44>; 6, 290 <295>; 57,
+      9 <23>; 100, 313 <363>).
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 50
+    nota_verbatim:
+      sillabazione: >
+        1 trattini di fine riga ricongiunti: «Telecom- munications».
+    ragione: >
+      Il vincolo dei diritti fondamentali fuori dal territorio e' giurisprudenza del 2020
+      sulla sorveglianza: paternita' dichiarata. Chi lo enuncia in generale riprende BND,
+      non l'applicazione al clima.
+  - per: neubauer.protezione_extraterritoriale
+    id: prov_paris_art9_responsabilita
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Art. 9(1) e 2(2) PA; strategia federale di adattamento, citati a Rn. 180 (EN p. 52)'
+    testo: >
+      This does not exclude Germany from assuming responsibility, either politically or
+      under international law, for ensuring that positive steps are taken to protect people
+      in poorer and harder-hit countries (Federal Government, German Strategy for Adaptation
+      to Climate Change, 2008, p. 51 ff.; Federal Government, Zweiter Fortschrittsbericht
+      zur Deutschen Anpassungsstrategie an den Klimawandel, 2020, p. 60 f.). Art. 9(1) PA
+      explicitly states that developed country Parties must provide financial resources to
+      assist developing country Parties, also with respect to adaptation (on differentiated
+      responsibilities in the response to climate change, see in particular Art. 2(2) PA).
+    documento: neubauer-et-al-v-germany-order_7977
+    pagina: 52
+    nota_verbatim:
+      sillabazione: >
+        4 trattini di fine riga ricongiunti: «Adapta- tion»; «Fortschritts- bericht»; «re-
+        sources»; «dif- ferentiated».
+    ragione: >
+      La responsabilita' verso i paesi piu' poveri e colpiti presa dal DIRITTO
+      INTERNAZIONALE (finanza per l'adattamento, responsabilita' differenziate): la via che
+      il BVerfG indica come alternativa alla Schutzpflicht.
+  - per: neubauer.protezione_extraterritoriale
+    id: prov_sacchi_giurisdizione
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Comitato ONU sui diritti del fanciullo, Sacchi et al. (2021) — testo NON nel fascicolo'
+    testo: >
+      A State has jurisdiction over children abroad when it exercises effective control over
+      the source of the emissions that cause the harm, and the harm is reasonably
+      foreseeable.
+    ragione: >
+      Stessa domanda (protezione di chi vive all'estero) risolta in positivo da un altro
+      organo con altro criterio (controllo effettivo sulla fonte). REDAZIONALE.
+  - per: neubauer.protezione_extraterritoriale
+    id: polarita_nessuna_giurisdizione_extraterritoriale
+    tipo: polarita
+    origine: redazionale
+    fonte: 'Corte EDU, Duarte Agostinho (9 aprile 2024) — testo NON nel fascicolo, ma nel corpus'
+    testo: >
+      There is no basis for extending the State's extraterritorial jurisdiction to persons
+      affected by climate change abroad; the Convention does not require a State to protect
+      individuals outside its territory from the effects of its emissions.
+    ragione: >
+      POLARITA'. La negazione con lo stesso lessico. REDAZIONALE: da sostituire con il
+      passaggio vero di Duarte Agostinho, presente nel corpus.
+
+nota_analitica:
+  spartiacque_possibili: [2021-03-24, 2024-04-09]
+  effetto_atteso: >
+    Ricezione prevalentemente di catena («Urgenda, Neubauer, KlimaSeniorinnen») e descrittiva; le
+    riprese sostanziali attese su vorwirkung_liberta_intertemporale (il concetto che viaggia con il
+    suo nome tedesco) e su art20a_giustiziabile_autovincolo (dalle corti che decidono sulla
+    sindacabilita' di obiettivi climatici). Dopo KlimaSeniorinnen (2024) possibile riattribuzione
+    alla Corte EDU di cio' che il BVerfG aveva detto per primo. Da verificare, non da presupporre.

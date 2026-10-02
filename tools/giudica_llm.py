@@ -1,24 +1,27 @@
-"""Third stage: an LLM reads the CONTEXT of a candidate passage and rules on ATTRIBUTION.
+"""TERZO LIVELLO — l'LLM che legge il CONTESTO e risponde sull'ATTRIBUZIONE.
 
-   Retrieval and reranking answer "does this passage state this proposition?". The recurring
-   false-positive pattern is different: the passage does state the proposition, but grounds it
-   in another source (a national constitution, the Paris Agreement, CBDR, another climate case).
-   The relevant question is "where does it take it from?", and the answer lies in the context:
-   footnotes, cross-references, sources named around the passage. A similarity score cannot
-   capture this by construction.
+   PERCHE' ESISTE. Il recupero e il riordino rispondono alla domanda «questo
+   passaggio afferma questa proposizione?». Misurato il 22/09/2026, il guasto
+   ricorrente dei falsi positivi e' un altro: il passaggio AFFERMA davvero la
+   proposizione, ma la fonda su un'altra fonte — la Costituzione coreana, la
+   Carta canadese, l'Accordo di Parigi, il CBDR, un altro caso climatico. La
+   domanda che serve non e' di somiglianza, e' «DA DOVE LA PRENDE?», e la
+   risposta sta nel contesto: nelle note, nei richiami, nelle fonti nominate
+   intorno al passaggio. Un punteggio non la vede per costruzione; un lettore
+   si'.
 
-   The output is not a score but an answer with a VERBATIM quotation from the passage that
-   supports it, so every row can be checked by hand.
+   L'USCITA NON E' UN PUNTEGGIO, E' UNA RISPOSTA CON LA CITAZIONE IN MANO.
+   Il modello deve riportare VERBATIM il pezzo di testo su cui fonda il suo
+   giudizio. Cosi' ogni riga si puo' controllare a mano, cosa che un numero non
+   consente: e' la differenza fra un risultato che regge in revisione e uno no.
 
-   Three outcomes:
-     RIPRESA      the passage adopts the proposition of the cited case
-     ALTRA_FONTE  it states the same proposition but grounds it elsewhere
-     NON_AFFERMA  it does not state the proposition
-   The middle category is recorded separately because it is itself data on how the principle
-   circulates.
-
-   Usage: python tools/adjudica_llm.py --ingresso rows.jsonl --uscita out.json [--modello M] [--max-righe N]
-   Requires vLLM and a GPU.
+   TRE ESITI, non due:
+     RIPRESA      il passaggio fa propria la proposizione del caso citato
+     ALTRA_FONTE  afferma la stessa proposizione ma la fonda altrove
+     NON_AFFERMA  non afferma la proposizione
+   La categoria di mezzo e' quella che il progetto perdeva: contata come «no»
+   dal giudizio umano, ma per una ragione precisa che va registrata, perche'
+   e' un dato sulla circolazione del principio.
 """
 import argparse, json, pathlib, re, sys
 
@@ -120,16 +123,19 @@ Rispondi SOLO con un oggetto JSON:
 Niente fuori dal JSON."""
 
 
-# Second version of the chain prompt. With ISTRUZIONI_CATENA most missed true
-# uptakes were labelled ALTRA_FONTE or NON_AFFERMA because the text grounded the
-# duty in the ECHR or did not name Urgenda. Both are misreadings: the ECHR route
-# is one of Urgenda's two grounds (Court of Appeal 2018, Hoge Raad 2019), and an
-# implicit uptake by definition does not name the case (codebook category
-# `implicita`). Since validators read every row the LLM proposes, a missed uptake
-# is unrecoverable while a false positive costs a short review, so ties are
-# resolved towards RIPRESA. The prompt was revised after reading errors on the
-# test rows, so it is also evaluated on the unseen training rows and both
-# figures are reported.
+# SECONDA VERSIONE (23/09/2026, sera), scritta dopo aver letto gli errori di
+# DeepSeek V4 Flash con ISTRUZIONI_CATENA: delle 15 riprese vere mancate, quasi
+# tutte erano giudicate ALTRA_FONTE o NON_AFFERMA con motivi come «fonda
+# l'obbligo sulla CEDU, non sulla via civilistica olandese» o «il testo non
+# cita Urgenda». Tutti e due sono letture sbagliate del caso e della
+# categoria: la via CEDU e' uno dei due binari di Urgenda (Corte d'appello
+# 2018, Hoge Raad 2019), e la ripresa implicita e' proprio quella che non nomina
+# il caso (codebook, categoria `implicita`). E nella pipeline decisa dal PI
+# (§59.1) i validatori leggono tutto quello che l'LLM propone: una ripresa
+# persa non si recupera, un falso positivo costa un minuto. La domanda ora lo
+# dice. Gli errori letti erano sulle righe di prova: per questo la versione
+# nuova si misura ANCHE sulle 257 di addestramento, mai lette, e si
+# riportano i due numeri.
 ISTRUZIONI_CATENA_V2 = ISTRUZIONI_CATENA.replace(
     "NON decidere contando i nomi delle fonti.",
     """TRE AVVERTENZE, prima di decidere.

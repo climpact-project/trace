@@ -1,0 +1,1 @@
+../ripresa_punteggi.py

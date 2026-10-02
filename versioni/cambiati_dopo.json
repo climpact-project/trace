@@ -1,0 +1,72 @@
+{
+ "data": "2026-10-01",
+ "spiegazione": "File vivi diversi dalla copia della loro versione. Ogni cambio ha un codice nuovo; la copia della versione vecchia resta quella del suo tempo.",
+ "voci": [
+  {
+   "versione": "R03",
+   "file": "tools/leggi_ripresa.py",
+   "cambio": "i punteggi sul testo OCR si caricano per ultimi",
+   "codice_nuovo": "R05"
+  },
+  {
+   "versione": "L05",
+   "file": "tools/leggi_ripresa.py",
+   "cambio": "idem; il testo della lettura non cambia",
+   "codice_nuovo": "R05"
+  },
+  {
+   "versione": "R01",
+   "file": "tools/principi_da_paragrafi.py",
+   "cambio": "opzione --sonde 0110; senza opzione fa lo stesso di prima",
+   "codice_nuovo": "R06"
+  },
+  {
+   "versione": "R04",
+   "file": "tools/principi_da_paragrafi.py e mappe di Neubauer e Future Generations",
+   "cambio": "campo sonde_0110 aggiunto; il campo sonde usato da R04 e' intatto",
+   "codice_nuovo": "R06"
+  },
+  {
+   "versione": "L02",
+   "file": "tools/classifica_lessicali.py",
+   "cambio": "solo la preparazione del contesto: posizioni dopo l'OCR, nomi in scritture asiatiche; il testo della lettura non cambia",
+   "codice_nuovo": "S03"
+  },
+  {
+   "versione": "L03",
+   "file": "tools/classifica_lessicali.py",
+   "cambio": "idem",
+   "codice_nuovo": "S03"
+  },
+  {
+   "versione": "R02",
+   "file": "tools/carica_ripresa.py, tools/carica_lessicali.py, tools/freni.py",
+   "cambio": "precedenza alle righe rilette sul testo OCR; freno sulle prove per le scritture asiatiche",
+   "codice_nuovo": "R05"
+  },
+  {
+   "versione": "R05",
+   "file": "tools/sonde.py, tools/carica_ripresa.py, tools/leggi_ripresa.py",
+   "cambio": "la serie di sonde in uso si legge per caso (P05 per Neubauer e Future Generations); proposte provvisorie senza lettura (--anche-senza-lettura) segnate proposta_provvisoria",
+   "codice_nuovo": "nessuno: e' l'adozione di P05 registrata in P05; la regola di composizione non cambia"
+  },
+  {
+   "versione": "T01, R03",
+   "file": "tools/ripresa_punteggi.py, tools/leggi_ripresa.py",
+   "cambio": "finestra dei punteggi da 2-3 a 10-10 pagine",
+   "codice_nuovo": "R08"
+  },
+  {
+   "versione": "R07",
+   "file": "tools/principi_da_paragrafi.py",
+   "cambio": "rimandi «párr.»/«parágrafo» e mappe con «§§»/«párrs.»",
+   "codice_nuovo": "R09"
+  },
+  {
+   "versione": "L02, L03",
+   "file": "codebook/citazioni.yaml",
+   "cambio": "codebook 0.4-pilot: la dimensione 7 si chiama «pagine attorno» (prima «seguito») e la finestra scritta e' 10 prima e 10 dopo, come gia' applicava R08; le categorie del tipo non cambiano",
+   "codice_nuovo": "nessuno per i lettori: le copie di L02 e L03 restano sul codebook 0.3-pilot; il codebook 0.4-pilot e' copiato in versioni/CODEBOOK-0.4-pilot/"
+  }
+ ]
+}

@@ -1,29 +1,30 @@
-"""Build the training sets from the human-coded sample.
+"""RICUCITURA DEL CAMPIONE UMANO PER L'ADDESTRAMENTO.
 
-   Judgments saved by `salva_giudizi.py` carry the probe TITLE, not its text: the
-   text lives in `cited-cases/<caso>.yaml` and is read with the pipeline's own
-   reader (`leggi_caso`). This script joins the two and writes both training sets.
+   I giudizi salvati da `salva_giudizi.py` portano il TITOLO della sonda, non
+   il suo testo: il testo vive in `cited-cases/<caso>.yaml` e si legge con lo
+   stesso lettore della pipeline (`leggi_caso`), non riscritto a mano. Qui si
+   uniscono le due cose e si scrivono i due insiemi di addestramento.
 
-   Two tasks, two different samples:
-     A. categoria   lexical network only: what role the citation plays in the text.
-     B. decisione   semantic network only: does the passage state that probe?
-   Semantic rows carry no citation category.
+   DUE COMPITI, DUE CAMPIONI DIVERSI.
+     A. categoria   — solo rete lessicale: che lavoro fa la citazione nel testo.
+     B. decisione   — solo rete semantica: il passaggio afferma quella sonda?
+   La categoria sulle righe semantiche NON esiste (rimossa il 22/09/2026): era
+   un fraintendimento del compito, non un dato.
 
-   Masking. The case name and ECLI/docket identifiers are replaced by a placeholder,
-   using the `forme` declared in the case file (the same the lexical network searches
-   for). Otherwise the model learns the shortcut "no name means implicit", and in
-   production, where no semantic candidate contains the name, it would label
-   everything the same way.
+   MASCHERAMENTO. Il nome del caso e i codici ECLI si sostituiscono con un
+   segnaposto, usando le `forme` dichiarate nel file del caso — le stesse che
+   la rete lessicale cerca. Senza, il modello impara la scorciatoia «se il nome
+   non c'e' e' implicita» e in produzione, dove nessun candidato semantico ha
+   il nome, etichetterebbe tutto allo stesso modo.
 
-   Frozen split, grouped by citing case. The same passage can appear up to nine
-   times and one document can carry up to sixteen rows: a random split would put the
-   same text on both sides and inflate the test score. The split is by `case_id` and
-   is written to disk so that every later experiment uses the same split.
-
-   Usage: python tools/prepara_training.py
+   DIVISIONE CONGELATA, RAGGRUPPATA PER CASO CITANTE. Lo stesso passaggio
+   compare fino a nove volte e uno stesso documento porta fino a sedici righe:
+   dividere a caso metterebbe lo stesso testo da entrambe le parti e il
+   punteggio di prova sarebbe gonfiato. Si divide per `case_id` e si scrive su
+   disco, perche' ogni esperimento successivo deve usare la stessa divisione.
 """
 import json, pathlib, random, re, sys, collections
-sys.path.insert(0, str(pathlib.Path(__file__).parent))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from cerca import leggi_caso
 
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -34,11 +35,11 @@ SEME = 20260922
 
 
 def mascheratore(forme):
-    """A single regex with all name forms of the case, plus ECLI and docket identifiers.
+    """Un'espressione sola con tutte le forme del caso, piu' i codici ECLI.
 
-    Forms are sorted by decreasing length so that a long form (e.g. "State of the
-    Netherlands v. Urgenda Foundation") is consumed before a short one ("Urgenda");
-    otherwise a recognisable residue would remain."""
+    Le forme si ordinano per lunghezza decrescente: «State of the Netherlands
+    v. Urgenda Foundation» deve essere consumata prima di «Urgenda», altrimenti
+    resta un residuo riconoscibile."""
     pezzi = sorted({f for f in forme if len(f) > 3}, key=len, reverse=True)
     pat = '|'.join(re.escape(f) for f in pezzi)
     pat += r'|ECLI:[A-Z]{2}:[A-Z]+:\d{4}:\d+|\b\d{2}/\d{5}\b|\b200\.\d{3}\.\d{3}/\d{2}\b'
@@ -52,12 +53,14 @@ def main():
         testo_di[s['titolo']] = {'id': s['id'], 'testo': s['testo']}
     maschera = mascheratore(conf['forme'] + [conf.get('nome', '')])
 
-    # The ORIGINAL chunk actually scored by the reranker. Judgments carry
-    # `proposto_citazione_testuale` truncated to 460 characters, while the reranker
-    # saw the full chunk (median 1,290 characters); without it, comparison with the
-    # archived scores would not be like for like. Recovered from `index/chunks.jsonl`
-    # by (document_id, char_start). Lexical rows have none, since they come from a
-    # text search on the markdown rather than from an index chunk.
+    # Il FRAMMENTO ORIGINALE, quello che il riordinatore lesse davvero.
+    # I giudizi portano `proposto_citazione_testuale` troncata a 460 caratteri,
+    # ma il riordinatore ricevette il frammento intero (mediana 1.290 caratteri).
+    # Senza, il confronto con i punteggi archiviati non sarebbe alla pari.
+    # Recuperato da `index/chunks.jsonl` per (document_id, char_start):
+    # ci sono tutte e 390 le righe della rete semantica pura. Le righe
+    # lessicali non ne hanno uno, perche' nascono da una ricerca testuale sul
+    # markdown e non da un frammento dell'indice.
     orig = {}
     po = QUI/'training'/'frammenti_originali.json'
     if po.exists():
@@ -94,7 +97,7 @@ def main():
             val = r.get('validato_sonde') or []
             if isinstance(val, str):
                 val = [val]
-            # positive only if the PROPOSED probe is among the validated ones and the row is not discarded
+            # positiva solo se la sonda PROPOSTA e' fra quelle validate e non e' scartata
             pos = r['esito'] != 'scartata' and son in val
             B.append({**comune, 'sonda_id': sd['id'], 'sonda_titolo': son,
                       'sonda_testo': sd['testo'], 'etichetta': int(pos),
@@ -106,15 +109,17 @@ def main():
     if senza_testo:
         print('  ATTENZIONE, sonde senza testo nel file del caso:', senza_testo.most_common())
 
-    # ── split by citing case, balanced on labels ──
+    # ── divisione per caso citante, bilanciata sulle etichette ──
     #
-    # Grouping by case alone is not enough: cases differ widely in size (1 to 31
-    # rows), and a random assignment gave a test set with a different label mix
-    # (measured: 38% positives in test vs 24% in training). A test score on a
-    # different composition is not comparable. Cases are therefore assigned one at
-    # a time, largest first, to the side that brings the compositions closer.
+    # Raggruppare per caso NON basta: i casi sono di taglia molto diversa (da 1
+    # a 31 righe) e una scelta a sorte porta in prova una composizione diversa
+    # da quella di addestramento — misurato il 22/09/2026: 38% di positive in
+    # prova contro 24% in addestramento, e «sostanziale» dal 35% al 55%. Un
+    # punteggio di prova su una composizione diversa non si puo' confrontare
+    # con niente. Si assegna quindi un caso per volta, dal piu' grosso al piu'
+    # piccolo, mettendolo dalla parte che AVVICINA le due composizioni.
     casi = sorted({x['case_id'] for x in A} | {x['case_id'] for x in B})
-    voci = collections.defaultdict(collections.Counter)   # case -> counts per class
+    voci = collections.defaultdict(collections.Counter)   # caso -> conteggi per classe
     for x in A:
         voci[x['case_id']]['A:' + x['categoria']] += 1
     for x in B:
@@ -124,10 +129,11 @@ def main():
         totale.update(voci[c])
     classi = sorted(totale)
 
-    # Target: for EVERY class, the test side should hold about QUOTA_PROVA of it.
-    # Each case goes to the side that leaves the test set closest to that target,
-    # class by class. A criterion on average composition would always favour the
-    # larger side, which necessarily resembles the total more closely.
+    # Obiettivo: per OGNI classe, la prova deve contenerne circa QUOTA_PROVA.
+    # Si assegna un caso per volta, dal piu' grosso al piu' piccolo, alla parte
+    # che lascia la prova piu' vicina a quel bersaglio classe per classe. Un
+    # criterio sulla composizione media non basterebbe: premierebbe sempre la
+    # parte gia' piu' grande, che per forza somiglia di piu' al totale.
     bersaglio = {k: totale[k] * QUOTA_PROVA for k in classi}
 
     def costo(acc):

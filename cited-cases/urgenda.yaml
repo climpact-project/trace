@@ -1,80 +1,79 @@
-# CITED CASE — URGENDA (query specification, version 2)
+# CASO CITATO — URGENDA (query specification, versione 2)
 #
-# What to search for. The codebook (`codebook/citazioni.yaml`) defines HOW to classify what is
-# found; this file defines only WHAT to search for. No classification and no `tipo_citazione`
-# is assigned here. This file was written against codebook `0.2-pilot`.
+# Che cosa cercare. Il codebook (`codebook/citazioni.yaml`) dice invece COME classificare
+# cio' che si trova. Qui si dice solo CHE COSA cercare. Nessuna classificazione e nessun
+# `tipo_citazione` e' assegnato in questo file: il codebook e' `0.2-pilot`, `approvato_da: null`.
 #
-# FILE HISTORY. Version 1 = pilot: five probes whose `testo` was drawn from the Supreme Court
-# judgment (two from its opening summary, one verbatim from para. 8.2.6, two paraphrased), ten
-# excluded formulations without written reasons, fourteen lexical forms without exclusions.
-# Version 2 keeps the FIVE PROPOSITIONS of the pilot and rewrites them following the project's
-# reference specification and the format of the other cited-case files (`leghari.yaml`,
-# `greenpeace-nordic.yaml`, `juliana.yaml`): verbatim canonical passage with document and page,
-# seeds, 25-35-word probe, alternative probe, lexical markers, exclusions with reasons (at least
-# three, one of them a polarity exclusion), lexical forms with reasoned exclusions, and the
-# anchor-case record (methodological guide, §2).
+# STORIA DEL FILE. Versione 1 = pilota (luglio 2026): cinque sonde con `testo` ricavato dalla
+# sentenza di Cassazione (due dal suo riassunto iniziale, una verbatim dal par. 8.2.6, due
+# parafrasate), dieci formulazioni escluse senza ragione scritta,
+# quattordici forme senza esclusioni. Questa versione 2 (2 settembre 2026) conserva le CINQUE
+# PROPOSIZIONI del pilota e le riscrive secondo TRACE-RIFERIMENTO-COMPLETO.md (25/08/2026) e
+# secondo il formato dei tre file del 28 agosto (`leghari.yaml`, `greenpeace-nordic.yaml`,
+# `juliana.yaml`): canonical verbatim con documento e pagina, seeds, probe 25-35 parole,
+# probe_alternativa, lexical_markers, esclusioni con ragione (minimo tre, una di polarita'),
+# forme lessicali con esclusioni motivate, scheda del caso ancora (guida §2).
 #
-# PIPELINE COMPATIBILITY (guide §15.1). `leggi_caso()` in `tools/cerca.py` is not a full YAML
-# parser: it strips comments and reads `nome`, `codebook_versione`, `data_decisione`,
-# `escludi_case_id`, `forme`, `semantic_queries` as {id, titolo, testo}, and
-# `formulazioni_escluse` with `per`. The portal (`sondeDelCaso`) extracts the `titolo:` entries
-# inside the `semantic_queries:` block. This file KEEPS those keys with that meaning and adds
-# the documentary fields alongside them:
-#   pipeline            | this file                             | other cited-case files
+# COMPATIBILITA' CON LA PIPELINE (guida §15.1). `leggi_caso()` in `tools/cerca.py` non e' un
+# parser YAML completo: toglie i commenti e legge `nome`, `codebook_versione`, `data_decisione`,
+# `escludi_case_id`, `forme`, `semantic_queries` come {id, titolo, testo}, `formulazioni_escluse`
+# con `per`. Il portale (`sondeDelCaso`) estrae i `titolo:` dentro il blocco `semantic_queries:`.
+# Questo file CONSERVA quelle chiavi con quel significato, e aggiunge accanto i campi documentali:
+#   pipeline            | qui                                   | nei tre file del 28 agosto
 #   nome                | nome                                  | official_name
 #   data_decisione      | data_decisione (+ data_soglia_motivazione) | data_soglia
-#   forme (flat list)   | forme (flat list, categories in comments) + forme_escluse | lexical_variants.* + EXCLUSIONS
+#   forme (lista piatta)| forme (lista piatta, categorie nei commenti) + forme_escluse | lexical_variants.* + EXCLUSIONS
 #   titolo              | titolo                                | etichetta
-#   testo (the probe)   | testo  — placed BEFORE seeds, since seeds also have a `testo` field | probe
-#   formulazioni_escluse| formulazioni_escluse (single block, with `per`, + `ragione`) | exclusions nested per probe
-# If the other files are aligned to these keys, the pipeline reads them without changes to the
-# reader. Adopting the nested schema instead would require changing `leggi_caso()`.
+#   testo (la sonda)    | testo  — messo PRIMA di seeds, perche' anche i seed hanno un campo `testo` | probe
+#   formulazioni_escluse| formulazioni_escluse (blocco unico, con `per`, + `ragione`) | exclusions annidate per sonda
+# Se i tre file vengono allineati a queste chiavi, la pipeline li legge senza modifiche al
+# lettore. Se invece il PI preferisce lo schema annidato, va modificato `leggi_caso()`. Decisione
+# al PI: NOTE-PER-PI-URGENDA.md, domanda 1.
 #
-# CODING RULE: the level of court is NOT distinguished. Citing Urgenda means citing Urgenda,
-# whether the reference is to the District Court of The Hague (2015), the Court of Appeal (2018)
-# or the Supreme Court (2019). The rule applies to the CITING side. On the CITED side, each
-# canonical passage records the document and court it comes from, because the three courts do
-# not state the five propositions in the same way, and one (the civil-law duty of care) is
-# stated only at first instance.
+# DECISIONE DEL PI (30 luglio 2026): il grado di giudizio NON si distingue. Chi cita Urgenda cita
+# Urgenda, che si riferisca al Tribunale dell'Aja (2015), alla Corte d'appello (2018) o alla
+# Cassazione (2019). La regola vale per il lato CITANTE. Per il lato CITATO, ogni canonical porta
+# il documento e il grado da cui viene, perche' le cinque proposizioni non sono enunciate dai tre
+# giudici nello stesso modo, e una (il dovere di diligenza civilistico) solo dal primo grado.
 #
-# EDITORIAL CONVENTION FOR VERBATIM TEXT. `canonical` and `seeds.testo` are extracted
-# programmatically from the corpus markdown and verified token by token. Every deviation is
-# declared in `nota_verbatim` under three categories: `omissione` (internal citation,
-# parenthetical or main clause omitted), `corpus_legge` (corrected OCR corruption: none here,
-# the three source documents are PDFs with native text), `salto_pagina` (new category: print
-# header and marginal paragraph numbers that extraction inserts inside a passage spanning two
-# pages; used once, on one seed). The court's internal cross-references ("see above in
-# para. 5.2.2") are NOT omitted: they are part of the text.
+# CONVENZIONE REDAZIONALE SUI VERBATIM. `canonical` e `seeds.testo` sono estratti
+# programmaticamente dai markdown del corpus e verificati token per token. Ogni scostamento e'
+# dichiarato in `nota_verbatim` con tre categorie: `omissione` (citazione interna, inciso o
+# proposizione reggente omessi), `corpus_legge` (corruzione OCR corretta: qui nessuna, i tre
+# documenti fonte sono PDF con testo nativo), `salto_pagina` (NUOVA, proposta: intestazione di
+# stampa e numeri di paragrafo a margine che l'estrazione inserisce dentro un passaggio a cavallo
+# di due pagine; usata una sola volta, su un seed). I riferimenti interni della corte
+# ("see above in para. 5.2.2") NON sono omessi: fanno parte del testo.
 #
-# LANGUAGE. Probes are in English: the three judgments are read abroad in the English
-# translation published on rechtspraak.nl, and later citing texts echo that vocabulary
-# (rule 5.5). Probes are written as declarative judgment passages, not as questions: the index
-# manifest sets `prefisso_domanda: "passage: "` (guide §13.2), so each probe is embedded as if
-# it were a passage.
+# LINGUA. Sonde in inglese: le tre pronunce sono lette all'estero nella traduzione inglese
+# pubblicata su rechtspraak.nl, ed e' quel lessico che chi le riprende riecheggia (regola 5.5).
+# Le sonde sono scritte come passaggi di sentenza, dichiarativi, non come domande: il manifesto
+# dell'indice porta `prefisso_domanda: "passage: "` (guida §13.2), quindi la sonda viene
+# incorporata come se fosse un passaggio.
 
 nome: Urgenda Foundation v. State of the Netherlands
 non_english_name: Stichting Urgenda tegen De Staat der Nederlanden (Ministerie van Economische Zaken en Klimaat)
 case: urgenda-foundation-v-state-of-the-netherlands_3297
 codebook_versione: 0.2-pilot
-stato: bozza
+stato: bozza-da-approvare
 versione_file: 2
 data_versione: 2026-09-02
-# PARAGRAPH-NUMBER CORRECTIONS. Identified while compiling the case dossier
-# (`urgenda-fascicolo.md`, § 2.2) and verified on the texts: the canonical passage of
-# `ordine_non_legge` is Hoge Raad para. 8.2.6 (it refers to "8.2.4 above"; 8.2.7 is the
-# application to the case and remains the 8.2.7 seed); the passage on due diligence and Jugheli
-# is 5.3.3, not 5.3.4; the Rechtbank seed "source of interpretation" is 4.46, not 4.45 (as the
-# judgment itself states at 4.109: "In 4.45 and 4.46 ..."). Only paragraph numbers changed, no
-# text: search results are unaffected.
+# CORREZIONE DEI NUMERI DI PARAGRAFO (23/09/2026). Trovate scrivendo il fascicolo del caso
+# (`urgenda-fascicolo.md`, § 2.2) e verificate sui testi: il canonical di `ordine_non_legge` e' il
+# par. 8.2.6 della Hoge Raad (rimanda a «8.2.4 above»; l'8.2.7 e' l'applicazione al caso, ed e' il
+# seme che resta 8.2.7); il passo su due diligence e Jugheli e' il 5.3.3, non il 5.3.4; il seme
+# «source of interpretation» del Rechtbank e' il 4.46, non il 4.45 (lo dice la sentenza stessa al
+# 4.109: «In 4.45 and 4.46 ...»). Cambiati solo i numeri, nessun testo: le ricerche non cambiano.
+# Deciso dall'esecutore su delega del PI. Copia precedente: urgenda-prima-correzione-paragrafi-2026-09-23.yaml.bak
 
-# ── Anchor-case record (guide §2: to be recorded for every case, BEFORE any count) ──
+# ── Scheda del caso ancora (guida §2: da registrare per ogni caso, PRIMA di ogni conteggio) ──
 caso_ancora:
-  posizione_nella_lista: 1              # first case built (guide §2)
+  posizione_nella_lista: 1              # unico caso gia' costruito (guida §2, decisione PI 27/08/2026)
   motivazione_selezione: >
-    La guida (§2) prescrive che la motivazione sia enunciata su basi
+    DA SCRIVERE DAL PI. La guida (§2) prescrive che la motivazione sia enunciata su basi
     indipendenti dal corpus e prima di qualunque conteggio di citazioni; per Urgenda un
     conteggio esiste gia' (run del 31/07 e del 25/08/2026), quindi la motivazione va scritta
-    dichiarando che e' posteriore. Proposta, non ancora approvata: prima decisione in cui
+    dichiarando che e' posteriore. Proposta dell'esecutore, NON decisa: prima decisione in cui
     una corte ordina a uno Stato una riduzione quantificata delle emissioni su base non
     legislativa; rende disponibili in forma nuova la responsabilita' per la propria quota, gli
     obblighi positivi convenzionali applicati a un rischio globale e differito, e l'ordine di
@@ -82,10 +81,10 @@ caso_ancora:
   famiglia_giuridica: civil law (Paesi Bassi)
   data_prima_pronuncia: 2015-06-24      # Rechtbank Den Haag
   data_ultima_pronuncia: 2019-12-20     # Hoge Raad
-  esito: accolto                        # reduction order upheld at all three levels
+  esito: accolto                        # ordine di riduzione confermato in tre gradi
   caso_perso: false
   caso_di_controllo: false
-  documenti_corpus_successivi_alla_decisione: null   # denominator (guide §2): to be computed by the pipeline, not estimated here
+  documenti_corpus_successivi_alla_decisione: null   # denominatore (guida §2): da calcolare dalla pipeline, non stimato qui
 
 docket_numbers:
   - C/09/456689 / HA ZA 13-1396          # Rechtbank Den Haag
@@ -93,30 +92,30 @@ docket_numbers:
   - 19/00135                             # Hoge Raad
 
 identifiers:
-  - "ECLI:NL:RBDHA:2015:7145"            # Rechtbank, 24 June 2015, Dutch original
-  - "ECLI:NL:RBDHA:2015:7196"            # Rechtbank, English translation
-  - "ECLI:NL:GHDHA:2018:2591"            # Hof, 9 October 2018, Dutch original
-  - "ECLI:NL:GHDHA:2018:2610"            # Hof, English translation
-  - "ECLI:NL:HR:2019:2006"               # Hoge Raad, 20 December 2019, Dutch original
-  - "ECLI:NL:HR:2019:2007"               # Hoge Raad, English translation
-  - "ECLI:NL:PHR:2019:887"               # Procurator General's opinion, 13 September 2019, Dutch — voice `conclusioni`, not the court (guide §6)
-  - "ECLI:NL:PHR:2019:1026"              # Procurator General's opinion, English translation — same
-  - "[2015] HAZA C/09/00456689"          # form of the corpus field `numero_causa` (case label copied onto every document, including the Supreme Court judgment)
+  - "ECLI:NL:RBDHA:2015:7145"            # Rechtbank, 24 giugno 2015, originale olandese
+  - "ECLI:NL:RBDHA:2015:7196"            # Rechtbank, traduzione inglese
+  - "ECLI:NL:GHDHA:2018:2591"            # Hof, 9 ottobre 2018, originale olandese
+  - "ECLI:NL:GHDHA:2018:2610"            # Hof, traduzione inglese
+  - "ECLI:NL:HR:2019:2006"               # Hoge Raad, 20 dicembre 2019, originale olandese
+  - "ECLI:NL:HR:2019:2007"               # Hoge Raad, traduzione inglese
+  - "ECLI:NL:PHR:2019:887"               # conclusie PG, 13 settembre 2019, olandese — VOCE `conclusioni`, non corte (guida §6)
+  - "ECLI:NL:PHR:2019:1026"              # conclusie PG, traduzione inglese — idem
+  - "[2015] HAZA C/09/00456689"          # forma del campo `numero_causa` del corpus (etichetta di caso, copiata su tutti i documenti compresa la Cassazione)
 
-# Documents of the Urgenda proceedings themselves do not cite a precedent: they name themselves.
-# They are excluded and counted separately (785 passages in the pilot). The pilot used
-# `escludi_case_id: urgenda` (scalar, substring match). In the nine case documents loaded, only
-# ONE case_id appears: unlike Juliana, the proceedings are not split across identifiers. To be
-# confirmed on the full corpus.
+# Gli atti del giudizio Urgenda stesso non citano un precedente: nominano se stessi. Si escludono
+# e si contano a parte (785 passaggi nel pilota). Il pilota aveva `escludi_case_id: urgenda`
+# (scalare, sottostringa). Nei nove documenti del fascicolo caricati il 2/9/2026 compare UN SOLO
+# case_id: il giudizio non risulta spezzato come Juliana. Da confermare sul corpus intero
+# (NOTE-PER-PI 28/08, § 3.4).
 escludi_case_id:
   - urgenda-foundation-v-state-of-the-netherlands_3297
 
-# ── Threshold date ──────────────────────────────────────────────────────────────────────────
-# Pipeline key: `data_decisione`. It is the threshold of the temporal filter (guide §19).
+# ── Data soglia ─────────────────────────────────────────────────────────────────────────────
+# Chiave della pipeline: `data_decisione`. E' la soglia del filtro temporale (guida §19).
 data_decisione: 2015-06-24
 data_soglia_motivazione: >
-  Prima delle tre pronunce (Rechtbank Den Haag, 24 giugno 2015). Regola del
-  progetto: chi cita Urgenda la cita a prescindere dal grado, quindi la soglia segue il giudizio e
+  Prima delle tre pronunce (Rechtbank Den Haag, 24 giugno 2015). Decisione del PI del 30 luglio
+  2026: chi cita Urgenda la cita a prescindere dal grado, quindi la soglia segue il giudizio e
   non la proposizione. Conseguenza da tenere presente in lettura: quattro canonical su cinque
   vengono dalla Cassazione (20 dicembre 2019) e uno dal primo grado; fra il 24 giugno 2015 e il
   20 dicembre 2019 la rete semantica restituira' candidati che non possono riprendere le
@@ -125,7 +124,7 @@ data_soglia_motivazione: >
   giugno 2015 non si buttano: sono l'argomento CONTRO la derivazione e si rileggono con
   `--con-anteriori`.
 
-# ── Case documents in the corpus (nine, all under the same case_id) ───────────────────────
+# ── Documenti del fascicolo nel corpus (nove, tutti sotto lo stesso case_id) ───────────────
 fonte_primaria:
   - documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
     file_origine: 20150624_2015-HAZA-C0900456689_decision.pdf
@@ -140,48 +139,48 @@ fonte_primaria:
     descrizione: Hoge Raad, 20 dicembre 2019, traduzione inglese, 47 pagine, testo nativo, stampa da rechtspraak.nl con intestazioni di pagina
     ruolo: fonte dei canonical di `propria_quota`, `obblighi_positivi`, `ordine_non_legge`, `target_giudiziale`
 fonte_originale_olandese:
-  - documento: urgenda-foundation-v-state-of-the-netherlands-decision_4fc2      # Hof, 9 October 2018, Dutch, 20 pages
-  - documento: urgenda-foundation-v-state-of-the-netherlands-judgment_4966      # Hoge Raad, 20 December 2019, Dutch, 41 pages
-  # The Dutch original of the 2015 Rechtbank judgment is NOT among the nine loaded documents: check whether it is in the corpus.
+  - documento: urgenda-foundation-v-state-of-the-netherlands-decision_4fc2      # Hof, 9 ottobre 2018, olandese, 20 pagine
+  - documento: urgenda-foundation-v-state-of-the-netherlands-judgment_4966      # Hoge Raad, 20 dicembre 2019, olandese, 41 pagine
+  # L'originale olandese del Rechtbank 2015 NON e' fra i nove documenti caricati: verificare se e' nel corpus.
 fonte_esclusa:
-  - documento: urgenda-foundation-v-state-of-the-netherlands-opinion_9d44       # Procurator General's opinion (Langemeijer/Wissink), 13 September 2019, English, 140 pages
+  - documento: urgenda-foundation-v-state-of-the-netherlands-opinion_9d44       # conclusie PG Langemeijer/Wissink, 13 settembre 2019, inglese, 140 pagine
     ragione: >
       VOCE `conclusioni`, non `corte` (guida §6: l'errore di attribuzione alla corte fu scoperto
       proprio su Urgenda). Nel corpus porta `tipo_atto: decisione`: difetto di metadato. Nessun
       canonical e nessun seed viene da qui.
-  - documento: urgenda-foundation-v-state-of-the-netherlands-opinion_a9e2       # same, Dutch, 141 pages
+  - documento: urgenda-foundation-v-state-of-the-netherlands-opinion_a9e2       # idem, olandese, 141 pagine
     ragione: idem
 atti_di_parte:
-  - documento: urgenda-foundation-v-state-of-the-netherlands-appeal_7b30        # State's cassation appeal (Procesinleiding), 8 January 2019, Dutch, 56 pages — voice `parte`
-  - documento: urgenda-foundation-v-state-of-the-netherlands-appeal_2adc        # Urgenda's statement of defence in cassation (Verweerschrift), 12 April 2019, Dutch, 228 pages — voice `parte`; tagged in the corpus as `tipo_atto: atto introduttivo` from the Sabin file name "appeal": it is a defence brief, metadata error
+  - documento: urgenda-foundation-v-state-of-the-netherlands-appeal_7b30        # Procesinleiding dello Stato in cassazione, 8 gennaio 2019, olandese, 56 pagine — voce `parte`
+  - documento: urgenda-foundation-v-state-of-the-netherlands-appeal_2adc        # Verweerschrift di Urgenda in cassazione, 12 aprile 2019, olandese, 228 pagine — voce `parte`; nel corpus `tipo_atto: atto introduttivo` derivato dal nome file Sabin "appeal": e' una difesa, difetto di metadato
 
-# ── Lexical forms (lexical variants) ──────────────────────────────────────────────────────
+# ── Forme testuali (lexical variants) ──────────────────────────────────────────────────────
 #
-# Pipeline key: `forme`, a flat list. The category of each form is given in the comment
-# (comments are stripped before reading). The lexical net is exhaustive by construction: it
-# returns every literal occurrence of the declared forms, and nothing that is not listed. Status
-# of each OCR variant: OBSERVED (in the corpus or in the case dossier itself) or EXPECTED
-# (derived from the documented error model: r->1, r->t, g->u, g->c, p->n, loss of the initial
-# capital). Matching is exact and insensitive to line breaks after `textnorm.normalize()`.
+# Chiave della pipeline: `forme`, lista piatta. La categoria di ogni forma sta nel commento
+# (i commenti sono tolti prima della lettura). La rete lessicale e' esaustiva per costruzione:
+# restituisce tutte le occorrenze letterali delle forme dichiarate. Cio' che non elenchiamo non
+# esiste. Stato di ogni variante OCR: OSSERVATA (nel corpus o nel fascicolo stesso) o PREVISTA
+# (derivata dal modello di errore documentato: r->1, r->t, g->u, g->c, p->n, caduta della
+# maiuscola iniziale). La ricerca e' esatta e insensibile agli a-capo dopo `textnorm.normalize()`.
 forme:
-  # short forms
+  # forme brevi
   - Urgenda
-  - Urgenda-                             # prefix: covers the Dutch compounds OBSERVED in the dossier: Urgenda-zaak, Urgenda-arrest, Urgenda-uitspraak, Urgenda-vonnis
-  - the Urgenda case                     # OBSERVED (Hof EN p. 8, quoting the NEV; Procurator General's opinion EN)
-  - the Urgenda judgment                 # OBSERVED (Procurator General's opinion EN)
-  - the Urgenda decision                 # OBSERVED (statement of defence)
+  - Urgenda-                             # prefisso: copre i composti olandesi OSSERVATI nel fascicolo: Urgenda-zaak, Urgenda-arrest, Urgenda-uitspraak, Urgenda-vonnis
+  - the Urgenda case                     # OSSERVATA (Hof EN p. 8, citazione della NEV; conclusie EN)
+  - the Urgenda judgment                 # OSSERVATA (conclusie EN)
+  - the Urgenda decision                 # OSSERVATA (verweerschrift)
   - the Urgenda ruling
   - Urgenda case
   - Urgenda judgment
   - Urgenda ruling
   - Urgenda decision
   - Urgenda litigation
-  - Klimaatzaak Urgenda                  # OBSERVED: case summary (inhoudsindicatie) of HR (nl and en) and Hof nl
-  - Climate case Urgenda                 # OBSERVED: case summary (inhoudsindicatie) of Hof EN
-  - zaak Urgenda                         # OBSERVED: HR nl/en, Hof nl, Procurator General's opinion
-  # party names and connective variants
+  - Klimaatzaak Urgenda                  # OSSERVATA: inhoudsindicatie HR (nl e en) e Hof nl
+  - Climate case Urgenda                 # OSSERVATA: inhoudsindicatie Hof EN
+  - zaak Urgenda                         # OSSERVATA: HR nl/en, Hof nl, conclusie
+  # denominazioni delle parti e varianti dei connettivi
   - Urgenda Foundation
-  - Stichting Urgenda                    # OBSERVED: HR case heading, Procurator General's opinion, party briefs
+  - Stichting Urgenda                    # OSSERVATA: rubrica HR, conclusie, atti di parte
   - Urgenda Foundation v. State of the Netherlands
   - Urgenda Foundation v. the State of the Netherlands
   - Urgenda Foundation v. The State of the Netherlands
@@ -191,26 +190,26 @@ forme:
   - Urgenda v. the Netherlands
   - Urgenda v. Netherlands
   - Urgenda v the Netherlands
-  - Urgenda Foundation v. Kingdom of the Netherlands   # name recurring in scholarship and common-law filings; NOT observed in the dossier
+  - Urgenda Foundation v. Kingdom of the Netherlands   # denominazione ricorrente in dottrina e in atti di common law; NON osservata nel fascicolo
   - Urgenda v. Kingdom of the Netherlands
-  - State of the Netherlands v. Urgenda Foundation      # reversed caption on appeal and cassation (the State is appellant)
+  - State of the Netherlands v. Urgenda Foundation      # rubrica invertita in appello e cassazione (lo Stato e' appellante/ricorrente)
   - State of the Netherlands v. Urgenda
   - The Netherlands v. Urgenda
   - Netherlands v. Urgenda
   - Stichting Urgenda v. Staat der Nederlanden
   - Staat der Nederlanden v. Stichting Urgenda
   - Staat der Nederlanden/Stichting Urgenda
-  - Staat/Urgenda                        # abbreviated Dutch citation form (NOT observed in the dossier)
+  - Staat/Urgenda                        # forma abbreviata olandese di citazione (NON osservata nel fascicolo)
   - Urgenda/Staat
-  # identifiers
+  # identificativi
   - "ECLI:NL:RBDHA:2015:7145"
   - "ECLI:NL:RBDHA:2015:7196"
-  - "ECLI:NL:RBDHA: 2015:7145"           # OBSERVED with a space after the colon (Hof EN p. 2 and Hof nl)
+  - "ECLI:NL:RBDHA: 2015:7145"           # OSSERVATA con spazio dopo i due punti (Hof EN p. 2 e Hof nl)
   - "ECLI:NL:GHDHA:2018:2591"
   - "ECLI:NL:GHDHA:2018:2610"
   - "ECLI:NL:HR:2019:2006"
   - "ECLI:NL:HR:2019:2007"
-  - "ECLI:NL:PHR:2019:887"               # Procurator General's opinion: citing it cites the Urgenda dossier, voice `conclusioni`
+  - "ECLI:NL:PHR:2019:887"               # conclusie: chi la cita cita il fascicolo Urgenda, voce `conclusioni`
   - "ECLI:NL:PHR:2019:1026"
   - C/09/456689
   - C/09/456689 / HA ZA 13-1396
@@ -218,16 +217,16 @@ forme:
   - 200.178.245/01
   - 200.178.245
   - 19/00135
-  # OCR and extraction variants
-  - Lirgenda                             # OBSERVED in the corpus (Duarte Agostinho): U read as L
-  - Urgcnda                              # pilot: e read as c
-  - Uruenda                              # OBSERVED in the corpus: g->u
-  - urcenda                              # OBSERVED in the corpus: g->c and loss of the initial capital
-  - "ECLI:NL:HR(2019(2007"               # OBSERVED only in the dossier itself (94 occurrences in the print headers of HR EN): colons rendered as parentheses. Artefact of the rechtspraak.nl print PDF; may recur in other prints of the same type, not verified elsewhere
-  - U1genda                              # EXPECTED (r->1)
-  - Utgenda                              # EXPECTED (r->t)
-  - rgenda                               # EXPECTED (loss of the initial capital, as in the observed `reenpeace`)
-  # translations of the case name
+  # varianti OCR e di estrazione
+  - Lirgenda                             # OSSERVATA nel corpus (Duarte Agostinho): U letta come L
+  - Urgcnda                              # pilota: e letta come c
+  - Uruenda                              # OSSERVATA nel corpus (NOTE-PER-PI 28/08, § 2.3): g->u
+  - urcenda                              # OSSERVATA nel corpus (idem): g->c e caduta della maiuscola
+  - "ECLI:NL:HR(2019(2007"               # OSSERVATA solo nel fascicolo stesso (94 occorrenze nelle intestazioni di stampa di HR EN): i due punti resi come parentesi. Artefatto del PDF di stampa da rechtspraak.nl; puo' ripresentarsi su altre stampe dello stesso tipo, non e' stato verificato altrove
+  - U1genda                              # PREVISTA (r->1)
+  - Utgenda                              # PREVISTA (r->t)
+  - rgenda                               # PREVISTA (caduta della maiuscola iniziale, come l'osservato `reenpeace`)
+  # traduzioni del nome del caso
   - Urgenda c. Paesi Bassi
   - Fondazione Urgenda c. Stato dei Paesi Bassi
   - caso Urgenda
@@ -243,20 +242,22 @@ forme:
   - Fundación Urgenda c. Estado de los Países Bajos
   - caso Urgenda contra Países Bajos
   - Fundação Urgenda c. Estado dos Países Baixos
-  # forms in other scripts. The Japanese petition and two opinions of the Korean National Human
-  # Rights Commission name Urgenda ONLY in these forms, so the lexical net did not retrieve them.
-  # Identified by reading pages the reranker had placed outside the window.
-  - 우르헨다                              # OBSERVED (Korean: petitions Do-Hyun Kim, Woodpecker; opinions of the National Human Rights Commission)
-  - アジェンダ財団                        # OBSERVED (Japanese: Youth Climate Case Japan, petition)
-  - アジェンダ事件                        # OBSERVED (Japanese: same, and another filing in the same case). NOT bare アジェンダ, which means "agenda"
+  # forme in altre scritture (29/9/2026). Mancavano: il ricorso giapponese e due pareri della
+  # Commissione coreana per i diritti umani nominano Urgenda SOLO cosi', e la rete lessicale
+  # non li vedeva. Trovate leggendo le pagine che il reranker metteva fuori dalla finestra.
+  - 우르헨다                              # OSSERVATA (coreano: ricorsi Do-Hyun Kim, Woodpecker, pareri della Commissione nazionale)
+  - アジェンダ財団                        # OSSERVATA (giapponese: Youth Climate Case Japan, ricorso)
+  - アジェンダ事件                        # OSSERVATA (giapponese: idem, e altro atto dello stesso caso). NON la sola アジェンダ: vuol dire «agenda»
+  - アージェンダ事件                      # OSSERVATA 01/10/2026 (giapponese: Climate Justice Case, ricorso, pp. 38, 115, 119)
+  - アージェンダ財団                      # OSSERVATA 01/10/2026 (giapponese: idem, p. 38)
 
-found_in_corpus: []   # to be filled from `proposto_forma_trovata` of the pilot runs (guide §26.2): forms actually used by other documents
+found_in_corpus: []   # da riempire da `proposto_forma_trovata` delle run del 31/07 e 25/08/2026 (guida §26.2): forme davvero usate da altri documenti
 
 forme_escluse:
   - forma: urgency
     ragione: >
       Token a distanza di edit 2 da "Urgenda", 67 occorrenze nella scansione del sotto-corpus
-      Non e' una variante ma una parola inglese. La ricerca esatta
+      (NOTE-PER-PI 28/08, § 2.3). Non e' una variante ma una parola inglese. La ricerca esatta
       non la pesca comunque; la ragione va scritta perche' e' cio' che rende difendibile la
       lista (guida §15.1).
   - forma: urgent
@@ -301,46 +302,47 @@ forme_escluse:
       citare il giudizio. Nel corpus contenzioso il caso e' quasi sempre il giudizio; le
       occorrenze vanno comunque riviste a mano alla prima esecuzione, come per "Juliana".
 
-# SYSTEMATIC FALSE POSITIVE TO BE DECLARED (guide §14): the table of authorities in common-law
-# briefs. Measured on the Urgenda pilot run: 21 rows out of 1,826 (1.2%). The pipeline excludes
-# it automatically (recognised by dot leaders and heading); this block is documentation, not an
-# instruction.
+# FALSO POSITIVO SISTEMATICO DA DICHIARARE (guida §14): la table of authorities delle memorie di
+# common law. Misurato su Urgenda nel diario: 21 righe su 1.826, l'1,2%. La pipeline la esclude
+# in automatico ("riconosciuto dai punti di guida e dall'intestazione"); il blocco qui e'
+# documentazione, non istruzione.
 falso_positivo_dichiarato:
   tipo: table of authorities
-  misurato_su: run pilota Urgenda (guida §14)
+  misurato_su: run pilota Urgenda (METODO-RECUPERO, via guida §14)
   righe_con_nome: 1826
   righe_voce_indice: 21
   quota: 0.012
 
-# ── Probes (semantic queries) ─────────────────────────────────────────────────────────────
+# ── Sonde (semantic queries) ───────────────────────────────────────────────────────────────
 #
-# ONE PROPOSITION PER PROBE, BUT ARTICULATED (25-35 words). Verified by measurement on the
-# probes of the pilot (guide §14, lesson 4): the extended formulation outperforms the short one
-# on propria_quota (0.688 vs 0.630), ordine_non_legge (0.682 vs 0.597), dovere_diligenza
-# (0.677 vs 0.603), with nearly disjoint result sets. Combining DIFFERENT propositions dilutes
-# a probe; articulating the same one does not.
+# UNA PROPOSIZIONE PER SONDA, MA ARTICOLATA (25-35 parole). Verificato misurando sulle sonde
+# di questo stesso pilota (guida §14, lezione 4): la formulazione estesa batte la breve su
+# propria_quota (0,688 vs 0,630), ordine_non_legge (0,682 vs 0,597), dovere_diligenza (0,677
+# vs 0,603), con insiemi di risultati quasi disgiunti. Diluisce comporre proposizioni DIVERSE,
+# non articolare la stessa.
 #
-# NO PROBE CONTAINS THE CASE NAME, nor numbers, dates or facts of the proceedings (25%, 2020,
-# 450 ppm). ECHR article numbers remain in `obblighi_positivi`: they are not a fact of the case
-# but the doctrinal identity of the proposition (Convention family as opposed to the civil-law
-# and due-process families). That probe's `probe_alternativa` omits them on purpose: the pair
-# measures exactly this choice (§ 5.6).
+# NESSUNA CONTIENE IL NOME DEL CASO, ne' numeri, date o fatti del giudizio (il 25%, il 2020, il
+# 450 ppm). I numeri degli articoli CEDU restano in `obblighi_positivi`: non sono un fatto del
+# giudizio ma l'identita' dottrinale della proposizione (famiglia convenzionale contro famiglia
+# civilistica e famiglia del due process). La `probe_alternativa` di quella sonda li omette
+# apposta: la coppia misura esattamente questa scelta (§ 5.6).
 #
-# IDS ARE THOSE OF THE PILOT, without an `urgenda.` prefix: rows already produced by the pilot
-# runs carry `sonda: propria_quota` etc., and the other cited-case files refer to them this way
-# in their exclusions. Harmonising (prefix here or removal there) is an open question.
+# GLI ID SONO QUELLI DEL PILOTA, senza prefisso `urgenda.`: le righe gia' pubblicate su Firestore
+# (run del 25/08/2026) portano `sonda: propria_quota` ecc., e i tre file del 28 agosto li
+# citano cosi' nelle loro esclusioni. Uniformare (prefisso qui o rimozione la') e' la domanda 2
+# di NOTE-PER-PI-URGENDA.md.
 #
-# PROVENANCE OF THE CANONICAL PASSAGES, by court. This matters: the pilot probe
-# `dovere_diligenza` had been declared "extracted from the Supreme Court judgment", but the
-# Supreme Court never bases its own ruling on a civil-law duty of care; it uses "duty of care"
-# only when summarising the lower courts (pp. 14-19). The duty of care under art. 6:162 BW
-# belongs to the 2015 Rechtbank; the Court of Appeal restates it as "duty of care under Articles
-# 2 and 8 ECHR" (hybrid formulation); the Supreme Court speaks of positive obligations. Hence:
-#   propria_quota       -> Hoge Raad 5.7.5-5.7.7 (p. 28-29); anticipated by Rechtbank 4.79 and Hof 62, 64
-#   obblighi_positivi   -> Hoge Raad 5.6.2 (p. 26); anticipated by Hof 41-45
-#   dovere_diligenza    -> Rechtbank 4.83 (p. 49) — civil-law form ONLY at first instance
-#   ordine_non_legge    -> Hoge Raad 8.2.6 (p. 41); anticipated by Rechtbank 4.101 and Hof 68
-#   target_giudiziale   -> Hoge Raad 6.4 (p. 31); anticipated by Rechtbank 4.86 and Hof 53
+# PROVENIENZA DEI CANONICAL, per grado. Non e' un dettaglio: la sonda del pilota
+# `dovere_diligenza` era stata dichiarata "estratta dalla Cassazione", ma la Cassazione non
+# fonda mai il proprio decisum su un duty of care civilistico; usa "duty of care" solo nel
+# riassunto dei gradi inferiori (pp. 14-19). Il dovere di diligenza ex art. 6:162 BW e' del
+# Rechtbank 2015; la Corte d'appello lo ribattezza "duty of care under Articles 2 and 8 ECHR"
+# (formulazione ibrida); la Cassazione parla di obblighi positivi. Quindi:
+#   propria_quota       -> Hoge Raad 5.7.5-5.7.7 (p. 28-29); anticipata da Rechtbank 4.79 e Hof 62, 64
+#   obblighi_positivi   -> Hoge Raad 5.6.2 (p. 26); anticipata da Hof 41-45
+#   dovere_diligenza    -> Rechtbank 4.83 (p. 49) — SOLO primo grado nella forma civilistica
+#   ordine_non_legge    -> Hoge Raad 8.2.6 (p. 41); anticipata da Rechtbank 4.101 e Hof 68
+#   target_giudiziale   -> Hoge Raad 6.4 (p. 31); anticipata da Rechtbank 4.86 e Hof 53
 
 semantic_queries:
 
@@ -573,7 +575,7 @@ semantic_queries:
       obblighi positivi CEDU. La proposizione civilistica e' del Rechtbank, che la costruisce
       sull'art. 6:162 BW e sulla giurisprudenza Kelderluik (4.53-4.54), usando gli artt. 2 e 8
       CEDU come fonte di interpretazione della norma aperta (4.46). Il grado di provenienza qui
-      conta per la lettura dei risultati, non per il filtro temporale (regola del progetto).
+      conta per la lettura dei risultati, non per il filtro temporale (regola del PI).
     seeds:
       - testo: >
           However, both articles and their interpretation given by the ECtHR, particularly
@@ -757,7 +759,7 @@ semantic_queries:
             "worldwide against", l'estrazione inserisce l'intestazione di stampa ("1/13/20, 1(48
             PM ECLI:NL:HR(2019(2007, Hoge Raad, 19/00135 (Engels) Page 31 of 47 https://...")
             e i numeri di paragrafo a margine ("6.4 6.5 6.6 7.1"). Qui rimossi. Categoria
-            NUOVA rispetto alla convenzione precedente.
+            NUOVA rispetto alla convenzione del 28 agosto: vedi NOTE-PER-PI-URGENDA.md, domanda 5.
       - testo: >
           In determining the State’s minimum obligations, the courts must observe restraint,
           especially if rules or agreements are involved that are not binding in themselves.
@@ -815,35 +817,35 @@ semantic_queries:
       de: [Untergrenze, Mindestreduktion, Reduktionsanordnung]
       fr: [limite inferieure, part equitable minimale, injonction de reduction]
 
-# DROPPED IN THE PILOT AND NOT REINTRODUCED, with the pilot's reasoning confirmed:
-# - "science as the source of the obligation": in Urgenda scientific knowledge grounds the
-#   foreseeability of harm WITHIN the duty analysis; it is not a free-standing proposition;
-# - "25% reduction by 2020": a fact of the case, not a transferable proposition; replaced by
-#   `target_giudiziale`.
-# AXES NOT COVERED by the five probes, identified by re-reading the three judgments and NOT
-# promoted to probes pending a decision: the State's burden of justifying a policy below the
-# consensus minimum (HR 6.5, 7.4.6; Hof 52); the reflex effect of international obligations
-# on open norms of domestic law (Rechtbank 4.43-4.44); collective standing under art. 3:305a BW,
-# which bypasses the victim requirement of art. 34 ECHR (HR 5.9.2-5.9.3; Hof 35-36).
+# TOLTE NEL PILOTA E NON REINTRODOTTE, con la ragione del pilota confermata:
+# - "la scienza come fonte dell'obbligo": in Urgenda la conoscenza scientifica fonda la
+#   prevedibilita' del danno DENTRO l'analisi del dovere, non e' una proposizione autonoma;
+# - "riduzione del 25% entro il 2020": fatto del giudizio, non proposizione trasferibile;
+#   sostituita da `target_giudiziale`.
+# ASSI NON COPERTI dalle cinque sonde, emersi rileggendo i tre gradi e NON promossi a sonda
+# senza decisione del PI (NOTE-PER-PI-URGENDA.md, domanda 4): l'onere dello Stato di motivare
+# una politica sotto il minimo di consenso (HR 6.5, 7.4.6; Hof 52); l'effetto riflesso degli
+# obblighi internazionali nelle norme aperte di diritto interno (Rechtbank 4.43-4.44); la
+# legittimazione collettiva ex art. 3:305a BW che aggira il requisito di vittima ex art. 34
+# CEDU (HR 5.9.2-5.9.3; Hof 35-36).
 
-# ── Excluded formulations ─────────────────────────────────────────────────────────────────
+# ── Formulazioni escluse ───────────────────────────────────────────────────────────────────
 #
-# Pipeline key: `formulazioni_escluse`, a single block, each entry with `per`. The `ragione`
-# field is added (it was missing in the pilot, where its absence was the first documented gap).
+# Chiave della pipeline: `formulazioni_escluse`, blocco unico, ogni voce con `per`. Il campo
+# `ragione` e' aggiunto (nel pilota mancava: era la prima lacuna dichiarata dal diario).
 #
-# THEY DO NOT FILTER, THEY MEASURE. Each candidate is output with its score against the probe,
-# its score against the nearest exclusion, and the `margine`; a negative margin marks the row as
-# `sospetto` (suspect) without discarding it (guide §18.2, §18.3). The reranker does not separate
-# the exclusions (0.73 for CBDR vs 0.95 for the norm): only this comparison governs them. At
-# least three per probe, never just one (guide §46.1), including one POLARITY exclusion per
-# probe: the negative or dismissive version of a proposition sits next to the affirmative one
-# in embedding space, and the vector does not distinguish them.
+# NON FILTRANO, MISURANO. Ogni candidato esce con il punteggio verso la sonda, il punteggio
+# verso l'esclusa piu' vicina e il `margine`; margine negativo = riga marcata `sospetto`, non
+# scartata (guida §18.2, §18.3). Il riordinatore non separa le escluse (0,73 alla CBDR contro
+# 0,95 alla norma): le governa solo questo confronto. Minimo tre per sonda, mai una sola (guida
+# §46.1); una di POLARITA' per sonda (handoff 28/08, § 6): la versione negativa o derisoria della
+# proposizione occupa una posizione contigua a quella affermativa e il vettore non la vede.
 #
-# ORIGIN. The ten pilot exclusions are retained with the same wording unless stated otherwise.
-# Additions are of three kinds: POLARITY exclusions; NEIGHBOURING probes from the other
-# cited-case files (Juliana, Greenpeace Nordic), cross-referenced because each pair must be
-# measured (§ 5.6); and formulations found WITHIN the Urgenda dossier itself as the State's
-# defence or as a premise attributed to the ECHR (declared authorship, § 6).
+# ORIGINE. Le dieci del pilota (indicazioni del PI, 30 luglio 2026) sono conservate con la
+# stessa formulazione, salvo dove indicato. Le aggiunte sono di tre tipi: la POLARITA'; le
+# sonde VICINE degli altri tre file (Juliana, Greenpeace Nordic), con rinvio incrociato, perche'
+# la coppia va misurata (§ 5.6); le formulazioni che stanno DENTRO il fascicolo Urgenda come
+# difesa dello Stato o come premessa attribuita alla CEDU (paternita' dichiarata, § 6).
 
 formulazioni_escluse:
 
@@ -1015,7 +1017,7 @@ formulazioni_escluse:
       Under the separation of powers the courts must not substitute their own judgment for that
       of the legislature and the executive on questions of political and budgetary discretion.
     ragione: >
-      Pilota: formulata cosi' e' troppo generica e trova qualunque cosa. Il riordinatore non
+      Pilota, su indicazione del PI (cercata cosi' "pesca qualunque cosa"). Il riordinatore non
       la separa. Manca il punto specifico: non dice nulla sulla FORMA che l'ordine puo' assumere.
       Esclusa anche in `leghari.diritti_come_strumentario`, `greenpeace-nordic.valvola_di_sicurezza`,
       `juliana.rimedio_praticabile`.
@@ -1036,7 +1038,7 @@ formulazioni_escluse:
       is to be achieved.
     ragione: >
       E' `juliana.rimedio_praticabile`, il vicino PIU' PROSSIMO dell'intero impianto
-      Stessa famiglia (limiti alla confezione del rimedio), limite
+      (NOTE-PER-PI 28/08, § 5-bis): stessa famiglia (limiti alla confezione del rimedio), limite
       diverso. Urgenda esclude l'ordine di legiferare con un certo contenuto; Aiken esclude la
       prescrizione dei mezzi. PRIMA COPPIA da misurare (§ 5.6): se pescano le stesse cose, il
       confronto Urgenda/Juliana su questo asse non e' informativo.
@@ -1113,21 +1115,20 @@ formulazioni_escluse:
       valvola di sicurezza in Greenpeace Nordic. Nei documenti che oppongono Urgenda a quei casi
       compare accanto alla sonda, e il vettore non la separa.
 
-# ── Analytical note, not a drafting rule ─────────────────────────────────────────────────────
+# ── Nota analitica, da non trattare come regola di stesura ─────────────────────────────────
 #
-# Urgenda is the only anchor case decided at three levels with a consistent outcome and the
-# only one already run through the pipeline. Two points affect the reading of results, not the
-# drafting of this file:
-# 1. Between 24 June 2015 and 20 December 2019, candidates can only take up the first-instance
-#    or appeal judgments. The civil-law formulation (`dovere_diligenza`) is the one later
-#    litigation tends to ABANDON (the best-known uptakes move to arts. 2 and 8 ECHR or to
-#    constitutional provisions): a decline in uptake of that probe after 2018 is a finding, not
-#    a defect of the probe.
-# 2. The ECtHR judgment in KlimaSeniorinnen (9 April 2024) restates the positive climate
-#    obligations in its own vocabulary; TO BE VERIFIED on the text of the judgment (not in the
-#    loaded dossier). If confirmed, from 2024 uptakes of `obblighi_positivi` may attribute the
-#    proposition to the ECtHR rather than to Urgenda: this is the declared-authorship criterion
-#    (§ 6), and it must be measured, not assumed.
+# Urgenda e' l'unico caso ancora deciso in tre gradi con esito costante e l'unico gia' eseguito
+# nella pipeline. Due cose incidono sulla lettura dei risultati e non sulla stesura:
+# 1. Fra il 24 giugno 2015 e il 20 dicembre 2019 i candidati riprendono il primo grado o la
+#    Corte d'appello; la formulazione civilistica (`dovere_diligenza`) e' l'unica che il
+#    contenzioso successivo tende ad ABBANDONARE (le riprese piu' note passano agli artt. 2 e 8
+#    CEDU o a norme costituzionali): un calo delle riprese di quella sonda dopo il 2018 e' un
+#    dato, non un difetto della sonda.
+# 2. La sentenza della Corte EDU in KlimaSeniorinnen (9 aprile 2024) riformula gli obblighi
+#    positivi climatici con lessico proprio, DA VERIFICARE sul testo della sentenza (non e' nel
+#    fascicolo caricato). Se confermato, dal 2024 le riprese di `obblighi_positivi` possono
+#    attribuire la proposizione alla Corte EDU e non a Urgenda: e' il criterio della paternita'
+#    dichiarata (§ 6), e va misurato, non presunto.
 nota_analitica:
   spartiacque_possibili: [2018-10-09, 2019-12-20, 2024-04-09]
   effetto_atteso: >

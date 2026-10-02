@@ -1,0 +1,60 @@
+# CASO CITATO — OC-32/25, Corte interamericana dei diritti umani
+#
+# PERCHE' ESISTE. Il 19 settembre 2026 il PI ha chiesto se il corpus sapesse
+# delle citazioni della Corte interamericana trovate leggendo un articolo di
+# Earth Law Center. Il corpus ne sapeva PIU' dell'articolo — 81 documenti la
+# nominano, 18 casi distinti contro i sette esaminati — ma nessuno strumento le
+# aveva mai cercate, perche' non esisteva una query specification per questo
+# caso citato.
+#
+# PERCHE' LE FORME SONO CODICI E NON NOMI. Il nome per esteso e' «Request for
+# an advisory opinion on the scope of the state obligations for responding to
+# the climate emergency», ma nessuna corte lo scrive cosi': un parere
+# consultivo si cita col numero. Cercare il nome trova zero.
+#
+# LE LINGUE NON SONO UN DI PIU'. Dei 18 casi che la nominano, sei sono
+# brasiliani e uno colombiano: quelle corti scrivono «Parecer Consultivo» e
+# «Opinion Consultiva».
+#
+# CODEBOOK. Qui si dice CHE COSA cercare, non come classificare cio' che si
+# trova.
+
+nome: Climate Emergency and Human Rights, Advisory Opinion OC-32/25
+
+codebook_versione: 0.2-pilot
+
+# DUE DATE, e vanno tenute tutte e due: i documenti primari del corpus dicono
+# 29 maggio 2025, che e' l'adozione; altre fonti dicono 3 luglio 2025, che e'
+# la pubblicazione. Chi cita usa l'una o l'altra, quindi cercare per data
+# sarebbe un errore: si cerca il codice.
+data_decisione: 2025-05-29
+data_pubblicazione: 2025-07-03
+
+# Il fascicolo della richiesta nomina il proprio numero a ogni pagina: non e'
+# una citazione, e' un atto che parla di se'.
+escludi_case_id:
+  - request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency
+
+forme:
+  - OC-32/25                             # OSSERVATA: 81 documenti del corpus (19/09/2026)
+  - OC-32/2025                           # OSSERVATA: atti brasiliani
+  - OC-32/24                             # OSSERVATA: refuso in un atto del Ministerio Publico brasiliano, ma e' questa
+  - OC 32/25
+  - Advisory Opinion OC-32                # OSSERVATA: CEDU, Greenpeace Nordic; ICJ; Juliana
+  - Advisory Opinion OC-32/25
+  - Opinion Consultiva OC-32
+  - Opinion Consultiva OC-32/25
+  - Opiniao Consultiva OC-32              # OSSERVATA: atti brasiliani
+  - Opiniao Consultiva OC-32/25
+  - Parecer Consultivo OC-32
+  - Parecer Consultivo OC-32/25
+  - Climate Emergency and Human Rights    # OSSERVATA: Denman, Dykstra, Venner
+  - Emergencia Climatica y Derechos Humanos
+
+# DA NON CONFONDERE: OC-23/17 e' il parere del 2017 sull'ambiente, un caso a
+# se' con 165 documenti che lo nominano. Senza questa esclusione una ricerca
+# su «Opinion Consultiva OC-» li pescherebbe tutti e due.
+forme_escluse:
+  - OC-23/17
+  - OC-23/2017
+  - Advisory Opinion OC-23

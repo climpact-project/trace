@@ -1,0 +1,343 @@
+# CODEBOOK — TIPI DI CITAZIONE
+#
+# COSA E' QUESTO FILE. E' lo strumento di codifica del progetto. Definisce
+# le categorie, i loro confini e le regole per i casi dubbi. Vale per tutti
+# i ricercatori e per tutti i mesi: NON si riscrive a ogni ricerca.
+#
+# PERCHE' E' UN FILE E NON UNA FRASE DETTA OGNI VOLTA. Quattro persone che
+# formulano a memoria lo stesso criterio producono quattro criteri diversi.
+# Non se ne accorge nessuno, perche' i risultati sembrano comunque
+# plausibili — e il controllo a campione misurerebbe la variabilita' della
+# formulazione invece della qualita' della codifica. Con un file versionato,
+# "la stessa query" significa davvero la stessa.
+#
+# COME SI USA:
+#     cerca --codebook codebook/citazioni.yaml --bersaglio bersagli/urgenda.yaml
+#
+# Il codebook (questo file) dice COME classificare. Il bersaglio dice COSA
+# cercare. Il primo cambia raramente e con una revisione; il secondo cambia
+# a ogni caso.
+#
+# STATO: BOZZA. Le categorie sotto sono una proposta da correggere sui
+# passaggi reali, non da approvare in astratto. La procedura prevista e':
+# si estraggono trenta passaggi difficili dal corpus, il PI li classifica,
+# e da quelle decisioni si riscrivono definizioni e casi limite.
+
+versione: 0.3-pilot
+data: 2026-09-27
+approvato_da: null          # va valorizzato prima dell'uso in produzione
+
+# ── Dimensione 1: che cosa fa la citazione nel testo ─────────────────────
+#
+# Le categorie sono ESCLUSIVE: a ogni passaggio se ne attribuisce una sola.
+# Se un passaggio sembra ricadere in due, e' un caso limite e va portato
+# alla regola corrispondente in `casi_limite`.
+
+tipo_citazione:
+
+  - codice: menzione_in_catena
+    nome: Menzione in catena
+    definizione: >
+      Il precedente compare in un elenco di precedenti senza che il testo
+      ne tragga alcunche'. Non svolge lavoro argomentativo: toglierlo non
+      cambierebbe il ragionamento.
+    indizi: [ "elenco separato da punto e virgola", "'see also'", "'cfr.'", "nota a pie' di pagina che elenca piu' precedenti senza usarne nessuno" ]
+    # L'indizio sulle note diceva «nota a pie' di pagina senza commento»: contraddiceva la regola del PI del
+    # 26/09/2026 sulle note (casi_limite), per cui la nota che sostiene la frase del corpo e' sostanziale.
+    # Allineato il 27/09/2026, prima della seconda lettura di DeepSeek.
+
+  - codice: descrittiva
+    nome: Descrittiva
+    definizione: >
+      Il testo riferisce che cosa il precedente ha deciso, senza applicarlo
+      al caso presente e senza farne propria la ragione.
+    indizi: [ "'the court in X held that'", "'X concerned'", "riassunto dei fatti o del dispositivo" ]
+
+  - codice: sostanziale
+    nome: Sostanziale
+    definizione: >
+      Il precedente e' impiegato per sostenere una proposizione che l'organo
+      giudicante o la parte fa propria. E' la categoria centrale della
+      ricerca.
+    indizi: [ "'as held in X'", "'following X'", "'consistent with X'", "il ragionamento prosegue applicando la regola" ]
+
+  - codice: distinguente
+    nome: Distinguente
+    definizione: >
+      Il precedente e' richiamato per affermare che nel caso presente non
+      si applica: diverso ordinamento, diversi presupposti, diverso petitum.
+      Non e' un rifiuto: e' una delimitazione.
+    indizi: [ "'unlike in X'", "'X is distinguishable'", "'does not apply'", "'si differenzia da'" ]
+
+  - codice: critica
+    nome: Critica
+    definizione: >
+      Il precedente e' richiamato per dissentire dal suo contenuto o per
+      contestarne la correttezza.
+    indizi: [ "'wrongly decided'", "'unpersuasive'", "'should not be followed'", "'erroneous'" ]
+
+  - codice: implicita
+    nome: Implicita
+    definizione: >
+      Il ragionamento del precedente e' ripreso senza che il precedente sia
+      mai nominato ne' citato. E' la categoria che nessuna ricerca testuale
+      puo' produrre.
+    indizi: [ "formula sostanziale corrispondente senza riferimento", "coincidenza di argomentazione", "stessa catena logica con presupposti specifici" ]
+
+# ── Dimensione 2: chi enuncia ────────────────────────────────────────────
+#
+# INDIPENDENTE dalla prima, e va rilevata sempre. Una citazione sostanziale
+# fatta da una parte e una fatta dall'organo giudicante hanno peso
+# diversissimo, e confonderle rende il dato inutilizzabile.
+
+chi_parla:
+  - codice: corte
+    nome: Organo giudicante
+  - codice: parte
+    nome: Parte del giudizio
+  - codice: interveniente
+    nome: Interveniente
+  - codice: amicus
+    nome: Amicus curiae
+  - codice: non_determinabile
+    nome: Non determinabile dal passaggio
+
+# ── Dimensione 3: annidamento ────────────────────────────────────────────
+
+annidata:
+  descrizione: >
+    Vero quando l'organo che redige il documento riporta un brano di un
+    altro provvedimento che a sua volta cita il bersaglio. Decisione del PI
+    (30 luglio 2026): il caso va SEGNALATO, non assimilato a una citazione
+    diretta.
+  valori: [ "si", "no", "ambiguo" ]
+  fonte_intermedia: >
+    Quando identificabile, si registra il provvedimento intermedio.
+
+# ── Casi limite ──────────────────────────────────────────────────────────
+#
+# Sono la parte che conta. Le categorie facili le attribuisce chiunque; il
+# disaccordo fra codificatori nasce sempre qui.
+
+# ── Dimensione 4: dove sta il riferimento ────────────────────────────────
+#
+# PRECOMPILATA DAL SISTEMA. Si legge dal PDF — corpo del carattere e
+# posizione sulla pagina — non dal testo estratto, dove il segnale non
+# sopravvive. Chi legge la corregge solo quando e' sbagliata.
+#
+# PERCHE' CONTA. La nota e' il luogo in cui si dichiara A CHI si attribuisce
+# un principio. Un riferimento in nota e uno nel corpo non pesano uguale, e
+# sommarli senza distinguerli e' un errore che non si vede piu' a valle.
+
+posizione:
+  - codice: corpo
+    nome: Nel testo corrente
+  - codice: nota
+    nome: In nota a pie' di pagina
+  - codice: non_determinabile
+    nome: Il PDF non distingue i due (pagina piatta, o testo da OCR)
+
+# ── Dimensione 5: sede del passaggio ─────────────────────────────────────
+#
+# PRECOMPILATA DAL SISTEMA, dal tipo di atto e dalle formule con cui una
+# corte attribuisce un argomento a chi glielo ha proposto.
+#
+# PERCHE' CONTA. "I ricorrenti invocano Urgenda", scritto in una sentenza,
+# non e' la corte che cita Urgenda: e' la corte che riassume una difesa.
+# Contarli insieme gonfia proprio i casi piu' discussi — quelli che le parti
+# invocano di piu' — che sono i casi su cui vogliamo dire qualcosa.
+
+sede:
+  - codice: motivazione
+    nome: Ragionamento dell organo giudicante
+  - codice: difese_riportate
+    nome: La corte riassume l argomento di una parte
+  - codice: dissenso
+    nome: Opinione dissenziente
+  - codice: concorrente
+    nome: Opinione concorrente
+  - codice: atto_di_parte
+    nome: Documento depositato da una parte o da un amicus
+  - codice: non_determinabile
+    nome: Il documento non ha struttura processuale (lettera, relazione, avviso)
+
+# ── Dimensione 6: principio ripreso ──────────────────────────────────────
+#
+# AGGIUNTA IL 27/09/2026, con il sistema nuovo di TRACE (documento unico §63.25).
+#
+# PERCHE'. Sapere che un atto cita Urgenda non basta: la ricerca vuole sapere
+# CHE COSA ne prende. Il 27/09 la rilettura dei giudizi di luglio ha mostrato
+# che la ripresa implicita vera, senza il nome, e' rara (3-4 su 400 pagine
+# giudicate) e che quasi sempre chi riprende Urgenda la nomina. Il lavoro
+# quindi parte dalla citazione esplicita e chiede quale principio prende.
+#
+# LA LISTA DEI PRINCIPI NON STA QUI: e' quella del caso citato, nel suo file
+# (`cited-cases/<caso>.yaml`, campo `semantic_queries`: id, titolo, testo), con
+# i paragrafi che la reggono nella mappa (`cited-cases/<caso>-mappa-paragrafi.yaml`).
+# Qui stanno le regole, uguali per ogni caso.
+#
+# REGOLE.
+#   - Si possono indicare PIU' principi: molte citazioni rinviano a un gruppo
+#     di paragrafi.
+#   - Se la citazione indica il paragrafo, vale la mappa dei paragrafi, salvo
+#     che il testo dica chiaramente altro (il validatore lo scrive in nota).
+#   - «nessuno»: la citazione non prende nessun principio (menzione in catena,
+#     descrizione dei fatti o dell'esito, esempio di contenzioso vinto).
+#   - «altro»: la citazione prende qualcosa che non e' nella lista (per esempio
+#     la legittimazione delle associazioni, la separazione dei poteri, il
+#     principio di precauzione). Si scrive in una frase. Quando molti «altro»
+#     dicono la stessa cosa, il coordinamento ne fa un principio nuovo del caso,
+#     con definizione, paragrafi e data: la lista cresce dai dati.
+
+principio_ripreso:
+  multiplo: true
+  lista: dal file del caso citato (semantic_queries)
+  valori_speciali:
+    - codice: nessuno
+      nome: Non prende nessun principio
+    - codice: altro
+      nome: Prende un principio che non e' nella lista (da scrivere)
+
+# ── Dimensione 7: estensione della ripresa ──────────────────────────────
+#
+# AGGIUNTA IL 27/09/2026. La ripresa implicita non si cerca piu' alla cieca
+# nel corpus: si cerca come seguito di una citazione esplicita. Un atto che
+# cita Urgenda a p. 30 spesso sviluppa lo stesso principio alle pagine
+# seguenti senza ripeterne il nome.
+#
+# REGOLA. Una pagina vicina (due prima, tre dopo) appartiene alla ripresa se
+# SVILUPPA LO STESSO PRINCIPIO NELLO STESSO RAGIONAMENTO avviato dalla
+# citazione. Non basta che parli dello stesso tema: se l'atto e' passato a un
+# altro argomento, o regge lo stesso tema su un'altra fonte (CEDU generale,
+# Parigi, un altro caso), la pagina non appartiene alla ripresa.
+
+estensione:
+  valori: [pagine dello stesso documento che proseguono la ripresa]
+  finestra: {prima: 2, dopo: 3}
+
+casi_limite:
+
+  - questione: >
+      Una parte cita il bersaglio e l'organo giudicante ne riporta la difesa
+      riassumendola. Una riga o due?
+    regola: DA DECIDERE
+
+  - questione: >
+      Il bersaglio ha piu' gradi di giudizio. Vanno distinti?
+    regola: >
+      NO. Decisione del PI (30 luglio 2026): chi cita il bersaglio cita il
+      bersaglio, a prescindere dal grado. Non si registra il grado.
+
+  - questione: >
+      Citazione contenuta in una citazione (vedi `annidata`).
+    regola: >
+      Si registra come citazione del documento che la contiene, con
+      `annidata = si`.
+
+  - questione: >
+      Il passaggio nomina il bersaglio solo nel titolo di un allegato o
+      nell'indice del documento.
+    regola: DA DECIDERE
+
+  - questione: >
+      Il documento e' interamente dedicato al bersaglio (per esempio un
+      commento a quella sentenza). Ogni ripresa e' una citazione distinta?
+    regola: DA DECIDERE
+
+  - questione: >
+      Una nota a pie' di pagina cita il bersaglio a sostegno della frase del
+      corpo a cui e' agganciata. Sostanziale o menzione in catena?
+    regola: >
+      Di regola SOSTANZIALE: la nota dichiara la fonte di una proposizione che
+      il testo fa propria, quindi il bersaglio sostiene quella proposizione.
+      Resta MENZIONE IN CATENA quando il bersaglio e' uno di piu' precedenti
+      elencati nella stessa nota senza che nessuno venga usato (elenco
+      separato da punto e virgola, "see also", "cfr."): li' la nota non fa
+      lavoro argomentativo col bersaglio. Decisione del PI (26 settembre 2026),
+      presa dopo che DeepSeek e i validatori divergevano soprattutto in nota
+      (accordo 0,32 in nota contro 0,60 nel corpo).
+
+  - questione: >
+      La frase su cui si ragiona (quella della citazione, o quella di una pagina
+      vicina) ha una propria nota che la attribuisce a un'altra fonte: un altro
+      caso, un trattato, un rapporto.
+    regola: >
+      Il principio del caso citato e' quello della frase a cui e' agganciata la
+      nota che CITA IL CASO; di che cosa parla la pagina non basta. Una pagina
+      vicina la cui frase e' attribuita in nota a un'altra fonte non prosegue la
+      ripresa, anche se l'argomento e' lo stesso. Esempio del PI (28/09/2026):
+      memoriale per la Corte interamericana, Urgenda in un elenco alla nota 194
+      di p. 51; a p. 54 la frase sul fair share ha la nota 205, Klimaatzaak.
+
+# ── Schema di uscita ─────────────────────────────────────────────────────
+#
+# Le colonne sono FISSE. Quattro persone che producono prose diverse non
+# generano un dato sommabile; quattro persone che riempiono le stesse
+# colonne, si'.
+
+uscita:
+  colonne:
+    - case_id                 # dal front matter, non dedotto
+    - case_name
+    - giurisdizioni
+    - document_id
+    - tipo_atto               # dal front matter
+    - tipo_atto_sabin         # etichetta ufficiale della fonte
+    - pagina
+    - citazione_testuale      # verbatim, verificabile
+    - tipo_citazione          # dimensione 1
+    - chi_parla               # dimensione 2
+    - posizione               # dimensione 4 — precompilata
+    - sede                    # dimensione 5 — precompilata
+    - chi_cita_auto           # le proposte della macchina: NON si modificano
+    - posizione_auto
+    - sede_auto
+    - dimensioni_confidenza   # alta | media | bassa
+    - annidata                # dimensione 3
+    - fonte_intermedia
+    - proposizione_sostenuta  # a sostegno di che cosa
+    - confidenza              # alta | media | bassa
+    - rete                    # lessicale | semantica | entrambe
+    - file                    # percorso, per riaprire
+    - char_start
+    - char_end
+    - url_documento           # la pagina sul sito della fonte
+    - codebook_versione       # quale versione di questo file ha prodotto la riga
+    - indice_versione         # su quale indice
+
+# ── Istruzioni per la lettura ────────────────────────────────────────────
+#
+# Sono la parte che lo strumento consegna a chi legge — persona o modello —
+# insieme a ciascun passaggio.
+
+istruzioni_lettura: |
+  Ti viene mostrato un passaggio con il contesto che lo circonda e i
+  metadati del documento.
+
+  1. Stabilisci se il passaggio riguarda davvero il bersaglio. Se non lo
+     riguarda, scartalo e dillo: un falso positivo scartato e' un esito
+     corretto, non un fallimento.
+  2. Attribuisci UNA sola categoria di `tipo_citazione`. Se ne vedi due,
+     e' un caso limite: applica la regola corrispondente, e se la regola
+     dice DA DECIDERE segnala il passaggio invece di scegliere.
+  3. `chi_parla`, `posizione` e `sede` arrivano GIA COMPILATE dal sistema.
+     Non vanno riscritte: vanno controllate, e corrette solo dove sono
+     sbagliate. Le colonne che finiscono in `_auto` sono la proposta della
+     macchina e non si toccano mai — servono a misurare quanto spesso il
+     lettore la corregge.
+  3ter. IL CAMPIONE DEL 20% DEVE COMPRENDERE ANCHE GLI SCARTI. Accanto al
+     CSV c'e' un file `.SCARTI.csv` con i candidati che il sistema ha
+     tolto da solo: sotto la soglia del riordinatore, anteriori alla
+     decisione citata, copie di un altro frammento. Quelle righe non le
+     legge nessun altro. Se il campione guardasse solo cio' che e' stato
+     tenuto, non ci si accorgerebbe mai di una soglia che butta via roba
+     buona: l'errore sarebbe invisibile per costruzione.
+  3bis. Comincia dalle righe con `dimensioni_confidenza: bassa`: sono
+     quelle in cui il sistema non ha trovato indizi e ha ripiegato.
+  4. Riporta la citazione TESTUALE, senza riscriverla e senza abbreviarla.
+     E' l'unico elemento che rende la riga verificabile.
+  5. Indica la pagina come risulta dai metadati, non contandola.
+  6. Se sei incerto, `confidenza: bassa`. Un'incertezza dichiarata e'
+     utilizzabile; un'incertezza nascosta no.
+
+  Non dedurre mai `case_id`, `tipo_atto` o `pagina`: vengono dai metadati.

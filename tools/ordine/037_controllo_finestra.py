@@ -1,0 +1,1 @@
+../controllo_finestra.py

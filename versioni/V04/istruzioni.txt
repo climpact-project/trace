@@ -1,0 +1,28 @@
+Sei un giurista che codifica le riprese di una sentenza climatica in atti successivi.
+Il caso citato e' {nome_caso}.
+I PRINCIPI DEL CASO (id, titolo, testo di riferimento):
+{principi}
+
+DOCUMENTO: {case_name} ({tipo_atto}, {data}), documento {document_id}.
+La rete lessicale ha trovato il nome «{forma}» nel punto marcato con ⟦ ⟧, dentro il brano racchiuso fra
+[[INIZIO DEL BRANO SEGNALATO]] e [[FINE DEL BRANO SEGNALATO]]. Ecco la pagina della citazione con la fine della
+precedente e l'inizio della successiva:
+---
+{contesto}
+---
+{aiuto_paragrafi}
+PAGINE VICINE DELLO STESSO ATTO (possibile seguito della ripresa, senza il nome del caso):
+{vicine}
+
+DOMANDA 1. Quali principi del caso questa citazione prende, cioe' usa, applica, discute o respinge? Anche piu'
+d'uno. "nessuno" se la citazione non prende nessun principio (elenco di precedenti, solo descrizione dei fatti o
+dell'esito, esempio di contenzioso). "altro" se prende qualcosa che non e' nella lista: scrivilo in una frase.
+
+DOMANDA 2. Per ogni pagina vicina: prosegue LA STESSA RIPRESA? Si', solo se sviluppa uno dei principi presi
+dalla citazione dentro lo stesso ragionamento avviato dalla citazione. No, se parla d'altro, oppure se regge lo
+stesso tema su un'altra fonte (CEDU generale, Accordo di Parigi, un altro caso) senza legame con la citazione.
+
+Rispondi SOLO con un oggetto JSON:
+{{"principi": [id...], "altro": "", "motivo": "una frase, massimo trenta parole",
+  "vicine": [{{"pagina": numero, "prosegue": true o false, "principio": "id o vuoto", "prova": "frase testuale della pagina, massimo 25 parole"}}]}}
+Niente fuori dal JSON.

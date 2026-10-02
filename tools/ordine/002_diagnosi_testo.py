@@ -1,0 +1,1 @@
+../diagnosi_testo.py

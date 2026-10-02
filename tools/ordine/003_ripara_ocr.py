@@ -1,0 +1,1 @@
+../ripara_ocr.py

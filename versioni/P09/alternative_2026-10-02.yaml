@@ -1,0 +1,35 @@
+# 02/10/2026, il PI: «fai formulazioni alternative e prova». Per le sonde deboli della prova del reranker (verifica:
+# 1,5 °C 1/9, NDC 0/5, lex specialis 0/5, clima sano 3/13, art. 8 13/30; erga omnes 5/13, diligenza rafforzata 5/11).
+# A = la frase della decisione (il passaggio canonico, in inglese); B = corta, con le parole proprie del principio;
+# C = come la riassumono gli atti che la citano. Restano distintive: nessuna e' la nozione generale da altre fonti.
+cig-parere-clima:
+  obiettivo_1_5:
+    A: "These decisions express the agreement in substance between the parties regarding the interpretation of Articles 2 and 4 of the Paris Agreement and constitute subsequent agreements within the meaning of Article 31(3)(a) of the Vienna Convention; accordingly, the 1.5°C threshold is the parties' agreed primary temperature goal under the Paris Agreement."
+    B: "1.5°C is now the primary legal temperature goal of the Paris Agreement, as agreed by the parties' later COP decisions read as subsequent agreements under Article 31(3)(a) of the Vienna Convention."
+    C: "Limiting warming to 1.5°C, not merely well below 2°C, is the primary temperature goal States are legally bound to pursue under the Paris Agreement."
+  ndc_discrezionalita_limitata:
+    A: "The discretion of parties in the preparation of their NDCs is limited: they must exercise due diligence and ensure that their NDCs fulfil their obligations under the Paris Agreement and, taken together, are capable of achieving the 1.5°C temperature goal."
+    B: "Discretion over nationally determined contributions is limited: each NDC must reflect the highest possible ambition, a legal standard measured by due diligence, and all NDCs together must be able to reach 1.5°C."
+    C: "States do not have unfettered discretion in setting their NDCs: their climate targets must represent their highest possible ambition and be consistent with the 1.5°C goal, and an insufficient NDC can breach international law."
+  non_lex_specialis:
+    A: "The argument according to which the climate change treaties constitute the only relevant applicable law cannot be upheld; the principle of lex specialis does not lead to a general exclusion by the climate change treaties of other rules of international law."
+    B: "The UNFCCC and the Paris Agreement are not lex specialis: they do not displace customary international law, human rights law or the law of the sea, which apply alongside them."
+    C: "Compliance with the Paris Agreement does not exhaust States' climate obligations: human rights treaties and customary law continue to apply, because the climate treaties are not a self-contained regime."
+  erga_omnes:
+    A: "All States have a common interest in the protection of global environmental commons like the atmosphere and the high seas; States' obligations pertaining to the protection of the climate system, in particular the obligation to prevent significant transboundary harm, are obligations erga omnes."
+    B: "Climate obligations are erga omnes and erga omnes partes: every State may invoke another State's responsibility for breaching them and claim cessation and guarantees of non-repetition."
+    C: "Because protection of the climate system is owed to the international community as a whole, any State, not only the injured one, has standing to invoke the responsibility of a State that fails its climate obligations."
+idh-oc-32-25:
+  clima_sano_autonomo:
+    A: "The recognition of a human right to a healthy climate as an independent right, derived from the right to a healthy environment, gives the inter-American legal order a basis of its own to define State obligations specific to the climate crisis and to demand their fulfilment autonomously."
+    B: "A human right to a healthy climate, autonomous from the right to a healthy environment, protecting a climate system free from dangerous anthropogenic interference."
+    C: "A stand-alone right to a healthy climate has been recognised, with individual and collective dimensions extending to future generations and nature."
+  diligenza_rafforzata:
+    A: "Given the information available, the extreme gravity of climate impacts and the urgency of effective measures to avoid irreparable harm, States must act with enhanced due diligence to fulfil the duty of prevention derived from the obligation to guarantee human rights in the context of the climate emergency."
+    B: "Enhanced (reinforced) due diligence: in the climate emergency the obligation to guarantee human rights requires States to prevent harm with heightened, ambitious and proactive diligence."
+    C: "An enhanced due diligence standard applies to States in the climate emergency, stricter than ordinary environmental due diligence, requiring them to identify risks and act ambitiously to prevent human rights harm."
+klimaseniorinnen:
+  art8_protezione_effettiva:
+    A: "Having regard to the causal relationship between State actions or omissions relating to climate change and the harm affecting individuals, Article 8 must be seen as encompassing a right for individuals to effective protection by the State authorities from serious adverse effects of climate change on their life, health, well-being and quality of life."
+    B: "Article 8 ECHR includes a right to effective protection by the State from serious adverse effects of climate change on life, health, well-being and quality of life."
+    C: "Article 8 obliges States to protect individuals effectively against the serious adverse effects of climate change, by adopting and applying measures to mitigate it."

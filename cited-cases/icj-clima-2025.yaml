@@ -1,0 +1,27 @@
+# CASO CITATO — CORTE INTERNAZIONALE DI GIUSTIZIA, PARERE SUL CLIMA
+#
+# Obligations of States in respect of Climate Change, parere consultivo del
+# 23 luglio 2025, General List No. 187.
+#
+# MISURATO: 18 casi del corpus lo nominano (19/09/2026), gli stessi ordini
+# di grandezza della OC-32/25, e spesso negli STESSI documenti: le due
+# opinioni consultive viaggiano in coppia, citate una accanto all'altra come
+# diritto internazionale convergente.
+#
+# COME PER LA OC-32/25, IL NOME PER ESTESO NON SI USA. Si cita «ICJ Advisory
+# Opinion», oppure il numero di ruolo. Senza questo file il caso e'
+# invisibile allo scandaglio.
+
+nome: Obligations of States in respect of Climate Change (ICJ Advisory Opinion)
+codebook_versione: 0.2-pilot
+data_decisione: 2025-07-23
+
+forme:
+  - General List No. 187                 # OSSERVATA: la forma piu' distintiva
+  - Obligations of States in respect of Climate Change    # OSSERVATA
+  - ICJ Advisory Opinion
+  - ICJ AO
+  - Advisory Opinion of 23 July 2025
+  - opiniao consultiva da CIJ
+  - opinion consultiva de la CIJ
+  - parere consultivo della CIG

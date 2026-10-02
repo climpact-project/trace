@@ -1,0 +1,1719 @@
+# MAPPA DEI PARAGRAFI DI URGENDA — versione 1, 23 settembre 2026
+#
+# Compagna di `urgenda-fascicolo.md`. Serve a decifrare citazioni precise del tipo
+# «Urgenda, supra note 33, paras. 5.7.5-5.7.7» e a sapere quale sonda e quale anello
+# della catena un paragrafo sostiene.
+#
+# FONTI. Solo i tre documenti del corpus, in traduzione inglese:
+#   rechtbank_2015  urgenda-foundation-v-state-of-the-netherlands-decision_f1ad  (Rechtbank Den Haag, 24/6/2015, 55 pp.)
+#   hof_2018        urgenda-foundation-v-state-of-the-netherlands-decision_8a5e  (Gerechtshof Den Haag, 9/10/2018, 19 pp.)
+#   hoge_raad_2019  urgenda-foundation-v-state-of-the-netherlands-judgment_ed17  (Hoge Raad, 20/12/2019, 47 pp.)
+# `pagina` = numero del marcatore `<!-- page N -->` del markdown, che coincide con la pagina del PDF.
+#
+# COME SONO STATI STABILITI I NUMERI DI PARAGRAFO. Nei PDF di stampa di rechtspraak.nl i
+# numeri stanno in colonna in testa a ogni pagina, staccati dal testo. Il paragrafo di ogni
+# capoverso e' stato ricostruito contando i capoversi che cominciano sulla pagina, e controllato:
+#   - Hoge Raad: sull'originale olandese del corpus (judgment_4966) e sui rinvii interni della
+#     corte (es. 4.8 rinvia a 4.7, 7.5.3 a 5.3.4, 8.2.6 a «8.2.4, second paragraph»);
+#   - Rechtbank: sull'indice della sentenza stessa (pp. 3-4) e sul riassunto della conclusie del
+#     PG (opinion_9d44, pp. 11-12), che cita 4.6, 4.7, 4.8, 4.34, 4.42-4.46, 4.54, 4.55, 4.63,
+#     4.83-4.93, 4.94-4.102;
+#   - Hof: numeri stampati a inizio capoverso, nessuna ricostruzione.
+# `incerto: true` segna le poche voci in cui il confine fra due numeri non e' decidibile dal corpus.
+#
+# TRE CORREZIONI RISPETTO A `urgenda.yaml` (versione 2, non modificato):
+#   1. Il canonical di `ordine_non_legge` («Therefore, the courts are not prevented ... They may
+#      also order ... as long as that order does not amount to an order to create legislation with a
+#      particular content») e' il par. 8.2.6, non 8.2.7. L'8.2.7 e' il capoverso successivo
+#      («In light of the foregoing ... leaves the State free to choose the measures»). Verificato
+#      sull'olandese: «Uit het voorgaande volgt ...» sta sotto 8.2.6, «In het licht van het voorgaande»
+#      apre 8.2.7 (judgment_4966, pp. 35-36).
+#   2. Il passo su due diligence e Jugheli (rinviato da `due_diligence_buon_governo` a 5.3.4) e' il
+#      par. 5.3.3; il 5.3.4 e' il limite dell'«impossible or disproportionate burden» (lo dicono l'olandese
+#      a p. 21 e il rinvio di 7.5.3). La traduzione inglese di 6.5 scrive per errore «5.5.3».
+#   3. Il seme di `dovere_diligenza` «However, both articles ... can serve as a source of
+#      interpretation» e' il par. 4.46 del Rechtbank, non 4.45 (4.45 e' la negazione dello status di
+#      vittima ex art. 34 CEDU). Lo dicono la sentenza stessa in 4.109 («In 4.45 and 4.46») e il PG.
+#   Inoltre la citazione del Manuale del Consiglio d'Europa sul «wide margin of appreciation»
+#   sta nel par. 4.48 (che prosegue a p. 41), non in 4.49.
+#
+# SONDE: propria_quota, obblighi_positivi, dovere_diligenza, ordine_non_legge, target_giudiziale.
+# ANELLI della catena (ISTRUZIONI_CATENA in tools/adjudica_llm.py):
+#   a = rischio grave, noto alla scienza, differito di decenni, che colpisce la popolazione intera
+#   b = ne discende un obbligo di agire dello Stato (diligenza civilistica o artt. 2 e 8 CEDU)
+#   c = il contributo modesto non esonera: ciascuno risponde della propria quota
+#   d = il contenuto minimo si ricava dal consenso scientifico e internazionale; il giudice lo fissa
+#   e = ordine di risultato, liberta' dei mezzi
+# Liste vuote: il paragrafo non sostiene nessuna sonda ne' anello (fatti, procedura).
+
+voci:
+
+# ═══════════════════════════ HOGE RAAD, 20 dicembre 2019 ═══════════════════════════
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "Summary of the Decision — Dangerous climate change"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 3-4
+    sintesi: "Riassunto redatto dalla corte (che dichiara di non sostituire i motivi): consenso scientifico su una minaccia reale di cambiamento climatico pericoloso nei prossimi decenni; 2 gradi, poi 1,5."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [a]
+    verbatim: "a genuine threat exists that the climate will undergo a dangerous change in the coming decades"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "Summary of the Decision — Protection of human rights based on the ECHR"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 4
+    sintesi: "Artt. 2 e 8 CEDU impongono misure adeguate contro un rischio reale e immediato noto allo Stato, anche per pericoli ambientali di lungo periodo che colpiscono l'intera popolazione; niente onere impossibile; art. 13 CEDU esige rimedio effettivo."
+    sonde: [obblighi_positivi]
+    anelli: [a, b]
+    verbatim: "even if the hazards will only materialise over the long term"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "Summary of the Decision — Global problem and national responsibility"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 4-5
+    sintesi: "La versione piu' riecheggiata della propria quota. L'UNFCCC presuppone che tutti agiscano secondo responsabilita' e possibilita'; ogni paese risponde della sua quota e non si sottrae adducendo emissioni relativamente piccole; l'obbligo di fare «its part» si fonda sugli artt. 2 e 8 CEDU."
+    sonde: [propria_quota, obblighi_positivi]
+    anelli: [b, c]
+    verbatim: "Each country is thus responsible for its own share."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "Summary of the Decision — What does the obligation to do 'its part' entail?"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 5
+    sintesi: "Il contenuto degli obblighi positivi si riempie con le conoscenze scientifiche largamente condivise e gli standard accettati (IPCC AR4, 25-40% per l'Annex I al 2020, COP, UE, Parigi 1,5); il consenso vale anche per i Paesi Bassi individualmente."
+    sonde: [obblighi_positivi, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+    verbatim: "The consensus on this target must be taken into consideration when interpreting and applying Articles 2 and 8 ECHR."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "Summary of the Decision — The policy of the State"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 5-6
+    sintesi: "Lo Stato non ha spiegato perche' il 20% sarebbe responsabile; rinviare le riduzioni costa di piu' e rischia i punti di non ritorno; toccava allo Stato dimostrare la fattibilita' dell'accelerazione dopo il 2020."
+    sonde: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "Summary of the Decision — The courts and the political domain"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 6
+    sintesi: "Le decisioni sulle emissioni spettano a governo e parlamento, ma il giudice controlla che restino nei limiti del diritto, CEDU compresa; l'ordine e' limitato al minimo del 25% e lascia allo Stato la scelta delle misure e della legislazione."
+    sonde: [obblighi_positivi, ordine_non_legge, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
+    anelli: [d, e]
+    verbatim: "The order that was issued leaves it up to the State to determine which specific measures it will take to comply with that order."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "Summary of the Decision — Conclusion"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 6-7
+    sintesi: "L'ordine del 25% entro il 2020 resta definitivo; fondamento negli artt. 2 e 8 CEDU per il rischio sulla vita e il benessere dei residenti."
+    sonde: [obblighi_positivi, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    anelli: [b, d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "2.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 9-13
+    sintesi: "Fatti accertati (numerati da (1) a (30)): CO2 e riscaldamento, 450/430 ppm, carbon budget, IPCC AR4 e AR5, UNFCCC e COP, Parigi, UNEP, politica UE e olandese, emissioni pro capite olandesi elevate."
+    sonde: []
+    anelli: [a]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "2.2.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 14
+    sintesi: "Tesi di Urgenda riassunte dalla Cassazione: emissioni olandesi illecite per violazione della diligenza dovuta (art. 6:162(2) BW) e degli artt. 2 e 8 CEDU; «systemic responsibility» dello Stato."
+    sonde: []
+    prepara: [dovere_diligenza, obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    anelli: [b]
+    verbatim: "for which the State as a sovereign power has systemic responsibility"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "2.2.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 14
+    sintesi: "Difese dello Stato: nessun obbligo giuridico, AR4 non vincolante, artt. 2 e 8 non impongono mitigazione, l'ordine sarebbe un ordine di legiferare vietato e violerebbe la separazione dei poteri."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "2.3.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 14-15
+    sintesi: "Riassunto del primo grado (paternita' del Rechtbank): nessun obbligo da art. 21 Cost., no-harm, UNFCCC, TFUE; Urgenda non vittima ex art. 34; duty of care e criteri Kelderluik; il contributo minore non riduce il dovere; minimo 25%; ordine non legislativo."
+    sonde: []
+    prepara: [dovere_diligenza, ordine_non_legge, propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, ordine_non_legge, propria_quota, target_giudiziale]"
+    anelli: [b, c, d, e]
+    verbatim: "The State may act unlawfully by violating its duty of care to prevent dangerous climate change."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "2.3.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 15-19
+    sintesi: "Riassunto dell'appello (paternita' del Hof), con rinvii ai suoi paragrafi 36-73: legittimazione ex 3:305a, obblighi positivi, «real and imminent threat», 25-40%, difese respinte (waterbed, carbon leakage, adattamento, quota minima), precauzione, ordine non legislativo."
+    sonde: []
+    prepara: [obblighi_positivi, ordine_non_legge, propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge, propria_quota, target_giudiziale]"
+    anelli: [a, b, c, d, e]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "3.1-3.6"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 20-21
+    sintesi: "I nove motivi di cassazione dello Stato e l'ordine in cui la corte li affronta."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "4.1-4.5"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 21-22
+    sintesi: "Premesse sul pericolo: gas serra e riscaldamento, conseguenze estreme e punti di non ritorno, limite di 2 gradi (450 ppm) e 1,5 gradi (430 ppm), riconoscimento internazionale in UNFCCC, COP e Parigi."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [a]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "4.6"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 22
+    sintesi: "Ogni emissione aumenta la concentrazione; il carbon budget residuo rende ogni rinvio piu' oneroso; emissions gap UNEP. Premessa fattuale su cui 5.7.8 costruisce «no reduction is negligible»."
+    sonde: []
+    prepara: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    anelli: [a, c]
+    verbatim: "Every emission of greenhouse gases leads to an increase in the concentration of greenhouse gases in the atmosphere"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "4.7"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 22
+    sintesi: "La Cassazione fa propria la conclusione del Hof (parr. 45 e 37): minaccia reale di cambiamento climatico pericoloso per la generazione attuale, in particolare i piu' giovani."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [a]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "4.8"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 22
+    sintesi: "Lo Stato non contesta i fatti ne' la necessita' di ridurre; contesta solo che gli artt. 2 e 8 lo obblighino e che l'obbligo sia del 25%."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 22-23
+    sintesi: "Tesi dello Stato: il pericolo e' globale per causa e portata e riguarda l'ambiente, non protetto in se' dalla CEDU. E' la polarita' che 5.6.2 respinge."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.2.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 23
+    sintesi: "Art. 1 CEDU: la protezione va alle persone sotto la giurisdizione dello Stato, qui i residenti nei Paesi Bassi."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [b]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.2.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 23
+    sintesi: "Art. 2 CEDU: obbligo positivo per attivita' industriali pericolose e disastri naturali (note 7-9: Öneryıldız, Budayeva, Kolyadenko); «real and immediate risk» letto come rischio che minaccia direttamente, non come imminenza temporale; vale anche per rischi di lungo periodo."
+    sonde: [obblighi_positivi]
+    anelli: [a, b]
+    verbatim: "The term 'immediate' does not refer to imminence in the sense that the risk must materialise within a short period of time, but rather that the risk in question is directly threatening the persons involved."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.2.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 23
+    sintesi: "Art. 8 CEDU nelle questioni ambientali: obbligo di misure ragionevoli e appropriate contro danni ambientali gravi; il rischio non deve essere a breve termine (note 10-11: Taşkın, Tătar)."
+    sonde: [obblighi_positivi]
+    anelli: [a, b]
+    verbatim: "That risk need not exist in the short term."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.2.4"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 23
+    sintesi: "Per le attivita' pericolose per l'ambiente gli obblighi degli artt. 2 e 8 coincidono largamente; da qui la trattazione congiunta."
+    sonde: [obblighi_positivi]
+    anelli: [b]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.3.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 24
+    sintesi: "La protezione degli artt. 2 e 8 non e' limitata a persone determinate ma si estende alla societa' o alla popolazione intera, come nei pericoli ambientali (note 14-15: Di Sarno, Cordella)."
+    sonde: [obblighi_positivi]
+    anelli: [a]
+    verbatim: "The protection afforded by Articles 2 and 8 ECHR is not limited to specific persons, but to society or the population as a whole."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.3.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 24
+    sintesi: "Obbligo di misure preventive anche se il verificarsi del pericolo e' incerto, coerente con la precauzione; accertato il rischio, nessun margine di apprezzamento sull'an, discrezionalita' sui mezzi."
+    sonde: [obblighi_positivi]
+    prepara: [ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
+    anelli: [b, e]
+    verbatim: "states are obliged to take appropriates steps without having a margin of appreciation"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.3.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 24
+    sintesi: "Due capoversi. Le misure possono essere di mitigazione o adattamento. Il giudice puo' verificare che siano ragionevoli e idonee; la politica dev'essere coerente e tempestiva; lo Stato deve osservare la due diligence (citazione di Jugheli c. Georgia, § 76, e Fadeyeva, § 128). urgenda.yaml lo rinvia come 5.3.4."
+    sonde: [obblighi_positivi]
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    anelli: [b, d]
+    verbatim: "A state must take due diligence into account in its policy."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.3.4"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 24
+    sintesi: "Limite: niente onere impossibile o sproporzionato; l'obbligo riguarda le misure, non la garanzia del risultato."
+    sonde: [obblighi_positivi]
+    anelli: [b]
+    verbatim: "The obligations ensuing from Articles 2 and 8 ECHR regard measures to be taken by a state, not the achievement, or guarantee of the achievement, of the envisaged result."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.4.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 25
+    sintesi: "Principio di effettivita' nell'interpretazione della CEDU; art. 31(1) Convenzione di Vienna."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [b]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.4.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 25
+    sintesi: "La CEDU si interpreta in armonia con il diritto internazionale (art. 31(3)(c) Vienna, Nada c. Svizzera) e con il consenso degli strumenti specializzati (Demir e Baykara): metodo del «common ground»."
+    sonde: []
+    prepara: [obblighi_positivi, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    anelli: [d]
+    verbatim: "there is common ground in modern societies"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.4.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 25
+    sintesi: "Nell'interpretare la CEDU si tiene conto delle conoscenze scientifiche e degli standard generalmente accettati."
+    sonde: [target_giudiziale]
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.5.1-5.5.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 26
+    sintesi: "Art. 13 CEDU: rimedio effettivo che prevenga o faccia cessare le violazioni piu' gravi; il giudice nazionale deve poter accertare la violazione secondo l'interpretazione della Corte EDU."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [b]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.6.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 26
+    sintesi: "Artt. 93 e 94 Cost.: il giudice olandese applica la CEDU come la interpreta la Corte EDU."
+    sonde: [obblighi_positivi]
+    anelli: [b]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.6.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 26
+    sintesi: "CANONICAL di obblighi_positivi. Se fosse solo un problema nazionale, gli artt. 2 e 8 obbligherebbero a contrastare la minaccia (real and immediate risk). Che il rischio si materializzi fra decenni e colpisca larghe parti della popolazione non esclude la protezione; coerente con la precauzione."
+    sonde: [obblighi_positivi]
+    anelli: [a, b]
+    verbatim: "The fact that this risk will only be able to materialise a few decades from now and that it will not impact specific persons or a specific group of persons but large parts of the population does not mean – contrary to the State's assertions – that Articles 2 and 8 ECHR offer no protection from this threat"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.6.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 27
+    sintesi: "La Corte EDU non ha ancora deciso casi climatici; la domanda e' se la natura globale delle emissioni escluda la protezione degli artt. 2 e 8."
+    sonde: []
+    prepara: [obblighi_positivi, propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, propria_quota]"
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.6.4"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 27
+    sintesi: "La risposta e' sufficientemente chiara: nessun rinvio consultivo alla Corte EDU ex Protocollo 16."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 27
+    sintesi: "Tesi: in base agli artt. 2 e 8 i Paesi Bassi devono fare «its part» anche se il problema e' globale."
+    sonde: [propria_quota, obblighi_positivi]
+    anelli: [b, c]
+    verbatim: "the Netherlands is obliged to do ‘its part’ in order to prevent dangerous climate change, even if it is a global problem"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 27
+    sintesi: "L'UNFCCC presuppone che tutti i paesi debbano agire; preambolo citato su CBDR-RC e sulla responsabilita' per attivita' sotto la propria giurisdizione (no-harm)."
+    sonde: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    anelli: [c]
+    verbatim: "all countries will have to do the necessary"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 27-28
+    sintesi: "Artt. 2, 3(1) (equita', CBDR-RC, generazioni presenti e future), 3(3) (precauzione) e 4 UNFCCC: ogni Stato deve adottare le misure necessarie secondo responsabilita' e possibilita' specifiche."
+    sonde: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    anelli: [c]
+    verbatim: "each state has an obligation to take the necessary measures in accordance with its specific responsibilities and possibilities"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.4"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 28
+    sintesi: "Le decisioni COP e gli artt. 3 e ss. dell'Accordo di Parigi ribadiscono che tutti devono fare il necessario."
+    sonde: [propria_quota]
+    anelli: [c]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.5"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 28
+    sintesi: "Il principio no-harm, richiamato nel preambolo UNFCCC, applicato alle emissioni fonda la responsabilita' parziale: ogni paese risponde della sua parte."
+    sonde: [propria_quota]
+    anelli: [c]
+    verbatim: "This approach justifies partial responsibility: each country is responsible for its part and can therefore be called to account in that respect."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.6"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 28
+    sintesi: "Due capoversi. La responsabilita' parziale corrisponde alla prassi nazionale e internazionale sugli illeciti che causano solo parte del danno: ARSIWA art. 47 e commento §§ 6 e 8 (inquinamento di un fiume da piu' Stati), nota 35 (Kalimijnen, PETL 3:105). L'art. 3(1) UNFCCC non toglie che la colpa parziale giustifichi la responsabilita' parziale."
+    sonde: [propria_quota]
+    anelli: [c]
+    verbatim: "‘partial fault’ also justifies partial responsibility"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.7"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 29
+    sintesi: "CANONICAL di propria_quota. Respinte la difesa «gli altri non fanno la loro parte» e quella della quota piccola: accettarle permetterebbe a ogni paese di sottrarsi."
+    sonde: [propria_quota]
+    anelli: [c]
+    verbatim: "acceptance of these defences would mean that a country could easily evade its partial responsibility by pointing out other countries or its own small share"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.8"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 29
+    sintesi: "Ogni riduzione lascia piu' spazio nel carbon budget e ha effetto positivo; nota 36 rinvia a Massachusetts v. EPA, 549 U.S. 497 (2007), pp. 22-23."
+    sonde: [propria_quota]
+    anelli: [c]
+    verbatim: "no reduction is negligible"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.7.9"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 29
+    sintesi: "Il cambiamento climatico minaccia i diritti umani (riconosciuto anche fuori dal Consiglio d'Europa); per proteggerli i diritti vanno invocabili contro il singolo Stato per la sua quota; effettivita' e art. 13."
+    sonde: [obblighi_positivi, propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, propria_quota]"
+    anelli: [b, c]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.8"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 29
+    sintesi: "Conclusione della sezione: gli artt. 2 e 8 vanno interpretati nel senso che obbligano gli Stati contraenti a fare «their part»; e' interpretazione conforme ai criteri della Corte EDU."
+    sonde: [propria_quota, obblighi_positivi]
+    anelli: [b, c]
+    verbatim: "these provisions oblige the contracting states to do ‘their part’ to counter that danger"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.9.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 29
+    sintesi: "Lo Stato e' obbligato dagli artt. 2 e 8 a misure appropriate contro la minaccia, secondo la sua quota."
+    sonde: [obblighi_positivi, propria_quota]
+    anelli: [b, c]
+    verbatim: "in accordance with its share as referred to in 5.8 above"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.9.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 29-30
+    sintesi: "Urgenda puo' far valere l'obbligo ex art. 3:305a BW per conto dei residenti: interessi aggregabili, tutela collettiva efficiente in materia ambientale, art. 9(3) Aarhus, art. 13 CEDU."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.9.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 30
+    sintesi: "Che Urgenda non sia vittima ex art. 34 CEDU non le toglie l'azione di diritto olandese per conto di chi vittima e'."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "5.10"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 30
+    sintesi: "Respinti i motivi 1-3 e in parte 4-8."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "6.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 30
+    sintesi: "L'obbligo verso i residenti, secondo la quota, e' accertato; resta da stabilire che cosa significhi in concreto."
+    sonde: [obblighi_positivi, propria_quota]
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "6.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 30
+    sintesi: "La ripartizione delle quote fra Stati appartiene in linea di principio al dominio politico; equa ripartizione secondo responsabilita' e sviluppo (artt. 3 e 4 UNFCCC); gli accordi COP non sono vincolanti."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "6.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 30-31
+    sintesi: "Pur spettando a governo e parlamento, il giudice puo' valutare se le misure siano troppo scarse rispetto a cio' che e' chiaramente il limite inferiore della quota; lo Stato non puo' comunque non fare nulla."
+    sonde: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+    verbatim: "the State cannot at any rate do nothing at all"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "6.4"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 31
+    sintesi: "CANONICAL di target_giudiziale (primo capoverso). Consenso internazionale chiaro, fondato sulla scienza, puo' fissare la «minimum fair share» dello Stato; il giudice deve accertarla (common ground) anche da accordi non vincolanti. Secondo capoverso: l'art. 13 impone di cercare basi oggettive per una norma concreta."
+    sonde: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+    verbatim: "can in any case be regarded as the State’s minimum fair share"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "6.5"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 31
+    sintesi: "Il giudice verifica la due diligence e il buon governo; puo' derivarne un obbligo di misure di una certa portata e un onere dello Stato di motivare che la sua politica resta sopra il limite inferiore della fair share. (Il rinvio inglese a «5.5.3» e' un errore di traduzione: l'olandese dice 5.3.3.)"
+    sonde: [obblighi_positivi, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+    verbatim: "it pursues a policy through which it remains above the lower limit of its fair share"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "6.6"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 31
+    sintesi: "Limite: nel fissare gli obblighi minimi il giudice osserva moderazione; solo nei casi chiari."
+    sonde: [target_giudiziale]
+    anelli: [d]
+    verbatim: "It is therefore only in clear-cut cases that the courts can rule"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 31-32
+    sintesi: "La domanda: se l'obiettivo 25-40% di AR4 per l'Annex I, in se' non vincolante, obblighi lo Stato per le vie di 6.3-6.5; piano della sezione 7."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.2.1-7.2.4"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 32-33
+    sintesi: "Genealogia del 25-40%: scenario AR4 (box 13.7), Bali 2007, Cancún 2010, Durban 2011, Doha 2012, Varsavia-Lima-Parigi; dopo il 2015 non piu' richiamato espressamente."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.2.5"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 33-34
+    sintesi: "AR5 non ha superato il 25-40%; i suoi scenari con emissioni negative non possono fondare la politica senza rischi irresponsabili, contrari alla precauzione (artt. 2 e 8 CEDU e 3(3) UNFCCC)."
+    sonde: [obblighi_positivi]
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.2.6-7.2.7"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 34
+    sintesi: "L'UE ha riconosciuto la necessita' del 30% al 2020; alto grado di consenso internazionale sul 25-40% per l'Annex I."
+    sonde: [target_giudiziale]
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.2.8-7.2.10"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 34-35
+    sintesi: "Dopo AR4 il consenso si e' spostato su 1,5 gradi (art. 2(1)(a) Parigi); UNEP 2017 sul carbon budget; poiche' i limiti sono stime, la precauzione chiede misure piu' incisive, non meno."
+    sonde: [obblighi_positivi]
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [a, d]
+    verbatim: "The precautionary principle therefore means that more far-reaching measures should be taken to reduce greenhouse gas emissions, rather than less far-reaching measures."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.2.11"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 35
+    sintesi: "Il consenso sul 25-40% e' «common ground» nel senso della giurisprudenza CEDU e va considerato nell'applicare la Convenzione."
+    sonde: [target_giudiziale]
+    anelli: [d]
+    verbatim: "This high degree of consensus can be regarded as common ground within the meaning of the ECtHR case law"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.3.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 35
+    sintesi: "Tesi dello Stato: il 25-40% vale per l'Annex I come gruppo; i Paesi Bassi rispettano gli obblighi UE (21% ETS, 16% non-ETS)."
+    sonde: []
+    prepara: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.3.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 36
+    sintesi: "UNFCCC e Parigi si fondano sulla responsabilita' individuale degli Stati: l'obiettivo di gruppo vale in principio per ciascuno (salvo accordi di ripartizione ex art. 4(2)(a) UNFCCC e 4(16)-(17) Parigi, qui assenti)."
+    sonde: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    anelli: [c, d]
+    verbatim: "the UNFCCC and the Paris Agreement are both based on the individual responsibility of states"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.3.3-7.3.5"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 36-37
+    sintesi: "Gli accordi UE non sostituiscono la responsabilita' individuale (art. 193 TFUE, considerando 17 Effort Sharing); l'UE stessa voleva il 30%; alte emissioni pro capite olandesi; il contributo finanziario ai paesi in via di sviluppo non e' stato argomentato. Confine esatto fra i tre numeri non decidibile."
+    sonde: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    anelli: [c, d]
+    incerto: true
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.3.6"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 37
+    sintesi: "La necessita' urgente del 25-40% vale anche per i Paesi Bassi individualmente."
+    sonde: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    anelli: [c, d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.4.1-7.4.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 37
+    sintesi: "Lo Stato stesso sosteneva il 30% fino al 2011 e riteneva necessario il 25-40%; poi ha abbassato al 20% UE puntando a un'accelerazione dopo il 2020."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.4.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 37
+    sintesi: "Ogni emissione consuma carbon budget; ogni rinvio rende le riduzioni successive piu' drastiche, costose e rischiose."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [a, d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.4.4-7.4.5"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 37-38
+    sintesi: "Dopo AR4 servono riduzioni ancora maggiori (PBL 2016 su Parigi); obiettivi di legge 49% al 2030 e 95% al 2050; la linea estrapolata al 2020 da' 28%."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.4.6"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 38
+    sintesi: "Dubbi seri sulla fattibilita' del percorso dello Stato; lo Stato non ha spiegato perche' il 20% sia responsabile ne' quali misure prendera'."
+    sonde: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.5.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 38
+    sintesi: "Il 25% e' un minimo assoluto nel quadro degli obblighi positivi degli artt. 2 e 8; lo Stato non ha motivato lo scostamento e deve attenervisi."
+    sonde: [target_giudiziale, obblighi_positivi]
+    anelli: [b, d]
+    verbatim: "this target can therefore be regarded as an absolute minimum"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.5.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 39
+    sintesi: "L'adattamento non sostituisce la mitigazione."
+    sonde: [obblighi_positivi, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [b]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.5.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 39
+    sintesi: "Lo Stato non ha dimostrato che il 25% sia un onere impossibile o sproporzionato (rinvio a 5.3.4)."
+    sonde: [obblighi_positivi, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "7.6.1-7.6.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 39
+    sintesi: "Altri motivi 4-8 respinti con rinvio alla conclusie o senza motivazione (art. 81 RO)."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 39-40
+    sintesi: "Motivo 9: l'ordine sarebbe un ordine di legiferare e le scelte politiche non spettano al giudice. Polarita' di ordine_non_legge."
+    sonde: []
+    prepara: [ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    anelli: []
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.2.1"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 40
+    sintesi: "Se il governo e' obbligato a qualcosa, il giudice puo' condannarlo ad adempiere come chiunque (art. 3:296 BW): regola fondamentale dello Stato di diritto, coerente con l'art. 13 CEDU."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+    verbatim: "This is a fundamental rule of constitutional democracy, which has been enshrined in our legal order."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.2.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 40
+    sintesi: "Dagli artt. 2 e 8 discende un obbligo giuridico dello Stato; la giurisprudenza sugli ordini di legiferare e' un'eccezione alla regola dell'art. 3:296."
+    sonde: [obblighi_positivi, ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    anelli: [b, e]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.2.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 40
+    sintesi: "Le due ragioni del divieto: non entrare nel processo politico di formazione della legge; non vincolare terzi estranei al giudizio."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.2.4"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 40
+    sintesi: "Due capoversi. Il giudice puo' disapplicare leggi contrarie ai trattati e dichiarare illecita l'omissione legislativa (Waterpakt, SGP). Ma solo il legislatore decide se adottare una legge di contenuto determinato: il giudice non puo' ordinarla."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+    verbatim: "the courts cannot order the legislator to create legislation with a particular content"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.2.5"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 40-41
+    sintesi: "L'obiezione degli effetti sui terzi non vale per la disapplicazione, la dichiarativa e l'ordine generale di prendere misure che rispetta la liberta' del legislatore."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+    verbatim: "The same applies to a general order to take measures, while respecting the legislator’s freedom"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.2.6"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 41
+    sintesi: "CANONICAL di ordine_non_legge (urgenda.yaml lo indica come 8.2.7). Vietato solo l'ordine di legiferare con contenuto specifico; ammessi la dichiarativa e l'ordine di prendere misure per raggiungere un obiettivo; il divieto di SGP e' limitato a questo caso."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+    verbatim: "They may also order the public body in question to take measures in order to achieve a certain goal, as long as that order does not amount to an order to create legislation with a particular content."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.2.7"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 41
+    sintesi: "Applicazione: l'ordine del 25% applica la regola dell'art. 3:296; lascia lo Stato libero di scegliere le misure e le leggi, anche se molte misure richiederanno legislazione."
+    sonde: [ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
+    anelli: [d, e]
+    verbatim: "leaves the State free to choose the measures to be taken in order to achieve a 25% reduction in greenhouse gas emissions by 2020"
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.3.1-8.3.2"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 41
+    sintesi: "Dominio politico: governo e parlamento hanno ampia discrezionalita'; al giudice spetta verificare che restino nei limiti del diritto."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.3.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 41-42
+    sintesi: "Fra quei limiti c'e' la CEDU, che il giudice applica per gli artt. 93 e 94 Cost.; la tutela dei diritti e' componente essenziale dello Stato di diritto."
+    sonde: []
+    prepara: [obblighi_positivi, ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
+    anelli: [b, e]
+    verbatim: "The protection of human rights it provides is an essential component of a democratic state under the rule of law."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.3.4"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 42
+    sintesi: "Situazione eccezionale: minaccia accertata, obbligo di fare «its part» dagli artt. 2 e 8, 25% dal consenso scientifico e internazionale, politica di rinvio non conforme. Riepiloga l'intera catena con i rinvii interni."
+    sonde: [propria_quota, obblighi_positivi, target_giudiziale]
+    anelli: [a, b, c, d]
+    verbatim: "This case involves an exceptional situation."
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.3.5"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 42
+    sintesi: "Il Hof poteva quindi stabilire che lo Stato e' comunque obbligato alla riduzione di almeno il 25% al 2020."
+    sonde: [target_giudiziale]
+    anelli: [d]
+
+  - pronuncia: hoge_raad_2019
+    paragrafo: "8.4 e 9"
+    documento: urgenda-foundation-v-state-of-the-netherlands-judgment_ed17
+    pagina: 42
+    sintesi: "Motivo 9 respinto; ricorso respinto, spese allo Stato."
+    sonde: []
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: []
+
+# ═══════════════════════════ GERECHTSHOF DEN HAAG, 9 ottobre 2018 ═══════════════════════════
+
+  - pronuncia: hof_2018
+    paragrafo: "1-3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 2
+    sintesi: "Oggetto dell'appello e piano della sentenza."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hof_2018
+    paragrafo: "4-26"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 4-9
+    sintesi: "Fatti: Stoccolma 1972, UNFCCC (artt. 2, 3, 4, 7), COP, rapporti IPCC, UNEP, Parigi, politica UE (art. 191 TFUE, ETS, Effort Sharing), politica olandese dal 30% al 20%, emissioni pro capite olandesi alte (par. 26)."
+    sonde: []
+    anelli: [a]
+
+  - pronuncia: hof_2018
+    paragrafo: "28"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 9
+    sintesi: "Tesi di URGENDA (non della corte): ammette che la riduzione chiesta e' «a drop in the ocean» su scala globale ma sostiene che lo Stato non puo' sottrarsi; equita', Annex I, beneficio storico dai fossili. Chi cita «drop in the ocean» da qui cita la parte, non la corte."
+    sonde: []
+    prepara: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    anelli: [c]
+    verbatim: "the reduction it has claimed represents a drop in the ocean on a global scale"
+
+  - pronuncia: hof_2018
+    paragrafo: "29"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 9
+    sintesi: "Urgenda fonda l'illecito sul dovere di diligenza positivo e negativo espresso dagli artt. 2 e 8 CEDU."
+    sonde: []
+    prepara: [dovere_diligenza, obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    anelli: [b]
+
+  - pronuncia: hof_2018
+    paragrafo: "30"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 9-10
+    sintesi: "Difesa dello Stato: diversi percorsi di riduzione possibili, questione politica, trias politica, ETS, waterbed, carbon leakage, emissioni minime, incertezze scientifiche, adattamento."
+    sonde: []
+    prepara: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    anelli: []
+
+  - pronuncia: hof_2018
+    paragrafo: "35"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 10
+    sintesi: "L'art. 34 CEDU riguarda solo l'accesso alla Corte di Strasburgo; non impedisce a Urgenda di invocare gli artt. 2 e 8 davanti al giudice olandese."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: []
+
+  - pronuncia: hof_2018
+    paragrafo: "36"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 11
+    sintesi: "Il diritto olandese (art. 3:305a BW) decide l'accesso; gli artt. 2 e 8 hanno effetto diretto e Urgenda li invoca per conto delle persone sotto giurisdizione. Accolto l'appello incidentale."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: []
+
+  - pronuncia: hof_2018
+    paragrafo: "37"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 11
+    sintesi: "Basta la generazione attuale di olandesi, in particolare i piu' giovani, che subiranno nella propria vita gli effetti; non serve decidere sulle generazioni future ne' sugli stranieri."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [a]
+    verbatim: "in particular but not limited to the younger individuals in this group, will have to deal with the adverse effects of climate change in their lifetime"
+
+  - pronuncia: hof_2018
+    paragrafo: "38"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 11
+    sintesi: "Interesse sufficiente; lavori preparatori dell'art. 3:305a su interessi ideali e gruppi indeterminati."
+    sonde: []
+    anelli: []
+
+  - pronuncia: hof_2018
+    paragrafo: "39"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 11
+    sintesi: "Urgenda invoca l'art. 6:162 BW e gli artt. 2 e 8; il Hof esamina per primi gli artt. 2 e 8 (e non avra' bisogno del resto: par. 76)."
+    sonde: []
+    prepara: [dovere_diligenza, obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    anelli: [b]
+
+  - pronuncia: hof_2018
+    paragrafo: "40"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 11
+    sintesi: "Ambito degli artt. 2 e 8 nelle situazioni ambientali; per l'art. 8 soglia minima di gravita'."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [b]
+
+  - pronuncia: hof_2018
+    paragrafo: "41"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 11-12
+    sintesi: "Obblighi positivi di prevenire violazioni future, chiamati in breve «duty of care»: e' qui che nasce la formula ibrida. Rinvio a Öneryıldız, Budayeva, Kolyadenko, Fadeyeva."
+    sonde: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    anelli: [b]
+    verbatim: "the positive obligation to take concrete actions to prevent a future violation of these interests (in short: a duty of care)"
+
+  - pronuncia: hof_2018
+    paragrafo: "42"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 12
+    sintesi: "Limite dell'onere impossibile o sproporzionato; misure ragionevoli contro una minaccia reale e imminente nota allo Stato; intervento precoce; ampio margine di apprezzamento nella scelta delle misure."
+    sonde: [obblighi_positivi]
+    prepara: [ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
+    anelli: [b, e]
+    verbatim: "The government has a ‘wide margin of appreciation’ in choosing its measures."
+
+  - pronuncia: hof_2018
+    paragrafo: "43"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 12
+    sintesi: "Sintesi: obbligo positivo per tutte le attivita', pubbliche e private, specie industriali pericolose; minaccia reale e imminente conosciuta impone misure precauzionali."
+    sonde: [obblighi_positivi]
+    anelli: [b]
+    verbatim: "If the government knows that there is a real and imminent threat, the State must take precautionary measures to prevent infringement as far as possible."
+
+  - pronuncia: hof_2018
+    paragrafo: "44"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 12-13
+    sintesi: "Elenco dei fatti climatici: legame lineare emissioni-riscaldamento, 1,1 gradi, conseguenze oltre i 2 gradi, «centinaia di migliaia di vittime» in Europa occidentale, punti di non ritorno, 450/430 ppm, carbon budget."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [a]
+
+  - pronuncia: hof_2018
+    paragrafo: "45"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 13
+    sintesi: "Minaccia reale di cambiamento climatico pericoloso, con rischio serio per la vita e la vita familiare della generazione attuale; dagli artt. 2 e 8 discende il dovere di proteggere. Ripreso dalla Hoge Raad in 4.7."
+    sonde: [obblighi_positivi]
+    anelli: [a, b]
+    verbatim: "a real threat of dangerous climate change, resulting in the serious risk that the current generation of citizens will be confronted with loss of life and/or a disruption of family life"
+
+  - pronuncia: hof_2018
+    paragrafo: "46"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 13
+    sintesi: "Obiettivo finale e intermedi non controversi (zero al 2100, 80-95% al 2050, 49% al 2030); la lite verte sul 25% al 2020."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hof_2018
+    paragrafo: "47"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 13-14
+    sintesi: "Conviene ridurre presto; ogni megatonne conta (PBL); distribuzione lineare porterebbe al 28% nel 2020."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [a, d]
+
+  - pronuncia: hof_2018
+    paragrafo: "48-50"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 14
+    sintesi: "AR4 (box 13.7) e 25-40% per l'Annex I; AR5 non lo supera (emissioni negative irrealistiche, EASAC); il 450 non e' pessimista, 1,5 gradi e' piu' sicuro."
+    sonde: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hof_2018
+    paragrafo: "51"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 14-15
+    sintesi: "Le COP richiamano il 25-40%: non e' norma con effetto diretto, ma conferma che almeno tanto serve."
+    sonde: [target_giudiziale]
+    anelli: [d]
+    verbatim: "This may not have established a legal standard with a direct effect"
+
+  - pronuncia: hof_2018
+    paragrafo: "52"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 15
+    sintesi: "Fino al 2011 lo Stato stesso puntava al 30%; il ribasso non e' mai stato motivato scientificamente; lo Stato non ha mostrato uno scenario credibile col 20%. Asse dell'onere di motivazione."
+    sonde: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hof_2018
+    paragrafo: "53"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 15
+    sintesi: "Un obbligo di riduzione di almeno il 25% al 2020 e' in linea con il dovere di diligenza dello Stato."
+    sonde: [target_giudiziale, dovere_diligenza]
+    anelli: [d]
+    verbatim: "a reduction obligation of at least 25% by end-2020, as ordered by the district court, is in line with the State’s duty of care"
+
+  - pronuncia: hof_2018
+    paragrafo: "54-56"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 15
+    sintesi: "L'ETS non impedisce misure piu' ambiziose (art. 193 TFUE); l'effetto «waterbed» presuppone che gli altri usino tutte le quote, mentre ogni Stato membro ha una responsabilita' individuale."
+    sonde: [propria_quota]
+    anelli: [c]
+    verbatim: "Like the Netherlands, the other EU Member States have an individual responsibility to limit CO2 emissions as far as possible."
+
+  - pronuncia: hof_2018
+    paragrafo: "57-58"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 15-16
+    sintesi: "Carbon leakage e level playing field non provati; lo Stato stesso si e' impegnato al 49% al 2030."
+    sonde: []
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: []
+
+  - pronuncia: hof_2018
+    paragrafo: "59"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 16
+    sintesi: "L'adattamento non toglie l'obbligo di ridurre le emissioni piu' in fretta."
+    sonde: [obblighi_positivi]
+    anelli: [b]
+
+  - pronuncia: hof_2018
+    paragrafo: "60"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 16
+    sintesi: "Il 25-40% di gruppo vale almeno anche per i Paesi Bassi, dato il PIL pro capite e la ripartizione Effort Sharing."
+    sonde: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    anelli: [c, d]
+
+  - pronuncia: hof_2018
+    paragrafo: "61"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 16
+    sintesi: "Difesa dello Stato: emissioni minime, non puo' risolvere da solo, «secondary offender», negoziati complessi. Polarita' di propria_quota."
+    sonde: []
+    prepara: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    anelli: []
+
+  - pronuncia: hof_2018
+    paragrafo: "62"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 16
+    sintesi: "Problema globale che lo Stato non risolve da solo, ma cio' non lo esonera dall'agire sul proprio territorio, nelle sue capacita', insieme agli altri."
+    sonde: [propria_quota]
+    anelli: [c]
+    verbatim: "However, this does not release the State from its obligation to take measures in its territory, within its capabilities, which in concert with the efforts of other states provide protection from the hazards of dangerous climate change."
+
+  - pronuncia: hof_2018
+    paragrafo: "63"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 16
+    sintesi: "Principio di precauzione (UNFCCC, Tătar c. Romania § 120): l'incertezza non giustifica l'inerzia; basta un'alta plausibilita' di efficacia."
+    sonde: [obblighi_positivi]
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    anelli: [a, b]
+    verbatim: "High plausibility, as described above, suffices."
+
+  - pronuncia: hof_2018
+    paragrafo: "64"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 16-17
+    sintesi: "Difesa del nesso causale respinta: azione inibitoria, basta il rischio reale; altrimenti mancherebbe un rimedio effettivo, perche' ogni Stato direbbe di non dover agire se gli altri non agiscono."
+    sonde: [propria_quota]
+    anelli: [c]
+    verbatim: "each state held accountable would then be able to argue that it does not have to take measures if other states do not so either"
+
+  - pronuncia: hof_2018
+    paragrafo: "65"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 17
+    sintesi: "Relativita' (art. 6:163 BW): gli artt. 2 e 8 proteggono Urgenda e chi rappresenta."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: []
+
+  - pronuncia: hof_2018
+    paragrafo: "66"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 17
+    sintesi: "Il tempo breve non e' una scusa: sentenza provvisoriamente esecutiva da tre anni; i Paesi Bassi hanno a lungo tratto profitto dai fossili e hanno emissioni pro capite fra le piu' alte (UNFCCC, Parigi)."
+    sonde: [propria_quota]
+    anelli: [c]
+
+  - pronuncia: hof_2018
+    paragrafo: "67"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 17
+    sintesi: "Separazione dei poteri respinta: lo Stato viola diritti umani e l'ordine gli lascia spazio sufficiente per decidere come adempiere."
+    sonde: [obblighi_positivi, ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    anelli: [e]
+    verbatim: "the State violates human rights, which calls for the provision of measures, while at the same time the order to reduce emissions gives the State sufficient room to decide how it can comply with the order"
+
+  - pronuncia: hof_2018
+    paragrafo: "68"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 17
+    sintesi: "L'ordine non e' un ordine di legiferare: non ne prescrive il contenuto e lo Stato resta libero; molte vie non richiedono legge (Accordo sul clima)."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+    verbatim: "the order in no way prescribes the content of such legislation. For this reason alone, the order is not an ‘order to create legislation’."
+
+  - pronuncia: hof_2018
+    paragrafo: "69-70"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 17
+    sintesi: "Trias politica: il giudice deve applicare le norme di trattato a effetto diretto, prevalenti sulla legge; difese dello Stato non convincenti."
+    sonde: []
+    prepara: [ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    anelli: [e]
+
+  - pronuncia: hof_2018
+    paragrafo: "71"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 18
+    sintesi: "Lo Stato fa troppo poco e recupera troppo poco; situazione pericolosa imminente che chiede interventi ora; il carbon budget si esaurisce prima se si rinvia."
+    sonde: [obblighi_positivi]
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    anelli: [a, d]
+
+  - pronuncia: hof_2018
+    paragrafo: "72"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 18
+    sintesi: "Lo Stato non si puo' nascondere dietro il 20% UE: l'UE stessa ritiene necessario di piu' e fara' 26-27%; l'Olanda ha a lungo assunto il 30%."
+    sonde: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    anelli: [c, d]
+    verbatim: "Neither can the State hide behind the reduction target of 20% by 2020 at the EU level."
+
+  - pronuncia: hof_2018
+    paragrafo: "73"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 18
+    sintesi: "Lo Stato viene meno al «duty of care pursuant to Articles 2 and 8 ECHR»; il 25% e' un minimo; margine d'incertezza 19-27% inaccettabile; precauzione."
+    sonde: [obblighi_positivi, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi, target_giudiziale]"
+    anelli: [b, d]
+    verbatim: "the State fails to fulfil its duty of care pursuant to Articles 2 and 8 ECHR by not wanting to reduce emissions by at least 25% by end-2020"
+
+  - pronuncia: hof_2018
+    paragrafo: "74"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 18
+    sintesi: "Il margine di apprezzamento non vale sull'obiettivo minimo; vale nella scelta delle misure per raggiungerlo."
+    sonde: [ordine_non_legge, target_giudiziale]
+    anelli: [d, e]
+    verbatim: "the State does have this margin in choosing the measures it takes to achieve the target of a minimum reduction of 25% in 2020"
+
+  - pronuncia: hof_2018
+    paragrafo: "75"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 18
+    sintesi: "Non si puo' dare piu' del 25%; altre difese assorbite."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: hof_2018
+    paragrafo: "76"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_8a5e
+    pagina: 19
+    sintesi: "Conclusione: illecito per violazione del duty of care ex artt. 2 e 8; la dottrina della negligenza pericolosa (via del Rechtbank) non va esaminata; sentenza confermata."
+    sonde: [obblighi_positivi, dovere_diligenza, target_giudiziale]
+    anelli: [b, d]
+    verbatim: "the State is acting unlawfully (because in contravention of the duty of care under Articles 2 and 8 ECHR)"
+
+# ═══════════════════════════ RECHTBANK DEN HAAG, 24 giugno 2015 ═══════════════════════════
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.1-4.3"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 30
+    sintesi: "Introduzione: la questione e' se lo Stato abbia un obbligo giuridico verso Urgenda di limitare ulteriormente le emissioni; la corte non ha competenza tecnica propria e si fonda sui fatti non contestati."
+    sonde: []
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.4-4.7"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 31
+    sintesi: "Legittimazione ex art. 3:305a BW; lo statuto («sustainable society») ha dimensione internazionale, quindi Urgenda puo' far valere anche effetti fuori dai confini (4.7)."
+    sonde: []
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.8"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 31-32
+    sintesi: "Dimensione intergenerazionale della sostenibilita' (rapporto Brundtland); tutela delle generazioni future; richiamo all'art. 2 UNFCCC e agli artt. 2 e 8 CEDU."
+    sonde: []
+    anelli: [a]
+    verbatim: "The term “sustainable society” also has an intergenerational dimension"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.9-4.10"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 32
+    sintesi: "Domande di Urgenda in proprio ammissibili; la posizione degli 886 mandanti rinviata a 4.108."
+    sonde: []
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.11-4.19"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 32-33
+    sintesi: "Scienza del clima: UNFCCC e IPCC (i cui risultati la corte tratta come fatti, 4.12), incertezza scientifica (4.13), obiettivo 2 gradi e 1,5 per le isole del Pacifico (4.14), conseguenze (4.16), conclusione intermedia (4.18), regolazione del rischio (4.19)."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: [a]
+    verbatim: "The court – and also the Parties – therefore considers these findings as facts."
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.20-4.30"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 33-35
+    sintesi: "Scenario 450 ppm (4.20-4.22), obiettivi di riduzione 25-40% al 2020 e 80-95% al 2050 per l'Annex I (4.23-4.24), UE 20/30% (4.25), Paesi Bassi dal 30% al 14-17% (4.26), AR5 (4.27), conclusione (4.29), gap UNEP (4.30)."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.31"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 35-36
+    sintesi: "Conclusioni i)-vi): il 450 serve per il 2 gradi; l'Annex I deve ridurre del 25-40% al 2020; l'obiettivo olandese e' sotto lo standard."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.32"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 36-38
+    sintesi: "E' molto probabile che entro alcuni decenni si verifichi un cambiamento climatico pericoloso con conseguenze irreversibili; la lite riguarda il ritmo della mitigazione; grafici dei percorsi di riduzione di Urgenda."
+    sonde: []
+    prepara: [dovere_diligenza, obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    anelli: [a]
+    verbatim: "it is currently very probable that within several decades dangerous climate change will occur with irreversible consequences for man and the environment"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.33-4.35"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 38
+    sintesi: "Posizione dello Stato (17% al 2020); la lite verte su un obiettivo 2020 sotto il 25-40% (4.34); introduzione della sezione D sull'obbligo giuridico (4.35)."
+    sonde: []
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.36"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 38-39
+    sintesi: "L'art. 21 Cost. impone un dovere di cura per l'abitabilita' e l'ambiente, ma non da' certezza su modo ed esito: ampia discrezionalita' del governo."
+    sonde: []
+    prepara: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: []
+    verbatim: "Article 21 of the Dutch Constitution imposes a duty of care on the State relating to the liveability of the country and the protection and improvement of the living environment."
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.37-4.41"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 39
+    sintesi: "Il cambiamento climatico e' problema extraterritoriale e globale; UNFCCC e Kyoto; il principio no-harm (non contestato dallo Stato, 4.39); diritto UE, ETS ed Effort Sharing."
+    sonde: []
+    prepara: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    anelli: []
+    verbatim: "no state has the right to use its territory, or have it used, to cause significant damage to other states"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.42"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 39
+    sintesi: "UNFCCC, Kyoto e no-harm vincolano lo Stato solo verso altri Stati; non sono norme «che vincolano chiunque» (art. 93 Cost.); Urgenda non puo' invocarli direttamente."
+    sonde: []
+    prepara: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.43"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 39-40
+    sintesi: "Effetto riflesso: le norme aperte di diritto interno si interpretano in modo da non violare gli obblighi internazionali dello Stato."
+    sonde: []
+    prepara: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: [b]
+    verbatim: "This way, these obligations have a “reflex effect” in national law."
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.44"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 40
+    sintesi: "Lo stesso vale per il diritto UE (TFUE, direttive): nessun obbligo diretto verso Urgenda, ma effetto tramite le norme aperte."
+    sonde: []
+    prepara: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.45"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 40
+    sintesi: "Urgenda, persona giuridica, non e' vittima ex art. 34 CEDU e non puo' invocare direttamente gli artt. 2 e 8. E' qui (non in appello) la polarita' della via CEDU."
+    sonde: []
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.46"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 40
+    sintesi: "Gli artt. 2 e 8 e la loro interpretazione della Corte EDU servono come fonte di interpretazione della norma aperta non scritta dell'art. 6:162 BW. Fissa la famiglia dottrinale del primo grado. (urgenda.yaml lo indica come 4.45.)"
+    sonde: [dovere_diligenza]
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    anelli: [b]
+    verbatim: "can serve as a source of interpretation when detailing and implementing open private-law standards"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.47-4.50"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 40-41
+    sintesi: "Manuale del Consiglio d'Europa su diritti umani e ambiente (2012): approccio evolutivo, ma ampio margine di apprezzamento nazionale in materia ambientale (4.48, a p. 41); principi su art. 2 (attivita' pericolose, disastri naturali) e art. 8."
+    sonde: [obblighi_positivi]
+    anelli: [b]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.51"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 42
+    sintesi: "L'art. 5:37 BW (immissioni) non ha significato autonomo."
+    sonde: []
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.52"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 42
+    sintesi: "Conclusione intermedia: nessun obbligo giuridico verso Urgenda da art. 21 Cost., no-harm, UNFCCC, art. 191 TFUE; ma queste norme misurano la discrezionalita' dello Stato e il grado minimo di diligenza."
+    sonde: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: [b]
+    verbatim: "the objectives laid down in these regulations are relevant in determing the minimum degree of care the State is expected to observe"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.53"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 43
+    sintesi: "Questione mai decisa: conta la negligenza pericolosa illecita e la discrezionalita' dello Stato, che non e' illimitata; la diligenza non puo' scendere sotto lo standard."
+    sonde: [dovere_diligenza]
+    anelli: [b]
+    verbatim: "the State’s care may not be below standard"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.54"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 43
+    sintesi: "Kelderluik (HR 5 novembre 1965) e dottrina della negligenza pericolosa (gevaarzetting): diversa perche' il pericolo e' globale e incerto, ma se ne ricavano i criteri."
+    sonde: [dovere_diligenza]
+    anelli: [b]
+    verbatim: "the doctrine of hazardous negligence, as explained in the literature, bears a resemblance to the theme of hazardous climate change"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.55"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 43
+    sintesi: "La discrezionalita' ex art. 21 Cost. si misura anche su obiettivi e principi UNFCCC e TFUE, data la natura globale del pericolo («shared risk management of a global hazard»)."
+    sonde: [dovere_diligenza]
+    anelli: [b]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.56-4.58"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 43-44
+    sintesi: "Principi degli artt. 2-3 UNFCCC: equita' (generazioni future, paesi industrializzati in testa per responsabilita' storica e mezzi, 4.57) e precauzione (4.58)."
+    sonde: [dovere_diligenza]
+    prepara: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
+    anelli: [c]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.59-4.62"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 44
+    sintesi: "Sostenibilita' (4.59); art. 191 TFUE: elevato livello di protezione, precauzione, prevenzione («prevention is better than cure»), dati scientifici disponibili."
+    sonde: [dovere_diligenza]
+    anelli: [b]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.63"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 44
+    sintesi: "Obiettivi e principi non hanno effetto diretto ma delimitano l'esercizio dei poteri; i sei fattori del dovere di diligenza (danno, prevedibilita', probabilita', natura della condotta, onerosita' delle precauzioni, discrezionalita')."
+    sonde: [dovere_diligenza]
+    anelli: [b]
+    verbatim: "whether according to objective standards the reduction measures taken by the State to prevent hazardous climate change for man and the environment are sufficient"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.64-4.65"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 45
+    sintesi: "Fattori i-iii: le parti concordano sul bisogno di precauzioni; emissioni globali insufficienti per i 2 gradi, rischio molto alto; lo Stato deve mitigare sul proprio territorio e presto (metafora della petroliera); conosce il rischio dal 1992 e dal 2007."
+    sonde: [dovere_diligenza]
+    prepara: [obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    anelli: [a, b]
+    verbatim: "given the high risk of hazardous climate change, the State has a serious duty of care to take measures to prevent it"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.66"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 45
+    sintesi: "Fattore iv: lo Stato non emette ma controlla il livello delle emissioni olandesi; firmando UNFCCC e Kyoto ne ha accettato la responsabilita'; ruolo cruciale nella transizione."
+    sonde: [dovere_diligenza]
+    prepara: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
+    anelli: [b, c]
+    verbatim: "the State has the power to control the collective Dutch emission level"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.67-4.73"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 45-46
+    sintesi: "Fattore v, onerosita': lo Stato non ha mostrato costi sproporzionati del 25-40% (4.70); consenso che agire subito costa meno; la mitigazione e' l'unico rimedio efficace (4.71); CCS non affidabile (4.72); dovere di mitigare il piu' in fretta e il piu' possibile (4.73). Confine fra 4.68 e 4.69 incerto."
+    sonde: [dovere_diligenza]
+    prepara: [target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
+    anelli: [b, d]
+    verbatim: "the State has a duty of care to mitigate as quickly and as much as possible"
+    incerto: true
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.74"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 47
+    sintesi: "Fattore vi: la discrezionalita' ex art. 21 Cost. non e' illimitata; di fronte a un rischio alto lo Stato deve proteggere i cittadini con misure appropriate ed efficaci, anche alla luce della giurisprudenza CEDU."
+    sonde: [dovere_diligenza, obblighi_positivi]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    anelli: [b]
+    verbatim: "the State has the obligation to protect its citizens from it by taking appropriate and effective measures"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.75"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 47
+    sintesi: "Prima di tutto mitigazione: l'adattamento protegge solo in parte."
+    sonde: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: [b]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.76-4.77"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 47
+    sintesi: "I principi (equita' fra paesi e fra generazioni, precauzione, prevenzione) restringono le opzioni; per discostarsene lo Stato deve giustificare; non gli si chiede l'impossibile ne' un onere sproporzionato."
+    sonde: [dovere_diligenza]
+    prepara: [propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
+    anelli: [b, d]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.78"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 47
+    sintesi: "Difesa dello Stato: contributo olandese 0,5% delle emissioni mondiali; l'aggiunta chiesta varrebbe 0,04-0,09%; riduzione trascurabile. Polarita' di propria_quota."
+    sonde: []
+    prepara: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.79"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 47-48
+    sintesi: "Difesa respinta: problema globale, responsabilita' globale; ogni emissione, anche minima, contribuisce; responsabilita' congiunta e individuale dei firmatari UNFCCC; analogia con la sentenza Kalimijnen (HR 23/9/1988)."
+    sonde: [dovere_diligenza, propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
+    anelli: [c]
+    verbatim: "any anthropogenic greenhouse gas emission, no matter how minor, contributes to an increase of CO2 levels in the atmosphere and therefore to hazardous climate change"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.80-4.82"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 48-49
+    sintesi: "ETS non impedisce riduzioni nazionali piu' alte; waterbed e carbon leakage non dimostrati; level playing field non provato."
+    sonde: [propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    anelli: [c]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.83"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 49
+    sintesi: "CANONICAL di dovere_diligenza. Gravita' delle conseguenze e alto rischio: lo Stato ha un dovere di diligenza di mitigare; il contributo olandese piccolo non cambia nulla; serve almeno lo scenario 450."
+    sonde: [dovere_diligenza, propria_quota]
+    anelli: [a, b, c]
+    verbatim: "the court concludes that the State has a duty of care to take mitigation measures"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.84-4.85"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 49
+    sintesi: "La politica del 20% UE (17% NL) non rispetta lo standard; il rinvio produce un effetto di accumulo e non e' alternativa accettabile al 25-40%."
+    sonde: [dovere_diligenza, propria_quota, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
+    anelli: [d]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.86"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 49
+    sintesi: "Sotto il 25-40% lo Stato viola il dovere di diligenza; il 25% e' il minimo assoluto secondo la scienza; imporre di piu' urta la discrezionalita'."
+    sonde: [dovere_diligenza, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
+    anelli: [d]
+    verbatim: "a reduction target of this magnitude is the absolute minimum"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.87"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 49
+    sintesi: "Imputabilita': l'eccesso di emissioni fino al 2020 e' imputabile allo Stato, che ha il potere di regolarle."
+    sonde: []
+    prepara: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: [b]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.88-4.89"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 49-50
+    sintesi: "Danno: la possibilita' di danno per chi Urgenda rappresenta, generazioni attuali e future, e' grande e concreta."
+    sonde: [dovere_diligenza, propria_quota]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: [a]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.90"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 50
+    sintesi: "Nesso causale sufficiente (rinvio a 4.79): le emissioni olandesi, per quanto limitate, contribuiscono."
+    sonde: [propria_quota]
+    anelli: [c]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.91-4.92"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 50
+    sintesi: "Relativita' soddisfatta; non occorre decidere sulle generazioni di altri paesi."
+    sonde: []
+    prepara: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.93"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 50
+    sintesi: "Conclusione: lo Stato ha agito in modo negligente e quindi illecito verso Urgenda puntando a meno del 25% al 2020."
+    sonde: [dovere_diligenza, target_giudiziale]
+    anelli: [b, d]
+    verbatim: "has acted negligently and therefore unlawfully towards Urgenda"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.94-4.97"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 50-51
+    sintesi: "Separazione dei poteri: in Olanda non e' piena ma equilibrio; il giudice controlla la legalita' e non entra nel dominio politico; moderazione per gli effetti sui terzi; legittimazione democratica del giudice dalla legge."
+    sonde: []
+    prepara: [ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    anelli: [e]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.98"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 51
+    sintesi: "La domanda chiede tutela giuridica; che la questione sia anche e soprattutto politica non limita il giudice."
+    sonde: []
+    prepara: [ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    anelli: [e]
+    verbatim: "is no reason for curbing the judge in his task and authority to settle disputes"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.99-4.100"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 51-52
+    sintesi: "Lo Stato non ha detto di non poter fare di piu' ne' invocato l'art. 6:168 BW; la posizione negoziale internazionale non esonera dall'obbligo accertato."
+    sonde: []
+    prepara: [ordine_non_legge]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.101"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 52
+    sintesi: "La domanda non ordina ne' vieta misure legislative o politiche determinate; lo Stato conserva piena liberta' su come adempiere."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+    verbatim: "the State will retain full freedom, which is pre-eminently vested in it, to determine how to comply with the order concerned"
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.102"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 52
+    sintesi: "La trias politica non osta all'ordine di riduzione; la moderazione non limita oltre la discrezionalita' dello Stato."
+    sonde: [ordine_non_legge]
+    anelli: [e]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.103-4.107"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 52-53
+    sintesi: "Ordine accolto nel minimo del 25%; dichiarative assorbite; ordine di informare la societa' respinto (spetta allo Stato)."
+    sonde: [target_giudiziale]
+    anelli: [d]
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "4.108-4.109"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 53
+    sintesi: "I mandanti individuali non hanno interesse proprio ulteriore; richiamo a 4.45-4.46 (CEDU come fonte del dovere di diligenza)."
+    sonde: []
+    prepara: [dovere_diligenza]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    anelli: []
+
+  - pronuncia: rechtbank_2015
+    paragrafo: "dispositivo (5.1)"
+    documento: urgenda-foundation-v-state-of-the-netherlands-decision_f1ad
+    pagina: 53-54
+    sintesi: "Ordina allo Stato di limitare, o far limitare, il volume annuo delle emissioni olandesi in modo che a fine 2020 sia ridotto di almeno il 25% rispetto al 1990."
+    sonde: [ordine_non_legge, target_giudiziale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
+    anelli: [d, e]
+    verbatim: "orders the State to limit the joint volume of Dutch annual greenhouse gas emissions, or have them limited"

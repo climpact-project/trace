@@ -1,19 +1,21 @@
-"""Page index built with the BASE embedding model, computed once.
+"""L'INDICE DELLE PAGINE con Qwen3-Embedding-4B DI BASE — una volta sola (§62.7, §63.2).
 
-   Only the query side of the retrieval model is fine-tuned; pages are encoded by the base model, so
-   the index is built once and need not be rebuilt at each retraining. Page-level search was measured
-   to add no more noise than chunk-level search. A page is the text between two page markers, at least
-   200 characters, truncated to 12,000; the model reads its first 2,048 tokens.
+   PERCHE'. Il primo modello si addestra solo sul lato della domanda: le pagine le legge il
+   modello di base, quindi l'indice si costruisce una volta e non va rifatto a ogni riaddestramento.
+   Il catalogo parziale (§63.2) ha mostrato che cercare per pagine non porta piu' rumore che per
+   frammenti. Stesse regole del catalogo: pagina = testo fra due segni di pagina, almeno 200
+   caratteri, al massimo 12.000; il modello ne legge i primi 2.048 token.
 
-   Usage:  python3 tools/indice_pagine.py prepara                       (local machine: writes index/pagine/pagine.jsonl.gz)
-           python3 tools/indice_pagine.py costruisci --parte 0 --parti 4 (GPU: vectors for one quarter of the pages)
-           python3 tools/indice_pagine.py costruisci --finestre --modello pplx4b --parte 0 --parti 8
+   Uso:  python3 tools/indice_pagine.py prepara                       (Mac: scrive index/pagine/pagine.jsonl.gz)
+         python3 tools/indice_pagine.py costruisci --parte 0 --parti 4 (GPU: vettori di un quarto delle pagine)
+         python3 tools/indice_pagine.py costruisci --finestre --modello pplx4b --parte 0 --parti 8
 
-   Windows (--finestre). With whole-page vectors, half of the human-confirmed uptakes (40 of 80) fell
-   outside the top 500 for every probe and did not surface even at 5,000, although the row-to-page link
-   was correct (99 of 102 confirmed passages lie on the indicated page): a long page dilutes the relevant
-   sentence. Each page is therefore split into windows of about 1,200 characters with 300 of overlap,
-   each window gets its own vector, and a page scores as its best window.
+   LE FINESTRE (26/09/2026). Cercando per pagina intera la catena nuova perdeva meta' delle riprese
+   confermate dalle persone: 40 su 80 fuori dalle prime 500 di ogni sonda, e allargando a 5.000 non
+   risalivano. Il collegamento riga-pagina e' giusto (99 passaggi confermati su 102 stanno sulla pagina
+   indicata): e' la pagina lunga che annega la frase. La fase 1 cercava per frammenti e le trovava.
+   Quindi ogni pagina si spezza in finestre di circa 1.200 caratteri con 300 di sovrapposizione, ogni
+   finestra ha il suo vettore, e il punteggio di una pagina e' quello della sua finestra migliore.
 """
 import argparse, gzip, json, pathlib, re, sys, time
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -40,7 +42,7 @@ def prepara():
     print(f'pagine {n} in {time.time()-t0:.0f}s -> {OUT/"pagine.jsonl.gz"}')
 
 
-# name -> (model, pooling, page prefix); Perplexity uses mean pooling, no prefix, and its own remote code
+# nome -> (modello, pooling, prefisso pagina); per Perplexity: media dei token, nessun prefisso, codice suo
 MODELLI = {'qwen4b': ('Qwen/Qwen3-Embedding-4B', 'ultimo', ''), 'pplx4b': ('perplexity-ai/pplx-embed-v1-4b', 'media', '')}
 
 
@@ -48,7 +50,7 @@ FIN_LUNGA, FIN_PASSO = 1200, 900
 
 
 def finestre(testo):
-    """Windows of ~1,200 characters advancing by 900 (300 overlap), cut on whitespace."""
+    """Finestre di ~1.200 caratteri che avanzano di 900 (300 di sovrapposizione), tagliate su uno spazio."""
     out, i, n = [], 0, len(testo)
     while i < n:
         j = min(n, i + FIN_LUNGA)
@@ -76,7 +78,7 @@ def costruisci(parte, parti, lotto, nome='qwen4b', con_finestre=False):
     maxtok = 512 if con_finestre else 2048
     tok = AutoTokenizer.from_pretrained(MOD, padding_side='left', trust_remote_code=True)
     m = AutoModel.from_pretrained(MOD, dtype=torch.bfloat16, trust_remote_code=True).cuda().eval()
-    ordine = sorted(range(len(righe)), key=lambda i: len(righe[i]['testo']))   # batches of similar length: less padding
+    ordine = sorted(range(len(righe)), key=lambda i: len(righe[i]['testo']))   # lotti di lunghezza simile: meno riempitivo
     V = np.zeros((len(righe), m.config.hidden_size), dtype=np.float16); t0 = time.time()
     with torch.no_grad():
         for k in range(0, len(ordine), lotto):

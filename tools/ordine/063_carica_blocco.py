@@ -1,0 +1,1 @@
+../carica_blocco.py

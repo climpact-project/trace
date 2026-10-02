@@ -1,25 +1,24 @@
-"""TRACE-Reader: a small fine-tuned model that reproduces the DeepSeek reading of explicit citations.
+"""TRACE-READER: UN MODELLO NOSTRO, PICCOLO, CHE FA IL LAVORO DI DEEPSEEK SULLE CITAZIONI (27/09/2026).
 
-   For each explicit citation the large reader (DeepSeek V4 Flash) proposes: whether the citation really refers
-   to the case, the citation type, who is speaking, the proposition, the principles taken up, and a justification.
-   That model (149 GB of weights) can be neither distributed nor fine-tuned. TRACE-Reader is Qwen3-14B with a
-   LoRA adapter, trained first on DeepSeek readings (distillation, to be disclosed) and then on team corrections.
+   PERCHE'. Nel sistema nuovo (§63.25) DeepSeek legge ogni citazione esplicita e propone: se e' davvero il caso,
+   il tipo di citazione, chi parla, la proposizione, i principi presi, con un commento. DeepSeek e' enorme (149 GB
+   di pesi) e non si puo' consegnare ne' addestrare. Il PI ha chiesto un modello nostro: Qwen3-14B con un
+   adattatore LoRA, addestrato prima sulle letture di DeepSeek (distillazione, da dichiarare) e poi sulle
+   correzioni del team.
 
-   Evaluation rule, fixed in advance: the Reader is measured on the same test rows as DeepSeek (the 317 lexical
-   Urgenda citations with a human-assigned type). If it matches or beats DeepSeek it produces the proposals;
-   otherwise DeepSeek does and the Reader remains a documented experiment.
+   REGOLA FISSATA PRIMA. Il Reader si misura sulle stesse righe di prova di DeepSeek (le citazioni lessicali di
+   Urgenda con un tipo dato dalle persone, 317). Se eguaglia o supera DeepSeek, fa lui le proposte; se no, le fa
+   DeepSeek e il Reader resta un esperimento documentato con il suo numero.
 
-   Leakage control: no test row enters training, and the only teacher is DeepSeek (never human judgments on test
-   rows). Only rows where DeepSeek's two readings agree on the type are used. Also excluding the test documents
-   would leave 305 of 1,678 rows (documents with many citations are almost all in the test set);
-   `--escludi-documenti` does this, to measure its effect.
+   PULIZIA. Nessuna riga di prova entra nell'addestramento, e il maestro e' solo DeepSeek (mai i giudizi delle
+   persone sulle righe di prova). Si usano solo le righe in cui le due letture di DeepSeek danno lo stesso tipo.
+   Escludere anche i documenti della prova lascerebbe 305 righe su 1.678 (i documenti con molte citazioni stanno
+   quasi tutti nella prova): con `--escludi-documenti` si fa lo stesso, per misurare quanto conta.
 
-   Phases:
-     dati      build training/reader/urgenda_{addestramento,prova}.jsonl (CPU)
-     addestra  LoRA training on one GPU  -> training/reader/lora_reader_<label>/
-     valuta    evaluation on one GPU     -> training/reader/valuta_<label>_p<epoch>.jsonl
-
-   Usage:  python tools/reader.py {dati,addestra,valuta} [--caso urgenda] [--etichetta v0] [--v1] ...
+   Fasi:
+     dati      Mac  -> training/reader/urgenda_{addestramento,prova}.jsonl
+     addestra  ReCaS, una GPU  -> training/reader/lora_reader_<etichetta>/
+     valuta    ReCaS, una GPU  -> training/reader/valuta_<etichetta>.jsonl
 """
 import argparse, collections, json, pathlib, random, re, sys
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -70,8 +69,7 @@ def dati(caso, escludi_documenti=False, senza_principi=False, v1=False):
     f = QUI/'training'/'principi'/f'{caso}_ripresa_deepseek.jsonl'
     if f.exists():
         rp = {json.loads(l)['id']: json.loads(l) for l in open(f, encoding='utf-8')}
-    # v1: the input also includes the neighbouring pages proposed by the reranker, and the target states which
-    # of them continue the uptake.
+    # v1 (28/09/2026): anche le pagine vicine proposte dal reranker, e nel bersaglio quali proseguono la ripresa.
     vicine = {}
     fv = QUI/'training'/'principi'/f'{caso}_ripresa_righe.jsonl'
     if v1 and fv.exists():
@@ -135,7 +133,8 @@ def addestra(caso, etichetta, passate, lr, massimo):
     m = get_peft_model(m, LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05, task_type='CAUSAL_LM',
                                      target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']))
     m.enable_input_require_grads()
-    # Gradient checkpointing is only applied in training mode; without train() the run exceeds GPU memory.
+    # SENZA train() IL CHECKPOINTING NON SCATTA (gli strati lo applicano solo in addestramento): secondo lancio
+    # finito ancora senza memoria per questo.
     m.train()
     suf = '_v1' if etichetta.startswith('v1') else ''
     X = [json.loads(l) for l in open(R/f'{caso}_addestramento{suf}.jsonl', encoding='utf-8')]
@@ -148,8 +147,8 @@ def addestra(caso, etichetta, passate, lr, massimo):
             a = tok(pre, add_special_tokens=False)['input_ids']; b = tok(ris, add_special_tokens=False)['input_ids']
             a = a[-(massimo - len(b)):] if len(a) + len(b) > massimo else a
             ids = torch.tensor([a + b]).cuda()
-            # Logits over the whole sequence (151k vocabulary x ~6k tokens) do not fit on an 80 GB GPU next to the
-            # model, so the LM head is applied only to the answer positions.
+            # LA MEMORIA: i logit su tutto il testo (151.000 voci x 6.000 token) non stanno in una H100 accanto al
+            # modello (primo lancio: esaurita). Il vocabolario si applica solo alle posizioni della risposta.
             h = m.base_model.model.model(input_ids=ids).last_hidden_state[:, len(a) - 1:-1]
             logit = m.base_model.model.lm_head(h).float()
             loss = torch.nn.functional.cross_entropy(logit.view(-1, logit.size(-1)), torch.tensor(b).cuda()) / accumula

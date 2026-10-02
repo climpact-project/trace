@@ -1,13 +1,13 @@
-"""Section tree of a filing, built without a language model (PageIndex-style experiment).
+"""L'ALBERO DELLE SEZIONI DI UN ATTO, SENZA MODELLO (29/09/2026, prova tipo PageIndex).
 
-   PageIndex (VectifyAI) builds the table of contents of a long document and navigates it. TRACE needs it for one
-   question: whether a high-scoring page lies in the SAME SECTION as the citation (true continuation) or elsewhere
-   (same topic only). Only 67 of the 314 filings citing Urgenda carry an embedded PDF outline; for the others the
-   outline is inferred from headings: short lines in a font larger than the body text, or bold and numbered
-   ("V.1.2", "A.", "3."). The heuristic is measured on filings that have an outline: how many true headings it
-   recovers and how many it invents.
+   PageIndex (VectifyAI) costruisce l'indice di un documento lungo e ci naviga dentro. Per TRACE serve a una cosa
+   precisa: dire se la pagina con punteggio alto sta nella STESSA SEZIONE della citazione (seguito vero) o altrove
+   (stesso tema). Solo 67 dei 314 atti che citano Urgenda hanno l'indice dentro il PDF; per gli altri lo si ricava
+   dai titoli: righe brevi in un carattere piu' grande del corpo, o in grassetto e numerate («V.1.2», «A.», «3.»).
+   Lo si misura sugli atti che l'indice ce l'hanno: quanti titoli veri ritrova e quanti ne inventa.
 
-   Usage:  .venv/bin/python tools/sezioni_atto.py misura      (inferred headings vs. the PDF outline)
+   Uso:  .venv/bin/python tools/sezioni_atto.py misura      (titoli ricavati contro l'indice del PDF)
+         .venv/bin/python tools/sezioni_atto.py finestra    (pagine alte: stessa sezione della citazione?)
 """
 import collections, glob, json, pathlib, re, statistics, sys
 import fitz
@@ -18,7 +18,7 @@ NUMERO = re.compile(r'^\s*((\d+(\.\d+)*\.?)|([IVXLC]+\.)|([A-Z]\.)|(\([a-z0-9]+\
 
 
 def titoli(pdf):
-    """Return [(level, title, page)] like get_toc(). Level 1 = largest font among the headings."""
+    """[(livello, titolo, pagina)] come get_toc(). Livello 1 = carattere piu' grande fra i titoli."""
     doc = fitz.open(pdf)
     righe, corpi = [], []
     for n, pg in enumerate(doc, 1):

@@ -1,26 +1,26 @@
-"""Principles taken by an explicit citation, derived from the paragraphs it cites. No model involved.
+"""IL PRINCIPIO CHE UNA CITAZIONE PRENDE, DAI PARAGRAFI CHE CITA (27/09/2026). Senza nessun modello.
 
-   Each explicit citation is coded with the principle(s) of the cited case it takes up. When the citation
-   gives a paragraph number (e.g. "Urgenda, para. 5.7.7", "§ 5.6.2", "r.o. 4.83"), the hand-written and
-   hand-checked paragraph map (`cited-cases/<caso>-mappa-paragrafi.yaml`) gives the answer. This is the most
-   reliable label available and does not come from a language model, so it may be used for training
-   (project rule: labels come from people or rules, never from LLM verdicts).
+   PERCHE'. Nel sistema nuovo (§63.25) ogni citazione esplicita dice quale principio del caso citato
+   prende. Quando la citazione indica il paragrafo («Urgenda, para. 5.7.7», «§ 5.6.2», «r.o. 4.83»), la
+   mappa dei paragrafi (`cited-cases/<caso>-mappa-paragrafi.yaml`, scritta e controllata a mano il 23/09)
+   da' la risposta: e' l'etichetta piu' sicura che abbiamo, e non viene da un modello linguistico, quindi
+   si puo' usare per addestrare (regola del progetto: le etichette vengono da persone o da regole, mai
+   dai verdetti di un LLM).
 
-   Method. On the citation page every mention of the case is located; paragraph numbers are searched in the
-   following 250 characters. The decision instance (Rechtbank 2015, Hof 2018, Hoge Raad 2019) is inferred
-   from nearby words (court names, years); failing that, from the number itself when it exists in only one
-   decision. Ranges in the map (e.g. "4.11-4.19") are expanded.
+   COME. Nella pagina della citazione si cerca ogni menzione del caso; nei 250 caratteri che seguono si
+   cercano i numeri di paragrafo. La pronuncia (Rechtbank 2015, Hof 2018, Hoge Raad 2019) si decide dalle
+   parole vicine («Supreme Court», «District Court», «Court of Appeal», gli anni); se mancano, dal numero
+   stesso quando esiste in una sola pronuncia. Gli intervalli della mappa («4.11-4.19») si espandono.
 
-   Usage:  .venv/bin/python tools/principi_da_paragrafi.py [--caso urgenda]
-           -> training/principi/<caso>_da_paragrafi.jsonl
+   Uso:  .venv/bin/python tools/principi_da_paragrafi.py  -> training/principi/urgenda_da_paragrafi.jsonl
 """
 import collections, json, pathlib, re
 import yaml
 QUI = pathlib.Path(__file__).resolve().parent.parent
 MENZIONE_URGENDA = re.compile(r'urgenda|ECLI:NL:(?:HR|GHDHA|RBDHA):20(?:19|18|15):\d+', re.I)
-PAR = re.compile(r'(?:paras?\.?|paragraphs?|§§?|¶¶?|r\.\s?o\.|rov\.|rn\.|randnummer|margin\s+(?:nos?\.|numbers?))\s*'
+PAR = re.compile(r'(?:paras?\.?|paragraphs?|p[áa]rrs?\.?|par[áa]grafos?|§§?|¶¶?|r\.\s?o\.|rov\.|rn\.|randnummer|margin\s+(?:nos?\.|numbers?))\s*'
                  r'((?:\d{1,3}(?:\.\d{1,3}){0,2})(?!\d)(?:\s*(?:[-–]|to|and|&|,)\s*\d{1,3}(?:\.\d{1,3}){0,2}(?![\d/]))*)', re.I)
-# Components allow up to three digits (\d{1,3}) so that e.g. "Rn. 254" or "4.109" are not truncated.
+# 28/09/2026: erano \d{1,2}, e «Rn. 254» diventava 25, «4.109» diventava 4.10 (trovato su Neubauer, che arriva a Rn. 270).
 CORTE = [('hoge_raad_2019', re.compile(r'supreme court|hoge raad|\bHR\b|2019', re.I)),
          ('hof_2018', re.compile(r'court of appeal|gerechtshof|\bhof\b|2018', re.I)),
          ('rechtbank_2015', re.compile(r'district court|rechtbank|2015', re.I))]
@@ -41,15 +41,27 @@ def espandi(p):
     return ['.'.join(map(str, a[:-1] + (k,))) for k in range(a[-1], b[-1] + 1)]
 
 
-def mappa(caso='urgenda'):
-    """Decision -> paragraph -> principles. In the Neubauer and Future Generations maps principles are written
-    without the case prefix used in the case-file ids, so it is added here. Single-decision cases use 'unica'."""
+def mappa(caso='urgenda', campo='sonde'):
+    """Pronuncia -> paragrafo -> principi. Nelle mappe di Neubauer e Future Generations i principi sono scritti
+    senza il prefisso del caso che hanno negli id dei file dei casi: qui si aggiunge. Neubauer ha una pronuncia sola."""
     per = collections.defaultdict(dict)
     for v in yaml.safe_load(open(QUI/'cited-cases'/f'{caso}-mappa-paragrafi.yaml', encoding='utf-8'))['voci']:
         pr = v.get('pronuncia') or 'unica'
-        sonde = [s if caso == 'urgenda' or s.startswith(caso + '.') else f'{caso}.{s}' for s in (v.get('sonde') or [])]
-        for n in espandi(v['paragrafo']):
+        sonde = [s if caso == 'urgenda' or s.startswith(caso + '.') else f'{caso}.{s}' for s in (v.get(campo) or [])]
+        # «§§ 1-9», «§ 527», «para. 5.7.7» (mappe dal 01/10/2026): il segno davanti al numero non conta
+        # il campo si chiama «paragrafo» o «paragrafi»; davanti al numero «§§», «para.», «Rn.», «párrs.» (01/10/2026)
+        par_ = str(v.get('paragrafo', v.get('paragrafi', '')))
+        for n in espandi(re.sub(r'^\s*(?:§§?|paras?\.?|Rn\.|p[áa]rrs?\.?)\s*', '', par_, flags=re.I)):
             per[pr][n] = sorted(set(per[pr].get(n, [])) | set(sonde))
+    # LE SONDE DEL 01/10/2026 DI NEUBAUER SONO DEFINITE PER RANDNUMMER (il PI: «Rn. 117-122, 183-194»): ogni Rn degli
+    # intervalli scritti nel file del caso porta la sonda, anche dove la mappa non ha una voce per quel numero.
+    if campo.startswith('sonde_P') and caso == 'neubauer':
+        for q in yaml.safe_load(open(QUI/'cited-cases'/f"{caso}-{campo.split('_')[1]}.yaml", encoding='utf-8'))['semantic_queries']:
+            testo = q.get('paragrafi', '').split(';')[0]
+            nums = {n for a, b in re.findall(r'(\d+)\s*-\s*(\d+)', testo) for n in range(int(a), int(b) + 1)}
+            nums |= {int(x) for x in re.findall(r'(?<![\d-])(\d+)(?![\d-])', testo)}
+            for n in nums:
+                per['unica'][str(n)] = sorted(set(per['unica'].get(str(n), [])) | {q['id']})
     return per
 
 
@@ -63,9 +75,11 @@ def numeri(testo):
 
 def main():
     import argparse
-    ap = argparse.ArgumentParser(); ap.add_argument('--caso', default='urgenda'); caso = ap.parse_args().caso
-    USCITA = QUI/'training'/'principi'/f'{caso}_da_paragrafi.jsonl'
-    per = mappa(caso)
+    ap = argparse.ArgumentParser(); ap.add_argument('--caso', default='urgenda')
+    ap.add_argument('--sonde', default='', help="'P03': le sonde del PI del 01/10/2026 (campo sonde_P03 delle mappe), in un file a parte")
+    a = ap.parse_args(); caso = a.caso
+    USCITA = QUI/'training'/'principi'/f"{caso}_da_paragrafi{'_' + a.sonde if a.sonde else ''}.jsonl"
+    per = mappa(caso, 'sonde_' + a.sonde if a.sonde else 'sonde')
     if caso == 'urgenda':
         MENZIONE = MENZIONE_URGENDA
     else:
@@ -83,9 +97,9 @@ def main():
             trovati = []
             for m in MENZIONE.finditer(pag):
                 fin = pag[m.start(): m.end() + 250]
-                # The reference ends at the semicolon: what follows is usually another case with its own paragraphs
-                # ("Neubauer, para. 136; Friends of the Irish Environment paras. 7.6 ..."). PAR deliberately omits
-                # "at" and "nos.", which would capture page and docket numbers ("Case Nos. 1 BvR ...").
+                # IL RIFERIMENTO FINISCE AL PUNTO E VIRGOLA: dopo c'e' di solito un altro caso con i suoi paragrafi
+                # («Neubauer, para. 136; Friends of the Irish Environment paras. 7.6 ...»). Tolti anche «at» e «nos.»,
+                # che prendevano pagine e numeri di ruolo («Case Nos. 1 BvR ...»). 28/09/2026.
                 fin = fin.split(';')[0]
                 for p in PAR.finditer(fin):
                     nums = numeri(p.group(1))

@@ -1,24 +1,25 @@
-"""Completeness check: does every row have everything it must have?
+"""IL CONTROLLO DI COMPLETEZZA: OGNI RIGA HA TUTTO QUELLO CHE DEVE AVERE? (29/09/2026, dopo un buco di metodo)
 
-   The check starts from the DATABASE, not from prepared files: loaders that start from hand-prepared files
-   silently leave rows missing from those files without proposals. For every row in the Uptakes view (networks
-   `lessicale` and `entrambe`) the script verifies that all required fields are present, and collects what is
-   missing into a list from which the next readings are prepared. Run it after every load.
+   Perche'. Fino al 29/09 ogni caricamento partiva da file preparati a mano: le righe che nei file non c'erano
+   restavano senza proposte e nessuno se ne accorgeva (353 righe giudicate a settembre e tornate in coda, 59 righe
+   aggiunte dalla ricerca corretta, 17 letture illeggibili). Qui si parte dalla BANCA DATI, non dai file: per ogni
+   riga della scheda Uptakes (reti `lessicale` ed `entrambe`) si verifica che ci sia tutto, e quello che manca finisce
+   in un elenco da cui si preparano le letture successive. Si lancia dopo ogni caricamento.
 
-   Required fields of an Uptakes row:
-     always          case-formatted, unique code; provenance with versions that exist in the registry;
-                     document and file; proposed type; proposed principles; reranker scores on principles
-     if judged       who and when; if confirmed, the saved principles
-     if merged       the target row exists and is not itself merged
-   The result is written to `trace_controlli/<date and time>` (shown in the portal) and, for rows without
-   proposals, to `training/mancanti_<caso>_<data>.txt`.
+   Che cosa deve avere una riga di Uptakes:
+     sempre         codice nel formato del caso e unico; provenienza con versioni che esistono nel registro;
+                    documento e file; tipo proposto; principi proposti; punteggi del reranker sui principi
+     se giudicata   chi e quando; se confermata, i principi salvati
+     se unita       la riga in cui e' unita esiste e non e' unita a sua volta
+   Il risultato si scrive in `trace_controlli/<data e ora>` (il portale lo mostra) e, per le righe senza proposte,
+   in `training/mancanti_<caso>_<data>.txt`.
 
-   Usage:  .venv/bin/python tools/controllo_completezza.py [--scrivi]
+   Uso:  .venv/bin/python tools/controllo_completezza.py [--scrivi]
 """
 import argparse, collections, datetime, pathlib, re
 from google.cloud import firestore
 QUI = pathlib.Path(__file__).resolve().parent.parent
-PREFISSI = {'urgenda': 'URG', 'neubauer': 'NEU', 'future-generations': 'FGC'}
+PREFISSI = {'urgenda': 'URG', 'neubauer': 'NEU', 'future-generations': 'FGC', 'klimaseniorinnen': 'KLS', 'cig-parere-clima': 'ICJ', 'idh-oc-32-25': 'IAC'}
 
 
 def main():
@@ -55,7 +56,10 @@ def main():
             pv = r.get('provenienza') or {}
             if not pv:
                 problemi['senza provenienza'].append(chi)
-            usate = [pv.get(k) for k in ('corpus', 'estrazione', 'tipo', 'composizione', 'seguito')]
+            usate = [pv.get(k) for k in ('corpus', 'estrazione', 'tipo', 'composizione', 'seguito', 'sonde')]
+            # dal 01/10/2026 ogni proposta di principio dice con quale serie di sonde e' stata fatta (famiglia P)
+            if not r.get('esito') and r.get('proposto_principi') and not pv.get('sonde'):
+                problemi['principi proposti senza il codice delle sonde'].append(chi)
             usate += [x for v in (pv.get('principi') or {}).values() for x in v]
             for u in usate:
                 if u and u not in versioni:
@@ -63,21 +67,33 @@ def main():
             manca = []
             if not r.get('proposto_tipo_citazione'):
                 manca.append('tipo proposto')
-            if r.get('proposto_principi') is None:
+            # anche l'elenco VUOTO conta come mancante (revisione del 30/09/2026: 247 righe con [] passavano il controllo)
+            if r.get('proposto_principi') is None or r.get('proposto_principi') == []:
                 manca.append('principi proposti')
             if not r.get('proposto_punteggi_principi'):
                 manca.append('punteggi del reranker')
             for m in manca:
                 problemi[f'senza {m}'].append(chi)
-            # every proposal must record the version that produced it
+            # ogni proposta dice da quale versione viene (il 29/09 352 tipi erano senza)
             if r.get('proposto_tipo_citazione') and not pv.get('tipo'):
                 problemi['tipo proposto senza versione'].append(chi)
             if r.get('proposto_principi') and r.get('proposto_principi') != ['nessuno'] and not pv.get('principi'):
                 problemi['principi proposti senza versione'].append(chi)
             if not pv.get('estrazione'):
                 problemi['senza la versione della ricerca'].append(chi)
-            if manca and not r.get('esito'):
+            # I FRENI (30/09/2026): nessuna proposta poggia su una prova inventata o non trovata
+            for e in (r.get('proposto_estensione') or []):
+                if e.get('prova_esito') == 'inventata':
+                    problemi['prova inventata (copiata dal prompt)'].append(chi); break
+            # solo le righe da giudicare: sulle giudicate restano le proposte che la persona ha visto (prima dei freni)
+            if not r.get('esito') and any(e.get('prosegue') and not e.get('testuale') for e in (r.get('proposto_estensione') or [])):
+                problemi['pagina spuntata senza prova trovata'].append(chi)
+            if r.get('proposto_frase_esito') == 'inventata':
+                problemi['frase sostenuta inventata'].append(chi)
+            if manca and not r.get('esito') and not r.get('proposta_provvisoria'):
                 mancanti.append(i)
+            if r.get('proposta_provvisoria') and not r.get('esito'):
+                problemi['proposta provvisoria, in attesa della lettura di DeepSeek'].append(chi)
             if r.get('esito'):
                 if not r.get('validato_da'):
                     problemi['giudicata senza chi'].append(chi)

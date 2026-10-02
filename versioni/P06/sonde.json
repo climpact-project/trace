@@ -1,0 +1,65 @@
+{
+ "klimaseniorinnen": [
+  {
+   "id": "klimaseniorinnen.vittima_soglia_alta",
+   "titolo": "Qualita' di vittima dei singoli nel contenzioso climatico, esposizione di alta intensita' e bisogno pressante di protezione individuale, con una soglia particolarmente alta",
+   "testo": "In climate-change complaints an individual can claim to be a victim only if personally and directly affected: he or she must be subject to a high intensity of exposure to the adverse effects of climate change and there must be a pressing need to ensure his or her individual protection, owing to the absence or inadequacy of reasonable measures to reduce harm. The threshold is especially high, so that complaints do not slip into an actio popularis.\n",
+   "paragrafi": "§§ 479-488, 527-535",
+   "esclusione_di_provenienza": "Non i principi generali sulla qualita' di vittima (vittime dirette, indirette, potenziali, §§ 460-472: Aksu, Tănase, Senator Lines, ripresi dalla Corte), ne' il criterio ambientale classico (gravita' minima, durata, vicinanza geografica, § 472: Tătar, Cordella): una pagina che li enuncia senza i due criteri climatici non riprende questa sentenza. Carême c. Francia (stesso giorno) applica i §§ 487-488: chi cita Carême per i due criteri riprende questa sentenza in forma annidata.\n",
+   "canonical_paragrafo": "§ 527",
+   "canonical_pagina": 199
+  },
+  {
+   "id": "klimaseniorinnen.legittimazione_associazioni",
+   "titolo": "Legittimazione delle associazioni ad agire per conto dei membri, a tre condizioni e senza che i rappresentati debbano qualificarsi uno per uno",
+   "testo": "An association may lodge a complaint about a State's failure to protect people against the adverse effects of climate change on behalf of its members and other affected individuals, if it is lawfully established, pursues a dedicated statutory purpose of defending their human rights against climate threats, and is genuinely qualified and representative to act for them. It does not have to show that the people it represents would themselves qualify individually.\n",
+   "paragrafi": "§§ 489-503, 521-526",
+   "esclusione_di_provenienza": "Non la Convenzione di Aarhus e il diritto UE sull'accesso alla giustizia delle organizzazioni ambientaliste (§§ 490-494, Protect, Deutsche Umwelthilfe), che la Corte richiama ma non applica (§ 501), ne' la giurisprudenza Gorraiz Lizarraga e Câmpeanu sulle «special considerations» (§§ 475-477): chi riconosce la legittimazione di un'associazione ambientalista per quelle vie non riprende i tre requisiti del § 502.\n",
+   "canonical_paragrafo": "§ 502",
+   "canonical_pagina": 193
+  },
+  {
+   "id": "klimaseniorinnen.art8_protezione_effettiva",
+   "titolo": "L'art. 8 comprende un diritto alla protezione effettiva dagli effetti negativi gravi del cambiamento climatico, che obbliga lo Stato a regolare e attuare misure di mitigazione",
+   "testo": "Article 8 of the Convention encompasses a right for individuals to effective protection by the State authorities from serious adverse effects of climate change on their life, health, well-being and quality of life, given the causal relationship between State action or inaction and that harm. The State's primary duty is to adopt, and to effectively apply in practice, regulations and measures capable of mitigating the existing and potentially irreversible future effects of climate change, supplemented by adaptation measures.\n",
+   "paragrafi": "§§ 435-436, 478, 519-520, 544-546, 552",
+   "esclusione_di_provenienza": "Non Urgenda (Hoge Raad 5.6.2, 5.8, 5.9.1: obblighi positivi degli artt. 2 e 8 contro il rischio climatico), ne' la giurisprudenza ambientale della Corte che il § 538 riassume (Tătar, Di Sarno, Jugheli, Cordella): chi fonda sugli artt. 2 e 8 un dovere di protezione dal clima citando solo quelle fonti non riprende questa sentenza.\n",
+   "canonical_paragrafo": "§ 519",
+   "canonical_pagina": 198
+  },
+  {
+   "id": "klimaseniorinnen.margine_differenziato",
+   "titolo": "Margine di apprezzamento differenziato, ridotto sull'impegno e sugli obiettivi, ampio sulla scelta dei mezzi, con le garanzie procedurali come misura",
+   "testo": "The State's margin of appreciation is reduced as regards its commitment to combating climate change and the setting of the requisite aims and objectives, given the nature and gravity of the threat and the general consensus on what is at stake, but wide as regards the choice of means, including operational choices and policies. Climate protection carries considerable weight in any balancing, and procedural safeguards, such as public access to information and the possibility for those affected to have their views taken into account, are especially material in assessing whether the State stayed within its margin.\n",
+   "paragrafi": "§§ 542-543, 551, 553-554, 657",
+   "esclusione_di_provenienza": "Non la dottrina generale del margine di apprezzamento in materia ambientale («wide margin», Hatton, Hardy and Maile, § 538 (c)-(d)) e i principi procedurali Taşkın e Flamenbaum (§ 539): un margine ampio senza la distinzione fra obiettivi e mezzi non e' questa sentenza.\n",
+   "canonical_paragrafo": "§ 543",
+   "canonical_pagina": 205
+  },
+  {
+   "id": "klimaseniorinnen.requisiti_quadro_regolatorio",
+   "titolo": "Requisiti del quadro regolatorio, con tempi per la neutralita', bilancio di carbonio o quantificazione equivalente, obiettivi intermedi, verifica, aggiornamento e azione tempestiva e coerente",
+   "testo": "Effective respect for private life requires each State to reduce its emissions substantially and progressively towards net neutrality within, in principle, the next three decades, through a binding domestic framework that specifies a timeline and the overall remaining carbon budget or another equivalent quantification of future emissions, sets intermediate reduction targets and sectoral pathways, shows compliance and keeps the targets updated. The authorities must act in good time and in an appropriate and consistent manner, and immediate action is needed to avoid a disproportionate burden on future generations.\n",
+   "paragrafi": "§§ 547-550, 555, 558-573",
+   "esclusione_di_provenienza": "Non Neubauer (BVerfG, Rn. 215-229) per il bilancio di carbonio nazionale: il § 571 lo dichiara fonte del rigetto dell'argomento dell'impossibilita' di determinarlo; una pagina che chiede un bilancio nazionale citando solo Neubauer riprende Neubauer. Non l'Accordo di Parigi, la Legge europea sul clima (bilanci indicativi, § 571) o l'IPCC (§ 116) per gli obiettivi e i bilanci in quanto tali.\n",
+   "canonical_paragrafo": "§ 550",
+   "canonical_pagina": 207
+  },
+  {
+   "id": "klimaseniorinnen.possibilita_reale",
+   "titolo": "Basta una possibilita' reale di cambiare l'esito: niente «goccia nel mare» e niente prova del «se non fosse stato per»",
+   "testo": "The drop-in-the-ocean argument does not relieve a State of responsibility: it need not be shown that, but for the authorities' failings, the harm would not have occurred; it is sufficient that reasonable measures which they failed to take had a real prospect of altering the outcome or mitigating the harm.\n",
+   "paragrafi": "§ 444",
+   "canonical_paragrafo": "§ 444",
+   "canonical_pagina": 178
+  },
+  {
+   "id": "klimaseniorinnen.prospettiva_intergenerazionale",
+   "titolo": "La prospettiva fra generazioni giustifica il controllo dei giudici: chi verra' porta i pesi senza partecipare alle decisioni di oggi",
+   "testo": "Future generations will bear an increasingly severe burden of present failures to combat climate change while having no say in today's decisions; because short-term interests may prevail in political decision-making, this intergenerational perspective adds justification for judicial review of climate policy.\n",
+   "paragrafi": "§ 420",
+   "canonical_paragrafo": "§ 420",
+   "canonical_pagina": 171
+  }
+ ]
+}

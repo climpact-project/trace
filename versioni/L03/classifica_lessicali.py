@@ -1,25 +1,22 @@
-"""LLM classification of lexical citation rows (Urgenda, Neubauer, Future Generations).
+"""DEEPSEEK CLASSIFICA LE RIGHE LESSICALI DI URGENDA (§63.16 del documento unico, diario §31.6).
 
-   The lexical network finds the case name; finding it is trivial, the real task is to CLASSIFY what the
-   citation does. The classifier must read the context of the page, not the single line, so the language
-   model (DeepSeek V4 Flash) receives the page of the citation together with the previous and next pages,
-   with the flagged passage marked, and the codebook definitions verbatim.
+   PERCHE'. La rete lessicale trova il nome «Urgenda»: trovarlo e' banale, il lavoro e' CLASSIFICARE
+   che cosa fa la citazione. Il PI ha insistito: il modello deve capire il contesto della pagina, non la
+   riga. Quindi a DeepSeek si da' la pagina della citazione con la pagina prima e quella dopo, con il
+   brano segnalato marcato, e le definizioni del codebook alla lettera.
 
-   Phases:
-     prepara  From a local read-only export of the Firestore rows (`training/fase2/<case>_corpus_rows_*.json`)
-              and the Markdown documents: context, markup, validator labels.
-              -> training/lessicali_<case>_righe.jsonl
-     leggi    Queries an OpenAI-compatible endpoint serving the model (e.g. vLLM). Two readings per row,
-              reasoning enabled. --gruppo validate first (to measure agreement with human coders), then
-              non_validate.  -> training/lessicali_<case>_deepseek.jsonl  (resumes where it stopped)
-     --etichetta <label>  re-reading with a revised codebook, written to a separate file so the earlier
-              reading remains available for comparison.
-     misura   Agreement with validators on citation type (accuracy, Cohen's kappa, confusion matrix) and
-              agreement between the two readings.  -> training/lessicali_<case>_deepseek_misure.json
+   Fasi:
+     prepara  Mac. Dalle righe di Firestore (copia locale in SOLA LETTURA, `training/fase2/urgenda_corpus_rows_*.json`)
+              e dai markdown: contesto, marcatura, etichette dei validatori.  -> training/lessicali_urgenda_righe.jsonl
+     leggi    ReCaS, dentro la coda di DeepSeek (vLLM locale). Due letture per riga, ragionamento acceso.
+              --gruppo validate prima (per misurare l'accordo con le persone), poi non_validate.
+              -> training/lessicali_urgenda_deepseek.jsonl  (riprende da dove si e' fermato)
+     --etichetta v2  rilettura con il codebook cambiato (27/09/2026: regola del PI sulle note a pie' di pagina),
+              in file a parte, cosi' la prima lettura resta per il confronto.
+     misura   Accordo con i validatori sul tipo di citazione (accuratezza, kappa di Cohen, matrice di confusione),
+              accordo fra le due letture.  -> training/lessicali_urgenda_deepseek_misure.json
 
-   Writes nothing to the platform: outputs are machine proposals; human judgments remain the ground truth.
-
-   Usage:  python tools/classifica_lessicali.py {prepara,leggi,misura} [--caso urgenda] [--etichetta v2] ...
+   NON scrive niente sulla piattaforma: sono proposte della macchina, i giudizi umani restano la verita'.
 """
 import argparse, collections, concurrent.futures as cf, datetime, json, pathlib, re, sys, threading, time
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -29,11 +26,11 @@ RIGHE = T/'lessicali_urgenda_righe.jsonl'
 USCITA = T/'lessicali_urgenda_deepseek.jsonl'
 MISURE = T/'lessicali_urgenda_deepseek_misure.json'
 MODELLO = 'DeepSeek-V4-Flash-0731'
-PRIMA, DOPO, CENTRO = 7000, 7000, 14000    # max characters: previous page (tail), next page (head), citation page
+PRIMA, DOPO, CENTRO = 7000, 7000, 14000    # caratteri massimi: pagina prima (coda), pagina dopo (testa), pagina della citazione
 INIZIO, FINE = '[[INIZIO DEL BRANO SEGNALATO]]', '[[FINE DEL BRANO SEGNALATO]]'
 
 
-# ── prepara ─────────────────────────────────────────────────────────────
+# ── prepara (Mac) ────────────────────────────────────────────────────────
 
 NOMI_BREVI = {'urgenda': 'Urgenda', 'neubauer': 'Neubauer', 'future-generations': 'Future Generations'}
 
@@ -44,8 +41,8 @@ def contesto(file, cs, forma, testuale, nome_re=re.compile(r'urgenda', re.I)):
     testo = p.read_text(encoding='utf-8', errors='replace')
     meta, corpo, base = B.leggi(p)
     marks = [(a + base, n) for a, n in B.pagine(corpo)]
-    # The name is at char_start; the passage flagged by the lexical network is the ~200-character context
-    # around the name (proposto_citazione_testuale). Locate it in the file, else fall back to a fixed window.
+    # il nome sta a char_start; il brano segnalato dalla rete lessicale e' il contesto di circa 200 caratteri
+    # attorno al nome (proposto_citazione_testuale): si ritrova nel file, altrimenti si prende la finestra fissa
     fo = forma if testo[cs:cs+len(forma)] == forma else ''
     if not fo:
         m = nome_re.search(testo, max(0, cs-50), cs+300)
@@ -62,10 +59,10 @@ def contesto(file, cs, forma, testuale, nome_re=re.compile(r'urgenda', re.I)):
         succ = (confini[k+1][0], confini[k+2][0]) if k + 1 < len(marks) else None
     else:
         pag, da_p, a_p, prec, succ = None, base, len(testo), None, None
-    # Citation page, trimmed around the passage when very long (documents without page markers).
+    # la pagina della citazione, tagliata attorno al brano se e' enorme (documenti senza segni di pagina)
     if a_p - da_p > CENTRO:
         da_p = max(da_p, cs - CENTRO//2); a_p = min(a_p, da_p + CENTRO)
-    # The flagged passage may cross a page marker: the central part is extended to contain it entirely.
+    # il brano segnalato puo' scavalcare il segno di pagina: la parte centrale lo contiene per intero
     if b_a > a_p:
         a_p = b_a; succ = (b_a, succ[1]) if succ and succ[1] > b_a else None
     if b_da < da_p:
@@ -111,7 +108,7 @@ def prepara(righe_fs, caso='urgenda'):
     print(dict(n), '->', RIGHE)
 
 
-# ── prompt ───────────────────────────────────────────────────────────────
+# ── il prompt ────────────────────────────────────────────────────────────
 
 def codebook():
     import yaml
@@ -172,9 +169,9 @@ Niente fuori dal JSON."""
 
 
 def modulo(caso):
-    """Return the prompt template for a case. Urgenda uses MODULO unchanged, so earlier readings remain
-    comparable. For other cases the Urgenda-specific lines become generic, and the "namesake" category covers
-    a person or party bearing the case name (e.g. an activist whose surname is the case name)."""
+    """Per Urgenda il testo di sempre (le letture del 26-27/09 restano confrontabili). Per gli altri casi le righe
+    su Urgenda diventano generiche e il «soggetto omonimo» e' la persona o la parte che porta il nome (Luisa
+    Neubauer, l'attivista, e' la ragione per cui serve)."""
     if caso == 'urgenda':
         return MODULO
     import yaml
@@ -198,15 +195,15 @@ def prompt(r, fascicolo, cb, caso='urgenda'):
                          inizio=INIZIO, fine=FINE, contesto=r['contesto'])
 
 
-# ── response parsing ────────────────────────────────────────────────────
+# ── lettura della risposta ───────────────────────────────────────────────
 
 CAMPI = ('riferimento', 'tipo_citazione', 'chi_parla', 'proposizione', 'motivo')
 
 
 def estrai_tollerante(testo):
-    """Parse a model answer tolerantly. The JSON breaks when the proposition contains unescaped quotes
-    (12 of 684 readings on the validated rows). Try strict JSON first; if unreadable, extract the fields
-    one by one with regular expressions and mark the reading as `recuperata`."""
+    """Il JSON di DeepSeek si rompe quando la proposizione contiene virgolette non protette (misurato il
+    26/09/2026: 12 letture su 684 nelle righe validate). Si prova il JSON; se non si legge, si prendono i
+    campi uno per uno. La lettura recuperata si marca con `recuperata`."""
     from adjudica_llm import estrai
     g = estrai(testo)
     if g.get('esito') != 'ILLEGGIBILE':
@@ -224,7 +221,7 @@ def accordi(x):
     return x
 
 
-# ── leggi ───────────────────────────────────────────────────────────────
+# ── leggi (ReCaS) ────────────────────────────────────────────────────────
 
 def leggi(a):
     from openai import OpenAI
@@ -233,6 +230,11 @@ def leggi(a):
     cb = codebook()
     righe = [json.loads(l) for l in open(RIGHE, encoding='utf-8')]
     righe = [r for r in righe if a.gruppo in ('tutte', r['gruppo'])]
+    # SOLO ALCUNE RIGHE (29/09/2026): le righe aggiunte dalla ricerca corretta (V10) e quelle la cui lettura non si
+    # riusciva a leggere. Un file con un identificativo per riga.
+    if a.solo_id:
+        tenere = set(pathlib.Path(a.solo_id).read_text(encoding='utf-8').split())
+        righe = [r for r in righe if r['id'] in tenere]
     if a.max_righe:
         righe = righe[:a.max_righe]
     fatte = {json.loads(l)['id'] for l in open(USCITA, encoding='utf-8')} if USCITA.exists() else set()
@@ -249,7 +251,7 @@ def leggi(a):
                 r = cli.chat.completions.create(model=a.modello, messages=[{'role': 'user', 'content': testo}], max_tokens=8000,
                                                 extra_body=corpo)
                 m = r.choices[0].message
-                return {'testo': m.content or '', 'ragionamento': getattr(m, 'reasoning_content', '') or '', 'token': r.usage.completion_tokens}
+                return {'testo': m.content or '', 'ragionamento': getattr(m, 'reasoning_content', None) or getattr(m, 'reasoning', None) or (getattr(m, 'model_extra', None) or {}).get('reasoning') or '', 'token': r.usage.completion_tokens}
             except Exception as e:
                 time.sleep(5 * (tentativo + 1)); ultimo = repr(e)[:200]
         return {'testo': '', 'errore': ultimo, 'token': 0}
@@ -286,7 +288,7 @@ def kappa(a, b):
 def misura():
     righe = {json.loads(l)['id']: json.loads(l) for l in open(RIGHE, encoding='utf-8')}
     ds = [json.loads(l) for l in open(USCITA, encoding='utf-8')]
-    for x in ds:     # readings stored as unreadable before the tolerant parser are re-parsed from the raw text
+    for x in ds:     # le letture illeggibili di prima del parser tollerante si recuperano dal testo conservato
         x['letture'] = [estrai_tollerante(g.get('grezzo', '')) if g.get('esito') == 'ILLEGGIBILE' else g for g in x['letture']]
         accordi(x)
     CAT = ['menzione_in_catena', 'descrittiva', 'sostanziale', 'distinguente', 'critica', 'implicita']
@@ -317,7 +319,7 @@ def misura():
         for (x, u) in V:
             conf[u['validato_tipo_citazione']][tipo(x['letture'][0])] += 1
         m['confusione_lettura_1'] = {'righe=validatori, colonne=DeepSeek': {k: dict(v) for k, v in sorted(conf.items())}}
-        # 'sostanziale' vs. the rest: the distinction that matters most for the analysis
+        # sostanziale contro il resto: la distinzione che conta di piu' per la ricerca
         bs = [(u == 'sostanziale', tipo(x['letture'][0]) == 'sostanziale') for (x, _), u in zip(V, um)]
         tp = sum(a and b for a, b in bs); fp = sum(b and not a for a, b in bs); fn = sum(a and not b for a, b in bs)
         m['sostanziale_contro_resto_lettura_1'] = {'precisione': round(tp / max(tp + fp, 1), 3), 'richiamo': round(tp / max(tp + fn, 1), 3),
@@ -348,13 +350,14 @@ if __name__ == '__main__':
     ap.add_argument('--righe-firestore', default='')
     ap.add_argument('--gruppo', default='validate', choices=['validate', 'non_validate', 'tutte'])
     ap.add_argument('--letture', type=int, default=2)
-    ap.add_argument('--sforzo', default='low', help='stesso ragionamento del lettore misurato (§63.12)')
+    ap.add_argument('--sforzo', default='low', help='stesso ragionamento del lettore misurato')
     ap.add_argument('--paralleli', type=int, default=48)
     ap.add_argument('--max-righe', type=int, default=0)
     ap.add_argument('--modello', default='deepseek-v4-flash')
     ap.add_argument('--base-url', default='http://127.0.0.1:8000/v1')
     ap.add_argument('--chiave-file', default=str(QUI/'chat'/'chiave'))
     ap.add_argument('--etichetta', default='', help="seconda lettura con un codebook cambiato: file a parte, la prima resta com'e'")
+    ap.add_argument('--solo-id', default='', help='file con gli identificativi delle righe da leggere (una per riga)')
     a = ap.parse_args()
     RIGHE = T/f'lessicali_{a.caso}_righe.jsonl'
     USCITA = T/f'lessicali_{a.caso}_deepseek{"_" + a.etichetta if a.etichetta else ""}.jsonl'

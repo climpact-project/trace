@@ -1,17 +1,15 @@
-"""TRACE-Reranker scores for uptakes: which principle a citation takes, and how far the uptake extends.
+"""QUALE PRINCIPIO PRENDE UNA CITAZIONE, E FIN DOVE ARRIVA LA RIPRESA: I PUNTEGGI DEL TRACE-RERANKER (27/09/2026).
 
-   The unit of analysis is the uptake: it starts from an explicit citation and extends to neighbouring pages of
-   the same document that develop the same principle without naming the case. The fine-tuned reranker
-   (Qwen3-Reranker-4B + LoRA, scores averaged over three seeds) scores every principle-text pair for:
-     - the citation PASSAGE (the span flagged by the lexical network, plus ALLARGA characters before and after);
-     - every NEIGHBOURING PAGE of the same document, from PRIMA pages before to DOPO pages after.
-   The case name and ECLI identifiers are masked as in training. Scores are proposals for human coders.
+   Sistema nuovo (§63.25): l'unita' di lavoro e' la ripresa, che parte da una citazione esplicita e si allarga
+   alle pagine vicine dello stesso atto che sviluppano lo stesso principio senza il nome. Il reranker addestrato
+   (Qwen3-Reranker-4B + LoRA, tre semi) da' un punteggio a ogni coppia principio-testo:
+     - il BRANO della citazione (il passaggio segnalato dalla rete lessicale, con 800 caratteri prima e dopo);
+     - ogni PAGINA VICINA dello stesso documento, da due pagine prima a tre dopo.
+   Il nome del caso e gli ECLI si mascherano come nell'addestramento. Sono proposte: le decide il team.
 
-   Phases:
-     prepara  local machine: training/principi/<caso>_coppie.jsonl
-     punteggi GPU, one GPU per shard: training/principi/<caso>_punteggi_<pezzo>.jsonl
-
-   Usage: python tools/ripresa_punteggi.py prepara|punteggi [--caso urgenda] [--pezzo i --pezzi n] [--adattatore DIR]
+   Fasi:
+     prepara  Mac: training/principi/urgenda_coppie.jsonl
+     punteggi ReCaS, una GPU per pezzo: training/principi/urgenda_punteggi_<pezzo>.jsonl
 """
 import argparse, gzip, json, pathlib, sys
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -54,7 +52,7 @@ def prepara(caso):
             brano = maschera.sub(SEGNAPOSTO, ' '.join(brano.split()))
             for pid, q in principi.items():
                 f.write(json.dumps({'riga': r['id'], 'dove': 'brano', 'pagina': r.get('pagina'), 'principio': pid, 'q': q, 'd': brano}, ensure_ascii=False) + '\n'); n += 1
-    # each neighbouring page is scored once, even when it serves several rows
+    # le pagine vicine una volta sola, anche se servono a piu' righe
     with open(P/f'{caso}_coppie.jsonl', 'a', encoding='utf-8') as f:
         for pagid, testo in pag.items():
             d = maschera.sub(SEGNAPOSTO, ' '.join(testo.split()))

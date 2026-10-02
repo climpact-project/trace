@@ -1,0 +1,39 @@
+{
+ "urgenda": [
+  {
+   "id": "propria_quota",
+   "titolo": "Responsabilita' per la propria quota: il piccolo contributo non esonera",
+   "testo": "Each country is responsible for its own share of global emissions and cannot escape\nthat responsibility by arguing that its emissions are relatively small and that\nreducing them makes little difference on a global scale.\n",
+   "canonical_paragrafo": "5.7.7",
+   "canonical_pagina": 29
+  },
+  {
+   "id": "obblighi_positivi",
+   "titolo": "Obblighi positivi ex artt. 2 e 8 CEDU contro un rischio climatico differito e diffuso",
+   "testo": "Articles 2 and 8 ECHR oblige the State to take appropriate measures against the real\nand immediate risk of dangerous climate change, although it materialises only decades\nfrom now and threatens the population at large.\n",
+   "canonical_paragrafo": "5.6.2",
+   "canonical_pagina": 26
+  },
+  {
+   "id": "dovere_diligenza",
+   "titolo": "Dovere di diligenza civilistico: mitigazione insufficiente come illecito verso i cittadini",
+   "testo": "By failing to take sufficient mitigation measures against the high risk of dangerous\nclimate change, the State falls short of the standard of due care owed to its citizens\nand acts negligently and therefore unlawfully.\n",
+   "canonical_paragrafo": 4.83,
+   "canonical_pagina": 49
+  },
+  {
+   "id": "ordine_non_legge",
+   "titolo": "L'ordine di risultato non equivale a un ordine di legiferare",
+   "testo": "A court may order the public body to take measures to achieve a certain goal, as long\nas that order does not amount to an order to create legislation with a particular\ncontent.\n",
+   "canonical_paragrafo": "8.2.6",
+   "canonical_pagina": 41
+  },
+  {
+   "id": "target_giudiziale",
+   "titolo": "Il giudice puo' fissare il minimo quantificato ricavandolo dal consenso scientifico e internazionale",
+   "testo": "A court may require the State to achieve a specified minimum reduction of emissions by\na given date, derived from the consensus of climate science and the international\ncommunity on the State's minimum fair share.\n",
+   "canonical_paragrafo": 6.4,
+   "canonical_pagina": 31
+  }
+ ]
+}

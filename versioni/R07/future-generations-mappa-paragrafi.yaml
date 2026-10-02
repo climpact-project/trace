@@ -1,0 +1,931 @@
+# SONDE DEL 01/10/2026: ogni voce porta `sonde` (quelle del 23/09, che restano per il confronto) e `sonde_P03`
+# (le sonde nuove del PI). Neubauer: per Randnummer, dagli intervalli scritti nel file del caso; Future Generations: dalle vecchie e dagli ordini.
+# MAPPA DEI PARAGRAFI DI FUTURE GENERATIONS (Generaciones Futuras v. Minambiente) — versione 1, 23 settembre 2026
+# Scritta da Claude Fable 5.1.
+#
+# Compagna di `future-generations-fascicolo.md`. Serve a decifrare citazioni precise del tipo
+# «STC4360-2018, p. 13», «Generaciones Futuras, supra, at para. 11.2», «Barragán at 48-49», e a
+# sapere quale sonda e quale anello della catena un paragrafo sostiene.
+#
+# FONTI. Documenti del corpus nella cartella future-generations-v-ministry-of-the-environment-and-others_f076:
+#   corte_suprema_2018   future-generations-v-ministry-of-the-environment-and-others-decision_7519  (Corte Suprema de Justicia, Sala de Casación Civil, STC4360-2018, 5/4/2018, spagnolo, 51 pp., OCR)
+#   dejusticia_2018      future-generations-v-ministry-of-the-environment-and-others-decision_7592  (estratti tradotti in inglese da Dejusticia, 11 pp.)
+#   tribunal_superior_2018  future-generations-v-ministry-of-the-environment-and-others-decision_15f3  (Tribunal Superior de Bogotá, 12/2/2018, spagnolo, 21 pp.)
+#   salvamento_2018      future-generations-v-ministry-of-the-environment-and-others-opinion_e35a  (salvamento de voto Ramírez Cardona, 12/2/2018, spagnolo, 18 pp.)
+#   tutela_2018          future-generations-v-ministry-of-the-environment-and-others-complaint_7da3  (tutela, 29/1/2018, 122 pp.) — voce parte
+#   impugnacion_2018     future-generations-v-ministry-of-the-environment-and-others-appeal_3c21  (impugnación, 16/2/2018, 40 pp.) — voce parte
+#   amicus_hansen_2018   future-generations-v-ministry-of-the-environment-and-others-other_e010  (amicus Hansen, 16/3/2018, inglese, 4 pp.) — voce amicus
+# `pagina` = numero del marcatore `<!-- page N -->` del markdown, che coincide con la pagina del PDF.
+#
+# COME SONO STATI STABILITI I NUMERI DI PARAGRAFO. La Corte Suprema numera le Consideraciones da 1 a 14,
+# con sottonumeri stampati a inizio capoverso (5.1-5.3, 6.1-6.5, 11.1-11.3, 13.1-13.4); gli Antecedentes
+# hanno una numerazione propria (1-3, 2.1-2.6, 1.1-1.3). Nessuna ricostruzione: i numeri sono quelli
+# stampati. Due avvertenze: il numero 11.3 e' usato due volte (p. 37 solidarieta', p. 38 Parigi); il
+# numero 5 e' letto «>.» dall'OCR (p. 16). Il Tribunal Superior numera le Consideraciones 1-5 e gli
+# Antecedentes 1-3 con 3.1-3.15. Il salvamento numera 1.1-1.6, 2.1-2.3 (2.3.1-2.3.2 con lettere a-d), 3.1-3.4.
+# Gli estratti Dejusticia riportano fra parentesi la pagina dello spagnolo («(p. 13)», «p. 34», «p.45»):
+# le voci `dejusticia_2018` danno la pagina inglese e, in `paragrafo`, il riferimento spagnolo.
+#
+# OSSERVAZIONI RISPETTO A `future-generations.yaml` (versione 2, non modificato): vedi fascicolo, 2.2.
+# Nessun numero di pagina o verbatim errato trovato. T-622/2016 e' nel corpus (atrato-river-decision-t-622-16-of-november-10-2016_976c).
+#
+# SONDE: conexidad_diritti, generazioni_future_obbligo, equita_intergenerazionale_violata,
+#        deforestazione_clima_diritti, natura_soggetto_diritti, ecocentrico_antropico, tutela_conexidad_collettivo.
+# ANELLI della catena (fascicolo, sezione 0):
+#   a = procedibilita' per conexidad: la lesione dell'ambiente lede diritti fondamentali; la tutela procede
+#       nonostante l'acción popular; i minori agiscono in causa propria
+#   b = fondamento: diritti fondamentali determinati dall'ecosistema; criterio ecocentrico-antropico;
+#       generazioni future titolari; prestazione di non-fare dei presenti
+#   c = fatto e nesso: deforestazione come fonte di CO2 ed effetto serra, danno imminente e grave a presenti
+#       e future; precauzione, equita' intergenerazionale (trasgressione ovvia), solidarieta' (corresponsabilita')
+#   d = inadempimento: Parigi e zero deforestazione 2020; omissioni di CAR, parchi, dipartimenti, municipi
+#   e = rimedio: Amazzonia soggetto di diritti (come l'Atrato); piani con partecipazione dei ricorrenti, PIVAC
+# Liste vuote: il paragrafo non sostiene nessuna sonda ne' anello (fatti, procedura).
+# `verbatim`: frammento ritrovato nel corpus (normalizzando spazi, a-capo e accenti).
+
+voci:
+
+# ═══════════════════════════ CORTE SUPREMA, STC4360-2018, 5 aprile 2018 ═══════════════════════════
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "Antecedentes 1"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 1-2
+    sintesi: "Oggetto: protezione dei diritti «supralegales», ambiente sano, vita e salute, contro la Presidencia, i ministeri, PNN e le gobernaciones amazzoniche (27 entita', nota 1) per l'aumento della deforestazione in Amazzonia."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    anelli: []
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "Antecedentes 2.1-2.5"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 2-4
+    sintesi: "Fatti come narrati dai ricorrenti (RIPORTATO): 25 fra 7 e 25 anni, vita adulta 2041-2070, +1,6 e +2,14 gradi secondo l'IDEAM; impegni di Parigi e Ley 1753/2015 a zero deforestazione nel 2020; AT-D 66,2%; 178.597 ettari persi nel 2016, +44%; cause; effetti su acqua, suoli, páramos, riscaldamento; autoqualificazione come generazione futura (2.5, p. 4)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    anelli: [c]
+    verbatim: "la generación futura que enfrentará los efectos del cambio climático en el período 2041-2070 y 2071-2100"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "Antecedentes 2.6"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 4
+    sintesi: "Tesi dei ricorrenti sulla procedibilita' (RIPORTATO): criteri di SU-1116/2001, inidoneita' dell'acción popular, in subordine tutela come meccanismo transitorio contro il perjuicio irremediable."
+    sonde: []
+    sonde_P03: [rimedio_strutturale]
+    sonde_P04: [rimedio_strutturale]
+    sonde_P05: [rimedio_strutturale]
+    prepara: [tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    anelli: [a]
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "Antecedentes 3"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 4-5
+    sintesi: "Le sei pretese: piano d'azione in sei mesi per zero deforestazione nel 2020; accordo intergenerazionale elaborato con i ricorrenti; POT dei municipi; moratoria; indagini della Fiscalía; bilancio dei parchi."
+    sonde: []
+    sonde_P03: [rimedio_strutturale]
+    sonde_P04: [rimedio_strutturale]
+    sonde_P05: [rimedio_strutturale]
+    prepara: [generazioni_future_obbligo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo]"
+    anelli: [e]
+    verbatim: "un acuerdo intergeneracional sobre las medidas que se adoptarán para reducir la deforestación"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "1.1 (risposte 1-15)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 6-9
+    sintesi: "Risposte dei convenuti e interventi: Presidencia e Minagricultura senza competenza; Minambiente elenca strategie; Procuraduría coadiuva; PNN; Putumayo: strumento improcedente per diritti collettivi (POLARITA', p. 7); universita', Foro Nacional Ambiental, associazioni indigene a favore; amicus di Hansen riportato in traduzione (p. 9)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
+    anelli: []
+    verbatim: "el principio de la equidad intergeneracional obliga a actuar sin más demora"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "1.2"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 9-10
+    sintesi: "La sentenza impugnata riassunta per esteso: l'acción popular e' idonea, il perjuicio irremediable non e' provato. POLARITA' riportata."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
+    anelli: []
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "1.3"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 10
+    sintesi: "L'impugnación: l'acción popular non e' il meccanismo idoneo, il perjuicio e' provato; coadiuvata dalla Procuraduría Delegada para Asuntos Ambientales."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    anelli: [a]
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "1"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 10-11
+    sintesi: "Regola ed eccezione: la tutela non protegge diritti collettivi (art. 88 C.P., Ley 472/1998), salvo quando la lesione del collettivo lede garanzie individuali; quattro condizioni della giurisprudenza costituzionale (nota 4: T-1451/2000, SU-1116/2001, T-288/2007, T-659/2007, T-601/2017): conexidad, ricorrente direttamente leso, lesione provata o minaccia, ordine diretto ai diritti individuali."
+    sonde: [tutela_conexidad_collettivo]
+    sonde_P03: [ammissibilita_conexidad, rimedio_strutturale]
+    sonde_P04: [ammissibilita_conexidad, rimedio_strutturale]
+    sonde_P05: [ammissibilita_conexidad, rimedio_strutturale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    anelli: [a]
+    verbatim: "La conexidad entre la vulneración de derechos colectivos y la violación a uno u otros de tipo primario, fundamental e individual"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "2"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 11-14
+    sintesi: "La protezione dell'ambiente acquista per conexidad natura fondamentale: urgenza delle misure e impossibilita' pratica di delimitare i due strumenti, prevalenza dei diritti fondamentali (pp. 11-12); T-362/2014 citata per esteso (pp. 12-13); precedenti della Sala STC 7630/2016, 9813/2016, 15985/2017 (p. 13); CANONICAL conexidad_diritti (p. 13): diritti fondamentali determinati dall'ecosistema, sujetos de derecho e seres sintientes, famiglia, societa', Stato; il deterioro come atentado grave (pp. 13-14); CANONICAL tutela_conexidad_collettivo (p. 14): procedencia excepcional dimostrata."
+    sonde: [conexidad_diritti, tutela_conexidad_collettivo]
+    sonde_P03: [ammissibilita_conexidad]
+    sonde_P04: [ammissibilita_conexidad]
+    sonde_P05: [ammissibilita_conexidad]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, tutela_conexidad_collettivo]"
+    anelli: [a, b]
+    verbatim: "están ligados sustancialmente y determinados por el entorno y el ecosistema"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "3"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 14-15
+    sintesi: "Art. 86 C.P.: chiunque puo' chiedere la protezione immediata; la maggiore eta' non e' un limite; i dodici minori nominati agiscono in causa propria, non in rappresentanza di terzi, perche' la degradazione dell'ambiente per la deforestazione della selva amazzonica ricade su di loro."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
+    anelli: [a, c]
+    verbatim: "se encuentran legitimados para actuar en causa propia"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "4"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 15-16
+    sintesi: "Diagnosi: le questioni ambientali in cima all'agenda internazionale; minaccia alla possibilita' di esistenza dell'essere umano; fenomeni estremi; esaurimento delle risorse, colonizzazione irrazionale dei boschi; l'umanita' responsabile per un «modelo antropocéntrico y egoísta» con tre tratti (demografia, consumismo, sfruttamento)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [ecocentrico_antropico]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico]"
+    anelli: [b]
+    verbatim: "la adopción de un modelo antropocéntrico y egoísta"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "5"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 16-17
+    sintesi: "Coscienza dell'obbligo di cambiare: movimenti per una societa' «ecocéntrica antrópica» che superi la «homomensura» antropocentrica (nota 7, Protagora) e includa l'ambiente nell'idea di progresso e nel desarrollo sostenible, con C-389/2016 citata (esclusa di provenienza)."
+    sonde: [ecocentrico_antropico]
+    sonde_P03: [bioma_soggetto_diritti]
+    sonde_P04: [bioma_soggetto_diritti]
+    sonde_P05: [bioma_soggetto_diritti]
+    prepara: [generazioni_future_obbligo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, generazioni_future_obbligo]"
+    anelli: [b]
+    verbatim: "Hay surgimiento de movimientos favorables a una nueva ideología de sociedad"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "5.1"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 17-18
+    sintesi: "Rischi planetari (Rodríguez Palop): la giurisdizione deve riconoscere diritti che, pur orientati a interessi collettivi, difendono i diritti essenziali della persona; lo Stato costituzionale e il rispetto dell'altro: ogni atto che danneggia la natura lede i diritti fondamentali personali (p. 17); dall'etica privata all'etica pubblica e i diritti ridefiniti come «derechos-deberes», Peces-Barba citato per esteso (esclusa di provenienza, p. 18)."
+    sonde: [conexidad_diritti, ecocentrico_antropico]
+    sonde_P03: [ammissibilita_conexidad, bioma_soggetto_diritti]
+    sonde_P04: [ammissibilita_conexidad, bioma_soggetto_diritti]
+    sonde_P05: [ammissibilita_conexidad, bioma_soggetto_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, ecocentrico_antropico]"
+    anelli: [b]
+    verbatim: "todos los actos que impactan negativamente la naturaleza, implican indiscutiblemente menoscabo de los derechos fundamentales personales"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "5.2"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 18-19
+    sintesi: "L'ambito di protezione e' ogni persona ma anche l'altro: le altre persone del pianeta, le altre specie animali e vegetali, e i soggetti non ancora nati, che meritano le stesse condizioni ambientali vissute da noi; Rodríguez Palop sulla solidaridad diacrónica citata per esteso (esclusa di provenienza, p. 19)."
+    sonde: [generazioni_future_obbligo]
+    sonde_P03: [diritti_generazioni_future]
+    sonde_P04: [diritti_generazioni_future]
+    sonde_P05: [diritti_generazioni_future]
+    prepara: [ecocentrico_antropico]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo]"
+    anelli: [b]
+    verbatim: "incluye a los sujetos aun no nacidos, quienes merecen disfrutar de las mismas condiciones medioambientales vividas por nosotros"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "5.3"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 19-21
+    sintesi: "I diritti ambientali delle generazioni future si fondano sul dovere etico della solidarieta' della specie e sul valore intrinseco della natura (p. 19); i beni naturali sono condivisi con i discendenti, «tributarios, destinatarios y titulares» (p. 20); solidarieta' e ambientalismo si identificano; CANONICAL ecocentrico_antropico (pp. 20-21): il secondo fondamento trascende l'antropocentrismo e pone l'uomo a la par dell'ecosistema; solidarieta' diretta con la natura (Jaquenod, p. 21); CANONICAL generazioni_future_obbligo (p. 21): relación jurídica obligatoria, prestación de no-hacer, limitazione della liberta' dei presenti, nuovi carichi di cura (chiusa da Kormody)."
+    sonde: [ecocentrico_antropico, generazioni_future_obbligo]
+    sonde_P03: [bioma_soggetto_diritti, diritti_generazioni_future]
+    sonde_P04: [bioma_soggetto_diritti, diritti_generazioni_future]
+    sonde_P05: [bioma_soggetto_diritti, diritti_generazioni_future]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, generazioni_future_obbligo]"
+    anelli: [b]
+    verbatim: "una limitación de la libertad de acción de las generaciones presentes"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "6-6.5"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 22-25
+    sintesi: "«orden público ecológico mundial» di hard e soft law a tutela dei diritti soggettivi delle generazioni presenti e future (p. 22): PIDESC art. 12 (6.1); ENMOD 1976 e Protocollo I artt. 35.3 e 55 (6.2); Stoccolma 1972 citata per esteso, proclami 6-9 (6.3, pp. 23-24: esclusa di provenienza); Rio 1992 e i suoi strumenti (6.4, pp. 24-25); Parigi 2015, chiamata «Convención Marco sobre el Cambio Climático de París de 2015», con la cooperazione citata (6.5, p. 25: esclusa di provenienza)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, generazioni_future_obbligo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, generazioni_future_obbligo]"
+    anelli: []
+    verbatim: "constituye un orden público ecológico mundial y sirve de criterio orientador para las legislaciones patrias"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "7"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 26-29
+    sintesi: "«orden público ecológico nacional» della Costituzione del 1991: elenco degli articoli (1, 8, 49, 58, 63, 67, 79, 80, 88, 95-8, 215, 226, ecc.) (p. 26); la Corte Constitucional e la «Constitución Ecológica» (p. 27); T-411/1992 citata per esteso: problema di sopravvivenza, patrimonio naturale delle generaciones venideras, «El hombre no es el amo omnipotente del universo» (pp. 27-28: escluse di provenienza); C-431/2000 citata per esteso: ambiente indispensabile alla sopravvivenza delle generazioni future, doveri correlativi dello Stato (pp. 28-29: esclusa di provenienza)."
+    sonde: [ecocentrico_antropico, generazioni_future_obbligo]
+    sonde_P03: [bioma_soggetto_diritti, diritti_generazioni_future]
+    sonde_P04: [bioma_soggetto_diritti, diritti_generazioni_future]
+    sonde_P05: [bioma_soggetto_diritti, diritti_generazioni_future]
+    prepara: [conexidad_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, ecocentrico_antropico, generazioni_future_obbligo]"
+    anelli: [b]
+    verbatim: "pertenece a las personas que en él viven, pero también a las generaciones venideras"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "8"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 29-30
+    sintesi: "Artt. 79 e 80 C.P. citati per esteso (esclusa di provenienza); i diritti relativi all'ambiente sono di natura fondamentale e collettiva; C-449/2015 (reiterata in C-389/2016) sulla «triple dimensión» dell'ambiente sano: principio, diritto fondamentale e collettivo, obbligo (p. 30: esclusa di provenienza)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [conexidad_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti]"
+    anelli: [b]
+    verbatim: "Todas las personas tienen derecho a gozar de un ambiente sano"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "9"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 30
+    sintesi: "Ribadita la procedibilita' della tutela, azione residuale ed eccezionale, per conexidad dell'ambiente sano con vita, salute, dignita'; la situazione e' pienamente provata e colpisce direttamente diritti fondamentali individuali dei ricorrenti e di tutti i colombiani; ne segue l'inefficacia dell'acción popular."
+    sonde: [conexidad_diritti, tutela_conexidad_collettivo]
+    sonde_P03: [ammissibilita_conexidad]
+    sonde_P04: [ammissibilita_conexidad]
+    sonde_P05: [ammissibilita_conexidad]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, tutela_conexidad_collettivo]"
+    anelli: [a]
+    verbatim: "ello permite concluir la ineficacia de la acción popular"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "10"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 30-32
+    sintesi: "La conservazione dell'Amazzonia e' obbligo nazionale e globale, «pulmón del mundo» (p. 30); dati OTCA su superficie, acqua, specie (p. 31); Tratado de Cooperación Amazónica; l'impegno colombiano a Parigi di ridurre la deforestazione, iniziativa Colombia Sostenible e Fondo Visión Amazonía con cinque pilastri (pp. 31-32)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, natura_soggetto_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, natura_soggetto_diritti]"
+    anelli: [e]
+    verbatim: "La conservación de la Amazonía es una obligación nacional y global"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "11"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 32-35
+    sintesi: "La Corte esamina se la lesione del diritto collettivo trascenda in violazione dei diritti fondamentali (pp. 32-33); i ricorrenti individuano quattordici municipi; la domanda sul nexo causal fra cambiamento climatico da riduzione della copertura forestale e danni a salute, vita degna, acqua, alimentazione (p. 33); dalla EICDGB e dall'IDEAM: +44% fra 2015 e 2016, da 56.952 a 70.074 ettari (p. 34); le sei cause; CANONICAL deforestazione_clima_diritti (pp. 34-35): perjuicio inminente y grave ai ricorrenti e a tutti gli abitanti, presenti e future, per emissione incontrollata di CO2, effetto serra, ecosistemi, acqua, suolo; minaccia a flora e fauna (57% delle specie arboree); i tre principi: precauzione, equita' intergenerazionale, solidarieta' (p. 35)."
+    sonde: [deforestazione_clima_diritti]
+    sonde_P03: [deforestazione_minaccia_diritti]
+    sonde_P04: [deforestazione_minaccia_diritti]
+    sonde_P05: [deforestazione_minaccia_diritti]
+    prepara: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    anelli: [c]
+    verbatim: "un perjuicio inminente y grave para los niños, adolescentes y adultos que acuden a esta acción"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "11.1"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 35-37
+    sintesi: "Precauzione: non c'e' dubbio sul pericolo di danno, con gli scenari IDEAM di temperatura (+0,7-1,1 gradi 2011-2040; 1,4-1,7 2041-2070; fino a 2,7 2071-2100); rottura della connettivita' ecosistemica Amazzonia-Ande; precipitazioni in aumento e in deficit; irreversibilita' e certezza scientifica evidenti, perche' i GEI da deforestazione sono il 36% del settore forestale."
+    sonde: [deforestazione_clima_diritti]
+    sonde_P03: [deforestazione_minaccia_diritti]
+    sonde_P04: [deforestazione_minaccia_diritti]
+    sonde_P05: [deforestazione_minaccia_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    anelli: [c]
+    verbatim: "no cabe duda que existe peligro de daño"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "11.2"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 37
+    sintesi: "CANONICAL equita_intergenerazionale_violata: la trasgressione del criterio di equita' intergenerazionale e' ovvia, perche' la temperatura salira' di 1,6 gradi nel 2041 e fino a 2,14 nel 2071, e le generazioni future, fra cui i minori che propongono la tutela, saranno direttamente colpite, a meno che le presenti riducano a zero la deforestazione."
+    sonde: [equita_intergenerazionale_violata]
+    sonde_P03: [deforestazione_minaccia_diritti, diritti_generazioni_future]
+    sonde_P04: [deforestazione_minaccia_diritti, diritti_generazioni_future]
+    sonde_P05: [deforestazione_minaccia_diritti, diritti_generazioni_future]
+    prepara: [generazioni_future_obbligo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata, generazioni_future_obbligo]"
+    anelli: [c]
+    verbatim: "es obvia su transgresión"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "11.3 (primo, solidarieta')"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 37
+    sintesi: "Solidarieta' nel caso concreto: dovere e corresponsabilita' dello Stato colombiano di fermare le cause delle emissioni di GEI da riduzione boschiva; mitigazione immediata; diritto al benessere ambientale dei ricorrenti, di chi abita l'Amazzonia nazionale e straniera, di tutti gli abitanti del pianeta, ecosistemi e viventi compresi."
+    sonde: [deforestazione_clima_diritti]
+    sonde_P03: [deforestazione_minaccia_diritti]
+    sonde_P04: [deforestazione_minaccia_diritti]
+    sonde_P05: [deforestazione_minaccia_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    anelli: [c]
+    verbatim: "corresponsabilidad del Estado colombiano en detener las causas que provocan la emisión de GEI"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "11.3 (secondo, Parigi)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 38-39
+    sintesi: "Inadempimento: la realta' descritta viola la Carta ambientale e gli strumenti internazionali e costituisce grave disconoscimento degli obblighi di Parigi, dove la Colombia si impegno' a zero deforestazione in Amazzonia nel 2020, che avrebbe evitato 44 megatonnellate (p. 38); otto questioni a cui le autorita' devono rispondere: cultivos ilícitos e miniere, vuoto lasciato dalle FARC, incendi e frontiera agricola, vie e titoli, agroindustria, ruolo climatico globale, calcoli del carbonio, cambiamento climatico (pp. 38-39). Esclusa di provenienza `prov_paris_ndc_deforestacion`; asse non promosso a sonda."
+    sonde: [deforestazione_clima_diritti]
+    sonde_P03: [deforestazione_minaccia_diritti]
+    sonde_P04: [deforestazione_minaccia_diritti]
+    sonde_P05: [deforestazione_minaccia_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    anelli: [d]
+    verbatim: "constituye un grave desconocimiento de las obligaciones adquiridas por el Estado"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "12"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 39-41
+    sintesi: "Intensificazione del problema e inefficacia delle misure governative; concessione del rimedio per palmario quebranto di acqua, aria, vita degna, salute in conexidad con l'ambiente (p. 39); la Sala segue T-622/2016 sul riconoscimento della natura come autentico soggetto di diritti, dalla prospettiva ecocentrica; T-622 citata per esteso: entidad viviente, sujetos de derechos individualizables, interdipendenza, derechos bioculturales, «justicia con la naturaleza», obblighi dello Stato e delle comunita' (pp. 40-41: escluse di provenienza)."
+    sonde: [conexidad_diritti, ecocentrico_antropico, natura_soggetto_diritti]
+    sonde_P03: [ammissibilita_conexidad, bioma_soggetto_diritti]
+    sonde_P04: [ammissibilita_conexidad, bioma_soggetto_diritti]
+    sonde_P05: [ammissibilita_conexidad, bioma_soggetto_diritti]
+    prepara: [tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, ecocentrico_antropico, natura_soggetto_diritti]"
+    anelli: [b, e]
+    verbatim: "relacionada con el reconocimiento de la naturaleza como un auténtico sujeto de derechos"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "13"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 41
+    sintesi: "Malgrado impegni internazionali, norme e giurisprudenza, lo Stato colombiano non ha affrontato efficacemente la deforestazione in Amazzonia."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    anelli: [d]
+    verbatim: "ha enfrentado eficientemente la"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "13.1"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 42
+    sintesi: "Le tre CAR (Corpoamazonia 24,47%, CDA 11,10%, Cormacarena 11,67%: 47,23% delle AT-D) non esercitano le funzioni di valutazione, controllo, monitoraggio e sanzione della Ley 99/1993 (nota 58), potendo chiedere appoggio ad altri enti."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: [d]
+    verbatim: "no estan cumpliendo sus funciones de evaluar, controlar y monitorear los recursos naturales"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "13.2"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 42-43
+    sintesi: "Deforestazione nei parchi Sierra de la Macarena, Nukak, Tinigua, La Paya (posti 3, 5, 6, 9 per AT-D nel 2017): prova dell'omissione di Parques Nacionales Naturales, che ha funzioni di polizia e sanzione (Decreto 3572/2011)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: [d]
+    verbatim: "es prueba de la omisión en el cumplimiento de las funciones legales"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "13.3"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 43-44
+    sintesi: "I dipartimenti amazzonici (Amazonas, Caquetá, Guaviare, Putumayo) non adempiono alle funzioni ambientali dell'art. 64 della Ley 99/1993 e devono mitigare la deforestazione in concerto con le CAR."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: [d]
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "13.4"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 44-45
+    sintesi: "I municipi amazzonici con alte AT-D nel 2017 non contrastano la situazione e violano l'art. 3 della Ley 1551/2012 (vigilare sulle risorse naturali, adottare i POT); la risposta del DNP conferma che i POT spettano ai municipi."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    anelli: [d]
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "14"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 45-47
+    sintesi: "CANONICAL natura_soggetto_diritti (p. 45): per proteggere quell'ecosistema vitale per il devenir global, come la Corte Constitucional dichiaro' per il fiume Atrato, si riconosce l'Amazzonia colombiana come entidad sujeto de derechos, titolare di protezione, conservazione, mantenimento e restauro a carico dello Stato e degli enti territoriali. Ordini: a Presidencia, Minambiente, Minagricultura, con il SINA e la partecipazione dei ricorrenti, delle comunita' e della popolazione, in quattro mesi un piano d'azione di breve, medio e lungo periodo contro la deforestazione, per le AT-D dell'IDEAM (pp. 45-46); in cinque mesi, con la partecipazione attiva dei tutelantes, delle comunita', delle organizzazioni scientifiche, il PIVAC con misure per zero deforestazione ed emissioni, strategie nazionali, regionali e locali, preventive, obbligatorie, correttive e pedagogiche (p. 46); ai municipi, in cinque mesi, POT con piano di deforestazione zero; alle tre CAR, in cinque mesi, piani con misure di polizia, giudiziarie e amministrative; a tutti, entro 48 ore, aumentare le azioni di mitigazione (p. 47)."
+    sonde: [natura_soggetto_diritti]
+    sonde_P03: [bioma_soggetto_diritti, rimedio_strutturale]
+    sonde_P04: [bioma_soggetto_diritti, rimedio_strutturale]
+    sonde_P05: [bioma_soggetto_diritti, rimedio_strutturale]
+    prepara: [generazioni_future_obbligo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
+    anelli: [e]
+    verbatim: "se reconoce a la Amazonía Colombiana como entidad, “sujeto de derechos”, titular de la protección, de la conservación, mantenimiento y restauración a cargo del Estado y las entidades territoriales que la integran"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "Decisión, PRIMERO"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 48-50
+    sintesi: "REVOCAR la sentenza impugnata e concedere la tutela; gli stessi quattro ordini (piano in quattro mesi; PIVAC in cinque; POT municipali; piani delle CAR) e le azioni entro 48 ore, ripetuti nel dispositivo."
+    sonde: [deforestazione_clima_diritti, generazioni_future_obbligo]
+    sonde_P03: [deforestazione_minaccia_diritti, diritti_generazioni_future, rimedio_strutturale]
+    sonde_P04: [deforestazione_minaccia_diritti, diritti_generazioni_future, rimedio_strutturale]
+    sonde_P05: [deforestazione_minaccia_diritti, diritti_generazioni_future, rimedio_strutturale]
+    prepara: [natura_soggetto_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
+    anelli: [e]
+    verbatim: "pacto intergeneracional por la vida del amazonas colombiano -PIVAC"
+
+  - pronuncia: corte_suprema_2018
+    paragrafo: "Decisión, SEGUNDO"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 50
+    sintesi: "Comunicazione telegrafica agli interessati e invio del fascicolo alla Corte Constitucional per l'eventuale revisione. Firme a pp. 50-51."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    anelli: []
+    verbatim: "enviese el expediente a la Corte Constitucional para su eventual revisión"
+
+# ═══════════════════════════ ESTRATTI DEJUSTICIA (inglese) ═══════════════════════════
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "Background 1-2.5 (pp. 1-4 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 1-2
+    sintesi: "Intestazione con «Reporting Judge», STC4360-2018, «Approved in session on April 4th, 2018»; antecedenti tradotti; refuso «2041-2017» per 2041-2070; righe riassuntive su pp. 4-5, 6-9, 9-10."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    anelli: [c]
+    verbatim: "net rate of deforestation to zero in the Colombian Amazon by 2020"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "14, amicus Hansen (p. 9 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 2-3
+    sintesi: "L'amicus di Hansen ritradotto in inglese: precauzione, generazioni future, equita' intergenerazionale che «compels action without further delay». RIPORTATO."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [equita_intergenerazionale_violata]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata]"
+    anelli: []
+    verbatim: "the principle of intergenerational equity compels action without further delay"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "Consideraciones 2, «(p. 13)» (pp. 10-14 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 3
+    sintesi: "I quattro requisiti PARAFRASATI (connection, directly affected, not hypothetical but fully proved, restoring individual rights); traduzione del canonical di conexidad_diritti e del passo sul deterioro; conclusione con «connectedness of the environment with fundamental rights». E' la pagina piu' citata dalle corti anglofone."
+    sonde: [conexidad_diritti, tutela_conexidad_collettivo]
+    sonde_P03: [ammissibilita_conexidad]
+    sonde_P04: [ammissibilita_conexidad]
+    sonde_P05: [ammissibilita_conexidad]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, tutela_conexidad_collettivo]"
+    anelli: [a, b]
+    verbatim: "Without a healthy environment, subjects of law and sentient beings in general will not be able to survive"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "4, «p. 16», «p. 18», 5.2, 5.3 (pp. 15-19 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 4
+    sintesi: "Diagnosi (4); modello antropocentrico ed egoista; Peces-Barba (senza i derechos-deberes); 5.2: l'altro, le altre specie, «the unborn, who also deserve to enjoy the same environmental conditions that we have»; 5.3: solidarieta' della specie e valore intrinseco."
+    sonde: [generazioni_future_obbligo]
+    sonde_P03: [diritti_generazioni_future]
+    sonde_P04: [diritti_generazioni_future]
+    sonde_P05: [diritti_generazioni_future]
+    prepara: [ecocentrico_antropico]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, generazioni_future_obbligo]"
+    anelli: [b]
+    verbatim: "The environmental rights of future generations are based on the (i) ethical duty of the solidarity of the species and (ii) on the intrinsic value of nature"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "«p.20», «p. 21», 6 (pp. 20-22 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 5
+    sintesi: "«tributaries, recipients, and owners»; il criterio «ecocentric- anthropic» che pone l'uomo «on par with the environmental ecosystem»; la «binding legal relationship» delle generazioni future come «omission» (per no-hacer; con un carattere invisibile dentro la parola) che limita «the freedom of action of present generations»; il «global ecological public order»."
+    sonde: [ecocentrico_antropico, generazioni_future_obbligo]
+    sonde_P03: [bioma_soggetto_diritti, diritti_generazioni_future]
+    sonde_P04: [bioma_soggetto_diritti, diritti_generazioni_future]
+    sonde_P05: [bioma_soggetto_diritti, diritti_generazioni_future]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, generazioni_future_obbligo]"
+    anelli: [b]
+    verbatim: "a limitation to the freedom of action of present generations"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "6.4-6.5, 7, «p.30» (pp. 24-32 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 6
+    sintesi: "Rio 1992; Parigi («Framework Convention on Climate Change in Paris 2015»); la Corte Constitucional e l'«Ecological Constitution»; l'Amazzonia «lung of the world», il TCA, l'impegno di Parigi."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [natura_soggetto_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [natura_soggetto_diritti]"
+    anelli: [e]
+    verbatim: "The conservation of the Amazon is a national and global obligation"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "«p. 34», 11-11.1 (pp. 34-37 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 7
+    sintesi: "Traduzione del canonical di deforestazione_clima_diritti («imminent and serious damage», «rampant emissions of carbon dioxide (CO2)», «greenhouse gas effect»); minaccia alle specie; i tre principi; 11.1 precauzione con gli scenari IDEAM, la connettivita' con le Ande, l'irreversibilita'."
+    sonde: [deforestazione_clima_diritti]
+    sonde_P03: [deforestazione_minaccia_diritti]
+    sonde_P04: [deforestazione_minaccia_diritti]
+    sonde_P05: [deforestazione_minaccia_diritti]
+    prepara: [equita_intergenerazionale_violata]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    anelli: [c]
+    verbatim: "imminent and serious damage to the children, adolescents and adults who filed this lawsuit"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "11.2, 11.3, 11.3, 12 (pp. 37-39 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 8
+    sintesi: "11.2: «the transgression is obvious», minori «directly affected, unless we presently reduce the deforestation rate to zero»; 11.3: «duty and co-responsibility of the Colombian state»; 11.3: «serious ignorance of the obligations» di Parigi e le otto questioni; 12: inefficacia delle misure e concessione."
+    sonde: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
+    sonde_P03: [deforestazione_minaccia_diritti, diritti_generazioni_future]
+    sonde_P04: [deforestazione_minaccia_diritti, diritti_generazioni_future]
+    sonde_P05: [deforestazione_minaccia_diritti, diritti_generazioni_future]
+    prepara: [conexidad_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    anelli: [c, d]
+    verbatim: "future generations, including children who brought this action, will be directly affected, unless we presently reduce the deforestation rate to zero"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "13, «p. 42», 13.2, «p.45», ordini (pp. 41-47 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 9-10
+    sintesi: "Lo Stato non ha affrontato la deforestazione; omissioni delle autorita' ambientali e di PNN; 14: l'Amazzonia colombiana «subject of rights», «entitled to protection, conservation, maintenance and restoration led by the State and the territorial agencies»; ordini con il PIVAC, «intergenerational pact for the life of the Colombian Amazon»."
+    sonde: [natura_soggetto_diritti]
+    sonde_P03: [bioma_soggetto_diritti, rimedio_strutturale]
+    sonde_P04: [bioma_soggetto_diritti, rimedio_strutturale]
+    sonde_P05: [bioma_soggetto_diritti, rimedio_strutturale]
+    prepara: [deforestazione_clima_diritti, generazioni_future_obbligo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
+    anelli: [e]
+    verbatim: "the Colombian Amazon is recognized as a “subject of rights,” entitled to protection, conservation, maintenance and restoration led by the State and the territorial agencies"
+
+  - pronuncia: dejusticia_2018
+    paragrafo: "Decision (pp. 47-51 dello spagnolo)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    pagina: 10-11
+    sintesi: "«REVOKE» e ordini tradotti; «Civil Appeals Court» per Sala de Casación Civil; firme con tre magistrati «issuing minority opinion» (García Restrepo, Rico Puerta, Salazar Ramírez)."
+    sonde: [deforestazione_clima_diritti]
+    sonde_P03: [deforestazione_minaccia_diritti, rimedio_strutturale]
+    sonde_P04: [deforestazione_minaccia_diritti, rimedio_strutturale]
+    sonde_P05: [deforestazione_minaccia_diritti, rimedio_strutturale]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: [e]
+    verbatim: "issuing minority opinion"
+
+# ═══════════════════════════ TRIBUNAL SUPERIOR DE BOGOTÁ, 12 febbraio 2018 ═══════════════════════════
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "Antecedentes 1 (Objeto)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 2-3
+    sintesi: "Oggetto: applicazione dei principi di precauzione, equita' intergenerazionale, solidarieta', partecipazione e interesse superiore dei minori (definiti in nota 3) e protezione dei ricorrenti «como miembros de las futuras generaciones»; le sei pretese."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [equita_intergenerazionale_violata]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata]"
+    anelli: []
+    verbatim: "como miembros de las futuras generaciones"
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "Antecedentes 2 (Hechos)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 3-6
+    sintesi: "Fatti dei ricorrenti (RIPORTATO): eta' 7-26, vita adulta 2041-2070; impegni del 2015 (90.000 ettari nel 2018, -20% al 2030, zero deforestazione netta 2020 dal 2013); AT-D 66,2%; 178.597 ettari e +44%; Tercera Comunicación Nacional (settore forestale 36%, 98% da deforestazione, 89% in Amazzonia); scenari IDEAM; effetti su acqua, salute, colture; fine del conflitto e colonizzazione."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    anelli: [c]
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "Antecedentes 3-3.15 (Actuación)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 6-10
+    sintesi: "Ammissione del 31/1/2018; il Ministerio Público coadiuva e chiede che l'Amazzonia sia riconosciuta soggetto di diritti (3.1, p. 7); Presidencia senza competenza; CGR; Putumayo e Solano sull'inmediatez; Guaviare, Caquetá, San Vicente; Corpoamazonía: nessuna prova; PNN; Minambiente: PNCC e accordo con Norvegia, Germania e Regno Unito (3.12, p. 9); tutti gli enti salvo tre negano l'idoneita' della tutela (p. 9); Foro Nacional Ambiental, Carrizosa, Universidad de los Andes a favore."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [natura_soggetto_diritti, tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [natura_soggetto_diritti, tutela_conexidad_collettivo]"
+    anelli: []
+    verbatim: "se reconozca a la Amazonía como un sujeto de derechos de protección, conservación, mantenimiento y restauración"
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "1 (Problema jurídico)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 10
+    sintesi: "Se la tutela soddisfi subsidiariedad e inmediatez; se i ricorrenti, membri delle generazioni future, siano legittimati; se le omissioni violino l'ambiente sano e, di conseguenza, vita degna, salute, alimentazione, acqua."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    anelli: [a]
+    verbatim: "miembros de las generaciones futuras"
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "2 (La acción de tutela para la protección de los derechos colectivos)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 11-12
+    sintesi: "Regola dell'art. 88 C.P. ed eccezione dell'art. 86 ultimo comma; i quattro requisiti di SU-1116/2001 citati per esteso (nota 21 elenca le sentenze invocate dai ricorrenti, compresa T-622/16); in piu' deve risultare che l'acción popular non e' idonea in concreto."
+    sonde: [tutela_conexidad_collettivo]
+    sonde_P03: [ammissibilita_conexidad]
+    sonde_P04: [ammissibilita_conexidad]
+    sonde_P05: [ammissibilita_conexidad]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    anelli: [a]
+    verbatim: "Que exista conexidad entre la vulneración de un derecho colectivo y la violación"
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "3 (Derecho al goce de un ambiente sano)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 12-14
+    sintesi: "Il diritto all'ambiente sano da Stoccolma 1972, Unesco, Berna 1979, Carta mondiale della natura 1982, Rio 1992 (note 25-29); la Costituzione del 1991; la Corte Constitucional da' natura fondamentale all'ambiente sano in conexidad con vita, salute, acqua, alimentazione (T-092/03, C-671/01, C-094/15, T-740/11, T-348/12); doveri dello Stato e delle persone; desarrollo sostenible e partecipazione."
+    sonde: [conexidad_diritti]
+    sonde_P03: [ammissibilita_conexidad]
+    sonde_P04: [ammissibilita_conexidad]
+    sonde_P05: [ammissibilita_conexidad]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti]"
+    anelli: [b]
+    verbatim: "ha dado connotación de fundamental a la garantía al ambiente sano en conexidad con la vida, la salud, el agua y la alimentación"
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "4 (El fenómeno del cambio climático)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 14-15
+    sintesi: "UNFCCC 1992 con la definizione di cambiamento climatico, Kyoto 1997, Parigi 2015 (sotto i 2 gradi, verso 1,5; partecipazione); tre vie della partecipazione (amministrativa, politica, giudiziaria); la tutela non procede senza previa reclamazione salvo perjuicio irremediable (nota 40)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    anelli: []
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "5 (Caso concreto), prima parte"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 15-17
+    sintesi: "Il Tribunale riconosce il ruolo protagonista dell'Amazzonia colombiana nel clima globale, l'interdipendenza con le Ande (nota 43, Poveda), la regolazione climatica dei boschi; gli impegni del governo (INDC, PND, dichiarazione congiunta con Germania, Norvegia e Regno Unito su zero deforestazione netta nel 2020); non dubita della legittimazione attiva dei ricorrenti; forza probatoria del bollettino AT-D e della EICDGB."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata, tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    anelli: [c]
+    verbatim: "el papel protagónico de la Amazonía Colombiana respecto del clima global"
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "5 (Caso concreto), seconda parte"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 17-20
+    sintesi: "POLARITA' di tutela_conexidad_collettivo: la tutela non e' il meccanismo procedente, l'acción popular «refulge idóneo» anche per i diritti fondamentali (p. 17); il giudice dell'acción popular conserva la competenza esecutiva e puo' costituire un comitato di verifica (p. 18); urgenza e complessita' non tolgono idoneita', dati i poteri cautelari dell'art. 17 Ley 472 (p. 19); i ricorrenti non hanno usato la partecipazione amministrativa; POLARITA' di deforestazione_clima_diritti: la colonizzazione delle terre delle FARC non e' provata «siquiera en forma sumaria» (p. 20); nota 55 distingue T-622, dove l'acción popular era gia' risultata inefficace."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
+    anelli: []
+    verbatim: "En definitiva la acción popular luce idónea y eficaz para obtener la protección que por esta vía se reclama"
+
+  - pronuncia: tribunal_superior_2018
+    paragrafo: "Resuelve"
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 21
+    sintesi: "NO CONCEDER l'amparo; notifica; invio alla Corte Constitucional per eventuale revisione se non impugnata; firma con salvamento de voto di Ramírez Cardona."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    anelli: []
+    verbatim: "NO CONCEDER el amparo solicitado"
+
+# ═══════════════════════════ SALVAMENTO DE VOTO RAMÍREZ CARDONA, 12 febbraio 2018 ═══════════════════════════
+
+  - pronuncia: salvamento_2018
+    paragrafo: "1.1-1.6"
+    documento: future-generations-v-ministry-of-the-environment-and-others-opinion_e35a
+    pagina: 1-4
+    sintesi: "Il ruolo del giudice nello Stato sociale di diritto: tutti i diritti sono esigibili; la progressivita' non e' assoluta quando e' in gioco la dignita' e «la existencia de la naturaleza que la hace posible», per la generazione attuale e futura (1.3, p. 2); T-406/92 e T-006/92 citate per esteso."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [conexidad_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    anelli: []
+    verbatim: "no solamente de la generación actual, sino la futura"
+
+  - pronuncia: salvamento_2018
+    paragrafo: "2.1-2.2"
+    documento: future-generations-v-ministry-of-the-environment-and-others-opinion_e35a
+    pagina: 4-5
+    sintesi: "Residualita' e sussidiarieta' della tutela; e' possibile chiedere la protezione immediata di diritti collettivi quando il loro godimento e' legato alla dignita' umana; residualita' e sussidiarieta' si relativizzano quando serve l'intervento urgente e improrogabile del giudice."
+    sonde: [tutela_conexidad_collettivo]
+    sonde_P03: [ammissibilita_conexidad]
+    sonde_P04: [ammissibilita_conexidad]
+    sonde_P05: [ammissibilita_conexidad]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    anelli: [a]
+
+  - pronuncia: salvamento_2018
+    paragrafo: "2.3-2.3.2"
+    documento: future-generations-v-ministry-of-the-environment-and-others-opinion_e35a
+    pagina: 5-12
+    sintesi: "La maggioranza non ha studiato gli argomenti della tutela: riconosce «derechos de primer orden» ma fa prevalere il collettivo senza passaggio logico e scarta SU-1116/01 (a, pp. 6-8); i poteri del giudice di tutela non sono inferiori (b, pp. 8-9); le cautele dell'acción popular non bastano per «personas reales» della generazione 2041-2100 (c, pp. 9-10); il danno non e' ipotetico: +44%, precauzione contro l'incertezza, perdita dei servizi ecosistemici come perjuicio irremediable, i diritti della natura «en su calidad de sujeto de derecho» (d, pp. 10-12)."
+    sonde: [deforestazione_clima_diritti, tutela_conexidad_collettivo]
+    sonde_P03: [ammissibilita_conexidad, deforestazione_minaccia_diritti]
+    sonde_P04: [ammissibilita_conexidad, deforestazione_minaccia_diritti]
+    sonde_P05: [ammissibilita_conexidad, deforestazione_minaccia_diritti]
+    prepara: [equita_intergenerazionale_violata, natura_soggetto_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
+    anelli: [a, c]
+    verbatim: "personas reales, que son las que acuden al amparo"
+
+  - pronuncia: salvamento_2018
+    paragrafo: "3.1"
+    documento: future-generations-v-ministry-of-the-environment-and-others-opinion_e35a
+    pagina: 12-14
+    sintesi: "Le generazioni future come soggetto di diritti: la Costituzione protegge anche chi non esiste ancora; dovere di non condizionare le opzioni vitali dei posteri (Riechmann); T-411/92 e T-445/16 citate per esteso: i diritti di chi ci succedera' sono «un criterio limite al ejercicio de derechos actuales»; C-389/16; nel caso concreto l'equita' intergenerazionale non e' rispettata verso i ricorrenti; OC-23/17 sull'interdipendenza ambiente-diritti umani (p. 14)."
+    sonde: [conexidad_diritti, equita_intergenerazionale_violata, generazioni_future_obbligo]
+    sonde_P03: [ammissibilita_conexidad, deforestazione_minaccia_diritti, diritti_generazioni_future]
+    sonde_P04: [ammissibilita_conexidad, deforestazione_minaccia_diritti, diritti_generazioni_future]
+    sonde_P05: [ammissibilita_conexidad, deforestazione_minaccia_diritti, diritti_generazioni_future]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, equita_intergenerazionale_violata, generazioni_future_obbligo]"
+    anelli: [b, c]
+    verbatim: "las generaciones futuras como sujeto de derechos"
+
+  - pronuncia: salvamento_2018
+    paragrafo: "3.2"
+    documento: future-generations-v-ministry-of-the-environment-and-others-opinion_e35a
+    pagina: 14-16
+    sintesi: "La natura, e quindi l'Amazzonia, come soggetto di diritti: dopo il «giro ecocéntrico», Ecuador e Bolivia (Zaffaroni, nota 13); T-622/16 citata per esteso sull'enfoque ecocéntrico e i «sujetos de derechos individualizables»; occorreva analizzare se l'Amazzonia fosse un ecosistema soggetto di diritti bisognoso di protezione immediata; Boff e Chico Mendes."
+    sonde: [ecocentrico_antropico, natura_soggetto_diritti]
+    sonde_P03: [bioma_soggetto_diritti]
+    sonde_P04: [bioma_soggetto_diritti]
+    sonde_P05: [bioma_soggetto_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, natura_soggetto_diritti]"
+    anelli: [e]
+    verbatim: "la Amazonia como sujeto de derechos"
+
+  - pronuncia: salvamento_2018
+    paragrafo: "3.3"
+    documento: future-generations-v-ministry-of-the-environment-and-others-opinion_e35a
+    pagina: 16-17
+    sintesi: "Prevalenza della precauzione: malgrado l'incertezza scientifica, e' provata la possibilita' di danni ai minori ricorrenti se non si adottano misure a breve termine, fra cui l'esecuzione dell'impegno di Parigi a zero deforestazione netta nel 2020; la precauzione inverte l'onere della prova."
+    sonde: [deforestazione_clima_diritti]
+    sonde_P03: [deforestazione_minaccia_diritti]
+    sonde_P04: [deforestazione_minaccia_diritti]
+    sonde_P05: [deforestazione_minaccia_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    anelli: [c]
+
+  - pronuncia: salvamento_2018
+    paragrafo: "3.4"
+    documento: future-generations-v-ministry-of-the-environment-and-others-opinion_e35a
+    pagina: 17-18
+    sintesi: "Alle generazioni future, validamente rappresentate dai minori ricorrenti, spetta il diritto fondamentale a un piano scritto con la loro partecipazione; la Laudato si' (scritta «Laudatio sí») sulla terra che appartiene anche a chi verra'; e' la vita umana a essere a rischio."
+    sonde: [generazioni_future_obbligo]
+    sonde_P03: [diritti_generazioni_future]
+    sonde_P04: [diritti_generazioni_future]
+    sonde_P05: [diritti_generazioni_future]
+    prepara: [deforestazione_clima_diritti]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo]"
+    anelli: [e]
+    verbatim: "el derecho fundamental al diseño e implementación de un plan escrito"
+
+# ═══════════════════════════ ATTI DI PARTE E AMICUS ═══════════════════════════
+
+  - pronuncia: tutela_2018
+    paragrafo: "4.3.2 e passim (voce parte)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-complaint_7da3
+    pagina: 63-67
+    sintesi: "I ricorrenti si dichiarano la generazione futura che affrontera' gli effetti del cambiamento climatico, e costruiscono i diritti delle generazioni future sul desarrollo sostenible e sulla giurisprudenza costituzionale (T-257/96, T-627/12, T-622/16, T-361/17); la tutela non cita Urgenda, Juliana, Leghari o l'OC-23/17."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [equita_intergenerazionale_violata, generazioni_future_obbligo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata, generazioni_future_obbligo]"
+    anelli: [c]
+    verbatim: "somos la generación futura que"
+
+  - pronuncia: tutela_2018
+    paragrafo: "5.1 (voce parte)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-complaint_7da3
+    pagina: 77-80
+    sintesi: "I principi che il giudice di tutela deve applicare: precauzione e in dubio pro natura (5.1.1), equita' intergenerazionale (5.1.2), solidarieta'."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    anelli: [c]
+
+  - pronuncia: impugnacion_2018
+    paragrafo: "1 (voce parte)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-appeal_3c21
+    pagina: 3-18
+    sintesi: "Contro la sentenza di primo grado: l'acción popular non e' il meccanismo idoneo; il perjuicio irremediable e' provato (imminenza, gravita', urgenza, improrogabilita'); l'OC-23/17 e' invocata per la conexidad ambiente-diritti umani (p. 7 e pp. 34-35)."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [conexidad_diritti, deforestazione_clima_diritti, tutela_conexidad_collettivo]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
+    anelli: [a, c]
+
+  - pronuncia: amicus_hansen_2018
+    paragrafo: "II-III (voce amicus)"
+    documento: future-generations-v-ministry-of-the-environment-and-others-other_e010
+    pagina: 2-4
+    sintesi: "Hansen per i ricorrenti, «twenty-five young persons, representing future generations»: subsidiarity, immediacy, legitimacy; precauzione; equita' intergenerazionale come obbligo di agire senza ritardo; 1 grado e 350 ppm; il potenziale di riforestazione della Colombia. Riportato dalla Corte a p. 9 senza essere fatto proprio."
+    sonde: []
+    sonde_P03: []
+    sonde_P04: []
+    sonde_P05: []
+    prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
+    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata]"
+    anelli: []
+    verbatim: "twenty-five young persons, representing future generations"

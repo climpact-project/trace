@@ -1,23 +1,22 @@
-"""DeepSeek classifies lexical citation rows (citation type, speaker, proposition).
+"""DEEPSEEK CLASSIFICA LE RIGHE LESSICALI DI URGENDA (§63.16 del documento unico, diario §31.6).
 
-   Rationale. The lexical network finds the case name; finding it is trivial, the task is to CLASSIFY what the
-   citation does. The model must read the context of the page, not the single line, so DeepSeek receives the
-   citation page with the previous and next pages, the flagged passage marked, and the codebook definitions
-   verbatim.
+   PERCHE'. La rete lessicale trova il nome «Urgenda»: trovarlo e' banale, il lavoro e' CLASSIFICARE
+   che cosa fa la citazione. Il PI ha insistito: il modello deve capire il contesto della pagina, non la
+   riga. Quindi a DeepSeek si da' la pagina della citazione con la pagina prima e quella dopo, con il
+   brano segnalato marcato, e le definizioni del codebook alla lettera.
 
-   Phases:
-     prepara  local machine. From a READ-ONLY local export of the Firestore rows
-              (`training/fase2/<caso>_corpus_rows_*.json`) and the markdown files: context, markup, validator
-              labels.  -> training/lessicali_<caso>_righe.jsonl
-     leggi    GPU server, DeepSeek served by vLLM. Two readings per row, reasoning enabled.
-              --gruppo validate first (to measure agreement with human annotators), then non_validate.
-              -> training/lessicali_<caso>_deepseek.jsonl  (resumes where it stopped)
-     --etichetta v2  re-reading with a revised codebook (footnote rule), written to a separate file so the first
-              reading remains available for comparison.
-     misura   Agreement with validators on citation type (accuracy, Cohen's kappa, confusion matrix) and agreement
-              between the two readings.  -> training/lessicali_<caso>_deepseek_misure.json
+   Fasi:
+     prepara  Mac. Dalle righe di Firestore (copia locale in SOLA LETTURA, `training/fase2/urgenda_corpus_rows_*.json`)
+              e dai markdown: contesto, marcatura, etichette dei validatori.  -> training/lessicali_urgenda_righe.jsonl
+     leggi    ReCaS, dentro la coda di DeepSeek (vLLM locale). Due letture per riga, ragionamento acceso.
+              --gruppo validate prima (per misurare l'accordo con le persone), poi non_validate.
+              -> training/lessicali_urgenda_deepseek.jsonl  (riprende da dove si e' fermato)
+     --etichetta v2  rilettura con il codebook cambiato (27/09/2026: regola del PI sulle note a pie' di pagina),
+              in file a parte, cosi' la prima lettura resta per il confronto.
+     misura   Accordo con i validatori sul tipo di citazione (accuratezza, kappa di Cohen, matrice di confusione),
+              accordo fra le due letture.  -> training/lessicali_urgenda_deepseek_misure.json
 
-   Writes nothing to the platform: outputs are machine proposals; human judgments remain the reference.
+   NON scrive niente sulla piattaforma: sono proposte della macchina, i giudizi umani restano la verita'.
 """
 import argparse, collections, concurrent.futures as cf, datetime, json, pathlib, re, sys, threading, time
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -27,11 +26,11 @@ RIGHE = T/'lessicali_urgenda_righe.jsonl'
 USCITA = T/'lessicali_urgenda_deepseek.jsonl'
 MISURE = T/'lessicali_urgenda_deepseek_misure.json'
 MODELLO = 'DeepSeek-V4-Flash-0731'
-PRIMA, DOPO, CENTRO = 7000, 7000, 14000    # max characters: previous page (tail), next page (head), citation page
+PRIMA, DOPO, CENTRO = 7000, 7000, 14000    # caratteri massimi: pagina prima (coda), pagina dopo (testa), pagina della citazione
 INIZIO, FINE = '[[INIZIO DEL BRANO SEGNALATO]]', '[[FINE DEL BRANO SEGNALATO]]'
 
 
-# ── prepara (local machine) ──────────────────────────────────────────────
+# ── prepara (Mac) ────────────────────────────────────────────────────────
 
 NOMI_BREVI = {'urgenda': 'Urgenda', 'neubauer': 'Neubauer', 'future-generations': 'Future Generations'}
 
@@ -42,8 +41,8 @@ def contesto(file, cs, forma, testuale, nome_re=re.compile(r'urgenda', re.I)):
     testo = p.read_text(encoding='utf-8', errors='replace')
     meta, corpo, base = B.leggi(p)
     marks = [(a + base, n) for a, n in B.pagine(corpo)]
-    # The name is at char_start; the passage flagged by the lexical network is the ~200-character context around
-    # the name (proposto_citazione_testuale): it is located in the file, otherwise a fixed window is used.
+    # il nome sta a char_start; il brano segnalato dalla rete lessicale e' il contesto di circa 200 caratteri
+    # attorno al nome (proposto_citazione_testuale): si ritrova nel file, altrimenti si prende la finestra fissa
     fo = forma if testo[cs:cs+len(forma)] == forma else ''
     if not fo:
         m = nome_re.search(testo, max(0, cs-50), cs+300)
@@ -60,10 +59,10 @@ def contesto(file, cs, forma, testuale, nome_re=re.compile(r'urgenda', re.I)):
         succ = (confini[k+1][0], confini[k+2][0]) if k + 1 < len(marks) else None
     else:
         pag, da_p, a_p, prec, succ = None, base, len(testo), None, None
-    # the citation page, trimmed around the passage if very long (documents without page markers)
+    # la pagina della citazione, tagliata attorno al brano se e' enorme (documenti senza segni di pagina)
     if a_p - da_p > CENTRO:
         da_p = max(da_p, cs - CENTRO//2); a_p = min(a_p, da_p + CENTRO)
-    # the flagged passage may cross a page marker: the central part is extended to contain it entirely
+    # il brano segnalato puo' scavalcare il segno di pagina: la parte centrale lo contiene per intero
     if b_a > a_p:
         a_p = b_a; succ = (b_a, succ[1]) if succ and succ[1] > b_a else None
     if b_da < da_p:
@@ -86,6 +85,11 @@ def prepara(righe_fs, caso='urgenda'):
     conf = yaml.safe_load(open(QUI/'cited-cases'/f'{caso}.yaml', encoding='utf-8'))
     forme = sorted({str(f) for f in conf['forme'] if len(str(f)) >= 4}, key=len, reverse=True)
     nome_re = re.compile('|'.join(re.escape(f) for f in forme), re.I) if caso != 'urgenda' else re.compile(r'urgenda', re.I)
+    # le forme in giapponese, cinese e coreano (01/10/2026): nel testo OCR di un ricorso coreano Urgenda c'e' solo come 우르헨다
+    from cerca import forma_regex, CJK
+    asiatiche = [f for f in forme if CJK.search(f)]
+    if asiatiche:
+        nome_re = re.compile(nome_re.pattern + '|' + '|'.join(forma_regex(f) for f in asiatiche), re.I)
     breve = NOMI_BREVI.get(caso, caso)
     fs = json.load(open(righe_fs, encoding='utf-8'))
     L = [x for x in fs if x.get('proposto_rete') in ('lessicale', 'entrambe')]
@@ -94,7 +98,10 @@ def prepara(righe_fs, caso='urgenda'):
         for x in L:
             if not (QUI/x['file']).exists():
                 n['senza_file'] += 1; continue
-            pag, ctx, trovato = contesto(x['file'], int(x['char_start']), x.get('proposto_forma_trovata') or breve,
+            # nei documenti rifatti con l'OCR (01/10/2026) la posizione vecchia si traduce nel testo nuovo
+            from posizione_dopo_ocr import traduci
+            cs, _ = traduci(x['file'], int(x['char_start']), nome_re, bool((x.get('provenienza') or {}).get('ocr')))
+            pag, ctx, trovato = contesto(x['file'], cs, x.get('proposto_forma_trovata') or breve,
                                         x.get('proposto_citazione_testuale') or '', nome_re)
             n['nome_ritrovato' if trovato else 'nome_non_ritrovato'] += 1
             f.write(json.dumps({
@@ -109,7 +116,7 @@ def prepara(righe_fs, caso='urgenda'):
     print(dict(n), '->', RIGHE)
 
 
-# ── prompt ───────────────────────────────────────────────────────────────
+# ── il prompt ────────────────────────────────────────────────────────────
 
 def codebook():
     import yaml
@@ -170,10 +177,9 @@ Niente fuori dal JSON."""
 
 
 def modulo(caso):
-    """Return the prompt template for a case. For Urgenda the original template is kept unchanged, so earlier
-    readings remain comparable. For other cases the Urgenda-specific lines become generic, and the
-    "soggetto_omonimo" referent covers a person or party bearing the case name (needed e.g. for Neubauer, which
-    is also the name of an activist)."""
+    """Per Urgenda il testo di sempre (le letture del 26-27/09 restano confrontabili). Per gli altri casi le righe
+    su Urgenda diventano generiche e il «soggetto omonimo» e' la persona o la parte che porta il nome (Luisa
+    Neubauer, l'attivista, e' la ragione per cui serve)."""
     if caso == 'urgenda':
         return MODULO
     import yaml
@@ -197,16 +203,16 @@ def prompt(r, fascicolo, cb, caso='urgenda'):
                          inizio=INIZIO, fine=FINE, contesto=r['contesto'])
 
 
-# ── response parsing ─────────────────────────────────────────────────────
+# ── lettura della risposta ───────────────────────────────────────────────
 
 CAMPI = ('riferimento', 'tipo_citazione', 'chi_parla', 'proposizione', 'motivo')
 
 
 def estrai_tollerante(testo):
-    """Parse a model answer tolerantly. DeepSeek's JSON breaks when the proposition contains unescaped quotes
-    (12 of 684 readings on validated rows). The JSON is tried first; if it fails, fields are extracted one by
-    one. A recovered reading is marked with `recuperata`."""
-    from adjudica_llm import estrai
+    """Il JSON di DeepSeek si rompe quando la proposizione contiene virgolette non protette (misurato il
+    26/09/2026: 12 letture su 684 nelle righe validate). Si prova il JSON; se non si legge, si prendono i
+    campi uno per uno. La lettura recuperata si marca con `recuperata`."""
+    from giudica_llm import estrai
     g = estrai(testo)
     if g.get('esito') != 'ILLEGGIBILE':
         return g
@@ -223,7 +229,7 @@ def accordi(x):
     return x
 
 
-# ── leggi (GPU server) ───────────────────────────────────────────────────
+# ── leggi (ReCaS) ────────────────────────────────────────────────────────
 
 def leggi(a):
     from openai import OpenAI
@@ -232,8 +238,8 @@ def leggi(a):
     cb = codebook()
     righe = [json.loads(l) for l in open(RIGHE, encoding='utf-8')]
     righe = [r for r in righe if a.gruppo in ('tutte', r['gruppo'])]
-    # Optional subset of rows (e.g. rows added by the corrected search S02, or rows whose reading was unparseable):
-    # a file with one row id per line.
+    # SOLO ALCUNE RIGHE (29/09/2026): le righe aggiunte dalla ricerca corretta (V10) e quelle la cui lettura non si
+    # riusciva a leggere. Un file con un identificativo per riga.
     if a.solo_id:
         tenere = set(pathlib.Path(a.solo_id).read_text(encoding='utf-8').split())
         righe = [r for r in righe if r['id'] in tenere]
@@ -253,7 +259,7 @@ def leggi(a):
                 r = cli.chat.completions.create(model=a.modello, messages=[{'role': 'user', 'content': testo}], max_tokens=8000,
                                                 extra_body=corpo)
                 m = r.choices[0].message
-                return {'testo': m.content or '', 'ragionamento': getattr(m, 'reasoning_content', '') or '', 'token': r.usage.completion_tokens}
+                return {'testo': m.content or '', 'ragionamento': getattr(m, 'reasoning_content', None) or getattr(m, 'reasoning', None) or (getattr(m, 'model_extra', None) or {}).get('reasoning') or '', 'token': r.usage.completion_tokens}
             except Exception as e:
                 time.sleep(5 * (tentativo + 1)); ultimo = repr(e)[:200]
         return {'testo': '', 'errore': ultimo, 'token': 0}
@@ -290,7 +296,7 @@ def kappa(a, b):
 def misura():
     righe = {json.loads(l)['id']: json.loads(l) for l in open(RIGHE, encoding='utf-8')}
     ds = [json.loads(l) for l in open(USCITA, encoding='utf-8')]
-    for x in ds:     # readings unparseable before the tolerant parser are recovered from the stored raw text
+    for x in ds:     # le letture illeggibili di prima del parser tollerante si recuperano dal testo conservato
         x['letture'] = [estrai_tollerante(g.get('grezzo', '')) if g.get('esito') == 'ILLEGGIBILE' else g for g in x['letture']]
         accordi(x)
     CAT = ['menzione_in_catena', 'descrittiva', 'sostanziale', 'distinguente', 'critica', 'implicita']
@@ -321,7 +327,7 @@ def misura():
         for (x, u) in V:
             conf[u['validato_tipo_citazione']][tipo(x['letture'][0])] += 1
         m['confusione_lettura_1'] = {'righe=validatori, colonne=DeepSeek': {k: dict(v) for k, v in sorted(conf.items())}}
-        # substantive vs. rest: the distinction that matters most for the research question
+        # sostanziale contro il resto: la distinzione che conta di piu' per la ricerca
         bs = [(u == 'sostanziale', tipo(x['letture'][0]) == 'sostanziale') for (x, _), u in zip(V, um)]
         tp = sum(a and b for a, b in bs); fp = sum(b and not a for a, b in bs); fn = sum(a and not b for a, b in bs)
         m['sostanziale_contro_resto_lettura_1'] = {'precisione': round(tp / max(tp + fp, 1), 3), 'richiamo': round(tp / max(tp + fn, 1), 3),

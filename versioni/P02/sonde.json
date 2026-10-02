@@ -1,0 +1,97 @@
+{
+ "neubauer": [
+  {
+   "id": "neubauer.schutzpflicht_clima",
+   "titolo": "Dovere di protezione (Art. 2 Abs. 2 GG) contro i rischi climatici: mitigazione, adattamento, dimensione solo oggettiva verso le generazioni future",
+   "testo": "The fundamental right to life and physical integrity obliges the State to protect\nagainst the risks of climate change through mitigation embedded in international\naction and adaptation, an objective duty that extends to future generations.\n",
+   "canonical_paragrafo": "Rn. 146",
+   "canonical_pagina": 65
+  },
+  {
+   "id": "neubauer.vorwirkung_liberta_intertemporale",
+   "titolo": "Vorwirkung: le quantità di emissione ammesse oggi interferiscono già con la libertà futura; i diritti fondamentali come garanzia intertemporale di libertà",
+   "testo": "Because every emission allowed today irreversibly consumes the remaining budget and\nnarrows future freedom, current emission allowances have an advance interference-like\neffect on fundamental rights as intertemporal guarantees of freedom.\n",
+   "canonical_paragrafo": "Rn. 122",
+   "canonical_pagina": "58-59"
+  },
+  {
+   "id": "neubauer.proporzionalita_intergenerazionale",
+   "titolo": "Proporzionalità fra generazioni: nessuna generazione può consumare il budget lasciando alle successive una riduzione radicale",
+   "testo": "Proportionality forbids one generation from consuming large portions of the carbon\nbudget under a comparatively mild reduction burden while leaving subsequent\ngenerations a radical reduction burden and serious losses of freedom.\n",
+   "canonical_paragrafo": "Rn. 192",
+   "canonical_pagina": 81
+  },
+  {
+   "id": "neubauer.budget_co2_parametro",
+   "titolo": "Il budget di CO₂ come parametro: la soglia di temperatura tradotta in budget nazionale residuo, con dovere di cura sotto incertezza",
+   "testo": "The constitutionally relevant temperature limit is converted into a remaining national\ncarbon budget derived from the global budget; despite uncertainties, reliable\nindications that the limit may be exceeded must inform the allowed emission amounts.\n",
+   "canonical_paragrafo": "Rn. 120",
+   "canonical_pagina": 57
+  },
+  {
+   "id": "neubauer.art20a_giustiziabile_autovincolo",
+   "titolo": "L'obiettivo climatico costituzionale è norma giustiziabile che vincola la politica; il legislatore è tenuto alla propria concretizzazione del target",
+   "testo": "The constitutional climate objective is a justiciable norm that binds a political\nprocess structurally prone to short-termism, and the legislature is held to its own\nspecification of the temperature target unless it transparently redefines it.\n",
+   "canonical_paragrafo": "Rn. 205",
+   "canonical_pagina": 86
+  },
+  {
+   "id": "neubauer.protezione_extraterritoriale",
+   "titolo": "Dovere di protezione verso chi vive all'estero: pensabile in principio, di contenuto diverso, lasciato aperto (ricorrenti del Bangladesh e del Nepal)",
+   "testo": "It is conceivable that duties of protection oblige the State towards persons abroad\nexposed to warming caused partly by its emissions, though such a duty would differ in\ncontent since adaptation abroad is impossible.\n",
+   "canonical_paragrafo": "Rn. 174",
+   "canonical_pagina": 74
+  }
+ ],
+ "future-generations": [
+  {
+   "id": "future-generations.conexidad_diritti",
+   "titolo": "Conexidad: i diritti fondamentali sono determinati dall'ecosistema; senza ambiente sano non sopravvivono i sujetos de derecho né famiglia, società e Stato",
+   "testo": "Fundamental rights to life, health, subsistence and dignity are substantially\ndetermined by the ecosystem; without a healthy environment neither subjects of law nor\nsentient beings can survive, nor can family, society or the State exist.\n",
+   "canonical_paragrafo": "2. CONSIDERACIONES, 2 (p. 13)",
+   "canonical_pagina": 13
+  },
+  {
+   "id": "future-generations.generazioni_future_obbligo",
+   "titolo": "I diritti ambientali delle generazioni future come obbligo di non-fare che limita la libertà delle presenti",
+   "testo": "The environmental rights of future generations, grounded in the solidarity of the\nspecies and the intrinsic value of nature, create a binding obligation of non-action\nthat limits the freedom of action of present generations.\n",
+   "canonical_paragrafo": "5.3 (p. 21)",
+   "canonical_pagina": 21
+  },
+  {
+   "id": "future-generations.equita_intergenerazionale_violata",
+   "titolo": "Equità intergenerazionale: il riscaldamento previsto lede già i giovani ricorrenti",
+   "testo": "Where scientific projections show that temperatures will rise within the lifetime of\nthe young claimants, the principle of intergenerational equity is already breached\nunless present generations halt the causes of that warming.\n",
+   "canonical_paragrafo": "11.2 (p. 37)",
+   "canonical_pagina": 37
+  },
+  {
+   "id": "future-generations.deforestazione_clima_diritti",
+   "titolo": "Deforestazione come fonte climatica: danno imminente alle generazioni presenti e future, corresponsabilità dello Stato per solidarietà",
+   "testo": "Uncontrolled deforestation releases carbon dioxide and produces the greenhouse effect,\nan imminent and serious harm to present and future generations that the State, by\nsolidarity, is co-responsible for halting at its causes.\n",
+   "canonical_paragrafo": "11 (pp. 34-35)",
+   "canonical_pagina": "34-35"
+  },
+  {
+   "id": "future-generations.natura_soggetto_diritti",
+   "titolo": "Un intero bioma riconosciuto come soggetto di diritti, come rimedio in un ricorso climatico",
+   "testo": "To protect an ecosystem vital for the global future, a court may recognise it as a\nsubject of rights, entitled to protection, conservation, maintenance and restoration\nby the State and the territorial entities.\n",
+   "canonical_paragrafo": "14 (p. 45)",
+   "canonical_pagina": 45
+  },
+  {
+   "id": "future-generations.ecocentrico_antropico",
+   "titolo": "Il criterio ecocentrico-antropico: l'uomo a la par dell'ecosistema, i diritti come derechos-deberes",
+   "testo": "Environmental protection must transcend anthropocentrism in favour of an\necocentric-anthropic criterion that places the human being on a par with the ecosystem\nand redefines rights as rights-duties towards nature and future generations.\n",
+   "canonical_paragrafo": "5.3 (pp. 20-21)",
+   "canonical_pagina": "20-21"
+  },
+  {
+   "id": "future-generations.tutela_conexidad_collettivo",
+   "titolo": "Procedibilità della tutela per conexidad quando la lesione del diritto collettivo lede diritti fondamentali",
+   "testo": "Although collective rights are ordinarily protected through other actions, the\nindividual constitutional remedy is admissible where the violation of the collective\nright to a healthy environment entails the violation of fundamental rights connected\nto it.\n",
+   "canonical_paragrafo": "2 (p. 14)",
+   "canonical_pagina": 14
+  }
+ ]
+}

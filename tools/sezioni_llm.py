@@ -1,19 +1,18 @@
-"""Section tree of a filing read by a language model (PageIndex-style experiment).
+"""L'ALBERO DELLE SEZIONI LETTO DA UN MODELLO (29/09/2026, prova tipo PageIndex, decisa col PI).
 
-   Rationale. On filings with an embedded PDF outline (67 of the 314 citing Urgenda), the SECTION separates the
-   continuation of a citation from same-topic pages better than page distance (`sezioni_atto.py`). The other 247
-   have no outline, and inferring headings from font size does not work (30% recovered, 662 invented). Following
-   PageIndex (VectifyAI), headings are read by a model: here Qwen3-14B, not fine-tuned, on a single GPU.
+   Perche'. Sugli atti che hanno l'indice nel PDF (67 su 314 di quelli che citano Urgenda) la SEZIONE distingue il
+   seguito di una citazione dallo stesso tema meglio del numero di pagine (`sezioni_atto.py`, §63.28). Negli altri
+   247 l'indice non c'e', e ricavare i titoli dal carattere non funziona (30% ritrovati, 662 inventati). PageIndex
+   (VectifyAI) li fa leggere a un modello: qui Qwen3-14B, non addestrato, su una GPU di ReCaS.
 
-   Method. Each filing is split into blocks of 4 pages, with page markers. The model lists the headings of parts,
-   sections and subsections appearing in the text, COPIED verbatim, with page and level; no running headers, no
-   footnotes. The output is measured against filings with a true outline before being used on the others.
+   Come. Ogni atto a blocchi di 4 pagine, con i segni di pagina. Il modello elenca i titoli di parti, sezioni e
+   sottosezioni che compaiono nel testo, COPIATI com'e' scritti, con pagina e livello. Niente intestazioni di pagina,
+   niente note. Si misura sugli atti con l'indice vero prima di usarlo sugli altri.
 
-   Phases:
-     prepara  local machine -> training/sezioni/blocchi.jsonl (to be copied to the GPU server)
-     leggi    GPU server    -> training/sezioni/titoli.jsonl (vLLM, Qwen3-14B, one GPU)
-     conta    local machine -> measurement against the true outline; high-scoring window pages: same section as
-                               the citation?
+   Fasi:
+     prepara  Mac   -> training/sezioni/blocchi.jsonl (da caricare su ReCaS)
+     leggi    ReCaS -> training/sezioni/titoli.jsonl (vLLM, Qwen3-14B, una GPU)
+     conta    Mac   -> misura contro l'indice vero; pagine alte della finestra: stessa sezione della citazione?
 """
 import argparse, collections, gzip, json, pathlib, re, sys
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -63,8 +62,8 @@ def leggi(a):
     B = [json.loads(l) for l in open(a.blocchi, encoding='utf-8')]
     llm = LLM(model=a.modello, max_model_len=32768, gpu_memory_utilization=0.90)
     sp = SamplingParams(temperature=0, max_tokens=1200)
-    # A block in Korean or Japanese script can exceed the context window: the text is truncated proportionally and
-    # the truncation is recorded on the row (`tagliato`).
+    # Un blocco in scrittura coreana o giapponese puo' superare il contesto: si taglia il testo in proporzione, e il
+    # taglio resta scritto sulla riga (`tagliato`).
     tok = llm.get_tokenizer()
     tagliati = set()
     for b in B:
@@ -90,7 +89,7 @@ def leggi(a):
 
 
 def albero(righe):
-    """Return {document: [(level, title, page)]} from the model-read headings, in page order."""
+    """[(livello, titolo, pagina)] per documento, dai titoli letti, nell'ordine delle pagine."""
     A = collections.defaultdict(list)
     for r in righe:
         for h in (r['titoli'] or []):
@@ -126,7 +125,7 @@ def conta():
     print(f'blocchi {len(righe)}, risposte illeggibili {rotte}; atti con albero {len(A)}')
     print(f'contro l\'indice vero ({n} atti): pagine con titolo {veri}, ritrovate {trovati} ({trovati / max(veri, 1):.0%}); '
           f'pagine con titoli letti che l\'indice non ha {inventati}')
-    # high-scoring window pages: same section as the citation?
+    # le pagine alte della finestra: stessa sezione della citazione?
     R = [json.loads(l) for l in open(T/'lessicali_urgenda_righe.jsonl', encoding='utf-8')]
     cit = collections.defaultdict(set)
     for r in R:

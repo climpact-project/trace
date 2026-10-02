@@ -1,16 +1,15 @@
-"""Audit of human coding decisions on semantic-network rows for Urgenda, using DeepSeek as a second reader.
+"""PERCHE' I GIUDIZI SEMANTICI DI LUGLIO SONO SBAGLIATI: DEEPSEEK LI RILEGGE (27/09/2026, richiesta del PI).
 
-   Every Urgenda row proposed by the semantic network ('semantica' or 'entrambe') that has a human outcome
-   (confirmed, reclassified, discarded) is re-read by the model. For each row the model first gives its own
-   blind reading of the page, and only then sees the human decision and states whether and how it diverges.
-   No validator name enters the prompt; nothing is written back to the platform.
+   Il 27/09 la rilettura delle 102 righe semantiche confermate di Urgenda ne ha trovate 3 davvero riprese
+   implicite (§63.24). Il PI chiede PERCHE' il team ha giudicato cosi', e di passare i giudizi con DeepSeek.
+   Si rileggono TUTTE le righe semantiche di Urgenda con un esito (confermate, riclassificate, scartate): per
+   ciascuna DeepSeek da' prima la SUA lettura, alla cieca, e solo dopo vede la decisione della persona e dice
+   se e come diverge. Nessun nome di validatore entra nel prompt; nessuna scrittura sulla piattaforma.
 
-   Phases:
-     prepara  local machine, read-only from Firestore: the judged page plus the end of the previous page and the
-              start of the next one (page index), and the human decision.  -> training/audit/urgenda_giudizi.jsonl
-     leggi    GPU server, DeepSeek endpoint; two readings per row.       -> training/audit/urgenda_giudizi_deepseek.jsonl
-
-   Usage: python tools/audit_giudizi.py prepara | leggi [--letture N] [--sforzo low] [--paralleli N]
+   Fasi:
+     prepara  Mac, SOLA LETTURA da Firestore: pagina del giudizio con la fine della precedente e l'inizio della
+              successiva (indice delle pagine), decisione della persona.  -> training/audit/urgenda_giudizi.jsonl
+     leggi    ReCaS, coda di DeepSeek. Due letture per riga.            -> training/audit/urgenda_giudizi_deepseek.jsonl
 """
 import argparse, collections, concurrent.futures as cf, datetime, gzip, json, pathlib, sys, threading, time
 QUI = pathlib.Path(__file__).resolve().parent.parent

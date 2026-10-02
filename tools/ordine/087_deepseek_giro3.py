@@ -1,0 +1,1 @@
+../deepseek_giro3.py

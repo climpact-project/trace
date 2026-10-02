@@ -1,15 +1,15 @@
-"""Assign a unique, permanent code to every lexical citation row.
+"""UN CODICE UNICO E PERMANENTE PER OGNI CITAZIONE (28/09/2026, richiesta del PI).
 
-   Each lexical row (`proposto_rete` in 'lessicale', 'entrambe') receives `codice` = <PREFIX>-<4-digit number>,
-   numbered in order of document and position within the document. Codes are never reassigned: rows that already
-   have one keep it, new rows continue from the highest number used for the case. Stable codes allow individual
-   results to be referenced and published.
+   «Per discutere con te e per cercare i singoli risultati ogni risultato dovrebbe avere un codice univoco, per il
+   futuro anche per pubblicarlo.» Ogni riga lessicale (e «entrambe») riceve `codice` = <PREFISSO>-<numero a 4 cifre>,
+   in ordine di documento e posizione nel documento. Il codice NON si riassegna mai: le righe che lo hanno gia' lo
+   tengono, le nuove prendono il numero dopo il piu' alto del caso.
 
-   Usage:  .venv/bin/python tools/assegna_codici.py [--scrivi]
+   Uso:  .venv/bin/python tools/assegna_codici.py [--scrivi]
 """
 import argparse, collections, re
 from google.cloud import firestore
-PREFISSI = {'urgenda': 'URG', 'neubauer': 'NEU', 'future-generations': 'FGC'}
+PREFISSI = {'urgenda': 'URG', 'neubauer': 'NEU', 'future-generations': 'FGC', 'klimaseniorinnen': 'KLS', 'cig-parere-clima': 'ICJ', 'idh-oc-32-25': 'IAC'}
 
 
 def main():
@@ -19,8 +19,8 @@ def main():
         tutte = [(d.reference, d.to_dict()) for d in db.collection('corpus_rows')
                  .where(filter=firestore.FieldFilter('caso_citato', '==', caso)).stream()]
         righe = [(ref, r) for ref, r in tutte if r.get('proposto_rete') in ('lessicale', 'entrambe')]
-        # The maximum is taken over ALL rows of the case, including merged ones (`proposto_rete = 'fusa'`):
-        # counting only lexical rows would recycle a number still held by a merged row.
+        # Il massimo si cerca su TUTTE le righe del caso, comprese quelle unite (`proposto_rete = 'fusa'`, dal
+        # 29/9/2026): contando solo le lessicali, un numero tenuto da una riga unita tornerebbe in circolo.
         gia = [int(m.group(1)) for _, r in tutte for m in [re.fullmatch(rf'{pre}-(\d+)', str(r.get('codice') or ''))] if m]
         n = max(gia, default=0)
         nuove = sorted([(ref, r) for ref, r in righe if not r.get('codice')],

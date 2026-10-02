@@ -1,0 +1,26 @@
+# CASO CITATO — TRIBUNALE INTERNAZIONALE DEL DIRITTO DEL MARE
+#
+# Request for an Advisory Opinion submitted by the Commission of Small
+# Island States on Climate Change and International Law, parere del
+# 21 maggio 2024, Case No. 31.
+#
+# MISURATO: 11 casi del corpus lo nominano (19/09/2026). E' il piu' piccolo
+# dei tre pareri, ma viaggia sempre con gli altri due.
+#
+# ATTENZIONE AL NUMERO: «Case No. 31» da solo pescherebbe qualunque cosa. Si
+# cerca per il nome della Commissione, che e' lungo e non somiglia a niente
+# altro, e per la sigla del tribunale.
+
+nome: Request for an Advisory Opinion submitted by the Commission of Small Island States (ITLOS)
+codebook_versione: 0.2-pilot
+data_decisione: 2024-05-21
+
+forme:
+  - Commission of Small Island States     # OSSERVATA: la forma distintiva
+  - COSIS
+  - ITLOS Advisory Opinion                # OSSERVATA
+  - ITLOS AO
+  - Tribunal for the Law of the Sea advisory
+
+forme_escluse:
+  - Case No. 31                           # troppo generico: pesca numeri di ruolo di chiunque

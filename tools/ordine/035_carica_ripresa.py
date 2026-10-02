@@ -1,0 +1,1 @@
+../carica_ripresa.py

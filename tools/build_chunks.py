@@ -1,26 +1,37 @@
 #!/usr/bin/env python3
-"""Split the markdown corpus into chunks for dense indexing.
+"""DAI DOCUMENTI AI FRAMMENTI DA INDICIZZARE.
 
-Two granularities. Indexed chunks are SHORT (one or two paragraphs): a long
-chunk yields a vector that averages several topics and matches nothing
-precisely. The short chunk is not what is later read to classify a citation,
-which needs the surrounding argument; each chunk therefore carries its
-coordinates (`char_start`, `char_end`) so the reader can reopen the document
-and take a wider window. Precise retrieval, contextual judgment.
+LA DECISIONE CENTRALE: DUE MISURE, NON UNA.
 
-Boundaries, not fixed length. A fixed-length cut splits sentences, and a
-half sentence silently degrades its vector. Chunks are cut on paragraphs;
-paragraphs that are too long are split on sentences.
+Si indicizzano frammenti BREVI — uno o due paragrafi. Non per risparmiare
+spazio: perche' un frammento lungo produce un vettore che media argomenti
+diversi, e un vettore che media tutto non somiglia precisamente a niente.
+La rappresentazione di una pagina intera e' poltiglia.
 
-Overlap. A passage straddling two chunks would be truncated in both and match
-the query in neither. Each chunk repeats the tail (OVERLAP characters) of the
-previous one.
+Ma il frammento breve NON e' quello che verra' letto per decidere il tipo
+di citazione: per quello serve sapere chi parla e in che punto
+dell'argomentazione si e'. Quindi ogni frammento porta con se' le
+coordinate (`char_start`, `char_end`) che permettono, a lettura, di
+riaprire il documento e prendere la finestra allargata attorno.
 
-Page numbers. The `<!-- page N -->` markers are already in the text; the last
-marker seen is propagated so every chunk knows its page, which makes results
-verifiable by hand.
+Ricerca precisa, giudizio contestuale. E' tutto qui.
 
-Usage: python tools/build_chunks.py [<case_id>]   -> index/chunks.jsonl
+PERCHE' SI TAGLIA SUI CONFINI E NON A LUNGHEZZA FISSA. Un taglio a
+lunghezza fissa spezza le frasi a meta'. Meta' frase produce un vettore
+sbagliato in modo silenzioso — non da' errore, da' solo risultati peggiori
+senza che nessuno capisca perche'. Qui si taglia sui paragrafi, e i
+paragrafi troppo lunghi si spezzano sulle frasi.
+
+PERCHE' LA SOVRAPPOSIZIONE. Un passaggio a cavallo fra due frammenti
+verrebbe perso da entrambi: nel primo e' mozzato in coda, nel secondo in
+testa, e in nessuno dei due somiglia abbastanza alla domanda. La
+sovrapposizione e' l'assicurazione contro il caso peggiore, e costa solo
+un po' di ripetizione.
+
+IL NUMERO DI PAGINA SI PROPAGA. I segni `<!-- page N -->` sono gia' nel
+testo: mentre si scorre si tiene l'ultimo visto, e ogni frammento nasce
+sapendo a che pagina sta. Senza questo, il risultato non sarebbe
+verificabile a mano — cioe' non servirebbe a niente.
 """
 
 import json
@@ -32,19 +43,19 @@ HERE = Path(__file__).resolve().parent.parent
 MD = HERE / 'markdown'
 OUT = HERE / 'index' / 'chunks.jsonl'
 
-# Sizes in characters. Models work in tokens, but characters are observable
-# and tokenizer-independent: for English and Italian legal text the ratio is
-# about 4 characters per token, so 1,100 characters fit well within any
-# context window.
-TARGET = 1100          # target chunk size
-MIN_CHUNK = 250        # below this size a chunk is merged with its neighbour
-OVERLAP = 200          # tail of the previous chunk repeated at the start
+# Misure in caratteri. Il modello ragiona in token, ma i caratteri sono
+# osservabili e non dipendono dal tokenizzatore: con testo giuridico
+# inglese e italiano il rapporto e' intorno a 4 caratteri per token, quindi
+# 1.100 caratteri stanno largamente dentro qualunque finestra.
+TARGET = 1100          # ampiezza a cui si punta
+MIN_CHUNK = 250        # sotto questa soglia si accorpa al successivo
+OVERLAP = 200          # coda del frammento precedente ripetuta in testa
 
 PAGE_RE = re.compile(r'<!--\s*page\s+(\d+)\s*-->')
-# Sentence end: period, semicolon, colon, question or exclamation mark followed
-# by whitespace and an uppercase letter. The negative lookbehinds exclude common
-# abbreviations in legal documents ('v.', 'No.', 'Inc.', 'Cir.', ...) that would
-# otherwise split a case citation in half.
+# Fine frase: punto, punto e virgola, due punti o interrogativo seguiti da
+# spazio e maiuscola. Il negativo esclude le abbreviazioni piu' comuni negli
+# atti — 'v.', 'No.', 'Inc.', 'Cir.' — che altrimenti spezzerebbero una
+# citazione di causa a meta'.
 SENT_RE = re.compile(
     r'(?<!\bv)(?<!\bNo)(?<!\bInc)(?<!\bCir)(?<!\bCo)(?<!\bLtd)(?<!\bMr)(?<!\bMrs)'
     r'[.;:?!]\s+(?=[A-Z"“(])'
@@ -52,10 +63,11 @@ SENT_RE = re.compile(
 
 
 def leggi(md: Path):
-    """Split front matter from body, returning (meta, body, body offset).
+    """Separa il front matter dal corpo, conservando l'offset del corpo.
 
-    Offsets stored in chunks refer to the WHOLE FILE, not to the body alone:
-    whoever reopens the document to take the wider window opens the file."""
+    Gli offset che finiscono nei frammenti sono riferiti al FILE INTERO e
+    non al solo corpo: chi riapre il documento per prendere la finestra
+    allargata apre il file, non una sua porzione."""
     testo = md.read_text(encoding='utf-8', errors='replace')
     if not testo.startswith('---\n'):
         return {}, testo, 0
@@ -75,12 +87,12 @@ def leggi(md: Path):
 
 
 def pagine(corpo: str):
-    """List of (offset, page number) for the page markers, in order."""
+    """Elenco (offset, numero) dei segni di pagina, in ordine."""
     return [(m.start(), int(m.group(1))) for m in PAGE_RE.finditer(corpo)]
 
 
 def pagina_di(marks, off: int) -> int:
-    """Page containing an offset: the last marker before it (1 if none)."""
+    """La pagina in cui cade un offset: l'ultimo segno che lo precede."""
     p = 0
     for pos, num in marks:
         if pos <= off:
@@ -91,7 +103,7 @@ def pagina_di(marks, off: int) -> int:
 
 
 def spezza_lungo(testo: str, base: int):
-    """Split a paragraph longer than TARGET on sentence boundaries."""
+    """Un paragrafo piu' lungo del bersaglio si spezza sulle frasi."""
     tagli = [0] + [m.end() for m in SENT_RE.finditer(testo)] + [len(testo)]
     pezzi, inizio = [], 0
     for i in range(1, len(tagli)):
@@ -103,9 +115,9 @@ def spezza_lungo(testo: str, base: int):
 
 
 def frammenti(corpo: str):
-    """Chunk boundaries (start, end), cut on paragraph boundaries."""
-    # Page markers are not text: they are excluded from the length count but
-    # NOT removed from the document, so offsets stay true to the file.
+    """Confini (inizio, fine) dei frammenti, sui confini di paragrafo."""
+    # I segni di pagina non sono testo: si tolgono dal conteggio ma NON dal
+    # documento, perche' gli offset devono restare quelli veri del file.
     grezzi, pos = [], 0
     for par in re.split(r'\n\s*\n', corpo):
         lung = len(par) + 2
@@ -130,8 +142,8 @@ def frammenti(corpo: str):
     if cur:
         fuse.append(cur)
 
-    # Merge leftovers: a two-line chunk has too little content to be
-    # meaningfully compared with a query.
+    # Accorpamento dei residui: un frammento di due righe non ha abbastanza
+    # contenuto per essere confrontato con qualcosa.
     out = []
     for a, b in fuse:
         if out and (b - a) < MIN_CHUNK:
@@ -165,13 +177,16 @@ def main(argv):
                     'tipo_atto': meta.get('tipo_atto', ''),
                     'giurisdizioni': meta.get('giurisdizioni', ''),
                     'data': meta.get('data_deposito', ''),
-                    # Start and end page: a chunk can cross a page break,
-                    # and recording only one page would send the checker
-                    # to the wrong page exactly where a citation is split.
+                    # DUE PAGINE, NON UNA. Un frammento puo' scavalcare
+                    # un'interruzione di pagina: registrarne una sola
+                    # manderebbe chi verifica alla pagina sbagliata proprio
+                    # nei casi a cavallo, che sono quelli in cui una
+                    # citazione si spezza. Suggerimento adottato in
+                    # revisione esterna.
                     'pagina': pagina_di(marks, a),
                     'pagina_fine': pagina_di(marks, b),
-                    # File offsets (not body offsets), used to reopen the
-                    # document and take the wider window.
+                    # Riferiti al FILE, non al corpo: servono a riaprire il
+                    # documento e prendere la finestra allargata.
                     'char_start': base + a,
                     'char_end': base + b,
                     'file': str(md.relative_to(HERE)),

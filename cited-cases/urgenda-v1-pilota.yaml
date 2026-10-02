@@ -1,0 +1,183 @@
+# CASO CITATO — URGENDA
+#
+# Che cosa cercare. Il codebook (`codebook/citazioni.yaml`) dice invece
+# COME classificare cio' che si trova: sono due file distinti perche' il
+# codebook resta stabile per tutti i casi del mese, questo cambia ogni
+# volta.
+#
+# Decisione del PI (30 luglio 2026): il grado di giudizio NON si distingue.
+# Chi cita Urgenda cita Urgenda, che si riferisca al Tribunale dell'Aja
+# (2015), alla Corte d'appello (2018) o alla Cassazione (2019).
+
+nome: Urgenda Foundation v. State of the Netherlands
+codebook_versione: 0.1-bozza
+
+# LA DATA DELLA DECISIONE CITATA. Un atto depositato prima non puo'
+# riprenderla: e' una verita' di calendario, ed e' il filtro piu' forte che
+# abbiamo. Si usa la PRIMA delle tre pronunce (Tribunale dell'Aja,
+# 24 giugno 2015), perche' chi cita Urgenda cita Urgenda a prescindere dal
+# grado — decisione del PI del 30 luglio 2026.
+#
+# I candidati anteriori non si buttano: sono l'argomento CONTRO la
+# derivazione (il principio esisteva gia'), e si rileggono con
+# `--con-anteriori`.
+data_decisione: 2015-06-24
+
+# Gli atti del giudizio Urgenda stesso non citano un precedente: nominano
+# se stessi. Si escludono e si contano a parte (785 passaggi).
+escludi_case_id: urgenda
+
+# ── Forme testuali ───────────────────────────────────────────────────────
+#
+# LE VARIANTI DA OCR NON SONO UNO SCRUPOLO ECCESSIVO. Nel documento di
+# Duarte Agostinho il testo estratto scrive "Lirgenda": la U letta come L.
+# Senza quella variante quel passaggio non si trova, e la garanzia di
+# esaustivita' della ricerca esatta varrebbe solo per il testo scritto
+# bene. Le varianti sono ricavate dagli errori effettivamente osservati nel
+# corpus, non immaginati.
+forme:
+  - Urgenda
+  - Urgenda-
+  - Lirgenda        # U letta come L (osservata: Duarte Agostinho)
+  - Urgcnda         # e letta come c
+  - Urgenda Foundation
+  - Stichting Urgenda
+  - "ECLI:NL:RBDHA:2015:7145"
+  - "ECLI:NL:RBDHA:2015:7196"
+  - "ECLI:NL:GHDHA:2018:2591"
+  - "ECLI:NL:GHDHA:2018:2610"
+  - "ECLI:NL:HR:2019:2006"
+  - "ECLI:NL:HR:2019:2007"
+  - C/09/456689
+  - 200.178.245
+  - 19/00135
+
+# ── Semantic queries ─────────────────────────────────────────────────────
+#
+# TERMINOLOGIA (per il paper). Questo file e' la QUERY SPECIFICATION del
+# caso citato. Le `forme` qui sopra sono le LEXICAL VARIANTS; queste sono
+# le SEMANTIC QUERIES. L'insieme e' la SEARCH STRATEGY, ed e' quella che va
+# riportata integralmente in appendice: chi rifa' la ricerca con altre
+# formulazioni ottiene un altro corpus di citazioni, e deve poterlo vedere.
+#
+# UNA PROPOSIZIONE PER QUERY, MA ARTICOLATA. Verificato misurando, non
+# supposto: la stessa proposizione detta in 35 parole batte la versione in
+# 13 su tutte e tre le prove — punteggio migliore piu' alto e risultati
+# quasi disgiunti (da 1 a 6 in comune sui primi 20).
+# La ragione: la query diventa UN SOLO punto nello spazio dei significati.
+# Tredici parole producono un punto vago, che somiglia a mille passaggi;
+# le clausole in piu' RESTRINGONO il significato invece di diluirlo.
+# Diluisce mettere insieme proposizioni DIVERSE — e' l'errore che aveva
+# fatto pescare il diritto internazionale al posto della responsabilita'
+# civile. Non diluisce articolare la stessa proposizione.
+#
+# LE FORMULAZIONI VENGONO DALLA CORTE, non da una nostra parafrasi: sono
+# le frasi che chi riprende Urgenda tende a riecheggiare. Estratte dalla
+# sentenza di Cassazione presente nel corpus, vedi `urgenda-fonti.md`.
+#
+# NESSUNA CONTIENE IL NOME. Se lo contenesse, misureremmo la ricerca
+# testuale — che facciamo gia' in un secondo e senza modelli.
+#
+# VERIFICA PRIMA DELL'USO: due formulazioni concorrenti della stessa
+# proposizione, e si misura la sovrapposizione dei primi risultati. Se
+# pescano le stesse cose, la query non discrimina.
+
+semantic_queries:
+  - id: propria_quota
+    titolo: Responsabilita per la propria quota
+    testo: >
+      Each country is responsible for its own share, and cannot escape that responsibility by arguing that its own emissions are relatively limited and that reducing them would have very little impact on a global scale.
+  - id: obblighi_positivi
+    titolo: Obblighi positivi ex artt. 2 e 8 CEDU
+    testo: >
+      Articles 2 and 8 of the Convention oblige the State to take appropriate measures against the real and immediate risk that dangerous climate change poses to the lives and well-being of its residents.
+  - id: dovere_diligenza
+    titolo: Dovere di diligenza civilistico
+    testo: >
+      By failing to reduce greenhouse gas emissions sufficiently the State acts unlawfully towards its citizens, in breach of the duty of care it owes them.
+  - id: ordine_non_legge
+    titolo: L ordine non equivale a legiferare
+    testo: >
+      A court may order the public body to take measures to achieve a certain goal, as long as that order does not amount to an order to create legislation with a particular content.
+  - id: target_giudiziale
+    titolo: Il giudice puo fissare un obiettivo quantificato
+    testo: >
+      The State can be required by the court to achieve a specified minimum reduction of its emissions by a given date, rather than merely to do more.
+
+# TOLTA: "la scienza come fonte dell'obbligo". In Urgenda la conoscenza
+# scientifica stabilisce la prevedibilita' del danno, che e' un presupposto
+# DENTRO l'analisi del dovere di diligenza, non una proposizione autonoma
+# che viaggia. Chi riprende Urgenda non riprende "la scienza fonda
+# l'obbligo": riprende il dovere, e la scienza sta nella motivazione.
+#
+# TOLTA: "riduzione del 25% entro il 2020". E' un FATTO di quel giudizio,
+# non una proposizione trasferibile: cercarlo pesca solo chi ripete quel
+# numero e manca una corte che imponga il 40% entro il 2030 con lo stesso
+# ragionamento. Sostituita da `target_giudiziale`, che enuncia il principio.
+
+# ── Formulazioni escluse ─────────────────────────────────────────────────
+#
+# CHE COSA SONO. Per ciascuna sonda, una o piu' proposizioni che le
+# somigliano ma dicono altro. Si pubblicano insieme alle sonde perche' sono
+# il punto in cui la classificazione puo' essere contestata: chi rifa' la
+# ricerca deve poter vedere non solo che cosa abbiamo cercato, ma anche che
+# cosa abbiamo deciso di non far contare.
+#
+# NON FILTRANO, MISURANO. Ogni candidato esce con il punteggio verso la
+# sonda, il punteggio verso la formulazione esclusa piu' vicina, e la loro
+# differenza (`margine`). Margine negativo significa: questo passaggio
+# somiglia piu' a cio' che abbiamo escluso che a cio' che cerchiamo — e la
+# riga esce lo stesso, marcata `sospetto`. Scartarla in silenzio
+# nasconderebbe proprio i casi in cui la sonda e' scritta male.
+#
+# STATO: BOZZA. Ricavate dalle distinzioni indicate dal PI il 30 luglio
+# 2026 (il dovere di diligenza generico compare ovunque; "duty of care" e
+# "propria quota" sono due sonde diverse; separazione dei poteri e
+# giustiziabilita' cercate cosi' pescano qualunque cosa). Vanno approvate
+# prima dell'uso in produzione.
+
+formulazioni_escluse:
+  - per: dovere_diligenza
+    id: negligenza_civilistica_ordinaria
+    testo: >
+      A duty of care owed by one private party to another under the ordinary law of negligence, arising from proximity and foreseeability of harm between individuals, without any obligation of the State towards the population.
+  - per: dovere_diligenza
+    id: due_diligence_transfrontaliera
+    testo: >
+      The customary international obligation of a State to exercise due diligence so as to prevent activities within its territory from causing significant transboundary harm to the territory of other States.
+
+  - per: propria_quota
+    id: responsabilita_comuni_differenziate
+    testo: >
+      The principle of common but differentiated responsibilities and respective capabilities, under which developed and developing countries bear different treaty commitments according to their circumstances.
+  - per: propria_quota
+    id: causalita_concorrente_civilistica
+    testo: >
+      Where several tortfeasors each contribute a small part of an indivisible injury, liability may be apportioned among them according to their respective market share or contribution to the risk.
+
+  - per: obblighi_positivi
+    id: obblighi_positivi_generici
+    testo: >
+      The State has a positive obligation under the Convention to take operational measures to protect an individual whose life is at real and immediate risk from the criminal acts of another individual.
+  - per: obblighi_positivi
+    id: inquinamento_industriale_locale
+    testo: >
+      Severe environmental pollution from an industrial installation may affect individuals well-being and prevent them from enjoying their homes, so as to affect their private and family life adversely.
+
+  - per: ordine_non_legge
+    id: separazione_poteri_generica
+    testo: >
+      Under the separation of powers the courts must not substitute their own judgment for that of the legislature and the executive on questions of political and budgetary discretion.
+  - per: ordine_non_legge
+    id: giustiziabilita_legittimazione
+    testo: >
+      The claim is non-justiciable because the plaintiffs lack standing and the question presented is a political question committed to the elected branches rather than to the courts.
+
+  - per: target_giudiziale
+    id: controllo_di_un_target_legislativo
+    testo: >
+      The court reviews whether the government has complied with the emission reduction target already fixed by the legislature, without itself determining what that target should be.
+  - per: target_giudiziale
+    id: ordine_generico_di_fare_di_piu
+    testo: >
+      The State is ordered to take additional and more ambitious measures against climate change, without any specified quantity or deadline being imposed by the court.

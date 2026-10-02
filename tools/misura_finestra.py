@@ -1,15 +1,14 @@
-"""Measure what the continuation window misses.
+"""QUANTO PERDE LA FINESTRA DEL SEGUITO? (28/09/2026, richiesta del PI)
 
-   The continuation of a citation is searched from two pages before to three pages after, keeping at most three
-   pages scoring above 0.5 with TRACE-Reranker. To check whether implicit anchored uptakes fall outside that
-   window, the reranker scores ALL pages of the filings citing Urgenda, and all pages of the other filings in the
-   same proceedings (a claim cites, the reply takes it up without citing). The script then counts where the
-   high-scoring pages lie relative to the citations and draws a sample for manual reading.
+   Oggi il seguito di una citazione si cerca da due pagine prima a tre dopo, con al massimo tre pagine sopra 0,5 del
+   TRACE-Reranker. Il PI: «c'e' qualcosa che ci perdiamo tra le riprese implicite ancorate?». Qui il reranker da' un
+   punteggio a TUTTE le pagine degli atti che citano Urgenda, e a tutte quelle degli altri atti degli stessi casi
+   (il ricorso cita, la replica riprende senza citare). Poi si conta dove stanno le pagine ad alto punteggio rispetto
+   alle citazioni, e si prepara un campione da leggere.
 
-   Phases:
-     prepara  local machine -> training/principi/urgenda_finestra_coppie.jsonl
-              (then: ripresa_punteggi.py punteggi --caso urgenda_finestra)
-     conta    local machine, after scoring -> training/principi/urgenda_finestra_misura.json and a reading sample
+   Fasi:
+     prepara  Mac -> training/principi/urgenda_finestra_coppie.jsonl (poi ripresa_punteggi.py punteggi --caso urgenda_finestra)
+     conta    Mac, dopo i punteggi -> training/principi/urgenda_finestra_misura.json e un campione da leggere
 """
 import argparse, collections, gzip, json, pathlib, random, sys
 QUI = pathlib.Path(__file__).resolve().parent.parent

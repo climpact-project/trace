@@ -1,11 +1,11 @@
-"""Build the input for the L05 reading pass: all name-matched rows, with the wide window.
+"""L'INGRESSO DELLA LETTURA L05 (29/09/2026): tutte le righe col nome, con la finestra larga.
 
-   State is read from the database, never from a previously prepared file. Rows with the case name (`lessicale`,
-   `entrambe`) are all included; rows without a proposed citation type are included as well. Candidates come from
-   `leggi_ripresa.py prepara`, which searches for continuation up to 10 pages on each side.
-   Writes `training/principi/<caso>_ripresa_righe_v2.jsonl`.
+   Si legge lo stato dalla banca dati (regola del controllo di completezza: mai da un file preparato prima): righe
+   col nome (`lessicale`, `entrambe`) senza giudizio, tranne le menzioni in catena proposte (non prendono principi
+   ne' seguito, R02). Le righe senza tipo proposto entrano. I candidati vengono da `leggi_ripresa.py prepara`, che dal
+   29/09 cerca il seguito fino a 10 pagine per lato. Scrive `training/principi/<caso>_ripresa_righe_v2.jsonl`.
 
-   Usage:  .venv/bin/python tools/prepara_l05.py --caso urgenda
+   Uso:  .venv/bin/python tools/prepara_l05.py --caso urgenda
 """
 import argparse, collections, json, pathlib
 from google.cloud import firestore
@@ -20,9 +20,9 @@ def main():
         r = d.to_dict()
         if r.get('proposto_rete') not in ('lessicale', 'entrambe'):
             continue
-        # L05 runs on all rows. Already-judged rows are used to measure L05 against human annotators (the loaders
-        # do not modify them); chain mentions show whether the proposed type was wrong (rule R02 still applies:
-        # no principles and no continuation for chain mentions).
+        # TUTTE LE RIGHE (29/09/2026, il PI: «L05 deve girare su tutto»). Le giudicate servono a misurare L05 contro
+        # le persone (i caricatori non le toccano); le menzioni in catena a vedere se il tipo era sbagliato (la regola
+        # R02 resta: niente principi ne' seguito).
         n['gia giudicata' if r.get('esito') else 'menzione in catena' if r.get('proposto_tipo_citazione') == 'menzione_in_catena'
           else 'da giudicare'] += 1
         tenere.add(d.id)

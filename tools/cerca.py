@@ -1,33 +1,38 @@
 #!/usr/bin/env python3
-"""Citation search tool used by the research team.
+"""LO STRUMENTO DI RICERCA — quello che usano i ricercatori.
 
     python tools/cerca.py --caso cited-cases/urgenda.yaml
 
-Runs the TWO NETWORKS on the same cited case, merges the results and writes
-the CSV of candidates to read.
+Fa girare le DUE RETI sullo stesso caso citato, unisce i risultati e
+produce il CSV dei candidati da leggere.
 
-    lexical network   exact, EXHAUSTIVE matching on the declared name forms.
-                      Not a ranking: it returns ALL occurrences. Returning
-                      the top hundred when there are two hundred mentions
-                      would silently lose a hundred.
-    semantic network  passages semantically close to the semantic queries,
-                      to find filings that take up the reasoning WITHOUT
-                      naming the case. Here ranking is appropriate.
+    rete lessicale   corrispondenza esatta ed ESAUSTIVA sulle forme
+                     dichiarate. Non e' una graduatoria: restituisce TUTTE
+                     le occorrenze. Se ne restituisse le prime cento e le
+                     menzioni fossero duecento, cento andrebbero perdute
+                     senza che nulla lo segnali.
+    rete semantica   i passaggi vicini di significato alle semantic
+                     queries, per trovare chi riprende il ragionamento
+                     SENZA nominarlo. Qui la graduatoria serve.
 
-Resident mode. With `--interattivo` the model stays loaded and subsequent
-queries take about two seconds instead of thirty.
+PERCHE' RESIDENTE. Con `--interattivo` il modello resta caricato e le
+domande successive costano due secondi invece di trenta. Se ogni ricerca
+avviasse un processo nuovo si pagherebbe il caricamento ogni volta, e lo
+strumento verrebbe abbandonato dopo tre giorni.
 
-Prefixes are read from the index manifest, never hard-coded. `e5` is
-asymmetric: passages are prefixed `passage: `, queries `query: `. A mismatch
-does not raise an error; it silently yields plausible but wrong results.
-The manifest records the prefixes to prevent this.
+I PREFISSI SI LEGGONO DAL MANIFESTO, MAI RISCRITTI A MANO. `e5` e'
+asimmetrico: i passaggi vanno marcati `passage: `, le domande `query: `.
+Se l'indice e' costruito con l'uno e le domande poste senza l'altro, non
+si rompe niente — si ottengono risultati plausibili e sbagliati, per
+sempre. Il manifesto li registra proprio perche' questo non accada.
 
-The reading window is the PAGE, not a character count. In legal filings the
-citation that attributes a principle may sit in a footnote at the bottom of
-the page, far from the sentence it supports. A 600-character window would
-leave that footnote out, and the reader could not apply the rule "a declared
-attribution excludes" -- classifying as implicit uptake a passage that
-openly cites another source.
+LA FINESTRA DI LETTURA E' LA PAGINA, non un numero di caratteri. Negli
+atti giuridici la citazione che stabilisce a chi si attribuisce un
+principio puo' stare in una nota in fondo alla pagina, lontana dalla frase
+che sostiene. Con una finestra di seicento caratteri quella nota resta
+fuori, e chi legge non puo' applicare la regola "una paternita' dichiarata
+esclude" — classificando come richiamo implicito un passaggio che cita
+apertamente qualcun altro.
 """
 
 import argparse
@@ -46,52 +51,63 @@ MD = HERE / 'markdown'
 INDEX = HERE / 'index'
 PAGE_RE = re.compile(r'<!--\s*page\s+(\d+)\s*-->')
 
-# Context around the occurrence written to the verbatim column.
-# The READING window is separate and wider: see the module docstring.
+# Quanto contesto attorno all'occorrenza finisce nella colonna verbatim.
+# La finestra di LETTURA e' un'altra cosa ed e' piu' ampia: vedi sopra.
 PRIMA, DOPO = 200, 260
 
 
 from dimensioni import (dimensioni as calcola_dimensioni,
                         posizione as posizione_pdf, chiudi_pdf)
 
-# ── Cited case ──────────────────────────────────────────────────────────
+# ── Il caso citato ──────────────────────────────────────────────────────
 
 def _uno_spazio(v):
-    """Collapse whitespace. A multi-line YAML block keeps its newlines; a
-    probe is ONE sentence, and newlines must not reach the embedding."""
+    """Un blocco YAML su piu' righe arriva con gli a-capo dentro: la sonda
+    e' UNA frase, non un paragrafo, e gli a-capo non devono finire nel
+    vettore."""
     return re.sub(r'\s+', ' ', str(v or '')).strip()
 
 
 def leggi_caso(percorso: Path, con_alternative=False):
-    """Read the query specification: lexical variants and semantic queries.
+    """La query specification: lexical variants e semantic queries.
 
-    Uses a real YAML parser. A line-based reader would attach every
-    indented field (`canonical`, `seeds`, `probe_alternativa`,
-    `lexical_markers`, annotations) to the probe text: on a rich case file
-    the five 33-35-word probes grew to 563-961 words, beyond the model's
-    512-token window, and were silently truncated.
+    LETTORE YAML VERO, dal 3 settembre 2026. Prima era un lettore minimo
+    scritto a mano, per non aggiungere una dipendenza a quattro macchine.
+    Quel motivo non c'e' piu' (PyYAML risulta gia' installato), e il
+    lettore a mano aveva un difetto che il file ricco del postdoc ha reso
+    visibile: la regola era «ogni riga rientrata di sei spazi appartiene
+    alla sonda che sto leggendo». Su un file che accanto alla sonda mette
+    anche `canonical`, `seeds`, `probe_alternativa`, `lexical_markers` e
+    le loro annotazioni, quella regola incolla tutto: misurato il
+    2026-09-03 sul file `urgenda.yaml` v2, le cinque sonde da 33-35 parole
+    diventavano da 563 a 961 parole, oltre la finestra di 512 token del
+    modello, quindi anche troncate a meta' senza alcun segnale. Guasto del
+    tipo peggiore: nessun errore, solo risultati plausibili e sbagliati.
 
-    Only declared fields are read, each kept separate. The probe vector is
-    built exclusively from `testo` (one proposition per probe). Other
-    fields (`canonical`, `seeds`, `lexical_markers`, exclusion rationales)
-    are not embedding material -- an embedding compresses to a point and
-    does not read -- but documentation for researchers, the paper appendix
-    and LLM adjudication.
+    LEGGE SOLO CIO' CHE DICHIARA, e tiene ogni campo separato. Il vettore
+    della sonda si costruisce esclusivamente da `testo` (§14: una
+    proposizione per sonda). Gli altri campi del file ricco — `canonical`,
+    `seeds`, `lexical_markers`, le `ragione` delle esclusioni — NON sono
+    materiale per l'embedding, che comprime in un punto e non legge:
+    sono materiale per il ricercatore, per l'appendice dell'articolo e per
+    l'adjudicazione con LLM (guida §45.1), che invece legge.
 
-    `con_alternative` adds `probe_alternativa` as a SEPARATE probe: a
-    separate search whose results are merged with the main probe's. It is
-    never concatenated to `testo`: results are summed, not texts. Measured
-    on the five Urgenda probes: overlap between the two formulations 20-36%,
-    union +64% to +80% candidates."""
+    `con_alternative` aggiunge `probe_alternativa` come SONDA A SE',
+    cioe' come ricerca separata i cui risultati si uniscono a quelli
+    della sonda principale. Mai concatenata al `testo`: sommare i testi
+    e' l'errore appena corretto; qui si sommano i risultati. Misurato il
+    2026-09-03 sulle cinque sonde di Urgenda: sovrapposizione fra le due
+    formulazioni dal 20% al 36%, unione da +64% a +80% di candidati."""
     import yaml
     dati = yaml.safe_load(percorso.read_text(encoding='utf-8')) or {}
     conf = {'forme': [], 'sonde': [], 'escluse': []}
 
-    # PyYAML parses dates into `datetime.date`. The rest of the pipeline treats
-    # `data_decisione` as a string (`.strip()[:10]`), so values are normalised
-    # here to keep input types from propagating.
+    # PyYAML riconosce le date e restituisce un `datetime.date`, dove il
+    # lettore a mano restituiva sempre testo. Il resto della pipeline tratta
+    # `data_decisione` come stringa (`.strip()[:10]`, §19), quindi si
+    # normalizza qui: un tipo diverso in ingresso non deve propagarsi.
     for chiave in ('nome', 'codebook_versione', 'data_decisione',
-                   'escludi_case_id', 'case', 'versione_file'):
+                   'escludi_case_id', 'case', 'versione_file', 'filtro_data_documento'):
         if chiave in dati and dati[chiave] is not None:
             v = dati[chiave]
             if isinstance(v, (datetime.date, datetime.datetime)):
@@ -111,8 +127,9 @@ def leggi_caso(percorso: Path, con_alternative=False):
                               'testo': _uno_spazio(s.get('testo'))})
         alt = _uno_spazio(s.get('probe_alternativa'))
         if con_alternative and alt:
-            # Own id, so the CSV shows WHICH formulation retrieved the row:
-            # needed to assess whether the second formulation adds value.
+            # Id proprio, cosi' nel CSV si vede QUALE formulazione ha
+            # pescato la riga: e' il dato che serve per decidere se la
+            # seconda formulazione paga.
             conf['sonde'].append({'id': f'{sid}__alt', 'titolo': f'{titolo} [2a formulazione]',
                                   'testo': alt})
 
@@ -122,8 +139,8 @@ def leggi_caso(percorso: Path, con_alternative=False):
         conf['escluse'].append({'per': str(e.get('per') or '').strip(),
                                 'id': str(e.get('id') or '').strip(),
                                 'testo': _uno_spazio(e.get('testo'))})
-        # The exclusion also applies to the second formulation of the same
-        # proposition: same proposition, same neighbours.
+        # L'esclusa vale anche per la seconda formulazione della stessa
+        # proposizione: e' la stessa proposizione, quindi gli stessi vicini.
         if con_alternative:
             conf['escluse'].append({'per': f"{str(e.get('per') or '').strip()}__alt",
                                     'id': str(e.get('id') or '').strip(),
@@ -131,7 +148,7 @@ def leggi_caso(percorso: Path, con_alternative=False):
     return conf
 
 
-# ── Document ────────────────────────────────────────────────────────────
+# ── Il documento ────────────────────────────────────────────────────────
 
 def front_matter(testo: str):
     meta, fine = {}, testo.find('\n---\n', 4)
@@ -162,11 +179,11 @@ def pagina_di(marks, off):
 
 
 def blocco_pagina(testo: str, marks, off: int):
-    """Return (raw page text, offset of the occurrence within it).
+    """(testo grezzo della pagina, offset dell'occorrenza dentro di esso).
 
-    Raw, i.e. with the page marker and whitespace untouched: POSITIONS are
-    needed here, and any substitution would shift them. The cleaned version
-    written to the CSV is produced by `finestra_pagina`."""
+    Grezzo, cioe' senza togliere il marcatore ne' ripulire gli spazi: qui
+    servono le POSIZIONI, e ogni sostituzione le sposterebbe. La versione
+    ripulita, quella che finisce nel CSV, la fa `finestra_pagina`."""
     inizio, fine = 0, len(testo)
     for i, (pos, _) in enumerate(marks):
         if pos <= off:
@@ -178,20 +195,20 @@ def blocco_pagina(testo: str, marks, off: int):
 
 
 def finestra_pagina(testo: str, marks, off: int):
-    """Return the text of the page containing the occurrence, footnotes included."""
+    """Il testo della pagina in cui cade l'occorrenza, note comprese."""
     return PAGE_RE.sub(' ', blocco_pagina(testo, marks, off)[0]).strip()
 
 
-# ── Lexical network ─────────────────────────────────────────────────────
+# ── Rete lessicale ──────────────────────────────────────────────────────
 
-FUSIONE = 200   # matches closer than this are ONE citation
+FUSIONE = 200   # corrispondenze piu' vicine di cosi' sono UNA citazione
 
 
 def e_nome(testo, m):
-    """Does the match name the case (rather than being only one of its identifiers)?
+    """La corrispondenza nomina il caso (e non e' solo un suo identificativo)?
 
-    Identifiers: docket numbers and ECLI ("19/00135", "C/09/456689", "1 BvR 2656/18", "ECLI:NL:HR:2019:2007") and the
-    name inside a URL ("www.urgenda.nl/..."). Name: everything else, including non-Latin scripts."""
+    Identificativi: numeri di ruolo e ECLI («19/00135», «C/09/456689», «1 BvR 2656/18», «ECLI:NL:HR:2019:2007») e il
+    nome dentro un indirizzo web («www.urgenda.nl/...»). Nome: tutto il resto, comprese le scritture non latine."""
     s = m.group(0)
     if re.search(r'[^\x00-\x7f]', s):
         return True
@@ -203,16 +220,16 @@ def e_nome(testo, m):
 
 
 def fondi(testo, grezze):
-    """Merge matches so that one citation yields one row. Two rules.
+    """UNA CITAZIONE, UNA RIGA. Due regole.
 
-    1. Matches within 200 characters of the start of the group are one citation.
-    2. An IDENTIFIER within 200 characters of the previous match continues the same citation. Without this rule a
-       long reference ("Urgenda c. Pays-Bas, C/09/456689 / HA ZA 13-1396 ; Cour d'appel... 200.178.245/01 ;
-       Hoge Raad... 19/00135") exceeds 200 characters and the trailing docket number becomes a separate row (a few
-       cases on Urgenda, dozens on Neubauer with chains like "1 BvR 2656/18, 1 BvR 78/20...").
-       The NAME, by contrast, always opens a new citation beyond 200 characters: consecutive footnotes
-       ("324 Urgenda..., para. 5.7.5. 325 Urgenda..., paras. 5.7.5-5.7.6") are distinct citations of different
-       paragraphs. A fully chained merge rule was tested and rejected for this reason."""
+    1. Corrispondenze a meno di 200 caratteri dall'inizio del gruppo sono una citazione (la regola di sempre).
+    2. Dal 29/9/2026: un IDENTIFICATIVO a meno di 200 caratteri dalla corrispondenza precedente continua la stessa
+       citazione. Prima un riferimento lungo («Urgenda c. Pays-Bas, C/09/456689 / HA ZA 13-1396 ; Cour d'appel...
+       200.178.245/01 ; Hoge Raad... 19/00135») superava i 200 caratteri e il numero di ruolo in fondo diventava una
+       riga a se': in piattaforma 3 casi su Urgenda e decine su Neubauer (la catena «1 BvR 2656/18, 1 BvR 78/20...»).
+       Il NOME invece apre sempre una citazione nuova oltre i 200 caratteri: note consecutive («324 Urgenda..., para.
+       5.7.5. 325 Urgenda..., paras. 5.7.5-5.7.6») sono citazioni distinte, di paragrafi diversi. Una regola che
+       fondeva tutto a catena e' stata provata e scartata lo stesso giorno per questo."""
     fuse, fine = [], None
     for m in grezze:
         if fuse and (m.start() - fuse[-1][0].start() < FUSIONE
@@ -225,19 +242,38 @@ def fondi(testo, grezze):
     return fuse
 
 
-def rete_lessicale(forme, escludi='', tipi=None):
-    """Every occurrence, in every document. Exhaustive by construction.
+CJK = re.compile(r'[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af\uf900-\ufaff]')
 
-    Nearby matches are MERGED: a filing often writes "the court
-    (ECLI:..., case C/09/...) in Urgenda" -- one citation, three matches.
-    Counting them separately inflates the data non-uniformly: it inflates
-    most the filings that cite in full, i.e. those that give weight to the
-    precedent."""
-    patt = re.compile('|'.join(re.escape(f) for f in forme), re.I)
-    # `escludi_case_id` may be a scalar or a LIST (one proceeding can be split
-    # across several case_ids, e.g. Juliana). Both are accepted; otherwise a
-    # list would reach `.lower()` and fail, or an `in` on a list would
-    # silently exclude the wrong documents.
+
+def forma_regex(f):
+    """La forma come espressione regolare. Per le forme in giapponese, cinese e coreano si ammette uno spazio o un a capo
+    fra un carattere e l'altro: in quei testi l'a capo cade anche dentro una parola («ノイバウ\\nアー», atto giapponese
+    climate-justice-case-complaint_58b2 p. 115, trovato l'1/10/2026). Le forme in alfabeto latino restano esatte."""
+    if not CJK.search(f):
+        return re.escape(f)
+    return r'\s*'.join(re.escape(c) for c in f if not c.isspace())
+
+
+def data_documento(meta):
+    """AAAA-MM-GG dal nome del file d'origine («.../2024/20240417_...»), altrimenti stringa vuota."""
+    m = re.search(r'/(\d{4})(\d{2})(\d{2})_', str(meta.get('url_origine') or ''))
+    return f'{m.group(1)}-{m.group(2)}-{m.group(3)}' if m else ''
+
+
+def rete_lessicale(forme, escludi='', tipi=None):
+    """Ogni occorrenza, in ogni documento. Esaustiva per costruzione.
+
+    Le corrispondenze ravvicinate si FONDONO: un atto scrive spesso
+    "il tribunale (ECLI:..., causa C/09/...) nel caso Urgenda" — una
+    citazione, tre corrispondenze. Contarle separatamente gonfia il dato,
+    e non in modo uniforme: gonfia di piu' gli atti che citano per esteso,
+    cioe' quelli che danno peso al precedente."""
+    patt = re.compile('|'.join(forma_regex(f) for f in forme), re.I)
+    # `escludi_case_id` era uno scalare nel file del pilota ed e' una LISTA
+    # nel file v2 (un giudizio puo' essere spezzato in piu' case_id, come
+    # Juliana). Si accettano tutti e due, altrimenti il file nuovo passerebbe
+    # una lista a `.lower()` e la ricerca morirebbe — o peggio, con un `in`
+    # su lista, escluderebbe in silenzio la cosa sbagliata.
     esclusi = [escludi] if isinstance(escludi, str) else list(escludi or [])
     esclusi = [str(x).lower() for x in esclusi if str(x).strip()]
     fuori = []
@@ -270,10 +306,10 @@ def rete_lessicale(forme, escludi='', tipi=None):
     return fuori
 
 
-# ── Semantic network ────────────────────────────────────────────────────
+# ── Rete semantica ──────────────────────────────────────────────────────
 
 class Semantica:
-    """Keeps the model and the index in memory between queries."""
+    """Tiene il modello e l'indice in memoria fra una domanda e l'altra."""
 
     def __init__(self):
         man = json.loads((INDEX / 'manifesto.json').read_text(encoding='utf-8'))
@@ -291,7 +327,7 @@ class Semantica:
         self.m = SentenceTransformer(man['modello'], device=dev)
         self.m.max_seq_length = man.get('max_token', 512)
         print(f'  caricato in {time.time() - t0:.0f}s su {dev}', flush=True)
-        # Chunks map back to document and page.
+        # I frammenti servono per risalire a documento e pagina.
         self.fr = {}
         with (INDEX / 'chunks.jsonl').open(encoding='utf-8') as f:
             for riga in f:
@@ -299,20 +335,21 @@ class Semantica:
                 self.fr[d['id']] = d
 
     def cerca(self, sonde, k=100, escluse=()):
-        """Return candidates, and how similar each is to what does NOT count.
+        """I candidati, e quanto ciascuno somiglia a cio' che NON conta.
 
-        EXCLUDED FORMULATIONS do not filter, they measure. Each probe may
-        declare one or more formulations that resemble it but say something
-        else -- e.g. the ordinary civil-law duty of care, which appears in
-        thousands of judgments unrelated to the cited case. Each candidate
-        then carries two scores and their difference.
+        LE FORMULAZIONI ESCLUSE non filtrano, misurano. Per ogni sonda si
+        dichiarano una o piu' formulazioni che le somigliano ma dicono
+        altro — il dovere di diligenza civilistico ordinario, per esempio,
+        che compare in mille sentenze senza avere nulla a che fare con il
+        caso citato. Ogni candidato porta allora due punteggi e la loro
+        differenza.
 
-        NOTHING IS DISCARDED AUTOMATICALLY. A candidate closer to an
-        excluded formulation than to the probe is still returned, with a
-        negative `margine` and `sospetto` set: these rows should be read
-        first. Discarding them silently would hide exactly the cases where
-        the probe is poorly written -- the information needed to rewrite
-        it."""
+        NON SI SCARTA NIENTE AUTOMATICAMENTE. Un candidato piu' vicino a
+        una formulazione esclusa che alla sonda esce lo stesso, con
+        `margine` negativo e `sospetto` valorizzato: sono le righe da
+        leggere per prime. Scartarle in silenzio nasconderebbe proprio i
+        casi in cui la sonda e' scritta male — che e' l informazione che
+        serve per riscriverla."""
         Q = self.m.encode([self.pre_q + s['testo'] for s in sonde],
                           normalize_embeddings=True, convert_to_numpy=True,
                           show_progress_bar=False).astype(np.float16)
@@ -347,38 +384,40 @@ class Semantica:
         return fuori
 
 
-# ── Reranker ────────────────────────────────────────────────────────────
+# ── Il riordinatore ─────────────────────────────────────────────────────
 
 class Riordinatore:
-    """Cross-encoder that reads the probe and the passage TOGETHER and
-    scores whether the passage ASSERTS that proposition.
+    """LEGGE LA SONDA E IL PASSAGGIO INSIEME, e dice se quel passaggio
+    AFFERMA quella proposizione.
 
-    Rationale. The semantic network compresses each text into a single
-    point, which captures WHAT IS BEING DISCUSSED but not the structure of
-    the proposition: who the subject is, whether it states an obligation or
-    a fact, whether it affirms or denies. Hence "China's share is 11.6% of
-    global emissions" and "each State is responsible for its own share and
-    cannot evade it" end up close: same topic, but one is a statistic and
-    the other a norm, and the embedding cannot tell them apart.
+    PERCHE' SERVE. La rete semantica comprime ogni testo in un punto solo, e
+    quel punto cattura DI COSA SI PARLA. Non ha dove mettere la struttura
+    della proposizione: chi e' il soggetto, se c'e' un obbligo o una
+    constatazione, se la frase afferma o nega. Percio' "la quota cinese e'
+    l'11,6% delle emissioni globali" e "ogni Stato risponde della propria
+    quota e non puo' sottrarsi" finiscono vicini: parlano della stessa cosa.
+    Una e' una statistica, l'altra una norma, e il vettore non lo distingue.
 
-    A cross-encoder places the two texts SIDE BY SIDE and reads them
-    jointly, so it sees sentence structure.
+    Questo modello e' fatto in modo diverso: non produce due punti da
+    confrontare, mette i due testi UNO ACCANTO ALL'ALTRO e li legge insieme.
+    E' l'unico della famiglia che vede la struttura della frase.
 
-    Measured on probe `propria_quota`:
+    MISURATO sul caso che aveva insospettito il PI, sonda `propria_quota`:
 
-        0.9504  the norm ("each State is responsible for its own share...")
-        0.7308  common but differentiated responsibilities (excluded formulation)
-        0.0833  the Chinese emission-share statistic
-        0.0086  an EPA regulation repeated sixty times
+        0,9504  la norma  ("ogni Stato risponde della propria quota…")
+        0,7308  responsabilita comuni ma differenziate (formulazione esclusa)
+        0,0833  la statistica cinese sulle quote di emissione
+        0,0086  il regolamento EPA ripetuto sessanta volte
 
-    The statistic and the noise drop by an order of magnitude. The excluded
-    formulation does NOT -- it stays high, correctly, since it is a close
-    proposition; that case is handled by the excluded-formulation margin,
-    not by the reranker.
+    La statistica e il rumore crollano di un ordine di grandezza. La
+    formulazione esclusa NO — resta alta, ed e' corretto che sia cosi':
+    e' davvero una proposizione vicina. A quella pensa il confronto con le
+    formulazioni escluse, non il riordinatore.
 
-    No GPU and no new index are required: it only scores the few hundred
-    candidates already retrieved by the semantic network, not the 1.2
-    million chunks. About half a second for four pairs on a laptop."""
+    NON SERVE UNA GPU E NON SERVE UN INDICE NUOVO: guarda solo le poche
+    centinaia di candidati che la rete semantica ha gia' tirato su, non i
+    1,2 milioni di frammenti. Mezzo secondo per quattro coppie su un
+    portatile."""
 
     MODELLO = 'BAAI/bge-reranker-v2-m3'
 
@@ -396,18 +435,24 @@ class Riordinatore:
         return [float(x) for x in _np.asarray(out).reshape(-1)]
 
 
-# ── Confidence of the semantic proposal ─────────────────────────────────
+# ── La confidenza sulla proposta semantica ────────────────────────────
 #
-# Confidence is a machine proposal derived from the reranker score, in the
-# same group as the embedding and reranker scores; it is not a
-# self-assessment by the reader. A single field cannot hold both, so it is
-# written by the machine from its score.
+# Il piano la mette nello stesso gruppo di `punteggio embedding, punteggio
+# reranker`: e' una proposta della macchina, non un'autovalutazione di chi
+# legge. Fino ad ora restava vuota — vedi METODO-RECUPERO per la storia —
+# e il codebook la trattava come un giudizio umano ("se sei incerto,
+# confidenza: bassa"), cosa che il piano non prevedeva. Le due cose non
+# possono coesistere sullo stesso campo: o lo scrive la macchina dal suo
+# punteggio, o lo scrive la persona come autovalutazione. Qui si sceglie
+# la prima, perche' e' quella scritta nel piano.
 #
-# Thresholds were measured on the 216 semantic candidates of the Urgenda
-# run (`punteggio_riordino`). The observed minimum is 0.051, just above the
-# discard threshold (0.05): below that, a candidate never reaches this
-# point. Median 0.40, 75th percentile 0.65. Thresholds 0.2 and 0.6 split the
-# set into three groups of comparable size.
+# Le soglie non sono a caso: misurate sui 216 candidati semantici della
+# run Urgenda (`punteggio_riordino`, la stessa colonna che il riordinatore
+# scrive qui sotto). Il minimo osservato e' 0,051 — un pelo sopra la soglia
+# di scarto (0,05): sotto quella soglia il candidato non arriva nemmeno a
+# questa riga. La mediana e' 0,40, il 75-esimo percentile 0,65. Le soglie
+# 0,2 e 0,6 dividono l'insieme in tre gruppi di dimensione paragonabile,
+# invece di lasciarne uno vuoto e uno enorme.
 def confidenza_da_riordino(v):
     if v is None or v == '':
         return ''
@@ -422,16 +467,18 @@ def confidenza_da_riordino(v):
     return 'bassa'
 
 
-# ── Merge and output ────────────────────────────────────────────────────
+# ── Unione e uscita ─────────────────────────────────────────────────────
 
 def main():
     ap = argparse.ArgumentParser()
-    # A short case name (`--caso urgenda`) is accepted instead of the full path.
+    # IL NOME BASTA. `--caso urgenda` invece del percorso intero: chi lo
+    # usa dieci volte al mese non deve ricordarsi dove stanno i file.
     ap.add_argument('--caso', required=True,
                     help='nome del caso citato (es. urgenda) o percorso del file')
-    # The codebook is not a parameter: there is a single codebook for all
-    # cases, so every annotator applies the same criteria. It changes only
-    # through a revision.
+    # IL CODEBOOK NON SI PASSA: e' uno solo e vale per tutti i casi. Se si
+    # potesse indicarne uno diverso a ogni ricerca, quattro persone
+    # userebbero quattro criteri — che e' esattamente cio' che il codebook
+    # esiste per impedire. Si sostituisce solo con una revisione.
     ap.add_argument('--uscita', default='')
     ap.add_argument('--k', type=int, default=100, help='candidati per semantic query')
     ap.add_argument('--solo-lessicale', action='store_true')
@@ -439,10 +486,11 @@ def main():
                     help='usa anche `probe_alternativa` come sonda a se stante '
                          '(ricerca separata, risultati uniti). Misurato il '
                          '2026-09-03: +64-80%% di candidati, sovrapposizione 20-36%%.')
-    # Restrict to court decisions. A case invoked by claimants in many
-    # countries but adopted by courts in few is a different finding, and the
-    # gap between the two counts is itself a result. The corpus contains both
-    # party filings and decisions; this option selects what to count.
+    # ISOLARE LE SOLE DECISIONI. Un caso invocato dai ricorrenti in
+    # ventisette paesi e adottato da corti in sette non e' la stessa cosa,
+    # e la differenza fra quei due numeri e' un risultato — non un
+    # dettaglio. Il corpus contiene sia gli atti sia le decisioni: qui si
+    # sceglie su cosa contare.
     ap.add_argument('--solo-decisioni', action='store_true',
                     help='solo decisioni e ordinanze: cio che le corti hanno adottato')
     ap.add_argument('--senza-riordino', action='store_true',
@@ -455,7 +503,7 @@ def main():
                     help="tipi di atto separati da virgola (es. 'atto introduttivo,replica')")
     args = ap.parse_args()
 
-    # A short name is resolved in the cited-cases folder.
+    # Il nome corto si risolve nella cartella dei casi citati.
     percorso = Path(args.caso)
     if not percorso.exists():
         percorso = HERE / 'cited-cases' / f'{args.caso}.yaml'
@@ -472,9 +520,11 @@ def main():
     elif args.tipo_atto:
         tipi = {t.strip().lower() for t in args.tipo_atto.split(',') if t.strip()}
 
-    # The codebook travels with the passages: its reading instructions are
-    # written next to the CSV, so every reader (human or model) has them
-    # alongside the text to classify and applies the same criteria.
+    # IL CODEBOOK VIAGGIA CON I PASSAGGI, non resta in un file che qualcuno
+    # forse aprira'. Le sue istruzioni di lettura si scrivono accanto al
+    # CSV: chi legge — persona o modello — le ha davanti insieme al testo
+    # da classificare. E' la condizione perche' quattro persone applichino
+    # lo stesso criterio anche lavorando in giorni diversi.
     cb_file = HERE / 'codebook' / 'citazioni.yaml'
     cb_testo = cb_file.read_text(encoding='utf-8') if cb_file.exists() else ''
     m = re.search(r'^versione:\s*(.+)$', cb_testo, re.M)
@@ -507,14 +557,18 @@ def main():
         sem = S.cerca(conf['sonde'], k=args.k, escluse=conf.get('escluse', ()))
         print(f'  {len(sem):,} candidati in {time.time() - t0:.0f}s\n', flush=True)
 
-    # MERGE. A passage found by both networks is ONE row, with
-    # `rete = entrambe`: recording the source allows estimating how much of
-    # the result depends on which tool.
-    # Merging uses true overlap, not fixed blocks: grouping by
-    # `char_start // 400` would merge distinct citations in the same block
-    # and split adjacent ones across a boundary, a non-uniform loss that
-    # depends on grid alignment. A semantic candidate is merged with a
-    # lexical occurrence only if its CHUNK actually contains it.
+    # UNIONE. Un passaggio trovato da entrambe le reti e' UNA riga, con
+    # `rete = entrambe`: sapere da dove viene serve a stimare quanto del
+    # risultato dipende da quale strumento.
+    # SOVRAPPOSIZIONE VERA, NON BLOCCHI.
+    #
+    # Prima si raggruppava per `char_start // 400`: due citazioni distinte
+    # che cadevano nello stesso blocco si fondevano, e due vicinissime a
+    # cavallo di un confine restavano separate. La perdita non era
+    # uniforme — dipendeva da dove cadeva la griglia — ed e' esattamente il
+    # tipo di errore che non si vede guardando i risultati.
+    # Qui un candidato semantico si unisce a un'occorrenza lessicale solo
+    # se il suo FRAMMENTO la contiene davvero.
     per_file = {}
     for r in less:
         per_file.setdefault(r['file'], []).append(r)
@@ -548,12 +602,16 @@ def main():
             'meta': meta, 'file': d['file'], 'char_start': d['char_start'],
             'pagina': d.get('pagina', 1), 'forma': '',
             'verbatim': re.sub(r'\s+', ' ', d['testo'])[:460],
-            # Full chunk text for the reranker. The 460 characters above are a
-            # COLUMN width, to keep `citazione_testuale` readable in a CSV.
-            # The reranker judges whether the passage answers the probe, and
-            # context is what it is for: fed the truncated text (~115 tokens)
-            # it would see about a third of what it can read (1024 tokens).
-            # Two fields: one for reading, one for scoring.
+            # IL TESTO INTERO, PER CHI DEVE GIUDICARE E NON LEGGERE.
+            # I 460 caratteri qui sopra sono una misura da COLONNA: servono
+            # perche' `citazione_testuale` resti leggibile in un CSV e in una
+            # tabella. Il riordinatore pero' non legge una colonna: valuta se
+            # il passaggio risponde alla sonda, ed e' proprio il contesto la
+            # cosa per cui e' stato introdotto (vedi 14.3). Alimentato con il
+            # testo tagliato ne vedeva circa un terzo -- 460 caratteri sono
+            # ~115 token contro i 1024 che dichiara di poter leggere.
+            # Due campi invece di un compromesso: uno si legge, l'altro si
+            # giudica.
             'verbatim_intero': re.sub(r'\s+', ' ', d['testo']),
             'finestra': finestra_pagina(testo, marks, d['char_start']),
             'rete': 'semantica', 'punteggio': r['punteggio'], 'sonda': r['sonda'],
@@ -571,6 +629,9 @@ def main():
             'tipo_atto': m.get('tipo_atto', ''),
             'tipo_atto_sabin': m.get('tipo_atto_sabin', ''),
             'data': m.get('data_deposito', ''), 'pagina': r['pagina'],
+            # LA DATA DEL DOCUMENTO (01/10/2026): `data_deposito` e' spesso la data d'inizio della causa; il file
+            # d'origine del Climate Litigation Database comincia invece con la data di deposito dell'atto (AAAAMMGG_).
+            'data_documento': data_documento(m),
             'rete': r['rete'], 'sonda': r.get('sonda', ''),
             'punteggio': r['punteggio'],
             'punteggio_riordino': '',
@@ -581,39 +642,42 @@ def main():
             'sospetto': r.get('sospetto', ''),
             'forma_trovata': r['forma'],
             'citazione_testuale': r['verbatim'],
-            # Carried only for the reranker and removed before the CSV is
-            # written: it is input to a computation, not a column.
+            # Viaggia con la riga solo per arrivare al riordinatore, e viene
+            # tolta prima di scrivere il CSV: non e' una colonna, e' materia
+            # prima di un calcolo. Vedi la pulizia poco prima della scrittura.
             'verbatim_intero': r.get('verbatim_intero', ''),
             'finestra_pagina': r['finestra'],
-            # MACHINE PROPOSALS -- never modified. They are used to measure
-            # disagreement with the reader; overwriting them would lose it.
+            # PROPOSTE DELLA MACCHINA — non si modificano. Servono a
+            # misurare il disaccordo con il lettore: se venissero
+            # sovrascritte, quel dato sparirebbe.
             'chi_cita_auto': r['dim']['chi_cita_auto'],
             'posizione_auto': '',
             'sede_auto': r['dim']['sede_auto'],
             'dimensioni_confidenza': r['dim']['dimensioni_confidenza'],
-            # READER DECISIONS -- pre-filled with the proposal, so the
-            # reader only corrects where the proposal is wrong.
+            # DECISIONE DEL LETTORE — nascono gia' compilate con la
+            # proposta, cosi' nel caso ordinario non c'e' nulla da
+            # scrivere: si corregge solo dove la proposta e' sbagliata.
             'chi_parla': r['dim']['chi_cita_auto'],
             'posizione': '',
             'sede': r['dim']['sede_auto'],
-            # Not pre-filled: no textual signal determines these.
+            # Queste no: nessun segnale testuale le decide.
             'tipo_citazione': '', 'annidata': '',
             'proposizione_sostenuta': '', 'confidenza': '', 'note': '',
             'file': r['file'], 'char_start': r['char_start'],
             'url_documento': m.get('url_documento', ''),
             'codebook_versione': cb_versione,
         })
-    # ── Temporal filter ─────────────────────────────────────────────
+    # ── IL FILTRO TEMPORALE ─────────────────────────────────────────
     #
-    # A filing dated BEFORE the cited decision cannot take it up. This is a
-    # calendar fact, not an estimate: exact, free, and not reproducible by
-    # any model.
+    # Un atto depositato PRIMA della decisione citata non puo' riprenderla.
+    # E' una verita' di calendario, non una stima, ed e' il filtro piu'
+    # forte che abbiamo: esatto, gratuito, e nessun modello lo puo' imitare.
     #
-    # Earlier documents are not thrown away. An earlier document expressing
-    # the same proposition is evidence that the principle pre-existed, i.e.
-    # an argument AGAINST derivation. They are written to the discard file
-    # with their reason, and kept in the main CSV with `--con-anteriori`.
-    # Networks that found the case NAME: literal occurrences, not hypotheses.
+    # NON SI BUTTANO VIA. Un documento anteriore che esprime la stessa
+    # proposizione non e' rumore: e' la prova che il principio esisteva gia'
+    # prima, cioe' un argomento CONTRO la derivazione. Vanno letti a parte,
+    # e con `--con-anteriori` restano nel CSV principale.
+    # Le reti che hanno trovato il NOME del caso: occorrenze letterali, non ipotesi.
     NOMINALI = ('lessicale', 'entrambe')
     scarti = []
     anteriori = []
@@ -622,23 +686,33 @@ def main():
         tenute = []
         for r in righe:
             d = (r.get('data') or '').strip()[:10]
-            # Name rows ('lessicale' and 'entrambe') are exempt: the filter
-            # applies only to semantic hypotheses.
+            # Le righe col nome (lessicali ed «entrambe») non passano da qui: il
+            # filtro e' delle ipotesi semantiche. Fino al 29/9/2026 guardava solo
+            # `lessicale`, e le «entrambe» anteriori finivano negli scarti.
             if r['rete'] not in NOMINALI and d and d < dmin:
                 r['anteriore'] = 'si'
                 r['motivo_scarto'] = f'anteriore al {dmin}'
+                anteriori.append(r)
+                scarti.append(r)
+            # PER I CASI CON `filtro_data_documento: true` (01/10/2026, il PI: KlimaSeniorinnen si cerca solo dopo la
+            # pronuncia) anche le righe col nome: un atto depositato prima della decisione puo' nominare il ricorso
+            # pendente o le decisioni interne, non la pronuncia. Vale la data del documento, non quella della causa.
+            elif conf.get('filtro_data_documento') and r.get('data_documento') and r['data_documento'] < dmin:
+                r['anteriore'] = 'si'
+                r['motivo_scarto'] = f"documento del {r['data_documento']}, anteriore alla pronuncia del {dmin}"
                 anteriori.append(r)
                 scarti.append(r)
             else:
                 tenute.append(r)
         righe = tenute
 
-    # ── Deduplication ───────────────────────────────────────────────
+    # ── LA DEDUPLICA ────────────────────────────────────────────────
     #
-    # About 6% of corpus chunks are repeated text: the same filing lodged
-    # several times, the same annexes; the most repeated appears sixty
-    # times. Presenting them as distinct candidates inflates counts and
-    # forces repeated reading. The first is kept and its copy count recorded.
+    # Il 6% dei frammenti del corpus e' testo ripetuto: lo stesso atto
+    # depositato piu' volte, gli stessi allegati. Misurato, il piu' ripetuto
+    # compare SESSANTA volte. Presentarli come sessanta candidati distinti
+    # gonfia il conteggio e costringe a leggere sessanta volte la stessa
+    # pagina. Si tiene il primo e si registra quante copie aveva.
     visti, uniche = {}, []
     for r in righe:
         k = re.sub(r'\s+', ' ', r['citazione_testuale']).strip().lower()[:400]
@@ -653,10 +727,10 @@ def main():
     duplicati = len(righe) - len(uniche)
     righe = uniche
 
-    # ── Reranking ───────────────────────────────────────────────────
+    # ── IL RIORDINO ─────────────────────────────────────────────────
     #
-    # Semantic candidates only: lexical ones are literal occurrences of the
-    # name, not hypotheses to screen.
+    # Solo sui candidati semantici: quelli lessicali sono occorrenze
+    # letterali del nome, non ipotesi da vagliare.
     scartati_riordino = 0
     if not args.senza_riordino and any(r['rete'] != 'lessicale' for r in righe):
         print('\nriordino dei candidati semantici…', flush=True)
@@ -665,26 +739,32 @@ def main():
         try:
             R = Riordinatore()
             t0 = time.time()
-            # The FULL chunk is passed, not the truncated column (see
-            # `verbatim_intero`). The fallback to `citazione_testuale` covers
-            # rows without that field (e.g. from an earlier version).
+            # SI PASSA IL FRAMMENTO INTERO, non la colonna troncata: vedi il
+            # commento su `verbatim_intero`. Il ripiego su
+            # `citazione_testuale` copre le righe che non hanno il campo
+            # (ad esempio prodotte da una versione precedente): meglio
+            # riordinare su poco che non riordinare affatto.
             coppie = [[testi_sonda.get(r['sonda'], r['sonda']),
                        r.get('verbatim_intero') or r['citazione_testuale']]
                       for r in da_riordinare]
             for r, v in zip(da_riordinare, R.punteggi(coppie)):
                 r['punteggio_riordino'] = round(v, 4)
-                # A confidence already set manually is not overwritten; only
-                # an empty field receives the machine proposal.
+                # Non si sovrascrive una confidenza gia' scritta a mano da
+                # una revisione precedente: solo il campo ancora vuoto viene
+                # proposto dalla macchina.
                 if not r.get('confidenza'):
                     r['confidenza'] = confidenza_da_riordino(r['punteggio_riordino'])
             print(f'  {len(coppie):,} coppie in {time.time() - t0:.0f}s', flush=True)
             prima = len(righe)
             tenute = []
             for r in righe:
-                # The cut NEVER applies to name rows, including 'entrambe' rows
-                # (which name the case AND resemble a probe): cutting them on a
-                # low reranker score would drop explicit citations. The score
-                # stays on the row as a hint.
+                # IL TAGLIO NON TOCCA MAI LE RIGHE COL NOME. Fino al 29/9/2026 la
+                # condizione era `rete == 'lessicale'`: le righe trovate da
+                # entrambe le reti, cioe' che nominano il caso E somigliano a una
+                # sonda, venivano tagliate se il riordinatore dava poco. Su
+                # Urgenda (giro del 3/9) erano 49 citazioni esplicite, 20 mai
+                # arrivate in piattaforma: la sentenza Shell, KlimaSeniorinnen,
+                # Gloucester. Il punteggio resta scritto sulla riga, come indizio.
                 if (r['rete'] in NOMINALI
                         or r.get('punteggio_riordino', 1.0) >= args.soglia_riordino):
                     tenute.append(r)
@@ -700,8 +780,8 @@ def main():
 
     righe.sort(key=lambda x: (x['file'], x['pagina']))
 
-    # Body or footnote position is read from the PDF, not the markdown.
-    # Rows are sorted by file so each PDF is opened once.
+    # DOVE STA IL RIFERIMENTO — si legge dal PDF, non dal markdown.
+    # Ordinate per file, ogni PDF si apre una volta sola.
     print('\ncorpo o nota (dal PDF)…', flush=True)
     t0 = time.time()
     try:
@@ -729,9 +809,11 @@ def main():
     out = HERE / (args.uscita or f'index/candidati_{Path(args.caso).stem}.csv')
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open('w', newline='', encoding='utf-8') as f:
-        # Remove the full chunk text before writing: CSV columns are derived
-        # from the first row's keys, so a leftover service field would become
-        # a column in every output file. It was only needed by the reranker.
+        # SI TOGLIE IL TESTO INTERO PRIMA DI SCRIVERE. Le colonne del CSV si
+        # ricavano dalle chiavi della prima riga, quindi un campo di servizio
+        # dimenticato qui diventa una colonna in tutti i file prodotti -- con
+        # dentro il frammento per esteso, ripetuto accanto alla sua versione
+        # leggibile. Serviva al riordinatore, che ha gia' finito.
         for _r in righe:
             _r.pop('verbatim_intero', None)
         w = csv.DictWriter(f, fieldnames=list(righe[0].keys()))
@@ -768,17 +850,18 @@ def main():
     print(f'casi       : {len({r["case_id"] for r in righe}):,}')
     print(f'uscita     : {out}')
 
-    # ── Discards are kept ─────────────────────────────────────────────
+    # ── GLI SCARTI NON SPARISCONO ───────────────────────────────────────
     #
-    # Rationale. The 20% manual check verifies how a row ALREADY IN THE CSV
-    # was classified; it never sees what the machine removed earlier
-    # (below-threshold candidates, earlier documents, copies). If those rows
-    # vanished they would be decisions made by the model alone, outside any
-    # check in the method.
+    # PERCHE'. Il controllo manuale del 20% verifica come e' stata
+    # classificata una riga CHE E' GIA' NEL CSV. Non guarda mai cio' che la
+    # macchina ha tolto prima: i candidati sotto soglia, gli anteriori, le
+    # copie. Se quelle righe sparissero, sarebbero decisioni prese dal
+    # modello e da nessun altro, e nessun controllo previsto dal metodo le
+    # toccherebbe mai.
     #
-    # They are therefore written with their reason. The 20% sample must
-    # include a share of them: it is the only way to detect a threshold
-    # discarding good material.
+    # Quindi si scrivono, con il motivo. Il campione del 20% deve
+    # comprenderne una quota: e' l'unico modo di accorgersi se la soglia sta
+    # buttando via roba buona.
     if scarti:
         fs = out.with_name(out.stem + '.SCARTI.csv')
         campi = list(righe[0].keys()) + ['motivo_scarto']
@@ -796,7 +879,7 @@ def main():
         ).most_common():
             print(f'   {v:>6,}  {k}')
 
-    # Reading instructions, written next to the CSV.
+    # Le istruzioni di lettura, accanto al CSV.
     istr = re.search(r'^istruzioni_lettura:\s*\|(.*)$', cb_testo, re.M | re.S)
     if istr:
         gemello = out.with_suffix('.ISTRUZIONI.md')

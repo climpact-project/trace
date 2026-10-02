@@ -1,19 +1,19 @@
-"""Load DeepSeek proposals for lexical rows into the platform.
+"""LE PROPOSTE DI DEEPSEEK SULLE RIGHE LESSICALI VANNO IN PIATTAFORMA (27/09/2026, decisione del PI).
 
-   Rationale: the second reading agrees with human validators on only 57% of rows, but a proposal is still more
-   useful than none. Annotators confirm or correct it, and those corrections are the training data for a later
-   classifier; without a proposal there is nothing to correct.
+   PERCHE'. La seconda lettura concorda con i validatori solo al 57% (§63.23), ma il PI ha deciso: meglio avere
+   la proposta che no. Le persone la confermano o la correggono, e sono proprio le correzioni i dati con cui
+   addestrare un classificatore; senza proposta non c'e' niente da correggere.
 
-   Written only on lexical rows of the case WITHOUT a judgment and without an already proposed type (no human
-   judgment is modified and nothing is overwritten):
-     proposto_tipo_citazione, proposto_chi_parla, proposto_proposizione   from the first reading;
-     proposto_confidenza   'alta' if both readings give the same type, otherwise 'bassa';
-     proposto_note         appended to existing notes: both readings, the referent, the rationale;
-     proposto_lettore      model and codebook of the reading.
-   The platform pre-fills the annotation form from the proposal (`bozzaIniziale`), so confirming needs no retyping.
+   CHE COSA SCRIVE, solo sulle righe lessicali di Urgenda SENZA esito e senza tipo gia' proposto (non tocca
+   nessun giudizio umano e non sovrascrive):
+     proposto_tipo_citazione, proposto_chi_parla, proposto_proposizione   dalla prima lettura;
+     proposto_confidenza   'alta' se le due letture danno lo stesso tipo, altrimenti 'bassa';
+     proposto_note         in coda alle note gia' presenti: le due letture, il riferimento, il motivo;
+     proposto_lettore      modello e codebook della lettura.
+   La piattaforma riempie gia' il modulo dalla proposta (`bozzaIniziale`): chi conferma non riscrive.
 
-   Usage:  .venv/bin/python tools/carica_lessicali.py            preview, writes nothing
-           .venv/bin/python tools/carica_lessicali.py --scrivi   write
+   Uso:  .venv/bin/python tools/carica_lessicali.py            anteprima, non scrive
+         .venv/bin/python tools/carica_lessicali.py --scrivi   scrive
 """
 import argparse, collections, json, pathlib
 QUI = pathlib.Path(__file__).resolve().parent.parent
@@ -30,6 +30,9 @@ RIF = {'fondazione_urgenda': 'la fondazione Urgenda come soggetto, non la senten
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--scrivi', action='store_true'); ap.add_argument('--caso', default='urgenda')
     ap.add_argument('--etichetta', default='v2', help="la lettura da caricare: per Urgenda la v2, per gli altri casi la prima (etichetta vuota)")
+    ap.add_argument('--sovrascrivi', action='store_true',
+                    help="01/10/2026: le righe del file prendono la lettura nuova anche se avevano gia' un tipo proposto "
+                         "(righe rilette sul testo OCR: la lettura di prima era fatta su una pagina illeggibile)")
     a = ap.parse_args()
     letture = QUI/'training'/f"lessicali_{a.caso}_deepseek{'_' + a.etichetta if a.etichetta else ''}.jsonl"
     lettore = LETTORE if a.caso == 'urgenda' else 'DeepSeek V4 Flash 0731, codebook 0.3-pilot, 28/09/2026'
@@ -45,7 +48,7 @@ def main():
             continue
         if r.get('esito'):
             conti['gia giudicata (non toccata)'] += 1; continue
-        if r.get('proposto_tipo_citazione'):
+        if r.get('proposto_tipo_citazione') and not (a.sovrascrivi and d.id in ds):
             conti['tipo gia proposto (non toccata)'] += 1; continue
         x = ds.get(d.id)
         if not x:
@@ -67,8 +70,9 @@ def main():
                  'proposto_proposizione': ' '.join(str(p.get('proposizione') or '').split()),
                  'proposto_confidenza': 'alta' if concordi else 'bassa',
                  'proposto_note': (vecchia + '\n' + nota) if vecchia else nota,
-                 'proposto_lettore': lettore,
-                 # version that read the type (registry: L02 for Urgenda, L03 for the other cases)
+                 # la data e' quella della lettura della riga (01/10/2026: prima era fissa al 28/09 per tutti i casi tranne Urgenda)
+                 'proposto_lettore': lettore if a.caso == 'urgenda' else f"DeepSeek V4 Flash 0731, codebook 0.3-pilot, {'/'.join(reversed(str(x.get('data') or '2026-09-28')[:10].split('-')))}",
+                 # la versione che ha letto il tipo (registro: L02 Urgenda, L03 gli altri casi), dal 29/09 scritta qui
                  'provenienza.tipo': 'L02' if a.caso == 'urgenda' else 'L03'}
         scritture.append((d.reference, campi))
         conti['da scrivere'] += 1; conti[f'tipo {tipo}'] += 1; conti['concordi' if concordi else 'discordi'] += 1

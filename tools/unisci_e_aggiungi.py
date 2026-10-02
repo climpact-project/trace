@@ -1,36 +1,43 @@
-"""Name-matched citations: merge split citations and add missing ones.
+"""LE CITAZIONI COL NOME: UNIRE QUELLE SPEZZATE E AGGIUNGERE QUELLE MANCANTI (29/09/2026).
 
-   Reconciles the platform with a re-run of the corrected name search (S02) in `cerca.py`, which fixed two issues:
-   - the reranker cut and the date filter were also applied to 'entrambe' rows, i.e. rows that name the case
-     (on Urgenda, 49 explicit citations discarded, 40 of which never reached the platform); the Korean and
-     Japanese forms of the name were also missing;
-   - merging of nearby matches measured distance only from the FIRST match of the group, so a long reference
-     ("Urgenda, C/09/456689, HA ZA 13-1396, 200.178.245/01, ECLI...") became two rows; now an identifier close to
-     the previous match continues the citation (`cerca.fondi`).
-   The new name search output (`index/nomi_<caso>_<data>b.csv`) is compared live with the platform:
-   - a new-search group with no platform row -> NEW ROW, with a code after the highest of the case, assigned
-     round-robin to annotators with pending rows of the case, one in five as a blind sample like the others;
-   - a group with two or more platform rows -> SPLIT CITATION: the judged row (or the first) is kept; the others
-     leave the queue with `proposto_rete = 'fusa'`, keeping code, data and a marker to restore them
-     (`fusa_in`, `fusa_rete_prima`). Nothing is deleted; no judgment is modified.
-   Without --scrivi it prints the counts and writes nothing.
+   Due difetti di `cerca.py`, trovati leggendo le pagine che il reranker metteva fuori dalla finestra:
+   - il taglio del riordinatore e il filtro della data colpivano anche le righe «entrambe», cioe' righe che nominano
+     il caso: su Urgenda 49 citazioni esplicite scartate, 40 mai arrivate in piattaforma (la sentenza Shell,
+     KlimaSeniorinnen, Gloucester); mancavano poi le forme coreana e giapponese del nome;
+   - la fusione delle corrispondenze vicine misurava la distanza solo dalla PRIMA corrispondenza del gruppo, cosi' un
+     riferimento lungo («Urgenda, C/09/456689, HA ZA 13-1396, 200.178.245/01, ECLI...») diventava due righe: ora un
+     identificativo vicino alla corrispondenza precedente continua la citazione (`cerca.fondi`).
+   Corretto `cerca.py`, rifatta la ricerca per nome (`index/nomi_<caso>_2026-09-29b.csv`). Qui si confronta con la
+   piattaforma, dal vivo:
+   - gruppo della ricerca nuova senza righe in piattaforma -> RIGA NUOVA, con codice dopo il piu' alto del caso,
+     assegnata a turno a chi ha righe del caso da fare, una su cinque alla cieca come le altre;
+   - gruppo con due o piu' righe in piattaforma -> CITAZIONE SPEZZATA: resta la riga gia' giudicata (o la prima);
+     le altre escono dalla coda con `proposto_rete = 'fusa'`, e tengono codice, dati e un segno per rimetterle
+     (`fusa_in`, `fusa_rete_prima`). Niente si cancella; nessun giudizio si tocca.
+   Senza --scrivi stampa i conti e non scrive niente.
 
-   Usage:  .venv/bin/python tools/unisci_e_aggiungi.py [--caso urgenda] [--scrivi]
+   01/10/2026: --data sceglie la ricerca da confrontare (`index/nomi_<caso>_<data>b.csv`); le forme si cercano con
+   `cerca.forma_regex` (in giapponese, cinese e coreano l'a capo puo' cadere dentro il nome); nei documenti rifatti
+   con l'OCR la posizione delle righe vecchie si traduce con `posizione_dopo_ocr.traduci`, altrimenti sembrerebbero
+   tutte mancanti e si aggiungerebbero doppie.
+
+   Uso:  .venv/bin/python tools/unisci_e_aggiungi.py [--caso urgenda] [--scrivi]
 """
 import argparse, collections, csv, json, random, re, sys, pathlib
 QUI = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(QUI/'tools'))
 import cerca
 from pubblica import documento, id_riga
+from posizione_dopo_ocr import traduci
 
-PREFISSI = {'urgenda': 'URG', 'neubauer': 'NEU', 'future-generations': 'FGC'}
+PREFISSI = {'urgenda': 'URG', 'neubauer': 'NEU', 'future-generations': 'FGC', 'klimaseniorinnen': 'KLS', 'cig-parere-clima': 'ICJ', 'idh-oc-32-25': 'IAC'}
 DATA = '2026-09-29'
 ESECUZIONE = 'nomi__2026-09-29'
 
 
 def gruppi_del_documento(md, patt):
-    """Name matches and their groups, using the same rule as `cerca.fondi`.
-    Return (text, matches, group of each match, start of each group)."""
+    """Corrispondenze del nome e gruppi con la stessa regola di `cerca.fondi`.
+    Ritorna (testo, corrispondenze, gruppo di ogni corrispondenza, inizio di ogni gruppo)."""
     testo = md.read_text(encoding='utf-8', errors='replace')
     meta, inizio = cerca.front_matter(testo)
     ms = list(patt.finditer(testo, inizio))
@@ -48,18 +55,20 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--caso', default='')
     ap.add_argument('--scrivi', action='store_true')
+    ap.add_argument('--data', default=DATA)
     a = ap.parse_args()
+    data, esecuzione = a.data, f'nomi__{a.data}'
     from google.cloud import firestore
     db = firestore.Client(project='climpact-drp')
     rapporto = {}
     for caso in ([a.caso] if a.caso else list(PREFISSI)):
         pre = PREFISSI[caso]
         conf = cerca.leggi_caso(QUI/'cited-cases'/f'{caso}.yaml')
-        patt = re.compile('|'.join(re.escape(f) for f in conf['forme']), re.I)
+        patt = re.compile('|'.join(cerca.forma_regex(f) for f in conf['forme']), re.I)
         tutte = [(d.reference, d.to_dict()) for d in db.collection('corpus_rows')
                  .where(filter=firestore.FieldFilter('caso_citato', '==', caso)).stream()]
         nominali = [(ref, r) for ref, r in tutte if r.get('proposto_rete') in ('lessicale', 'entrambe')]
-        nuove_csv = list(csv.DictReader(open(QUI/'index'/f'nomi_{caso}_{DATA}b.csv', encoding='utf-8')))
+        nuove_csv = list(csv.DictReader(open(QUI/'index'/f'nomi_{caso}_{data}b.csv', encoding='utf-8')))
         per_doc = collections.defaultdict(list)
         for ref, r in nominali:
             per_doc[r['document_id']].append((ref, r))
@@ -70,11 +79,11 @@ def main():
         for ref, r in nominali:
             file_di.setdefault(r['document_id'], r.get('file'))
 
-        # How a platform row is interpreted. A row covers the matches within 200 characters of its start (the rule
-        # it was created with). If these include the case NAME, the row represents that name's group and is kept.
-        # If they include ONLY identifiers (docket numbers, ECLI, the name inside a URL), it is the tail of a split
-        # citation and is merged into the row representing its group. A new-search group not covered by any row is
-        # a missing citation and is added.
+        # COME SI LEGGE UNA RIGA DELLA PIATTAFORMA. Una riga copre le corrispondenze a meno di 200 caratteri dal suo
+        # inizio (la regola con cui e' nata). Se fra queste c'e' il NOME del caso, la riga rappresenta il gruppo di
+        # quel nome e resta com'e'. Se ci sono SOLO identificativi (numeri di ruolo, ECLI, il nome dentro un indirizzo
+        # web), e' la coda di una citazione spezzata e si unisce alla riga che rappresenta il suo gruppo. Un gruppo
+        # della ricerca nuova che nessuna riga copre e' una citazione mancante e si aggiunge.
         da_aggiungere, spezzate, orfane, piu_nomi = [], [], [], 0
         for doc in sorted(set(per_doc) | set(csv_doc)):
             md = QUI/file_di[doc]
@@ -85,6 +94,8 @@ def main():
             coperti, rapp, code = set(), collections.defaultdict(list), collections.defaultdict(list)
             for ref, r in per_doc.get(doc, []):
                 cs = int(r.get('char_start') or -1)
+                if cs >= 0:
+                    cs, _ = traduci(file_di[doc], cs, patt, bool((r.get('provenienza') or {}).get('ocr')))
                 cov = [m for m in ms if cs <= m.start() < cs + cerca.FUSIONE]
                 if not cov:
                     orfane.append((ref, r)); continue
@@ -97,8 +108,8 @@ def main():
                 tutte_g = sorted(rapp[g] + code[g], key=lambda x: int(x[1]['char_start']))
                 if not code[g] or len(tutte_g) < 2:
                     continue
-                # Keep the JUDGED row: first among name rows, then among tails (a judged tail wins over an unjudged
-                # name row). Otherwise keep the first name row.
+                # Resta la riga GIUDICATA: prima fra quelle col nome, poi fra le code (URG-1664 era giudicata e la
+                # riga col nome URG-1663 no: si tiene la 1664). Altrimenti la prima riga col nome.
                 base = rapp[g] or code[g]
                 giudicate = [x for x in base if x[1].get('esito')] or [x for x in code[g] if x[1].get('esito')]
                 tieni = giudicate[0] if giudicate else sorted(base, key=lambda x: int(x[1]['char_start']))[0]
@@ -112,11 +123,11 @@ def main():
                     if riga is not None:
                         da_aggiungere.append(riga)
 
-        # Code: next after the highest of the case, counting merged rows too (numbers are never reused).
+        # IL CODICE: dopo il piu' alto del caso, contando anche le righe gia' unite (il numero non torna mai).
         gia = [int(m.group(1)) for _, r in tutte for m in [re.fullmatch(rf'{pre}-(\d+)', str(r.get('codice') or ''))] if m]
         n = max(gia, default=0)
         chi = sorted({r['assegnato_a'] for _, r in nominali if r.get('assegnato_a') and not r.get('esito')})
-        rnd = random.Random(f'{caso}-{DATA}')
+        rnd = random.Random(f'{caso}-{data}')
         esistenti = {ref.id for ref, _ in tutte}
         docs = {}
         for k, r in enumerate(sorted(da_aggiungere, key=lambda x: (x['document_id'], int(x['char_start'])))):
@@ -129,7 +140,7 @@ def main():
             d.update({
                 'corroborazione': 'nome_presente', 'ordine': random.Random(rid).random(), 'codice': f'{pre}-{n:04d}',
                 'assegnato_a': chi[k % len(chi)] if chi else None, 'campione_cieco': rnd.random() < 0.20,
-                'incerta': False, 'provenienza': {'corpus': 'D01', 'estrazione': 'S02', 'tipo': '', 'principi': {},
+                'incerta': False, 'provenienza': {'corpus': 'D01', 'estrazione': 'S02' if data == DATA else 'S03', 'tipo': '', 'principi': {},
                                                   'composizione': '', 'seguito': ''},
                 'motivo_aggiunta': r.get('motivo_mancava', ''),
             })
@@ -154,25 +165,28 @@ def main():
         for (tref, t), via, _ in spezzate:
             for ref, r in via:
                 w.append((ref, {'proposto_rete': 'fusa', 'fusa_rete_prima': r.get('proposto_rete'),
-                                'fusa_in': t.get('codice'), 'fusa_il': DATA,
+                                'fusa_in': t.get('codice'), 'fusa_il': data,
                                 'fusa_motivo': 'stessa citazione spezzata in due righe dalla vecchia regola di fusione'}, 'unisci'))
         for i in range(0, len(w), 400):
             b = db.batch()
             for ref, d, tipo in w[i:i + 400]:
                 if tipo == 'nuova':
-                    b.create(ref, {**d, 'esecuzione_id': f'{caso}__{ESECUZIONE}', 'creato_il': firestore.SERVER_TIMESTAMP})
+                    b.create(ref, {**d, 'esecuzione_id': f'{caso}__{esecuzione}', 'creato_il': firestore.SERVER_TIMESTAMP})
                 else:
                     b.update(ref, d)
             b.commit()
-        db.collection('corpus_runs').document(f'{caso}__{ESECUZIONE}').set({
-            'caso_citato': caso, 'origine': 'ricerca per nome rifatta (cerca.py corretto: niente tagli semantici sulle '
-                                            'righe col nome, fusione dalla corrispondenza precedente, forme coreana e giapponese)',
+        db.collection('corpus_runs').document(f'{caso}__{esecuzione}').set({
+            'caso_citato': caso, 'origine': ('ricerca per nome rifatta (cerca.py corretto: niente tagli semantici sulle '
+                                             'righe col nome, fusione dalla corrispondenza precedente, forme coreana e giapponese)'
+                                             if data == DATA else
+                                             f'ricerca per nome rifatta il {data}: testo OCR dei documenti con pagine illeggibili, '
+                                             'altre forme giapponesi e coreane, a capo ammesso dentro i nomi in quelle scritture'),
             'righe_aggiunte': len(docs), 'righe_unite': sum(len(x[1]) for x in spezzate),
             'quando': firestore.SERVER_TIMESTAMP, 'forme': len(conf['forme']),
             'search_strategy': (QUI/'cited-cases'/f'{caso}.yaml').read_text(encoding='utf-8'),
         })
         print(f'   scritte: {len(docs)} nuove, {sum(len(x[1]) for x in spezzate)} unite')
-    json.dump(rapporto, open(QUI/'training'/f'nomi_unisci_aggiungi_{DATA}.json', 'w'), ensure_ascii=False, indent=1)
+    json.dump(rapporto, open(QUI/'training'/f'nomi_unisci_aggiungi_{data}.json', 'w'), ensure_ascii=False, indent=1)
 
 
 if __name__ == '__main__':

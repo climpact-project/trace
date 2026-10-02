@@ -1,57 +1,54 @@
-# URGENDA PARAGRAPH MAP — version 1
+# MAPPA DEI PARAGRAFI DI URGENDA — versione 1, 23 settembre 2026
 #
-# Companion to `urgenda-fascicolo.md`. Used to resolve pinpoint citations such as
-# "Urgenda, supra note 33, paras. 5.7.5-5.7.7" and to record which semantic query (probe)
-# and which link of the reasoning chain each paragraph supports.
+# Compagna di `urgenda-fascicolo.md`. Serve a decifrare citazioni precise del tipo
+# «Urgenda, supra note 33, paras. 5.7.5-5.7.7» e a sapere quale sonda e quale anello
+# della catena un paragrafo sostiene.
 #
-# SOURCES. Only the three corpus documents, in English translation:
+# FONTI. Solo i tre documenti del corpus, in traduzione inglese:
 #   rechtbank_2015  urgenda-foundation-v-state-of-the-netherlands-decision_f1ad  (Rechtbank Den Haag, 24/6/2015, 55 pp.)
 #   hof_2018        urgenda-foundation-v-state-of-the-netherlands-decision_8a5e  (Gerechtshof Den Haag, 9/10/2018, 19 pp.)
 #   hoge_raad_2019  urgenda-foundation-v-state-of-the-netherlands-judgment_ed17  (Hoge Raad, 20/12/2019, 47 pp.)
-# `pagina` = number of the `<!-- page N -->` marker in the markdown, which matches the PDF page.
+# `pagina` = numero del marcatore `<!-- page N -->` del markdown, che coincide con la pagina del PDF.
 #
-# HOW PARAGRAPH NUMBERS WERE ESTABLISHED. In the rechtspraak.nl print PDFs the paragraph
-# numbers are set in a column at the top of each page, detached from the text. The paragraph
-# of each text block was reconstructed by counting the blocks that start on the page, and checked:
-#   - Hoge Raad: against the Dutch original in the corpus (judgment_4966) and the court's internal
-#     cross-references (e.g. 4.8 refers to 4.7, 7.5.3 to 5.3.4, 8.2.6 to "8.2.4, second paragraph");
-#   - Rechtbank: against the judgment's own table of contents (pp. 3-4) and the summary in the
-#     Procurator General's opinion (opinion_9d44, pp. 11-12), which cites 4.6, 4.7, 4.8, 4.34,
-#     4.42-4.46, 4.54, 4.55, 4.63, 4.83-4.93, 4.94-4.102;
-#   - Hof: paragraph numbers are printed at the start of each block; no reconstruction needed.
-# `incerto: true` marks the few entries where the boundary between two numbers cannot be
-# determined from the corpus.
+# COME SONO STATI STABILITI I NUMERI DI PARAGRAFO. Nei PDF di stampa di rechtspraak.nl i
+# numeri stanno in colonna in testa a ogni pagina, staccati dal testo. Il paragrafo di ogni
+# capoverso e' stato ricostruito contando i capoversi che cominciano sulla pagina, e controllato:
+#   - Hoge Raad: sull'originale olandese del corpus (judgment_4966) e sui rinvii interni della
+#     corte (es. 4.8 rinvia a 4.7, 7.5.3 a 5.3.4, 8.2.6 a «8.2.4, second paragraph»);
+#   - Rechtbank: sull'indice della sentenza stessa (pp. 3-4) e sul riassunto della conclusie del
+#     PG (opinion_9d44, pp. 11-12), che cita 4.6, 4.7, 4.8, 4.34, 4.42-4.46, 4.54, 4.55, 4.63,
+#     4.83-4.93, 4.94-4.102;
+#   - Hof: numeri stampati a inizio capoverso, nessuna ricostruzione.
+# `incerto: true` segna le poche voci in cui il confine fra due numeri non e' decidibile dal corpus.
 #
-# THREE CORRECTIONS RELATIVE TO `urgenda.yaml` (version 2, left unchanged):
-#   1. The canonical passage of `ordine_non_legge` ("Therefore, the courts are not prevented ...
-#      They may also order ... as long as that order does not amount to an order to create
-#      legislation with a particular content") is para. 8.2.6, not 8.2.7. Para. 8.2.7 is the
-#      following block ("In light of the foregoing ... leaves the State free to choose the
-#      measures"). Verified on the Dutch text: "Uit het voorgaande volgt ..." falls under 8.2.6,
-#      "In het licht van het voorgaande" opens 8.2.7 (judgment_4966, pp. 35-36).
-#   2. The passage on due diligence and Jugheli (referenced by `due_diligence_buon_governo` as
-#      5.3.4) is para. 5.3.3; 5.3.4 is the "impossible or disproportionate burden" limit (as shown
-#      by the Dutch text at p. 21 and by the cross-reference in 7.5.3). The English translation of
-#      6.5 erroneously reads "5.5.3".
-#   3. The `dovere_diligenza` seed "However, both articles ... can serve as a source of
-#      interpretation" is Rechtbank para. 4.46, not 4.45 (4.45 denies victim status under
-#      art. 34 ECHR). Confirmed by the judgment itself at 4.109 ("In 4.45 and 4.46") and by the
-#      Procurator General.
-#   In addition, the citation of the Council of Europe Manual on the "wide margin of appreciation"
-#   is in para. 4.48 (continuing on p. 41), not in 4.49.
+# TRE CORREZIONI RISPETTO A `urgenda.yaml` (versione 2, non modificato):
+#   1. Il canonical di `ordine_non_legge` («Therefore, the courts are not prevented ... They may
+#      also order ... as long as that order does not amount to an order to create legislation with a
+#      particular content») e' il par. 8.2.6, non 8.2.7. L'8.2.7 e' il capoverso successivo
+#      («In light of the foregoing ... leaves the State free to choose the measures»). Verificato
+#      sull'olandese: «Uit het voorgaande volgt ...» sta sotto 8.2.6, «In het licht van het voorgaande»
+#      apre 8.2.7 (judgment_4966, pp. 35-36).
+#   2. Il passo su due diligence e Jugheli (rinviato da `due_diligence_buon_governo` a 5.3.4) e' il
+#      par. 5.3.3; il 5.3.4 e' il limite dell'«impossible or disproportionate burden» (lo dicono l'olandese
+#      a p. 21 e il rinvio di 7.5.3). La traduzione inglese di 6.5 scrive per errore «5.5.3».
+#   3. Il seme di `dovere_diligenza` «However, both articles ... can serve as a source of
+#      interpretation» e' il par. 4.46 del Rechtbank, non 4.45 (4.45 e' la negazione dello status di
+#      vittima ex art. 34 CEDU). Lo dicono la sentenza stessa in 4.109 («In 4.45 and 4.46») e il PG.
+#   Inoltre la citazione del Manuale del Consiglio d'Europa sul «wide margin of appreciation»
+#   sta nel par. 4.48 (che prosegue a p. 41), non in 4.49.
 #
-# PROBES: propria_quota, obblighi_positivi, dovere_diligenza, ordine_non_legge, target_giudiziale.
-# LINKS of the reasoning chain (ISTRUZIONI_CATENA in tools/adjudica_llm.py):
-#   a = serious risk, known to science, deferred by decades, affecting the whole population
-#   b = a duty of the State to act follows (civil-law duty of care or arts. 2 and 8 ECHR)
-#   c = a modest contribution does not exempt: each party is responsible for its own share
-#   d = the minimum content is derived from scientific and international consensus; the court sets it
-#   e = order of result, freedom of means
-# Empty lists: the paragraph supports no probe and no link (facts, procedure).
+# SONDE: propria_quota, obblighi_positivi, dovere_diligenza, ordine_non_legge, target_giudiziale.
+# ANELLI della catena (ISTRUZIONI_CATENA in tools/adjudica_llm.py):
+#   a = rischio grave, noto alla scienza, differito di decenni, che colpisce la popolazione intera
+#   b = ne discende un obbligo di agire dello Stato (diligenza civilistica o artt. 2 e 8 CEDU)
+#   c = il contributo modesto non esonera: ciascuno risponde della propria quota
+#   d = il contenuto minimo si ricava dal consenso scientifico e internazionale; il giudice lo fissa
+#   e = ordine di risultato, liberta' dei mezzi
+# Liste vuote: il paragrafo non sostiene nessuna sonda ne' anello (fatti, procedura).
 
 voci:
 
-# ═══════════════════════════ HOGE RAAD, 20 December 2019 ═══════════════════════════
+# ═══════════════════════════ HOGE RAAD, 20 dicembre 2019 ═══════════════════════════
 
   - pronuncia: hoge_raad_2019
     paragrafo: "Summary of the Decision — Dangerous climate change"
@@ -774,7 +771,7 @@ voci:
     sonde: []
     anelli: []
 
-# ═══════════════════════════ GERECHTSHOF DEN HAAG, 9 October 2018 ═══════════════════════════
+# ═══════════════════════════ GERECHTSHOF DEN HAAG, 9 ottobre 2018 ═══════════════════════════
 
   - pronuncia: hof_2018
     paragrafo: "1-3"
@@ -1122,7 +1119,7 @@ voci:
     anelli: [b, d]
     verbatim: "the State is acting unlawfully (because in contravention of the duty of care under Articles 2 and 8 ECHR)"
 
-# ═══════════════════════════ RECHTBANK DEN HAAG, 24 June 2015 ═══════════════════════════
+# ═══════════════════════════ RECHTBANK DEN HAAG, 24 giugno 2015 ═══════════════════════════
 
   - pronuncia: rechtbank_2015
     paragrafo: "4.1-4.3"

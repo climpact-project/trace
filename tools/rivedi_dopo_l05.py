@@ -1,15 +1,16 @@
-"""Flag already-judged rows on which L05 disagrees with the human judgment.
+"""LE RIGHE GIA' GIUDICATE CHE L05 VEDE IN MODO DIVERSO (29/09/2026, il PI: «anche le righe gia' giudicate bisogna
+   controllarle di nuovo»).
 
-   Rows judged in Uptakes were decided against L04 proposals with a narrow window (2 pages before to 3 after).
-   L05 also reads the case file, applies the footnote rule and looks up to 10 pages on each side. Rows are not
-   re-judged wholesale: for each confirmed row the current L05 proposal is computed (same rules as
-   `carica_ripresa.proposta`) and the row is flagged only if
-     - L05 selects a principle the annotator did not confirm, or selects none of the confirmed ones;
-     - L05 proposes a continuation page the annotator did not confirm (in particular distant ones, 4-10 pages).
-   With --scrivi the row receives `rivedere` = {motivi, l05_principi, l05_seguito, quando}. The judgment itself is
-   not modified; the Uptakes view shows the row as "to review" to its annotator.
+   Le righe giudicate in Uptakes sono state decise guardando le proposte di L04, con la finestra stretta (da 2 pagine
+   prima a 3 dopo). L05 legge anche il fascicolo, applica la regola delle note e guarda fino a 10 pagine per lato.
+   Non si rigiudica tutto: per ogni riga giudicata si calcola che cosa proporrebbe oggi L05 (le stesse regole di
+   `carica_ripresa.proposta`) e la si segnala solo se
+     - L05 spunta un principio che la persona non ha confermato, o non spunta nessuno di quelli confermati;
+     - L05 propone una pagina di seguito che la persona non ha confermato (in particolare le lontane, 4-10 pagine).
+   Con --scrivi la riga riceve `rivedere` = {motivi, l05_principi, l05_seguito, quando}: il giudizio non si tocca,
+   la scheda Uptakes la mostra a chi l'ha giudicata come «da rivedere».
 
-   Usage:  .venv/bin/python tools/rivedi_dopo_l05.py --caso urgenda [--scrivi]
+   Uso:  .venv/bin/python tools/rivedi_dopo_l05.py --caso urgenda [--scrivi]
 """
 import argparse, collections, datetime, json, sys, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))

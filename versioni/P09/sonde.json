@@ -1,0 +1,67 @@
+{
+ "cig-parere-clima": [
+  {
+   "id": "cig-parere-clima.obiettivo_1_5",
+   "titolo": "L'1,5 gradi come obiettivo primario giuridico di temperatura dopo Parigi, per consenso delle parti",
+   "testo": "Limiting warming to 1.5°C, not merely well below 2°C, is the primary temperature goal States are legally bound to pursue under the Paris Agreement.\n",
+   "paragrafi": "§§ 223-225, 270",
+   "esclusione_di_provenienza": "Non le decisioni 1/CMA.3 (Patto di Glasgow, § 21) e 1/CMA.5 (primo bilancio globale, §§ 27 e 39) citate da sole: chi riporta la COP senza farne un'interpretazione vincolante del trattato non riprende il parere.\n",
+   "canonical_paragrafo": "para. 224",
+   "canonical_pagina": "80"
+  },
+  {
+   "id": "cig-parere-clima.ndc_discrezionalita_limitata",
+   "titolo": "NDC: la discrezionalita' degli Stati e' limitata; la massima ambizione possibile e' uno standard giuridico",
+   "testo": "Nationally determined contributions may not be set at will: each must reflect its author's highest possible ambition as a binding standard rather than a hortatory aim, and all of them together must be able to achieve the regime's purpose, so one filed as a mere formality falls short.\n",
+   "paragrafi": "§§ 236-249",
+   "esclusione_di_provenienza": "Non la decisione 4/CMA.1 (Paris Rulebook, informazioni su equita' e ambizione) citata da sola, ne' il primo bilancio globale (1/CMA.5) per le cifre del 43% al 2030 e del 60% al 2035: chi riporta quelle cifre cita la COP.\n",
+   "canonical_paragrafo": "para. 245",
+   "canonical_pagina": "85"
+  },
+  {
+   "id": "cig-parere-clima.diligenza_stringente_clima",
+   "titolo": "Il dovere consuetudinario di prevenire danni significativi applicato al sistema climatico, con diligenza stringente",
+   "testo": "The customary duty to prevent significant environmental harm reaches the climate system itself, although the harm results from cumulative and diffuse emissions of all nations, and the due diligence it demands is stringent: heightened vigilance, deep and rapid reductions, risk assessment and precaution, scaled to capabilities without excusing delay.\n",
+   "paragrafi": "§§ 134-139, 273-300",
+   "esclusione_di_provenienza": "Non le frasi che la Corte prende dall'ITLOS e lo dice: sistema nazionale di controllo (§ 281, ITLOS § 235), effetti cumulativi (§ 276, ITLOS § 365), precauzione parte integrante della diligenza (§ 294, parere della Camera del 2011, § 131); ne' «use all the means at its disposal» (Pulp Mills, § 101).\n",
+   "canonical_paragrafo": "para. 138",
+   "canonical_pagina": "57"
+  },
+  {
+   "id": "cig-parere-clima.non_lex_specialis",
+   "titolo": "I trattati sul clima non sono lex specialis: consuetudine e altri regimi si applicano accanto a loro",
+   "testo": "The UNFCCC and the instruments adopted under it are not a lex specialis excluding other law: general international law, the law of the sea and human rights law apply alongside them and inform their reading, and complete adherence to them suggests, without guaranteeing, that the separate general obligations have likewise been honoured.\n",
+   "paragrafi": "§§ 165-171, 310-315, 335, 354, 404",
+   "esclusione_di_provenienza": "Non Genocidio (2007, § 401) sulle regole della responsabilita' che non variano senza una lex specialis chiaramente espressa, ne' il principio d'integrazione sistemica dell'art. 31(3)(c) della Convenzione di Vienna citato da solo.\n",
+   "canonical_paragrafo": "para. 171",
+   "canonical_pagina": "65"
+  },
+  {
+   "id": "cig-parere-clima.fossili_illecito",
+   "titolo": "Produzione, consumo, licenze e sussidi ai combustibili fossili come possibile illecito; privati non regolati",
+   "testo": "A government's failure to curb heat-trapping pollution, including through fossil fuel production or consumption, exploration licences or subsidies, or by not regulating private companies, may be an internationally wrongful act attributable to it, the wrong lying in that failure rather than in emitting as such, even where many others contributed.\n",
+   "paragrafi": "§§ 427-438",
+   "esclusione_di_provenienza": "Non Attivita' armate (RDC c. Uganda, Riparazioni 2022, §§ 93-98) per la pluralita' di cause e di autori, ne' Costa Rica c. Nicaragua (Indennizzo 2018, § 32) per il nesso causale sufficientemente diretto e certo, ne' Pulp Mills (§ 197) e Teheran (1980) per il dovere di regolare: la Corte li cita.\n",
+   "canonical_paragrafo": "para. 427",
+   "canonical_pagina": "129"
+  },
+  {
+   "id": "cig-parere-clima.erga_omnes",
+   "titolo": "Obblighi erga omnes (ed erga omnes partes): ogni Stato puo' invocare la responsabilita'; le conseguenze",
+   "testo": "Commitments protecting shared global commons are owed erga omnes, and erga omnes partes under the conventions, so any State may invoke another's breach and demand cessation and guarantees of non-repetition, while injured States may obtain full reparation; loss-and-damage and compliance mechanisms do not displace these consequences.\n",
+   "paragrafi": "§§ 410-420, 439-455",
+   "esclusione_di_provenienza": "Non Chorzow (1928) per la riparazione piena, ne' Costa Rica c. Nicaragua (Indennizzo 2018, §§ 35, 41-43) per il danno ambientale indennizzabile e la valutazione equitativa, ne' Corfu Channel per la soddisfazione: la Corte li cita.\n",
+   "canonical_paragrafo": "para. 440",
+   "canonical_pagina": "132"
+  },
+  {
+   "id": "cig-parere-clima.continuita_stato",
+   "titolo": "La statualita' continua nonostante la perdita del territorio per l'innalzamento del mare",
+   "testo": "A country does not necessarily lose its statehood if rising seas swallow its territory, and maritime zones once duly established and published need not be redrawn as coastlines recede.\n",
+   "paragrafi": "§§ 358-363",
+   "esclusione_di_provenienza": "Non la Dichiarazione del Pacific Islands Forum del 2021 sulla conservazione delle zone marittime, ne' il rapporto finale del gruppo di studio ILC sull'innalzamento del mare (2025), che la Corte richiama (§§ 360-361): chi fonda la stabilita' delle linee di base su quelle fonti non riprende il parere.\n",
+   "canonical_paragrafo": "para. 363",
+   "canonical_pagina": "114"
+  }
+ ]
+}

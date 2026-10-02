@@ -1,0 +1,709 @@
+# MAPPA DEI PARAGRAFI DI KLIMASENIORINNEN — versione 1 (PROPOSTA), 1 ottobre 2026
+#
+# Compagna di `klimaseniorinnen-fascicolo.md` e di `klimaseniorinnen.yaml` (stessa cartella). Serve a decifrare citazioni
+# del tipo «KlimaSeniorinnen, § 550», «para. 543», «r.o. 420», «at [487]» e a sapere quale sonda un passo sostiene.
+#
+# FONTE. La sentenza in inglese del corpus, `verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1`.
+# `pagina` = marcatore `<!-- page N -->` del markdown = pagina del PDF (la numerazione stampata e' la pagina del PDF
+# meno 2). Un intervallo «188-189» indica che il passo comincia e finisce su pagine diverse.
+#
+# COME SONO STATI STABILITI I CONFINI. I paragrafi della Corte sono numerati da 1 a 657 all'inizio del capoverso; sono
+# stati estratti in sequenza dal markdown (ogni numero atteso, nell'ordine, all'inizio di una riga) e letti uno per
+# uno dal § 410 al § 657. Le pagine finali sono contate dalle intestazioni di stampa che cadono dentro il paragrafo.
+# Fatti, tesi delle parti, procedura e ricapitolazioni della giurisprudenza precedente non portano sonde.
+#
+# SONDE (codici completi nel file del caso):
+#   klimaseniorinnen.vittima_soglia_alta
+#   klimaseniorinnen.legittimazione_associazioni
+#   klimaseniorinnen.art8_protezione_effettiva
+#   klimaseniorinnen.margine_differenziato
+#   klimaseniorinnen.requisiti_quadro_regolatorio
+#   klimaseniorinnen.propria_quota
+#   klimaseniorinnen.controllo_giudiziale
+# `riserva` = la sonda di riserva klimaseniorinnen.accesso_giudice_associazione (art. 6), non letta dalla pipeline.
+# Liste vuote: il passo non sostiene nessuna delle sette sonde.
+
+documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+
+voci:
+
+  - paragrafo: "§§ 1-9"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "10-13"
+    sintesi: "Procedura. Ricorso del 26/11/2020 dell'associazione e di quattro socie; rimessione alla Grande Camera il 26/4/2022, nella stessa composizione di Carême c. Francia e Duarte Agostinho; intervenienti; udienza pubblica del 29/3/2023."
+    sonde: []
+
+  - paragrafo: "§§ 10-21"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "13-15"
+    sintesi: "Le ricorrenti: l'associazione (donne residenti in Svizzera, in maggioranza oltre i 70 anni) e le quattro ricorrenti individuali, con dichiarazioni e certificati medici sugli effetti delle ondate di calore."
+    sonde: []
+
+  - paragrafo: "§§ 22-31"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "15-19"
+    sintesi: "La domanda alle autorita' federali del 25/11/2016 (art. 25a della legge sulla procedura amministrativa) e il rigetto del DATEC del 25/4/2017 per difetto di legittimazione."
+    sonde: []
+
+  - paragrafo: "§§ 32-42"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "19-22"
+    sintesi: "Il ricorso al Tribunale amministrativo federale e la sentenza del 27/11/2018: le ricorrenti non sono toccate piu' del resto della popolazione, l'azione e' popolare e inammissibile."
+    sonde: []
+
+  - paragrafo: "§§ 43-63"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "22-27"
+    sintesi: "Il ricorso al Tribunale federale e la sentenza del 5/5/2020: diritti non toccati con intensita' sufficiente, il limite di Parigi non sarebbe superato a breve, la via e' politica e non giudiziaria; artt. 6 e 13 non applicabili."
+    sonde: []
+
+  - paragrafo: "§§ 64-102"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "27-39"
+    sintesi: "Tesi delle parti sui fatti del clima: IPCC, ondate di calore e mortalita' delle donne anziane, obiettivo svizzero al 2020 mancato, emissioni importate (ricorrenti); le due fasi della politica climatica svizzera, NDC e adattamento (Governo)."
+    sonde: []
+
+  - paragrafo: "§§ 103-120"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "39-45"
+    sintesi: "I fatti sul clima che la Corte trae dal materiale a sua disposizione, soprattutto dai rapporti IPCC (rapporto speciale 1,5 gradi, AR6; bilanci di carbonio al § 116, finestra di opportunita' che si chiude al § 118)."
+    sonde: []
+
+  - paragrafo: "§§ 121-132"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "45-52"
+    sintesi: "Diritto svizzero: Costituzione (art. 10 diritto alla vita, artt. 73-74 non giustiziabili), legge sulla protezione dell'ambiente, legge sul CO2, legge sul clima, procedura amministrativa, giurisprudenza."
+    sonde: []
+
+  - paragrafo: "§§ 133-200"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "52-95"
+    sintesi: "Materiali internazionali: UNFCCC, Kyoto, Parigi, COP 26-28, Aarhus, Assemblea generale (diritto a un ambiente sano, richiesta di parere alla CIG), Consiglio dei diritti umani e comitati ONU, Consiglio d'Europa."
+    sonde: []
+
+  - paragrafo: "§§ 201-231"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "95-109"
+    sintesi: "Unione europea (trattati, legge europea sul clima, attuazione di Aarhus, giurisprudenza della Corte di giustizia) e sistemi interamericano e africano."
+    sonde: []
+
+  - paragrafo: "§§ 232-234"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "109-110"
+    sintesi: "Indagine comparata della Corte sulla legittimazione delle associazioni ambientaliste negli Stati membri, anche nel contenzioso climatico."
+    sonde: []
+
+  - paragrafo: "§§ 235-253"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "110-115"
+    sintesi: "Giurisprudenza nazionale, Francia: Grande-Synthe e penalita' inflitte allo Stato per i valori limite dell'aria."
+    sonde: []
+
+  - paragrafo: "§§ 254-257"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "115-117"
+    sintesi: "Germania: Neubauer e altri (BVerfG, 24/3/2021), con le massime ufficiali riportate per esteso."
+    sonde: []
+    nota: "Il § 571 rinvia a Neubauer, Rn. 215-229, per il bilancio di carbonio; il § 441 rinvia ai §§ 253 e 257 per l'argomento della quota."
+
+  - paragrafo: "§§ 258-259"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "117-118"
+    sintesi: "Irlanda: Friends of the Irish Environment (Corte suprema, 31/7/2020)."
+    sonde: []
+
+  - paragrafo: "§§ 260-261"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "118-122"
+    sintesi: "Paesi Bassi: Urgenda (Hoge Raad, 20/12/2019), con il riassunto ufficiale."
+    sonde: []
+
+  - paragrafo: "§§ 262-263"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "122-124"
+    sintesi: "Norvegia: Greenpeace Nordic (Corte suprema, 22/12/2020)."
+    sonde: []
+
+  - paragrafo: "§§ 264-265"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "124-125"
+    sintesi: "Spagna: Greenpeace Spagna e altri (Tribunale supremo, 24/7/2023)."
+    sonde: []
+
+  - paragrafo: "§§ 266-268"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "125-126"
+    sintesi: "Regno Unito: Plan B Earth e altri."
+    sonde: []
+
+  - paragrafo: "§§ 269-272"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "126"
+    sintesi: "Belgio: VZW Klimaatzaak (primo grado 17/6/2021, appello 30/11/2023, ancora ricorribile in cassazione)."
+    sonde: []
+
+  - paragrafo: "§§ 273-274"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "126-127"
+    sintesi: "Il figlio ed erede della seconda ricorrente, deceduta, prosegue il ricorso."
+    sonde: []
+
+  - paragrafo: "§§ 275-283"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "127-129"
+    sintesi: "Oggetto del ricorso: le emissioni «incorporate» nelle merci importate (circa il 70% dell'impronta svizzera nel 2015) rientrano nel ricorso."
+    sonde: []
+    nota: "Punto proprio della sentenza, lasciato senza sonda: pochi rinvii nel corpus (PROPOSTA.md)."
+
+  - paragrafo: "§§ 284-288"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "129-131"
+    sintesi: "Giurisdizione: le ricorrenti risiedono in Svizzera; le emissioni incorporate pongono una questione di responsabilita', da vedere nel merito, non di giurisdizione ex art. 1."
+    sonde: []
+
+  - paragrafo: "§§ 289-290"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "131"
+    sintesi: "Termine di sei mesi rispettato (proroga legata alla pandemia)."
+    sonde: []
+
+  - paragrafo: "§§ 291-297"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "131-133"
+    sintesi: "Osservazioni introduttive: stretto legame fra gli obblighi degli artt. 2, 8, 6 e 13; prima si definisce il contenuto degli obblighi sostanziali degli artt. 2 e 8."
+    sonde: []
+
+  - paragrafo: "§§ 298-336"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "133-143"
+    sintesi: "Tesi delle ricorrenti su qualita' di vittima, applicabilita' degli artt. 2 e 8 e merito."
+    sonde: []
+
+  - paragrafo: "§§ 337-364"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "143-150"
+    sintesi: "Tesi del Governo: emergenza climatica non contestata (§ 337), argomento della piccola quota svizzera (§ 346), nessun metodo stabilito per un bilancio di carbonio nazionale (§ 360)."
+    sonde: []
+
+  - paragrafo: "§§ 365-409"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "150-168"
+    sintesi: "Tesi dei Governi intervenienti (Austria, Irlanda, Italia, Lettonia, Norvegia, Portogallo, Romania, Slovacchia) e degli altri intervenienti (Alto commissario ONU, relatori speciali, ICJ, ENNHRI, universita', Sabin Center e altri)."
+    sonde: []
+
+  - paragrafo: "§ 410"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "168"
+    sintesi: "Il cambiamento climatico e' una delle questioni piu' urgenti del nostro tempo; pone un problema di ripartizione dei pesi fra generazioni e colpisce soprattutto i gruppi vulnerabili."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§ 411"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "168"
+    sintesi: "La Corte agisce nei limiti della sua competenza (art. 19); le misure contro il clima richiedono soprattutto azione legislativa e dipendono dalla decisione democratica."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§ 412"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "168"
+    sintesi: "L'intervento dei giudici non sostituisce legislativo ed esecutivo, ma la democrazia non si riduce alla volonta' della maggioranza: il controllo dei giudici e' complementare ai processi democratici."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§ 413"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "168-169"
+    sintesi: "L'inadeguatezza dell'azione passata aggrava i rischi; chi puo' ricorrere al giudice e' anche una questione di separazione dei poteri."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§§ 414-418"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "169-170"
+    sintesi: "Differenze dal danno ambientale classico: nessuna fonte unica, CO2 non tossico in se', catena di effetti complessa e imprevedibile, fonti in tutte le attivita' di base della societa'."
+    sonde: []
+
+  - paragrafo: "§ 419"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "170"
+    sintesi: "Problema policentrico: la decarbonizzazione richiede trasformazioni profonde e pone questioni di ripartizione dei pesi fra generazioni."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§ 420"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "170-171"
+    sintesi: "Le generazioni future porteranno pesi crescenti senza partecipare alle decisioni di oggi; la prospettiva intergenerazionale mostra il rischio che prevalgano interessi di breve periodo e aggiunge una giustificazione al controllo giudiziario."
+    sonde: [klimaseniorinnen.prospettiva_intergenerazionale]   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+    nota: "Il paragrafo della parte generale piu' citato nel corpus (19 rinvii, 12 documenti)."
+
+  - paragrafo: "§ 421"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "171"
+    sintesi: "Le politiche necessarie variano da Stato a Stato; i conflitti si pesano nella decisione democratica, con il controllo dei giudici nazionali e della Corte."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§§ 422-423"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "171-172"
+    sintesi: "Non si trasferisce la giurisprudenza ambientale al clima: serve un approccio «more appropriate and tailored»."
+    sonde: []
+
+  - paragrafo: "§§ 424-426"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "172"
+    sintesi: "Quattro dimensioni della causalita': emissioni e clima, clima e diritti, danno al singolo, attribuzione della responsabilita' fra piu' Stati."
+    sonde: []
+
+  - paragrafo: "§§ 427-430"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "172-174"
+    sintesi: "Prova: standard e onere, rilievo delle norme interne e internazionali, importanza particolare dei rapporti IPCC (§ 429), accertamenti dei giudici nazionali."
+    sonde: []
+
+  - paragrafo: "§§ 431-434"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "174-175"
+    sintesi: "Riconoscimento del legame fra degrado ambientale e diritti umani; dati IPCC non contestati, emergenza non contestata; la Convenzione come strumento vivente da interpretare alla luce della scienza."
+    sonde: []
+
+  - paragrafo: "§ 435"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "175"
+    sintesi: "L'art. 8 e' toccato anche da rischi sufficientemente gravi e dall'omessa regolazione delle attivita' private; la causalita' va letta secondo gli obblighi in gioco."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+    nota: "Richiamato dal § 519 come fondamento del diritto alla protezione."
+
+  - paragrafo: "§ 436"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "175"
+    sintesi: "La Corte assume come fatto che il cambiamento climatico esiste, minaccia gravemente ora e in futuro i diritti della Convenzione, che gli Stati lo sanno e possono agire, che i rischi sono minori entro 1,5 gradi con azione urgente e che gli sforzi attuali non bastano."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+    nota: "Richiamato dai §§ 519 e 545. Molto citato (17 rinvii, 11 documenti), spesso da solo come accertamento scientifico: domanda al PI se farne una sonda a parte."
+
+  - paragrafo: "§§ 437-438"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "175-176"
+    sintesi: "Nella giurisprudenza ambientale qualita' di vittima e applicabilita' si fondono; perche' scattino obblighi positivi serve un rischio sopra soglia e un nesso causale."
+    sonde: []
+
+  - paragrafo: "§ 439"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "176"
+    sintesi: "Nel clima il nesso fra le omissioni di uno Stato e il danno e' piu' tenue e indiretto: niente requisito rigido di conditio sine qua non."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.propria_quota']
+
+  - paragrafo: "§ 440"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "176-177"
+    sintesi: "L'approccio va adattato: gli obblighi positivi scattano secondo una soglia di gravita' del rischio, sviluppata poi per vittime, applicabilita' e contenuto degli obblighi."
+    sonde: []
+
+  - paragrafo: "§ 441"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "177"
+    sintesi: "L'argomento del Governo sulla quota svizzera e sulla capacita' dei singoli Stati; gia' respinto da corti nazionali (rinvio ai §§ 253 e 257)."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.propria_quota']
+
+  - paragrafo: "§ 442"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "177"
+    sintesi: "Responsabilita' comuni ma differenziate: ogni Stato ha la propria quota di responsabilita', commisurata alle proprie capacita', e non si sottrae indicando gli altri Stati."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.propria_quota']
+
+  - paragrafo: "§ 443"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "177-178"
+    sintesi: "Coerente con la responsabilita' concorrente di piu' Stati nella Convenzione e nel diritto internazionale (art. 47 degli Articoli della CDI); ogni Stato risponde nella propria giurisdizione territoriale."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.propria_quota']
+
+  - paragrafo: "§ 444"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "178"
+    sintesi: "«Drop in the ocean»: non serve provare che senza l'omissione il danno non vi sarebbe stato; basta che misure ragionevoli avessero una prospettiva reale di cambiare l'esito o attenuare il danno (anche art. 3 § 3 UNFCCC)."
+    sonde: [klimaseniorinnen.possibilita_reale]   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.propria_quota']
+
+  - paragrafo: "§§ 445-448"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "178-179"
+    sintesi: "Nessun articolo protegge l'ambiente in quanto tale; conta l'effetto dannoso su una persona; il diritto a un ambiente sano (Risoluzione 76/300) e' contesto, non obbligo specifico."
+    sonde: []
+
+  - paragrafo: "§ 449"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "179"
+    sintesi: "Difficolta' di distinguere diritto e politica; ruolo sussidiario della Corte e peso speciale del decisore democratico."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§ 450"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "179-180"
+    sintesi: "Quando la politica tocca i diritti di persone diventa anche questione di diritto: la Corte resta competente, con ampia deferenza; il margine non e' illimitato."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§ 451"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "180"
+    sintesi: "La competenza della Corte nel contenzioso climatico non puo' essere esclusa in principio: la domanda non e' piu' «se» ma «come» i giudici dei diritti umani debbano occuparsene."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+
+  - paragrafo: "§§ 452-457"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "180-181"
+    sintesi: "Interpretazione armonica ed evolutiva della Convenzione alla luce del diritto internazionale e del consenso scientifico, nei limiti della sussidiarieta' e della separazione dei poteri."
+    sonde: []
+
+  - paragrafo: "§§ 458-459"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "181-182"
+    sintesi: "Metodo: i principi sulla qualita' di vittima si espongono a parte, ma si applicano insieme all'applicabilita' degli artt. 2 e 8."
+    sonde: []
+
+  - paragrafo: "§§ 460-477"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "182-186"
+    sintesi: "Principi generali, ricapitolazione: niente actio popularis; vittime dirette, indirette e potenziali; criteri ambientali; le associazioni di regola non sono vittime e non invocano la salute, salvo «special considerations» (Câmpeanu)."
+    sonde: []
+
+  - paragrafo: "§ 478"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "186"
+    sintesi: "Prove scientifiche solide; gli Stati controllano le cause e si sono impegnati a mitigare e adattarsi: puo' esistere un nesso causale giuridicamente rilevante fra azioni od omissioni dello Stato e danno agli individui."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+    nota: "Sta nella parte sulla qualita' di vittima, ma il suo punto e' il nesso causale; il § 519 lo richiama."
+
+  - paragrafo: "§§ 479-480"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "186-187"
+    sintesi: "Numero indefinito di persone colpite e omissioni nelle misure generali: serve un approccio speciale alla qualita' di vittima; restano salvi i casi di danno individuale gia' subito."
+    sonde: [klimaseniorinnen.vittima_soglia_alta]
+
+  - paragrafo: "§§ 481-484"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "187-188"
+    sintesi: "Come esaminare queste lagnanze senza ammettere l'actio popularis: nel clima chiunque puo' essere toccato; il cerchio delle vittime non deve essere ne' troppo largo ne' troppo stretto."
+    sonde: [klimaseniorinnen.vittima_soglia_alta]
+
+  - paragrafo: "§§ 485-486"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "188"
+    sintesi: "La categoria delle vittime potenziali come «class of people» non funziona qui; criteri distintivi: livello e gravita' del rischio e urgenza del bisogno di protezione."
+    sonde: [klimaseniorinnen.vittima_soglia_alta]
+
+  - paragrafo: "§ 487"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "188-189"
+    sintesi: "I due criteri: (a) alta intensita' di esposizione agli effetti negativi del cambiamento climatico; (b) bisogno pressante di protezione individuale per l'assenza o l'inadeguatezza di misure ragionevoli."
+    sonde: [klimaseniorinnen.vittima_soglia_alta]
+
+  - paragrafo: "§ 488"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "189"
+    sintesi: "Soglia particolarmente alta; valutazione concreta (condizioni locali, vulnerabilita', attualita' e probabilita' degli effetti, durata, portata del rischio)."
+    sonde: [klimaseniorinnen.vittima_soglia_alta]
+
+  - paragrafo: "§§ 489-494"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "189-191"
+    sintesi: "Importanza dell'azione collettiva nel clima, «common concern of humankind»; Aarhus, diritto UE, studi comparati e indagine della Corte sulla legittimazione delle associazioni."
+    sonde: [klimaseniorinnen.legittimazione_associazioni]
+
+  - paragrafo: "§§ 495-497"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "191-192"
+    sintesi: "Distinzione fra qualita' di vittima e rappresentanza; l'associazione non puo' far valere la salute; evoluzione della societa' verso il contenzioso climatico delle associazioni."
+    sonde: [klimaseniorinnen.legittimazione_associazioni]
+
+  - paragrafo: "§ 498"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "192"
+    sintesi: "Le considerazioni proprie del clima depongono per riconoscere alle associazioni la legittimazione come rappresentanti, anche se non sono esse stesse vittime."
+    sonde: [klimaseniorinnen.legittimazione_associazioni]
+
+  - paragrafo: "§ 499"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "192"
+    sintesi: "Clima come preoccupazione comune e ripartizione fra generazioni depongono per la legittimazione delle associazioni; gli Stati devono proteggere anche chi potra' essere colpito gravemente in futuro senza azione tempestiva."
+    sonde: [klimaseniorinnen.legittimazione_associazioni]
+    nota: "La frase centrale e' di merito ed e' citata per l'urgenza insieme al § 436 (Greenpeace Nordic, una richiesta di parere consultivo). Assegnato alle associazioni perche' apertura e conclusione riguardano la legittimazione. Domanda al PI."
+
+  - paragrafo: "§§ 500-501"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "192-193"
+    sintesi: "Niente lagnanza astratta sul deterioramento generale delle condizioni di vita; Aarhus come riferimento, senza ammettere l'azione popolare."
+    sonde: [klimaseniorinnen.legittimazione_associazioni]
+
+  - paragrafo: "§ 502"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "193-194"
+    sintesi: "Le tre condizioni (costituzione regolare; scopo statutario dedicato alla difesa dei diritti umani dei membri; qualificazione e rappresentativita') e i fattori di valutazione; nessun requisito separato che i rappresentati siano vittime."
+    sonde: [klimaseniorinnen.legittimazione_associazioni]
+
+  - paragrafo: "§ 503"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "194"
+    sintesi: "Se il diritto interno limita la legittimazione delle associazioni, la Corte puo' considerare l'accesso al giudice dei singoli membri."
+    sonde: [klimaseniorinnen.legittimazione_associazioni]
+
+  - paragrafo: "§§ 504-506"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "194"
+    sintesi: "Le obiezioni del Governo; esame congiunto con l'applicabilita' delle disposizioni."
+    sonde: []
+
+  - paragrafo: "§§ 507-513"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "194-196"
+    sintesi: "Art. 2 nel contesto climatico: attivita' per sua natura pericolosa per la vita (§ 509); rischio «reale e imminente» letto alla luce dell'irreversibilita', con prossimita' materiale e temporale; un grave rischio di calo significativo della speranza di vita puo' far scattare l'art. 2 (§ 513)."
+    sonde: []
+    nota: "Senza sonda: l'art. 2 non e' stato esaminato (§§ 536-537). Citato da 12 documenti (De Conto e Uricchio c. Italia per il § 513, Smith c. Attorney General per i §§ 507-509)."
+
+  - paragrafo: "§§ 514-518"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "196-198"
+    sintesi: "Applicabilita' dell'art. 8 nei casi ambientali, ricapitolazione: interferenza effettiva, soglia minima di gravita', esposizione a un rischio ambientale grave."
+    sonde: []
+
+  - paragrafo: "§ 519"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "198"
+    sintesi: "L'art. 8 comprende un diritto alla protezione effettiva dello Stato dagli effetti negativi gravi del cambiamento climatico su vita, salute, benessere e qualita' della vita."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+
+  - paragrafo: "§ 520"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "198"
+    sintesi: "L'applicabilita' dell'art. 8 dipende dagli stessi criteri della qualita' di vittima (§§ 487-488) o della legittimazione delle associazioni (§ 502)."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+
+  - paragrafo: "§§ 521-526"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "198-199"
+    sintesi: "Applicazione: l'associazione soddisfa le tre condizioni (oltre 2.000 socie, eta' media 73 anni; le singole non hanno avuto accesso a un giudice); ha legittimazione e l'art. 8 si applica."
+    sonde: [klimaseniorinnen.legittimazione_associazioni]
+
+  - paragrafo: "§§ 527-535"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "199-201"
+    sintesi: "Applicazione: le quattro ricorrenti non raggiungono la soglia (nessuna condizione medica critica non alleviabile con l'adattamento disponibile); ricorsi irricevibili ratione personae."
+    sonde: [klimaseniorinnen.vittima_soglia_alta]
+
+  - paragrafo: "§§ 536-537"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "201-202"
+    sintesi: "Art. 2 non esaminato per l'associazione; ricorsi individuali sull'art. 2 irricevibili; esame sotto il solo art. 8, tenendo conto dei principi dell'art. 2."
+    sonde: []
+
+  - paragrafo: "§§ 538-541"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "202-205"
+    sintesi: "Principi generali degli obblighi positivi in materia ambientale (quadro normativo, attuazione effettiva, margine ampio, scelta dei mezzi, informazione, processo decisionale) e sussidiarieta': ricapitolazione."
+    sonde: []
+    nota: "Il § 538 e' molto citato (16 rinvii, 7 documenti), ma riassume la giurisprudenza precedente."
+
+  - paragrafo: "§ 542"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "205"
+    sintesi: "La protezione del clima pesa in modo considerevole nel bilanciamento: urgenza, gravita' e irreversibilita', natura globale delle emissioni, scarso bilancio passato degli Stati."
+    sonde: [klimaseniorinnen.margine_differenziato]
+
+  - paragrafo: "§ 543"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "205"
+    sintesi: "Margine ridotto sull'impegno a combattere il cambiamento climatico e sugli obiettivi; margine ampio sulla scelta dei mezzi."
+    sonde: [klimaseniorinnen.margine_differenziato]
+
+  - paragrafo: "§ 544"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "205-206"
+    sintesi: "Dall'art. 8 deriva un diritto alla protezione effettiva dagli effetti gravi del clima (rinvio al § 519)."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+
+  - paragrafo: "§ 545"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "206"
+    sintesi: "Lo Stato deve fare la sua parte: dovere primario di adottare e applicare in concreto misure capaci di mitigare gli effetti presenti e futuri, potenzialmente irreversibili."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+
+  - paragrafo: "§ 546"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "206"
+    sintesi: "In linea con UNFCCC, Parigi e IPCC, gli Stati devono prevenire un aumento della temperatura oltre livelli capaci di effetti gravi e irreversibili sui diritti."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+
+  - paragrafo: "§ 547"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "206"
+    sintesi: "Gli obiettivi globali di Parigi da soli non bastano come criterio: ogni Stato deve definire il proprio percorso adeguato verso la neutralita'."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+
+  - paragrafo: "§ 548"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "206-207"
+    sintesi: "Riduzione sostanziale e progressiva verso la neutralita' entro, in principio, tre decenni; le autorita' devono agire per tempo, in modo appropriato e coerente."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+
+  - paragrafo: "§ 549"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "207"
+    sintesi: "Azione immediata e obiettivi intermedi per evitare un peso sproporzionato sulle generazioni future, dentro un quadro nazionale vincolante."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+
+  - paragrafo: "§ 550"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "207"
+    sintesi: "I cinque requisiti: (a) tempi per la neutralita' e bilancio di carbonio residuo o quantificazione equivalente; (b) obiettivi intermedi e percorsi; (c) prova del rispetto; (d) aggiornamento; (e) azione tempestiva e coerente."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+    nota: "Il paragrafo piu' citato della sentenza (36 rinvii, 17 documenti)."
+
+  - paragrafo: "§ 551"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "207"
+    sintesi: "Valutazione d'insieme: una sola mancanza non comporta di per se' il superamento del margine."
+    sonde: [klimaseniorinnen.margine_differenziato]
+
+  - paragrafo: "§ 552"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "207-208"
+    sintesi: "La mitigazione va integrata da misure di adattamento contro le conseguenze piu' gravi o imminenti."
+    sonde: [klimaseniorinnen.art8_protezione_effettiva]
+
+  - paragrafo: "§§ 553-554"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "208"
+    sintesi: "Garanzie procedurali: informazione accessibile al pubblico e possibilita' che le opinioni e gli interessi delle persone toccate siano considerati nelle decisioni."
+    sonde: [klimaseniorinnen.margine_differenziato]
+
+  - paragrafo: "§ 555"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "208"
+    sintesi: "Basta l'inadempimento sulla mitigazione per la violazione, senza esaminare l'adattamento."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+
+  - paragrafo: "§§ 556-557"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "208-209"
+    sintesi: "La Corte considera la situazione complessiva fino al 14/2/2024 e non risolve il disaccordo delle parti sugli studi."
+    sonde: []
+
+  - paragrafo: "§§ 558-559"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "209-210"
+    sintesi: "Legge sul CO2 del 2011: meno 20% al 2020, gia' insufficiente per il Consiglio federale nel 2009; obiettivo 2020 mancato (circa meno 11%)."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+
+  - paragrafo: "§§ 560-562"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "210"
+    sintesi: "Revisione respinta al referendum del 2021; vuoto legislativo dopo il 2024: mancano gli obiettivi richiesti dal § 550 (a)-(b)."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+
+  - paragrafo: "§§ 563-568"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "210-212"
+    sintesi: "NDC del 2021 e legge sul clima del 2022, non in vigore: obiettivi senza misure concrete, periodo 2025-2030 non regolato; il solo impegno a misure «in good time» non basta."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+
+  - paragrafo: "§§ 569-572"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "212-213"
+    sintesi: "Bilancio di carbonio: stima dell'associazione, nessun bilancio fissato dal Governo; nessun quadro efficace senza quantificazione; rinvio a Neubauer (Rn. 215-229) e alle responsabilita' comuni ma differenziate; bilanci indicativi della legge europea sul clima."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+    nota: "Il § 571 cita Neubauer: chi riprende di qui il bilancio nazionale riprende Neubauer in forma annidata."
+
+  - paragrafo: "§ 573"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "213"
+    sintesi: "Conclusione: lacune critiche, nessuna quantificazione, obiettivi passati mancati; non avendo agito per tempo e in modo appropriato e coerente, lo Stato ha superato il margine."
+    sonde: [klimaseniorinnen.requisiti_quadro_regolatorio]
+
+  - paragrafo: "§ 574"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "213"
+    sintesi: "Violazione dell'art. 8."
+    sonde: []
+
+  - paragrafo: "§§ 575-589"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "213-217"
+    sintesi: "Art. 6: tesi delle parti."
+    sonde: []
+
+  - paragrafo: "§§ 590-607"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "217-221"
+    sintesi: "Art. 6: qualita' di vittima e principi generali di applicabilita', ricapitolazione (diritto di carattere civile, controversia reale e seria, esito direttamente decisivo; nessun diritto a un giudice che annulli le leggi, § 594)."
+    sonde: []
+
+  - paragrafo: "§§ 608-614"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "221-223"
+    sintesi: "Art. 6 nel contesto climatico: principi invariati ma applicati secondo la specificita'; nessuna azione per costringere il Parlamento a legiferare; un danno futuro reale e molto probabile non deve essere strettamente imminente; ruolo delle associazioni."
+    sonde: []
+    riserva: [klimaseniorinnen.accesso_giudice_associazione]
+
+  - paragrafo: "§§ 615-625"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "223-225"
+    sintesi: "Applicazione: la parte dell'azione sull'attuazione delle misure di mitigazione previste dalla legge rientra nell'art. 6; l'associazione ha un legame diretto e sufficiente con i diritti delle socie; per le singole l'esito non era direttamente decisivo (irricevibili)."
+    sonde: []
+    riserva: [klimaseniorinnen.accesso_giudice_associazione]
+
+  - paragrafo: "§§ 626-628"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "225-226"
+    sintesi: "Principi generali sull'accesso al giudice (Zubac); la separazione dei poteri e' uno scopo legittimo di limitazione."
+    sonde: []
+
+  - paragrafo: "§§ 629-638"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "226-228"
+    sintesi: "Applicazione: i giudici svizzeri non hanno esaminato le prove scientifiche ne' la legittimazione dell'associazione; nessun'altra via per le socie; lesa l'essenza del diritto di accesso al giudice."
+    sonde: []
+    riserva: [klimaseniorinnen.accesso_giudice_associazione]
+
+  - paragrafo: "§ 639"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "228-229"
+    sintesi: "Ruolo chiave dei giudici nazionali nel contenzioso climatico e importanza dell'accesso alla giustizia; spetta anzitutto alle autorita' nazionali, giudici compresi, far rispettare la Convenzione."
+    sonde: []   # 01/10/2026: sonde distintive (il PI); prima ['klimaseniorinnen.controllo_giudiziale']
+    nota: "Sta nella parte sull'art. 6 ma il suo punto e' il ruolo dei giudici; se il PI adotta la sonda di riserva sull'accesso al giudice, va deciso dove metterlo."
+
+  - paragrafo: "§ 640"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "229"
+    sintesi: "Violazione dell'art. 6 § 1."
+    sonde: []
+
+  - paragrafo: "§§ 641-645"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "229"
+    sintesi: "Art. 13: assorbito dall'art. 6 per l'associazione; irricevibile per le ricorrenti individuali."
+    sonde: []
+
+  - paragrafo: "§§ 646-651"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "229-230"
+    sintesi: "Art. 41: nessun danno chiesto; 80.000 euro per le spese."
+    sonde: []
+
+  - paragrafo: "§§ 652-656"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "230-232"
+    sintesi: "Art. 46: tesi delle parti; le sentenze sono essenzialmente dichiarative (ricapitolazione)."
+    sonde: []
+
+  - paragrafo: "§ 657"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "232"
+    sintesi: "Nessuna misura specifica indicata: dato il margine differenziato, lo Stato, assistito dal Comitato dei Ministri, valuta le misure da prendere."
+    sonde: [klimaseniorinnen.margine_differenziato]
+
+  - paragrafo: "Dispositivo, punti 1-14"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "232-233"
+    sintesi: "Erede legittimato; obiezioni preliminari respinte; legittimazione dell'associazione e solo art. 8 (16 a 1); ricorrenti individuali non vittime (unanimita'); art. 2 non esaminato; violazione dell'art. 8 (16 a 1); art. 6 applicabile all'associazione (16 a 1) e violato (unanimita'); art. 13 assorbito; 80.000 euro di spese."
+    sonde: []
+
+  - paragrafo: "Voto separato del giudice Eicke"
+    documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    pagina: "235-260"
+    sintesi: "In parte concorde e in parte dissenziente: contesta il metodo e i limiti dell'interpretazione evolutiva, l'estensione della qualita' di vittima e della legittimazione, e la creazione di un nuovo diritto sotto l'art. 8 (§§ 519, 544, 545); vota per la violazione dell'art. 6 con un ragionamento diverso. Numerazione propria, a partire da 1, da non confondere con i paragrafi della sentenza."
+    sonde: []

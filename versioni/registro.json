@@ -1,46 +1,47 @@
 [
  {
-  "code": "D01",
-  "type": "corpus",
-  "name": "Documents: Climate Litigation Database export",
-  "task": "The documents: filings, pages, extracted text. Every citation comes from here.",
-  "date": "2026-07-26",
-  "status": "in use",
-  "source": "Sabin Center for Climate Change Law (Columbia Law School) with Climate Policy Radar; use authorised by Maria Antonia Tigre (Sabin Center)",
-  "version": "CCC-whole_data_dump-2026-07-26",
-  "weights": [
+  "codice": "D01",
+  "tipo": "corpus",
+  "nome": "Documents: Climate Litigation Database, public API snapshot",
+  "compito": "I documenti: atti, pagine, testo estratto. Tutte le citazioni vengono da qui.",
+  "data": "2026-07-26",
+  "stato": "in uso",
+  "fonte": "Sabin Center for Climate Change Law (Columbia Law School) con Climate Policy Radar, letto dalle API pubbliche",
+  "versione": "CCC-whole_data_dump-2026-07-26",
+  "pesi": [
    {
     "file": "CCC-whole_data_dump-2026-07-26.zip",
     "sha256": "01244e94af337b1384615ffb2e9aa11def00bee43e6dccf6c4dac22c46cdb9be"
    }
   ],
-  "note": "16,791 filings, 569,218 indexed pages. Text extracted with OCR where needed.",
-  "in_use": "in use",
-  "earlier_code": "",
-  "family": "data"
+  "note": "16.791 atti, 569.218 pagine indicizzate. Testo estratto con OCR dove serve (METHODOLOGY.md).",
+  "nome_tecnico": "Climate Litigation Database, whole-database export",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "dati"
  },
  {
-  "code": "S01",
-  "type": "rule",
-  "name": "Name search, first version",
-  "task": "Finds the citations (the name of the case in all its forms) and extracts page and passage. The rows and the passage shown come from here.",
-  "date": "2026-07-31",
-  "instructions": [
+  "codice": "S01",
+  "tipo": "regola",
+  "nome": "Name search, first version",
+  "compito": "Trova le citazioni (nome del caso nelle sue forme) ed estrae pagina e passaggio. Da qui vengono le righe e il passaggio mostrato.",
+  "data": "2026-07-31",
+  "istruzioni": [
    {
-    "file": "cited-cases/urgenda.yaml",
+    "file": "versioni/S01/istruzioni/urgenda.yaml",
     "sha256": "c3110855ee09a983c32b2ad967c8941721ec0dec9e41d930e75c296e2b32b0bf"
    },
    {
-    "file": "cited-cases/neubauer.yaml",
+    "file": "versioni/S01/istruzioni/neubauer.yaml",
     "sha256": "d9875f0e69765a0b20ef64f8562c9c1e1360b9cf3d01ad30786f2833c006159b"
    },
    {
-    "file": "cited-cases/future-generations.yaml",
+    "file": "versioni/S01/istruzioni/future-generations.yaml",
     "sha256": "887a28b67601095f33c5eff2eeb3ac8f29dd8174281bec88cf3ab08567169c37"
    }
   ],
-  "status": "replaced by S02 for the rows that name the case (29 September 2026); the July semantic search is paused since 27 September 2026",
-  "note": "Name forms are in the case files (74 for Urgenda). Urgenda rows from the run of 3 September, Neubauer and Future Generations from 23 September. Two defects, corrected in S02: the semantic filters (reranker threshold, decision date) also applied to rows that name the case and were found by both networks; long references were split into two rows. Code: `cerca.py` as it was on 28 September 2026, the last version before the S02 corrections; the runs of 3 and 23 September may have used an earlier revision.",
+  "stato": "sostituita da S02 per le righe col nome (29/09/2026); la ricerca semantica di luglio e' in pausa dal 27/09/2026",
+  "note": "Le forme del nome stanno nei file dei casi (74 per Urgenda). Righe di Urgenda dall'esecuzione del 3/09, di Neubauer e Future Generations dal 23/09. Due difetti, corretti in S02: i filtri semantici (riordinatore, data) toccavano anche le righe 'entrambe' che nominano il caso; i riferimenti lunghi venivano spezzati in due righe. Codice: `cerca.py` com'era il 28/09/2026 (storia del repository), l'ultima versione prima delle correzioni di S02; i giri del 3/09 e del 23/09 possono aver usato una revisione precedente.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -49,67 +50,68 @@
    "regex": "2026.7.19",
    "numpy": "2.5.1"
   },
-  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
-  "source_code": [
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "codice_sorgente": [
    {
     "file": "versioni/S01/cerca.py",
     "sha256": "2908428151184008b9b664ab6d4ec986eb647ba14461f71a9918423d65776640"
    }
   ],
-  "in_use": "replaced",
-  "earlier_code": "V00",
-  "family": "name search"
+  "nome_tecnico": "Ricerca per nome, prima versione (con la rete semantica di luglio)",
+  "in_uso": "sostituita",
+  "alias": "V00",
+  "famiglia": "ricerca per nome"
  },
  {
-  "code": "S02",
-  "type": "rule",
-  "name": "Name search, corrected",
-  "task": "Finds the citations that name the case. No semantic filter on rows that name the case; an identifier (docket number, ECLI, web address) close to the previous match continues the same citation; Korean and Japanese forms of Urgenda.",
-  "date": "2026-09-29",
-  "status": "in use: rows added and rows merged in the platform",
-  "instructions": [
+  "codice": "S02",
+  "tipo": "regola",
+  "nome": "Name search, corrected",
+  "compito": "Trova le citazioni col nome del caso. Nessun filtro semantico sulle righe col nome; un identificativo (numero di ruolo, ECLI, indirizzo web) vicino alla corrispondenza precedente continua la stessa citazione; forme coreana e giapponese di Urgenda.",
+  "data": "2026-09-29",
+  "stato": "sostituita da S03 il 01/10/2026 (le righe che ha aggiunto restano, con la loro provenienza)",
+  "istruzioni": [
    {
-    "file": "cited-cases/urgenda.yaml",
+    "file": "versioni/S02/istruzioni/urgenda.yaml",
     "sha256": "e7f9f6065ae6ba323b431338d0ec96c59697f9599d3ebedcb48e0cafcbc2dbe3"
    },
    {
-    "file": "cited-cases/neubauer.yaml",
+    "file": "versioni/S02/istruzioni/neubauer.yaml",
     "sha256": "d9875f0e69765a0b20ef64f8562c9c1e1360b9cf3d01ad30786f2833c006159b"
    },
    {
-    "file": "cited-cases/future-generations.yaml",
+    "file": "versioni/S02/istruzioni/future-generations.yaml",
     "sha256": "887a28b67601095f33c5eff2eeb3ac8f29dd8174281bec88cf3ab08567169c37"
    }
   ],
-  "source_code": [
+  "codice_sorgente": [
    {
-    "file": "tools/cerca.py",
+    "file": "versioni/S02/cerca.py",
     "sha256": "f80fd7b547e9beee80235baf440dffc64ebb9defcb3c3dca51ad78b47f387c83"
    },
    {
-    "file": "tools/unisci_e_aggiungi.py",
+    "file": "versioni/S02/unisci_e_aggiungi.py",
     "sha256": "88e2c67806c7cd4c639b94352b09072d20ed7e3ca6f2b70a65d3be4e39ee7e8b"
    },
    {
-    "file": "tools/assegna_codici.py",
+    "file": "versioni/S02/assegna_codici.py",
     "sha256": "7c563254a2e0495f27e42c71e77022c52762bb052db3aa07453c6a866f4d3d1a"
    }
   ],
-  "measures": [
+  "misure": [
    {
-    "name": "rows added",
-    "value": "Urgenda 58, Neubauer 10, Future Generations 2"
+    "nome": "righe aggiunte",
+    "valore": "Urgenda 58, Neubauer 10, Future Generations 2"
    },
    {
-    "name": "rows merged (one citation split in two rows)",
-    "value": "Urgenda 9, Neubauer 33"
+    "nome": "righe unite (stessa citazione in due righe)",
+    "valore": "Urgenda 9, Neubauer 33"
    },
    {
-    "name": "rows already judged, found again by the new search",
-    "value": "all (Urgenda 380, Neubauer 12, Future Generations 5)"
+    "nome": "righe gia' giudicate ritrovate",
+    "valore": "tutte (Urgenda 380, Neubauer 12, Future Generations 5)"
    }
   ],
-  "note": "Merged rows stay in the database marked as merged, with the row they were merged into. Added rows did not carry machine readings until the rereading of 30 September.",
+  "note": "Le righe unite restano in banca dati con proposto_rete 'fusa' e fusa_in. Le righe aggiunte non hanno ancora le letture della macchina.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -118,70 +120,91 @@
    "regex": "2026.7.19",
    "numpy": "2.5.1"
   },
-  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
-  "in_use": "in use",
-  "earlier_code": "V10",
-  "family": "name search",
-  "changes_from": "S01",
-  "what_changes": "no semantic filter on rows that name the case; a long reference stays one citation; Korean and Japanese forms of Urgenda"
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Ricerca per nome corretta",
+  "in_uso": "sostituita",
+  "alias": "V10",
+  "famiglia": "ricerca per nome",
+  "rispetto_a": "S01",
+  "cambia": "niente filtri semantici sulle righe col nome; un riferimento lungo resta una citazione; forme coreana e giapponese"
  },
  {
-  "code": "L01",
-  "type": "reader",
-  "name": "Citation reading, first version",
-  "task": "As L02, without the rule on footnotes. Two readings per row, on every citation of Urgenda.",
-  "date": "2026-09-26",
-  "status": "replaced by L02 (its readings are kept in the archive)",
-  "note": "Replaced because the external reader and the coders disagreed mostly in footnotes (agreement 0.32 in footnotes against 0.60 in the body). The code of this first reading was not kept apart: it is `classifica_lessicali.py` before the footnote rule (L02).",
-  "software": {
-   "torch": "2.14.0",
-   "transformers": "5.17.0",
-   "peft": "0.21.0",
-   "huggingface_hub": "1.33.0",
-   "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
-  },
-  "in_use": "no longer used",
-  "earlier_code": "V02a",
-  "family": "reading by an external model",
-  "base_model": {
-   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
-   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
-   "weights_index_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
-   "licence": "MIT"
-  },
-  "settings": {
-   "readings": 2,
-   "reasoning": "on, low effort",
-   "max_answer_tokens": 8000,
-   "parallel_requests": 48
-  },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)"
- },
- {
-  "code": "R03",
-  "type": "rule",
-  "name": "Choice of the nearby pages to read",
-  "task": "On top of the T01 scores: a page up to 10 pages before or after the citation enters the uptake reading if its highest score on a principle is at least 0.5 (from 2 pages before to 3 after) or 0.8 (further away); at most 5 pages per citation.",
-  "date": "2026-09-29",
-  "status": "in use",
-  "source_code": [
+  "codice": "S03",
+  "tipo": "regola",
+  "nome": "Name search on OCR text, more Japanese and Korean forms",
+  "compito": "Come S02, su 158 pagine illeggibili rifatte con l'OCR in 7 documenti (coreano, cinese tradizionale, spagnolo). Forme nuove: アージェンダ事件, アージェンダ財団 (Urgenda), ノイバウアー, 노이바우어 (Neubauer). Per le forme in giapponese, cinese e coreano si ammette uno spazio o un a capo fra un carattere e l'altro (in quei testi l'a capo cade anche dentro un nome); le forme latine restano esatte. Nei documenti rifatti la posizione delle righe vecchie si traduce nel testo nuovo (posizione_dopo_ocr.py) invece di cambiarla, perche' fa parte dell'identificativo.",
+  "data": "2026-10-01",
+  "stato": "in uso: righe aggiunte in piattaforma",
+  "istruzioni": [
    {
-    "file": "tools/leggi_ripresa.py",
-    "sha256": "7d2a7290a9fd079948c77e0bfe12e47f3ca6df2e48c8bdb92633bb70e635e2aa"
-   }
-  ],
-  "measures": [
-   {
-    "name": "threshold 0.8 for the far pages",
-    "value": "measured: on the pages read 4 to 10 pages from the citation, above 0.8 more than half are real continuation"
+    "file": "versioni/S03/istruzioni/urgenda.yaml",
+    "sha256": "4d03c0157aa837949fecbc1999616ac2e1f3044a430fe8515285339b496818c3"
    },
    {
-    "name": "threshold 0.5 for the near pages",
-    "value": "not measured: inherited from the previous system, to be calibrated on the team's judgments"
+    "file": "versioni/S03/istruzioni/neubauer.yaml",
+    "sha256": "6a15c22c8bb040913fdf5359467103788dd992b2c02dad65c94bc92591c43226"
+   },
+   {
+    "file": "versioni/S03/istruzioni/future-generations.yaml",
+    "sha256": "887a28b67601095f33c5eff2eeb3ac8f29dd8174281bec88cf3ab08567169c37"
    }
   ],
-  "note": "A rule, not a model: calibrating it does not retrain T01. If T01 is retrained, the thresholds are recalibrated. The codebook 0.3-pilot (dimension 7) still writes the window {before: 2, after: 3}: it will say 10 in the next version of the codebook, not in the file registered for L02 and L03, whose fingerprint is not touched.",
+  "codice_sorgente": [
+   {
+    "file": "tools/cerca.py",
+    "copia": "versioni/S03/cerca.py",
+    "sha256": "141e779b102b987daaf09738b2b880de1b4aaad8c265226dd73908e3dc69b840"
+   },
+   {
+    "file": "tools/unisci_e_aggiungi.py",
+    "copia": "versioni/S03/unisci_e_aggiungi.py",
+    "sha256": "19505773c1ee0a74b3d4c464b7bd60b6eea8104dcfbf918c35274b5f351b04dc"
+   },
+   {
+    "file": "tools/posizione_dopo_ocr.py",
+    "copia": "versioni/S03/posizione_dopo_ocr.py",
+    "sha256": "eab691b5db56cfdb8ff4227692871e50c7552f99321fb4a9f3ab8dc5c802ee38"
+   },
+   {
+    "file": "tools/applica_ocr.py",
+    "copia": "versioni/S03/applica_ocr.py",
+    "sha256": "2c67dd82e109b4e8f71279417d941e644f8547e12edbf1d703600fc31db8e5d1"
+   },
+   {
+    "file": "training/ocr/esegui.sh",
+    "copia": "versioni/S03/esegui.sh",
+    "sha256": "08a750f131ef3bac6981bd9ddaf96b4178ecae4c743e06d8e76e3706daf11e67"
+   },
+   {
+    "file": "training/ocr/lista.txt",
+    "copia": "versioni/S03/lista.txt",
+    "sha256": "53624eed2013775d9d15884a4ffec35b061f79fdca774347c33872c1179d7fd1"
+   },
+   {
+    "file": "tools/classifica_lessicali.py",
+    "copia": "versioni/S03/classifica_lessicali.py",
+    "sha256": "d108820e264c09a21f4c4b6e63868baa94df5818a86dd8fb174abe227d20e909"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "pagine rifatte con l'OCR",
+    "valore": "158 in 7 documenti"
+   },
+   {
+    "nome": "controllo del PDF prima dell'OCR (impronta sha256_pdf, nome, pagine, somiglianza)",
+    "valore": "i 7 PDF giusti passano, i 2 PDF sbagliati del primo giro sono rifiutati"
+   },
+   {
+    "nome": "righe aggiunte",
+    "valore": "Urgenda 4 (URG-1737 a URG-1740), Neubauer 2 (NEU-1622, NEU-1623)"
+   },
+   {
+    "nome": "righe gia' in banca dati rilette sul testo OCR",
+    "valore": "12"
+   }
+  ],
+  "note": "URG-1737 e' stata trovata col codice di S02 sul testo OCR del primo giro (provenienza.ocr); le altre cinque con S03. Il primo giro di OCR aveva preso due PDF sbagliati: documento unico §63.39.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -190,45 +213,621 @@
    "regex": "2026.7.19",
    "numpy": "2.5.1"
   },
-  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
-  "in_use": "in use",
-  "earlier_code": "",
-  "family": "rule without a model"
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Ricerca per nome sul testo OCR, con altre forme giapponesi e coreane",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "ricerca per nome",
+  "rispetto_a": "S02",
+  "cambia": "testo OCR delle pagine illeggibili (PDF controllato con l'impronta); altre forme giapponesi e coreane; l'a capo ammesso dentro i nomi in quelle scritture"
  },
  {
-  "code": "R01",
-  "type": "rule",
-  "name": "Paragraph map",
-  "task": "Principle taken by a citation that names a paragraph («para. 5.7.7»): no model involved; usable as a training label.",
-  "date": "2026-09-28",
-  "status": "in use",
-  "source_code": [
+  "codice": "D02",
+  "tipo": "corpus",
+  "nome": "Documents: D01 with OCR text of unreadable pages",
+  "compito": "Come D01, ma 158 pagine illeggibili (caratteri rotti) di 7 atti in coreano, cinese tradizionale e spagnolo hanno il testo rifatto con l'OCR (ocrmypdf), solo dove la pagina vecchia era illeggibile e la nuova leggibile. Il PDF passa prima quattro controlli: impronta sha256_pdf dell'intestazione del testo (o della copia .orig), nome, numero di pagine, somiglianza.",
+  "data": "2026-10-01",
+  "stato": "in uso per le righe di quei 7 atti",
+  "codice_sorgente": [
    {
-    "file": "tools/principi_da_paragrafi.py",
-    "sha256": "6c87475b3e70e20b00f5b285d41e3d49ea9ba4250424aebbe83c22a5c45358ac"
+    "file": "tools/applica_ocr.py",
+    "copia": "versioni/D02/applica_ocr.py",
+    "sha256": "2c67dd82e109b4e8f71279417d941e644f8547e12edbf1d703600fc31db8e5d1"
+   },
+   {
+    "file": "training/ocr/esegui.sh",
+    "copia": "versioni/D02/esegui.sh",
+    "sha256": "08a750f131ef3bac6981bd9ddaf96b4178ecae4c743e06d8e76e3706daf11e67"
+   },
+   {
+    "file": "training/ocr/lista.txt",
+    "copia": "versioni/D02/lista.txt",
+    "sha256": "53624eed2013775d9d15884a4ffec35b061f79fdca774347c33872c1179d7fd1"
    }
   ],
-  "instructions": [
+  "pesi": [
    {
-    "file": "cited-cases/urgenda-mappa-paragrafi.yaml",
-    "sha256": "9884d22d5f92f217c0a5a44a1112ffb932279c52cee829f179d46437f8303f86"
+    "file": "training/ocr/pagine_sostituite.json",
+    "sha256": "c95fa6b74b398d9b883a5b4fccd76eae88a66c968ccb211228a694a97c8d68b1"
    },
+   {
+    "file": "index/pagine/pagine.prima-ocr-2026-10-01.jsonl.gz",
+    "sha256": "a0b1c838e2e7352cfef05526ac33afbce2b7dc51555be93f1bf87f0c68f99393",
+    "nota": "l'indice delle pagine di D01, prima dell'OCR"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "controllo del PDF",
+    "valore": "i 7 PDF giusti passano, i 2 PDF sbagliati del primo giro sono rifiutati"
+   },
+   {
+    "nome": "pagine che restano illeggibili anche dopo l'OCR",
+    "valore": "per esempio pp. 7-12 della petizione taiwanese Lee"
+   }
+  ],
+  "note": "Le righe lette sul testo OCR portano provenienza.corpus = D02. Copie del testo di prima: training/ocr/prima/.",
+  "nome_tecnico": "D01 con il testo OCR delle pagine illeggibili di 7 atti",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "dati",
+  "rispetto_a": "D01",
+  "cambia": "158 pagine illeggibili di 7 atti rifatte con l'OCR, dal PDF controllato con l'impronta"
+ },
+ {
+  "codice": "P01",
+  "tipo": "sonde",
+  "nome": "Probes of Urgenda",
+  "compito": "I cinque principi di Urgenda contro cui il reranker da' i punteggi e fra cui la lettura sceglie.",
+  "data": "2026-09-02",
+  "stato": "in uso",
+  "istruzioni": [
+   {
+    "file": "versioni/P01/sonde.json",
+    "sha256": "93fc81e423b1eaf3affcfeeee05f83f5a09ae7bccd9cf9828034556c304350e3"
+   }
+  ],
+  "nome_tecnico": "Sonde di Urgenda",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)"
+ },
+ {
+  "codice": "P02",
+  "tipo": "sonde",
+  "nome": "Probes of Neubauer and Future Generations, first set",
+  "compito": "Sei principi di Neubauer e sette di STC4360-2018, scritti il 23/09/2026.",
+  "data": "2026-09-23",
+  "stato": "sostituita da P05 il 01/10/2026; i suoi file restano (cited-cases/<caso>-P02.yaml, file derivati senza suffisso)",
+  "istruzioni": [
+   {
+    "file": "versioni/P02/sonde.json",
+    "sha256": "79ff6a5b0dddb7740bc8f38bef778f8ad82f13ae0dd57623ebd909c828c534c4"
+   }
+  ],
+  "nome_tecnico": "Sonde di Neubauer e Future Generations, prima serie",
+  "in_uso": "sostituita",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)"
+ },
+ {
+  "codice": "P03",
+  "tipo": "sonde",
+  "nome": "Probes of Neubauer and Future Generations, second set (PI)",
+  "compito": "Sette principi di Neubauer e cinque di STC4360-2018, del PI il 01/10/2026, con i paragrafi su cui poggiano; decisioni prese sui conti delle citazioni (documento unico §63.40).",
+  "data": "2026-10-01",
+  "stato": "in prova: letture e punteggi in file a parte, la piattaforma non cambia fino al confronto con P02",
+  "istruzioni": [
+   {
+    "file": "versioni/P03/sonde.json",
+    "sha256": "9e1d6bc049ec093442a7fb26088d65e4694058ef73402e6154efe3e8db44997a"
+   }
+  ],
+  "nome_tecnico": "Sonde di Neubauer e Future Generations, seconda serie (PI)",
+  "in_uso": "superata da P05",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)",
+  "rispetto_a": "P02",
+  "cambia": "le sonde del PI: Neubauer da 6 a 7 (due nuove: vita e salute, ammissibilita'), STC4360-2018 da 7 a 5"
+ },
+ {
+  "codice": "P04",
+  "tipo": "sonde",
+  "nome": "Probes of Neubauer and Future Generations, second set corrected (first round)",
+  "compito": "P03 con i testi delle sonde deboli riscritti dopo la prova del reranker e, per Neubauer, i paragrafi riassegnati (Rn. 148-152 a vita e salute, Rn. 195-198 al budget, dovere verso i posteri su Rn. 146 e 193).",
+  "data": "2026-10-01",
+  "stato": "superata da P05 (passo intermedio della prova)",
+  "istruzioni": [
+   {
+    "file": "versioni/P04/sonde.json",
+    "sha256": "f377adc18cfca236dc35eabc99133ba995de29c588eb0b76a17f627c395f59a6"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "Neubauer, reranker sulla meta' di verifica",
+    "valore": "155 su 296 (52%); P03 140 su 296 (47%)"
+   }
+  ],
+  "nome_tecnico": "Sonde di Neubauer e Future Generations, P03 corretta (primo giro)",
+  "in_uso": "superata",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)",
+  "rispetto_a": "P03",
+  "cambia": "testi delle sonde deboli riscritti, paragrafi di Neubauer riassegnati"
+ },
+ {
+  "codice": "P05",
+  "tipo": "sonde",
+  "nome": "Probes of Neubauer and Future Generations, second set corrected (second round)",
+  "compito": "P04 con l'ammissibilita' di Neubauer ristretta al suo punto proprio (Rn. 89-95, 101, 108-112, 129-137) e i paragrafi di merito discussi nell'ammissibilita' passati a vita e salute e alla liberta' intertemporale.",
+  "data": "2026-10-01",
+  "stato": "in uso dal 01/10/2026 alle 12:18 (il PI: il team deve giudicare con le sonde nuove); letture di DeepSeek in corso, nel frattempo proposte provvisorie dai paragrafi e dal reranker",
+  "istruzioni": [
+   {
+    "file": "versioni/P05/sonde.json",
+    "sha256": "62814ba641e318dc927da28b66aa274643d1532849dc1d9270d2b998736d24bc"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "Neubauer, reranker sulla meta' di verifica (citazioni divise per documento)",
+    "valore": "164 su 297 (55%); caso fortuito 14%"
+   },
+   {
+    "nome": "Future Generations, rimedio strutturale primo del reranker",
+    "valore": "37 citazioni su 154 (con P03: 72)"
+   }
+  ],
+  "nome_tecnico": "Sonde di Neubauer e Future Generations, P03 corretta (secondo giro)",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)",
+  "rispetto_a": "P04",
+  "cambia": "ammissibilita' di Neubauer ristretta al suo punto proprio"
+ },
+ {
+  "codice": "R07",
+  "tipo": "regola",
+  "nome": "Paragraph map with probes P05",
+  "compito": "Come R06, con le sonde P05 (campo sonde_P05; per Neubauer gli intervalli di Randnummer di P05).",
+  "data": "2026-10-01",
+  "stato": "in uso con P05",
+  "istruzioni": [
    {
     "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
-    "sha256": "edf387445a305de0302ef13f6e25ef0c645c85e6881e882c8d58749e8c2563ca"
+    "copia": "versioni/R07/neubauer-mappa-paragrafi.yaml",
+    "sha256": "1227e17266e2d3b128540afd22c050702185185ebddc33d56881429f30d834bf"
    },
    {
     "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
-    "sha256": "2441d46d580060b627088fa63847ed52fdc7934b1d050ec55cd84e844c9b691b"
-   }
-  ],
-  "measures": [
+    "copia": "versioni/R07/future-generations-mappa-paragrafi.yaml",
+    "sha256": "76ddf2c3c8dbaa0dfba5ae5da3b694557c6c03fa4adca91c40b203d4cf34f4d5"
+   },
    {
-    "name": "citations with a principle from the paragraph map",
-    "value": "Urgenda 526, Neubauer 1,011, Future Generations 13"
+    "file": "cited-cases/neubauer-P05.yaml",
+    "copia": "versioni/R07/neubauer-P05.yaml",
+    "sha256": "8c4b379a8fa46468b2c34668cd618c1a6844b04526a53f871a06eea98a33b3eb"
+   },
+   {
+    "file": "cited-cases/future-generations-P05.yaml",
+    "copia": "versioni/R07/future-generations-P05.yaml",
+    "sha256": "db5f36480ac67e6db71c2bd7f04ffeefdb358ef2d2f82cf05f6f4591ed732514"
    }
   ],
-  "note": "Corrected on 28 September 2026: it read two-digit numbers only and ran past the semicolon.",
+  "codice_sorgente": [
+   {
+    "file": "tools/principi_da_paragrafi.py",
+    "copia": "versioni/R07/principi_da_paragrafi.py",
+    "sha256": "0fdc88d5e0b573e32dc2552ed25c0af51d871b267cdbf9a3c485587ce0745013"
+   },
+   {
+    "file": "tools/prova_sonde_reranker.py",
+    "copia": "versioni/R07/prova_sonde_reranker.py",
+    "sha256": "7981809f4572f1b5c51230ca4dd2fcee1cfe68e8d0810e4c30b761fba5df8c6e"
+   }
+  ],
+  "nome_tecnico": "Mappa dei paragrafi con le sonde P05",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R06",
+  "cambia": "le sonde P05"
+ },
+ {
+  "codice": "P06",
+  "tipo": "sonde",
+  "nome": "Probes of KlimaSeniorinnen",
+  "compito": "Sonde DISTINTIVE (il PI, 01/10/2026): l'elemento proprio della decisione, cio' che la distingue dalle altre fonti, cosi' che una ripresa ne riveli la provenienza; non una copertura dei capitoli. Proposte da agenti che hanno letto la decisione, riviste col PI, frasi della decisione verificate alla lettera nel corpus.",
+  "data": "2026-10-01",
+  "stato": "in uso",
+  "istruzioni": [
+   {
+    "file": "versioni/P06/sonde.json",
+    "sha256": "1af204b6f87e8a9579ca1898ae001aeed59224d88ac486ceb0978017c6534a15"
+   },
+   {
+    "file": "cited-cases/klimaseniorinnen.yaml",
+    "copia": "versioni/P06/klimaseniorinnen.yaml",
+    "sha256": "c9afad88adc519f0efcad526a00fb1e9018313b3219a8700aaa395221af09cbe"
+   },
+   {
+    "file": "cited-cases/klimaseniorinnen-fascicolo.md",
+    "copia": "versioni/P06/klimaseniorinnen-fascicolo.md",
+    "sha256": "7400e3f663922516e3e9437e8fa2162674c2d359934fcc18e715c10a41f2261c"
+   }
+  ],
+  "nome_tecnico": "Sonde di KlimaSeniorinnen (CEDU, 9/4/2024)",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)"
+ },
+ {
+  "codice": "P07",
+  "tipo": "sonde",
+  "nome": "Probes of the ICJ climate advisory opinion",
+  "compito": "Sonde DISTINTIVE (il PI, 01/10/2026): l'elemento proprio della decisione, cio' che la distingue dalle altre fonti, cosi' che una ripresa ne riveli la provenienza; non una copertura dei capitoli. Proposte da agenti che hanno letto la decisione, riviste col PI, frasi della decisione verificate alla lettera nel corpus.",
+  "data": "2026-10-01",
+  "stato": "superata dalla P09 il 02/10/2026",
+  "istruzioni": [
+   {
+    "file": "versioni/P07/sonde.json",
+    "sha256": "6ef9e36350f8c7e55d5789fad27ff25f41c5b0329c79a9525d0b7cfce38a199e"
+   },
+   {
+    "file": "cited-cases/cig-parere-clima.yaml",
+    "copia": "versioni/P07/cig-parere-clima.yaml",
+    "sha256": "235538242ac327193d9f0d4b170d9e32de88126df0d261d53d6e561a9e164f56"
+   },
+   {
+    "file": "cited-cases/cig-parere-clima-fascicolo.md",
+    "copia": "versioni/P07/cig-parere-clima-fascicolo.md",
+    "sha256": "4fc3217b4c7c3dedc7bc67d8694e5739685f1f37dedc72fa2b838c189455442b"
+   }
+  ],
+  "nome_tecnico": "Sonde del parere della CIG sul clima (23/7/2025)",
+  "in_uso": "superata",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)"
+ },
+ {
+  "codice": "P08",
+  "tipo": "sonde",
+  "nome": "Probes of IACtHR advisory opinion OC-32/25",
+  "compito": "Sonde DISTINTIVE (il PI, 01/10/2026): l'elemento proprio della decisione, cio' che la distingue dalle altre fonti, cosi' che una ripresa ne riveli la provenienza; non una copertura dei capitoli. Proposte da agenti che hanno letto la decisione, riviste col PI, frasi della decisione verificate alla lettera nel corpus.",
+  "data": "2026-10-01",
+  "stato": "in uso",
+  "istruzioni": [
+   {
+    "file": "versioni/P08/sonde.json",
+    "sha256": "d9f4c531c0fec1d6e7e557ada7445f651e8c0fcd45418fe374810e48baf81d89"
+   },
+   {
+    "file": "cited-cases/idh-oc-32-25.yaml",
+    "copia": "versioni/P08/idh-oc-32-25.yaml",
+    "sha256": "fc1116e149d55c9497850af957cb6ee12fa80e16cfe80f8cb46a5aec48ef2566"
+   },
+   {
+    "file": "cited-cases/idh-oc-32-25-fascicolo.md",
+    "copia": "versioni/P08/idh-oc-32-25-fascicolo.md",
+    "sha256": "7244a97312d27c8b1f8d9db2eda8cb78158e88a2680bf60e9734359475313f6d"
+   }
+  ],
+  "nome_tecnico": "Sonde dell'Opinion consultiva OC-32/25 della Corte interamericana",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)"
+ },
+ {
+  "codice": "P09",
+  "tipo": "sonde",
+  "nome": "Probes of the ICJ climate advisory opinion, 1.5°C probe rewritten",
+  "compito": "Come P07, salvo la sonda obiettivo_1_5: tre formulazioni alternative per ciascuna delle sette sonde deboli dei casi nuovi (A la frase della decisione, B corta, C come la riassume chi cita) provate col TRACE-Reranker; scelta sulla meta' di sviluppo, misura sulla meta' di verifica. Solo la C dell'1,5 migliora; le altre restano.",
+  "data": "2026-10-02",
+  "stato": "in uso dal 02/10/2026",
+  "istruzioni": [
+   {
+    "file": "versioni/P09/sonde.json",
+    "sha256": "cf1895ef2693e21d9d503b819af393531c47d628f1b79201d96dde872d8df9f7"
+   },
+   {
+    "file": "cited-cases/cig-parere-clima-P09.yaml",
+    "copia": "versioni/P09/cig-parere-clima-P09.yaml",
+    "sha256": "3edf9e5b660f80d92b64508a4652760b965838d53a9439c3bea85513bfa8ffc7"
+   },
+   {
+    "file": "training/confronto_sonde/alternative_2026-10-02.yaml",
+    "copia": "versioni/P09/alternative_2026-10-02.yaml",
+    "sha256": "38f0a479cdbc61308ce65294acde46c429b9d0fd5a2aa859b42d071073623e37"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/prova_sonde_alternative.py",
+    "copia": "versioni/P09/prova_sonde_alternative.py",
+    "sha256": "86c0a06c157a5d66205864c7321e889d1c44dc9eae398cc0bba9d806ad6df9b2"
+   },
+   {
+    "file": "tools/prova_sonde_reranker.py",
+    "copia": "versioni/P09/prova_sonde_reranker.py",
+    "sha256": "7981809f4572f1b5c51230ca4dd2fcee1cfe68e8d0810e4c30b761fba5df8c6e"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "CIG, reranker sulla meta' di verifica",
+    "valore": "34 su 73 (47%) con P07, 36 su 73 (49%) con P09; caso fortuito 14%"
+   },
+   {
+    "nome": "obiettivo 1,5 °C, verifica",
+    "valore": "1 su 9 con P07, 4 su 9 con P09"
+   },
+   {
+    "nome": "le altre sei sonde deboli (NDC, lex specialis, erga omnes, clima sano, diligenza rafforzata, art. 8)",
+    "valore": "nessuna alternativa fa meglio sulla meta' di sviluppo: restano"
+   }
+  ],
+  "nome_tecnico": "Sonde del parere della CIG, con l'obiettivo di 1,5 °C riscritto",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "sonde (i principi di un caso citato)"
+ },
+ {
+  "codice": "R09",
+  "tipo": "regola",
+  "nome": "Paragraph maps of the three new cases; Spanish and Portuguese paragraph references",
+  "compito": "La mappa dei paragrafi di KlimaSeniorinnen, del parere della CIG e di OC-32/25 (solo i paragrafi con l'elemento proprio portano una sonda). Lo strumento riconosce ora anche «párr.», «parágrafo» e mappe scritte «§§ 1-9» o «párrs. 1-9».",
+  "data": "2026-10-01",
+  "stato": "in uso",
+  "codice_sorgente": [
+   {
+    "file": "tools/principi_da_paragrafi.py",
+    "copia": "versioni/R09/principi_da_paragrafi.py",
+    "sha256": "e7c0e25b584b0e750fb51aded032875278e1adebac4d7f5ccab82e4aa1c3f2e3"
+   }
+  ],
+  "istruzioni": [
+   {
+    "file": "cited-cases/klimaseniorinnen-mappa-paragrafi.yaml",
+    "copia": "versioni/R09/klimaseniorinnen-mappa-paragrafi.yaml",
+    "sha256": "79e45edaac8aa70b7dceb07ee3af1dc6039f727a09238d8b7b56d4626101a172"
+   },
+   {
+    "file": "cited-cases/cig-parere-clima-mappa-paragrafi.yaml",
+    "copia": "versioni/R09/cig-parere-clima-mappa-paragrafi.yaml",
+    "sha256": "3ed0e74c3a170c8ec89761e545db6d332ee18c1ea376928c7b20ad05930c7b00"
+   },
+   {
+    "file": "cited-cases/idh-oc-32-25-mappa-paragrafi.yaml",
+    "copia": "versioni/R09/idh-oc-32-25-mappa-paragrafi.yaml",
+    "sha256": "dbe5e4d60e18e7c3b0e56c0f08e5f4562cbf0e35476bae80e96be0d6f2552db6"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "citazioni con un principio dai paragrafi",
+    "valore": "KlimaSeniorinnen 289, CIG 334, Corte interamericana 195"
+   },
+   {
+    "nome": "effetto sui casi di prima del riconoscimento di «párr.»",
+    "valore": "Urgenda +1, Neubauer +2, Future Generations +2 citazioni con un paragrafo"
+   }
+  ],
+  "nome_tecnico": "Mappe dei paragrafi dei casi nuovi; rimandi in spagnolo e portoghese",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R07",
+  "cambia": "mappe dei tre casi nuovi; rimandi a paragrafo in spagnolo e portoghese"
+ },
+ {
+  "codice": "R08",
+  "tipo": "regola",
+  "nome": "Choice of the nearby pages, over the full window for every case",
+  "compito": "Come R03 (fino a 10 pagine prima e dopo, soglie 0,5 e 0,8, al massimo 5 pagine), ma con i punteggi del reranker su TUTTE le pagine della finestra di ogni citazione. Con R03 lo strumento dei punteggi arrivava da 2 pagine prima a 3 dopo: le pagine da 4 a 10 avevano un punteggio solo per Urgenda e, per caso, dove un'altra citazione era vicina.",
+  "data": "2026-10-01",
+  "stato": "in uso",
+  "codice_sorgente": [
+   {
+    "file": "tools/ripresa_punteggi.py",
+    "copia": "versioni/R08/ripresa_punteggi.py",
+    "sha256": "cab9ab73a23aec05bceac04cf018293e91d802e3b23afcc3080f1ba5533ee22c"
+   },
+   {
+    "file": "tools/leggi_ripresa.py",
+    "copia": "versioni/R08/leggi_ripresa.py",
+    "sha256": "4508f64a8f5d1314d9b3947ec51a48a6a6264590a8954168307783ea221bdf00"
+   },
+   {
+    "file": "tools/controllo_finestra.py",
+    "copia": "versioni/R08/controllo_finestra.py",
+    "sha256": "00a00daf07a289ccfbd767f37d19cea1f751483101e1f0a6512f807d01ec5665"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "pagine della finestra senza punteggio prima della correzione",
+    "valore": "Neubauer 3.651, Future Generations 1.354, Urgenda 22"
+   },
+   {
+    "nome": "citazioni con pagine vicine cambiate",
+    "valore": "Neubauer 154, Future Generations 4"
+   },
+   {
+    "nome": "citazioni con pagine attorno proposte",
+    "valore": "Neubauer da 544 a 560, Future Generations da 8 a 9"
+   }
+  ],
+  "nome_tecnico": "Scelta delle pagine vicine sulla finestra intera, per ogni caso",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R03",
+  "cambia": "i punteggi su tutta la finestra di 10 pagine prima e dopo, per ogni caso"
+ },
+ {
+  "codice": "R05",
+  "tipo": "regola",
+  "nome": "Rules that put the proposals together, with the brake for Asian scripts",
+  "compito": "Come R02, piu': le righe rilette sul testo OCR prendono il posto delle letture fatte sulla pagina illeggibile (tipo, principi, seguito, punteggi del reranker); il freno sulle prove confronta senza spazi le frasi in giapponese, cinese e coreano, dove l'a capo cade dentro le parole.",
+  "data": "2026-10-01",
+  "stato": "in uso",
+  "codice_sorgente": [
+   {
+    "file": "tools/carica_ripresa.py",
+    "copia": "versioni/R05/carica_ripresa.py",
+    "sha256": "b2cbaddb4322d2cb124f9681fabaf1691ce250f5f1f4bcb4f703155201cab726"
+   },
+   {
+    "file": "tools/carica_lessicali.py",
+    "copia": "versioni/R05/carica_lessicali.py",
+    "sha256": "6b4fccc867f7ded3af2f9e28fc0ec914fdf43880561f025bc6b8d23ea1165dd4"
+   },
+   {
+    "file": "tools/freni.py",
+    "copia": "versioni/R05/freni.py",
+    "sha256": "2c19909756557f33a19e41fa96bdb957b5c990812bdc71b98a28fe2e4f6feac4"
+   },
+   {
+    "file": "tools/leggi_ripresa.py",
+    "copia": "versioni/R05/leggi_ripresa.py",
+    "sha256": "61ef33039ad17511e663a19f849bc0410ebfee83da755b2391f2755e73bd6839"
+   },
+   {
+    "file": "tools/sonde.py",
+    "copia": "versioni/R05/sonde.py",
+    "sha256": "ada6499579b8b1da339262f3d075abb6f0caddb6bc4cd63cd2fb59d19ba5d60f"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "freno sulle prove, prova che deve passare e che deve fallire",
+    "valore": "giapponese: prova vera trovata; prova di un'altra pagina, frase inventata e frase dal prompt rifiutate; freni_prova.py OK"
+   },
+   {
+    "nome": "prove trovate su tutte le letture di Urgenda",
+    "valore": "1.751 (prima 1.725); inventate 13 (invariate)"
+   },
+   {
+    "nome": "citazioni con pagine attorno proposte",
+    "valore": "Urgenda 410 (prima 404), Neubauer 589 (prima 586)"
+   }
+  ],
+  "nome_tecnico": "Composizione delle proposte, con il freno corretto per le scritture asiatiche",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R02",
+  "cambia": "precedenza alle righe rilette sul testo OCR; freno sulle prove senza spazi nelle scritture asiatiche"
+ },
+ {
+  "codice": "R06",
+  "tipo": "regola",
+  "nome": "Paragraph map with the second set of probes",
+  "compito": "Come R04, con le sonde P03: per Neubauer ogni Randnummer degli intervalli scritti nel file del caso porta la sua sonda; per STC4360-2018 le voci passano dalle sonde vecchie alle nuove, piu' gli ordini al rimedio strutturale.",
+  "data": "2026-10-01",
+  "stato": "in prova con P03",
+  "codice_sorgente": [
+   {
+    "file": "tools/principi_da_paragrafi.py",
+    "copia": "versioni/R06/principi_da_paragrafi.py",
+    "sha256": "10d52a436003994d42256331810f148931ba8e6b3c20dd0b2290f80d88ce4a60"
+   }
+  ],
+  "istruzioni": [
+   {
+    "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
+    "copia": "versioni/R06/neubauer-mappa-paragrafi.yaml",
+    "sha256": "24a8550816ebd24236967c5651795c7c9a54252747513a79f26beee9acb6e8f1"
+   },
+   {
+    "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
+    "copia": "versioni/R06/future-generations-mappa-paragrafi.yaml",
+    "sha256": "6c577ab5ca63bedff867dc44ea929eef4d59f1d0a008c3025211126b0f21d98c"
+   },
+   {
+    "file": "cited-cases/neubauer-P03.yaml",
+    "copia": "versioni/R06/neubauer-P03.yaml",
+    "sha256": "4b9745aec82acb3de5db453cd06bbf03a619d007b54a726df70c2ce19a98b671"
+   },
+   {
+    "file": "cited-cases/future-generations-P03.yaml",
+    "copia": "versioni/R06/future-generations-P03.yaml",
+    "sha256": "49194c81740e425861644082ca25a70842fa65af30d8f0c1258ab0abcde85a50"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "citazioni di Neubauer con un principio dai paragrafi",
+    "valore": "998 (con P02 e R04: 895)"
+   }
+  ],
+  "nome_tecnico": "Mappa dei paragrafi con le sonde P03",
+  "in_uso": "superata",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R04",
+  "cambia": "le sonde P03; Neubauer per Randnummer"
+ },
+ {
+  "codice": "L01",
+  "tipo": "lettore",
+  "nome": "Citation reading, first version",
+  "compito": "Come L02, senza la regola sulle note a pie' di pagina. Due letture per riga, su tutte le citazioni di Urgenda.",
+  "data": "2026-09-26",
+  "stato": "superata da L02 (le letture restano in archivio)",
+  "note": "Sostituita perche' DeepSeek e i validatori divergevano soprattutto in nota (accordo 0,32 in nota contro 0,60 nel corpo). Il codice di questa prima lettura non e' stato conservato a parte: e' `classifica_lessicali.py` prima della regola delle note (L02).",
+  "software": {
+   "torch": "2.14.0",
+   "transformers": "5.17.0",
+   "peft": "0.21.0",
+   "huggingface_hub": "1.33.0",
+   "openai (client)": "3.19.2",
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
+  },
+  "nome_tecnico": "DeepSeek V4 Flash 0731, lettura delle citazioni, prima versione",
+  "in_uso": "non piu' in uso",
+  "alias": "V02a",
+  "famiglia": "lettura con un modello esterno",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "indice_pesi_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
+   "licenza": "MIT"
+  },
+  "impostazioni": {
+   "letture": 2,
+   "ragionamento": "acceso, sforzo basso",
+   "max_token_risposta": 8000,
+   "in_parallelo": 48
+  },
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)"
+ },
+ {
+  "codice": "R03",
+  "tipo": "regola",
+  "nome": "Choice of the nearby pages to read",
+  "compito": "Sopra i punteggi di T01: una pagina fino a 10 prima o dopo la citazione entra nella lettura della ripresa se il suo punteggio piu' alto su un principio e' almeno 0,5 (da 2 pagine prima a 3 dopo) o 0,8 (piu' lontano); al massimo 5 pagine per citazione.",
+  "data": "2026-09-29",
+  "stato": "in uso",
+  "codice_sorgente": [
+   {
+    "file": "tools/leggi_ripresa.py",
+    "copia": "versioni/R03/leggi_ripresa.py",
+    "sha256": "48b23956f77b3764d381528b705cdc924ae2dabeacbe47011848ddc31c67e990"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "soglia 0,8 per le pagine lontane",
+    "valore": "misurata: sulle pagine lette fra 4 e 10 pagine dalla citazione, sopra 0,8 piu' della meta' e' seguito vero"
+   },
+   {
+    "nome": "soglia 0,5 per le pagine vicine",
+    "valore": "non misurata: ereditata dal sistema precedente, da calibrare sui giudizi del team"
+   }
+  ],
+  "note": "Una regola, non un modello: calibrarla non riaddestra T01. Se T01 si riaddestra, le soglie si ricalibrano. Il codebook 0.3-pilot (dimensione 7) scrive ancora la finestra {prima: 2, dopo: 3}: va aggiornato a 10 nella prossima versione del codebook, non nel file registrato per L02 e L03, la cui impronta non si tocca.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -237,53 +836,159 @@
    "regex": "2026.7.19",
    "numpy": "2.5.1"
   },
-  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
-  "in_use": "in use",
-  "earlier_code": "V01",
-  "family": "rule without a model"
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Scelta delle pagine vicine da far leggere",
+  "in_uso": "sostituita",
+  "alias": "",
+  "famiglia": "regola senza modello"
  },
  {
-  "code": "L02",
-  "type": "reader",
-  "name": "Citation reading, Urgenda",
-  "task": "For each citation: is it really the case? type of citation, speaker, proposition, reason. Two readings per row.",
-  "cases": [
+  "codice": "R01",
+  "tipo": "regola",
+  "nome": "Paragraph map, first version",
+  "compito": "Principio preso da una citazione che indica il paragrafo («para. 5.7.7»): nessun modello, etichetta usabile per addestrare.",
+  "data": "2026-09-28",
+  "stato": "in uso",
+  "codice_sorgente": [
+   {
+    "file": "tools/principi_da_paragrafi.py",
+    "copia": "versioni/R01/principi_da_paragrafi.py",
+    "sha256": "6c87475b3e70e20b00f5b285d41e3d49ea9ba4250424aebbe83c22a5c45358ac"
+   }
+  ],
+  "istruzioni": [
+   {
+    "file": "cited-cases/prima-revisione-mappe-2026-10-01/urgenda-mappa-paragrafi.yaml",
+    "copia": "versioni/R01/urgenda-mappa-paragrafi.yaml",
+    "sha256": "9884d22d5f92f217c0a5a44a1112ffb932279c52cee829f179d46437f8303f86"
+   },
+   {
+    "file": "cited-cases/prima-revisione-mappe-2026-10-01/neubauer-mappa-paragrafi.yaml",
+    "copia": "versioni/R01/neubauer-mappa-paragrafi.yaml",
+    "sha256": "edf387445a305de0302ef13f6e25ef0c645c85e6881e882c8d58749e8c2563ca"
+   },
+   {
+    "file": "cited-cases/prima-revisione-mappe-2026-10-01/future-generations-mappa-paragrafi.yaml",
+    "copia": "versioni/R01/future-generations-mappa-paragrafi.yaml",
+    "sha256": "2441d46d580060b627088fa63847ed52fdc7934b1d050ec55cd84e844c9b691b"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "citazioni con un principio dai paragrafi",
+    "valore": "Urgenda 526, Neubauer 1.011, Future Generations 13"
+   }
+  ],
+  "note": "Corretta il 28/09/2026: leggeva numeri di due cifre sole e oltrepassava il punto e virgola (documento unico §63.25). Sostituita da R04 il 01/10/2026.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Mappa dei paragrafi",
+  "in_uso": "sostituita",
+  "alias": "V01",
+  "famiglia": "regola senza modello"
+ },
+ {
+  "codice": "R04",
+  "tipo": "regola",
+  "nome": "Paragraph map, reviewed",
+  "compito": "Come R01, con le mappe rilette sul testo dei paragrafi: una voce porta un principio solo se il paragrafo lo enuncia, applica o sviluppa; fatti, tesi di parte, riassunti narrativi e premesse vanno in «prepara» e non danno principi.",
+  "data": "2026-10-01",
+  "stato": "in uso",
+  "codice_sorgente": [
+   {
+    "file": "tools/principi_da_paragrafi.py",
+    "copia": "versioni/R04/principi_da_paragrafi.py",
+    "sha256": "6c87475b3e70e20b00f5b285d41e3d49ea9ba4250424aebbe83c22a5c45358ac"
+   }
+  ],
+  "istruzioni": [
+   {
+    "file": "cited-cases/urgenda-mappa-paragrafi.yaml",
+    "copia": "versioni/R04/urgenda-mappa-paragrafi.yaml",
+    "sha256": "9bc4f7d47ca8158990c996b6f69313587c5f8594fae6392edb4c5112a7e4d3e7"
+   },
+   {
+    "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
+    "copia": "versioni/R04/neubauer-mappa-paragrafi.yaml",
+    "sha256": "77fec6fb3583ed115a8279e60a015dd2290321215b7ce7eb3243a0bc35daf01c"
+   },
+   {
+    "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
+    "copia": "versioni/R04/future-generations-mappa-paragrafi.yaml",
+    "sha256": "efa5a2c5017255b0d7e21c8f79f831c3f2c32ea6c23cfbcf84a8ef417cb38f90"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "voci rilette (discordi o incerte nel controllo di DeepSeek del 29/09)",
+    "valore": "276: 128 confermate, 126 spostate in prepara, 19 cambiate, 3 sonde tolte"
+   },
+   {
+    "nome": "citazioni con un principio dai paragrafi",
+    "valore": "Urgenda 490, Neubauer 895, Future Generations 11"
+   }
+  ],
+  "note": "Revisione fatta da un modello (Claude Fable 5.1) leggendo il testo intero dei paragrafi come un giurista, il 30/09/2026 (`pubblicazione/mappa/REVISIONE-MAPPE-GIURISTA.md`); da confermare dal giurista del team. Ogni voce cambiata porta il campo `rivista` con le sonde di prima.",
+  "nome_tecnico": "Mappa dei paragrafi, rivista",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R01",
+  "cambia": "voci rilette sul testo dei paragrafi: fatti, tesi di parte e premesse passano a «prepara»"
+ },
+ {
+  "codice": "L02",
+  "tipo": "lettore",
+  "nome": "Citation reading, Urgenda",
+  "compito": "Per ogni citazione: e' davvero il caso? tipo di citazione, chi parla, proposizione, motivo. Due letture per riga.",
+  "casi": [
    "urgenda"
   ],
-  "date": "2026-09-27",
-  "status": "in use",
-  "base_model": {
-   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
-   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
-   "weights_index_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
-   "licence": "MIT"
+  "data": "2026-09-27",
+  "stato": "in uso",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "indice_pesi_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
+   "licenza": "MIT"
   },
-  "training": null,
-  "settings": {
-   "readings": 2,
-   "reasoning": "on, low effort",
-   "max_answer_tokens": 8000,
-   "parallel_requests": 48
+  "addestramento": null,
+  "impostazioni": {
+   "letture": 2,
+   "ragionamento": "acceso, sforzo basso",
+   "max_token_risposta": 8000,
+   "in_parallelo": 48
   },
-  "instructions": [
+  "istruzioni": [
    {
     "file": "versioni/L02/istruzioni.txt",
     "sha256": "40b6cd903b1723700a1d29bacc41cf637d58bff6061e5370d8782f0b36531221",
-    "reconstructed": "text regenerated by classifica_lessicali.modulo() from the current files, not saved at run time: the registered codebook is the file of 28 September 2026 17:08 (0.3-pilot), while the L02 readings are of 27 September and the rows carry «codebook 0.2-pilot»"
+    "ricostruita": "testo rigenerato da classifica_lessicali.modulo() con i file di oggi, non salvato al momento della lettura: il codebook registrato e' il file del 28/09/2026 17:08 (0.3-pilot), mentre le letture di L02 sono del 27/09 e le righe portano «codebook 0.2-pilot»"
    },
    {
     "file": "cited-cases/urgenda-fascicolo.md",
+    "copia": "versioni/L02/urgenda-fascicolo.md",
     "sha256": "a209dc40dd072bc6e1e26df97af1f664da616bd5189f6e48643c4c512340e895"
    },
    {
-    "file": "codebook/citazioni.yaml (version 0.3-pilot)",
+    "file": "codebook/citazioni.yaml",
+    "copia": "versioni/L02/citazioni.yaml",
     "sha256": "73e81470f06273d9048234d32eb5d9cc58c624fc0321ebbe5d20708697f69ae4",
-    "note": "file of 28 September 2026 17:08, later than the L02 readings (27 September) and the L03 readings of the morning of 28 September"
+    "versione": "0.3-pilot",
+    "nota": "file del 28/09/2026 17:08, posteriore alle letture di L02 (27/09) e di L03 del 28/09 mattina"
    }
   ],
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "tools/classifica_lessicali.py",
+    "copia": "versioni/L02/classifica_lessicali.py",
     "sha256": "57cced9eacb0492984700c017222be51a9ebedc84f1ffabbf1f3b6b5e4213240"
    }
   ],
@@ -293,65 +998,70 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "measures": [
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "misure": [
    {
-    "name": "agreement with human coders on type (Urgenda, 317 rows, reading 1)",
-    "value": "0.568 (kappa 0.36)"
+    "nome": "accordo sul tipo con i validatori (Urgenda, 317 righe, prima lettura)",
+    "valore": "0,568 (kappa 0,36)"
    }
   ],
-  "note": "Version with the principal investigator's rule on footnotes (§63.23).",
-  "in_use": "in use",
-  "earlier_code": "V02",
-  "family": "reading by an external model",
-  "changes_from": "L01",
-  "what_changes": "same model and settings; the instructions add the rule on footnotes"
+  "note": "Versione con la regola del PI sulle note a pie' di pagina (§63.23).",
+  "nome_tecnico": "DeepSeek V4 Flash 0731, lettura delle citazioni",
+  "in_uso": "in uso",
+  "alias": "V02",
+  "famiglia": "lettura con un modello esterno",
+  "rispetto_a": "L01",
+  "cambia": "stesso modello e stesse impostazioni; le istruzioni aggiungono la regola sulle note a pie' di pagina"
  },
  {
-  "code": "L03",
-  "type": "reader",
-  "name": "Citation reading, Neubauer and Future Generations",
-  "task": "For each citation: is it really the case? type of citation, speaker, proposition, reason. Two readings per row.",
-  "cases": [
+  "codice": "L03",
+  "tipo": "lettore",
+  "nome": "Citation reading, Neubauer and Future Generations",
+  "compito": "Per ogni citazione: e' davvero il caso? tipo di citazione, chi parla, proposizione, motivo. Due letture per riga.",
+  "casi": [
    "neubauer",
    "future-generations"
   ],
-  "date": "2026-09-28",
-  "status": "in use",
-  "base_model": {
-   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
-   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
-   "weights_index_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
-   "licence": "MIT"
+  "data": "2026-09-28",
+  "stato": "in uso",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "indice_pesi_sha256": "98efab455cf08dfbbbaaba6f570e1bf10bf927d2b4c3c453a59c2f6f0e3be92b",
+   "licenza": "MIT"
   },
-  "training": null,
-  "settings": {
-   "readings": 2,
-   "reasoning": "on, low effort",
-   "max_answer_tokens": 8000,
-   "parallel_requests": 48
+  "addestramento": null,
+  "impostazioni": {
+   "letture": 2,
+   "ragionamento": "acceso, sforzo basso",
+   "max_token_risposta": 8000,
+   "in_parallelo": 48
   },
-  "instructions": [
+  "istruzioni": [
    {
     "file": "versioni/L03/istruzioni.txt",
     "sha256": "e6ada8fa02825301cb3a076f03283b4f8342c0a4de3fa9a1303cff1881b50db5",
-    "reconstructed": "text regenerated by classifica_lessicali.modulo() from the current files, not saved at run time: the registered codebook is the file of 28 September 2026 17:08 (0.3-pilot), while the L02 readings are of 27 September and the rows carry «codebook 0.2-pilot»"
+    "ricostruita": "testo rigenerato da classifica_lessicali.modulo() con i file di oggi, non salvato al momento della lettura: il codebook registrato e' il file del 28/09/2026 17:08 (0.3-pilot), mentre le letture di L02 sono del 27/09 e le righe portano «codebook 0.2-pilot»"
    },
    {
     "file": "cited-cases/neubauer-fascicolo.md",
+    "copia": "versioni/L03/neubauer-fascicolo.md",
     "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67"
    },
    {
-    "file": "codebook/citazioni.yaml (version 0.3-pilot)",
+    "file": "codebook/citazioni.yaml",
+    "copia": "versioni/L03/citazioni.yaml",
     "sha256": "73e81470f06273d9048234d32eb5d9cc58c624fc0321ebbe5d20708697f69ae4",
-    "note": "file of 28 September 2026 17:08, later than the L02 readings (27 September) and the L03 readings of the morning of 28 September"
+    "versione": "0.3-pilot",
+    "nota": "file del 28/09/2026 17:08, posteriore alle letture di L02 (27/09) e di L03 del 28/09 mattina"
    }
   ],
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "tools/classifica_lessicali.py",
+    "copia": "versioni/L03/classifica_lessicali.py",
     "sha256": "57cced9eacb0492984700c017222be51a9ebedc84f1ffabbf1f3b6b5e4213240"
    }
   ],
@@ -361,46 +1071,48 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "measures": [],
-  "note": "Same instructions, generalised to the case: the name may also be the person (Luisa Neubauer). Applies to Future Generations too.",
-  "in_use": "in use",
-  "earlier_code": "V03",
-  "family": "reading by an external model",
-  "changes_from": "L02",
-  "what_changes": "same instructions, generalised to other cases: the name may be a person or a party"
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "misure": [],
+  "note": "Stesse istruzioni, generalizzate al caso: il nome puo' essere anche la persona (Luisa Neubauer). Vale anche per Future Generations.",
+  "nome_tecnico": "DeepSeek V4 Flash 0731, lettura delle citazioni",
+  "in_uso": "in uso",
+  "alias": "V03",
+  "famiglia": "lettura con un modello esterno",
+  "rispetto_a": "L02",
+  "cambia": "stesse istruzioni, generalizzate agli altri casi: il nome puo' essere una persona o una parte"
  },
  {
-  "code": "L04",
-  "type": "reader",
-  "name": "Uptake reading, first version: the principles",
-  "task": "Which principles the citation takes, and which nearby pages continue the uptake, with a quotation and a comment.",
-  "date": "2026-09-27",
-  "status": "in use for the principles since 30 September 2026 (with the principal investigator's approval, §63.35): the principles proposed on the rows to judge come again from L04; everything else in the row from L05 (or L07 for the continuation)",
-  "base_model": {
-   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
-   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
-   "licence": "MIT"
+  "codice": "L04",
+  "tipo": "lettore",
+  "nome": "Uptake reading, first version: the principles",
+  "compito": "Quali principi prende la citazione, e quali pagine vicine proseguono la ripresa, con una citazione testuale e un commento.",
+  "data": "2026-09-27",
+  "stato": "in uso per i principi dal 30/09/2026 (col si' del PI, §63.35): i principi proposti sulle righe da giudicare vengono di nuovo da L04; tutto il resto della riga da L05 (o L07 per il seguito)",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licenza": "MIT"
   },
-  "instructions": [
+  "istruzioni": [
    {
     "file": "versioni/L04/istruzioni.txt",
     "sha256": "ff4dd2ea780fd16a527138e42822b82b739d76b8da7f5424c37650013af00118",
-    "reconstructed": "text reconstructed on 30 September 2026 by tools/leggi_l04.py (the current file without the three additions of 28 September); the text given to the model on 27 and 28 September was not saved. That question 3 was absent is proved by the absence of the field frase_sostenuta in every L04 reading"
+    "ricostruita": "testo ricostruito il 30/09/2026 da tools/leggi_l04.py (il file di oggi senza le tre aggiunte del 28/09); il testo dato al modello il 27-28/09 non fu salvato. Che la domanda 3 mancasse lo prova l'assenza del campo frase_sostenuta in tutte le letture L04"
    }
   ],
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "versioni/L04/leggi_ripresa.py",
     "sha256": "fb8072f6e49e52406bbb3fd38dfdaf7b9bb53ea721240cf59af92c980549519f",
-    "note": "copy of versioni/V04/leggi_ripresa.py (file of 28 September 2026 22:57), the closest to the code of the readings of 27 and 28 September: narrow window (2 pages before to 3 after, at most 3 pages). The exact code of those readings was not kept"
+    "nota": "copia di versioni/V04/leggi_ripresa.py (file del 28/09/2026 22:57), la piu' vicina al codice delle letture del 27-28/09: finestra stretta (da 2 pagine prima a 3 dopo, al massimo 3 pagine). Il codice esatto di quelle letture non e' stato conservato"
    },
    {
     "file": "tools/leggi_l04.py",
+    "copia": "versioni/L04/leggi_l04.py",
     "sha256": "87c205413d22168d57805f4f573e633107d71d88fbbdefeb6b4f65ea1a57a2e7",
-    "note": "the reading of 30 September 2026 of the rows L04 had never read: same instructions, but it imports the current leggi_ripresa.py, so wide window (R03, up to 5 pages within 10)"
+    "nota": "la lettura del 30/09/2026 delle righe che L04 non aveva mai letto: stesse istruzioni, ma importa il leggi_ripresa.py di oggi, quindi finestra larga (R03, fino a 5 pagine fra 10)"
    }
   ],
   "software": {
@@ -409,55 +1121,60 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "note": "Readings: Urgenda on 27 September 2026 (file of 20:49); Neubauer and Future Generations on 28 September 2026 at 15:32, with a text that may differ from Urgenda's (not saved). Quotations copied from the page in 64% of cases (measured on 30 September on Urgenda). Since 30 September it is again the source of the principles proposed on the rows to judge (§63.35). The rows it had never read were read on 30 September with `tools/leggi_l04.py`; the review of the evening of 30 September still counts 38 rows to judge with no L04 reading at all (15 Urgenda, 23 Neubauer) and 207 with an empty list of principles, which the completeness check does not flag.",
-  "settings": {
-   "readings": 2,
-   "reasoning": "on, low effort",
-   "max_answer_tokens": 8000,
-   "parallel_requests": 48,
-   "temperature": "the model default"
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "note": "Letture: Urgenda il 27/09/2026 (file delle 20:49); Neubauer e Future Generations il 28/09/2026 alle 15:32, con un testo che puo' differire da quello di Urgenda (non salvato). Citazioni testuali copiate dalla pagina nel 64% dei casi (misurato il 30/09 su Urgenda). Dal 30/09 e' di nuovo la fonte dei principi proposti sulle righe da giudicare (col si' del PI, §63.35). Le righe che non aveva letto sono state lette il 30/09 con `tools/leggi_l04.py`; la revisione del 30/09 sera conta ancora 38 righe da giudicare senza nessuna lettura L04 (15 Urgenda, 23 Neubauer) e 207 con elenco vuoto di principi, che il controllo di completezza non segnala.",
+  "impostazioni": {
+   "letture": 2,
+   "ragionamento": "acceso, sforzo basso",
+   "max_token_risposta": 8000,
+   "in_parallelo": 48,
+   "temperatura": "quella predefinita del modello"
   },
-  "in_use": "in use",
-  "earlier_code": "V04",
-  "family": "reading by an external model"
+  "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa",
+  "in_uso": "in uso",
+  "alias": "V04",
+  "famiglia": "lettura con un modello esterno"
  },
  {
-  "code": "L05",
-  "type": "reader",
-  "name": "Uptake reading with the case dossier: continuation, quotes, supported sentence",
-  "task": "As L04, with the case dossier and two rules: a sentence carrying a footnote to another source does not continue; the quotation must be copied verbatim. Plus question 3: the sentence of the filing that the citation supports.",
-  "date": "2026-09-28",
-  "status": "in use since the evening of 29 September 2026 for the continuation, the quotations and the supported sentence (window up to 10 pages, R03). Not for the principles, since 30 September: it decides on the footnote sentence alone and does worse than L04 against the principal investigator's judgments (§63.35)",
-  "base_model": {
-   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
-   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
-   "licence": "MIT"
+  "codice": "L05",
+  "tipo": "lettore",
+  "nome": "Uptake reading with the case dossier: surrounding pages, quotes, supported sentence",
+  "compito": "Come L04, con il fascicolo del caso e due regole: una frase con una nota a un'altra fonte non prosegue; la citazione testuale va copiata alla lettera. In piu' la domanda 3: la frase dell'atto che la citazione sostiene.",
+  "data": "2026-09-28",
+  "stato": "in uso dal 29/09/2026 sera per il seguito, le citazioni testuali e la frase sostenuta (finestra fino a 10 pagine, R03). Per i principi no, dal 30/09: decide sulla sola frase della nota e contro i giudizi del PI fa peggio di L04 (§63.35)",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licenza": "MIT"
   },
-  "instructions": [
+  "istruzioni": [
    {
     "file": "versioni/L05/istruzioni.txt",
     "sha256": "189349de11711b11e4e0083ada79722433ba13edd23e405882a7f3bdf20dc665"
    },
    {
     "file": "cited-cases/urgenda-fascicolo.md",
+    "copia": "versioni/L05/urgenda-fascicolo.md",
     "sha256": "a209dc40dd072bc6e1e26df97af1f664da616bd5189f6e48643c4c512340e895"
    },
    {
     "file": "cited-cases/neubauer-fascicolo.md",
+    "copia": "versioni/L05/neubauer-fascicolo.md",
     "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67"
    },
    {
     "file": "cited-cases/future-generations-fascicolo.md",
+    "copia": "versioni/L05/future-generations-fascicolo.md",
     "sha256": "5e2c379cab54d6dfaafc0ca7d9d20351ed138761d1e023ec0336a76671f1088a"
    }
   ],
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "tools/leggi_ripresa.py",
-    "sha256": "7d2a7290a9fd079948c77e0bfe12e47f3ca6df2e48c8bdb92633bb70e635e2aa"
+    "copia": "versioni/L05/leggi_ripresa.py",
+    "sha256": "48b23956f77b3764d381528b705cdc924ae2dabeacbe47011848ddc31c67e990"
    }
   ],
   "software": {
@@ -466,44 +1183,46 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "note": "Instructions of the evening of 28 September 2026; readings run on 29 September 2026. The footnote rule comes from a case flagged by the principal investigator: brief to the Inter-American Court, p. 51 and p. 54 (Klimaatzaak at footnote 205).",
-  "settings": {
-   "readings": 2,
-   "reasoning": "on, low effort",
-   "max_answer_tokens": 8000,
-   "parallel_requests": 48,
-   "temperature": "the model default"
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "note": "Istruzioni del 28/09/2026 sera; letture eseguite il 29/09/2026. La regola delle note nasce da un caso segnalato dal PI: memoriale per la Corte interamericana, p. 51 e p. 54 (Klimaatzaak alla nota 205).",
+  "impostazioni": {
+   "letture": 2,
+   "ragionamento": "acceso, sforzo basso",
+   "max_token_risposta": 8000,
+   "in_parallelo": 48,
+   "temperatura": "quella predefinita del modello"
   },
-  "in_use": "in use",
-  "earlier_code": "V05",
-  "family": "reading by an external model",
-  "changes_from": "L04",
-  "what_changes": "same model; the instructions add the case dossier, the footnote rule, the verbatim quotation and the supported sentence"
+  "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa, seconda versione",
+  "in_uso": "in uso",
+  "alias": "V05",
+  "famiglia": "lettura con un modello esterno",
+  "rispetto_a": "L04",
+  "cambia": "stesso modello; le istruzioni aggiungono il fascicolo del caso, la regola delle note, la frase alla lettera e la frase sostenuta"
  },
  {
-  "code": "L06",
-  "type": "reader",
-  "name": "Uptake reading, test: principle decided on the whole passage",
-  "task": "As L05, but the principle is decided on the reasoning in which the citation stands, not on the footnote sentence alone.",
-  "date": "2026-09-30",
-  "status": "experiment on 120 rows of Urgenda (4 readings): does not beat L04 against the principal investigator's judgments, not in the platform",
-  "base_model": {
-   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
-   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
-   "licence": "MIT"
+  "codice": "L06",
+  "tipo": "lettore",
+  "nome": "Uptake reading, test: principle decided on the whole passage",
+  "compito": "Come L05, ma il principio si decide sul ragionamento in cui sta la citazione, non sulla sola frase della nota.",
+  "data": "2026-09-30",
+  "stato": "esperimento su 120 righe di Urgenda (4 letture): non batte L04 contro i giudizi del PI, non entra in piattaforma",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licenza": "MIT"
   },
-  "instructions": [
+  "istruzioni": [
    {
     "file": "versioni/L06/istruzioni.txt",
     "sha256": "763cb5b6f888b5a2c0aadae66954011cce6980b6ded00836317b250a7a6bc0f1"
    }
   ],
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "tools/leggi_l06.py",
+    "copia": "versioni/L06/leggi_l06.py",
     "sha256": "0e91499a3a7dd3f98454aaabb6380d4c0645b4a7500849ff8b977e51d2203add"
    }
   ],
@@ -513,50 +1232,52 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "measures": [
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "misure": [
    {
-    "name": "principles identical to the principal investigator's judgments of 28 September (one reading / 2 readings out of 4)",
-    "value": "13 / 17 on the 35 of his rows present among the 120 (recount of the evening of 30 September); L04 on the same 38 rows: 25. The project document reports 14 / 18 and L04 26 on a base that was never fixed; the rows judged by the principal investigator must be frozen in a dated file before any new measure"
+    "nome": "principi identici ai giudizi del PI del 28/09 (una lettura / 2 letture su 4)",
+    "valore": "13 / 17 sulle 35 righe del PI presenti fra le 120 (ricalcolo del 30/09 sera); L04 sulle stesse 38 righe: 25. Il documento unico riporta 14 / 18 e L04 26 su una base non fissata; le righe giudicate dal PI vanno congelate in un file con data prima di ogni nuova misura"
    }
   ],
-  "note": "An experiment, not a version in use: the judgments used as reference were given with the proposals visible.",
-  "settings": {
-   "readings": 4,
-   "reasoning": "on, low effort",
-   "max_answer_tokens": 8000,
-   "parallel_requests": 48,
-   "temperature": "the model default"
+  "note": "Esperimento, non versione in uso: i giudizi del PI usati come riferimento sono stati dati con le proposte davanti.",
+  "impostazioni": {
+   "letture": 4,
+   "ragionamento": "acceso, sforzo basso",
+   "max_token_risposta": 8000,
+   "in_parallelo": 48,
+   "temperatura": "quella predefinita del modello"
   },
-  "in_use": "experimental",
-  "earlier_code": "",
-  "family": "reading by an external model",
-  "changes_from": "L05",
-  "what_changes": "the principle is decided on the passage, not on the footnote sentence alone"
+  "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa, prova col passaggio",
+  "in_uso": "sperimentale",
+  "alias": "",
+  "famiglia": "lettura con un modello esterno",
+  "rispetto_a": "L05",
+  "cambia": "il principio si decide sul passaggio, non sulla sola frase della nota"
  },
  {
-  "code": "L07",
-  "type": "reader",
-  "name": "Continuation reread on the proposed principles",
-  "task": "Only the continuation question, with the L05 instructions, taking as fixed the principles the row proposes (from L04).",
-  "date": "2026-09-30",
-  "status": "in use since 30 September 2026 on the rows to judge where the L04 principles differ from the L05 ones and there are candidate pages",
-  "base_model": {
-   "name": "deepseek-ai/DeepSeek-V4-Flash-0731",
-   "revision": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
-   "licence": "MIT"
+  "codice": "L07",
+  "tipo": "lettore",
+  "nome": "Surrounding pages reread on the proposed principles",
+  "compito": "Solo la domanda del seguito, con le istruzioni di L05, dando come fissati i principi che la riga propone (da L04).",
+  "data": "2026-09-30",
+  "stato": "in uso dal 30/09/2026 sulle righe da giudicare dove i principi di L04 sono diversi da quelli di L05 e ci sono pagine candidate",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licenza": "MIT"
   },
-  "instructions": [
+  "istruzioni": [
    {
     "file": "versioni/L07/istruzioni.txt",
     "sha256": "12640d3313d2a42111e780d6b63c8e3dc7907c9a23c6dfd9fcff4c3b8cf84137"
    }
   ],
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "tools/leggi_seguito.py",
+    "copia": "versioni/L07/leggi_seguito.py",
     "sha256": "258dad28edebc63da8b65241824709d6f68689f19b79b02015fc12f6433e0154"
    }
   ],
@@ -566,35 +1287,36 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "settings": {
-   "readings": 1,
-   "reasoning": "on, low effort",
-   "max_answer_tokens": 8000,
-   "parallel_requests": 48,
-   "temperature": "the model default"
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "impostazioni": {
+   "letture": 1,
+   "ragionamento": "acceso, sforzo basso",
+   "max_token_risposta": 8000,
+   "in_parallelo": 48,
+   "temperatura": "quella predefinita del modello"
   },
-  "in_use": "in use",
-  "earlier_code": "",
-  "family": "reading by an external model",
-  "changes_from": "L05",
-  "what_changes": "only the continuation question, with the principles of the row given as fixed"
+  "nome_tecnico": "DeepSeek V4 Flash 0731, pagine attorno rilette sui principi proposti",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "lettura con un modello esterno",
+  "rispetto_a": "L05",
+  "cambia": "solo la domanda delle pagine attorno, con i principi della riga dati come fissati"
  },
  {
-  "code": "T01",
-  "type": "model",
-  "name": "TRACE-Reranker 0.1",
-  "task": "Scores a principle against a text (citation passage, nearby pages): proposes principles and nearby pages to read.",
-  "date": "2026-09-22",
-  "status": "in use",
-  "base_model": {
-   "name": "Qwen/Qwen3-Reranker-4B",
-   "revision": "22e683669bc0f0bd69640a1354a6d0aebcfeede5",
-   "licence": "Apache-2.0"
+  "codice": "T01",
+  "tipo": "modello",
+  "nome": "TRACE-Reranker 0.1",
+  "compito": "Punteggio fra un principio e un testo (brano della citazione, pagine vicine): propone i principi e le pagine vicine da leggere.",
+  "data": "2026-09-22",
+  "stato": "in uso",
+  "modello_base": {
+   "nome": "Qwen/Qwen3-Reranker-4B",
+   "revisione": "22e683669bc0f0bd69640a1354a6d0aebcfeede5",
+   "licenza": "Apache-2.0"
   },
-  "weights": [
+  "pesi": [
    {
     "file": "training/lora_qwen_rr4b_1/passata_2/adapter_model.safetensors",
     "sha256": "2dd2ab9afcd00914139949f82686926135fea6c05ec505e5567c09f628d11ebf"
@@ -608,19 +1330,21 @@
     "sha256": "e8cc3e5fc5822a6d01d46ddb3002eb5722bb6a1d0066ec2b35b7539e77d061e2"
    }
   ],
-  "training": {
-   "date": "2026-09-22",
-   "data": "263 team judgments on the semantic rows of Urgenda (split frozen on 22 September)",
-   "rows": 263,
-   "settings": "LoRA rank 16 on q,k,v,o; 2 epochs; three seeds averaged; «uptake» instruction; 2,560 tokens"
+  "addestramento": {
+   "data": "2026-09-22",
+   "dati": "263 giudizi del team sulle righe semantiche di Urgenda (divisione congelata del 22/09)",
+   "righe": 263,
+   "impostazioni": "LoRA rango 16 su q,k,v,o; 2 passate; tre semi mediati; istruzione «ripresa»; 2.560 token"
   },
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "tools/prova_riordinatori.py",
+    "copia": "versioni/T01/prova_riordinatori.py",
     "sha256": "154a36dd8df688970a056ffe011b48238191398004bea0121273ebafd539b8ea"
    },
    {
     "file": "tools/ripresa_punteggi.py",
+    "copia": "versioni/T01/ripresa_punteggi.py",
     "sha256": "9ea0280b9bade3f45b4d4b1f558517406c9f39b3a19f1dbeafd337e7d86b8014"
    }
   ],
@@ -630,49 +1354,57 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "measures": [
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "misure": [
    {
-    "name": "top-scored principle among those of the paragraph map (Urgenda, 526 citations)",
-    "value": "0.69 (random 0.37)"
+    "nome": "principio col punteggio piu alto fra quelli della mappa dei paragrafi (Urgenda, 526 citazioni)",
+    "valore": "0,69 (a caso 0,37)"
    },
    {
-    "name": "AUC on the 133 semantic test rows",
-    "value": "0.787: NOT a measure of implicit uptake (§63.24)"
+    "nome": "AUC sulle 133 righe di prova semantiche",
+    "valore": "0,787: NON e' una misura della ripresa implicita (§63.24)"
    }
   ],
-  "note": "Trained on July labels that mixed argument and source (§63.24): to be retrained on confirmed principles.",
-  "in_use": "in use",
-  "earlier_code": "V06",
-  "family": "TRACE model trained by the project"
+  "note": "Addestrato su etichette di luglio che confondevano argomento e fonte (§63.24): da riaddestrare sui principi confermati.",
+  "nome_tecnico": "TRACE-Reranker 0.1",
+  "in_uso": "in uso",
+  "alias": "V06",
+  "famiglia": "modello TRACE addestrato da noi"
  },
  {
-  "code": "R02",
-  "type": "rule",
-  "name": "Rules that put the proposals together",
-  "task": "Puts together R01, the readings L02-L05 and L07 and the T01 scores into the proposals the team sees, with the codebook rules.",
-  "date": "2026-09-28",
-  "status": "in use (rule added on 30 September 2026)",
-  "source_code": [
+  "codice": "R02",
+  "tipo": "regola",
+  "nome": "Rules that put the proposals together",
+  "compito": "Mette insieme R01, le letture L02-L05 e L07 e i punteggi di T01 nelle proposte che il team vede, con le regole del codebook.",
+  "data": "2026-09-28",
+  "stato": "sostituita da R05 il 01/10/2026 (regola aggiunta il 30/09/2026)",
+  "codice_sorgente": [
    {
     "file": "tools/carica_ripresa.py",
-    "sha256": "7f0079009de7fdea0b907f65a02fa39d9b0e16c4b9a3ab1a902313cf2e4937bd"
+    "copia": "versioni/R02/carica_ripresa.py",
+    "sha256": "a55e37ada3b8101d092b5b9e4125481e643144679151a97a7f35aa7f0016bbf0"
    },
    {
     "file": "tools/carica_lessicali.py",
+    "copia": "versioni/R02/carica_lessicali.py",
     "sha256": "6844d6f22f6d63e76fcbb9beb3e53c4c53f894fb2b0416b561dbbe596f8e30e5"
+   },
+   {
+    "file": "tools/freni.py",
+    "copia": "versioni/R02/freni.py",
+    "sha256": "367ec8226105f7096401eafb9d3528ffb4e57bbffb00bc213f3201f6f19715eb"
    }
   ],
-  "rules": [
-   "ticked principles: those from the paragraph map (R01) and from the reading (L04 since 30 September; L05 before); the reranker (T01) is a hint and never ticks",
-   "chain mention: principle «none»; hints remain visible",
-   "no continuation page is ticked when the citation takes no principle",
-   "the sentence under a nearby page is shown as a quotation only if it is found verbatim in the page",
-   "since 30 September 2026: a page ticked on a principle the row does not propose stays listed, it is not removed"
+  "regole": [
+   "principi spuntati: quelli del paragrafo (R01) e della lettura (L04 dal 30/09; prima L05); il reranker (T01) e' un indizio, non spunta",
+   "menzione in catena: principio «nessuno», gli indizi restano visibili",
+   "nessun seguito spuntato se la citazione non prende nessun principio",
+   "la frase sotto una pagina vicina e' mostrata come citazione testuale solo se si ritrova nella pagina",
+   "dal 30/09/2026: una pagina spuntata su un principio che la riga non propone resta elencata, non si toglie"
   ],
-  "note": "Writes only on rows without a human judgment. Open defect (review of 30 September 2026, point 2): principles written by the reader without the case prefix are silently dropped when compared with the ids of the case file; the prefix correction exists only for the continuation pages.",
+  "note": "Scrive solo sulle righe senza esito: i giudizi del team non si toccano. Difetto aperto (revisione del 30/09/2026, punto 2): i principi scritti dal lettore senza il prefisso del caso vengono scartati in silenzio nel confronto con gli id del file del caso; la correzione del prefisso c'e' solo per le pagine del seguito.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -681,38 +1413,40 @@
    "regex": "2026.7.19",
    "numpy": "2.5.1"
   },
-  "hardware": "Apple M5 Pro, macOS 27.0 (the research group's Mac)",
-  "in_use": "in use",
-  "earlier_code": "V07",
-  "family": "rule without a model"
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Composizione delle proposte",
+  "in_uso": "sostituita",
+  "alias": "V07",
+  "famiglia": "regola senza modello"
  },
  {
-  "code": "T02",
-  "type": "model",
-  "name": "TRACE-Reader v0",
-  "task": "The external reader's work on a single GPU: type, speaker, proposition, reason",
-  "date": "2026-09-27",
-  "status": "experimental (the proposals in the platform still come from the external reader)",
-  "base_model": {
-   "name": "Qwen/Qwen3-14B",
-   "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
-   "licence": "Apache-2.0"
+  "codice": "T02",
+  "tipo": "modello",
+  "nome": "TRACE-Reader v0",
+  "compito": "Il lavoro di DeepSeek su una GPU sola: tipo, chi parla, proposizione, motivo",
+  "data": "2026-09-27",
+  "stato": "sperimentale (le proposte in piattaforma vengono ancora da DeepSeek)",
+  "modello_base": {
+   "nome": "Qwen/Qwen3-14B",
+   "revisione": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+   "licenza": "Apache-2.0"
   },
-  "weights": [
+  "pesi": [
    {
     "file": "training/reader/lora_reader_v0/passata_2/adapter_model.safetensors",
     "sha256": "c3829c9f0de871621c2651ec344091f67b53650c9ad5c283bd7a0cbac0f059a9"
    }
   ],
-  "training": {
-   "date": "2026-09-27",
-   "data": "1,120 readings by the external reader (L02, L04) of Urgenda citations with two readings agreeing on the type; every test row excluded",
-   "rows": 1120,
-   "settings": "LoRA rank 16 on attention and MLP; 2 epochs; lr 1e-4; gradient accumulation 8; 6,144 tokens"
+  "addestramento": {
+   "data": "2026-09-27",
+   "dati": "1.120 letture di DeepSeek (L02, L04) su citazioni di Urgenda con due letture concordi sul tipo; esclusa ogni riga di prova",
+   "righe": 1120,
+   "impostazioni": "LoRA rango 16 su attenzione e MLP; 2 passate; lr 1e-4; accumulo 8; 6.144 token"
   },
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "tools/reader.py",
+    "copia": "versioni/T02/reader.py",
     "sha256": "e979aa98df8846c78bd5e02644e14c2a631649e0f702cdd07cc3ce8545e26870"
    }
   ],
@@ -722,59 +1456,61 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "measures": [
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "misure": [
    {
-    "name": "agreement with human coders (rows judged with DeepSeek's proposals visible)",
-    "value": "type 0.596 (kappa 0.39) on 317 rows; DeepSeek 0.568"
+    "nome": "accordo con i validatori (righe giudicate con le proposte di DeepSeek davanti)",
+    "valore": "tipo 0,596 (kappa 0,39) sulle 317 righe; DeepSeek 0,568"
    }
   ],
-  "adoption_rule": [
+  "regola_di_adozione": [
    {
-    "date": "2026-09-27",
-    "rule": "on the 317 rows of Urgenda with a type given by people, if TRACE-Reader matches or beats the external reader it makes the proposals (§63.26)",
-    "outcome": "TRACE-Reader v0 0.596 against DeepSeek 0.568: passed, but NOT applied, because those 317 rows had been judged with DeepSeek's proposals visible and the principal investigator asked for a measure taken without proposals"
+    "data": "2026-09-27",
+    "regola": "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera il lettore esterno fa lui le proposte (§63.26)",
+    "esito": "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte"
    },
    {
-    "date": "2026-09-30",
-    "rule": "replaces the external reader only if it matches it on the rows the team judges without proposals (one-in-five sample); rows with a comparable type on the evening of 30 September: zero",
-    "outcome": "waiting for the judgments given without proposals"
+    "data": "2026-09-30",
+    "regola": "sostituisce il lettore esterno solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
+    "esito": "in attesa dei giudizi senza proposte"
    }
   ],
-  "note": "Distilled from DeepSeek readings, declared. The human test labels are by one person and were given with DeepSeek's proposals visible.",
-  "in_use": "experimental",
-  "earlier_code": "V08",
-  "family": "TRACE model trained by the project"
+  "note": "Distillazione da DeepSeek, dichiarata. Le etichette umane di prova sono di una persona sola e sono state date con le proposte di DeepSeek davanti.",
+  "nome_tecnico": "TRACE-Reader v0",
+  "in_uso": "sperimentale",
+  "alias": "V08",
+  "famiglia": "modello TRACE addestrato da noi"
  },
  {
-  "code": "T03",
-  "type": "model",
-  "name": "TRACE-Reader v1",
-  "task": "The external reader's work on a single GPU: type, speaker, proposition, reason, principles and nearby pages",
-  "date": "2026-09-28",
-  "status": "experimental (the proposals in the platform still come from the external reader)",
-  "base_model": {
-   "name": "Qwen/Qwen3-14B",
-   "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
-   "licence": "Apache-2.0"
+  "codice": "T03",
+  "tipo": "modello",
+  "nome": "TRACE-Reader v1",
+  "compito": "Il lavoro di DeepSeek su una GPU sola: tipo, chi parla, proposizione, motivo, principi e pagine vicine",
+  "data": "2026-09-28",
+  "stato": "sperimentale (le proposte in piattaforma vengono ancora da DeepSeek)",
+  "modello_base": {
+   "nome": "Qwen/Qwen3-14B",
+   "revisione": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+   "licenza": "Apache-2.0"
   },
-  "weights": [
+  "pesi": [
    {
     "file": "training/reader/lora_reader_v1/passata_2/adapter_model.safetensors",
     "sha256": "49dddaaf0efda006f2bc2e9963448921043f38d4d1690a93006bff4b8fac666c"
    }
   ],
-  "training": {
-   "date": "2026-09-28",
-   "data": "1,120 readings by the external reader (L02, L04) of Urgenda citations with two readings agreeing on the type; every test row excluded",
-   "rows": 1120,
-   "settings": "LoRA rank 16 on attention and MLP; 2 epochs; lr 1e-4; gradient accumulation 8; 8,192 tokens"
+  "addestramento": {
+   "data": "2026-09-28",
+   "dati": "1.120 letture di DeepSeek (L02, L04) su citazioni di Urgenda con due letture concordi sul tipo; esclusa ogni riga di prova",
+   "righe": 1120,
+   "impostazioni": "LoRA rango 16 su attenzione e MLP; 2 passate; lr 1e-4; accumulo 8; 8.192 token"
   },
-  "source_code": [
+  "codice_sorgente": [
    {
     "file": "tools/reader.py",
+    "copia": "versioni/T03/reader.py",
     "sha256": "e979aa98df8846c78bd5e02644e14c2a631649e0f702cdd07cc3ce8545e26870"
    }
   ],
@@ -784,32 +1520,33 @@
    "peft": "0.21.0",
    "huggingface_hub": "1.33.0",
    "openai (client)": "3.19.2",
-   "vLLM": "0.30.0 (image vllm/vllm-openai:v0.30.0)"
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
-  "hardware": "NVIDIA H100 80GB HBM3 (ReCaS-Bari data centre, INFN and University of Bari)",
-  "measures": [
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "misure": [
    {
-    "name": "agreement with human coders (rows judged with DeepSeek's proposals visible)",
-    "value": "type 0.599; principles: at least one correct 0.79 on the 101 rows with a paragraph (DeepSeek 0.86, helped by the paragraph map)"
+    "nome": "accordo con i validatori (righe giudicate con le proposte di DeepSeek davanti)",
+    "valore": "tipo 0,599; principi: almeno uno giusto 0,79 sulle 101 righe col paragrafo (DeepSeek 0,86, ma aiutato)"
    }
   ],
-  "adoption_rule": [
+  "regola_di_adozione": [
    {
-    "date": "2026-09-27",
-    "rule": "on the 317 rows of Urgenda with a type given by people, if TRACE-Reader matches or beats the external reader it makes the proposals (§63.26)",
-    "outcome": "TRACE-Reader v0 0.596 against DeepSeek 0.568: passed, but NOT applied, because those 317 rows had been judged with DeepSeek's proposals visible and the principal investigator asked for a measure taken without proposals"
+    "data": "2026-09-27",
+    "regola": "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera il lettore esterno fa lui le proposte (§63.26)",
+    "esito": "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte"
    },
    {
-    "date": "2026-09-30",
-    "rule": "replaces the external reader only if it matches it on the rows the team judges without proposals (one-in-five sample); rows with a comparable type on the evening of 30 September: zero",
-    "outcome": "waiting for the judgments given without proposals"
+    "data": "2026-09-30",
+    "regola": "sostituisce il lettore esterno solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
+    "esito": "in attesa dei giudizi senza proposte"
    }
   ],
-  "note": "Distilled from DeepSeek readings, declared. The human test labels are by one person and were given with DeepSeek's proposals visible.",
-  "in_use": "experimental",
-  "earlier_code": "V09",
-  "family": "TRACE model trained by the project",
-  "changes_from": "T02",
-  "what_changes": "same base and method; also learns principles and nearby pages, with longer texts (8,192 tokens)"
+  "note": "Distillazione da DeepSeek, dichiarata. Le etichette umane di prova sono di una persona sola e sono state date con le proposte di DeepSeek davanti.",
+  "nome_tecnico": "TRACE-Reader v1",
+  "in_uso": "sperimentale",
+  "alias": "V09",
+  "famiglia": "modello TRACE addestrato da noi",
+  "rispetto_a": "T02",
+  "cambia": "stessa base e stesso metodo; impara anche i principi e le pagine vicine, con testi piu' lunghi (8.192 token)"
  }
 ]

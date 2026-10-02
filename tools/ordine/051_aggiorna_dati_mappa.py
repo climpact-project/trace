@@ -1,0 +1,1 @@
+../aggiorna_dati_mappa.py
