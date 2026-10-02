@@ -45,7 +45,7 @@ Code comments are in Italian, the working language of the team, as are the instr
 
 ## The tools in reading order
 
-Every file in `tools/` carries its number in reading order, by phase (`tools/LEGGIMI.md`). On the team's machine the same files run without the number (the running cycles call them by name); here the imports are rewritten for the numbered names (`tools/046_pubblica_repo.py` does it), and the frozen copies in `versioni/` keep the names they ran with.
+Every file in `tools/` carries its number in reading order, by phase (`tools/LEGGIMI.md`). On the team's machine the same files run without the number (the running cycles call them by name); here the imports are rewritten for the numbered names (`tools/055_pubblica_repo.py` does it), and the frozen copies in `versioni/` keep the names they ran with.
 
 
 **1. Il corpus: dal PDF al testo, OCR, indice delle pagine**
