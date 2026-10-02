@@ -1,1 +1,0 @@
-../ciclo_ocr3_rifai.sh

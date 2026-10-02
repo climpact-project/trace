@@ -1,1 +1,0 @@
-../indice_pagine.py

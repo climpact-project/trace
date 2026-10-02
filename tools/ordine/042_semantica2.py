@@ -1,1 +1,0 @@
-../semantica2.py

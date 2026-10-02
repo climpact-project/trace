@@ -1,1 +1,0 @@
-../cartella_ricerca_manuale.py

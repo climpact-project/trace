@@ -1,1 +1,0 @@
-../finestra_coppie_remoto.py

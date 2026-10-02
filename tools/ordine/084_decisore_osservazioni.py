@@ -1,1 +1,0 @@
-../decisore_osservazioni.py

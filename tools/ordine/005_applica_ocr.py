@@ -1,1 +1,0 @@
-../applica_ocr.py

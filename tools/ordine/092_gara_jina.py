@@ -1,1 +1,0 @@
-../gara_jina.py

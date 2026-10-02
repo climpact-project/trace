@@ -1,1 +1,0 @@
-../coppie_ocr.py

@@ -1,1 +1,0 @@
-../rivedi_dopo_l05.py

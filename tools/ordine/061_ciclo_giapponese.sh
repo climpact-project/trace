@@ -1,1 +1,0 @@
-../ciclo_giapponese.sh

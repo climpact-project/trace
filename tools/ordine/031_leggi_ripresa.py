@@ -1,1 +1,0 @@
-../leggi_ripresa.py

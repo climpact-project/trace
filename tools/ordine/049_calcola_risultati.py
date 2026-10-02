@@ -1,1 +1,0 @@
-../calcola_risultati.py

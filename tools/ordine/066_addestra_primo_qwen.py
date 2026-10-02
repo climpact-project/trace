@@ -1,1 +1,0 @@
-../addestra_primo_qwen.py

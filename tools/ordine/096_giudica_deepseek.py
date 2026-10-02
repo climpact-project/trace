@@ -1,1 +1,0 @@
-../giudica_deepseek.py

@@ -1,1 +1,0 @@
-../misura_finestra.py

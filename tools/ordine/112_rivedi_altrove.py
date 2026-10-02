@@ -1,1 +1,0 @@
-../rivedi_altrove.py

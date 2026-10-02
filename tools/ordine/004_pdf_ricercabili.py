@@ -1,1 +1,0 @@
-../pdf_ricercabili.py

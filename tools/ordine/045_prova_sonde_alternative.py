@@ -1,1 +1,0 @@
-../prova_sonde_alternative.py

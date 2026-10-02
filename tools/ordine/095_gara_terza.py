@@ -1,1 +1,0 @@
-../gara_terza.py

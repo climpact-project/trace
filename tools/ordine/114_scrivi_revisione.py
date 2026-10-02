@@ -1,1 +1,0 @@
-../scrivi_revisione.py

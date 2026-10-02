@@ -1,1 +1,0 @@
-../posizione_dopo_ocr.py

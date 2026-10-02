@@ -1,1 +1,0 @@
-../ciclo_casi_nuovi.sh

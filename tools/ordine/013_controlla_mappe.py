@@ -1,1 +1,0 @@
-../controlla_mappe.py

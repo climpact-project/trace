@@ -1,1 +1,0 @@
-../controllo_scarti.py

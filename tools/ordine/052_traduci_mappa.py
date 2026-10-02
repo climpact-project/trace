@@ -1,1 +1,0 @@
-../traduci_mappa.py

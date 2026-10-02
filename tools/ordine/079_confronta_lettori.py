@@ -1,1 +1,0 @@
-../confronta_lettori.py

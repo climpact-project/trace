@@ -1,1 +1,0 @@
-../prova_pipeline_primo.py

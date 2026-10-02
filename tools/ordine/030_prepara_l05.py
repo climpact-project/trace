@@ -1,1 +1,0 @@
-../prepara_l05.py

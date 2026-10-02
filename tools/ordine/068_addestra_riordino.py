@@ -1,1 +1,0 @@
-../addestra_riordino.py

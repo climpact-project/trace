@@ -1,1 +1,0 @@
-../ciclo_semantica_casi_nuovi.sh

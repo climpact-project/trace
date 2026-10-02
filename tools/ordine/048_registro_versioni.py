@@ -1,1 +1,0 @@
-../registro_versioni.py

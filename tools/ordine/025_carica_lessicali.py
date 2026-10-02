@@ -1,1 +1,0 @@
-../carica_lessicali.py

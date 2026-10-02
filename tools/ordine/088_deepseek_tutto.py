@@ -1,1 +1,0 @@
-../deepseek_tutto.py

@@ -1,1 +1,0 @@
-../prova_recupero_grande.py
