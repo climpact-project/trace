@@ -134,7 +134,7 @@
   "nome": "Name search on OCR text, more Japanese and Korean forms",
   "compito": "Come S02, su 158 pagine illeggibili rifatte con l'OCR in 7 documenti (coreano, cinese tradizionale, spagnolo). Forme nuove: アージェンダ事件, アージェンダ財団 (Urgenda), ノイバウアー, 노이바우어 (Neubauer). Per le forme in giapponese, cinese e coreano si ammette uno spazio o un a capo fra un carattere e l'altro (in quei testi l'a capo cade anche dentro un nome); le forme latine restano esatte. Nei documenti rifatti la posizione delle righe vecchie si traduce nel testo nuovo (posizione_dopo_ocr.py) invece di cambiarla, perche' fa parte dell'identificativo.",
   "data": "2026-10-01",
-  "stato": "in uso: righe aggiunte in piattaforma",
+  "stato": "sostituita da S05 (le righe che ha aggiunto restano, con la loro provenienza)",
   "istruzioni": [
    {
     "file": "versioni/S03/istruzioni/urgenda.yaml",
@@ -215,7 +215,7 @@
   },
   "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
   "nome_tecnico": "Ricerca per nome sul testo OCR, con altre forme giapponesi e coreane",
-  "in_uso": "in uso",
+  "in_uso": "sostituita",
   "alias": "",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S02",
@@ -224,10 +224,10 @@
  {
   "codice": "D02",
   "tipo": "corpus",
-  "nome": "Documents: D01 with OCR text of unreadable pages",
-  "compito": "Come D01, ma 158 pagine illeggibili (caratteri rotti) di 7 atti in coreano, cinese tradizionale e spagnolo hanno il testo rifatto con l'OCR (ocrmypdf), solo dove la pagina vecchia era illeggibile e la nuova leggibile. Il PDF passa prima quattro controlli: impronta sha256_pdf dell'intestazione del testo (o della copia .orig), nome, numero di pagine, somiglianza.",
+  "nome": "Documents: D01 with OCR text of unreadable pages (158 pages in 7 filings on 01/10; 3,171 pages in 94 filings from 02/10)",
+  "compito": "Come D01, ma le pagine illeggibili (caratteri rotti, o in coreano, giapponese e cinese lettere latine senza senso al posto della scrittura) hanno il testo rifatto con l'OCR (ocrmypdf), solo dove la pagina vecchia era illeggibile e la nuova leggibile. Il PDF passa prima quattro controlli: impronta sha256_pdf dell'intestazione del testo (o della copia .orig), nome, numero di pagine, somiglianza. Due fasi: 01/10/2026, 158 pagine in 7 atti (coreano, cinese tradizionale, spagnolo); 02/10/2026, l'OCR esteso a 115 atti in elenco, di cui 94 con pagine sostituite: 3.171 pagine in tutto.",
   "data": "2026-10-01",
-  "stato": "in uso per le righe di quei 7 atti",
+  "stato": "in uso: 3.171 pagine in 94 atti dal 02/10/2026",
   "codice_sorgente": [
    {
     "file": "tools/applica_ocr.py",
@@ -243,12 +243,30 @@
     "file": "training/ocr/lista.txt",
     "copia": "versioni/D02/lista.txt",
     "sha256": "53624eed2013775d9d15884a4ffec35b061f79fdca774347c33872c1179d7fd1"
+   },
+   {
+    "file": "tools/applica_ocr.py",
+    "fase": "02/10/2026, ultima scrittura alle 17:05",
+    "copia": "storia del repository sabin-corpus, commit bac9012",
+    "sha256": "122bea691084278fe4e70a04fd107100ad1964441719c89ecc61a1817fde7e49",
+    "nota": "impronta registrata dal giornale delle operazioni all'esecuzione delle 17:05; le scritture delle 9:43-10:02 sono state fatte con revisioni intermedie dello stesso giorno, non conservate (sei correzioni, documento unico §63.49)"
+   },
+   {
+    "file": "training/ocr/esegui_parallelo.sh",
+    "fase": "02/10/2026",
+    "sha256": "b18b3acbec6609049a4cb2ebd454363b5b61fac912a9dad8dd224dd0943d146a"
+   },
+   {
+    "file": "training/ocr/lista.txt",
+    "fase": "02/10/2026, 115 atti",
+    "sha256": "0ca9b9614c1d07964f3e4640eb7f80a780c9867ed6a689f6369ef239f5754451"
    }
   ],
   "pesi": [
    {
     "file": "training/ocr/pagine_sostituite.json",
-    "sha256": "c95fa6b74b398d9b883a5b4fccd76eae88a66c968ccb211228a694a97c8d68b1"
+    "sha256": "2e5b1170176475e439ca4aa7c867c68a4273c618261a1540b642f3f90390a4b8",
+    "nota": "l'elenco di oggi (3.171 pagine, 94 atti); quello del 01/10 non e' stato conservato"
    },
    {
     "file": "index/pagine/pagine.prima-ocr-2026-10-01.jsonl.gz",
@@ -258,21 +276,41 @@
   ],
   "misure": [
    {
+    "nome": "pagine sostituite, 01/10/2026",
+    "valore": "158 in 7 atti"
+   },
+   {
+    "nome": "pagine sostituite, a fine 02/10/2026",
+    "valore": "3.171 in 94 atti: 2.983 in 87 atti nuovi (prima scrittura 02/10 tra le 9:43 e le 17:05) e 188 nei 7 atti del 01/10 (i sei in coreano e cinese riscritti il 02/10 alle 10:02 con la regola per le scritture asiatiche: da 122 a 152 pagine; la richiesta di parere in spagnolo resta a 36)"
+   },
+   {
+    "nome": "pagine per lingua dell'OCR (02/10)",
+    "valore": "inglese 2.443, portoghese 374, coreano 205, giapponese 70, spagnolo 36, tedesco 20, francese 17, cinese tradizionale 6"
+   },
+   {
+    "nome": "atti in elenco senza pagine sostituite",
+    "valore": "21 su 115 (controlli non passati o nessuna pagina da sostituire)"
+   },
+   {
+    "nome": "pagine aggiunte all'indice perche' prima vuote",
+    "valore": "232 (campo ocr 2026-10-02 nell'indice)"
+   },
+   {
     "nome": "controllo del PDF",
-    "valore": "i 7 PDF giusti passano, i 2 PDF sbagliati del primo giro sono rifiutati"
+    "valore": "i 7 PDF giusti del 01/10 passano, i 2 PDF sbagliati del primo giro sono rifiutati"
    },
    {
     "nome": "pagine che restano illeggibili anche dopo l'OCR",
     "valore": "per esempio pp. 7-12 della petizione taiwanese Lee"
    }
   ],
-  "note": "Le righe lette sul testo OCR portano provenienza.corpus = D02. Copie del testo di prima: training/ocr/prima/.",
-  "nome_tecnico": "D01 con il testo OCR delle pagine illeggibili di 7 atti",
+  "note": "Le righe dei 94 atti portano provenienza.corpus = D02 (il caricamento lo decide sull'elenco di oggi). Copie del testo di prima: training/ocr/prima/. Date ricostruite dalle copie di prima (una per atto, 01/10 per 7 atti, 02/10 per 87), dalla data dei Markdown e dal giornale (2 scritture alle 17:05); i log dell'OCR in training/ocr/<atto>.log. Nell'indice delle pagine il campo ocr vale 2026-10-01 per tutte le pagine sostituite (2.939), anche quelle del 02/10: e' scritto fisso da applica_ocr.py, non e' la data dell'OCR. D03 parte da questo stato (3.171 pagine) e aggiunge il Markdown di 277 atti. Revisione della scheda: 03/10/2026, training/misure/CORPUS-DIFETTI-2026-10-03.md.",
+  "nome_tecnico": "D01 con il testo OCR delle pagine illeggibili (7 atti il 01/10, 94 atti dal 02/10)",
   "in_uso": "in uso",
   "alias": "",
   "famiglia": "dati",
   "rispetto_a": "D01",
-  "cambia": "158 pagine illeggibili di 7 atti rifatte con l'OCR, dal PDF controllato con l'impronta"
+  "cambia": "pagine illeggibili rifatte con l'OCR, dal PDF controllato con l'impronta: 158 pagine in 7 atti il 01/10, 3.171 pagine in 94 atti dal 02/10"
  },
  {
   "codice": "P01",
@@ -666,6 +704,129 @@
   "cambia": "i punteggi su tutta la finestra di 10 pagine prima e dopo, per ogni caso"
  },
  {
+  "codice": "R10",
+  "tipo": "regola",
+  "nome": "Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap",
+  "compito": "Come R08 (fino a 10 pagine prima e dopo la citazione, punteggi di T01 su tutta la finestra), ma una pagina entra se il suo punteggio piu' alto su un principio e' almeno 0,5 A OGNI DISTANZA (R08: 0,5 da 2 prima a 3 dopo, 0,8 piu' lontano) e SENZA TETTO (R08: al massimo 5 pagine, le migliori). Le pagine illeggibili restano fuori (freno 1). Si sceglie con `leggi_ripresa.py prepara --regola R10 --etichetta E`, sempre in un file con etichetta: il file delle righe di R08 non si tocca.",
+  "data": "2026-10-02",
+  "stato": "in uso dal ciclo delle cinque letture (tools/ciclo_cinque_letture.sh)",
+  "codice_sorgente": [
+   {
+    "file": "tools/leggi_ripresa.py",
+    "copia": "versioni/R10/leggi_ripresa.py",
+    "sha256": "aedbcac07a277b4d54a939623b639de5a42667c4e5fe8af7ec286c0f59215fd9"
+   },
+   {
+    "file": "tools/cinque_letture.py",
+    "copia": "versioni/R10/cinque_letture.py",
+    "sha256": "4919ad8b9043b0b130cdb8744c2a3919c436080fc419eb9ece084282151840a9"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "richiamo entro +-10 pagine (pagine che riprendono fatte leggere, giudice DeepSeek alla cieca)",
+    "valore": "R08 27% [20-34] a 2,03 pagine per citazione; R10 57% [51-63] a 4,58 pagine (bootstrap per atto)"
+   },
+   {
+    "nome": "canali delle perdite di R08 (320 citazioni)",
+    "valore": "sotto soglia 36%, oltre la finestra 22%, oltre il tetto 7% delle citazioni"
+   },
+   {
+    "nome": "pagine tagliate dal tetto che riprendono",
+    "valore": "come quelle scelte: 46% contro 49% (tutti i casi); Neubauer 67% contro 54%"
+   },
+   {
+    "nome": "pagine fra 0,5 e 0,8 a 4-10 pagine dalla citazione che riprendono",
+    "valore": "24% (R08 le scartava)"
+   }
+  ],
+  "note": "Misura: training/misure/PERDITE-PAGINE-ATTORNO.md (02/10/2026). Il giudice e' DeepSeek, non il team: le quote assolute valgono quanto il giudice; i confronti fra regole sono piu' solidi perche' lo stesso giudice legge tutto alla cieca. Neubauer arriva fino a 20 pagine per citazione.",
+  "nome_tecnico": "Scelta delle pagine attorno: soglia 0,5 a ogni distanza, senza tetto",
+  "in_uso": "in uso dal ciclo delle cinque letture",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R08",
+  "cambia": "soglia 0,5 a ogni distanza dentro +-10 pagine (R08: 0,8 oltre 2 prima e 3 dopo) e nessun tetto (R08: 5 pagine)"
+ },
+ {
+  "codice": "R11",
+  "tipo": "regola",
+  "nome": "Proposals by majority vote of five readings",
+  "compito": "Cinque letture per riga, voto di maggioranza (regole intere in tools/maggioranza.py). TIPO: il piu' votato fra le letture valide del tipo (L02 Urgenda, L03 gli altri casi, codebook 0.4-pilot); a parita' vince, fra i tipi pari, il primo nell'ordine delle letture; incerto se il margine e' al massimo 1 voto; confidenza alta solo con margine di almeno 2. PRINCIPI: dalle cinque letture L05 (non piu' da L04 come in R05), proposto se lo vota la maggioranza delle letture valide (3 su 5), con i voti scritti per ogni principio («4/5»); se nessuno arriva alla maggioranza, «nessuno»; restano i principi della mappa dei paragrafi e «nessuno» per una menzione in catena (tipo a maggioranza). PAGINE ATTORNO (R10): una pagina prosegue se lo dice la maggioranza e la prova di almeno una di quelle letture e' nella pagina. FRASE SOSTENUTA: dalla prima lettura con l'insieme di principi della maggioranza, altrimenti dalla prima con una frase, verificata coi freni. PROVA MANCANTE: un principio proposto dalla sola lettura senza frase trovata ne' pagina spuntata con prova resta, segnato (proposto_prova_mancante). Righe incerte (tipo o un principio con margine al massimo 1) segnate proposto_incerta e con confidenza bassa. Le letture gia' fatte con la stessa domanda, carattere per carattere (impronta SHA-256), si tengono (--aggiungi-letture); le altre si rifanno.",
+  "data": "2026-10-02",
+  "stato": "in uso dal ciclo delle cinque letture (righe con provenienza.composizione R11)",
+  "codice_sorgente": [
+   {
+    "file": "tools/maggioranza.py",
+    "copia": "versioni/R11/maggioranza.py",
+    "sha256": "98023d21c2ad7e8ef139bf37d13d1b1d24c9b9711f5e12972cb74a6bbd38a2c2"
+   },
+   {
+    "file": "tools/carica_ripresa.py",
+    "copia": "versioni/R11/carica_ripresa.py",
+    "sha256": "781652975f71c8f1e31766aaa459bebec5a20e63db4f47a8e85dbbae4ef642c3"
+   },
+   {
+    "file": "tools/carica_lessicali.py",
+    "copia": "versioni/R11/carica_lessicali.py",
+    "sha256": "2f490b48b2979d25c04876eacb640e51a1f3313148b9cbef17938cd74c48871f"
+   },
+   {
+    "file": "tools/freni.py",
+    "copia": "versioni/R11/freni.py",
+    "sha256": "e105315641c05797045e2ac8b742bbc82aa4249ec0aa243a66183d700de9f086"
+   },
+   {
+    "file": "tools/chiamata_deepseek.py",
+    "copia": "versioni/R11/chiamata_deepseek.py",
+    "sha256": "4f76e9bbf06c464300b724de5bc147d8f76e10b0978dce97d2b258532c30123c"
+   },
+   {
+    "file": "tools/classifica_lessicali.py",
+    "copia": "versioni/R11/classifica_lessicali.py",
+    "sha256": "99bfcb91095ca9de33452f68e645888783cec5f5746fe429b4b3b1e027b2a665"
+   },
+   {
+    "file": "tools/ciclo_cinque_letture.sh",
+    "copia": "versioni/R11/ciclo_cinque_letture.sh",
+    "sha256": "59080528e65cf93c132a510709610a32d8895b4bbc6b57960091771494768335"
+   }
+  ],
+  "impostazioni": {
+   "letture": 5,
+   "ragionamento": "acceso, sforzo basso",
+   "max_token_risposta": 8000,
+   "in_parallelo": 32,
+   "temperatura": "quella predefinita del modello",
+   "codebook": "0.4-pilot"
+  },
+  "misure": [
+   {
+    "nome": "alfa di Krippendorff fra due maggioranze indipendenti, tutti i casi (300 righe, 11 letture per riga)",
+    "valore": "principi (L05): 1 lettura 0,661, 3 letture 0,776, 5 letture 0,827; tipo: 0,669, 0,780, 0,829"
+   },
+   {
+    "nome": "decisioni incerte a 5 letture (margine al massimo 1)",
+    "valore": "principi 5,5% delle decisioni; tipo 11,3% delle righe"
+   },
+   {
+    "nome": "casi sotto 0,80 anche a 5 letture",
+    "valore": "principi di KlimaSeniorinnen 0,684; tipo della CIG 0,723 e della Corte IDH 0,760"
+   },
+   {
+    "nome": "togliere i principi senza prova (Urgenda, 115 righe giudicate)",
+    "valore": "F1 da 0,688 a 0,689 [-0,019; +0,021]: nessun guadagno, richiamo piu' basso; quindi segnale, non filtro"
+   }
+  ],
+  "note": "Misura: training/misure/GIRI-E-DOMANDA.md (02/10/2026). La soglia 0,80 per scegliere 5 letture e' una convenzione dichiarata. Il confronto con le persone vale solo per Urgenda ed e' influenzato dalla proposta che le persone avevano davanti. L08 (un principio alla volta) non adottata.",
+  "nome_tecnico": "Composizione delle proposte a maggioranza di cinque letture",
+  "in_uso": "in uso dal ciclo delle cinque letture",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R05",
+  "cambia": "cinque letture per riga e voto di maggioranza; principi dalle letture L05 invece che da L04; voti e righe incerte scritti; prova mancante segnata, non tolta"
+ },
+ {
   "codice": "R05",
   "tipo": "regola",
   "nome": "Rules that put the proposals together, with the brake for Asian scripts",
@@ -1018,7 +1179,7 @@
  {
   "codice": "L03",
   "tipo": "lettore",
-  "nome": "Citation reading, Neubauer and Future Generations",
+  "nome": "Citation reading, every case except Urgenda (Neubauer and Future Generations from 28/09, the three new cases from 01/10)",
   "compito": "Per ogni citazione: e' davvero il caso? tipo di citazione, chi parla, proposizione, motivo. Due letture per riga.",
   "casi": [
    "neubauer",
@@ -1303,6 +1464,233 @@
   "famiglia": "lettura con un modello esterno",
   "rispetto_a": "L05",
   "cambia": "solo la domanda delle pagine attorno, con i principi della riga dati come fissati"
+ },
+ {
+  "codice": "S04",
+  "tipo": "regola",
+  "nome": "Semantic search without the name, redone with the supported sentences",
+  "compito": "Cerca le riprese SENZA il nome del caso: le domande sono le frasi sostenute di L05 (nome ed ECLI mascherati); si cerca con pplx-embed-v1-4b solo negli atti successivi alla decisione che non nominano il caso; le pagine trovate passano da T01 sul principio della domanda; le migliori le legge L09.",
+  "data": "2026-09-29",
+  "stato": "esperimento: nessuna riga in piattaforma; Urgenda il 29/09, i tre casi nuovi il 02/10",
+  "codice_sorgente": [
+   {
+    "file": "tools/semantica2.py",
+    "copia": "versioni/S04/semantica2.py",
+    "sha256": "4fbb12c5e12a0645138b928de72449b539d9bf4f8f7e24681746f9cff89e9955"
+   },
+   {
+    "file": "tools/distilla.py",
+    "copia": "versioni/S04/distilla.py",
+    "sha256": "91762d363ca1bfa78a24ce9a9cb5f642748cb5adbdc1d089ae4bff761094d22e"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "candidate dei tre casi nuovi (due letture «ripresa» su 3.319 pagine lette)",
+    "valore": "22"
+   },
+   {
+    "nome": "di cui in un atto dove la ricerca per nome ha poi trovato il caso",
+    "valore": "15"
+   },
+   {
+    "nome": "davvero senza nome",
+    "valore": "7, quasi tutte con una fonte propria evidente (rapporto training/semantiche/RAPPORTO-2026-10-02.md)"
+   }
+  ],
+  "note": "Diversa dalla ricerca semantica di luglio (e5-large e bge-reranker), che sta dentro S01 e ha prodotto le righe «semantica» in piattaforma.",
+  "nome_tecnico": "Ricerca semantica senza nome, rifatta con le frasi sostenute",
+  "in_uso": "esperimento",
+  "alias": "",
+  "famiglia": "ricerca per nome",
+  "rispetto_a": "S01",
+  "cambia": "la ricerca semantica di luglio rifatta: domande dalle frasi sostenute, solo atti che non nominano il caso, T01 e lettura L09"
+ },
+ {
+  "codice": "L09",
+  "tipo": "lettore",
+  "nome": "Uptake reading without the name: takes up the reasoning, from another source, or same topic only",
+  "compito": "Per una pagina trovata da S04: riprende il ragionamento del caso, lo prende da un'altra fonte, o e' solo lo stesso tema?",
+  "data": "2026-09-29",
+  "stato": "esperimento, non in piattaforma",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licenza": "MIT"
+  },
+  "istruzioni": [
+   {
+    "file": "versioni/L09/istruzioni.txt",
+    "sha256": "80b63b42d028f5ff79feea7811b254716e70b43eb3fcc62c0a46f4fc56183fd0"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/semantica2.py",
+    "copia": "versioni/L09/semantica2.py",
+    "sha256": "4fbb12c5e12a0645138b928de72449b539d9bf4f8f7e24681746f9cff89e9955"
+   }
+  ],
+  "software": {
+   "torch": "2.14.0",
+   "transformers": "5.17.0",
+   "peft": "0.21.0",
+   "huggingface_hub": "1.33.0",
+   "openai (client)": "3.19.2",
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
+  },
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa senza nome",
+  "in_uso": "esperimento",
+  "alias": "",
+  "famiglia": "lettura con un modello esterno",
+  "rispetto_a": "L05",
+  "cambia": "stesso modello; la domanda e' se una pagina SENZA il nome riprende il ragionamento del caso o lo prende da un'altra fonte"
+ },
+ {
+  "codice": "D03",
+  "tipo": "corpus",
+  "nome": "Documents: D02 with Markdown for 277 filings of the 19/09/2026 update",
+  "compito": "Come D02, piu' 277 atti scaricati con l'aggiornamento del Climate Litigation Database del 19/09/2026 che avevano il testo ma non il Markdown (metadati mai fusi in metadata.csv). Markdown scritti con lo stesso front matter di build_markdown.py, testo intatto, nessun Markdown esistente toccato; 7.671 pagine aggiunte all'indice delle pagine.",
+  "data": "2026-10-02",
+  "stato": "in uso dal caricamento del ciclo S05",
+  "fonte": "Sabin Center for Climate Change Law, aggiornamento del 19/09/2026 (aggiornamenti/da-scaricare-ccc-2026-09-19.csv)",
+  "versione": "CCC-whole_data_dump-2026-09-19 (solo i 277 atti)",
+  "pesi": [
+   {
+    "file": "aggiornamenti/da-scaricare-ccc-2026-09-19.csv",
+    "sha256": "d39cc2d3e839d2d548983afb2ca1413177d3ace839ee684ae71a3340ec3abcd4"
+   },
+   {
+    "file": "training/s05/markdown_s05_registro.json",
+    "sha256": "a20d608c91da807adbe8b5bdeb97dee67de6aa33e915e087b59470515c363232"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/build_markdown_s05.py",
+    "copia": "versioni/D03/build_markdown_s05.py",
+    "sha256": "18b39e46111db9fe07b0e46d5c67d9dfda77eaace2542a1b93fa0bc72a3e3e46"
+   }
+  ],
+  "note": "Restano senza Markdown 36 atti. La diagnosi scritta il 02/10 («24 atti che sono lo stesso PDF di un atto di luglio sotto un altro identificativo», «3 PDF di luglio sovrascritti sul disco da file diversi», «1 PDF senza testo, da passare all'OCR») e' stata corretta il 03/10 (training/misure/CORPUS-DIFETTI-2026-10-03.md): i 27 PDF non sono mai stati scaricati (manifest.jsonl, http 0: fetch_sabin.py ha trovato occupato il nome troncato e ha scritto l'impronta del file di luglio); i 3 pae-antimary sono le petizioni di luglio riscritte dall'OCR del 31/07, con l'originale in .pdf.orig; il PDF di Sebastiao e' troncato gia' alla fonte (2.310.144 byte, senza tabella finale). Gli 8 file non PDF (20 in tutto nel corpus) sono stati estratti il 03/10 in una cartella a parte (training/difetti-2026-10-03/), fuori da D03. Impronte di ogni ingresso e uscita nel registro dei Markdown.",
+  "nome_tecnico": "D02 con il Markdown di 277 atti dell'aggiornamento del 19/09/2026",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "dati",
+  "rispetto_a": "D02",
+  "cambia": "il Markdown di 277 atti dell'aggiornamento del 19/09/2026 che avevano solo il testo"
+ },
+ {
+  "codice": "S05",
+  "tipo": "regola",
+  "nome": "Name search on normalised text, with readmitted and new forms",
+  "compito": "Come S03, ma: (1) le forme latine si cercano tolleranti, con le regole di textnorm (sillabazione di fine riga, a capo e spazi dentro le forme di piu' parole, trattini tipografici, apostrofi curvi, lettere scomposte), sempre sul testo originale, quindi con le stesse posizioni; le corrispondenze di S03 restano identiche e le nuove si aggiungono solo dove non le toccano; (2) anche nei 277 atti di D03; (3) forme riammesse («VKS» per KlimaSeniorinnen, «Urgence climatique et droits de l'homme» per OC-32/25) e forme nuove provate nel campione della misura, alcune solo a parola intera (campo forme_parola_intera). Si aggiungono solo righe nuove: nessuna riga esistente si unisce o si tocca.",
+  "data": "2026-10-02",
+  "stato": "in uso dal caricamento del ciclo S05 (righe con provenienza.estrazione S05)",
+  "istruzioni": [
+   {
+    "file": "cited-cases/urgenda-S05.yaml",
+    "copia": "versioni/S05/urgenda-S05.yaml",
+    "sha256": "9c922ff708a2108bfe4d8778936c32cf4790778cb1550bada304d830e112f4bd"
+   },
+   {
+    "file": "cited-cases/neubauer-S05.yaml",
+    "copia": "versioni/S05/neubauer-S05.yaml",
+    "sha256": "99d27d75207839e51f78ea06b028ef0cafbfac0bd0250288f84255aec5832599"
+   },
+   {
+    "file": "cited-cases/future-generations-S05.yaml",
+    "copia": "versioni/S05/future-generations-S05.yaml",
+    "sha256": "e48bf5f88fb6174ea47722c42f8284adb842b1649622379776caa3fbdd711be8"
+   },
+   {
+    "file": "cited-cases/klimaseniorinnen-S05.yaml",
+    "copia": "versioni/S05/klimaseniorinnen-S05.yaml",
+    "sha256": "df93cc219db6b40b9beb6dc46830f7dfb54bfd3cf613b46096c0d470dfd51670"
+   },
+   {
+    "file": "cited-cases/cig-parere-clima-S05.yaml",
+    "copia": "versioni/S05/cig-parere-clima-S05.yaml",
+    "sha256": "b2cfc2faa33f7a0afeda960b945c6bae7bb41eb2f932967cf946d3932d0ce2a2"
+   },
+   {
+    "file": "cited-cases/idh-oc-32-25-S05.yaml",
+    "copia": "versioni/S05/idh-oc-32-25-S05.yaml",
+    "sha256": "ec2a7d21d56057cd27cabfee5c62bca88ccb205791345ba15b831bf8c43941a8"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/cerca_s05.py",
+    "copia": "versioni/S05/cerca_s05.py",
+    "sha256": "b088bc55dbca58e7a9154468990e1a9e919adea792f92bbdb46120f71a467b83"
+   },
+   {
+    "file": "tools/unisci_s05.py",
+    "copia": "versioni/S05/unisci_s05.py",
+    "sha256": "10e3836cae5cdb2771424ae7cd86e1ea9cdff1aeeb67ce01799fb13a9c537d9b"
+   },
+   {
+    "file": "tools/build_markdown_s05.py",
+    "copia": "versioni/S05/build_markdown_s05.py",
+    "sha256": "18b39e46111db9fe07b0e46d5c67d9dfda77eaace2542a1b93fa0bc72a3e3e46"
+   },
+   {
+    "file": "tools/posizione_dopo_ocr.py",
+    "copia": "versioni/S05/posizione_dopo_ocr.py",
+    "sha256": "eab691b5db56cfdb8ff4227692871e50c7552f99321fb4a9f3ab8dc5c802ee38"
+   },
+   {
+    "file": "textnorm.py",
+    "copia": "versioni/S05/textnorm.py",
+    "sha256": "d9046d8d35e9a1b5e8f01a150aed264e3c4b3639836a1ba7030f0f3bb8c31835"
+   },
+   {
+    "file": "tools/ciclo_s05.sh",
+    "copia": "versioni/S05/ciclo_s05.sh",
+    "sha256": "11c8949caf534775d7466fc5aa15f04a0c9a9759b9d5ea977c88dc2a0a77670a"
+   },
+   {
+    "file": "tests/test_cerca_s05.py",
+    "copia": "versioni/S05/test_cerca_s05.py",
+    "sha256": "34de9b6a32654f52dda52ce4ad34f92946b00a5d5baf98c74a8b7d8abb2fb7c4"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "citazioni di S03 ritrovate allo stesso identificativo (prova sui sei casi, tests/test_cerca_s05.py)",
+    "valore": "tutte: Urgenda 1.766, Neubauer 1.694, Future Generations 154, KlimaSeniorinnen 879, parere CIG 727, OC-32/25 634"
+   },
+   {
+    "nome": "righe col nome in piattaforma non ritrovate",
+    "valore": "0 su 5.697 (3 di Urgenda ritrovate alla posizione non tradotta: nate sul testo OCR senza provenienza.ocr)"
+   },
+   {
+    "nome": "righe nuove (prova a secco del 02/10/2026)",
+    "valore": "793: Urgenda 13, Neubauer 149, Future Generations 58, KlimaSeniorinnen 73, parere CIG 235, OC-32/25 265; per causa: forme nuove 396, Markdown nuovi 170, normalizzazione 156, forme riammesse 69, gia' in S03 2"
+   },
+   {
+    "nome": "precisione delle righe nuove (30 lette per caso, Urgenda tutte 13)",
+    "valore": "155 su 163, 95,1% (IC di Wilson 95%: 90,6-97,5%); per causa: forme nuove 81/81, Markdown nuovi 17/17, forme riammesse 23/23, normalizzazione 34/42 (titoli generici che attraversano l'a capo)"
+   }
+  ],
+  "note": "Le righe di S03 restano con la loro provenienza. Dove una corrispondenza nuova lega due righe esistenti nello stesso gruppo (Urgenda 4, Neubauer 42, OC-32/25 3) le righe restano separate. Le righe 'esclusa' coprono il loro gruppo (Neubauer: 12).",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Ricerca per nome sul testo normalizzato, con forme riammesse e forme nuove",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "ricerca per nome",
+  "rispetto_a": "S03",
+  "cambia": "testo normalizzato con le stesse posizioni (sillabazione, a capo, trattini tipografici); i 277 atti di D03; forme riammesse e forme nuove provate; solo righe aggiunte"
  },
  {
   "codice": "T01",

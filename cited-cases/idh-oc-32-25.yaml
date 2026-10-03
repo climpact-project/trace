@@ -1,3 +1,17 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/idh-oc-32-25.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forma riammessa: Urgence climatique et droits de l'homme
+#   - forma riammessa: Urgence climatique et les droits de l'homme
+#   - forme nuove: OC 32/2025, OC32/2025, AO 32/25, AO32/25, AO 32/2025, PC 32/25, PC-32/2025, PC 32/2025
+#   - forme nuove: The Climate Emergency, Inter-Am. Ct. H.R, Climate Emergency Advisory Opinion
+#   - forme nuove: IACtHR AO
+#   - forme nuove: Parecer Consultivo nº 32, Parecer Consultivo n.º 32, Parecer Consultivo n° 32, Parecer Consultivo 32, Opinião Consultiva n° 32, Opiniao Consultiva nº 32, Opiniao Consultiva n. 32
+#   - forme_parola_intera (nuovo campo, letto solo da cerca_s05.py): OC 32/2025, OC32/2025, AO 32/25, AO32/25, AO 32/2025, PC 32/25, PC-32/2025, PC 32/2025, IACtHR AO
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 # CASO CITATO — CORTE INTERAMERICANA DEI DIRITTI UMANI, PARERE CONSULTIVO OC-32/25
 # «Emergencia Climática y Derechos Humanos», 29 maggio 2025, richiesto da Cile e Colombia.
 # PROPOSTA per il PI, 1 ottobre 2026, scritta da Claude. Versione 2: le otto sonde sono quelle approvate
@@ -173,6 +187,44 @@ forme:
   - Climate Emergency and Human Rights, Advisory Opinion   # OSSERVATA: 24
   - Advisory Opinion Climate Emergency and Human Rights   # OSSERVATA: 7
   - Advisory Opinion on the Climate Emergency and Human Rights   # OSSERVATA: 16
+  # S05 RIAMMESSA (era fra le forme_escluse): titolo francese del parere; e' anche il titolo dell'avis CNCDH del 27/5/2021, che il filtro della data dell'atto toglie (la pagina falsa del campione e' quella). Prove, lette nel campione del 02/10: 5 vere su 6 (la falsa: notre-affaire-a-tous-les-amis-de-la-terre-and-oxfam-france-v-bnp-paribas-summons_c698 p. 51): request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 14; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 51; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 86; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 116
+  - Urgence climatique et droits de l'homme
+  # S05 RIAMMESSA (era fra le forme_escluse): variante con l'articolo.
+  - Urgence climatique et les droits de l'homme
+  # S05 NUOVE: il codice con altri separatori (i trattini tipografici li copre la normalizzazione), a parola intera. Prove, lette nel campione del 02/10: 30 vere su 30: federal-public-prosecutors-office-vs-federal-union-and-others-complaint_9cd2 p. 81; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_cb15 p. 25; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_ee45 p. 7; instituto-preservar-agapan-and-nucleo-amigos-da-terra-vs-federal-union-and-others-climate-emergency-in-rio-grande-do-sul-state-appeal_b242 p. 20
+  - OC 32/2025
+  - OC32/2025
+  - AO 32/25
+  - AO32/25
+  - AO 32/2025
+  - PC 32/25
+  - PC-32/2025
+  - PC 32/2025
+  # S05 NUOVE: la forma breve americana («The Climate Emergency, Inter-Am. Ct. H.R. ¶ 321») e «IACtHR Climate Emergency Advisory Opinion». Prove, lette nel campione del 02/10: 7 vere su 7: request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_f638 p. 54; juliana-youth-v-united-states-of-america-jovenes-ex-juliana-v-estados-unidos-de-america-petition_cbdc p. 75; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_f638 p. 21; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_f638 p. 30
+  - The Climate Emergency, Inter-Am. Ct. H.R
+  - Climate Emergency Advisory Opinion
+  # S05 NUOVE: solo «IACtHR AO» (a parola intera, «IACtHR AOs» no): «Advisory Opinion IACHR» resta ESCLUSA per decisione del PI del 01/10/2026, anche se la pagina Bonaire e' vera. Prove, lette nel campione del 02/10: 4 vere su 4: request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_937b p. 13; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_937b p. 9; greenpeace-netherlands-and-8-citizens-of-bonaire-v-the-netherlands-decision_cfdf p. 68; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_937b p. 7
+  - IACtHR AO
+  # S05 NUOVE: le grafie portoghesi mancanti. Prove, lette nel campione del 02/10: 4 vere su 4: mpf-and-mpsp-vs-petrobras-and-ibama-stage-4-of-the-pre-salt-complaint_5f3f p. 109; instituto-aimara-and-amapira-vs-piracicaba-municipality-piracicaba-educational-institute-of-the-methodist-church-iep-and-zayo-administradora-de-bens-s-a-complaint_80c7 p. 64; observatorio-do-clima-e-outros-vs-ibama-petrobras-e-uniao-federal-revocation-of-the-operating-license-for-drilling-at-the-mouth-of-the-amazon-river-petition_9933 p. 135; instituto-preservar-agapan-and-nucleo-amigos-da-terra-vs-federal-union-and-others-climate-emergency-in-rio-grande-do-sul-state-appeal_1b3a p. 24
+  - Parecer Consultivo nº 32
+  - Parecer Consultivo n.º 32
+  - Parecer Consultivo n° 32
+  - Parecer Consultivo 32
+  - Opinião Consultiva n° 32
+  - Opiniao Consultiva nº 32
+  - Opiniao Consultiva n. 32
+
+# S05: forme che valgono solo a parola intera (non attaccate ad altre lettere). Stanno anche in `forme`.
+forme_parola_intera:
+  - OC 32/2025
+  - OC32/2025
+  - AO 32/25
+  - AO32/25
+  - AO 32/2025
+  - PC 32/25
+  - PC-32/2025
+  - PC 32/2025
+  - IACtHR AO
 # NOTA SULLA FORMA «Climate Emergency and Human Rights» (titolo inglese ufficiale). E' anche il titolo
 # della RICHIESTA (2023) e, tradotto, dell'avis «Urgence climatique et droits de l'homme» della CNCDH
 # francese (27/5/2021). Nel corpus 11 documenti la contengono senza nessun codice OC-32: tutti falsi
@@ -231,7 +283,8 @@ forme_escluse:
   - forma: Solicitud de Opinión Consultiva sobre la Emergencia Climática
     ragione: Idem in spagnolo (titolo della domanda, other_d40b).
   - forma: Urgence climatique et droits de l'homme
-    ragione: >
+    ragione_nota: 'RIAMMESSA in S05 (02/10/2026, misura delle perdite della ricerca per nome), vedi le forme.'
+    ragione_prima_di_S05: >
       Titolo dell'avis della Commission nationale consultative des droits de l'homme (CNCDH, 27/5/2021),
       citato negli atti francesi contro BNP Paribas e TotalEnergies e dalla commissione coreana. Stesso
       titolo, altro parere.

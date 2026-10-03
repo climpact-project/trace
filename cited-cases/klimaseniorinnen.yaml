@@ -1,3 +1,13 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/klimaseniorinnen.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forma riammessa: VKS
+#   - forme nuove: KlimaSeniroinnen, KlimaSenniorinen, Kilmaseniorinnen, Kumaseniorinnen, Klimasenorinnen, Klimaseniorinen
+#   - forme_parola_intera (nuovo campo, letto solo da cerca_s05.py): VKS, Klimaseniorinen
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 # CASO CITATO — VEREIN KLIMASENIORINNEN SCHWEIZ E ALTRI c. SVIZZERA, query specification v1 (PROPOSTA)
 #
 # Corte europea dei diritti dell'uomo, Grande Camera, sentenza del 9 aprile 2024, ricorso n. 53600/20.
@@ -147,6 +157,20 @@ forme:
   - Kiimaseniorinnen                                      # PREVISTA (l letta i)
   - Klima Seniorinnen                                     # PREVISTA (spazio)
   - Klima-Seniorinnen                                     # PREVISTA (trattino)
+  # S05 RIAMMESSA (era fra le forme_escluse): sigla con cui gli atti inglesi chiamano la sentenza («applying VKS at [478]-[488]»), a parola intera. Prove, lette nel campione del 02/10: 28 vere su 28: r-friends-of-the-earth-ltd-mr-kevin-jordan-and-mr-doug-paulley-v-secretary-of-state-for-environment-food-rural-affairs-challenge-to-the-third-national-adaptation-programme-application_c78c p. 18; r-friends-of-the-earth-ltd-mr-kevin-jordan-and-mr-doug-paulley-v-secretary-of-state-for-environment-food-rural-affairs-challenge-to-the-third-national-adaptation-programme-application_c78c p. 25; r-friends-of-the-earth-ltd-mr-kevin-jordan-and-mr-doug-paulley-v-secretary-of-state-for-environment-food-rural-affairs-challenge-to-the-third-national-adaptation-programme-judgment_1b5b p. 33; friends-of-the-earth-and-others-v-the-united-kingdom-application_1c7c p. 17
+  - VKS
+  # S05 NUOVE: refusi OCR osservati; la pagina falsa nomina il ricorso pendente in un atto anteriore alla sentenza, che il filtro della data toglie. Prove, lette nel campione del 02/10: 5 vere su 6 (la falsa: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-other_0a65 p. 15): uniterre-et-al-v-swiss-department-of-the-environment-swiss-farmers-case-decision_1854 p. 10; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_a2d8 p. 22; uniterre-et-al-v-swiss-department-of-the-environment-swiss-farmers-case-decision_1854 p. 14; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 8
+  - KlimaSeniroinnen
+  - KlimaSenniorinen
+  - Kilmaseniorinnen
+  - Kumaseniorinnen
+  - Klimasenorinnen
+  - Klimaseniorinen
+
+# S05: forme che valgono solo a parola intera (non attaccate ad altre lettere). Stanno anche in `forme`.
+forme_parola_intera:
+  - VKS
+  - Klimaseniorinen
 
 found_in_corpus:
   - KlimaSeniorinnen
@@ -160,7 +184,8 @@ forme_escluse:
     ragione: >
       Parola tedesca comune («Seniorinnen und Senioren»); da sola non identifica il caso.
   - forma: VKS
-    ragione: >
+    ragione_nota: 'RIAMMESSA in S05 (02/10/2026, misura delle perdite della ricerca per nome), vedi le forme.'
+    ragione_prima_di_S05: >
       Sigla dell'associazione, OSSERVATA una volta («VKS, a non-profit association», R (Friends of the Earth e
       altri), Regno Unito), ma di tre lettere: sotto la soglia di quattro caratteri e sigla di altro.
   - forma: Verein case

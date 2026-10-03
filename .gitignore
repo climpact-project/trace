@@ -1,3 +1,10 @@
+__pycache__/
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
 chat/
 *.key
 .deepseek_key
@@ -5,5 +12,4 @@ chat/
 training/
 markdown/
 index/
-__pycache__/
 *.zip

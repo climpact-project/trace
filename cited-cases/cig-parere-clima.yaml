@@ -1,3 +1,13 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/cig-parere-clima.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forme nuove: Advisory Opinion ICJ
+#   - forme nuove: ICJ, Advisory Opinion
+#   - forme nuove: ICJ's 2025 Advisory Opinion, ICJ in its 2025 Advisory Opinion
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 # CASO CITATO — CORTE INTERNAZIONALE DI GIUSTIZIA, PARERE CONSULTIVO SUL CLIMA, query specification v1 (PROPOSTA)
 #
 # Obligations of States in respect of Climate Change / Obligations des Etats en matiere de changement climatique,
@@ -180,6 +190,13 @@ forme:
   - advies van het Internationaal Gerechtshof   # PREVISTA; da misurare
   - poradní stanovisko ze dne 23. 7. 2025   # OSSERVATA (Klimaticka zaloba c. Repubblica ceca, ricorso a Strasburgo)
   - poradní stanovisko z 23. 7. 2025     # OSSERVATA (idem)
+  # S05 NUOVE: forma breve della sentenza Bonaire («Advisory Opinion ICJ, §211»). Prove, lette nel campione del 02/10: 2 vere su 2: greenpeace-netherlands-and-8-citizens-of-bonaire-v-the-netherlands-decision_cfdf p. 69; greenpeace-netherlands-and-8-citizens-of-bonaire-v-the-netherlands-decision_cfdf p. 66
+  - Advisory Opinion ICJ
+  # S05 NUOVE: come «ICJ Advisory Opinion» (gia' forma), con la virgola. Prove, lette nel campione del 02/10: 11 vere su 11: request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_529b p. 23; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_529b p. 11; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_529b p. 22; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_9e3d p. 47
+  - ICJ, Advisory Opinion
+  # S05 NUOVE: solo con l'anno: «ICJ in its Advisory Opinion» senza anno NON si aggiunge (la pagina falsa del campione parla del parere sulle armi nucleari). Prove, lette nel campione del 02/10: 12 vere su 13 (la falsa: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_2c38 p. 25): poelina-et-al-v-australia-the-hard-truths-case-complaint_c12d p. 103; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_9e3d p. 47; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_2d83 p. 66; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_cb15 p. 37
+  - ICJ's 2025 Advisory Opinion
+  - ICJ in its 2025 Advisory Opinion
 
 # Forme che nominano la Corte e un suo parere senza dire quale. Restano fra le forme; alla prima esecuzione le
 # occorrenze vanno riviste a mano, e prima della soglia vanno lette come altri pareri o come la richiesta.

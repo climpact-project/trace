@@ -1,3 +1,13 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/urgenda.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forme nuove: NL:HR:2019:2006, NL:HR:2019:2007
+#   - forme nuove: Uroenda, Urhanda, Urhenda, Umenda
+#   - forme_parola_intera (nuovo campo, letto solo da cerca_s05.py): Uroenda, Urhanda, Urhenda, Umenda
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 # CASO CITATO — URGENDA (query specification, versione 2)
 #
 # Che cosa cercare. Il codebook (`codebook/citazioni.yaml`) dice invece COME classificare
@@ -250,6 +260,21 @@ forme:
   - アジェンダ事件                        # OSSERVATA (giapponese: idem, e altro atto dello stesso caso). NON la sola アジェンダ: vuol dire «agenda»
   - アージェンダ事件                      # OSSERVATA 01/10/2026 (giapponese: Climate Justice Case, ricorso, pp. 38, 115, 119)
   - アージェンダ財団                      # OSSERVATA 01/10/2026 (giapponese: idem, p. 38)
+  # S05 NUOVE: l'ECLI della Hoge Raad senza il prefisso o col prefisso storpiato («ECLI: NL:HR:2019:2006», «eclenl:hr:2019:2007»). Prove, lette nel campione del 02/10: 2 vere su 2: greenpeace-v-spain-i-complaint_3abc p. 119; duarte-agostinho-and-others-v-portugal-and-32-other-states-other_e7bc p. 7
+  - NL:HR:2019:2006
+  - NL:HR:2019:2007
+  # S05 NUOVE: refusi OCR osservati, solo a parola intera. Prove, lette nel campione del 02/10: 4 vere su 4: opinion-of-the-national-human-rights-commission-on-the-climate-crisis-and-human-rights-opinion_7e2d p. 17; do-hyun-kim-et-al-v-south-korea-other_0a73 p. 6; mullner-v-austria-complaint_1b3a p. 23; duarte-agostinho-and-others-v-portugal-and-32-other-states-other_e7bc p. 7
+  - Uroenda
+  - Urhanda
+  - Urhenda
+  - Umenda
+
+# S05: forme che valgono solo a parola intera (non attaccate ad altre lettere). Stanno anche in `forme`.
+forme_parola_intera:
+  - Uroenda
+  - Urhanda
+  - Urhenda
+  - Umenda
 
 found_in_corpus: []   # da riempire da `proposto_forma_trovata` delle run del 31/07 e 25/08/2026 (guida §26.2): forme davvero usate da altri documenti
 

@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trace-pipeline"
+version = "0.2.0"
+description = "CLIMPACT TRACE: Traceable Reception and Attribution in Climate-law Evidence (the maintained pipeline package)"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [
+    { name = "Giuseppe Naglieri" },
+    { name = "Enrico Buono" },
+    { name = "Carlotta Garofalo" },
+    { name = "Ciro Saracino" },
+    { name = "Luca Dell'Atti" },
+]
+keywords = ["climate litigation", "citation analysis", "legal NLP", "judicial uptake"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = ["pyyaml"]
+
+[project.optional-dependencies]
+deepseek = ["openai"]
+firestore = ["google-cloud-firestore"]
+dev = ["pytest", "ruff"]
+
+[project.urls]
+Homepage = "https://www.climpact.it/site/data/trace"
+Repository = "https://github.com/climpact-project/trace"
+
+[project.scripts]
+trace = "tracepipe.cli:main"
+
+[tool.setuptools]
+packages = ["tracepipe"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+include = ["tracepipe/**/*.py", "tests/**/*.py", "pyproject.toml"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# the instructions given to DeepSeek are copied verbatim: their long lines are part of the prompts
+"tracepipe/istruzioni.py" = ["E501"]
+# the patterns of the dimensions are copied verbatim, typographic apostrophes included
+"tracepipe/dimensioni.py" = ["RUF001"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["tracepipe"]
+
+[tool.ruff.format]
+quote-style = "single"

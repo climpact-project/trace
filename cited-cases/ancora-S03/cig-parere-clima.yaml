@@ -1,0 +1,478 @@
+# CASO CITATO — CORTE INTERNAZIONALE DI GIUSTIZIA, PARERE CONSULTIVO SUL CLIMA, query specification v1 (PROPOSTA)
+#
+# Obligations of States in respect of Climate Change / Obligations des Etats en matiere de changement climatique,
+# parere consultivo del 23 luglio 2025, General List No. 187, reso su richiesta dell'Assemblea generale
+# (risoluzione 77/276 del 29 marzo 2023). Unanime in ogni punto del dispositivo (§ 457).
+#
+# STATO. Proposta del 01/10/2026 per il PI, scritta da Claude (Opus 5.5) nella cartella
+# cited-cases/proposte-2026-10-01/cig-parere-clima/. Non sostituisce `cited-cases/icj-clima-2025.yaml` (19/09/2026,
+# solo forme): lo assorbe. Nessuna sonda e' approvata. Riassunto per il PI: PROPOSTA.md.
+#
+# FONTE. Un solo documento del corpus, request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16,
+# 140 pagine. E' il testo INGLESE
+# dell'edizione della Corte: solo la copertina porta anche il titolo francese. Il testo francese, che fa fede
+# (§ 457: «the French text being authoritative»), non e' nel corpus [non verificato nel corpus]. I canonical sono
+# quindi dall'inglese, come i seed di Neubauer dalla traduzione ufficiale. Testo nativo, niente OCR.
+# Pagina = marcatore `<!-- page N -->` del markdown = pagina del PDF; la pagina stampata della Corte e' N - 7.
+#
+# COME SONO NATE LE SONDE. Lettura integrale dei §§ 94-457 e dei §§ 1-93 per sommario; prima versione di sette sonde
+# proposta da Claude. SECONDA VERSIONE (01/10/2026): sette sonde indicate dal PI, solo principi DISTINTIVI, propri di
+# questo parere, ciascuna con `elemento_proprio`; intervalli verificati da Claude sul testo e resi disgiunti.
+# Fatti, procedura, scienza, ambito delle domande, tesi dei partecipanti e principi generici (cooperazione, diritti
+# umani e ambiente, adattamento) non hanno sonda. Conteggio delle citazioni: conta_paragrafi.py, stessa cartella.
+#
+# LINGUA DELLE SONDE. Inglese, come i passi che chi cita riecheggia. Il numero 1,5 gradi resta nella sola sonda
+# `obiettivo_1_5`: li' e' l'elemento proprio del parere, non un fatto del giudizio.
+
+nome: Obligations of States in respect of Climate Change (ICJ Advisory Opinion)
+non_english_name: Obligations des États en matière de changement climatique (avis consultatif)
+case: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213
+codebook_versione: 0.2-pilot
+stato: bozza-da-approvare
+versione_file: 1
+data_versione: 2026-10-01
+
+caso_ancora:
+  misurato: >
+    01/10/2026, conta_paragrafi.py con le forme di questo file, esclusi il procedimento CIG e le due memorie
+    archiviate altrove: 88 documenti di 34 casi nominano il parere o la richiesta; 67 documenti di 28 casi hanno una
+    data d'origine (nome del file) dal 23/7/2025 in poi, ma solo 8 per `data_deposito`; 45 documenti di 12 casi lo
+    citano con numeri di paragrafo (612 citazioni), e 33 di questi 45 sono atti del procedimento consultivo davanti
+    alla Corte africana. Il file del 19/09/2026 diceva 18 casi.
+  motivazione_selezione: >
+    DA SCRIVERE DAL PI. Proposta dell'esecutore, NON decisa: primo parere della Corte internazionale di giustizia
+    sugli obblighi climatici degli Stati in tutto il diritto internazionale; rende disponibili l'1,5 come obiettivo
+    primario concordato di Parigi, il limite alla discrezionalita' sugli NDC, il dovere consuetudinario di prevenzione
+    applicato al sistema climatico con diligenza stringente, la non esclusivita' dei trattati sul clima, l'illecito
+    climatico (combustibili fossili, privati non regolati), gli obblighi erga omnes e la continuita' della
+    statualita' di fronte all'innalzamento del mare.
+  famiglia_giuridica: diritto internazionale generale (parere consultivo, art. 65 dello Statuto)
+  data_prima_pronuncia: 2025-07-23
+  data_ultima_pronuncia: 2025-07-23
+  esito: parere reso                     # unanime su tutti i punti del dispositivo
+  caso_perso: false
+  caso_di_controllo: false
+  documenti_corpus_successivi_alla_decisione: null
+
+docket_numbers:
+  - General List No. 187
+identifiers:
+  - A/RES/77/276                         # la risoluzione che chiede il parere: nomina la richiesta, non il parere
+  - "https://www.icj-cij.org/case/187"
+  - "ICJ Reports 2025"                   # volume della raccolta: [non verificato nel corpus]
+
+# Il procedimento davanti alla CIG ha nel corpus un solo case_id, con 26 documenti: le memorie e i commenti scritti
+# (2024), le ordinanze e i comunicati (2023-2024) e il parere stesso. Nessuno di loro cita il parere: le memorie lo
+# precedono, il parere parla di se'. Le opinioni separate e le dichiarazioni dei giudici non sono nel corpus.
+escludi_case_id:
+  - request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213
+
+# ATTI DEL PROCEDIMENTO CIG ARCHIVIATI ALTROVE. Due documenti sotto il case_id del parere della Corte interamericana
+# sono in realta' la memoria scritta del CIEL alla CIG (copertina: «INTERNATIONAL COURT OF JUSTICE / OBLIGATIONS OF
+# STATES IN RESPECT OF CLIMATE CHANGE (REQUEST FOR ADVISORY OPINION) / WRITTEN STATEMENT»), file del 20/03/2024.
+# Scritti prima del parere, non possono citarlo: nominano il procedimento. Si escludono per documento, non per caso,
+# perche' il resto del fascicolo interamericano e' un altro procedimento.
+atti_del_procedimento_altrove:
+  - documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_7253
+    file_origine: 20240320_18528_na.pdf
+    ragione: memoria scritta del CIEL alla CIG (marzo 2024), archiviata sotto il case_id di OC-32/25
+  - documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_b14c
+    file_origine: 20240320_18528_na-5.pdf
+    ragione: seconda copia della stessa memoria, idem
+
+data_decisione: 2025-07-23
+# il PI (01/10/2026): si cerca solo dopo il parere. Vale la data del DOCUMENTO (dal file d'origine, AAAAMMGG_), non
+# quella della causa: le righe col nome anteriori al 23/7/2025 vanno fra gli scarti (cerca.py), come per KlimaSeniorinnen.
+filtro_data_documento: true
+data_soglia_motivazione: >
+  Unica pronuncia. Prima del 23 luglio 2025 nessuno puo' citare il parere: si puo' citare la RICHIESTA (risoluzione
+  77/276, 29/3/2023) o le memorie dei partecipanti (2024), che usano lo stesso titolo «Obligations of States in
+  respect of Climate Change». Le menzioni anteriori sono quindi nomi del procedimento, non citazioni. Avvertenza sul
+  corpus: `data_deposito` e' spesso la data d'avvio del caso, non dell'atto (per es. le memorie al procedimento
+  consultivo della Corte africana portano tutte 2025-01-01 e sono state scritte nel 2026); la data nel nome del file
+  d'origine (in `url_origine`, il nome del PDF comincia con AAAAMMGG) e' piu' vicina alla data dell'atto.
+
+fonte_primaria:
+  - documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+    file_origine: 20250723_18913_decision.pdf
+    descrizione: parere consultivo del 23/7/2025, testo inglese dell'edizione della Corte, 140 pp. (133 pagine stampate), testo nativo
+    ruolo: fonte di tutti i canonical
+fonte_non_nel_corpus:
+  - testo francese (fa fede): [non verificato nel corpus]
+  - opinioni separate e dichiarazioni di Sebutinde, Tomka, Yusuf, Xue, Bhandari, Bhandari e Cleveland, Nolte, Charlesworth, Charlesworth Brant Cleveland e Aurescu, Cleveland, Aurescu, Tladi (elenco a § 457, PDF p. 139-140): [non verificato nel corpus]
+
+# ── Forme testuali ─────────────────────────────────────────────────────────────────────────────────────────────
+# Come per OC-32/25, il parere si cita col titolo («Obligations of States in respect of Climate Change»), con una
+# sigla («ICJ AO», «ICJ Advisory Opinion», «ICJ Climate AO») o col numero di ruolo. Le sigle che contengono solo
+# «ICJ» e «Advisory Opinion» possono indicare in astratto un altro parere della Corte (Armi nucleari 1996, Muro 2004,
+# Chagos 2019): misurato il 01/10/2026 sul corpus, 0 casi di confusione su 292 occorrenze di «ICJ Advisory Opinion»,
+# 1 su 38 di «ICJ AO». Restano fra le forme ma sono elencate anche in `forme_da_misurare`.
+# OSSERVATA = trovata nel corpus il 01/10/2026; PREVISTA = nessuna occorrenza oggi.
+forme:
+  - ICJ勧告的意見                       # OSSERVATA 02/10/2026 (giapponese: Climate Justice Case, ricorso, pp. 43-107, «本ICJ 勧告的意見» con i paragrafi)
+  - ICJ 勧告的意見
+  - 気候変動に関する国家の義務についての勧告的意見   # il titolo in giapponese, stesso ricorso, p. 43
+  # titolo in inglese
+  - Obligations of States in respect of Climate Change      # OSSERVATA: la forma principale (anche «in Respect of»)
+  - Obligations of States in respect to Climate Change      # OSSERVATA (memorie alla Corte africana)
+  - Obligations in Respect to Climate Change                # OSSERVATA (Juliana, petizione alla Commissione interamericana)
+  - Advisory Opinion on the Obligations of States in Respect of Climate Change   # OSSERVATA
+  # sigle e nomi brevi
+  - ICJ Advisory Opinion                 # OSSERVATA: 292 occorrenze, 26 documenti; da misurare
+  - ICJ AO                               # OSSERVATA: Denman (Australia), memorie alla Corte africana; da misurare
+  - ICJ Climate AO                       # OSSERVATA (World's Youth for Climate Justice)
+  - ICJ Climate Change Advisory Opinion  # OSSERVATA (130 occorrenze in 3 documenti)
+  - ICJ Climate Advisory Opinion         # OSSERVATA
+  - ICJ Advisory Opinion on Climate Change   # OSSERVATA
+  - ICJ’s Advisory Opinion on Climate Change # OSSERVATA (apostrofo tipografico)
+  - ICJ's Advisory Opinion on Climate Change
+  - ICJ Climate Opinion                  # OSSERVATA (titolo di Verfassungsblog citato nelle memorie)
+  - ICJ’s climate opinion                # OSSERVATA (Verfassungsblog, «human rights in the ICJ’s climate opinion»)
+  - ICJ's climate opinion
+  - ICJ’s Advisory Opinion               # OSSERVATA; da misurare
+  - ICJ's Advisory Opinion               # OSSERVATA; da misurare
+  - ICJ Opinion                          # OSSERVATA (Dykstra, Canada: «[ICJ Opinion]»); da misurare
+  - Advisory Opinion of the International Court of Justice   # OSSERVATA; da misurare
+  - advisory opinion of the ICJ          # OSSERVATA; da misurare
+  # data e numero di ruolo
+  - Advisory Opinion of 23 July 2025     # OSSERVATA
+  - Advisory Opinion, 23 July 2025       # OSSERVATA
+  - delivered on 23 July 2025            # OSSERVATA (Notre Affaire a Tous c. TotalEnergies, 25/6/2026)
+  - General List No. 187                 # OSSERVATA
+  - General List No 187                  # OSSERVATA (Denman)
+  - General List 187                     # OSSERVATA
+  - ICJ Case 187                         # OSSERVATA
+  - I.C.J. No. 187                       # OSSERVATA («2025 I.C.J. No. 187»)
+  - "[2025] ICJ Rep 456"                 # OSSERVATA (Lho’imggin, Corte federale canadese, 2025 FC 1586, § 40): pagina della raccolta [non verificata]
+  - case-related/187/187-20250723        # OSSERVATA: indirizzo del PDF sul sito della Corte
+  - 187-20250723-adv                     # OSSERVATA: idem, spezzato da un a capo dopo «adv-»
+  - icj-cij.org/case/187                 # OSSERVATA; usato anche per la richiesta prima del parere (soglia)
+  - resolution 77/276                    # OSSERVATA; nomina la richiesta; da misurare
+  - A/RES/77/276                         # OSSERVATA; idem
+  # francese
+  - Obligations des États en matière de changement climatique   # OSSERVATA (Corte costituzionale belga, Liegi; memorie alla Corte africana)
+  - Obligations des Etats en matière de changement climatique   # OSSERVATA (memoria francese all'ITLOS, riferita alla richiesta)
+  - obligations des États relatives au changement climatique    # OSSERVATA
+  - Avis consultatif sur les obligations des États              # OSSERVATA
+  - avis consultatif du 23 juillet 2025  # OSSERVATA (Corte costituzionale belga)
+  - CIJ, Avis consultatif 2025           # OSSERVATA; da misurare
+  - Rôle général n° 187                  # PREVISTA
+  # spagnolo
+  - obligaciones de los Estados con respecto al cambio climático   # OSSERVATA: titolo spagnolo della risoluzione 77/276
+  - obligaciones de los Estados en relación con el cambio climático  # OSSERVATA (OC-32/25 e Alvarez c. Peru, sulla richiesta)
+  - Obligaciones de los Estados en materia de cambio climático       # PREVISTA
+  - Opinión Consultiva de la Corte Internacional de Justicia         # OSSERVATA (1 occorrenza); da misurare
+  - opinión consultiva de 23 de julio de 2025                        # PREVISTA
+  - opinión consultiva del 23 de julio de 2025                       # PREVISTA
+  # portoghese
+  - Opinião Consultiva da Corte Internacional de Justiça   # OSSERVATA (Ministero pubblico federale brasiliano); da misurare
+  - parecer consultivo da CIJ            # OSSERVATA (memoria alla Corte africana); da misurare
+  - parecer consultivo da Corte Internacional de Justiça   # OSSERVATA (decisione brasiliana Instituto Preservar, sulla richiesta e sul parere); da misurare
+  - Obrigações dos Estados em relação às mudanças climáticas   # OSSERVATA (titolo portoghese della risoluzione 77/276; Instituto Preservar)
+  # tedesco, italiano, olandese, ceco
+  - Gutachten des Internationalen Gerichtshofs   # PREVISTA; da misurare
+  - IGH-Gutachten                        # PREVISTA
+  - Klimagutachten des IGH               # PREVISTA
+  - Klimagutachten des Internationalen Gerichtshofs   # PREVISTA
+  - Verpflichtungen der Staaten in Bezug auf den Klimawandel   # PREVISTA
+  - parere consultivo della Corte internazionale di giustizia   # PREVISTA; da misurare
+  - Obblighi degli Stati in materia di cambiamenti climatici   # PREVISTA
+  - advies van het Internationaal Gerechtshof   # PREVISTA; da misurare
+  - poradní stanovisko ze dne 23. 7. 2025   # OSSERVATA (Klimaticka zaloba c. Repubblica ceca, ricorso a Strasburgo)
+  - poradní stanovisko z 23. 7. 2025     # OSSERVATA (idem)
+
+# Forme che nominano la Corte e un suo parere senza dire quale. Restano fra le forme; alla prima esecuzione le
+# occorrenze vanno riviste a mano, e prima della soglia vanno lette come altri pareri o come la richiesta.
+forme_da_misurare:
+  - ICJ Advisory Opinion
+  - ICJ AO
+  - ICJ’s Advisory Opinion
+  - ICJ's Advisory Opinion
+  - ICJ Opinion
+  - Advisory Opinion of the International Court of Justice
+  - advisory opinion of the ICJ
+  - resolution 77/276
+  - A/RES/77/276
+  - CIJ, Avis consultatif 2025
+  - Opinión Consultiva de la Corte Internacional de Justicia
+  - Opinião Consultiva da Corte Internacional de Justiça
+  - parecer consultivo da CIJ
+  - parecer consultivo da Corte Internacional de Justiça
+  - Gutachten des Internationalen Gerichtshofs
+  - parere consultivo della Corte internazionale di giustizia
+  - advies van het Internationaal Gerechtshof
+
+forme_escluse:
+  - forma: Advisory Opinion
+    ragione: >
+      Da sola nomina ogni parere: ITLOS (21/5/2024, COSIS), Corte interamericana (OC-23/17, OC-32/25), la richiesta
+      pendente alla Corte africana, gli altri pareri della CIG. Nel corpus dopo il 2024 i tre pareri sul clima sono
+      citati quasi sempre insieme («the three climate advisory opinions»).
+  - forma: Climate Change Advisory Opinion
+    ragione: >
+      Ambigua. La memoria UCC alla Corte africana la usa per la CIG («ICJ, ‘Climate Change Advisory Opinion’»), ma la
+      stessa memoria chiama «Request for Climate Change Advisory Opinion» la richiesta africana. Resta solo la forma
+      con «ICJ» davanti.
+  - forma: Climate Change, Advisory Opinion
+    ragione: >
+      E' il titolo breve con cui la CIG stessa cita il parere ITLOS («Climate Change, Advisory Opinion, ITLOS Reports
+      2024», §§ 123, 138, 252 e altri). Chi la scrive cita l'ITLOS, anche quando riprende un passo della CIG.
+  - forma: Advisory Opinion on Climate Change
+    ragione: >
+      Senza «ICJ» indica anche l'ITLOS («its Advisory Opinion on climate change and international law», Greenpeace
+      Nordic c. Norvegia, § 131) e la richiesta alla Corte africana.
+  - forma: climate advisory opinion
+    ragione: Generica; plurale nelle memorie («the four climate advisory opinions»).
+  - forma: Request for an Advisory Opinion
+    ragione: >
+      Titolo di tutti i procedimenti consultivi del corpus (ITLOS, Corte interamericana, Corte africana, e la stessa
+      CIG nel nome Sabin del caso). Nomina la richiesta, non il parere.
+  - forma: OC-32/25
+    ragione: Parere della Corte interamericana del 29/5/2025 (file del caso `oc-32-25.yaml`). Da non confondere.
+  - forma: AO-32/25
+    ragione: Idem, nella sigla usata dalle memorie africane.
+  - forma: Climate Emergency and Human Rights
+    ragione: Titolo di OC-32/25.
+  - forma: Commission of Small Island States
+    ragione: Parere ITLOS del 21/5/2024 (file del caso `itlos-2024.yaml`). Da non confondere.
+  - forma: COSIS
+    ragione: Idem.
+  - forma: Case No. 31
+    ragione: Numero di ruolo ITLOS; pescherebbe numeri di ruolo di chiunque.
+  - forma: International Court of Justice
+    ragione: La Corte, non il parere. Il corpus la nomina per Pulp Mills, Gabcikovo, Armi nucleari, Corfu e molte altre.
+  - forma: ICJ
+    ragione: Idem; anche dentro «ICJ Reports» di ogni anno.
+  - forma: CIJ
+    ragione: Idem in francese, spagnolo e portoghese.
+  - forma: Obligations of States
+    ragione: Espressione comune; resta solo nel titolo completo.
+  - forma: 23 July 2025
+    ragione: >
+      Una data. Nel corpus e' quasi sempre il parere, ma una data da sola non e' un nome e puo' datare altri atti.
+      Resta nelle forme composte («Advisory Opinion of 23 July 2025», «delivered on 23 July 2025»).
+  - forma: 23 juillet 2025
+    ragione: Idem in francese.
+  - forma: ICJ Reports 2025
+    ragione: Volume della raccolta di tutte le decisioni della CIG del 2025.
+  - forma: avis consultatif
+    ragione: Da sola nomina ogni parere, anche della CEDU («avis consultatif du 13 juillet 2022») e del TIDM.
+  - forma: Opinión Consultiva
+    ragione: Da sola indica soprattutto OC-23/17 e OC-32/25.
+  - forma: Parecer Consultivo
+    ragione: Idem in portoghese.
+  - forma: Legality of the Threat or Use of Nuclear Weapons
+    ragione: >
+      Parere CIG del 1996, citato dal parere sul clima (§§ 134, 155, 272, 373) e dal corpus per conto proprio (§ 29:
+      «the environment is not an abstraction»). Altra fonte.
+  - forma: Obligations of States with respect to Climate Change
+    ragione_nota: >
+      NON esclusa ma non messa fra le forme: e' il nome Sabin del procedimento e una frase descrittiva comune
+      («the obligations of States with respect to climate change under international law»). Da decidere col PI.
+
+falso_positivo_dichiarato:
+  tipo: titolo usato come frase descrittiva; elenchi delle fonti; citazioni degli atti del procedimento
+  nota: >
+    Il titolo inglese e' anche una frase comune: la rete lessicale e' insensibile alle maiuscole e pesca, per esempio,
+    il memorandum del Comitato africano sui diritti del fanciullo «obligations of states in respect of climate change
+    under international law» (2025). Le memorie alla Corte africana citano poi molti atti del procedimento CIG con lo
+    stesso titolo («Kenya, Written Statement to the International Court of Justice in Obligations of States in respect of Climate Change (Advisory Opinion) (March 2024)»): sono nomi
+    del procedimento, non citazioni del parere. Attese anche molte voci di indice (table of authorities) e citazioni
+    in catena con ITLOS e OC-32/25.
+
+# ── Sonde ──────────────────────────────────────────────────────────────────────────────────────────────────────
+# SECONDA VERSIONE (01/10/2026), sulle sette sonde indicate dal PI: una sonda e' un principio DISTINTIVO, cio' che e'
+# proprio di questo parere, cosi' che un atto successivo che lo riprende sia riconducibile a esso. Gli enunciati
+# generici (cooperare e' un dovere, i diritti umani dipendono dall'ambiente, adattamento) non sono sonde. La prima
+# versione (obiettivo_1_5, ndc_ambizione, prevenzione_danno_clima, cooperazione, pluralita_regimi,
+# diritti_umani_clima, responsabilita_illecito) e' sostituita; i suoi codici non si riusano con altro significato,
+# tranne obiettivo_1_5, che resta con lo stesso significato.
+# Intervalli verificati sul testo e disgiunti. Il vocabolario delle sonde e' tenuto separato (controllato parola per
+# parola, escluse le parole grammaticali): «1.5°C» e «subsequent agreements» solo in obiettivo_1_5; «highest possible
+# ambition» solo in ndc_discrezionalita_limitata; «stringent» e «due diligence» solo in diligenza_stringente_clima;
+# «lex specialis» solo in non_lex_specialis; «fossil fuel» solo in fossili_illecito; «erga omnes» e «reparation» solo
+# in erga_omnes; «statehood» solo in continuita_stato.
+semantic_queries:
+- id: cig-parere-clima.obiettivo_1_5
+  titolo: "L'1,5 gradi come obiettivo primario giuridico di temperatura dopo Parigi, per consenso delle parti"
+  testo: >
+    By the parties' later consensus decisions, read as subsequent agreements interpreting the Paris Agreement,
+    holding warming to 1.5°C above pre-industrial levels has become its agreed primary temperature goal, no longer a
+    simple additional effort beside the well-below-2°C limit.
+  elemento_proprio: >
+    Non la lettera dell'art. 2(1)(a) dell'Accordo di Parigi («well below 2°C», «pursuing efforts» per 1,5), ne'
+    l'1,5 preso dalla scienza (IPCC) o fissato da una legge nazionale (Neubauer, KlimaSeniorinnen lo usano come
+    parametro interno). Proprio del parere e' la riqualificazione GIURIDICA: le decisioni 1/CMA.3 e 1/CMA.5, lette
+    come accordi successivi ex art. 31(3)(a) della Convenzione di Vienna, fanno dell'1,5 l'obiettivo primario
+    concordato del trattato. Se OC-32/25 o l'ITLOS dicano lo stesso con la stessa costruzione [non verificato nel
+    corpus per questo fascicolo].
+  paragrafi: "§§ 223-225, 270"
+  fonte: >
+    PI, 01/10/2026 (indicati §§ 222-225 e 230-231); intervalli verificati da Claude
+  esclusione_di_provenienza: >
+    Non le decisioni 1/CMA.3 (Patto di Glasgow, § 21) e 1/CMA.5 (primo bilancio globale, §§ 27 e 39) citate da
+    sole: chi riporta la COP senza farne un'interpretazione vincolante del trattato non riprende il parere.
+  canonical: "In the Court’s view, these decisions express the agreement in substance between the parties regarding the interpretation of Articles 2 and 4 of the Paris Agreement, and thus constitute subsequent agreements in relation to the interpretation of the Paris Agreement within the meaning of Article 31, paragraph 3 (a), of the Vienna Convention on the Law of Treaties (see paragraph 184 above). Accordingly, the Court considers the 1.5°C threshold to be the parties’ agreed primary temperature goal for limiting the global average temperature increase under the Paris Agreement. The Court adds that this interpretation is consistent with Article 4, paragraph 1, of the Paris Agreement, which requires that mitigation measures be based on the “best available science” (see paragraph 74 above)."
+  canonical_paragrafo: para. 224
+  canonical_pagina: '80'
+  canonical_documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+- id: cig-parere-clima.ndc_discrezionalita_limitata
+  titolo: "NDC: la discrezionalita' degli Stati e' limitata; la massima ambizione possibile e' uno standard giuridico"
+  testo: >
+    Nationally determined contributions may not be set at will: each must reflect its author's highest possible
+    ambition as a binding standard rather than a hortatory aim, and all of them together must be able to achieve the
+    regime's purpose, so one filed as a mere formality falls short.
+  elemento_proprio: >
+    Non l'art. 4(3) di Parigi letto come esortazione, e non i giudici nazionali che misurano il target di uno Stato
+    sul diritto interno o sulla CEDU (Urgenda, Neubauer, KlimaSeniorinnen). Proprio del parere: il «will»
+    dell'art. 4(3) e' prescrittivo, la discrezionalita' nel fissare gli NDC e' limitata, la massima ambizione
+    possibile e' uno standard giuridico misurato con la diligenza, e gli NDC devono essere COLLETTIVAMENTE capaci di
+    raggiungere l'obiettivo dell'Accordo. E' un criterio di contenuto degli NDC posto nel diritto internazionale.
+  paragrafi: "§§ 236-249"
+  fonte: >
+    PI, 01/10/2026 (indicati §§ 233-254); intervalli verificati da Claude
+  esclusione_di_provenienza: >
+    Non la decisione 4/CMA.1 (Paris Rulebook, informazioni su equita' e ambizione) citata da sola, ne' il primo
+    bilancio globale (1/CMA.5) per le cifre del 43% al 2030 e del 60% al 2035: chi riporta quelle cifre cita la COP.
+  canonical: "In light of the above, the Court considers that the discretion of parties in the preparation of their NDCs is limited. As such, in the exercise of their discretion, parties are obliged to exercise due diligence and ensure that their NDCs fulfil their obligations under the Paris Agreement and thus, when taken together, are capable of achieving the temperature goal of limiting global warming to 1.5°C above pre-industrial levels, as well as the overall objective of the “stabilization of greenhouse gas concentrations in the atmosphere at a level that would prevent dangerous anthropogenic interference with the climate system”."
+  canonical_paragrafo: para. 245
+  canonical_pagina: '85'
+  canonical_documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+- id: cig-parere-clima.diligenza_stringente_clima
+  titolo: "Il dovere consuetudinario di prevenire danni significativi applicato al sistema climatico, con diligenza stringente"
+  testo: >
+    The customary duty to prevent significant environmental harm reaches the climate system itself, although the
+    harm results from cumulative and diffuse emissions of all nations, and the due diligence it demands is
+    stringent: heightened vigilance, deep and rapid reductions, risk assessment and precaution, scaled to
+    capabilities without excusing delay.
+  elemento_proprio: >
+    Non l'ITLOS (21/5/2024), che afferma la diligenza stringente per l'ambiente marino sotto l'UNCLOS; non Pulp
+    Mills o Armi nucleari, che fondano la prevenzione transfrontaliera classica; non OC-32/25, che parla di
+    diligenza rafforzata sotto la Convenzione americana. Proprio del parere: la regola CONSUETUDINARIA generale,
+    valida per tutti gli Stati anche non parti dei trattati, si applica al sistema climatico nonostante il danno sia
+    cumulativo e diffuso, e lo standard di diligenza e' stringente, con capacita' che graduano ma non giustificano
+    ritardi.
+  paragrafi: "§§ 134-139, 273-300"
+  fonte: >
+    PI, 01/10/2026 (indicati §§ 131-139 e 271-300); intervalli verificati da Claude
+  esclusione_di_provenienza: >
+    Non le frasi che la Corte prende dall'ITLOS e lo dice: sistema nazionale di controllo (§ 281, ITLOS § 235),
+    effetti cumulativi (§ 276, ITLOS § 365), precauzione parte integrante della diligenza (§ 294, parere della Camera
+    del 2011, § 131); ne' «use all the means at its disposal» (Pulp Mills, § 101).
+  canonical: "Under these circumstances, the Court recognizes that the standard of due diligence for preventing significant harm to the climate system is stringent (see Climate Change, Advisory Opinion, ITLOS Reports 2024, pp. 91-92, para. 241, pp. 92-93, para. 243, p. 94, para. 248, pp. 137-138, paras. 398-400, and pp. 152-158, para. 441). Moreover, as the Court has explained, due diligence “entails not only the adoption of appropriate rules and measures, but also a certain level of vigilance in their enforcement and the exercise of administrative control” (Pulp Mills on the River Uruguay (Argentina v. Uruguay), Judgment, I.C.J. Reports 2010 (I), p. 79, para. 197). As concerns climate change, a heightened degree of vigilance and prevention is required."
+  canonical_paragrafo: para. 138
+  canonical_pagina: '57'
+  canonical_documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+- id: cig-parere-clima.non_lex_specialis
+  titolo: "I trattati sul clima non sono lex specialis: consuetudine e altri regimi si applicano accanto a loro"
+  testo: >
+    The UNFCCC and the instruments adopted under it are not a lex specialis excluding other law: general
+    international law, the law of the sea and human rights law apply alongside them and inform their reading, and
+    complete adherence to them suggests, without guaranteeing, that the separate general obligations have likewise
+    been honoured.
+  elemento_proprio: >
+    Non la definizione di lex specialis (commento ILC all'art. 55 degli Articoli sulla responsabilita', Conclusioni
+    ILC sulla frammentazione), e non l'ITLOS (§ 223 del suo parere: adempiere Parigi non basta per l'UNCLOS), che
+    riguarda il solo diritto del mare. Proprio del parere: la risposta generale alla tesi dei trattati sul clima come
+    unico diritto applicabile (nessuna incompatibilita' effettiva, nessuna intenzione riconoscibile) e la presunzione
+    che l'adempimento pieno dei trattati faccia presumere, senza esaurirlo, l'adempimento della consuetudine; lo
+    Stato non parte porta l'onere di dimostrare la propria conformita'.
+  paragrafi: "§§ 165-171, 310-315, 335, 354, 404"
+  fonte: >
+    PI, 01/10/2026 (indicati §§ 162-173 e 309-315); intervalli verificati da Claude; §§ 335, 354 e 404 aggiunti
+    (formula «inform each other» su ambiente, mare e diritti umani); §§ 410-420 spostati a erga_omnes perche'
+    riguardano la responsabilita'
+  esclusione_di_provenienza: >
+    Non Genocidio (2007, § 401) sulle regole della responsabilita' che non variano senza una lex specialis
+    chiaramente espressa, ne' il principio d'integrazione sistemica dell'art. 31(3)(c) della Convenzione di Vienna
+    citato da solo.
+  canonical: "For these reasons, the Court considers that the argument according to which the climate change treaties constitute the only relevant applicable law cannot be upheld and finds that the principle of lex specialis does not lead to a general exclusion by the climate change treaties of other rules of international law."
+  canonical_paragrafo: para. 171
+  canonical_pagina: '65'
+  canonical_documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+- id: cig-parere-clima.fossili_illecito
+  titolo: "Produzione, consumo, licenze e sussidi ai combustibili fossili come possibile illecito; privati non regolati"
+  testo: >
+    A government's failure to curb heat-trapping pollution, including through fossil fuel production or consumption,
+    exploration licences or subsidies, or by not regulating private companies, may be an internationally wrongful
+    act attributable to it, the wrong lying in that failure rather than in emitting as such, even where many others
+    contributed.
+  elemento_proprio: >
+    Non la Corte EDU in Greenpeace Nordic c. Norvegia (28/10/2025), che esamina le licenze petrolifere sotto
+    l'art. 8 CEDU e i loro obblighi di valutazione; non le corti nazionali che giudicano un progetto o un'impresa
+    (Milieudefensie c. Shell, i casi di licenze australiani e brasiliani); non gli Articoli ILC sull'attribuzione in
+    generale. Proprio del parere: l'indicazione esplicita di produzione, consumo, licenze di esplorazione e sussidi
+    ai combustibili fossili come condotta che puo' costituire un illecito internazionale dello Stato; l'illecito non
+    e' l'emissione in se'; per i privati si attribuisce allo Stato il proprio difetto di regolazione; il contributo
+    di ciascuno Stato e' determinabile e la pluralita' di autori non esclude la responsabilita'.
+  paragrafi: "§§ 427-438"
+  fonte: >
+    PI, 01/10/2026 (indicati §§ 427-438); verificati da Claude: §§ 427-428 enunciano l'elemento, §§ 429-438
+    applicano attribuzione e causalita' a quell'illecito
+  esclusione_di_provenienza: >
+    Non Attivita' armate (RDC c. Uganda, Riparazioni 2022, §§ 93-98) per la pluralita' di cause e di autori, ne'
+    Costa Rica c. Nicaragua (Indennizzo 2018, § 32) per il nesso causale sufficientemente diretto e certo, ne' Pulp
+    Mills (§ 197) e Teheran (1980) per il dovere di regolare: la Corte li cita.
+  canonical: "Failure of a State to take appropriate action to protect the climate system from GHG emissions — including through fossil fuel production, fossil fuel consumption, the granting of fossil fuel exploration licences or the provision of fossil fuel subsidies — may constitute an internationally wrongful act which is attributable to that State. The Court also emphasizes that the internationally wrongful act in question is not the emission of GHGs per se, but the breach of conventional and customary obligations identified under question (a) pertaining to the protection of the climate system from significant harm resulting from anthropogenic emissions of such gases."
+  canonical_paragrafo: para. 427
+  canonical_pagina: '129'
+  canonical_documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+- id: cig-parere-clima.erga_omnes
+  titolo: "Obblighi erga omnes (ed erga omnes partes): ogni Stato puo' invocare la responsabilita'; le conseguenze"
+  testo: >
+    Commitments protecting shared global commons are owed erga omnes, and erga omnes partes under the conventions,
+    so any State may invoke another's breach and demand cessation and guarantees of non-repetition, while injured
+    States may obtain full reparation; loss-and-damage and compliance mechanisms do not displace these consequences.
+  elemento_proprio: >
+    Non Barcelona Traction (1970) e Belgio c. Senegal (2012) per la nozione di obbligo erga omnes, ne' gli Articoli
+    ILC (artt. 30, 31, 48) per le conseguenze in generale. Proprio del parere: la qualificazione degli obblighi
+    climatici, consuetudinari e pattizi, come erga omnes ed erga omnes partes, con la legittimazione di ogni Stato
+    a invocarli; il meccanismo per perdite e danni (art. 8) e il comitato di attuazione (art. 15) non escludono le
+    regole generali; restituzione, indennizzo anche con somma globale, e la possibilita' per un giudice di ordinare
+    un NDC conforme. Se ITLOS o OC-32/25 qualifichino cosi' gli obblighi climatici [non verificato nel corpus per
+    questo fascicolo].
+  paragrafi: "§§ 410-420, 439-455"
+  fonte: >
+    PI, 01/10/2026 (indicati §§ 439-455); verificati da Claude; §§ 410-420 aggiunti perche' riguardano la
+    responsabilita' (nessuna lex specialis sulle sue conseguenze)
+  esclusione_di_provenienza: >
+    Non Chorzow (1928) per la riparazione piena, ne' Costa Rica c. Nicaragua (Indennizzo 2018, §§ 35, 41-43) per il
+    danno ambientale indennizzabile e la valutazione equitativa, ne' Corfu Channel per la soddisfazione: la Corte
+    li cita.
+  canonical: "In the present context, the Court considers that all States have a common interest in the protection of global environmental commons like the atmosphere and the high seas. Consequently, States’ obligations pertaining to the protection of the climate system and other parts of the environment from anthropogenic GHG emissions, in particular the obligation to prevent significant transboundary harm under customary international law, are obligations erga omnes. In the treaty context, the Court recalls that the UNFCCC and Paris Agreement acknowledge that climate change is “a common concern of humankind” (UNFCCC, first preambular paragraph; Paris Agreement, eleventh preambular paragraph), requiring “a global response” (Paris Agreement, Article 2). They seek to protect the essential interest of all States in the safeguarding of the climate system, which benefits the international community as a whole. As such, the Court considers that the obligations of States under these treaties are obligations erga omnes partes."
+  canonical_paragrafo: para. 440
+  canonical_pagina: '132'
+  canonical_documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+- id: cig-parere-clima.continuita_stato
+  titolo: "La statualita' continua nonostante la perdita del territorio per l'innalzamento del mare"
+  testo: >
+    A country does not necessarily lose its statehood if rising seas swallow its territory, and maritime zones once
+    duly established and published need not be redrawn as coastlines recede.
+  elemento_proprio: >
+    Nessuna corte prima di questa si era pronunciata [verificato sui soli testi del corpus]: ne' l'ITLOS ne'
+    OC-32/25 trattano statualita' e linee di base. Proprio del parere: la scomparsa di un elemento costitutivo dello
+    Stato non comporta necessariamente la perdita della statualita', e l'UNCLOS non obbliga ad aggiornare carte e
+    coordinate delle zone marittime una volta stabilite. Nessuna citazione nel corpus a oggi.
+  paragrafi: "§§ 358-363"
+  fonte: >
+    PI, 01/10/2026 (indicati §§ 358-363); verificati da Claude: §§ 358-362 sulle zone marittime, § 363 sulla
+    statualita'
+  esclusione_di_provenienza: >
+    Non la Dichiarazione del Pacific Islands Forum del 2021 sulla conservazione delle zone marittime, ne' il
+    rapporto finale del gruppo di studio ILC sull'innalzamento del mare (2025), che la Corte richiama (§§ 360-361):
+    chi fonda la stabilita' delle linee di base su quelle fonti non riprende il parere.
+  canonical: "In the view of the Court, once a State is established, the disappearance of one of its constituent elements would not necessarily entail the loss of its statehood."
+  canonical_paragrafo: para. 363
+  canonical_pagina: '114'
+  canonical_documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
+  canonical_bis: "The Court considers that the provisions of UNCLOS do not require States parties, in the context of physical changes resulting from climate-change related sea level rise, to update their charts or lists of geographical co-ordinates that show the baselines and outer limit lines of their maritime zones once they have been duly established in conformity with the Convention. For this reason, States parties to UNCLOS are under no obligation to update such charts or lists of geographical co-ordinates."
+  canonical_bis_paragrafo: para. 362
+  canonical_bis_pagina: '113'
+
+nota_analitica:
+  spartiacque_possibili: [2025-07-23]
+  effetto_atteso: >
+    Ricezione per ora concentrata nelle memorie al procedimento consultivo della Corte africana (2026) e in pochi
+    atti nazionali e regionali. Citazione quasi sempre in catena con ITLOS e OC-32/25. Le riprese sostanziali attese
+    su diligenza_stringente_clima (§§ 280-292) e fossili_illecito (§§ 427-428); continuita_stato non ha ancora
+    citazioni. Da verificare, non da presupporre.

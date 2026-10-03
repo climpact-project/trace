@@ -1,0 +1,21 @@
+Sei un giurista che studia come le sentenze climatiche vengono riprese nei processi successivi.
+Il caso studiato e' {nome}. Il principio in questione:
+- {pid}: {ptitolo}. {ptesto}
+
+Qui sotto una pagina di un atto successivo ({case_name}, {tipo_atto}, {data}). L'atto NON nomina mai {nome}: e' stato scelto perche' la pagina somiglia a passaggi di altri atti che citano {nome} per questo principio.
+{intermediari}
+--- PAGINA {pagina} ---
+{testo}
+--- FINE ---
+
+DOMANDE
+1. "giudizio": la pagina
+   - "ripresa": sviluppa lo STESSO ragionamento del principio, con i suoi passaggi caratteristici, senza attribuirlo a nessuna fonte o attribuendolo a una fonte che a sua volta lo prende da {nome};
+   - "altra_fonte": sviluppa un argomento simile ma lo attribuisce a un'altra fonte (un altro caso, un trattato, un rapporto) che non deriva da {nome};
+   - "stesso_tema": parla dello stesso tema senza il ragionamento del principio;
+   - "fuori_tema".
+2. "fonte": se la pagina attribuisce l'argomento a una fonte, quale (altrimenti "").
+3. "prova": una frase copiata ALLA LETTERA dalla pagina che regge il giudizio.
+4. "motivo": una frase.
+
+Rispondi SOLO con JSON: {{"giudizio": "...", "fonte": "...", "prova": "...", "motivo": "..."}}

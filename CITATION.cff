@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use TRACE, please cite it as below. The DOI is reserved and becomes active on publication."
+title: "CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence"
+type: software
+version: "0.1"
+date-released: "2026-10-12"
+license: MIT
+repository-code: "https://github.com/climpact-project/trace"
+url: "https://www.climpact.it/site/data/trace"
+authors:
+  - family-names: Naglieri
+    given-names: Giuseppe
+    affiliation: "CLIMPACT, University of Bari"
+  - family-names: Buono
+    given-names: Enrico
+    affiliation: "CLIMPACT, University of Bari"
+  - family-names: Garofalo
+    given-names: Carlotta
+    affiliation: "CLIMPACT, University of Bari"
+  - family-names: Saracino
+    given-names: Ciro
+    affiliation: "CLIMPACT, University of Bari"
+  - family-names: "Dell'Atti"
+    given-names: Luca
+    affiliation: "CLIMPACT, University of Bari"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23082522"
+    description: "Reserved DOI of the Zenodo deposit, active on publication"
+keywords:
+  - climate litigation
+  - citation analysis
+  - judicial uptake
+  - legal NLP

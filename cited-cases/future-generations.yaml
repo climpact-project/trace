@@ -1,3 +1,16 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/future-generations.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forme nuove: Future Generations v. Ministry, Future Generations v Ministry, Future Generations vs. Ministry
+#   - forme nuove: Generaciones Futuras v, Generaciones Futuras vs
+#   - forme nuove: STC4360, STC 4360, STC. 4360, STC-4360
+#   - forme nuove: 2018-00319, 201800319
+#   - forme nuove: Barragán, et al. v. Presidencia, Barragan, et al. v. Presidencia, Barragán et al. v. Presidencia, Barragán y otros v. Presidencia
+#   - forme_parola_intera (nuovo campo, letto solo da cerca_s05.py): Generaciones Futuras v, Generaciones Futuras vs
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 # CASO CITATO — FUTURE GENERATIONS (Generaciones Futuras v. Minambiente), query specification v2
 #
 # VERSIONE 2 (23 settembre 2026): riscrittura della v1 del 9 settembre secondo il Registro di
@@ -207,6 +220,31 @@ forme:
   - STC4360-2O18                                     # PREVISTA
   - Generaciones Futuras v. Minanbiente              # PREVISTA: m->n
   - Generaciones Futuras v. MinAmbiente
+  # S05 NUOVE: il titolo inglese con qualunque seguito («v. Ministry of Enviroronment», «v. Ministry of Environment and others case»). Prove, lette nel campione del 02/10: 6 vere su 6: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_f161 p. 51; klimaticka-zaloba-cr-v-czech-republic-judgment_f1a4 p. 5; institute-of-amazonian-studies-v-brazil-complaint_b28c p. 31; request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-other_1df8 p. 56
+  - Future Generations v. Ministry
+  - Future Generations v Ministry
+  - Future Generations vs. Ministry
+  # S05 NUOVE: il titolo spagnolo con qualunque convenuto («vs. Ministro del Ambiente», «v. Ministério de Ambiente»), a parola intera; «contra» e «c.» NON si aggiungono: «las generaciones futuras contra los efectos» e' prosa comune. Prove, lette nel campione del 02/10: 9 vere su 9: alvarez-et-al-v-peru-other_9569 p. 23; alvarez-et-al-v-peru-other_9569 p. 22; psb-et-al-v-brazil-on-amazon-fund-decision_dbcc p. 121; request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_d40b p. 46
+  - Generaciones Futuras v
+  - Generaciones Futuras vs
+  # S05 NUOVE: il numero della sentenza senza l'anno o con l'anno attaccato («STC43602018», «stc 4360, 2018»). Prove, lette nel campione del 02/10: 6 vere su 6: asociacion-civil-por-la-justicia-ambiental-v-province-of-entre-rios-et-al-delta-del-parana-case-complaint_fa03 p. 22; psb-et-al-v-brazil-on-amazon-fund-decision_dbcc p. 121; city-of-bucaramanga-et-al-v-ministry-of-environment-et-al-other_fd20 p. 97; greenpeace-nordic-and-others-v-norway-petition_8b17 p. 40
+  - STC4360
+  - STC 4360
+  - STC. 4360
+  - STC-4360
+  # S05 NUOVE: il radicado in forma breve («0002018-00319-01», «000-201800319-01»). Prove, lette nel campione del 02/10: 3 vere su 3: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_d40b p. 46; anton-foley-and-others-v-sweden-aurora-case-application_77a8 p. 13; laboratorio-do-observatorio-do-clima-v-minister-of-environment-and-brazil-petition_8fd4 p. 56
+  - 2018-00319
+  - '201800319'
+  # S05 NUOVE: il nome della prima ricorrente col convenuto. Prove, lette nel campione del 02/10: 1 vere su 1: lighthiser-v-trump-amicus-brief_ce2e p. 17
+  - Barragán, et al. v. Presidencia
+  - Barragan, et al. v. Presidencia
+  - Barragán et al. v. Presidencia
+  - Barragán y otros v. Presidencia
+
+# S05: forme che valgono solo a parola intera (non attaccate ad altre lettere). Stanno anche in `forme`.
+forme_parola_intera:
+  - Generaciones Futuras v
+  - Generaciones Futuras vs
 
 found_in_corpus: []
 

@@ -1,3 +1,14 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/neubauer.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forme nuove: Beschluss vom 24. März 2021, Beschluss vom 24.März 2021, Beschluss vom 24. Marz 2021, Beschluss vom 24.03.2021, Beschluss vom 24.3.2021, Beschluss vom 24. 3. 2021, Beschluß vom 24. März 2021, Beschluß vom 24.03.2021, Beschluss des Ersten Senats vom 24.03.2021, Beschluss des Ersten Senats vom 24.3.2021
+#   - forme nuove: 1 BvR 2565/18
+#   - forme nuove: BVerfGE 157,30
+#   - forme nuove: 德國聯邦憲法法院KSG, 德国联邦宪法法院KSG
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 # CASO CITATO — NEUBAUER E ALTRI c. GERMANIA (Klimabeschluss), query specification v1
 #
 # Bundesverfassungsgericht, Erster Senat, Beschluss vom 24. März 2021, 1 BvR 2656/18, 1 BvR 78/20,
@@ -179,6 +190,24 @@ forme:
   - Neubaner
   - Nenbauer
   - Neuhauer
+  # S05 NUOVE: la data della pronuncia nelle grafie tedesche, senza la corte davanti. Prove, lette nel campione del 02/10: 4 vere su 4: greenpeace-e-v-and-germanwatch-e-v-v-germany-challenge-on-amended-federal-climate-protection-act-complaint_e274 p. 170; environmental-permit-for-stade-lng-terminal-hanseatic-energy-hub-decision_4d5b p. 5; compensation-claims-by-climate-activists-hamburg-airport-decision_4991 p. 6; duh-nabu-v-germany-lawsuits-against-binz-lng-pipeline-rugen-judgment_d43f p. 43
+  - Beschluss vom 24. März 2021
+  - Beschluss vom 24.März 2021
+  - Beschluss vom 24. Marz 2021
+  - Beschluss vom 24.03.2021
+  - Beschluss vom 24.3.2021
+  - Beschluss vom 24. 3. 2021
+  - Beschluß vom 24. März 2021
+  - Beschluß vom 24.03.2021
+  - Beschluss des Ersten Senats vom 24.03.2021
+  - Beschluss des Ersten Senats vom 24.3.2021
+  # S05 NUOVE: refuso del numero di ruolo 1 BvR 2656/18 (17 pagine, 2 atti di Greenpeace e Germanwatch). Prove, lette nel campione del 02/10: 1 vere su 1: greenpeace-e-v-and-germanwatch-e-v-v-germany-challenge-on-amended-federal-climate-protection-act-complaint_e274 p. 170
+  - 1 BvR 2565/18
+  # S05 NUOVE: la citazione ufficiale senza lo spazio; «BVerfGE 157» da sola NON si aggiunge: il volume contiene altre decisioni, e le pagine provate dicono tutte «157, 30», che S05 trova gia' con la normalizzazione. Prove, lette nel campione del 02/10: 9 vere su 9: environmental-permit-for-stade-lng-terminal-hanseatic-energy-hub-decision_4d5b p. 5; olg-schleswig-holstein-tree-occupation-in-private-forest-judgment_e648 p. 20; olg-schleswig-holstein-tree-occupation-in-private-forest-judgment_e648 p. 19; olg-schleswig-holstein-tree-occupation-in-private-forest-judgment_e648 p. 7
+  - BVerfGE 157,30
+  # S05 NUOVE: «Corte costituzionale federale tedesca, caso KSG» (cinese tradizionale e semplificato). Prove, lette nel campione del 02/10: 1 vere su 1: lee-and-others-vs-legislative-yuan-constitutional-case-petition_75b4 p. 89
+  - 德國聯邦憲法法院KSG
+  - 德国联邦宪法法院KSG
 
 found_in_corpus:
   - Neubauer                             # 97 casi, conteggio del 19/09/2026 (dal file precedente)

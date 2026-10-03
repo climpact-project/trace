@@ -1,10 +1,10 @@
 # TRACE 0.1 model cards
 
-The models trained by the CLIMPACT project (University of Bari) for TRACE 0.1. Each has a version code in the TRACE registry (`versioni/registro.json`): the letter T marks a model trained by the project. They are research releases, trained and evaluated on one cited judgment, Urgenda (Supreme Court of the Netherlands, 20 December 2019, and the two earlier instances).
+The models trained by the CLIMPACT project (University of Bari) for TRACE 0.1. Each has a version code in the TRACE registry (`versioni/registro.json`): the letter T marks a model trained by the project. They are research releases, trained and evaluated on one cited judgment, Urgenda (Supreme Court of the Netherlands, 20 December 2019, and the two earlier instances), and used since on six cited cases.
 
 Every proposal the models make is shown to people, who confirm or correct it. The models never decide a citation on their own.
 
-Cards updated on 30 September 2026, after an independent review of the registry and of these texts. The registry is the single source: where a card and the registry differ, the registry is right.
+Cards updated on 30 September 2026, after an independent review of the registry and of these texts, and on 3 October 2026 for the rules and data versions that changed since (R10, R11, S05, D02, D03). The registry is the single source: where a card and the registry differ, the registry is right.
 
 ## T01, TRACE-Reranker 0.1
 
@@ -12,7 +12,12 @@ Cards updated on 30 September 2026, after an independent review of the registry 
 - it gives a hint of which principle a citation takes (the hint is shown; it never ticks a principle on its own);
 - it scores the pages near the citation, up to ten pages before and after, so that a rule can choose which ones the external reader should read for the continuation of the argument.
 
-The choice of pages is not part of the model. It is the rule R03 in the registry: a page from two pages before to three after the citation is chosen at a score of 0.5 or more, a page further away at 0.8 or more, at most five pages per citation. The 0.8 threshold was measured on the pages read at four to ten pages from the citation; the 0.5 threshold is inherited and still to be calibrated on the team's judgments. Calibrating R03 does not retrain T01.
+The choice of pages is not part of the model. It is a rule in the registry, and the rule has changed twice:
+- R03, Choice of the nearby pages to read (29 September 2026): a page from two pages before to three after the citation is chosen at a score of 0.5 or more, a page further away at 0.8 or more, at most five pages per citation.
+- R08, Choice of the nearby pages, over the full window for every case (1 October 2026): the same thresholds, with T01 scores on every page of the window for every case (before, pages four to ten had scores only for Urgenda).
+- R10, Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap (2 October 2026, used by the five-reading cycle): a page within ten pages before or after the citation is chosen when its best score on a principle is 0.5 or more, at any distance, with no limit on the number of pages; unreadable pages stay out. Measured with the external reader as a blind judge of which pages carry the uptake on, R10 brings 57% of those pages to the reader (95% interval 51-63%, bootstrap by filing) against 27% (20-34%) for R08, at 4.6 pages per citation instead of 2.0. The judge is the external reader, not the team: the comparison between the rules is more solid than the absolute shares.
+
+Changing the rule does not retrain T01.
 
 **Base model.** Qwen3-Reranker-4B (4 billion parameters, Apache-2.0), revision 22e68366.
 
@@ -44,6 +49,17 @@ The choice of pages is not part of the model. It is the rule R03 in the registry
 
 **Limits.** One cited judgment; the human reference for the type was coded by one person, with the external reader's proposals visible.
 
+## The external reader: five readings and a majority vote (R11)
+
+The proposals the team sees come from the external reader, DeepSeek V4 Flash, under the rule R11, Proposals by majority vote of five readings, decided on 2 October 2026 and being applied (rows composed under it carry `R11` in their provenance). Each row is read five times: the type of citation by the citation reading (L02 for Urgenda, L03 for the other cases) and the principles and surrounding pages by the uptake reading with the dossier (L05; under the earlier rule R05 the principles came from L04).
+
+- A type, a principle or a surrounding page is proposed when the majority of the valid readings votes for it (3 of 5). The votes are written next to each proposal («4/5»). With no principle reaching the majority the proposal is «none».
+- A decision is uncertain when the margin is at most one vote; uncertain rows are marked and get a low confidence. A tie on the type goes to the first tied type in reading order, so the result is repeatable.
+- A surrounding page is proposed only when the evidence quoted by the readings is really on the page.
+- A principle proposed by the readings without evidence found on the page is kept and flagged, not dropped: dropping did not improve agreement with the team and lowered recall.
+
+Why five: between two independent majorities, on 300 rows of all six cases, Krippendorff's alpha is 0.66 with one reading, 0.78 with three and 0.83 with five on the principles, and 0.67, 0.78 and 0.83 on the type; five is the first number of readings above 0.80, a threshold declared in advance as a convention. Below 0.80 even at five readings: the principles of KlimaSeniorinnen (0.68), the type for the ICJ advisory opinion (0.72) and for the Inter-American Court advisory opinion (0.76).
+
 ## The retriever
 
 TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 0.25) served the July semantic search for implicit uptake without a citation. That search is paused: a check of the July results found about one real implicit uptake per hundred candidate pages. The retriever is **not part of this release**: it has no version code, no code copy and no weight fingerprint in the registry, and it is not in the Zenodo deposit. It will be redone with real citing passages as queries and re-evaluated on that task before any release, and it will enter the registry with a T code at that point.
@@ -56,9 +72,10 @@ TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 
 
 ## Common to all
 
-- Source corpus (code D01): Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law School) with Climate Policy Radar, read through its public API (snapshot of 26 July 2026). The texts of the filings are not redistributed.
+- Source corpus: Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law School) with Climate Policy Radar, read through its public API. Three data versions: D01, Documents: Climate Litigation Database, public API snapshot (26 July 2026); D02, Documents: D01 with OCR text of unreadable pages (3,171 pages in 94 filings from 2 October 2026); D03, Documents: D02 with Markdown for 277 filings of the 19/09/2026 update. The texts of the filings are not redistributed.
+- Name search: S05, Name search on normalised text, with readmitted and new forms (in use from 2 October 2026). It finds every citation found by the earlier version S03 at the same position and adds new ones only: on a reading of the new rows, 155 of 163 were real citations (95.1%, Wilson 95% interval 90.6-97.5%).
 - Hardware: NVIDIA H100 80GB, ReCaS-Bari data centre (INFN and University of Bari).
 - Every version is recorded with base model revision, weight fingerprints, training data, settings, instructions and code in the TRACE registry, with a note where a text is reconstructed rather than copied.
 - Terms used here: «external reader» is DeepSeek V4 Flash (codes L); «TRACE-Reader» is T02 and T03; «uptake» is the relation between a citation and the cited case; «continuation» is a nearby page that carries the same uptake on; «case file» is the list of a case's principles (`cited-cases/*.yaml`); «dossier» is the case summary given to the reader (`*-fascicolo.md`); «test rows» is the fixed evaluation set; «judged without proposals» is the one-in-five sample shown with no machine proposal.
 - Authors: G. Naglieri, E. Buono, C. Garofalo, C. Saracino, L. Dell'Atti (CLIMPACT, University of Bari).
-- Citation: Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L. (2026). CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. CLIMPACT, University of Bari. Zenodo. DOI: [pending].
+- Citation: Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L. (2026). CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. CLIMPACT, University of Bari. Zenodo. DOI reserved: 10.5281/zenodo.23082522 (active on publication).
