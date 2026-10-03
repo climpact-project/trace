@@ -144,3 +144,49 @@ def test_osservatore_rotto_non_ferma(tmp_path: Path) -> None:
     banca = BancaDatiMemoria(osservatore=rotto)
     banca.imposta('c', 'd', {'a': 1})
     assert banca.scritture[0]['op'] == 'set'
+
+
+# a swallowed error is said, not thrown away (03/10/2026, external review)
+
+
+def test_errore_del_giornale_su_stderr_e_nel_file(tmp_path: Path, monkeypatch, capsys) -> None:
+    """The month file cannot be written (its folder is a file): the run goes on, the error is on stderr and in
+    ``giornale/errori_giornale.log``, without braces."""
+    monkeypatch.setattr('tracepipe.giornale.macchina', lambda: 'h')
+    (tmp_path / 'giornale').mkdir()
+    (tmp_path / 'giornale' / 'h').write_text('un file al posto della cartella')
+    with Giornale(tmp_path, 't{x}') as g:
+        g.chiamata_deepseek({'storia': 'non una lista'})  # a broken record: counted, the error said
+    err = capsys.readouterr().err
+    assert err.count('giornale: errore ignorato in scrittura della riga') == 2  # start and end line
+    assert 'conto delle chiamate a DeepSeek' in err and '{' not in err
+    log = (tmp_path / 'giornale' / 'errori_giornale.log').read_text(encoding='utf-8')
+    assert len(log.splitlines()) == 3 and all(' pid ' in r and ' t{x}: giornale:' in r for r in log.splitlines())
+
+
+def test_errori_del_giornale_al_massimo_venti(tmp_path: Path, capsys) -> None:
+    g = Giornale(tmp_path, 't')
+    for _ in range(50):
+        g._segnala('prova', ValueError('{rotto}'))
+    err = capsys.readouterr().err.splitlines()
+    assert len(err) == 20 and err[0] == 'giornale: errore ignorato in prova: ValueError: (rotto)'
+    assert len((tmp_path / 'giornale' / 'errori_giornale.log').read_text().splitlines()) == 20
+
+
+def test_errore_del_giornale_come_il_vivo(vivi_oggi, tmp_path: Path, monkeypatch, capsys) -> None:
+    """The live journal says the same error the same way (stderr line, fallback file under its folder)."""
+    gv = vivi_oggi('giornale')
+    monkeypatch.setattr(gv, 'CARTELLA', tmp_path / 'giornale')
+    monkeypatch.setattr(gv, '_host', lambda: 'h')
+    monkeypatch.setattr(gv, '_segnalati', [0])
+    (tmp_path / 'giornale').mkdir()
+    (tmp_path / 'giornale' / 'h').write_text('un file al posto della cartella')
+    gv._scrivi_riga({'tipo': 'evento'})
+    gv.chiamata_deepseek({'storia': 'non una lista'})
+    vivo = capsys.readouterr().err
+    monkeypatch.setattr('tracepipe.giornale.macchina', lambda: 'h')
+    g = Giornale(tmp_path, 't')
+    g._scrivi_riga({'tipo': 'evento'})
+    g.chiamata_deepseek({'storia': 'non una lista'})
+    assert capsys.readouterr().err == vivo
+    assert len((tmp_path / 'giornale' / 'errori_giornale.log').read_text().splitlines()) == 4

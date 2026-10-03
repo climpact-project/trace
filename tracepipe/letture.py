@@ -19,6 +19,11 @@ import re
 from dataclasses import dataclass, field
 from typing import Any
 
+LETTURE_PROTOCOLLO = 5
+"""Readings per row of the measured protocol (R11, 02/10/2026: ``training/misure/GIRI-E-DOMANDA.md``, 5 is the first k
+whose Krippendorff alpha between two independent majorities passes 0.80). The default of ``--letture`` since
+03/10/2026 (it was 2, the old two-reading agreement)."""
+
 ILLEGGIBILE = 'ILLEGGIBILE'
 """The ``esito`` of an answer that could not be parsed (Italian: unreadable)."""
 
@@ -59,6 +64,20 @@ def estrai_tollerante(testo: str) -> Any:
     grezzo = testo or g.get('grezzo') or ''
     r = {k: m.group(1) for k in CAMPI for m in [_CAMPO[k].search(grezzo)] if m}
     return {**r, 'recuperata': True, 'grezzo': grezzo[:2000]} if r.get('tipo_citazione') else g
+
+
+def vero(x: Any) -> bool:
+    """A yes/no of a reading, read strictly (03/10/2026, external review): ``True``, the string ``"true"`` (case and
+    spaces aside) or the integer ``1`` is yes; anything else, the string ``"false"`` included, is no.
+
+    ``bool()`` made the non-empty string ``"false"`` a yes. Same as ``tools/maggioranza.vero``. In the saved readings
+    of 03/10/2026: 197,892 booleans and 2 strings ``"true"``, no ``"false"``: no past proposal changes.
+    """
+    if x is True:
+        return True
+    if isinstance(x, str):
+        return x.strip().lower() == 'true'
+    return type(x) is int and x == 1
 
 
 def vuota(lettura: Any) -> bool:

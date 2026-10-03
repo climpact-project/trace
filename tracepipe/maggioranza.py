@@ -32,6 +32,7 @@ import re
 from collections.abc import Callable, Mapping, Sequence
 from typing import Any
 
+from .letture import vero as vero  # re-exported: the strict yes/no of the page votes
 from .letture import vuota
 
 CATEGORIE_ORDINE = ('menzione_in_catena', 'descrittiva', 'sostanziale', 'distinguente', 'critica', 'implicita')

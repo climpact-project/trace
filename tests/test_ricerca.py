@@ -229,3 +229,63 @@ def test_unione_come_unisci(vivi, monkeypatch, radice, caso, scrivi) -> None:
         assert r['aggiunte'] and None in r['orfane']  # the second mention is added; the row without file stays
     if scrivi:
         assert {x['op'] for x in banca.scritture} >= {'create', 'set'}
+
+
+# the deduplication per document (03/10/2026, external review; not in use)
+
+
+def _righe_dedup() -> list[dict[str, Any]]:
+    testo = 'The court followed Urgenda   on the duty of care. ' * 3
+    return [
+        {'document_id': 'a', 'char_start': 10, 'citazione_testuale': testo},
+        {'document_id': 'a', 'char_start': 900, 'citazione_testuale': testo.upper()},  # same document: a copy
+        {'document_id': 'b', 'char_start': 40, 'citazione_testuale': ' ' + testo},  # another filing: kept, linked
+        {'document_id': 'c', 'char_start': 5, 'citazione_testuale': 'another passage on Urgenda'},
+        {'document_id': 'b', 'char_start': 70, 'citazione_testuale': testo},  # copy inside b
+    ]
+
+
+def test_deduplica_su_tutto_il_corpus_come_prima() -> None:
+    from tracepipe.ricerca import deduplica
+
+    scarti: list[dict[str, Any]] = []
+    tenute = deduplica(_righe_dedup(), scarti)
+    assert [(r['document_id'], r['char_start']) for r in tenute] == [('a', 10), ('c', 5)]
+    assert tenute[0]['copie'] == 4 and len(scarti) == 3 and all('stesso_testo_di' not in r for r in tenute)
+
+
+def test_deduplica_per_atto() -> None:
+    from tracepipe.ricerca import deduplica
+
+    scarti: list[dict[str, Any]] = []
+    tenute = deduplica(_righe_dedup(), scarti, per_atto=True)
+    assert [(r['document_id'], r['char_start'], r['stesso_testo_di'], r['copie']) for r in tenute] == [
+        ('a', 10, '', 2),
+        ('b', 40, 'a__10', 2),
+        ('c', 5, '', 1),
+    ]
+    assert [(r['document_id'], r['char_start'], r['motivo_scarto']) for r in scarti] == [
+        ('a', 900, 'copia di un altro frammento'),
+        ('b', 70, 'copia di un altro frammento'),
+    ]
+
+
+def test_deduplica_per_atto_come_la_copia_viva(vivi_oggi, monkeypatch) -> None:
+    import copy
+    import random
+
+    from tracepipe.ricerca import deduplica
+
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parent.parent / 'tools'))  # its sibling `dimensioni`
+    viva = vivi_oggi('cerca_s05_per_atto')
+    rnd = random.Random(1003)
+    testi = ['Urgenda held x', 'urgenda   HELD x', 'Neubauer said y', 'z' * 500, 'z' * 400 + 'w']
+    for _ in range(200):
+        righe = [
+            {'document_id': rnd.choice('abc'), 'char_start': k, 'citazione_testuale': rnd.choice(testi)}
+            for k in range(rnd.randint(0, 12))
+        ]
+        sv: list[dict[str, Any]] = []
+        sp: list[dict[str, Any]] = []
+        assert viva.deduplica(copy.deepcopy(righe), sv) == deduplica(copy.deepcopy(righe), sp, per_atto=True)
+        assert sv == sp

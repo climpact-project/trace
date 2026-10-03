@@ -193,7 +193,7 @@ def test_passi_dichiarati(tmp_path: Path) -> None:
 
 def test_coda_come_la_catena() -> None:
     """The queue lines the shell chain wrote (``scrivi_coda``), for one case."""
-    righe = coda('coda-ds2', ('urgenda',)).splitlines()
+    righe = coda('coda-ds2', ('urgenda',), letture=2).splitlines()
     assert righe[0] == 'H=/lustrehome/climpact/trace; C=$H/chat; cd $H'
     assert righe[2] == (
         '$H/venv/bin/python -u tools/leggi_ripresa.py leggi --caso urgenda --etichetta v2 --letture 2 --solo-vuote $A'
@@ -205,3 +205,13 @@ def test_coda_come_la_catena() -> None:
     )
     assert "--etichetta 'v2' --solo-vuote $A >> $C/log/vuote_coda-ds2.log 2>&1" in righe[5]
     assert righe[-1] == 'echo FINITO > $C/log/vuote_coda-ds2_fine.txt'
+
+
+def test_coda_cinque_letture_e_seme() -> None:
+    """Since 03/10/2026 the queues ask the protocol's five readings; a seed, when given, goes to every reader."""
+    righe = coda('coda-ds2', ('urgenda',)).splitlines()
+    assert all('--letture 5 ' in r for r in righe if ' leggi ' in r)
+    assert '--seme' not in righe[1]
+    con = coda('coda-ds2', ('urgenda',), seme=7).splitlines()
+    assert con[1].endswith('--paralleli 32 --seme 7"')
+    assert con[2:] == righe[2:]

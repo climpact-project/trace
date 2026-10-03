@@ -50,9 +50,13 @@ CAMBIATI_DOPO = {
     'leggi_l04',
     'carica_ripresa',
     'carica_lessicali',
+    'freni',
+    'giornale',
 }
 """Live scripts changed after the harness (02/10/2026 evening: temperature, seed, call record, full reasoning; then the
-options of the five readings, default unchanged: ``--regola R10``, ``--aggiungi-letture``, ``--composizione R11``)."""
+options of the five readings, default unchanged: ``--regola R10``, ``--aggiungi-letture``, ``--composizione R11``;
+03/10/2026, the external review: Thai, Lao, Khmer and Myanmar in the evidence check; the journal says its own errors
+on stderr and in ``giornale/errori_giornale.log`` instead of swallowing them)."""
 
 
 def _git_show(percorso: str) -> bytes | None:

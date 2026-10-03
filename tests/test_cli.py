@@ -124,3 +124,21 @@ def test_esempio_di_passaggio(monkeypatch) -> None:
             '--scrivi',
         ]
     ]
+
+
+def test_letture_predefinite_cinque() -> None:
+    p = cli.parser()
+    for cosa in ('tipo', 'principi', 'pagine-attorno'):
+        assert p.parse_args(['leggi', cosa]).letture == 5
+    assert p.parse_args(['leggi', 'tipo', '--letture', '2']).letture == 2
+
+
+def test_seme_nel_giornale(tmp_path: Path) -> None:
+    """The seed, when given, is in the journal's end line (the run stops here: no key file, no DeepSeek)."""
+    for extra in (['--seme', '7', '--temperatura', '0'], []):
+        with pytest.raises(FileNotFoundError):
+            cli.main(['--radice', str(tmp_path), 'leggi', 'tipo', '--caso', 'neubauer', *extra])
+    righe = [json.loads(x) for f in (tmp_path / 'giornale').rglob('*.jsonl') for x in f.read_text().split('\n') if x]
+    fine = [x for x in righe if x['tipo'] == 'fine']
+    assert fine[0]['parametri'] == {'seme': 7, 'temperatura': 0.0}
+    assert 'parametri' not in fine[1]

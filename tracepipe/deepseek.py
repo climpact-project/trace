@@ -191,6 +191,17 @@ class ClienteDeepSeek:
                     ultimo['testo'] = dal
                     ultimo['dal_ragionamento'] = True
                     storia[-1]['dal_ragionamento'] = True
+            # truncated but not empty (03/10/2026, external review): a cut text that does not end with valid JSON is
+            # not an answer; it is kept aside and retried as if empty (then, if needed, the raised cap)
+            if (
+                not self.compat
+                and ultimo['testo'].strip()
+                and c.finish_reason == 'length'
+                and not json_finale(ultimo['testo'])
+            ):
+                ultimo['testo_troncato'] = ultimo['testo']
+                ultimo['testo'] = ''
+                storia[-1]['troncata'] = True
             if ultimo['testo'].strip():
                 break
             k += 1

@@ -26,6 +26,7 @@ import difflib
 import hashlib
 import json
 import re
+import sys
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -34,6 +35,7 @@ from typing import Any
 from .caso import SerieSonde
 from .config import Config
 from .freni import FRENI, Freni
+from .letture import vero
 from .pagine_attorno import per_id
 
 LETTORE = 'mappa dei paragrafi + DeepSeek V4 Flash 0731 + TRACE-Reranker, 27/09/2026'
@@ -59,6 +61,24 @@ def _spazi(t: object) -> str:
 def _prima_dict(letture: list[Any]) -> dict[str, Any] | None:
     """The first reading if it is a dict."""
     return letture[0] if letture and isinstance(letture[0], dict) else None
+
+
+def documento_di(rid: str) -> str:
+    """The document of a row id (``<case>__<document>__<offset>``); ``''`` when the id has no ``__`` (03/10/2026:
+    ``rid.split('__')[1]`` raised IndexError and stopped the whole case)."""
+    parti = str(rid).split('__')
+    return parti[1] if len(parti) > 1 else ''
+
+
+def id_malformato(rid: str, conti: collections.Counter[str]) -> bool:
+    """True (the row is skipped) when the id is not ``<case>__<document>__...``: said on stderr and counted, as
+    ``tools/carica_ripresa.id_malformato``. Braces are replaced: the chain reads the counts from the first ``{``."""
+    if len(str(rid).split('__')) > 1:
+        return False
+    testo = ('id di riga malformato, riga saltata: ' + repr(rid)).replace('{', '(').replace('}', ')')
+    print(testo, file=sys.stderr)
+    conti['id malformato (saltata)'] += 1
+    return True
 
 
 def _senza_principi(x: Mapping[str, Any]) -> bool:
@@ -285,7 +305,8 @@ class Composizione:
             vic.append(
                 {
                     'pagina': n,
-                    'prosegue': bool(v.get('prosegue')) and esito_prova == 'trovata',
+                    # strict yes/no (03/10/2026): the string "false" is a no
+                    'prosegue': vero(v.get('prosegue')) and esito_prova == 'trovata',
                     'principio': self.principio_pagina(v),
                     'prova': prova,
                     'testuale': esito_prova == 'trovata',
@@ -335,8 +356,7 @@ class Composizione:
         # "altro" (a principle outside the list) comes only from the reading
         if ALTRO in (spuntati or []) and ALTRO not in prin_prov:
             prin_prov[ALTRO] = [codici['lettura']]
-        # NOTE(bug): an id without '__' raises IndexError here.
-        ocr = {'provenienza.corpus': 'D02'} if rid.split('__')[1] in self.documenti_ocr else {}
+        ocr = {'provenienza.corpus': 'D02'} if documento_di(rid) in self.documenti_ocr else {}
         return {
             'provenienza.principi': prin_prov,
             'provenienza.seguito': ('L07' if seguito_l07 else lettura) if vic else '',
@@ -439,6 +459,8 @@ class Composizione:
                 continue
             if r.get('esito'):
                 conti['gia giudicata (non toccata)'] += 1
+                continue
+            if id_malformato(rid, conti):
                 continue
             if rid not in g.ds and not anche_senza_lettura:
                 conti['senza lettura'] += 1
@@ -655,7 +677,7 @@ class ComposizioneMaggioranza(Composizione):
         for n, voci in sorted(maggioranza.voto_pagine(vp).items()):
             if n not in pagine_cand:
                 continue
-            si = [v for _, v in voci if v.get('prosegue')]
+            si = [v for _, v in voci if vero(v.get('prosegue'))]  # strict vote (03/10/2026): "false" is a no
             maggioranza_si = len(si) >= vp['soglia']
             if si:
                 nomi = [self.principio_pagina(v) for v in si]
@@ -667,7 +689,8 @@ class ComposizioneMaggioranza(Composizione):
                     or next((x for x in prove if x[2] == 'trovata'), None)
                     or prove[0]
                 )
-                trovata = any(x[2] == 'trovata' for x in prove)
+                # ticked only with a found evidence OF the winning principle (03/10/2026, external review)
+                trovata = any(x[2] == 'trovata' and self.principio_pagina(x[0]) == principio for x in prove)
             else:
                 rapp = esito(voci[0][1], n)
                 principio = self.principio_pagina(voci[0][1])
@@ -711,9 +734,12 @@ class ComposizioneMaggioranza(Composizione):
         prin_prov = {k: sorted({codici[f] for f in v}) for k, v in fonti.items() if v}
         if ALTRO in spuntati and ALTRO not in prin_prov:
             prin_prov[ALTRO] = ['L05']
-        incerta = bool(vp['incerti']) or bool(vt and vt['incerto'])
+        # row uncertainty only from the decisions that make the proposal (03/10/2026, external review): an adopted
+        # principle with margin <= 1, or, when none is adopted, a near miss; the type confidence is not mixed in
+        adottati = [p for p in vp['maggioranza'] if p in vp['voti'] and p != NESSUNO]
+        incerta = any(p in vp['incerti'] for p in adottati) if adottati else bool(vp['incerti'])
         data = '/'.join(reversed(str(rec.get('data') or '')[:10].split('-')))
-        ocr = {'provenienza.corpus': 'D02'} if rid.split('__')[1] in self.documenti_ocr else {}
+        ocr = {'provenienza.corpus': 'D02'} if documento_di(rid) in self.documenti_ocr else {}
         out: dict[str, Any] = {
             'provenienza.principi': prin_prov,
             'provenienza.seguito': 'L05' if vic else '',
@@ -738,6 +764,10 @@ class ComposizioneMaggioranza(Composizione):
                 f'mappa dei paragrafi + DeepSeek V4 Flash 0731, {vp["n"]} letture a maggioranza (R11), {data} '
                 '+ TRACE-Reranker, pagine attorno R10'
             ),
+            # the two sources apart (03/10/2026, external review): the ticked principles are map + majority; here each
+            # on its own, before the chain-mention rule, so the analysis can separate them
+            'proposto_principi_da_mappa': [p for p in ids if 'paragrafo' in fonti[p]],
+            'proposto_principi_da_lettura': list(vp['maggioranza']),
             'proposto_principi_voti': {p: maggioranza.voti_testo(v, vp['n']) for p, v in vp['voti'].items()},
             'proposto_principi_incerti': vp['incerti'],
             'proposto_prova_mancante': bool(senza_prova),
@@ -745,8 +775,7 @@ class ComposizioneMaggioranza(Composizione):
             'proposto_incerta': incerta,
             'proposta_provvisoria': False,
         }
-        if vt:
-            out['proposto_confidenza'] = 'bassa' if incerta else 'alta'
+        # the type confidence is written by the type loader only (CaricatoreTipo, R11)
         return out
 
     def componi_r11(
@@ -763,6 +792,8 @@ class ComposizioneMaggioranza(Composizione):
                 continue
             if r.get('esito'):
                 conti['gia giudicata (non toccata)'] += 1
+                continue
+            if id_malformato(rid, conti):
                 continue
             if rid not in g.ds:
                 conti['senza lettura (non toccata)'] += 1

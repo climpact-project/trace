@@ -36,7 +36,7 @@ import yaml
 from .config import Config
 from .deepseek import ClienteDeepSeek
 from .istruzioni import FINE, INIZIO, MODULO_PAGINE_ATTORNO, MODULO_PRINCIPI, NOMI_BREVI, blocchi_codebook, modulo_tipo
-from .letture import estrai_tollerante, vuota
+from .letture import LETTURE_PROTOCOLLO, estrai_tollerante, vuota
 
 MODELLO_TIPO = 'DeepSeek-V4-Flash-0731'
 """The model name written in the type readings (tools/classifica_lessicali.py MODELLO)."""
@@ -81,7 +81,7 @@ class Lettore(ABC):
         config: Config,
         caso: str,
         cliente: ClienteDeepSeek,
-        letture: int = 2,
+        letture: int = LETTURE_PROTOCOLLO,
         paralleli: int = 48,
         etichetta: str = '',
         solo_vuote: bool = False,

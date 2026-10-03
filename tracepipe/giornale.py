@@ -20,7 +20,9 @@ Use it as a context manager around a run::
 NOTE: like the live journal, files are seen by intercepting the built-in ``open`` and ``gzip.open``: what a run reads
 through ``pathlib`` (``Path.read_text``, ``Path.open``) is not listed. The package keeps the same reads on the same
 side of that line, so its journal lists the same files as the live one. Any error of the journal itself is ignored:
-the journal never stops a run.
+the journal never stops a run. It is not thrown away, though (03/10/2026, external review): it goes to stderr and to
+``giornale/errori_giornale.log`` (at most 20 per run, without braces: the chains read the counts from the first ``{``
+of the output). Only the expected fallbacks stay silent: hash or lines of a file that vanished, git missing.
 """
 
 from __future__ import annotations
@@ -36,6 +38,7 @@ import os
 import platform
 import socket
 import subprocess
+import sys
 import threading
 import traceback
 import uuid
@@ -48,6 +51,8 @@ COLLEZIONE = 'trace_giornale'
 LIMITE_SHA = 300_000_000
 LIMITE_RIGHE = 2_000_000_000
 MOLTI_FILE = 50
+ERRORI_GIORNALE = 'errori_giornale.log'
+MASSIMO_SEGNALATI = 20
 _OPEN_VERO = builtins.open
 _GZIP_VERO = gzip.open
 
@@ -147,9 +152,29 @@ class Giornale:
         self.deepseek: dict[str, Any] = {}
         self.conti: dict[str, int] = {}
         self.errori: list[str] = []
+        self.parametri: dict[str, Any] = {}
         self.eccezione: str | None = None
         self._open_prima: Any = None
         self._gzip_prima: Any = None
+        self.segnalati = 0
+
+    def _segnala(self, dove: str, e: BaseException) -> None:
+        """An error of the journal itself: it never stops the run, but is said on stderr and in
+        ``giornale/errori_giornale.log`` (as ``tools/giornale._segnala``)."""
+        try:
+            if self.segnalati >= MASSIMO_SEGNALATI:
+                return
+            self.segnalati += 1
+            testo = f'giornale: errore ignorato in {dove}: {type(e).__name__}: {e}'.replace('{', '(').replace('}', ')')
+            with contextlib.suppress(Exception):
+                sys.stderr.write(testo + '\n')
+                sys.stderr.flush()
+            with contextlib.suppress(Exception):
+                self.cartella.mkdir(parents=True, exist_ok=True)
+                with _OPEN_VERO(self.cartella / ERRORI_GIORNALE, 'a', encoding='utf-8') as f:
+                    f.write(f'{_ora()} {macchina()} pid {os.getpid()} {self.strumento}: {testo}\n')
+        except Exception:  # the last resort: the journal never stops a run
+            pass
 
     # writing a line
     def _file_del_mese(self) -> Path:
@@ -161,12 +186,14 @@ class Giornale:
             f.parent.mkdir(parents=True, exist_ok=True)
             with _OPEN_VERO(f, 'a', encoding='utf-8') as h:
                 h.write(json.dumps(riga, ensure_ascii=False, default=str) + '\n')
-        except Exception:
-            pass
+        except Exception as e:
+            self._segnala('scrittura della riga', e)
 
     # files
     def segna(self, percorso: Any, modo: str = 'r') -> None:
         """Record that a file was opened (``modo`` with ``w``, ``a``, ``x`` or ``+`` means written)."""
+        if isinstance(percorso, bytes):  # a bytes path is not listed (as always); not an error of the journal
+            return
         try:
             p = Path(os.fspath(percorso)).expanduser()
             p = (Path.cwd() / p if not p.is_absolute() else p).resolve()
@@ -176,8 +203,8 @@ class Giornale:
             tipo = 'scritto' if any(c in m for c in 'wax+') else 'letto'
             with self._blocco:
                 self.file.setdefault(str(p.relative_to(self.radice)), set()).add(tipo)
-        except Exception:
-            pass
+        except Exception as e:
+            self._segnala('elenco dei file', e)
 
     def _open(self, file: Any, mode: str = 'r', *a: Any, **k: Any) -> Any:
         if isinstance(file, (str, bytes, os.PathLike)):
@@ -197,8 +224,8 @@ class Giornale:
                 e = self.firestore.setdefault(collezione or '?', {'set': 0, 'update': 0, 'delete': 0, 'campi': set()})
                 e[op] = e.get(op, 0) + 1
                 e['campi'].update(campi or [])
-        except Exception:
-            pass
+        except Exception as x:
+            self._segnala('conto delle scritture in banca dati', x)
 
     def chiamata_deepseek(self, info: dict[str, Any]) -> None:
         """Add one DeepSeek call (the observer of :class:`tracepipe.deepseek.ClienteDeepSeek`)."""
@@ -219,12 +246,18 @@ class Giornale:
                     d.setdefault('errori', [])
                     if len(d['errori']) < 50:
                         d['errori'].extend(errori[:5])
-        except Exception:
-            pass
+        except Exception as e:
+            self._segnala('conto delle chiamate a DeepSeek', e)
 
     def conta(self, chiave: str, n: int = 1) -> None:
         with self._blocco:
             self.conti[chiave] = self.conti.get(chiave, 0) + n
+
+    def parametro(self, chiave: str, valore: Any) -> None:
+        """A parameter of the run worth keeping (readings per row, the seed when given): written in the ``fine`` line
+        under ``parametri``, only when there is one (03/10/2026)."""
+        with self._blocco:
+            self.parametri[chiave] = valore
 
     def errore(self, testo: Any) -> None:
         with self._blocco:
@@ -310,6 +343,8 @@ class Giornale:
                 'esito': 'errore' if self.eccezione else 'ok',
             }
         )
+        if self.parametri:
+            voce['parametri'] = dict(self.parametri)
         return voce
 
     def chiudi(self) -> None:
@@ -318,8 +353,8 @@ class Giornale:
             self._smetti()
             if self.voce is not None:
                 self._scrivi_riga(self.voce_di_fine())
-        except Exception:
-            pass
+        except Exception as e:
+            self._segnala('chiusura', e)
 
     def __enter__(self) -> Giornale:
         return self.avvia()
@@ -366,7 +401,8 @@ class Giornale:
                     ],
                     dimensione=lotto,
                 )
-            except Exception:
+            except Exception as e:
+                self._segnala('invio a Firestore', e)
                 continue
             with _OPEN_VERO(self.cartella / 'inviate.txt', 'a', encoding='utf-8') as g:
                 g.write('\n'.join(v['id'] for v in pezzo) + '\n')

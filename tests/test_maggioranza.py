@@ -190,7 +190,8 @@ def test_paragrafi_restano_e_catena_nessuno() -> None:
     assert out['proposto_principi'] == ['nessuno']
     assert out['proposto_principi_motivo'].startswith('Menzione in catena')
     assert not any(v['prosegue'] for v in out['proposto_estensione'])
-    assert out['proposto_confidenza'] == 'alta' and not out['proposto_incerta']
+    # 03/10/2026: the type confidence is written by the type loader only, not here
+    assert 'proposto_confidenza' not in out and not out['proposto_incerta']
 
 
 def test_frase_dalla_lettura_della_maggioranza_e_incerta() -> None:
@@ -206,7 +207,8 @@ def test_frase_dalla_lettura_della_maggioranza_e_incerta() -> None:
     assert out['proposto_frase_sostenuta'] == FRASE
     assert out['proposto_principi_voti'] == {'c.dovere_protezione': '2/5', 'c.budget_residuo': '3/5'}
     assert out['proposto_principi_incerti'] == ['c.dovere_protezione', 'c.budget_residuo']
-    assert out['proposto_incerta'] and out['proposto_confidenza'] == 'bassa'
+    # the adopted principle is at 3/5 (margin 1): the row is uncertain; the type confidence is not touched here
+    assert out['proposto_incerta'] and 'proposto_confidenza' not in out
     assert out['provenienza.letture'] == {'principi': 5, 'tipo': 5}
 
 

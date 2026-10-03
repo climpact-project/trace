@@ -198,6 +198,43 @@ def modello_forme(forme: Iterable[str]) -> re.Pattern[str]:
 # the search by name
 
 
+def chiave_testo(r: Mapping[str, Any]) -> str:
+    """The first 400 characters of the passage, spaces joined and lower case: the key of the deduplication."""
+    return re.sub(r'\s+', ' ', r['citazione_testuale']).strip().lower()[:400]
+
+
+def deduplica(
+    righe: list[dict[str, Any]], scarti: list[dict[str, Any]], per_atto: bool = False
+) -> list[dict[str, Any]]:
+    """The kept rows; the copies go to ``scarti`` ("copia di un altro frammento") and the first counts its ``copie``.
+
+    By default (the live ``cerca.py``) a passage is a copy when its key equals one already seen anywhere in the corpus.
+    With ``per_atto`` (03/10/2026, external review; ``tools/cerca_s05_per_atto.deduplica``) only a copy inside the same
+    document is dropped: the same text in another document stays, and carries ``stesso_testo_di`` =
+    ``<document_id>__<char_start>`` of the first passage with that text (empty on the first; the platform row id is
+    ``<case>__`` plus this). Measured on 03/10/2026: 425 of the 438 copies dropped were in another document
+    (``training/misure/DEDUP-FRA-ATTI.md``).
+    """
+    visti: dict[Any, dict[str, Any]] = {}
+    primo: dict[str, dict[str, Any]] = {}
+    uniche = []
+    for r in righe:
+        testo = chiave_testo(r)
+        k: Any = (r.get('document_id') or '', testo) if per_atto else testo
+        if k in visti:
+            visti[k]['copie'] = int(visti[k].get('copie') or 1) + 1
+            r['motivo_scarto'] = 'copia di un altro frammento'
+            scarti.append(r)
+            continue
+        r['copie'] = 1
+        if per_atto:
+            p = primo.setdefault(testo, r)
+            r['stesso_testo_di'] = '' if p is r else f'{p.get("document_id", "")}__{p.get("char_start", "")}'
+        visti[k] = r
+        uniche.append(r)
+    return uniche
+
+
 @dataclass
 class EsitoRicerca:
     """The rows of the CSV, the discards, and the counts printed at the end."""
@@ -222,6 +259,8 @@ class RicercaPerNome:
         con_anteriori: keep the filings before the decision.
         con_alternative: read ``probe_alternativa`` too (no effect on the lexical network).
         solo_lessicale: must be True: the semantic network is not part of the package.
+        dedup_per_atto: drop a copy only inside the same document, keep the same text in another one with
+            ``stesso_testo_di`` (see :func:`deduplica`; not in use: the live search drops copies across the corpus).
         stampa: where the screen lines go.
         orologio: the clock of the durations printed.
     """
@@ -236,6 +275,7 @@ class RicercaPerNome:
         con_anteriori: bool = False,
         con_alternative: bool = False,
         solo_lessicale: bool = True,
+        dedup_per_atto: bool = False,
         stampa: Stampa = _stampa,
         orologio: Callable[[], float] = time.time,
     ) -> None:
@@ -248,6 +288,7 @@ class RicercaPerNome:
         self.tipo_atto = tipo_atto
         self.con_anteriori = con_anteriori
         self.con_alternative = con_alternative
+        self.dedup_per_atto = dedup_per_atto
         self.stampa = stampa
         self.orologio = orologio
 
@@ -402,20 +443,12 @@ class RicercaPerNome:
                 else:
                     tenute.append(r)
             righe = tenute
-        visti: dict[str, dict[str, Any]] = {}
-        uniche = []
-        for r in righe:
-            k = re.sub(r'\s+', ' ', r['citazione_testuale']).strip().lower()[:400]
-            if k in visti:
-                visti[k]['copie'] = int(visti[k].get('copie') or 1) + 1
-                r['motivo_scarto'] = 'copia di un altro frammento'
-                scarti.append(r)
-                continue
-            r['copie'] = 1
-            visti[k] = r
-            uniche.append(r)
+        uniche = deduplica(righe, scarti, per_atto=self.dedup_per_atto)
         esito.duplicati = len(righe) - len(uniche)
         righe = uniche
+        gemelle = sum(1 for r in righe if r.get('stesso_testo_di'))
+        if gemelle:
+            s(f'stesso testo in un altro atto: {gemelle:,} righe tenute, con stesso_testo_di')
         # the reranker runs only on semantic candidates: none in the lexical network
         righe.sort(key=lambda x: (x['file'], x['pagina']))
         s('\ncorpo o nota (dal PDF)…')

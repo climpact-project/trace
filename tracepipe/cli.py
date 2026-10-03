@@ -33,6 +33,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import Config
+from .letture import LETTURE_PROTOCOLLO
 
 PREDEFINITA = Path(__file__).resolve().parent.parent
 
@@ -59,6 +60,11 @@ def parser() -> argparse.ArgumentParser:
     c.add_argument('--tipo-atto', default='')
     c.add_argument('--con-anteriori', action='store_true')
     c.add_argument('--k', type=int, default=100, help='(rete semantica: non usato)')
+    c.add_argument(
+        '--dedup-per-atto',
+        action='store_true',
+        help='copie tolte solo dentro lo stesso atto; fra atti diversi restano, con stesso_testo_di (non in uso)',
+    )
 
     u = sub.add_parser('unisci', help='unire le citazioni spezzate e aggiungere le mancanti')
     u.add_argument('--caso', default='')
@@ -82,7 +88,12 @@ def parser() -> argparse.ArgumentParser:
     for nome, etichetta in (('tipo', ''), ('principi', 'l04nuove'), ('pagine-attorno', '')):
         x = ls.add_parser(nome)
         x.add_argument('--caso', default='urgenda')
-        x.add_argument('--letture', type=int, default=2)
+        x.add_argument(
+            '--letture',
+            type=int,
+            default=LETTURE_PROTOCOLLO,
+            help=f'letture per riga (predefinite {LETTURE_PROTOCOLLO}, il protocollo misurato di R11)',
+        )
         x.add_argument('--paralleli', type=int, default=48)
         x.add_argument('--etichetta', default=etichetta)
         x.add_argument('--solo-vuote', action='store_true')
@@ -92,7 +103,7 @@ def parser() -> argparse.ArgumentParser:
             help='fino a --letture letture valide, tenendo quelle con la stessa domanda',
         )
         x.add_argument('--temperatura', type=float, default=None)
-        x.add_argument('--seme', type=int, default=None)
+        x.add_argument('--seme', type=int, default=None, help='seme del campionamento: se dato, va nel giornale')
         x.add_argument('--modello', default='deepseek-v4-flash')
         x.add_argument('--base-url', default='http://127.0.0.1:8000/v1')
         x.add_argument('--chiave-file', default='')
@@ -180,6 +191,7 @@ def esegui(a: argparse.Namespace, config: Config, giornale: Any) -> int:
             tipo_atto=a.tipo_atto,
             con_anteriori=a.con_anteriori,
             con_alternative=a.con_alternative,
+            dedup_per_atto=a.dedup_per_atto,
         )
         return r.esegui().codice
     if a.comando == 'unisci':
@@ -200,6 +212,13 @@ def esegui(a: argparse.Namespace, config: Config, giornale: Any) -> int:
             'aggiungi_letture': a.aggiungi_letture,
             'compat': a.compat,
         }
+        if giornale is not None:
+            # the seed and the temperature, when given, go in the journal too (03/10/2026, external review); every
+            # call record already carries them (``chiamata.parametri``)
+            if a.seme is not None:
+                giornale.parametro('seme', a.seme)
+            if a.temperatura is not None:
+                giornale.parametro('temperatura', a.temperatura)
         if a.lettore == 'tipo':
             kw.update(
                 gruppo=a.gruppo,

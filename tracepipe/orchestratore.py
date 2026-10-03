@@ -31,7 +31,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Protocol
 
-from .letture import vuota
+from .letture import LETTURE_PROTOCOLLO, vuota
 
 # transport
 
@@ -416,11 +416,19 @@ def ingressi() -> list[str]:
     return out
 
 
-def coda(nome: str, casi: Sequence[str], paralleli: int = 32) -> str:
-    """The queue script of one DeepSeek job (the shell ``scrivi_coda``)."""
+def coda(
+    nome: str, casi: Sequence[str], paralleli: int = 32, letture: int = LETTURE_PROTOCOLLO, seme: int | None = None
+) -> str:
+    """The queue script of one DeepSeek job (the shell ``scrivi_coda``).
+
+    ``letture`` is the protocol's 5 since 03/10/2026 (the shell chain of 02/10 wrote 2: ``letture=2`` gives it back);
+    with ``--solo-vuote`` a row with fewer readings is brought to ``letture``. ``seme``, when given, goes to every
+    reader (and so into every call record and the journal).
+    """
     a = (
         '"--base-url http://127.0.0.1:8000/v1 --chiave-file $C/chiave --modello deepseek-v4-flash --paralleli '
         + str(paralleli)
+        + (f' --seme {seme}' if seme is not None else '')
         + '"'
     )
     righe = ['H=/lustrehome/climpact/trace; C=$H/chat; cd $H', f'A={a}']
@@ -428,17 +436,17 @@ def coda(nome: str, casi: Sequence[str], paralleli: int = 32) -> str:
     for c in casi:
         if c in L05:
             righe.append(
-                f'$H/venv/bin/python -u tools/leggi_ripresa.py leggi --caso {c} --etichetta {L05[c]} --letture 2 '
-                f'--solo-vuote $A{log}'
+                f'$H/venv/bin/python -u tools/leggi_ripresa.py leggi --caso {c} --etichetta {L05[c]} '
+                f'--letture {letture} --solo-vuote $A{log}'
             )
         for cc, e in L04:
             if cc == c:
                 righe.append(
-                    f"$H/venv/bin/python -u tools/leggi_l04.py leggi --caso {c} --etichetta '{e}' --letture 2 "
+                    f"$H/venv/bin/python -u tools/leggi_l04.py leggi --caso {c} --etichetta '{e}' --letture {letture} "
                     f'--solo-vuote $A{log}'
                 )
         righe.append(
-            f'$H/venv/bin/python -u tools/classifica_lessicali.py leggi --caso {c} --gruppo tutte --letture 2 '
+            f'$H/venv/bin/python -u tools/classifica_lessicali.py leggi --caso {c} --gruppo tutte --letture {letture} '
             f"--etichetta '{TIPO.get(c, '')}' --solo-vuote $A" + log
         )
     righe.append(f'echo FINITO > $C/log/vuote_{nome}_fine.txt')
@@ -466,6 +474,8 @@ class CicloVuote(Orchestratore):
         trasporto: ReCaS (or the fake).
         attesa_s: seconds between two looks at the queues.
         massimo_attese: looks before giving up the wait step (a failed wait can be resumed).
+        letture: readings per row asked of the readers (default: the protocol's 5; the shell chain wrote 2).
+        seme: the sampling seed passed to the readers, when given; it is also written in the cycle state.
         Other arguments: see :class:`Orchestratore`.
     """
 
@@ -475,10 +485,14 @@ class CicloVuote(Orchestratore):
         trasporto: Trasporto,
         attesa_s: float = 120,
         massimo_attese: int = 1440,
+        letture: int = LETTURE_PROTOCOLLO,
+        seme: int | None = None,
         **kw: Any,
     ) -> None:
         self.attesa_s = attesa_s
         self.massimo_attese = massimo_attese
+        self.letture = letture
+        self.seme = seme
         passi = [
             Passo('copia_di_sicurezza', CicloVuote.copia_di_sicurezza, tentativi=3),
             Passo('manda_strumenti', CicloVuote.manda_strumenti, tentativi=3),
@@ -513,10 +527,13 @@ class CicloVuote(Orchestratore):
     def manda_file(self) -> dict[str, Any]:
         return {f: list(self.manda(f)) for f in dict.fromkeys(ingressi())}
 
-    def scrivi_code(self) -> None:
+    def scrivi_code(self) -> dict[str, Any]:
         self.remoto('rm -f ~/trace/chat/log/vuote_coda-ds2_fine.txt ~/trace/chat/log/vuote_coda-ds3_fine.txt')
         for nome, casi in CODE.items():
-            self.trasporto.scrivi(f'chat/{nome}/vuote_{nome}.sh', coda(nome, casi))
+            self.trasporto.scrivi(
+                f'chat/{nome}/vuote_{nome}.sh', coda(nome, casi, letture=self.letture, seme=self.seme)
+            )
+        return {'letture': self.letture, 'seme': self.seme}
 
     def attendi_letture(self) -> int:
         prova = ' && '.join(f'test -s ~/trace/chat/log/vuote_{n}_fine.txt' for n in CODE)
