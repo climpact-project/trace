@@ -24,8 +24,7 @@ _SPAZI = re.compile(r'\s+')
 _NON_PAROLA = re.compile(r'[^\w]')
 _ALFANUMERICO = re.compile(r'\w')
 # Japanese, Chinese and Korean, compared without spaces (01/10/2026).
-# 03/10/2026: also Thai, Lao, Khmer and Myanmar, as in the readability check (scripts without spaces between words)
-_CJK = re.compile(r'[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af\uf900-\ufaff\u0e00-\u0eff\u1000-\u109f\u1780-\u17ff]')
+_CJK = re.compile(r'[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af\uf900-\ufaff]')
 
 
 def _senza_spazi_tra_parole(ch: str) -> bool:

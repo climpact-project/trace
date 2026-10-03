@@ -667,8 +667,7 @@ class ComposizioneMaggioranza(Composizione):
                     or next((x for x in prove if x[2] == 'trovata'), None)
                     or prove[0]
                 )
-                # ticked only with a found evidence OF the winning principle (03/10/2026, external review)
-                trovata = any(x[2] == 'trovata' and self.principio_pagina(x[0]) == principio for x in prove)
+                trovata = any(x[2] == 'trovata' for x in prove)
             else:
                 rapp = esito(voci[0][1], n)
                 principio = self.principio_pagina(voci[0][1])
@@ -712,10 +711,7 @@ class ComposizioneMaggioranza(Composizione):
         prin_prov = {k: sorted({codici[f] for f in v}) for k, v in fonti.items() if v}
         if ALTRO in spuntati and ALTRO not in prin_prov:
             prin_prov[ALTRO] = ['L05']
-        # row uncertainty only from the decisions that make the proposal (03/10/2026, external review): an adopted
-        # principle with margin <= 1, or, when none is adopted, a near miss; the type confidence is not mixed in
-        adottati = [p for p in vp['maggioranza'] if p in vp['voti'] and p != NESSUNO]
-        incerta = any(p in vp['incerti'] for p in adottati) if adottati else bool(vp['incerti'])
+        incerta = bool(vp['incerti']) or bool(vt and vt['incerto'])
         data = '/'.join(reversed(str(rec.get('data') or '')[:10].split('-')))
         ocr = {'provenienza.corpus': 'D02'} if rid.split('__')[1] in self.documenti_ocr else {}
         out: dict[str, Any] = {
@@ -749,7 +745,8 @@ class ComposizioneMaggioranza(Composizione):
             'proposto_incerta': incerta,
             'proposta_provvisoria': False,
         }
-        # the type confidence is written by the type loader only (CaricatoreTipo, R11)
+        if vt:
+            out['proposto_confidenza'] = 'bassa' if incerta else 'alta'
         return out
 
     def componi_r11(
