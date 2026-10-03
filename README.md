@@ -23,8 +23,10 @@
 
 For a climate judgment (the *cited case*), TRACE finds every later filing that cites it, in the Climate Litigation
 Database, and records for each citation what the citing text does with it: which principles of the judgment it takes
-up, and on which nearby pages the argument continues. Six cited cases so far: Urgenda, Neubauer, Future Generations,
-KlimaSeniorinnen, the ICJ climate advisory opinion and the Inter-American Court advisory opinion OC-32/25.
+up, and on which nearby pages the argument continues. TRACE works for any judgment that has a case file; TRACE 0.1,
+the first release, follows six: Urgenda, Neubauer, Future Generations, KlimaSeniorinnen, the ICJ climate advisory
+opinion and the Inter-American Court advisory opinion OC-32/25. It is built to grow beyond judgments, to laws, policies
+and the other sources through which climate-law reasoning travels (see [What comes next](#what-comes-next)).
 
 Every step leaves a **version code** (`L05`, `R11`, `T01`...) on what it proposes. The codes, with the exact models,
 instructions, settings, data and code of each version, are in [`versioni/registro.json`](versioni/registro.json): the
@@ -195,6 +197,23 @@ assets/         images of this page
 - The models of 0.1 were trained on labels that are being corrected (T01) or on the external reader's readings (T02,
   T03), and on one cited judgment, Urgenda.
 - The human reference rows used to compare readings are not frozen; those comparisons are provisional.
+
+## What comes next
+
+- **More judgments.** Any judgment can be followed once its case file is written: the forms of its name, its
+  principles, a map of its paragraphs. New judgments are added release by release, including those other
+  researchers ask for.
+- **Beyond judgments: laws, policies and other sources.** The same method will follow how judgments and their
+  principles reach legislation and policy, starting with Climate Change Laws of the World (Grantham Research
+  Institute with Climate Policy Radar), and then the other sources where climate-law reasoning travels.
+- **Uptake without the name.** A second stage will find where a judgment's reasoning is taken up without the
+  judgment being named, retrained on the research team's judgments.
+- **A reader of our own.** A model trained on the team's judgments and frozen, so that anyone can rerun TRACE and
+  get the same answer.
+- **Measured blind.** Agreement figures computed on citations the team judged without seeing any proposal.
+- **TRACE for other researchers.** CLIMPACT's own computing power to run TRACE on research requests: other
+  judgments, other corpora, own collections of documents. Requests are open on the
+  [TRACE page](https://www.climpact.it/site/data/trace).
 
 ## How to cite
 
