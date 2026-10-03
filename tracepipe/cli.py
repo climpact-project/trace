@@ -42,8 +42,31 @@ def _radice(valore: str) -> Path:
     return Path(valore or os.environ.get('TRACE_RADICE') or PREDEFINITA).resolve()
 
 
+# Which options reproduce which registry version (versioni/registro.json). The CSV and reading files do not record
+# the flags; the operations journal does, for every run. Suggested by the external review of 03/10/2026.
+VERSIONI_E_OPZIONI = """\
+reproducing a registry version (see versioni/registro.json; the journal records the flags of every run):
+  S05 name search (in use)        trace cerca --caso C --solo-lessicale      (duplicates removed across the corpus)
+  per-filing dedup (not S05)      trace cerca ... --dedup-per-atto           (copies dropped only within a filing)
+  S06 copies in another case      tools/recupero_s06.py                      (not in the package yet)
+  R08 surrounding pages           trace prepara pagine-attorno --regola R08  (default)
+  R10 surrounding pages (in use)  trace prepara pagine-attorno --regola R10
+  L05 with five readings          trace leggi pagine-attorno --letture 5     (default; --letture 2 = before 02/10)
+  R05 composition                 trace carica ripresa --composizione R05    (default)
+  R11 majority of five (in use)   trace carica ripresa --composizione R11; trace carica tipo --composizione R11
+  harness / old outputs           trace --compat ...   reproduces the four live defects fixed on 02/10/2026
+                                                       and the old split-citation count of trace unisci (03/10/2026)
+nothing is written to the platform without --scrivi.
+"""
+
+
 def parser() -> argparse.ArgumentParser:
-    ap = argparse.ArgumentParser(prog='trace', description='TRACE pipeline (pacchetto tracepipe)')
+    ap = argparse.ArgumentParser(
+        prog='trace',
+        description='TRACE pipeline (pacchetto tracepipe)',
+        epilog=VERSIONI_E_OPZIONI,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
     ap.add_argument('--radice', default='', help='la radice del progetto (predefinita: $TRACE_RADICE o ~/sabin-corpus)')
     ap.add_argument(
         '--compat', action='store_true', help='i difetti vivi corretti il 02/10/2026 (per il banco di prova)'
@@ -197,7 +220,9 @@ def esegui(a: argparse.Namespace, config: Config, giornale: Any) -> int:
     if a.comando == 'unisci':
         from .ricerca import UnioneRighe
 
-        UnioneRighe(config, _banca(giornale), data=a.data, casi=[a.caso] if a.caso else (), scrivi=a.scrivi).esegui()
+        UnioneRighe(
+            config, _banca(giornale), data=a.data, casi=[a.caso] if a.caso else (), scrivi=a.scrivi, compat=a.compat
+        ).esegui()
         return 0
     if a.comando == 'prepara':
         return _prepara(a, config)

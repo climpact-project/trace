@@ -154,12 +154,24 @@ Data provided by the Sabin Center for Climate Change Law. Platform operated by C
 
 - **Tests.** `pytest` from a fresh clone runs the tests that need no private data; the ones that need the harness
   sample or the live scripts are skipped, each with its reason. On the team's machine, with the private data, the
-  whole suite runs (405 tests).
+  whole suite of this repository runs (432 tests).
 - **Reference harness.** Every class of `tracepipe` reproduces a legacy script. A harness, kept with the private data,
   runs the legacy scripts and the package on a fixed sample (180 rows from the six cases, filing texts included, with
   the database, the external reader and the clock replaced by recorded fakes) and compares every output file: 298 of
   298 files and 67 of 67 journals equal, in compatibility mode. The sample is not redistributed because it contains
   filing texts.
+- **External review.** The code of `tracepipe` went through an independent external code review, in three rounds, on
+  3 October 2026. Round 1 led to five fixes: the uncertainty of a row is computed only on the decisions actually
+  adopted; the confidence of the type is no longer overwritten; a surrounding page is ticked only with evidence for the
+  winning principle; answers cut short but not empty are retried; and the evidence check works without spaces for
+  Thai, Lao, Khmer and Myanmar. Round 2 led to strict yes/no answers, malformed row identifiers skipped and counted,
+  principles from the paragraph map and from the readings kept apart, errors of the journal reported, five readings by
+  default, and a case left with no rows or a row whose file is missing handled without failing. Round 3 asked for no
+  further change to the package beyond two small ones: the help of `trace` now says which options reproduce which
+  version, and the screen count of split citations counts only the groups with something to merge. After the fixes the
+  full suite of the team's working copy, live scripts included, passes (509 passed, 1 skipped) and the harness gives the
+  same result as before (298 of 298 files, 67 of 67 journals). The review concluded that the package is sound and should be kept, not rewritten.
+  The response to round 2 and a summary of round 3 are in [`docs/external-review/`](docs/external-review/).
 - **Registry fingerprints.** Every version lists the SHA-256 of the instructions and code it ran with, and keeps a frozen
   copy in `versioni/`:
 

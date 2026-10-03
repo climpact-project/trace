@@ -5,7 +5,8 @@
   harness outputs; with ``per_atto`` a copy is dropped only inside the same filing and a twin in another filing is kept
   with ``stesso_testo_di``; ``copie`` stays on the kept row in both modes;
 - the CSV and the discards file with twins, and a case whose rows are all filtered out (no ``IndexError``);
-- the merge with the platform: a mixed group already judged, and a platform row without ``file``.
+- the merge with the platform: a mixed group already judged, a platform row without ``file``, and the screen count of
+  split citations (only groups with a row to merge; the old count with ``compat``).
 """
 
 from __future__ import annotations
@@ -259,14 +260,49 @@ def test_unione_gruppo_misto_non_giudicato(radice: Path) -> None:
     assert [(t[0], [x[0] for x in via]) for t, via, _ in e.spezzate] == [('n', ['e'])]  # the name row stays
 
 
-def test_unione_due_righe_col_nome_restano(radice: Path) -> None:
-    """With more than one name row in the group, a judged code row does not turn any of them off."""
+def _due_nomi_e_un_codice_giudicato(radice: Path, compat: bool = False) -> tuple[UnioneRighe, Any, list[str]]:
+    """Two name rows and a judged code row in the same group: nothing to merge (``via`` empty)."""
     nome = _riga('Urgenda Foundation', 'URG-0001')
     nome2 = dict(nome, char_start=nome['char_start'] - 4, codice='URG-0003')  # a few characters before: same group
     ecli = _riga('ECLI:NL', 'URG-0002', esito='confermata')
-    e = _unione(radice, {'n': nome, 'n2': nome2, 'e': ecli}).confronta('urgenda')
+    u = _unione(radice, {'n': nome, 'n2': nome2, 'e': ecli})
+    schermo: list[str] = []
+    u.stampa, u.compat = schermo.append, compat
+    return u, u.confronta('urgenda'), schermo
+
+
+def test_unione_due_righe_col_nome_nessuna_fusione(radice: Path) -> None:
+    """With more than one name row in the group, a judged code row does not turn any of them off: the group is kept in
+    ``spezzate`` with an empty ``via`` (the decision of the live tool), and nothing is written for it."""
+    u, e, _ = _due_nomi_e_un_codice_giudicato(radice)
     assert e.piu_nomi == 1
     assert [(t[0], [x[0] for x in via]) for t, via, _ in e.spezzate] == [('e', [])]
+    w, corsa = u.scritture(e, '', 1)
+    assert not [x for x in w if x.op == 'update'] and corsa.dati['righe_unite'] == 0  # no row turned off
+
+
+def test_conto_delle_spezzate_solo_gruppi_da_unire(radice: Path) -> None:
+    """The screen count of split citations: by default only the groups with a row to merge (here none); with
+    ``compat`` the old count of the live tool, which included the group with nothing to merge (the harness)."""
+    u, e, schermo = _due_nomi_e_un_codice_giudicato(radice)
+    u.mostra(e)
+    assert u.da_contare(e) == []
+    assert any(r.startswith('   citazioni spezzate 0: righe da unire 0, con una riga giudicata 0,') for r in schermo)
+    schermo.clear()
+    u.compat = True
+    u.mostra(e)
+    assert len(u.da_contare(e)) == 1
+    assert any(r.startswith('   citazioni spezzate 1: righe da unire 0, con una riga giudicata 1,') for r in schermo)
+
+
+@pytest.mark.parametrize('compat', [False, True])
+def test_conto_delle_spezzate_con_una_fusione(radice: Path, compat: bool) -> None:
+    """A group with a row to merge is counted in both modes."""
+    u = _unione(radice, {'n': _riga('Urgenda Foundation', 'URG-0001'), 'e': _riga('ECLI:NL', 'URG-0002')})
+    schermo: list[str] = []
+    u.stampa, u.compat = schermo.append, compat
+    u.mostra(u.confronta('urgenda'))
+    assert any(r.startswith('   citazioni spezzate 1: righe da unire 1,') for r in schermo)
 
 
 def test_unione_riga_senza_file(radice: Path) -> None:

@@ -678,6 +678,9 @@ class UnioneRighe:
         casi: the cases (default all six).
         scrivi: write (``--scrivi``); otherwise only counts and the report file.
         stampa: where the screen lines go.
+        compat: the screen line counts as split citations also the groups with nothing to merge (``via`` empty), as
+            the live tool does; by default only the groups with at least one row to merge are counted (external
+            review, third round, 03/10/2026). Printing only: the decisions and the writes are the same.
     """
 
     def __init__(
@@ -688,6 +691,7 @@ class UnioneRighe:
         casi: Sequence[str] = (),
         scrivi: bool = False,
         stampa: Stampa = _stampa,
+        compat: bool = False,
     ) -> None:
         self.config = config
         self.banca = banca
@@ -695,6 +699,7 @@ class UnioneRighe:
         self.casi = list(casi) or list(PREFISSI)
         self.scrivi = scrivi
         self.stampa = stampa
+        self.compat = compat
         self.ocr = PosizioniDopoOcr(config.radice)
 
     @property
@@ -817,6 +822,14 @@ class UnioneRighe:
         esito.ultimo_codice = n
         return esito
 
+    def da_contare(self, e: EsitoUnione) -> list[tuple[Riga, list[Riga], int]]:
+        """The split citations the screen line counts: those with a row to merge (all the groups with ``compat``).
+
+        A group whose ``via`` is empty (two name rows and a judged code row: nothing is turned off) is not a split
+        citation to merge; the live tool counts it anyway, and ``compat=True`` keeps that count for the harness.
+        """
+        return list(e.spezzate) if self.compat else [x for x in e.spezzate if x[1]]
+
     def mostra(self, e: EsitoUnione) -> None:
         pre, n, s = PREFISSI[e.caso], e.ultimo_codice, self.stampa
         s(f'\n== {e.caso}: in piattaforma {e.nominali} righe col nome; ricerca nuova {e.nella_ricerca} citazioni')
@@ -824,10 +837,11 @@ class UnioneRighe:
             f'   da aggiungere {len(e.nuove)} (codici {pre}-{n - len(e.nuove) + 1:04d}..{pre}-{n:04d}), validatori '
             f'{e.validatori}, alla cieca {sum(d["campione_cieco"] for d in e.nuove.values())}'
         )
+        sp = self.da_contare(e)
         s(
-            f'   citazioni spezzate {len(e.spezzate)}: righe da unire {sum(len(x[1]) for x in e.spezzate)}, '
-            f"con una riga giudicata {sum(1 for x in e.spezzate if x[2])}, con PIU' righe giudicate "
-            f'{sum(1 for x in e.spezzate if x[2] > 1)}'
+            f'   citazioni spezzate {len(sp)}: righe da unire {sum(len(x[1]) for x in sp)}, '
+            f"con una riga giudicata {sum(1 for x in sp if x[2])}, con PIU' righe giudicate "
+            f'{sum(1 for x in sp if x[2] > 1)}'
         )
         s(
             f'   righe della piattaforma senza gruppo nella ricerca nuova (non si toccano): {len(e.orfane)}; '

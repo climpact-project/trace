@@ -28,8 +28,9 @@ Phase 2, runs:
 - :mod:`.cli`: the ``trace`` command.
 
 ``compat=True`` (``trace --compat``) reproduces four live defects fixed in the package on 02/10/2026 (a row without a
-page searched from page 0, provenance L04 after a fallback to L05, ``principi`` as a string, rule R03 on each page) and
-the record format of the harness tools; the default ``compat=False`` is the fixed behaviour.
+page searched from page 0, provenance L04 after a fallback to L05, ``principi`` as a string, rule R03 on each page),
+the record format of the harness tools and the old screen count of split citations in ``trace unisci`` (groups with
+nothing to merge included; changed on 03/10/2026); the default ``compat=False`` is the fixed behaviour.
 """
 
 from .banca import BancaDati, BancaDatiFirestore, BancaDatiMemoria

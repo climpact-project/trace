@@ -15,7 +15,7 @@ Cards updated on 30 September 2026, after an independent review of the registry 
 The choice of pages is not part of the model. It is a rule in the registry, and the rule has changed twice:
 - R03, Choice of the nearby pages to read (29 September 2026): a page from two pages before to three after the citation is chosen at a score of 0.5 or more, a page further away at 0.8 or more, at most five pages per citation.
 - R08, Choice of the nearby pages, over the full window for every case (1 October 2026): the same thresholds, with T01 scores on every page of the window for every case (before, pages four to ten had scores only for Urgenda).
-- R10, Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap (2 October 2026, used by the five-reading cycle): a page within ten pages before or after the citation is chosen when its best score on a principle is 0.5 or more, at any distance, with no limit on the number of pages; unreadable pages stay out. Measured with the external reader as a blind judge of which pages carry the uptake on, R10 brings 57% of those pages to the reader (95% interval 51-63%, bootstrap by filing) against 27% (20-34%) for R08, at 4.6 pages per citation instead of 2.0. The judge is the external reader, not the team: the comparison between the rules is more solid than the absolute shares.
+- R10, Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap (2 October 2026, used by the five-reading cycle): a page within ten pages before or after the citation is chosen when its best score on a principle is 0.5 or more, at any distance, with no limit on the number of pages; unreadable pages stay out. Measured with an automatic reader as a blind judge of which pages carry the uptake on (a machine-assisted check; the research team is verifying these pages), R10 brings 57% of those pages to the reader (95% interval 51-63%, bootstrap by filing) against 27% (20-34%) for R08, at 4.6 pages per citation instead of 2.0. Absolute shares are as good as that judge; the comparison between the rules is firmer, because the same judge read every page blind.
 
 Changing the rule does not retrain T01.
 
@@ -47,7 +47,7 @@ Changing the rule does not retrain T01.
 - Rule of 27 September 2026, fixed before the model was trained: on the 317 rows of Urgenda with a type given by people, if TRACE-Reader matches or beats the external reader, it makes the proposals. TRACE-Reader v0 scored 0.596 against DeepSeek's 0.568 and passed this test. It was **not** adopted, because those rows had been judged with DeepSeek's proposals visible, and the principal investigator asked for a measure taken without proposals.
 - Rule of 30 September 2026: TRACE-Reader replaces the external reader only when it matches it on the rows the team judges without any machine proposal (one row in five among those queued since 29 September 2026). No such row with a comparable type exists yet, so this test has not been run.
 
-**Limits.** One cited judgment; the human reference for the type was coded by one person, with the external reader's proposals visible.
+**Limits.** One cited judgment; the human reference for the type was coded by the research team with the external reader's proposals visible. Blind and double-coded judgments by the team are in progress.
 
 ## The external reader: five readings and a majority vote (R11)
 
