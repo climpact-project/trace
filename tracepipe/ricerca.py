@@ -208,7 +208,10 @@ def deduplica(
 ) -> list[dict[str, Any]]:
     """The kept rows; the copies go to ``scarti`` ("copia di un altro frammento") and the first counts its ``copie``.
 
-    By default (the live ``cerca.py``) a passage is a copy when its key equals one already seen anywhere in the corpus.
+    The key is :func:`chiave_testo` in both modes: the first 400 characters AFTER joining spaces and lowering case,
+    exactly the inline loop that produced the harness outputs (``tests/test_ricerca_giro3.py``); the full passage is
+    never compared. By default (the live ``cerca.py``) a passage is a copy when its key equals one already seen anywhere
+    in the corpus, and ``copie`` on the kept row counts them all.
     With ``per_atto`` (03/10/2026, external review; ``tools/cerca_s05_per_atto.deduplica``) only a copy inside the same
     document is dropped: the same text in another document stays, and carries ``stesso_testo_di`` =
     ``<document_id>__<char_start>`` of the first passage with that text (empty on the first; the platform row id is
@@ -235,12 +238,24 @@ def deduplica(
     return uniche
 
 
+def colonne_csv(righe: Iterable[Mapping[str, Any]], base: Sequence[str] = ()) -> list[str]:
+    """The CSV columns: ``base``, then the keys of every row in order of first appearance.
+
+    On the rows of one run every row has the same keys in the same order, so this is ``list(righe[0].keys())`` as in
+    the live ``cerca.py``; a key present only on a later row (``stesso_testo_di`` on a twin, say) becomes a column
+    instead of a ``ValueError`` in ``DictWriter``, and no rows at all give ``base`` instead of an ``IndexError``
+    (external review, third round, 03/10/2026).
+    """
+    return list(dict.fromkeys([*base, *(k for r in righe for k in r)]))
+
+
 @dataclass
 class EsitoRicerca:
     """The rows of the CSV, the discards, and the counts printed at the end."""
 
     righe: list[dict[str, Any]] = field(default_factory=list)
     scarti: list[dict[str, Any]] = field(default_factory=list)
+    colonne: list[str] = field(default_factory=list)
     anteriori: int = 0
     duplicati: int = 0
     uscita: Path | None = None
@@ -340,6 +355,17 @@ class RicercaPerNome:
                     }
                 )
         return fuori
+
+    def colonne_vuote(self) -> list[str]:
+        """The columns of a run without rows: those of :meth:`riga_csv` (``verbatim_intero`` is never written), plus
+        ``stesso_testo_di`` with ``dedup_per_atto``."""
+        vuota = {
+            'meta': {},
+            'dim': collections.defaultdict(str),
+            **dict.fromkeys(('pagina', 'rete', 'punteggio', 'forma', 'verbatim', 'finestra', 'file', 'char_start'), ''),
+        }
+        campi = [k for k in self.riga_csv(vuota, '') if k != 'verbatim_intero']
+        return [*campi, 'stesso_testo_di'] if self.dedup_per_atto else campi
 
     @staticmethod
     def riga_csv(r: Mapping[str, Any], cb_versione: str) -> dict[str, Any]:
@@ -479,7 +505,8 @@ class RicercaPerNome:
         with out.open('w', newline='', encoding='utf-8') as f:
             for r in righe:
                 r.pop('verbatim_intero', None)
-            w = csv.DictWriter(f, fieldnames=list(righe[0].keys()))
+            esito.colonne = colonne_csv(righe) if righe else self.colonne_vuote()
+            w = csv.DictWriter(f, fieldnames=esito.colonne)
             w.writeheader()
             w.writerows(righe)
         esito.righe, esito.anteriori, esito.uscita = righe, len(anteriori), out
@@ -519,7 +546,9 @@ class RicercaPerNome:
         s(f'uscita     : {out}')
         if esito.scarti:
             fs = out.with_name(out.stem + '.SCARTI.csv')
-            campi = [*list(righe[0].keys()), 'motivo_scarto']
+            # the columns of the CSV and the reason; a discard has no key of its own besides it (its
+            # ``verbatim_intero`` is left out like in the CSV), and a column it lacks is written empty
+            campi = [*esito.colonne, 'motivo_scarto']
             with fs.open('w', newline='', encoding='utf-8') as f:
                 w = csv.DictWriter(f, fieldnames=campi, extrasaction='ignore')
                 w.writeheader()
@@ -712,11 +741,12 @@ class UnioneRighe:
             file_di.setdefault(r['document_id'], r.get('file'))
         da_aggiungere: list[dict[str, Any]] = []
         for doc in sorted(set(per_doc) | set(csv_doc)):
-            md = radice / file_di[doc]
-            if not md.exists():
+            # a platform row without ``file`` whose document is not in the search: an orphan, like a missing file
+            # (the live tool stops on ``None``; external review, third round, 03/10/2026)
+            if not file_di.get(doc) or not (radice / file_di[doc]).exists():
                 esito.orfane += per_doc.get(doc, [])
                 continue
-            testo, ms, gruppo_di, starts = self.gruppi_del_documento(md, patt)
+            testo, ms, gruppo_di, starts = self.gruppi_del_documento(radice / file_di[doc], patt)
             coperti: set[int] = set()
             rapp: dict[int, list[Riga]] = collections.defaultdict(list)
             code: dict[int, list[Riga]] = collections.defaultdict(list)
