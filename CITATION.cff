@@ -26,7 +26,16 @@ authors:
 identifiers:
   - type: doi
     value: "10.5281/zenodo.23082522"
-    description: "Reserved DOI of the Zenodo deposit, active on publication"
+    description: "TRACE 0.1, code: reserved DOI of the Zenodo deposit, active on publication"
+  - type: doi
+    value: "10.5281/zenodo.23082590"
+    description: "TRACE 0.1, data: reserved DOI, active on publication"
+  - type: doi
+    value: "10.5281/zenodo.23116958"
+    description: "Corpus index of TRACE 0.1, tiers 1 and 2 (public): reserved DOI, active on publication"
+  - type: doi
+    value: "10.5281/zenodo.23116960"
+    description: "Corpus index of TRACE 0.1, tier 3 (full index, restricted, on request): reserved DOI, active on publication"
 keywords:
   - climate litigation
   - citation analysis

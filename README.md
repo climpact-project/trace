@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/trace-lockup-dark.png">
-    <img alt="TRACE 0.1 Beta" src="assets/trace-lockup-light.png" width="460">
+    <img alt="TRACE 0.1 Beta" src="assets/trace-lockup.png" width="460">
   </picture>
 </p>
 
@@ -30,7 +30,7 @@ Every step leaves a **version code** (`L05`, `R11`, `T01`...) on what it propose
 instructions, settings, data and code of each version, are in [`versioni/registro.json`](versioni/registro.json): the
 registry is the single source, and where this page differs from it the registry is right.
 
-<p align="center"><img alt="TRACE 0.1, the word made of the citations it found" src="assets/banner.jpg" width="100%"></p>
+<p align="center"><img alt="TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. A general method to trace how climate judgments are received in later litigation; TRACE 0.1 applies it to six landmark judgments." src="assets/banner.png" width="100%"></p>
 
 ## Index
 
@@ -128,11 +128,20 @@ name search) is released in three tiers, to be published with the release:
 
 Of the 559,499 pages whose text comes from the PDF's own text layer, 559,072 rebuild byte for byte from tier 1.
 
+**DOIs.** Reserved on Zenodo; they become active when the records are published, by the release of 12 October 2026.
+
+| Record | DOI |
+|---|---|
+| TRACE 0.1, code (the DOI to cite) | 10.5281/zenodo.23082522 |
+| TRACE 0.1, data | 10.5281/zenodo.23082590 |
+| Corpus index, tiers 1 and 2 (public) | 10.5281/zenodo.23116958 |
+| Corpus index, tier 3 (restricted, on request) | 10.5281/zenodo.23116960 |
+
 **How to request tier 3.** Write to the project (CLIMPACT, University of Bari, info@climpact.it) saying who you are,
 your institution and which TRACE results you want to verify. If the request fits, the research team grants access to a
-restricted Zenodo record; the file is never sent by email. Conditions: research use only; no redistribution of the file
-or of any substantial part of it, and no publication of the text of party filings; keep it securely and delete it when
-the verification is over; cite the source, «Climate Litigation Database, Sabin Center for Climate Change Law and
+restricted Zenodo record (DOI 10.5281/zenodo.23116960); the file is never sent by email. Conditions: research use
+only; no redistribution of the file or of any substantial part of it, and no publication of the text of party
+filings; keep it securely and delete it when the verification is over; cite the source, «Climate Litigation Database, Sabin Center for Climate Change Law and
 Climate Policy Radar», and CLIMPACT TRACE 0.1.
 
 The documents come from the Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law
@@ -158,18 +167,11 @@ Data provided by the Sabin Center for Climate Change Law. Platform operated by C
 
 ## What TRACE shows
 
-<table>
-  <tr>
-    <td width="33%"><img alt="The constellation of the six judgments and the filings that cite them" src="assets/gallery/constellation.jpg"></td>
-    <td width="33%"><img alt="The judgments on a globe, with arcs to the court seats that cite them" src="assets/gallery/globe.jpg"></td>
-    <td width="33%"><img alt="The citations grouped by the principle they take up" src="assets/gallery/by-principle.jpg"></td>
-  </tr>
-  <tr>
-    <td><sub>Six judgments and the 482 filings that cite them, and how the judgments cite each other.</sub></td>
-    <td><sub>Judgments travel: every arc runs from a judgment to a court seat that cites it.</sub></td>
-    <td><sub>By principle: the citations grouped by the principle of the judgment they take up.</sub></td>
-  </tr>
-</table>
+<p align="center"><img alt="How TRACE follows a judgment: find every citation by name, map the judgment, score the surrounding pages, read five times and keep the majority, people verify" src="assets/gallery/how-it-works.png" width="100%"></p>
+
+<p align="center"><img alt="The six judgments of TRACE 0.1, with the citations found by name and the documents they are in" src="assets/gallery/six-judgments.png" width="100%"></p>
+
+<p align="center"><img alt="Every proposal carries the code of the version that made it, and the registry records what each code ran with" src="assets/gallery/version-codes.png" width="100%"></p>
 
 ## Repository
 
@@ -199,6 +201,10 @@ assets/         images of this page
 > Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L. (2026). *CLIMPACT TRACE 0.1: Traceable Reception
 > and Attribution in Climate-law Evidence.* CLIMPACT, University of Bari. Zenodo. DOI reserved: 10.5281/zenodo.23082522
 > (active on publication).
+
+The data and the corpus index have DOIs of their own: data 10.5281/zenodo.23082590; corpus index
+10.5281/zenodo.23116958 (tiers 1 and 2, public) and 10.5281/zenodo.23116960 (tier 3, restricted). All four are
+reserved and active on publication.
 
 Machine-readable citation: [`CITATION.cff`](CITATION.cff).
 
@@ -230,8 +236,13 @@ computed on the **ReCaS-Bari** data centre of INFN and the University of Bari.
     </td>
     <td align="center">
       <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/logos/computed-on-dark.png">
-        <img alt="ReCaS-Bari and INFN" src="assets/logos/computed-on-panel.png" height="64">
+        <source media="(prefers-color-scheme: dark)" srcset="assets/logos/recas-bari-white.png">
+        <img alt="ReCaS-Bari" src="assets/logos/recas-bari-colour.png" height="44">
+      </picture>
+      &nbsp;&nbsp;&nbsp;
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/logos/infn-white.png">
+        <img alt="INFN" src="assets/logos/infn-colour.png" height="56">
       </picture>
     </td>
   </tr>
