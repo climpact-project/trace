@@ -2,7 +2,9 @@
 
 These are the scripts that produced the data of TRACE 0.1, exactly as they ran on 2 October 2026: 118 files, each
 numbered in reading order, with the index in [`tools/LEGGIMI.md`](tools/LEGGIMI.md) (in Italian, the team's working
-language). They are kept unchanged as the record of what was run.
+language). They are kept unchanged as the record of what was run, with one exception: on 3 October 2026 the words naming
+the model that wrote or reviewed a text were removed from a comment, a note or a label in four of them (015, 048, 084,
+115); nothing they compute changed.
 
 **The package [`tracepipe/`](../tracepipe) is the maintained version.** Each of its classes reproduces one of these
 scripts, and a reference harness checks that they give the same outputs (see the main README, «How to verify»).

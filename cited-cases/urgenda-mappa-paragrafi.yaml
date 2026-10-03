@@ -57,7 +57,7 @@ voci:
     sintesi: "Riassunto redatto dalla corte (che dichiara di non sostituire i motivi): consenso scientifico su una minaccia reale di cambiamento climatico pericoloso nei prossimi decenni; 2 gradi, poi 1,5."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [a]
     verbatim: "a genuine threat exists that the climate will undergo a dangerous change in the coming decades"
 
@@ -85,7 +85,7 @@ voci:
     pagina: 5
     sintesi: "Il contenuto degli obblighi positivi si riempie con le conoscenze scientifiche largamente condivise e gli standard accettati (IPCC AR4, 25-40% per l'Annex I al 2020, COP, UE, Parigi 1,5); il consenso vale anche per i Paesi Bassi individualmente."
     sonde: [obblighi_positivi, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
     verbatim: "The consensus on this target must be taken into consideration when interpreting and applying Articles 2 and 8 ECHR."
 
@@ -95,7 +95,7 @@ voci:
     pagina: 5-6
     sintesi: "Lo Stato non ha spiegato perche' il 20% sarebbe responsabile; rinviare le riduzioni costa di piu' e rischia i punti di non ritorno; toccava allo Stato dimostrare la fattibilita' dell'accelerazione dopo il 2020."
     sonde: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -104,7 +104,7 @@ voci:
     pagina: 6
     sintesi: "Le decisioni sulle emissioni spettano a governo e parlamento, ma il giudice controlla che restino nei limiti del diritto, CEDU compresa; l'ordine e' limitato al minimo del 25% e lascia allo Stato la scelta delle misure e della legislazione."
     sonde: [obblighi_positivi, ordine_non_legge, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
     anelli: [d, e]
     verbatim: "The order that was issued leaves it up to the State to determine which specific measures it will take to comply with that order."
 
@@ -114,7 +114,7 @@ voci:
     pagina: 6-7
     sintesi: "L'ordine del 25% entro il 2020 resta definitivo; fondamento negli artt. 2 e 8 CEDU per il rischio sulla vita e il benessere dei residenti."
     sonde: [obblighi_positivi, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
     anelli: [b, d]
 
   - pronuncia: hoge_raad_2019
@@ -132,7 +132,7 @@ voci:
     sintesi: "Tesi di Urgenda riassunte dalla Cassazione: emissioni olandesi illecite per violazione della diligenza dovuta (art. 6:162(2) BW) e degli artt. 2 e 8 CEDU; «systemic responsibility» dello Stato."
     sonde: []
     prepara: [dovere_diligenza, obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
     anelli: [b]
     verbatim: "for which the State as a sovereign power has systemic responsibility"
 
@@ -151,7 +151,7 @@ voci:
     sintesi: "Riassunto del primo grado (paternita' del Rechtbank): nessun obbligo da art. 21 Cost., no-harm, UNFCCC, TFUE; Urgenda non vittima ex art. 34; duty of care e criteri Kelderluik; il contributo minore non riduce il dovere; minimo 25%; ordine non legislativo."
     sonde: []
     prepara: [dovere_diligenza, ordine_non_legge, propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, ordine_non_legge, propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, ordine_non_legge, propria_quota, target_giudiziale]"
     anelli: [b, c, d, e]
     verbatim: "The State may act unlawfully by violating its duty of care to prevent dangerous climate change."
 
@@ -162,7 +162,7 @@ voci:
     sintesi: "Riassunto dell'appello (paternita' del Hof), con rinvii ai suoi paragrafi 36-73: legittimazione ex 3:305a, obblighi positivi, «real and imminent threat», 25-40%, difese respinte (waterbed, carbon leakage, adattamento, quota minima), precauzione, ordine non legislativo."
     sonde: []
     prepara: [obblighi_positivi, ordine_non_legge, propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge, propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge, propria_quota, target_giudiziale]"
     anelli: [a, b, c, d, e]
 
   - pronuncia: hoge_raad_2019
@@ -180,7 +180,7 @@ voci:
     sintesi: "Premesse sul pericolo: gas serra e riscaldamento, conseguenze estreme e punti di non ritorno, limite di 2 gradi (450 ppm) e 1,5 gradi (430 ppm), riconoscimento internazionale in UNFCCC, COP e Parigi."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [a]
 
   - pronuncia: hoge_raad_2019
@@ -190,7 +190,7 @@ voci:
     sintesi: "Ogni emissione aumenta la concentrazione; il carbon budget residuo rende ogni rinvio piu' oneroso; emissions gap UNEP. Premessa fattuale su cui 5.7.8 costruisce «no reduction is negligible»."
     sonde: []
     prepara: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
     anelli: [a, c]
     verbatim: "Every emission of greenhouse gases leads to an increase in the concentration of greenhouse gases in the atmosphere"
 
@@ -201,7 +201,7 @@ voci:
     sintesi: "La Cassazione fa propria la conclusione del Hof (parr. 45 e 37): minaccia reale di cambiamento climatico pericoloso per la generazione attuale, in particolare i piu' giovani."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [a]
 
   - pronuncia: hoge_raad_2019
@@ -219,7 +219,7 @@ voci:
     sintesi: "Tesi dello Stato: il pericolo e' globale per causa e portata e riguarda l'ambiente, non protetto in se' dalla CEDU. E' la polarita' che 5.6.2 respinge."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: []
 
   - pronuncia: hoge_raad_2019
@@ -229,7 +229,7 @@ voci:
     sintesi: "Art. 1 CEDU: la protezione va alle persone sotto la giurisdizione dello Stato, qui i residenti nei Paesi Bassi."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [b]
 
   - pronuncia: hoge_raad_2019
@@ -274,7 +274,7 @@ voci:
     sintesi: "Obbligo di misure preventive anche se il verificarsi del pericolo e' incerto, coerente con la precauzione; accertato il rischio, nessun margine di apprezzamento sull'an, discrezionalita' sui mezzi."
     sonde: [obblighi_positivi]
     prepara: [ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
     anelli: [b, e]
     verbatim: "states are obliged to take appropriates steps without having a margin of appreciation"
 
@@ -285,7 +285,7 @@ voci:
     sintesi: "Due capoversi. Le misure possono essere di mitigazione o adattamento. Il giudice puo' verificare che siano ragionevoli e idonee; la politica dev'essere coerente e tempestiva; lo Stato deve osservare la due diligence (citazione di Jugheli c. Georgia, § 76, e Fadeyeva, § 128). urgenda.yaml lo rinvia come 5.3.4."
     sonde: [obblighi_positivi]
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
     anelli: [b, d]
     verbatim: "A state must take due diligence into account in its policy."
 
@@ -305,7 +305,7 @@ voci:
     sintesi: "Principio di effettivita' nell'interpretazione della CEDU; art. 31(1) Convenzione di Vienna."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [b]
 
   - pronuncia: hoge_raad_2019
@@ -315,7 +315,7 @@ voci:
     sintesi: "La CEDU si interpreta in armonia con il diritto internazionale (art. 31(3)(c) Vienna, Nada c. Svizzera) e con il consenso degli strumenti specializzati (Demir e Baykara): metodo del «common ground»."
     sonde: []
     prepara: [obblighi_positivi, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
     anelli: [d]
     verbatim: "there is common ground in modern societies"
 
@@ -334,7 +334,7 @@ voci:
     sintesi: "Art. 13 CEDU: rimedio effettivo che prevenga o faccia cessare le violazioni piu' gravi; il giudice nazionale deve poter accertare la violazione secondo l'interpretazione della Corte EDU."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [b]
 
   - pronuncia: hoge_raad_2019
@@ -361,7 +361,7 @@ voci:
     sintesi: "La Corte EDU non ha ancora deciso casi climatici; la domanda e' se la natura globale delle emissioni escluda la protezione degli artt. 2 e 8."
     sonde: []
     prepara: [obblighi_positivi, propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, propria_quota]"
     anelli: []
 
   - pronuncia: hoge_raad_2019
@@ -387,7 +387,7 @@ voci:
     pagina: 27
     sintesi: "L'UNFCCC presuppone che tutti i paesi debbano agire; preambolo citato su CBDR-RC e sulla responsabilita' per attivita' sotto la propria giurisdizione (no-harm)."
     sonde: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
     anelli: [c]
     verbatim: "all countries will have to do the necessary"
 
@@ -397,7 +397,7 @@ voci:
     pagina: 27-28
     sintesi: "Artt. 2, 3(1) (equita', CBDR-RC, generazioni presenti e future), 3(3) (precauzione) e 4 UNFCCC: ogni Stato deve adottare le misure necessarie secondo responsabilita' e possibilita' specifiche."
     sonde: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
     anelli: [c]
     verbatim: "each state has an obligation to take the necessary measures in accordance with its specific responsibilities and possibilities"
 
@@ -451,7 +451,7 @@ voci:
     pagina: 29
     sintesi: "Il cambiamento climatico minaccia i diritti umani (riconosciuto anche fuori dal Consiglio d'Europa); per proteggerli i diritti vanno invocabili contro il singolo Stato per la sua quota; effettivita' e art. 13."
     sonde: [obblighi_positivi, propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, propria_quota]"
     anelli: [b, c]
 
   - pronuncia: hoge_raad_2019
@@ -503,7 +503,7 @@ voci:
     sintesi: "L'obbligo verso i residenti, secondo la quota, e' accertato; resta da stabilire che cosa significhi in concreto."
     sonde: [obblighi_positivi, propria_quota]
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -513,7 +513,7 @@ voci:
     sintesi: "La ripartizione delle quote fra Stati appartiene in linea di principio al dominio politico; equa ripartizione secondo responsabilita' e sviluppo (artt. 3 e 4 UNFCCC); gli accordi COP non sono vincolanti."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -522,7 +522,7 @@ voci:
     pagina: 30-31
     sintesi: "Pur spettando a governo e parlamento, il giudice puo' valutare se le misure siano troppo scarse rispetto a cio' che e' chiaramente il limite inferiore della quota; lo Stato non puo' comunque non fare nulla."
     sonde: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
     verbatim: "the State cannot at any rate do nothing at all"
 
@@ -532,7 +532,7 @@ voci:
     pagina: 31
     sintesi: "CANONICAL di target_giudiziale (primo capoverso). Consenso internazionale chiaro, fondato sulla scienza, puo' fissare la «minimum fair share» dello Stato; il giudice deve accertarla (common ground) anche da accordi non vincolanti. Secondo capoverso: l'art. 13 impone di cercare basi oggettive per una norma concreta."
     sonde: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
     verbatim: "can in any case be regarded as the State’s minimum fair share"
 
@@ -542,7 +542,7 @@ voci:
     pagina: 31
     sintesi: "Il giudice verifica la due diligence e il buon governo; puo' derivarne un obbligo di misure di una certa portata e un onere dello Stato di motivare che la sua politica resta sopra il limite inferiore della fair share. (Il rinvio inglese a «5.5.3» e' un errore di traduzione: l'olandese dice 5.3.3.)"
     sonde: [obblighi_positivi, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
     verbatim: "it pursues a policy through which it remains above the lower limit of its fair share"
 
@@ -562,7 +562,7 @@ voci:
     sintesi: "La domanda: se l'obiettivo 25-40% di AR4 per l'Annex I, in se' non vincolante, obblighi lo Stato per le vie di 6.3-6.5; piano della sezione 7."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -572,7 +572,7 @@ voci:
     sintesi: "Genealogia del 25-40%: scenario AR4 (box 13.7), Bali 2007, Cancún 2010, Durban 2011, Doha 2012, Varsavia-Lima-Parigi; dopo il 2015 non piu' richiamato espressamente."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -582,7 +582,7 @@ voci:
     sintesi: "AR5 non ha superato il 25-40%; i suoi scenari con emissioni negative non possono fondare la politica senza rischi irresponsabili, contrari alla precauzione (artt. 2 e 8 CEDU e 3(3) UNFCCC)."
     sonde: [obblighi_positivi]
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -600,7 +600,7 @@ voci:
     sintesi: "Dopo AR4 il consenso si e' spostato su 1,5 gradi (art. 2(1)(a) Parigi); UNEP 2017 sul carbon budget; poiche' i limiti sono stime, la precauzione chiede misure piu' incisive, non meno."
     sonde: [obblighi_positivi]
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [a, d]
     verbatim: "The precautionary principle therefore means that more far-reaching measures should be taken to reduce greenhouse gas emissions, rather than less far-reaching measures."
 
@@ -620,7 +620,7 @@ voci:
     sintesi: "Tesi dello Stato: il 25-40% vale per l'Annex I come gruppo; i Paesi Bassi rispettano gli obblighi UE (21% ETS, 16% non-ETS)."
     sonde: []
     prepara: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
     anelli: []
 
   - pronuncia: hoge_raad_2019
@@ -629,7 +629,7 @@ voci:
     pagina: 36
     sintesi: "UNFCCC e Parigi si fondano sulla responsabilita' individuale degli Stati: l'obiettivo di gruppo vale in principio per ciascuno (salvo accordi di ripartizione ex art. 4(2)(a) UNFCCC e 4(16)-(17) Parigi, qui assenti)."
     sonde: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
     anelli: [c, d]
     verbatim: "the UNFCCC and the Paris Agreement are both based on the individual responsibility of states"
 
@@ -639,7 +639,7 @@ voci:
     pagina: 36-37
     sintesi: "Gli accordi UE non sostituiscono la responsabilita' individuale (art. 193 TFUE, considerando 17 Effort Sharing); l'UE stessa voleva il 30%; alte emissioni pro capite olandesi; il contributo finanziario ai paesi in via di sviluppo non e' stato argomentato. Confine esatto fra i tre numeri non decidibile."
     sonde: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
     anelli: [c, d]
     incerto: true
 
@@ -649,7 +649,7 @@ voci:
     pagina: 37
     sintesi: "La necessita' urgente del 25-40% vale anche per i Paesi Bassi individualmente."
     sonde: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
     anelli: [c, d]
 
   - pronuncia: hoge_raad_2019
@@ -659,7 +659,7 @@ voci:
     sintesi: "Lo Stato stesso sosteneva il 30% fino al 2011 e riteneva necessario il 25-40%; poi ha abbassato al 20% UE puntando a un'accelerazione dopo il 2020."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -669,7 +669,7 @@ voci:
     sintesi: "Ogni emissione consuma carbon budget; ogni rinvio rende le riduzioni successive piu' drastiche, costose e rischiose."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [a, d]
 
   - pronuncia: hoge_raad_2019
@@ -679,7 +679,7 @@ voci:
     sintesi: "Dopo AR4 servono riduzioni ancora maggiori (PBL 2016 su Parigi); obiettivi di legge 49% al 2030 e 95% al 2050; la linea estrapolata al 2020 da' 28%."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -688,7 +688,7 @@ voci:
     pagina: 38
     sintesi: "Dubbi seri sulla fattibilita' del percorso dello Stato; lo Stato non ha spiegato perche' il 20% sia responsabile ne' quali misure prendera'."
     sonde: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -706,7 +706,7 @@ voci:
     pagina: 39
     sintesi: "L'adattamento non sostituisce la mitigazione."
     sonde: [obblighi_positivi, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [b]
 
   - pronuncia: hoge_raad_2019
@@ -715,7 +715,7 @@ voci:
     pagina: 39
     sintesi: "Lo Stato non ha dimostrato che il 25% sia un onere impossibile o sproporzionato (rinvio a 5.3.4)."
     sonde: [obblighi_positivi, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hoge_raad_2019
@@ -733,7 +733,7 @@ voci:
     sintesi: "Motivo 9: l'ordine sarebbe un ordine di legiferare e le scelte politiche non spettano al giudice. Polarita' di ordine_non_legge."
     sonde: []
     prepara: [ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
     anelli: []
 
   - pronuncia: hoge_raad_2019
@@ -751,7 +751,7 @@ voci:
     pagina: 40
     sintesi: "Dagli artt. 2 e 8 discende un obbligo giuridico dello Stato; la giurisprudenza sugli ordini di legiferare e' un'eccezione alla regola dell'art. 3:296."
     sonde: [obblighi_positivi, ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
     anelli: [b, e]
 
   - pronuncia: hoge_raad_2019
@@ -795,7 +795,7 @@ voci:
     pagina: 41
     sintesi: "Applicazione: l'ordine del 25% applica la regola dell'art. 3:296; lascia lo Stato libero di scegliere le misure e le leggi, anche se molte misure richiederanno legislazione."
     sonde: [ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
     anelli: [d, e]
     verbatim: "leaves the State free to choose the measures to be taken in order to achieve a 25% reduction in greenhouse gas emissions by 2020"
 
@@ -814,7 +814,7 @@ voci:
     sintesi: "Fra quei limiti c'e' la CEDU, che il giudice applica per gli artt. 93 e 94 Cost.; la tutela dei diritti e' componente essenziale dello Stato di diritto."
     sonde: []
     prepara: [obblighi_positivi, ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
     anelli: [b, e]
     verbatim: "The protection of human rights it provides is an essential component of a democratic state under the rule of law."
 
@@ -841,7 +841,7 @@ voci:
     pagina: 42
     sintesi: "Motivo 9 respinto; ricorso respinto, spese allo Stato."
     sonde: []
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
     anelli: []
 
 # ═══════════════════════════ GERECHTSHOF DEN HAAG, 9 ottobre 2018 ═══════════════════════════
@@ -869,7 +869,7 @@ voci:
     sintesi: "Tesi di URGENDA (non della corte): ammette che la riduzione chiesta e' «a drop in the ocean» su scala globale ma sostiene che lo Stato non puo' sottrarsi; equita', Annex I, beneficio storico dai fossili. Chi cita «drop in the ocean» da qui cita la parte, non la corte."
     sonde: []
     prepara: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
     anelli: [c]
     verbatim: "the reduction it has claimed represents a drop in the ocean on a global scale"
 
@@ -880,7 +880,7 @@ voci:
     sintesi: "Urgenda fonda l'illecito sul dovere di diligenza positivo e negativo espresso dagli artt. 2 e 8 CEDU."
     sonde: []
     prepara: [dovere_diligenza, obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
     anelli: [b]
 
   - pronuncia: hof_2018
@@ -890,7 +890,7 @@ voci:
     sintesi: "Difesa dello Stato: diversi percorsi di riduzione possibili, questione politica, trias politica, ETS, waterbed, carbon leakage, emissioni minime, incertezze scientifiche, adattamento."
     sonde: []
     prepara: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
     anelli: []
 
   - pronuncia: hof_2018
@@ -900,7 +900,7 @@ voci:
     sintesi: "L'art. 34 CEDU riguarda solo l'accesso alla Corte di Strasburgo; non impedisce a Urgenda di invocare gli artt. 2 e 8 davanti al giudice olandese."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: []
 
   - pronuncia: hof_2018
@@ -910,7 +910,7 @@ voci:
     sintesi: "Il diritto olandese (art. 3:305a BW) decide l'accesso; gli artt. 2 e 8 hanno effetto diretto e Urgenda li invoca per conto delle persone sotto giurisdizione. Accolto l'appello incidentale."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: []
 
   - pronuncia: hof_2018
@@ -920,7 +920,7 @@ voci:
     sintesi: "Basta la generazione attuale di olandesi, in particolare i piu' giovani, che subiranno nella propria vita gli effetti; non serve decidere sulle generazioni future ne' sugli stranieri."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [a]
     verbatim: "in particular but not limited to the younger individuals in this group, will have to deal with the adverse effects of climate change in their lifetime"
 
@@ -939,7 +939,7 @@ voci:
     sintesi: "Urgenda invoca l'art. 6:162 BW e gli artt. 2 e 8; il Hof esamina per primi gli artt. 2 e 8 (e non avra' bisogno del resto: par. 76)."
     sonde: []
     prepara: [dovere_diligenza, obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
     anelli: [b]
 
   - pronuncia: hof_2018
@@ -949,7 +949,7 @@ voci:
     sintesi: "Ambito degli artt. 2 e 8 nelle situazioni ambientali; per l'art. 8 soglia minima di gravita'."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [b]
 
   - pronuncia: hof_2018
@@ -958,7 +958,7 @@ voci:
     pagina: 11-12
     sintesi: "Obblighi positivi di prevenire violazioni future, chiamati in breve «duty of care»: e' qui che nasce la formula ibrida. Rinvio a Öneryıldız, Budayeva, Kolyadenko, Fadeyeva."
     sonde: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
     anelli: [b]
     verbatim: "the positive obligation to take concrete actions to prevent a future violation of these interests (in short: a duty of care)"
 
@@ -969,7 +969,7 @@ voci:
     sintesi: "Limite dell'onere impossibile o sproporzionato; misure ragionevoli contro una minaccia reale e imminente nota allo Stato; intervento precoce; ampio margine di apprezzamento nella scelta delle misure."
     sonde: [obblighi_positivi]
     prepara: [ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, ordine_non_legge]"
     anelli: [b, e]
     verbatim: "The government has a ‘wide margin of appreciation’ in choosing its measures."
 
@@ -989,7 +989,7 @@ voci:
     sintesi: "Elenco dei fatti climatici: legame lineare emissioni-riscaldamento, 1,1 gradi, conseguenze oltre i 2 gradi, «centinaia di migliaia di vittime» in Europa occidentale, punti di non ritorno, 450/430 ppm, carbon budget."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [a]
 
   - pronuncia: hof_2018
@@ -1008,7 +1008,7 @@ voci:
     sintesi: "Obiettivo finale e intermedi non controversi (zero al 2100, 80-95% al 2050, 49% al 2030); la lite verte sul 25% al 2020."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hof_2018
@@ -1018,7 +1018,7 @@ voci:
     sintesi: "Conviene ridurre presto; ogni megatonne conta (PBL); distribuzione lineare porterebbe al 28% nel 2020."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [a, d]
 
   - pronuncia: hof_2018
@@ -1027,7 +1027,7 @@ voci:
     pagina: 14
     sintesi: "AR4 (box 13.7) e 25-40% per l'Annex I; AR5 non lo supera (emissioni negative irrealistiche, EASAC); il 450 non e' pessimista, 1,5 gradi e' piu' sicuro."
     sonde: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hof_2018
@@ -1045,7 +1045,7 @@ voci:
     pagina: 15
     sintesi: "Fino al 2011 lo Stato stesso puntava al 30%; il ribasso non e' mai stato motivato scientificamente; lo Stato non ha mostrato uno scenario credibile col 20%. Asse dell'onere di motivazione."
     sonde: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hof_2018
@@ -1072,7 +1072,7 @@ voci:
     pagina: 15-16
     sintesi: "Carbon leakage e level playing field non provati; lo Stato stesso si e' impegnato al 49% al 2030."
     sonde: []
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
     anelli: []
 
   - pronuncia: hof_2018
@@ -1089,7 +1089,7 @@ voci:
     pagina: 16
     sintesi: "Il 25-40% di gruppo vale almeno anche per i Paesi Bassi, dato il PIL pro capite e la ripartizione Effort Sharing."
     sonde: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
     anelli: [c, d]
 
   - pronuncia: hof_2018
@@ -1099,7 +1099,7 @@ voci:
     sintesi: "Difesa dello Stato: emissioni minime, non puo' risolvere da solo, «secondary offender», negoziati complessi. Polarita' di propria_quota."
     sonde: []
     prepara: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
     anelli: []
 
   - pronuncia: hof_2018
@@ -1118,7 +1118,7 @@ voci:
     sintesi: "Principio di precauzione (UNFCCC, Tătar c. Romania § 120): l'incertezza non giustifica l'inerzia; basta un'alta plausibilita' di efficacia."
     sonde: [obblighi_positivi]
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
     anelli: [a, b]
     verbatim: "High plausibility, as described above, suffices."
 
@@ -1138,7 +1138,7 @@ voci:
     sintesi: "Relativita' (art. 6:163 BW): gli artt. 2 e 8 proteggono Urgenda e chi rappresenta."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
     anelli: []
 
   - pronuncia: hof_2018
@@ -1155,7 +1155,7 @@ voci:
     pagina: 17
     sintesi: "Separazione dei poteri respinta: lo Stato viola diritti umani e l'ordine gli lascia spazio sufficiente per decidere come adempiere."
     sonde: [obblighi_positivi, ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
     anelli: [e]
     verbatim: "the State violates human rights, which calls for the provision of measures, while at the same time the order to reduce emissions gives the State sufficient room to decide how it can comply with the order"
 
@@ -1175,7 +1175,7 @@ voci:
     sintesi: "Trias politica: il giudice deve applicare le norme di trattato a effetto diretto, prevalenti sulla legge; difese dello Stato non convincenti."
     sonde: []
     prepara: [ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
     anelli: [e]
 
   - pronuncia: hof_2018
@@ -1185,7 +1185,7 @@ voci:
     sintesi: "Lo Stato fa troppo poco e recupera troppo poco; situazione pericolosa imminente che chiede interventi ora; il carbon budget si esaurisce prima se si rinvia."
     sonde: [obblighi_positivi]
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi, target_giudiziale]"
     anelli: [a, d]
 
   - pronuncia: hof_2018
@@ -1194,7 +1194,7 @@ voci:
     pagina: 18
     sintesi: "Lo Stato non si puo' nascondere dietro il 20% UE: l'UE stessa ritiene necessario di piu' e fara' 26-27%; l'Olanda ha a lungo assunto il 30%."
     sonde: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota, target_giudiziale]"
     anelli: [c, d]
     verbatim: "Neither can the State hide behind the reduction target of 20% by 2020 at the EU level."
 
@@ -1204,7 +1204,7 @@ voci:
     pagina: 18
     sintesi: "Lo Stato viene meno al «duty of care pursuant to Articles 2 and 8 ECHR»; il 25% e' un minimo; margine d'incertezza 19-27% inaccettabile; precauzione."
     sonde: [obblighi_positivi, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi, target_giudiziale]"
     anelli: [b, d]
     verbatim: "the State fails to fulfil its duty of care pursuant to Articles 2 and 8 ECHR by not wanting to reduce emissions by at least 25% by end-2020"
 
@@ -1224,7 +1224,7 @@ voci:
     sintesi: "Non si puo' dare piu' del 25%; altre difese assorbite."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: hof_2018
@@ -1278,7 +1278,7 @@ voci:
     sintesi: "Scienza del clima: UNFCCC e IPCC (i cui risultati la corte tratta come fatti, 4.12), incertezza scientifica (4.13), obiettivo 2 gradi e 1,5 per le isole del Pacifico (4.14), conseguenze (4.16), conclusione intermedia (4.18), regolazione del rischio (4.19)."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: [a]
     verbatim: "The court – and also the Parties – therefore considers these findings as facts."
 
@@ -1289,7 +1289,7 @@ voci:
     sintesi: "Scenario 450 ppm (4.20-4.22), obiettivi di riduzione 25-40% al 2020 e 80-95% al 2050 per l'Annex I (4.23-4.24), UE 20/30% (4.25), Paesi Bassi dal 30% al 14-17% (4.26), AR5 (4.27), conclusione (4.29), gap UNEP (4.30)."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: rechtbank_2015
@@ -1299,7 +1299,7 @@ voci:
     sintesi: "Conclusioni i)-vi): il 450 serve per il 2 gradi; l'Annex I deve ridurre del 25-40% al 2020; l'obiettivo olandese e' sotto lo standard."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: [d]
 
   - pronuncia: rechtbank_2015
@@ -1309,7 +1309,7 @@ voci:
     sintesi: "E' molto probabile che entro alcuni decenni si verifichi un cambiamento climatico pericoloso con conseguenze irreversibili; la lite riguarda il ritmo della mitigazione; grafici dei percorsi di riduzione di Urgenda."
     sonde: []
     prepara: [dovere_diligenza, obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
     anelli: [a]
     verbatim: "it is currently very probable that within several decades dangerous climate change will occur with irreversible consequences for man and the environment"
 
@@ -1320,7 +1320,7 @@ voci:
     sintesi: "Posizione dello Stato (17% al 2020); la lite verte su un obiettivo 2020 sotto il 25-40% (4.34); introduzione della sezione D sull'obbligo giuridico (4.35)."
     sonde: []
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [target_giudiziale]"
     anelli: []
 
   - pronuncia: rechtbank_2015
@@ -1330,7 +1330,7 @@ voci:
     sintesi: "L'art. 21 Cost. impone un dovere di cura per l'abitabilita' e l'ambiente, ma non da' certezza su modo ed esito: ampia discrezionalita' del governo."
     sonde: []
     prepara: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: []
     verbatim: "Article 21 of the Dutch Constitution imposes a duty of care on the State relating to the liveability of the country and the protection and improvement of the living environment."
 
@@ -1341,7 +1341,7 @@ voci:
     sintesi: "Il cambiamento climatico e' problema extraterritoriale e globale; UNFCCC e Kyoto; il principio no-harm (non contestato dallo Stato, 4.39); diritto UE, ETS ed Effort Sharing."
     sonde: []
     prepara: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
     anelli: []
     verbatim: "no state has the right to use its territory, or have it used, to cause significant damage to other states"
 
@@ -1352,7 +1352,7 @@ voci:
     sintesi: "UNFCCC, Kyoto e no-harm vincolano lo Stato solo verso altri Stati; non sono norme «che vincolano chiunque» (art. 93 Cost.); Urgenda non puo' invocarli direttamente."
     sonde: []
     prepara: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: []
 
   - pronuncia: rechtbank_2015
@@ -1362,7 +1362,7 @@ voci:
     sintesi: "Effetto riflesso: le norme aperte di diritto interno si interpretano in modo da non violare gli obblighi internazionali dello Stato."
     sonde: []
     prepara: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: [b]
     verbatim: "This way, these obligations have a “reflex effect” in national law."
 
@@ -1373,7 +1373,7 @@ voci:
     sintesi: "Lo stesso vale per il diritto UE (TFUE, direttive): nessun obbligo diretto verso Urgenda, ma effetto tramite le norme aperte."
     sonde: []
     prepara: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: []
 
   - pronuncia: rechtbank_2015
@@ -1383,7 +1383,7 @@ voci:
     sintesi: "Urgenda, persona giuridica, non e' vittima ex art. 34 CEDU e non puo' invocare direttamente gli artt. 2 e 8. E' qui (non in appello) la polarita' della via CEDU."
     sonde: []
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [obblighi_positivi]"
     anelli: []
 
   - pronuncia: rechtbank_2015
@@ -1393,7 +1393,7 @@ voci:
     sintesi: "Gli artt. 2 e 8 e la loro interpretazione della Corte EDU servono come fonte di interpretazione della norma aperta non scritta dell'art. 6:162 BW. Fissa la famiglia dottrinale del primo grado. (urgenda.yaml lo indica come 4.45.)"
     sonde: [dovere_diligenza]
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
     anelli: [b]
     verbatim: "can serve as a source of interpretation when detailing and implementing open private-law standards"
 
@@ -1419,7 +1419,7 @@ voci:
     pagina: 42
     sintesi: "Conclusione intermedia: nessun obbligo giuridico verso Urgenda da art. 21 Cost., no-harm, UNFCCC, art. 191 TFUE; ma queste norme misurano la discrezionalita' dello Stato e il grado minimo di diligenza."
     sonde: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: [b]
     verbatim: "the objectives laid down in these regulations are relevant in determing the minimum degree of care the State is expected to observe"
 
@@ -1456,7 +1456,7 @@ voci:
     sintesi: "Principi degli artt. 2-3 UNFCCC: equita' (generazioni future, paesi industrializzati in testa per responsabilita' storica e mezzi, 4.57) e precauzione (4.58)."
     sonde: [dovere_diligenza]
     prepara: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
     anelli: [c]
 
   - pronuncia: rechtbank_2015
@@ -1483,7 +1483,7 @@ voci:
     sintesi: "Fattori i-iii: le parti concordano sul bisogno di precauzioni; emissioni globali insufficienti per i 2 gradi, rischio molto alto; lo Stato deve mitigare sul proprio territorio e presto (metafora della petroliera); conosce il rischio dal 1992 e dal 2007."
     sonde: [dovere_diligenza]
     prepara: [obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
     anelli: [a, b]
     verbatim: "given the high risk of hazardous climate change, the State has a serious duty of care to take measures to prevent it"
 
@@ -1494,7 +1494,7 @@ voci:
     sintesi: "Fattore iv: lo Stato non emette ma controlla il livello delle emissioni olandesi; firmando UNFCCC e Kyoto ne ha accettato la responsabilita'; ruolo cruciale nella transizione."
     sonde: [dovere_diligenza]
     prepara: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
     anelli: [b, c]
     verbatim: "the State has the power to control the collective Dutch emission level"
 
@@ -1505,7 +1505,7 @@ voci:
     sintesi: "Fattore v, onerosita': lo Stato non ha mostrato costi sproporzionati del 25-40% (4.70); consenso che agire subito costa meno; la mitigazione e' l'unico rimedio efficace (4.71); CCS non affidabile (4.72); dovere di mitigare il piu' in fretta e il piu' possibile (4.73). Confine fra 4.68 e 4.69 incerto."
     sonde: [dovere_diligenza]
     prepara: [target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
     anelli: [b, d]
     verbatim: "the State has a duty of care to mitigate as quickly and as much as possible"
     incerto: true
@@ -1516,7 +1516,7 @@ voci:
     pagina: 47
     sintesi: "Fattore vi: la discrezionalita' ex art. 21 Cost. non e' illimitata; di fronte a un rischio alto lo Stato deve proteggere i cittadini con misure appropriate ed efficaci, anche alla luce della giurisprudenza CEDU."
     sonde: [dovere_diligenza, obblighi_positivi]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, obblighi_positivi]"
     anelli: [b]
     verbatim: "the State has the obligation to protect its citizens from it by taking appropriate and effective measures"
 
@@ -1526,7 +1526,7 @@ voci:
     pagina: 47
     sintesi: "Prima di tutto mitigazione: l'adattamento protegge solo in parte."
     sonde: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: [b]
 
   - pronuncia: rechtbank_2015
@@ -1536,7 +1536,7 @@ voci:
     sintesi: "I principi (equita' fra paesi e fra generazioni, precauzione, prevenzione) restringono le opzioni; per discostarsene lo Stato deve giustificare; non gli si chiede l'impossibile ne' un onere sproporzionato."
     sonde: [dovere_diligenza]
     prepara: [propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
     anelli: [b, d]
 
   - pronuncia: rechtbank_2015
@@ -1546,7 +1546,7 @@ voci:
     sintesi: "Difesa dello Stato: contributo olandese 0,5% delle emissioni mondiali; l'aggiunta chiesta varrebbe 0,04-0,09%; riduzione trascurabile. Polarita' di propria_quota."
     sonde: []
     prepara: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
     anelli: []
 
   - pronuncia: rechtbank_2015
@@ -1555,7 +1555,7 @@ voci:
     pagina: 47-48
     sintesi: "Difesa respinta: problema globale, responsabilita' globale; ogni emissione, anche minima, contribuisce; responsabilita' congiunta e individuale dei firmatari UNFCCC; analogia con la sentenza Kalimijnen (HR 23/9/1988)."
     sonde: [dovere_diligenza, propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, propria_quota]"
     anelli: [c]
     verbatim: "any anthropogenic greenhouse gas emission, no matter how minor, contributes to an increase of CO2 levels in the atmosphere and therefore to hazardous climate change"
 
@@ -1565,7 +1565,7 @@ voci:
     pagina: 48-49
     sintesi: "ETS non impedisce riduzioni nazionali piu' alte; waterbed e carbon leakage non dimostrati; level playing field non provato."
     sonde: [propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [propria_quota]"
     anelli: [c]
 
   - pronuncia: rechtbank_2015
@@ -1583,7 +1583,7 @@ voci:
     pagina: 49
     sintesi: "La politica del 20% UE (17% NL) non rispetta lo standard; il rinvio produce un effetto di accumulo e non e' alternativa accettabile al 25-40%."
     sonde: [dovere_diligenza, propria_quota, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
     anelli: [d]
 
   - pronuncia: rechtbank_2015
@@ -1592,7 +1592,7 @@ voci:
     pagina: 49
     sintesi: "Sotto il 25-40% lo Stato viola il dovere di diligenza; il 25% e' il minimo assoluto secondo la scienza; imporre di piu' urta la discrezionalita'."
     sonde: [dovere_diligenza, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza, target_giudiziale]"
     anelli: [d]
     verbatim: "a reduction target of this magnitude is the absolute minimum"
 
@@ -1603,7 +1603,7 @@ voci:
     sintesi: "Imputabilita': l'eccesso di emissioni fino al 2020 e' imputabile allo Stato, che ha il potere di regolarle."
     sonde: []
     prepara: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: [b]
 
   - pronuncia: rechtbank_2015
@@ -1612,7 +1612,7 @@ voci:
     pagina: 49-50
     sintesi: "Danno: la possibilita' di danno per chi Urgenda rappresenta, generazioni attuali e future, e' grande e concreta."
     sonde: [dovere_diligenza, propria_quota]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: [a]
 
   - pronuncia: rechtbank_2015
@@ -1630,7 +1630,7 @@ voci:
     sintesi: "Relativita' soddisfatta; non occorre decidere sulle generazioni di altri paesi."
     sonde: []
     prepara: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
     anelli: []
 
   - pronuncia: rechtbank_2015
@@ -1649,7 +1649,7 @@ voci:
     sintesi: "Separazione dei poteri: in Olanda non e' piena ma equilibrio; il giudice controlla la legalita' e non entra nel dominio politico; moderazione per gli effetti sui terzi; legittimazione democratica del giudice dalla legge."
     sonde: []
     prepara: [ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
     anelli: [e]
 
   - pronuncia: rechtbank_2015
@@ -1659,7 +1659,7 @@ voci:
     sintesi: "La domanda chiede tutela giuridica; che la questione sia anche e soprattutto politica non limita il giudice."
     sonde: []
     prepara: [ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
     anelli: [e]
     verbatim: "is no reason for curbing the judge in his task and authority to settle disputes"
 
@@ -1670,7 +1670,7 @@ voci:
     sintesi: "Lo Stato non ha detto di non poter fare di piu' ne' invocato l'art. 6:168 BW; la posizione negoziale internazionale non esonera dall'obbligo accertato."
     sonde: []
     prepara: [ordine_non_legge]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge]"
     anelli: []
 
   - pronuncia: rechtbank_2015
@@ -1705,7 +1705,7 @@ voci:
     sintesi: "I mandanti individuali non hanno interesse proprio ulteriore; richiamo a 4.45-4.46 (CEDU come fonte del dovere di diligenza)."
     sonde: []
     prepara: [dovere_diligenza]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [dovere_diligenza]"
     anelli: []
 
   - pronuncia: rechtbank_2015
@@ -1714,6 +1714,6 @@ voci:
     pagina: 53-54
     sintesi: "Ordina allo Stato di limitare, o far limitare, il volume annuo delle emissioni olandesi in modo che a fine 2020 sia ridotto di almeno il 25% rispetto al 1990."
     sonde: [ordine_non_legge, target_giudiziale]
-    rivista: "30/09/2026, lettura da giurista (Fable) sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
+    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ordine_non_legge, target_giudiziale]"
     anelli: [d, e]
     verbatim: "orders the State to limit the joint volume of Dutch annual greenhouse gas emissions, or have them limited"

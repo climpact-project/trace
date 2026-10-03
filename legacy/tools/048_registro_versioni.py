@@ -255,7 +255,7 @@ def registro():
               'istruzioni': copia('R04', 'cited-cases/urgenda-mappa-paragrafi.yaml', 'cited-cases/neubauer-mappa-paragrafi.yaml', 'cited-cases/future-generations-mappa-paragrafi.yaml'),
               'misure': [{'nome': 'voci rilette (discordi o incerte nel controllo di DeepSeek del 29/09)', 'valore': '276: 128 confermate, 126 spostate in prepara, 19 cambiate, 3 sonde tolte'},
                          {'nome': 'citazioni con un principio dai paragrafi', 'valore': 'Urgenda 490, Neubauer 895, Future Generations 11'}],
-              'note': 'Revisione fatta da un modello (Claude Fable 5.1) leggendo il testo intero dei paragrafi come un giurista, il 30/09/2026 (`pubblicazione/mappa/REVISIONE-MAPPE-GIURISTA.md`); da confermare dal giurista del team. Ogni voce cambiata porta il campo `rivista` con le sonde di prima.'})
+              'note': 'Revisione fatta da un modello leggendo il testo intero dei paragrafi come un giurista, il 30/09/2026 (`pubblicazione/mappa/REVISIONE-MAPPE-GIURISTA.md`); da confermare dal giurista del team. Ogni voce cambiata porta il campo `rivista` con le sonde di prima.'})
     # IL TESTO DI L02 E L03 NON E' UNA COPIA SALVATA AL MOMENTO DELLA LETTURA: `CL.modulo()` lo rigenera a ogni giro
     # del registro dai file di oggi (codebook 0.3-pilot del 28/09 17:08, fascicolo). L02 ha girato il 27/09 e le righe
     # portano «codebook 0.2-pilot»: la scheda lo dichiara (revisione del 30/09/2026, punto 3).

@@ -4,7 +4,7 @@
 # parere consultivo del 23 luglio 2025, General List No. 187, reso su richiesta dell'Assemblea generale
 # (risoluzione 77/276 del 29 marzo 2023). Unanime in ogni punto del dispositivo (§ 457).
 #
-# STATO. Proposta del 01/10/2026 per il PI, scritta da Claude (Opus 5.5) nella cartella
+# STATO. Proposta del 01/10/2026 per il PI nella cartella
 # cited-cases/proposte-2026-10-01/cig-parere-clima/. Non sostituisce `cited-cases/icj-clima-2025.yaml` (19/09/2026,
 # solo forme): lo assorbe. Nessuna sonda e' approvata. Riassunto per il PI: PROPOSTA.md.
 #
@@ -16,8 +16,8 @@
 # Pagina = marcatore `<!-- page N -->` del markdown = pagina del PDF; la pagina stampata della Corte e' N - 7.
 #
 # COME SONO NATE LE SONDE. Lettura integrale dei §§ 94-457 e dei §§ 1-93 per sommario; prima versione di sette sonde
-# proposta da Claude. SECONDA VERSIONE (01/10/2026): sette sonde indicate dal PI, solo principi DISTINTIVI, propri di
-# questo parere, ciascuna con `elemento_proprio`; intervalli verificati da Claude sul testo e resi disgiunti.
+# proposta. SECONDA VERSIONE (01/10/2026): sette sonde indicate dal PI, solo principi DISTINTIVI, propri di
+# questo parere, ciascuna con `elemento_proprio`; intervalli verificati sul testo e resi disgiunti.
 # Fatti, procedura, scienza, ambito delle domande, tesi dei partecipanti e principi generici (cooperazione, diritti
 # umani e ambiente, adattamento) non hanno sonda. Conteggio delle citazioni: conta_paragrafi.py, stessa cartella.
 #
@@ -305,7 +305,7 @@ semantic_queries:
     corpus per questo fascicolo].
   paragrafi: "§§ 223-225, 270"
   fonte: >
-    PI, 01/10/2026 (indicati §§ 222-225 e 230-231); intervalli verificati da Claude
+    PI, 01/10/2026 (indicati §§ 222-225 e 230-231); intervalli verificati
   esclusione_di_provenienza: >
     Non le decisioni 1/CMA.3 (Patto di Glasgow, § 21) e 1/CMA.5 (primo bilancio globale, §§ 27 e 39) citate da
     sole: chi riporta la COP senza farne un'interpretazione vincolante del trattato non riprende il parere.
@@ -327,7 +327,7 @@ semantic_queries:
     raggiungere l'obiettivo dell'Accordo. E' un criterio di contenuto degli NDC posto nel diritto internazionale.
   paragrafi: "§§ 236-249"
   fonte: >
-    PI, 01/10/2026 (indicati §§ 233-254); intervalli verificati da Claude
+    PI, 01/10/2026 (indicati §§ 233-254); intervalli verificati
   esclusione_di_provenienza: >
     Non la decisione 4/CMA.1 (Paris Rulebook, informazioni su equita' e ambizione) citata da sola, ne' il primo
     bilancio globale (1/CMA.5) per le cifre del 43% al 2030 e del 60% al 2035: chi riporta quelle cifre cita la COP.
@@ -351,7 +351,7 @@ semantic_queries:
     ritardi.
   paragrafi: "§§ 134-139, 273-300"
   fonte: >
-    PI, 01/10/2026 (indicati §§ 131-139 e 271-300); intervalli verificati da Claude
+    PI, 01/10/2026 (indicati §§ 131-139 e 271-300); intervalli verificati
   esclusione_di_provenienza: >
     Non le frasi che la Corte prende dall'ITLOS e lo dice: sistema nazionale di controllo (§ 281, ITLOS § 235),
     effetti cumulativi (§ 276, ITLOS § 365), precauzione parte integrante della diligenza (§ 294, parere della Camera
@@ -376,7 +376,7 @@ semantic_queries:
     Stato non parte porta l'onere di dimostrare la propria conformita'.
   paragrafi: "§§ 165-171, 310-315, 335, 354, 404"
   fonte: >
-    PI, 01/10/2026 (indicati §§ 162-173 e 309-315); intervalli verificati da Claude; §§ 335, 354 e 404 aggiunti
+    PI, 01/10/2026 (indicati §§ 162-173 e 309-315); intervalli verificati; §§ 335, 354 e 404 aggiunti
     (formula «inform each other» su ambiente, mare e diritti umani); §§ 410-420 spostati a erga_omnes perche'
     riguardano la responsabilita'
   esclusione_di_provenienza: >
@@ -404,7 +404,7 @@ semantic_queries:
     di ciascuno Stato e' determinabile e la pluralita' di autori non esclude la responsabilita'.
   paragrafi: "§§ 427-438"
   fonte: >
-    PI, 01/10/2026 (indicati §§ 427-438); verificati da Claude: §§ 427-428 enunciano l'elemento, §§ 429-438
+    PI, 01/10/2026 (indicati §§ 427-438); verificati: §§ 427-428 enunciano l'elemento, §§ 429-438
     applicano attribuzione e causalita' a quell'illecito
   esclusione_di_provenienza: >
     Non Attivita' armate (RDC c. Uganda, Riparazioni 2022, §§ 93-98) per la pluralita' di cause e di autori, ne'
@@ -430,7 +430,7 @@ semantic_queries:
     questo fascicolo].
   paragrafi: "§§ 410-420, 439-455"
   fonte: >
-    PI, 01/10/2026 (indicati §§ 439-455); verificati da Claude; §§ 410-420 aggiunti perche' riguardano la
+    PI, 01/10/2026 (indicati §§ 439-455); verificati; §§ 410-420 aggiunti perche' riguardano la
     responsabilita' (nessuna lex specialis sulle sue conseguenze)
   esclusione_di_provenienza: >
     Non Chorzow (1928) per la riparazione piena, ne' Costa Rica c. Nicaragua (Indennizzo 2018, §§ 35, 41-43) per il
@@ -452,7 +452,7 @@ semantic_queries:
     coordinate delle zone marittime una volta stabilite. Nessuna citazione nel corpus a oggi.
   paragrafi: "§§ 358-363"
   fonte: >
-    PI, 01/10/2026 (indicati §§ 358-363); verificati da Claude: §§ 358-362 sulle zone marittime, § 363 sulla
+    PI, 01/10/2026 (indicati §§ 358-363); verificati: §§ 358-362 sulle zone marittime, § 363 sulla
     statualita'
   esclusione_di_provenienza: >
     Non la Dichiarazione del Pacific Islands Forum del 2021 sulla conservazione delle zone marittime, ne' il

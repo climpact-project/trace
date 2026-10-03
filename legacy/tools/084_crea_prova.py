@@ -73,14 +73,14 @@ def main():
         ('L05', 'L05, one reading', 'DeepSeek, dossier and footnote rule, principle decided on the supported sentence', una(L5)),
         ('L05c', 'L05 with the paragraph map', 'composed as the platform shows it (R02)', composta(L5)),
         ('L06', 'L06, 2 of 4 readings', 'L05 instructions, principle decided on the whole passage (test)', due_su_quattro(L6)),
-        ('opus', 'Claude Opus, blind', 'judged from the document alone, without proposals',
+        ('opus', 'Blind reading', 'judged from the document alone, without proposals',
          {rid: sorted(set(g.get('principi') or []) - {'nessuno'}) or ['nessuno'] for rid, g in opus.items() if rid in mie}),
     ]
     prova = {
         'titolo': "Urgenda: the rows judged by Giuseppe Naglieri, again and blind",
         'descrizione': ('The rows of Urgenda that Giuseppe Naglieri judged in Uptakes, in a new order, without the machine\'s '
                         'proposals and without any earlier judgment. Your answers here do not change the rows. At the end you '
-                        'see how L04, L05, L06, a blind reading by Claude Opus and his earlier judgment compare with yours.'),
+                        'see how L04, L05, L06, a blind reading and his earlier judgment compare with yours.'),
         'caso': 'urgenda', 'righe': mie, 'per': [PI], 'domanda': 'principi', 'stato': 'aperta',
         'creata_il': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'creata_da': 'sabin-corpus/tools/crea_prova.py',
     }

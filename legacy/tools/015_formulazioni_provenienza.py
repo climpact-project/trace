@@ -142,7 +142,7 @@ h3 span{display:block;font-weight:400;color:var(--ink2);font-size:13px}ol{margin
 .rid{display:block;font:11px ui-monospace,Menlo,monospace;margin-top:2px;overflow-wrap:anywhere}"""
     out = ['<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
            f'<title>Formulazioni dai testi veri</title><style>{css}</style></head><body><main>',
-           '<h1>Formulazioni ricavate dai testi veri</h1><p class="intro">Terza famiglia di domande, scritta da Claude Fable 5.1 in una sessione separata a partire da testi veri: le frasi delle sentenze di Urgenda, e i passaggi confermati o bocciati dai validatori nelle sole righe di addestramento. «Vera» vuol dire presa alla lettera o quasi da un testo; «ricavata» vuol dire scritta a partire da quel testo. Sotto ogni frase: il caso, l\'atto e la pagina da cui nasce, e per i passaggi giudicati il giudizio umano con la sua nota.</p>']
+           '<h1>Formulazioni ricavate dai testi veri</h1><p class="intro">Terza famiglia di domande in una sessione separata a partire da testi veri: le frasi delle sentenze di Urgenda, e i passaggi confermati o bocciati dai validatori nelle sole righe di addestramento. «Vera» vuol dire presa alla lettera o quasi da un testo; «ricavata» vuol dire scritta a partire da quel testo. Sotto ogni frase: il caso, l\'atto e la pagina da cui nasce, e per i passaggi giudicati il giudizio umano con la sua nota.</p>']
     for sid, s in der.items():
         q = sonde.get(sid, {})
         out.append(f'<section><h2>{e(q.get("titolo", sid))}</h2><p class="id">{e(sid)}</p><p class="prop">{e(" ".join((q.get("testo") or "").split()))}</p>')

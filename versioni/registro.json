@@ -435,22 +435,22 @@
    {
     "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
     "copia": "versioni/R07/neubauer-mappa-paragrafi.yaml",
-    "sha256": "1227e17266e2d3b128540afd22c050702185185ebddc33d56881429f30d834bf"
+    "sha256": "e6498c8297fba21e7feced30c664d4a41a8ed8cf2c10a05052ae9658305109b2"
    },
    {
     "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
     "copia": "versioni/R07/future-generations-mappa-paragrafi.yaml",
-    "sha256": "76ddf2c3c8dbaa0dfba5ae5da3b694557c6c03fa4adca91c40b203d4cf34f4d5"
+    "sha256": "861438ec7f22504da89639a4cb40dda8af52b1781d8206be1bf5ae699379f457"
    },
    {
     "file": "cited-cases/neubauer-P05.yaml",
     "copia": "versioni/R07/neubauer-P05.yaml",
-    "sha256": "8c4b379a8fa46468b2c34668cd618c1a6844b04526a53f871a06eea98a33b3eb"
+    "sha256": "8fec1be934143892c6c5d3bd4094f504ed22e55e4561ee1813ef72e9b209283a"
    },
    {
     "file": "cited-cases/future-generations-P05.yaml",
     "copia": "versioni/R07/future-generations-P05.yaml",
-    "sha256": "db5f36480ac67e6db71c2bd7f04ffeefdb358ef2d2f82cf05f6f4591ed732514"
+    "sha256": "cdec25b171b3bef347725b8f5a44108a49ef757b47b747a5664af48d9d39ff03"
    }
   ],
   "codice_sorgente": [
@@ -470,7 +470,34 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R06",
-  "cambia": "le sonde P05"
+  "cambia": "le sonde P05",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/R07/future-generations-P05.yaml",
+    "sha256": "db5f36480ac67e6db71c2bd7f04ffeefdb358ef2d2f82cf05f6f4591ed732514",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   },
+   {
+    "file": "versioni/R07/future-generations-mappa-paragrafi.yaml",
+    "sha256": "76ddf2c3c8dbaa0dfba5ae5da3b694557c6c03fa4adca91c40b203d4cf34f4d5",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 63
+   },
+   {
+    "file": "versioni/R07/neubauer-P05.yaml",
+    "sha256": "8c4b379a8fa46468b2c34668cd618c1a6844b04526a53f871a06eea98a33b3eb",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 2
+   },
+   {
+    "file": "versioni/R07/neubauer-mappa-paragrafi.yaml",
+    "sha256": "1227e17266e2d3b128540afd22c050702185185ebddc33d56881429f30d834bf",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 110
+   }
+  ],
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
  },
  {
   "codice": "P06",
@@ -515,18 +542,35 @@
    {
     "file": "cited-cases/cig-parere-clima.yaml",
     "copia": "versioni/P07/cig-parere-clima.yaml",
-    "sha256": "235538242ac327193d9f0d4b170d9e32de88126df0d261d53d6e561a9e164f56"
+    "sha256": "60abdbcb541ae5fcc377dd381a5efd8bc91210d39ecd84eae497e4ce895340fe"
    },
    {
     "file": "cited-cases/cig-parere-clima-fascicolo.md",
     "copia": "versioni/P07/cig-parere-clima-fascicolo.md",
-    "sha256": "4fc3217b4c7c3dedc7bc67d8694e5739685f1f37dedc72fa2b838c189455442b"
+    "sha256": "6cdd9b942a64a257c4a6ed3231fd633828240af505f29401112958432c1d4da6"
    }
   ],
   "nome_tecnico": "Sonde del parere della CIG sul clima (23/7/2025)",
   "in_uso": "superata",
   "alias": "",
-  "famiglia": "sonde (i principi di un caso citato)"
+  "famiglia": "sonde (i principi di un caso citato)",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/P07/cig-parere-clima-fascicolo.md",
+    "sha256": "4fc3217b4c7c3dedc7bc67d8694e5739685f1f37dedc72fa2b838c189455442b",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1,
+    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+   },
+   {
+    "file": "versioni/P07/cig-parere-clima.yaml",
+    "sha256": "235538242ac327193d9f0d4b170d9e32de88126df0d261d53d6e561a9e164f56",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 10
+   }
+  ],
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
  },
  {
   "codice": "P08",
@@ -543,18 +587,35 @@
    {
     "file": "cited-cases/idh-oc-32-25.yaml",
     "copia": "versioni/P08/idh-oc-32-25.yaml",
-    "sha256": "fc1116e149d55c9497850af957cb6ee12fa80e16cfe80f8cb46a5aec48ef2566"
+    "sha256": "7676e9aa6c94e17faa8f8115d9b8e683c235e8d8e06ed642e20f17261666d227"
    },
    {
     "file": "cited-cases/idh-oc-32-25-fascicolo.md",
     "copia": "versioni/P08/idh-oc-32-25-fascicolo.md",
-    "sha256": "7244a97312d27c8b1f8d9db2eda8cb78158e88a2680bf60e9734359475313f6d"
+    "sha256": "c2f452fa049221e274c62871ebf48ba7db911df20fd6fcccb2757354b21c38d7"
    }
   ],
   "nome_tecnico": "Sonde dell'Opinion consultiva OC-32/25 della Corte interamericana",
   "in_uso": "in uso",
   "alias": "",
-  "famiglia": "sonde (i principi di un caso citato)"
+  "famiglia": "sonde (i principi di un caso citato)",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/P08/idh-oc-32-25-fascicolo.md",
+    "sha256": "7244a97312d27c8b1f8d9db2eda8cb78158e88a2680bf60e9734359475313f6d",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1,
+    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+   },
+   {
+    "file": "versioni/P08/idh-oc-32-25.yaml",
+    "sha256": "fc1116e149d55c9497850af957cb6ee12fa80e16cfe80f8cb46a5aec48ef2566",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   }
+  ],
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
  },
  {
   "codice": "P09",
@@ -571,7 +632,7 @@
    {
     "file": "cited-cases/cig-parere-clima-P09.yaml",
     "copia": "versioni/P09/cig-parere-clima-P09.yaml",
-    "sha256": "3edf9e5b660f80d92b64508a4652760b965838d53a9439c3bea85513bfa8ffc7"
+    "sha256": "0783a542e4ea497a01d3277e4938d598c4c510cdd04b1e8e220907640f8409e3"
    },
    {
     "file": "training/confronto_sonde/alternative_2026-10-02.yaml",
@@ -608,7 +669,16 @@
   "nome_tecnico": "Sonde del parere della CIG, con l'obiettivo di 1,5 °C riscritto",
   "in_uso": "in uso",
   "alias": "",
-  "famiglia": "sonde (i principi di un caso citato)"
+  "famiglia": "sonde (i principi di un caso citato)",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/P09/cig-parere-clima-P09.yaml",
+    "sha256": "3edf9e5b660f80d92b64508a4652760b965838d53a9439c3bea85513bfa8ffc7",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 10
+   }
+  ],
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
  },
  {
   "codice": "R09",
@@ -633,12 +703,12 @@
    {
     "file": "cited-cases/cig-parere-clima-mappa-paragrafi.yaml",
     "copia": "versioni/R09/cig-parere-clima-mappa-paragrafi.yaml",
-    "sha256": "3ed0e74c3a170c8ec89761e545db6d332ee18c1ea376928c7b20ad05930c7b00"
+    "sha256": "7a9773b9b0da6c8b4ca19f85e357a9cd1e40528f19e4c38435b45caeb8bbe457"
    },
    {
     "file": "cited-cases/idh-oc-32-25-mappa-paragrafi.yaml",
     "copia": "versioni/R09/idh-oc-32-25-mappa-paragrafi.yaml",
-    "sha256": "dbe5e4d60e18e7c3b0e56c0f08e5f4562cbf0e35476bae80e96be0d6f2552db6"
+    "sha256": "f63389a6517956383e606bc787a73fb213518aa7650f989f8554749856cf2617"
    }
   ],
   "misure": [
@@ -656,7 +726,22 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R07",
-  "cambia": "mappe dei tre casi nuovi; rimandi a paragrafo in spagnolo e portoghese"
+  "cambia": "mappe dei tre casi nuovi; rimandi a paragrafo in spagnolo e portoghese",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/R09/cig-parere-clima-mappa-paragrafi.yaml",
+    "sha256": "3ed0e74c3a170c8ec89761e545db6d332ee18c1ea376928c7b20ad05930c7b00",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   },
+   {
+    "file": "versioni/R09/idh-oc-32-25-mappa-paragrafi.yaml",
+    "sha256": "dbe5e4d60e18e7c3b0e56c0f08e5f4562cbf0e35476bae80e96be0d6f2552db6",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   }
+  ],
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
  },
  {
   "codice": "R08",
@@ -899,22 +984,22 @@
    {
     "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
     "copia": "versioni/R06/neubauer-mappa-paragrafi.yaml",
-    "sha256": "24a8550816ebd24236967c5651795c7c9a54252747513a79f26beee9acb6e8f1"
+    "sha256": "155bd7a46a11e249f41f4b7b085276b89d70128121246702b36b8720ad5f1732"
    },
    {
     "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
     "copia": "versioni/R06/future-generations-mappa-paragrafi.yaml",
-    "sha256": "6c577ab5ca63bedff867dc44ea929eef4d59f1d0a008c3025211126b0f21d98c"
+    "sha256": "2c719642f9cb59ba4d6e9de57d2822348fbfb756daf2fb0e006dfb0927e9b29c"
    },
    {
     "file": "cited-cases/neubauer-P03.yaml",
     "copia": "versioni/R06/neubauer-P03.yaml",
-    "sha256": "4b9745aec82acb3de5db453cd06bbf03a619d007b54a726df70c2ce19a98b671"
+    "sha256": "295a4c95f40448c089d0152df590f8a2864cb30f3715465961f3bf708d43b7d7"
    },
    {
     "file": "cited-cases/future-generations-P03.yaml",
     "copia": "versioni/R06/future-generations-P03.yaml",
-    "sha256": "49194c81740e425861644082ca25a70842fa65af30d8f0c1258ab0abcde85a50"
+    "sha256": "3bea98550d9af56ab42f1d2a99dac629c0c89bd063eb544df76f3dfa54346d94"
    }
   ],
   "misure": [
@@ -928,7 +1013,34 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R04",
-  "cambia": "le sonde P03; Neubauer per Randnummer"
+  "cambia": "le sonde P03; Neubauer per Randnummer",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/R06/future-generations-P03.yaml",
+    "sha256": "49194c81740e425861644082ca25a70842fa65af30d8f0c1258ab0abcde85a50",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   },
+   {
+    "file": "versioni/R06/future-generations-mappa-paragrafi.yaml",
+    "sha256": "6c577ab5ca63bedff867dc44ea929eef4d59f1d0a008c3025211126b0f21d98c",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 63
+   },
+   {
+    "file": "versioni/R06/neubauer-P03.yaml",
+    "sha256": "4b9745aec82acb3de5db453cd06bbf03a619d007b54a726df70c2ce19a98b671",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 2
+   },
+   {
+    "file": "versioni/R06/neubauer-mappa-paragrafi.yaml",
+    "sha256": "24a8550816ebd24236967c5651795c7c9a54252747513a79f26beee9acb6e8f1",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 110
+   }
+  ],
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
  },
  {
   "codice": "L01",
@@ -1026,12 +1138,12 @@
    {
     "file": "cited-cases/prima-revisione-mappe-2026-10-01/neubauer-mappa-paragrafi.yaml",
     "copia": "versioni/R01/neubauer-mappa-paragrafi.yaml",
-    "sha256": "edf387445a305de0302ef13f6e25ef0c645c85e6881e882c8d58749e8c2563ca"
+    "sha256": "84352c296878befd8da8f026bfd44a91a6d33c9500859faf98f1efe1ddf62648"
    },
    {
     "file": "cited-cases/prima-revisione-mappe-2026-10-01/future-generations-mappa-paragrafi.yaml",
     "copia": "versioni/R01/future-generations-mappa-paragrafi.yaml",
-    "sha256": "2441d46d580060b627088fa63847ed52fdc7934b1d050ec55cd84e844c9b691b"
+    "sha256": "e4cc5701c55431e0cf8cc920af47040469a9186b285303f57ab4bc0bff0242c5"
    }
   ],
   "misure": [
@@ -1040,7 +1152,7 @@
     "valore": "Urgenda 526, Neubauer 1.011, Future Generations 13"
    }
   ],
-  "note": "Corretta il 28/09/2026: leggeva numeri di due cifre sole e oltrepassava il punto e virgola (documento unico §63.25). Sostituita da R04 il 01/10/2026.",
+  "note": "Corretta il 28/09/2026: leggeva numeri di due cifre sole e oltrepassava il punto e virgola (documento unico §63.25). Sostituita da R04 il 01/10/2026. 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -1053,7 +1165,35 @@
   "nome_tecnico": "Mappa dei paragrafi",
   "in_uso": "sostituita",
   "alias": "V01",
-  "famiglia": "regola senza modello"
+  "famiglia": "regola senza modello",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/R01/future-generations-mappa-paragrafi.yaml",
+    "sha256": "2441d46d580060b627088fa63847ed52fdc7934b1d050ec55cd84e844c9b691b",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   },
+   {
+    "file": "versioni/R01/neubauer-mappa-paragrafi.yaml",
+    "sha256": "edf387445a305de0302ef13f6e25ef0c645c85e6881e882c8d58749e8c2563ca",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   },
+   {
+    "file": "versioni/V01/future-generations-mappa-paragrafi.yaml",
+    "sha256": "2441d46d580060b627088fa63847ed52fdc7934b1d050ec55cd84e844c9b691b",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1,
+    "nota": "copia nella cartella del codice di prima (V01, alias di R01), non elencata nella voce"
+   },
+   {
+    "file": "versioni/V01/neubauer-mappa-paragrafi.yaml",
+    "sha256": "edf387445a305de0302ef13f6e25ef0c645c85e6881e882c8d58749e8c2563ca",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1,
+    "nota": "copia nella cartella del codice di prima (V01, alias di R01), non elencata nella voce"
+   }
+  ]
  },
  {
   "codice": "R04",
@@ -1073,17 +1213,17 @@
    {
     "file": "cited-cases/urgenda-mappa-paragrafi.yaml",
     "copia": "versioni/R04/urgenda-mappa-paragrafi.yaml",
-    "sha256": "9bc4f7d47ca8158990c996b6f69313587c5f8594fae6392edb4c5112a7e4d3e7"
+    "sha256": "37f769d65d7e6334f590cfb615d3ecbab1be2870731954319ef3ddcc6d917ea2"
    },
    {
     "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
     "copia": "versioni/R04/neubauer-mappa-paragrafi.yaml",
-    "sha256": "77fec6fb3583ed115a8279e60a015dd2290321215b7ce7eb3243a0bc35daf01c"
+    "sha256": "4be20b12ab9dc6de82fcd6859b141b276f6ec043ee676dc877a07e17583037c7"
    },
    {
     "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
     "copia": "versioni/R04/future-generations-mappa-paragrafi.yaml",
-    "sha256": "efa5a2c5017255b0d7e21c8f79f831c3f2c32ea6c23cfbcf84a8ef417cb38f90"
+    "sha256": "396f9785a7cfcc00299d35cfeea7939233eddc0adfbd8c511eee8c580904057d"
    }
   ],
   "misure": [
@@ -1096,13 +1236,33 @@
     "valore": "Urgenda 490, Neubauer 895, Future Generations 11"
    }
   ],
-  "note": "Revisione fatta da un modello (Claude Fable 5.1) leggendo il testo intero dei paragrafi come un giurista, il 30/09/2026 (`pubblicazione/mappa/REVISIONE-MAPPE-GIURISTA.md`); da confermare dal giurista del team. Ogni voce cambiata porta il campo `rivista` con le sonde di prima.",
+  "note": "Revisione fatta da un modello leggendo il testo intero dei paragrafi come un giurista, il 30/09/2026 (`pubblicazione/mappa/REVISIONE-MAPPE-GIURISTA.md`); da confermare dal giurista del team. Ogni voce cambiata porta il campo `rivista` con le sonde di prima. 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
   "nome_tecnico": "Mappa dei paragrafi, rivista",
   "in_uso": "in uso",
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R01",
-  "cambia": "voci rilette sul testo dei paragrafi: fatti, tesi di parte e premesse passano a «prepara»"
+  "cambia": "voci rilette sul testo dei paragrafi: fatti, tesi di parte e premesse passano a «prepara»",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/R04/future-generations-mappa-paragrafi.yaml",
+    "sha256": "efa5a2c5017255b0d7e21c8f79f831c3f2c32ea6c23cfbcf84a8ef417cb38f90",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 63
+   },
+   {
+    "file": "versioni/R04/neubauer-mappa-paragrafi.yaml",
+    "sha256": "77fec6fb3583ed115a8279e60a015dd2290321215b7ce7eb3243a0bc35daf01c",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 110
+   },
+   {
+    "file": "versioni/R04/urgenda-mappa-paragrafi.yaml",
+    "sha256": "9bc4f7d47ca8158990c996b6f69313587c5f8594fae6392edb4c5112a7e4d3e7",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 105
+   }
+  ]
  },
  {
   "codice": "L02",
@@ -1209,7 +1369,7 @@
    {
     "file": "cited-cases/neubauer-fascicolo.md",
     "copia": "versioni/L03/neubauer-fascicolo.md",
-    "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67"
+    "sha256": "ec3efaf2fc56a97f0a5b007b3e8a7ee05384c4501eb39646de2b72aa98603711"
    },
    {
     "file": "codebook/citazioni.yaml",
@@ -1236,13 +1396,23 @@
   },
   "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
   "misure": [],
-  "note": "Stesse istruzioni, generalizzate al caso: il nome puo' essere anche la persona (Luisa Neubauer). Vale anche per Future Generations.",
+  "note": "Stesse istruzioni, generalizzate al caso: il nome puo' essere anche la persona (Luisa Neubauer). Vale anche per Future Generations. 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura delle citazioni",
   "in_uso": "in uso",
   "alias": "V03",
   "famiglia": "lettura con un modello esterno",
   "rispetto_a": "L02",
-  "cambia": "stesse istruzioni, generalizzate agli altri casi: il nome puo' essere una persona o una parte"
+  "cambia": "stesse istruzioni, generalizzate agli altri casi: il nome puo' essere una persona o una parte",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/L03/neubauer-fascicolo.md",
+    "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1,
+    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+   }
+  ]
  },
  {
   "codice": "L04",
@@ -1323,12 +1493,12 @@
    {
     "file": "cited-cases/neubauer-fascicolo.md",
     "copia": "versioni/L05/neubauer-fascicolo.md",
-    "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67"
+    "sha256": "ec3efaf2fc56a97f0a5b007b3e8a7ee05384c4501eb39646de2b72aa98603711"
    },
    {
     "file": "cited-cases/future-generations-fascicolo.md",
     "copia": "versioni/L05/future-generations-fascicolo.md",
-    "sha256": "5e2c379cab54d6dfaafc0ca7d9d20351ed138761d1e023ec0336a76671f1088a"
+    "sha256": "31bd6ac67a27e9f6089085943cdb9b2488dbe8706d4f234c6f84787b7467a947"
    }
   ],
   "codice_sorgente": [
@@ -1347,7 +1517,7 @@
    "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
   },
   "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
-  "note": "Istruzioni del 28/09/2026 sera; letture eseguite il 29/09/2026. La regola delle note nasce da un caso segnalato dal PI: memoriale per la Corte interamericana, p. 51 e p. 54 (Klimaatzaak alla nota 205).",
+  "note": "Istruzioni del 28/09/2026 sera; letture eseguite il 29/09/2026. La regola delle note nasce da un caso segnalato dal PI: memoriale per la Corte interamericana, p. 51 e p. 54 (Klimaatzaak alla nota 205). 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
   "impostazioni": {
    "letture": 2,
    "ragionamento": "acceso, sforzo basso",
@@ -1360,7 +1530,25 @@
   "alias": "V05",
   "famiglia": "lettura con un modello esterno",
   "rispetto_a": "L04",
-  "cambia": "stesso modello; le istruzioni aggiungono il fascicolo del caso, la regola delle note, la frase alla lettera e la frase sostenuta"
+  "cambia": "stesso modello; le istruzioni aggiungono il fascicolo del caso, la regola delle note, la frase alla lettera e la frase sostenuta",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/L05/future-generations-fascicolo.md",
+    "sha256": "5e2c379cab54d6dfaafc0ca7d9d20351ed138761d1e023ec0336a76671f1088a",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1,
+    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+   },
+   {
+    "file": "versioni/L05/neubauer-fascicolo.md",
+    "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1,
+    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+   }
+  ]
  },
  {
   "codice": "L06",
@@ -1597,12 +1785,12 @@
    {
     "file": "cited-cases/neubauer-S05.yaml",
     "copia": "versioni/S05/neubauer-S05.yaml",
-    "sha256": "99d27d75207839e51f78ea06b028ef0cafbfac0bd0250288f84255aec5832599"
+    "sha256": "eb461bed2a73015093b631772e3844a9e08e478f666be88f996e87280ea82514"
    },
    {
     "file": "cited-cases/future-generations-S05.yaml",
     "copia": "versioni/S05/future-generations-S05.yaml",
-    "sha256": "e48bf5f88fb6174ea47722c42f8284adb842b1649622379776caa3fbdd711be8"
+    "sha256": "eb2034c38a5f795c72c77e084b5fdd9c2e9092006ba6fb9712ddc9f73c1e1322"
    },
    {
     "file": "cited-cases/klimaseniorinnen-S05.yaml",
@@ -1612,12 +1800,12 @@
    {
     "file": "cited-cases/cig-parere-clima-S05.yaml",
     "copia": "versioni/S05/cig-parere-clima-S05.yaml",
-    "sha256": "b2cfc2faa33f7a0afeda960b945c6bae7bb41eb2f932967cf946d3932d0ce2a2"
+    "sha256": "c938d1c6cda1c2baa455ea70d71030919db235db7e52fee57b5fdf5faf69883a"
    },
    {
     "file": "cited-cases/idh-oc-32-25-S05.yaml",
     "copia": "versioni/S05/idh-oc-32-25-S05.yaml",
-    "sha256": "ec2a7d21d56057cd27cabfee5c62bca88ccb205791345ba15b831bf8c43941a8"
+    "sha256": "6f9654b61457707a01771735acc74fe5848f73e312ff642dacaae77b75e9b510"
    }
   ],
   "codice_sorgente": [
@@ -1675,7 +1863,7 @@
     "valore": "155 su 163, 95,1% (IC di Wilson 95%: 90,6-97,5%); per causa: forme nuove 81/81, Markdown nuovi 17/17, forme riammesse 23/23, normalizzazione 34/42 (titoli generici che attraversano l'a capo)"
    }
   ],
-  "note": "Le righe di S03 restano con la loro provenienza. Dove una corrispondenza nuova lega due righe esistenti nello stesso gruppo (Urgenda 4, Neubauer 42, OC-32/25 3) le righe restano separate. Le righe 'esclusa' coprono il loro gruppo (Neubauer: 12).",
+  "note": "Le righe di S03 restano con la loro provenienza. Dove una corrispondenza nuova lega due righe esistenti nello stesso gruppo (Urgenda 4, Neubauer 42, OC-32/25 3) le righe restano separate. Le righe 'esclusa' coprono il loro gruppo (Neubauer: 12). 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -1690,7 +1878,33 @@
   "alias": "",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S03",
-  "cambia": "testo normalizzato con le stesse posizioni (sillabazione, a capo, trattini tipografici); i 277 atti di D03; forme riammesse e forme nuove provate; solo righe aggiunte"
+  "cambia": "testo normalizzato con le stesse posizioni (sillabazione, a capo, trattini tipografici); i 277 atti di D03; forme riammesse e forme nuove provate; solo righe aggiunte",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/S05/cig-parere-clima-S05.yaml",
+    "sha256": "b2cfc2faa33f7a0afeda960b945c6bae7bb41eb2f932967cf946d3932d0ce2a2",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 10
+   },
+   {
+    "file": "versioni/S05/future-generations-S05.yaml",
+    "sha256": "e48bf5f88fb6174ea47722c42f8284adb842b1649622379776caa3fbdd711be8",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   },
+   {
+    "file": "versioni/S05/idh-oc-32-25-S05.yaml",
+    "sha256": "ec2a7d21d56057cd27cabfee5c62bca88ccb205791345ba15b831bf8c43941a8",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 1
+   },
+   {
+    "file": "versioni/S05/neubauer-S05.yaml",
+    "sha256": "99d27d75207839e51f78ea06b028ef0cafbfac0bd0250288f84255aec5832599",
+    "fino_al": "2026-10-03",
+    "righe_cambiate": 2
+   }
+  ]
  },
  {
   "codice": "T01",

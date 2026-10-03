@@ -3,6 +3,10 @@
 Every version in versioni/registro.json lists the instructions and code it ran with: the original path, the frozen
 copy kept in this repository, and the SHA-256 of the file as executed. This script recomputes each fingerprint.
 
+On 3 October 2026 the header line naming the author (and the same mention in the `fonte` and `rivista` fields) was
+removed from some copies; nothing else changed. Their entries keep the fingerprint of the file as executed in
+`impronte_precedenti`, and the fingerprint checked here is that of today's copy.
+
     python scripts/verify_registry.py
 """
 
@@ -35,6 +39,10 @@ def main() -> int:
                 else:
                     different.append(f'{version["codice"]}: {copy}')
     print(f'{len(registry)} versions; frozen copies matching their fingerprint: {ok}; different: {len(different)}')
+    previous = sum(len(version.get('impronte_precedenti') or []) for version in registry)
+    if previous:
+        print(f'copies with the author line removed on 3 October 2026: {previous} '
+              '(the fingerprint of the file as executed is kept in impronte_precedenti)')
     for line in different:
         print('  DIFFERENT', line)
     for line in not_here:

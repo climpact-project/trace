@@ -2,7 +2,7 @@
 
    Decisioni in `riclassificate-rivedute-2026-09-23.json` (tools/113_rivedi_altrove.py). Per ogni riga:
    - campo `revisione` = {esito, nota, data, da}; `da` e' il PI, che ha deciso (in alcune righe su
-     proposta di Claude, scritto nella nota);
+     proposta, scritto nella nota);
    - l'esito si aggiorna come farebbe il portale: «si» -> confermata sulla sua sonda; «altra:X» ->
      riclassificata sulla sonda X; «no» -> resta scartata (motivo citazione_altrove); «da_discutere» ->
      l'esito resta, e `da_discutere: true` la segnala alla revisione collettiva;
