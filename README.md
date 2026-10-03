@@ -139,7 +139,7 @@ Of the 559,499 pages whose text comes from the PDF's own text layer, 559,072 reb
 | Corpus index, tiers 1 and 2 (public) | 10.5281/zenodo.23116958 |
 | Corpus index, tier 3 (restricted, on request) | 10.5281/zenodo.23116960 |
 
-**How to request tier 3.** Write to the project (CLIMPACT, University of Bari, info@climpact.it) saying who you are,
+**How to request tier 3.** Write to the project (CLIMPACT, University of Bari, trace@climpact.it) saying who you are,
 your institution and which TRACE results you want to verify. If the request fits, the research team grants access to a
 restricted Zenodo record (DOI 10.5281/zenodo.23116960); the file is never sent by email. Conditions: research use
 only; no redistribution of the file or of any substantial part of it, and no publication of the text of party
