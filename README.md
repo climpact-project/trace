@@ -37,22 +37,22 @@ registry is the single source, and where this page differs from it the registry 
 The pipeline step by step: what each step does, the class of the maintained package that does it, the scripts that did
 it for the TRACE 0.1 data, and the versions in the registry.
 
-| Step | What it does | `tracepipe` | `legacy/tools` | Versions |
-|---|---|---|---|---|
-| 1. Corpus | Turns each filing of the Climate Litigation Database into page-marked text, OCRs the unreadable pages and builds the page index the search runs on. | `corpus`: `IndicePagine`, `Documento`, `Pagina`, `PosizioniDopoOcr` | [`001`](legacy/tools/001_build_markdown.py) to [`010`](legacy/tools/010_indice_pagine.py) | **D01** Documents: Climate Litigation Database, public API snapshot<br>**D02** Documents: D01 with OCR text of unreadable pages<br>**D03** Documents: D02 with Markdown for 277 filings of the 19/09/2026 update |
-| 2. Cited case | Describes each judgment: the forms of its name, its principles (the *probes*), and a map from its paragraphs to its principles. | `caso`: `CasoCitato`, `SerieSonde`, `MappaParagrafi`; `config`: `Config` | [`011`](legacy/tools/011_sonde.py) to [`015`](legacy/tools/015_formulazioni_provenienza.py) | **P01** Probes of Urgenda<br>**P05** Probes of Neubauer and Future Generations, second set corrected (second round)<br>**P06** Probes of KlimaSeniorinnen<br>**P08** Probes of IACtHR advisory opinion OC-32/25<br>**P09** Probes of the ICJ climate advisory opinion, 1.5°C probe rewritten<br>**R04** Paragraph map, reviewed<br>**R07** Paragraph map with probes P05<br>**R09** Paragraph maps of the three new cases; Spanish and Portuguese paragraph references |
-| 3. Name search | Looks for the name of the case in every page, in all its forms (names, ECLI and docket numbers, translations, other scripts, OCR errors), with no AI. Each hit becomes a citation with a permanent code such as `URG-0146`. | `ricerca`: `RicercaPerNome`, `UnioneRighe`; `dimensioni`: `PosizioneNelPdf` | [`016`](legacy/tools/016_cerca.py) to [`022`](legacy/tools/022_coda_uptakes.py); S05 in [`versioni/S05`](versioni/S05) | **S01** Name search, first version<br>**S02** Name search, corrected<br>**S03** Name search on OCR text, more Japanese and Korean forms<br>**S05** Name search on normalised text, with readmitted and new forms (in use) |
-| 4. Type of citation | The external reader (DeepSeek V4 Flash) reads each citation in context: is it really the judgment, what the citation does (chain mention, descriptive, substantive, distinguishing, critical), who speaks. | `lettori`: `LettoreTipo`; `istruzioni`; `deepseek`: `ClienteDeepSeek`; `letture`: `Lettura` | [`023`](legacy/tools/023_giudica_llm.py) to [`025`](legacy/tools/025_carica_lessicali.py) | **L02** Citation reading, Urgenda<br>**L03** Citation reading, every case except Urgenda |
-| 5. Surrounding pages | TRACE-Reranker scores the pages up to ten before and ten after the citation against each principle; a fixed rule picks the pages worth reading. | `pagine_attorno`: `Punteggi`, `SceltaPagineAttorno` | [`026`](legacy/tools/026_prepara_training.py) to [`029`](legacy/tools/029_coppie_ocr.py), [`031`](legacy/tools/031_leggi_ripresa.py); R10 in [`versioni/R10`](versioni/R10) | **T01** TRACE-Reranker 0.1<br>**R08** Choice of the nearby pages, over the full window for every case<br>**R10** Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap |
-| 6. Uptake reading | The external reader reads the citation with the chosen pages: which principles it takes up, which pages continue the argument, the quotations and the sentence the citation supports. Brakes in the code reject quotations not found on the page. | `lettori`: `LettorePrincipi`, `LettorePagineAttorno`; `freni`: `Freni` | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
-| 7. Composition | Fixed rules turn the readings into the proposals shown to the team, only on rows nobody has judged. From 2 October each row is read five times and every field goes by majority vote. | `composizione`: `Composizione`, `ComposizioneMaggioranza`; `maggioranza`; `caricatori`: `CaricatoreTipo`, `CaricatoreRipresa`; `banca`: `BancaDati` | [`025`](legacy/tools/025_carica_lessicali.py), [`035`](legacy/tools/035_carica_ripresa.py); R11 in [`versioni/R11`](versioni/R11) | **R05** Rules that put the proposals together, with the brake for Asian scripts<br>**R11** Proposals by majority vote of five readings (decided 2 October 2026, being applied) |
-| 8. Checks | After every load: does every row have everything it must have, and was every page of the window scored. | `controlli`: `ControlloCompletezza`, `ControlloFinestra` | [`036`](legacy/tools/036_controllo_completezza.py) to [`039`](legacy/tools/039_freni_prova.py) | |
-| 9. People | Researchers confirm or correct every citation on the CLIMPACT platform; one row in five is shown without any machine proposal, to measure the machine. | (the platform) | [`040`](legacy/tools/040_salva_giudizi.py) | Codebook 0.4-pilot ([`codebook/`](codebook)) |
-| 10. Uptake without the name | Experiment: a semantic search for filings that take up the reasoning without naming the judgment. Paused; nothing from it is on the platform. | | [`041`](legacy/tools/041_distilla.py) to [`043`](legacy/tools/043_unisci_candidati.py) | **S04** Semantic search without the name, redone with the supported sentences<br>**L06** Uptake reading, test: principle decided on the whole passage<br>**L09** Uptake reading without the name: takes up the reasoning, from another source, or same topic only |
-| 11. Measures | Probe tests and the stability of the external reader. | | [`044`](legacy/tools/044_prova_sonde_reranker.py) to [`047`](legacy/tools/047_stabilita_deepseek.py) | |
-| 12. Models | Training of the project's own models (the scripts are in the history section). | | [`065`](legacy/tools/065_addestra_categoria.py) to [`069`](legacy/tools/069_addestra_riordino.py); history to [`118`](legacy/tools/118_sezioni_llm.py) | **T01** TRACE-Reranker 0.1<br>**T02** TRACE-Reader v0<br>**T03** TRACE-Reader v1 |
-| 13. Registry and journal | The registry of versions, the results, the operations journal of every run. | `giornale`: `Giornale` | [`048`](legacy/tools/048_registro_versioni.py) to [`055`](legacy/tools/055_pubblica_repo.py) | all: [`versioni/registro.json`](versioni/registro.json) |
-| 14. Cycles | The automatic chains that run the steps in order, resume after a crash and check every copy to and from the GPU cluster. | `orchestratore`: `Orchestratore`, `CicloVuote`; `cli` (the `trace` command) | [`056`](legacy/tools/056_ciclo_casi_nuovi.sh) to [`064`](legacy/tools/064_carica_blocco.py) | |
+| Step | `tracepipe` | `legacy/tools` | Versions |
+|---|---|---|---|
+| **1. Corpus**<br>Turns each filing into page-marked text, OCRs unreadable pages, builds the page index. | `corpus`: IndicePagine, Documento, Pagina, PosizioniDopoOcr | [`001`](legacy/tools/001_build_markdown.py) to [`010`](legacy/tools/010_indice_pagine.py) | **D01** Documents: Climate Litigation Database, public API snapshot<br>**D02** Documents: D01 with OCR text of unreadable pages<br>**D03** Documents: D02 with Markdown for 277 filings of the 19/09/2026 update |
+| **2. Cited case**<br>The forms of the name of each judgment, its principles (the *probes*), the map from its paragraphs to its principles. | `caso`: CasoCitato, SerieSonde, MappaParagrafi<br>`config`: Config | [`011`](legacy/tools/011_sonde.py) to [`015`](legacy/tools/015_formulazioni_provenienza.py) | **P01** Probes of Urgenda<br>**P05** Probes of Neubauer and Future Generations, second set corrected (second round)<br>**P06** Probes of KlimaSeniorinnen<br>**P08** Probes of IACtHR advisory opinion OC-32/25<br>**P09** Probes of the ICJ climate advisory opinion, 1.5°C probe rewritten<br>**R04** Paragraph map, reviewed<br>**R07** Paragraph map with probes P05<br>**R09** Paragraph maps of the three new cases; Spanish and Portuguese paragraph references |
+| **3. Name search**<br>Finds the name of the case in every page, in all its forms, with no AI. Each hit becomes a citation with a permanent code (`URG-0146`). | `ricerca`: RicercaPerNome, UnioneRighe<br>`dimensioni`: PosizioneNelPdf | [`016`](legacy/tools/016_cerca.py) to [`022`](legacy/tools/022_coda_uptakes.py); S05 in [`versioni/S05`](versioni/S05) | **S01** Name search, first version<br>**S02** Name search, corrected<br>**S03** Name search on OCR text, more Japanese and Korean forms<br>**S05** Name search on normalised text, with readmitted and new forms (in use) |
+| **4. Type of citation**<br>The external reader (DeepSeek V4 Flash) says what each citation does: chain mention, descriptive, substantive, distinguishing, critical. | `lettori`: LettoreTipo<br>`istruzioni`<br>`deepseek`: ClienteDeepSeek<br>`letture`: Lettura | [`023`](legacy/tools/023_giudica_llm.py) to [`025`](legacy/tools/025_carica_lessicali.py) | **L02** Citation reading, Urgenda<br>**L03** Citation reading, every case except Urgenda |
+| **5. Surrounding pages**<br>TRACE-Reranker scores the pages up to ten before and after the citation; a fixed rule picks the ones to read. | `pagine_attorno`: Punteggi, SceltaPagineAttorno | [`026`](legacy/tools/026_prepara_training.py) to [`029`](legacy/tools/029_coppie_ocr.py), [`031`](legacy/tools/031_leggi_ripresa.py); R10 in [`versioni/R10`](versioni/R10) | **T01** TRACE-Reranker 0.1<br>**R08** Choice of the nearby pages, over the full window for every case<br>**R10** Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap |
+| **6. Uptake reading**<br>The external reader proposes the principles taken up, the pages that continue the argument and the quotations; brakes in the code reject quotations not on the page. | `lettori`: LettorePrincipi, LettorePagineAttorno<br>`freni`: Freni | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
+| **7. Composition**<br>Fixed rules turn the readings into proposals, only on rows nobody has judged. From 2 October: five readings per row, majority vote. | `composizione`: Composizione, ComposizioneMaggioranza<br>`maggioranza`<br>`caricatori`: CaricatoreTipo, CaricatoreRipresa<br>`banca`: BancaDati | [`025`](legacy/tools/025_carica_lessicali.py), [`035`](legacy/tools/035_carica_ripresa.py); R11 in [`versioni/R11`](versioni/R11) | **R05** Rules that put the proposals together, with the brake for Asian scripts<br>**R11** Proposals by majority vote of five readings (decided 2 October 2026, being applied) |
+| **8. Checks**<br>After every load: every row complete, every page of the window scored. | `controlli`: ControlloCompletezza, ControlloFinestra | [`036`](legacy/tools/036_controllo_completezza.py) to [`039`](legacy/tools/039_freni_prova.py) |  |
+| **9. People**<br>Researchers confirm or correct every citation; one row in five is shown without machine proposals. | (the platform) | [`040`](legacy/tools/040_salva_giudizi.py) | Codebook 0.4-pilot ([`codebook/`](codebook)) |
+| **10. Uptake without the name**<br>Experiment, paused: filings that take up the reasoning without naming the judgment. | (legacy only) | [`041`](legacy/tools/041_distilla.py) to [`043`](legacy/tools/043_unisci_candidati.py) | **S04** Semantic search without the name, redone with the supported sentences<br>**L06** Uptake reading, test: principle decided on the whole passage<br>**L09** Uptake reading without the name: takes up the reasoning, from another source, or same topic only |
+| **11. Measures**<br>Probe tests, stability of the external reader. | (legacy only) | [`044`](legacy/tools/044_prova_sonde_reranker.py) to [`047`](legacy/tools/047_stabilita_deepseek.py) |  |
+| **12. Models**<br>Training of the project's own models. | (legacy only) | [`065`](legacy/tools/065_addestra_categoria.py) to [`069`](legacy/tools/069_addestra_riordino.py); history to [`118`](legacy/tools/118_sezioni_llm.py) | **T01** TRACE-Reranker 0.1<br>**T02** TRACE-Reader v0<br>**T03** TRACE-Reader v1 |
+| **13. Registry and journal**<br>The registry of versions, the results, the journal of every run. | `giornale`: Giornale | [`048`](legacy/tools/048_registro_versioni.py) to [`055`](legacy/tools/055_pubblica_repo.py) | all: [`versioni/registro.json`](versioni/registro.json) |
+| **14. Cycles**<br>The automatic chains: steps in order, resume after a crash, checked copies to and from the GPU cluster. | `orchestratore`: Orchestratore, CicloVuote<br>`cli` | [`056`](legacy/tools/056_ciclo_casi_nuovi.sh) to [`064`](legacy/tools/064_carica_blocco.py) |  |
 
 Model cards for T01, T02 and T03: [`MODEL-CARDS.md`](MODEL-CARDS.md). The reading order of all 118 legacy scripts:
 [`legacy/tools/LEGGIMI.md`](legacy/tools/LEGGIMI.md).
@@ -117,21 +117,23 @@ docstring of each module.
 
 ## Data
 
-The corpus index of TRACE 0.1 (corpus version D03: 577,121 pages of 16,993 documents) is released in three tiers, to
-be published with the release:
+The corpus index of TRACE 0.1 (corpus version D03: 577,121 pages of 16,993 documents, 6,482 citations found by the
+name search) is released in three tiers, to be published with the release:
 
-1. **Public index, no text.** Every page and document with identifiers, character offsets, the SHA-256 of the page
-   text, OCR and readability flags, and the position of every citation; plus a script that rebuilds the page text from
-   the original PDFs and verifies it page by page. 559,072 of the 559,499 pages whose text comes from the PDF's own
-   text layer verify byte for byte.
-2. **Public text of public-authority documents.** The page text of the 4,456 documents issued by courts and other
-   public authorities (110,013 pages): judgments, decisions, orders. Court decisions and official acts are free of
-   copyright.
-3. **Full index, on request.** The page index with the text of every page, including party filings and OCR text, for
-   verifying TRACE results. Restricted access: write to the project at info@climpact.it. Access is granted for research
-   use only, in particular to verify TRACE results; the file must not be redistributed, it is kept securely and deleted
-   when the verification is over, and the source is cited: the Climate Litigation Database of the Sabin Center for
-   Climate Change Law (Columbia Law School) with Climate Policy Radar, and CLIMPACT TRACE 0.1.
+| Tier | Access | Documents | Pages | What it holds |
+|---|---|---:|---:|---|
+| 1. Public index, no text | public, CC BY-NC 4.0 | 16,993 | 577,121 | every page and document without its text: identifiers, character offsets, the SHA-256 of the page text, OCR and readability flags, the position of every citation, and a script that rebuilds the page text from the original PDFs and verifies it page by page |
+| 2. Public-authority documents | public | 4,259 | 103,832 | the page text of documents issued by courts and other public authorities, which are free of copyright; Westlaw and LexisNexis prints, unofficial translations, United Kingdom documents and attached exhibits are left out |
+| 3. Full index | restricted, on request | 16,993 | 577,121 | the page index with the text of every page, party filings and OCR text included, to verify TRACE results |
+
+Of the 559,499 pages whose text comes from the PDF's own text layer, 559,072 rebuild byte for byte from tier 1.
+
+**How to request tier 3.** Write to the project (CLIMPACT, University of Bari, info@climpact.it) saying who you are,
+your institution and which TRACE results you want to verify. If the request fits, the research team grants access to a
+restricted Zenodo record; the file is never sent by email. Conditions: research use only; no redistribution of the file
+or of any substantial part of it, and no publication of the text of party filings; keep it securely and delete it when
+the verification is over; cite the source, «Climate Litigation Database, Sabin Center for Climate Change Law and
+Climate Policy Radar», and CLIMPACT TRACE 0.1.
 
 The documents come from the Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law
 School) with Climate Policy Radar, read through its public API (snapshot of 26 July 2026, update of 19 September 2026).
@@ -173,11 +175,11 @@ Data provided by the Sabin Center for Climate Change Law. Platform operated by C
 
 ```
 tracepipe/      the pipeline package (maintained)
-tests/          the tests of the package
-legacy/tools/   the 118 scripts that produced the TRACE 0.1 data, in reading order
-versioni/       the registry of versions and the frozen copy of every version's instructions and code
-cited-cases/    for each cited case: the case file, the probe series, the dossier, the paragraph map
-codebook/       the coding categories and the rules for hard cases (0.4-pilot)
+tests/          its tests
+legacy/tools/   the 118 scripts that produced the TRACE 0.1 data
+versioni/       the registry, and a frozen copy of each version's code
+cited-cases/    case files, probe series, dossiers, paragraph maps
+codebook/       coding categories and rules for hard cases
 scripts/        verify_registry.py
 assets/         images of this page
 ```
