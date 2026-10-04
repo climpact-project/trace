@@ -20,6 +20,10 @@
 
 > **Beta.** TRACE 0.1 is a first release. Every proposal it makes is checked by the CLIMPACT research team, and the
 > figures it publishes are provisional until the rows judged without machine proposals have a base (see [Limits](#limits)).
+> The proposals come from **DeepSeek V4 Flash** (DeepSeek-V4-Flash-0731, MIT licence), a large language model with open
+> weights that we run with vLLM on four NVIDIA H100 GPUs at ReCaS-Bari (INFN and University of Bari): it reads each
+> citation five times and the majority decides (R11, Proposals by majority vote of five readings). The codes L are its
+> readings.
 
 For a climate judgment (the *cited case*), TRACE finds every later filing that cites it, in the Climate Litigation
 Database, and records for each citation what the citing text does with it: which principles of the judgment it takes
@@ -44,14 +48,14 @@ it for the TRACE 0.1 data, and the versions in the registry.
 | **1. Corpus**<br>Turns each filing into page-marked text, OCRs unreadable pages, builds the page index. | `corpus`: IndicePagine, Documento, Pagina, PosizioniDopoOcr | [`001`](legacy/tools/001_build_markdown.py) to [`010`](legacy/tools/010_indice_pagine.py) | **D01** Documents: Climate Litigation Database, public API snapshot<br>**D02** Documents: D01 with OCR text of unreadable pages<br>**D03** Documents: D02 with Markdown for 277 filings of the 19/09/2026 update |
 | **2. Cited case**<br>The forms of the name of each judgment, its principles (the *probes*), the map from its paragraphs to its principles. | `caso`: CasoCitato, SerieSonde, MappaParagrafi<br>`config`: Config | [`011`](legacy/tools/011_sonde.py) to [`015`](legacy/tools/015_formulazioni_provenienza.py) | **P01** Probes of Urgenda<br>**P05** Probes of Neubauer and Future Generations, second set corrected (second round)<br>**P06** Probes of KlimaSeniorinnen<br>**P08** Probes of IACtHR advisory opinion OC-32/25<br>**P09** Probes of the ICJ climate advisory opinion, 1.5°C probe rewritten<br>**R04** Paragraph map, reviewed<br>**R07** Paragraph map with probes P05<br>**R09** Paragraph maps of the three new cases; Spanish and Portuguese paragraph references |
 | **3. Name search**<br>Finds the name of the case in every page, in all its forms, with no AI. Each hit becomes a citation with a permanent code (`URG-0146`). | `ricerca`: RicercaPerNome, UnioneRighe<br>`dimensioni`: PosizioneNelPdf | [`016`](legacy/tools/016_cerca.py) to [`022`](legacy/tools/022_coda_uptakes.py); S05 in [`versioni/S05`](versioni/S05) | **S01** Name search, first version<br>**S02** Name search, corrected<br>**S03** Name search on OCR text, more Japanese and Korean forms<br>**S05** Name search on normalised text, with readmitted and new forms (in use) |
-| **4. Type of citation**<br>The external reader (DeepSeek V4 Flash) says what each citation does: chain mention, descriptive, substantive, distinguishing, critical. | `lettori`: LettoreTipo<br>`istruzioni`<br>`deepseek`: ClienteDeepSeek<br>`letture`: Lettura | [`023`](legacy/tools/023_giudica_llm.py) to [`025`](legacy/tools/025_carica_lessicali.py) | **L02** Citation reading, Urgenda<br>**L03** Citation reading, every case except Urgenda |
+| **4. Type of citation**<br>DeepSeek V4 Flash, a large language model, says what each citation does: chain mention, descriptive, substantive, distinguishing, critical. | `lettori`: LettoreTipo<br>`istruzioni`<br>`deepseek`: ClienteDeepSeek<br>`letture`: Lettura | [`023`](legacy/tools/023_giudica_llm.py) to [`025`](legacy/tools/025_carica_lessicali.py) | **L02** Citation reading, Urgenda<br>**L03** Citation reading, every case except Urgenda |
 | **5. Surrounding pages**<br>TRACE-Reranker scores the pages up to ten before and after the citation; a fixed rule picks the ones to read. | `pagine_attorno`: Punteggi, SceltaPagineAttorno | [`026`](legacy/tools/026_prepara_training.py) to [`029`](legacy/tools/029_coppie_ocr.py), [`031`](legacy/tools/031_leggi_ripresa.py); R10 in [`versioni/R10`](versioni/R10) | **T01** TRACE-Reranker 0.1<br>**R08** Choice of the nearby pages, over the full window for every case<br>**R10** Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap |
-| **6. Uptake reading**<br>The external reader proposes the principles taken up, the pages that continue the argument and the quotations; brakes in the code reject quotations not on the page. | `lettori`: LettorePrincipi, LettorePagineAttorno<br>`freni`: Freni | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
+| **6. Uptake reading**<br>DeepSeek V4 Flash proposes the principles taken up, the pages that continue the argument and the quotations; brakes in the code reject quotations not on the page. | `lettori`: LettorePrincipi, LettorePagineAttorno<br>`freni`: Freni | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
 | **7. Composition**<br>Fixed rules turn the readings into proposals, only on rows nobody has judged. From 2 October: five readings per row, majority vote. | `composizione`: Composizione, ComposizioneMaggioranza<br>`maggioranza`<br>`caricatori`: CaricatoreTipo, CaricatoreRipresa<br>`banca`: BancaDati | [`025`](legacy/tools/025_carica_lessicali.py), [`035`](legacy/tools/035_carica_ripresa.py); R11 in [`versioni/R11`](versioni/R11) | **R05** Rules that put the proposals together, with the brake for Asian scripts<br>**R11** Proposals by majority vote of five readings (decided 2 October 2026, being applied) |
 | **8. Checks**<br>After every load: every row complete, every page of the window scored. | `controlli`: ControlloCompletezza, ControlloFinestra | [`036`](legacy/tools/036_controllo_completezza.py) to [`039`](legacy/tools/039_freni_prova.py) |  |
 | **9. People**<br>Researchers confirm or correct every citation; one row in five is shown without machine proposals. | (the platform) | [`040`](legacy/tools/040_salva_giudizi.py) | Codebook 0.4-pilot ([`codebook/`](codebook)) |
 | **10. Uptake without the name**<br>Experiment, paused: filings that take up the reasoning without naming the judgment. | (legacy only) | [`041`](legacy/tools/041_distilla.py) to [`043`](legacy/tools/043_unisci_candidati.py) | **S04** Semantic search without the name, redone with the supported sentences<br>**L06** Uptake reading, test: principle decided on the whole passage<br>**L09** Uptake reading without the name: takes up the reasoning, from another source, or same topic only |
-| **11. Measures**<br>Probe tests, stability of the external reader. | (legacy only) | [`044`](legacy/tools/044_prova_sonde_reranker.py) to [`047`](legacy/tools/047_stabilita_deepseek.py) |  |
+| **11. Measures**<br>Probe tests, stability of DeepSeek V4 Flash. | (legacy only) | [`044`](legacy/tools/044_prova_sonde_reranker.py) to [`047`](legacy/tools/047_stabilita_deepseek.py) |  |
 | **12. Models**<br>Training of the project's own models. | (legacy only) | [`065`](legacy/tools/065_addestra_categoria.py) to [`069`](legacy/tools/069_addestra_riordino.py); history to [`118`](legacy/tools/118_sezioni_llm.py) | **T01** TRACE-Reranker 0.1<br>**T02** TRACE-Reader v0<br>**T03** TRACE-Reader v1 |
 | **13. Registry and journal**<br>The registry of versions, the results, the journal of every run. | `giornale`: Giornale | [`048`](legacy/tools/048_registro_versioni.py) to [`055`](legacy/tools/055_pubblica_repo.py) | all: [`versioni/registro.json`](versioni/registro.json) |
 | **14. Cycles**<br>The automatic chains: steps in order, resume after a crash, checked copies to and from the GPU cluster. | `orchestratore`: Orchestratore, CicloVuote<br>`cli` | [`056`](legacy/tools/056_ciclo_casi_nuovi.sh) to [`064`](legacy/tools/064_carica_blocco.py) |  |
@@ -99,8 +103,9 @@ docstring of each module.
   turns the downloaded PDFs into the page-marked text the pipeline reads, and the public corpus index (see
   [Data](#data)) lists every document with its source URL and the SHA-256 of the PDF used, with a script that rebuilds
   and verifies the page text.
-- **The external reader.** DeepSeek V4 Flash, served with vLLM; the weights come from the official DeepSeek release
-  (MIT licence). The readers call it through an OpenAI-compatible endpoint (`--base-url`, key in `chat/chiave`).
+- **DeepSeek V4 Flash**, the large language model that reads the citations (codes L). We serve it with vLLM on four
+  NVIDIA H100 GPUs at ReCaS-Bari; the weights come from the official DeepSeek release (DeepSeek-V4-Flash-0731, MIT
+  licence). The readers call it through an OpenAI-compatible endpoint (`--base-url`, key in `chat/chiave`).
 - **TRACE-Reranker (T01).** A LoRA adapter on Qwen3-Reranker-4B; the adapter is to be published on Zenodo with the
   release.
 - **The platform database**, only to load proposals (`--scrivi`): any implementation of `tracepipe.banca.BancaDati`.
@@ -157,7 +162,7 @@ Data provided by the Sabin Center for Climate Change Law. Platform operated by C
   whole suite of this repository runs (432 tests).
 - **Reference harness.** Every class of `tracepipe` reproduces a legacy script. A harness, kept with the private data,
   runs the legacy scripts and the package on a fixed sample (180 rows from the six cases, filing texts included, with
-  the database, the external reader and the clock replaced by recorded fakes) and compares every output file: 298 of
+  the database, DeepSeek V4 Flash and the clock replaced by recorded fakes) and compares every output file: 298 of
   298 files and 67 of 67 journals equal, in compatibility mode. The sample is not redistributed because it contains
   filing texts.
 - **External review.** The code of `tracepipe` went through an independent external code review, in three rounds, on
@@ -206,8 +211,8 @@ assets/         images of this page
   given with the machine's proposals visible: they say how often people changed a proposal, not how often the machine
   is right. Rows judged without any proposal are being judged now; a blind figure will be published when that sample
   has a base.
-- The models of 0.1 were trained on labels that are being corrected (T01) or on the external reader's readings (T02,
-  T03), and on one cited judgment, Urgenda.
+- The models of 0.1 were trained on labels that are being corrected (T01) or on the readings of DeepSeek V4 Flash
+  (T02, T03: distillation from DeepSeek V4 Flash), and on one cited judgment, Urgenda.
 - The human reference rows used to compare readings are not frozen; those comparisons are provisional.
 
 ## What comes next

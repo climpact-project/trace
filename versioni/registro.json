@@ -560,8 +560,8 @@
     "sha256": "4fc3217b4c7c3dedc7bc67d8694e5739685f1f37dedc72fa2b838c189455442b",
     "fino_al": "2026-10-03",
     "righe_cambiate": 1,
-    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
-    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+    "nota": "il fascicolo entra intero nel testo dato a DeepSeek V4 Flash: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to DeepSeek V4 Flash: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
    },
    {
     "file": "versioni/P07/cig-parere-clima.yaml",
@@ -605,8 +605,8 @@
     "sha256": "7244a97312d27c8b1f8d9db2eda8cb78158e88a2680bf60e9734359475313f6d",
     "fino_al": "2026-10-03",
     "righe_cambiate": 1,
-    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
-    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+    "nota": "il fascicolo entra intero nel testo dato a DeepSeek V4 Flash: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to DeepSeek V4 Flash: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
    },
    {
     "file": "versioni/P08/idh-oc-32-25.yaml",
@@ -1061,7 +1061,7 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura delle citazioni, prima versione",
   "in_uso": "non piu' in uso",
   "alias": "V02a",
-  "famiglia": "lettura con un modello esterno",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "modello_base": {
    "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
    "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
@@ -1332,7 +1332,7 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura delle citazioni",
   "in_uso": "in uso",
   "alias": "V02",
-  "famiglia": "lettura con un modello esterno",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L01",
   "cambia": "stesso modello e stesse impostazioni; le istruzioni aggiungono la regola sulle note a pie' di pagina"
  },
@@ -1400,7 +1400,7 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura delle citazioni",
   "in_uso": "in uso",
   "alias": "V03",
-  "famiglia": "lettura con un modello esterno",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L02",
   "cambia": "stesse istruzioni, generalizzate agli altri casi: il nome puo' essere una persona o una parte",
   "impronte_precedenti": [
@@ -1409,8 +1409,8 @@
     "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67",
     "fino_al": "2026-10-03",
     "righe_cambiate": 1,
-    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
-    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+    "nota": "il fascicolo entra intero nel testo dato a DeepSeek V4 Flash: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to DeepSeek V4 Flash: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
    }
   ]
  },
@@ -1466,7 +1466,7 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa",
   "in_uso": "in uso",
   "alias": "V04",
-  "famiglia": "lettura con un modello esterno"
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande"
  },
  {
   "codice": "L05",
@@ -1528,7 +1528,7 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa, seconda versione",
   "in_uso": "in uso",
   "alias": "V05",
-  "famiglia": "lettura con un modello esterno",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L04",
   "cambia": "stesso modello; le istruzioni aggiungono il fascicolo del caso, la regola delle note, la frase alla lettera e la frase sostenuta",
   "impronte_precedenti": [
@@ -1537,16 +1537,16 @@
     "sha256": "5e2c379cab54d6dfaafc0ca7d9d20351ed138761d1e023ec0336a76671f1088a",
     "fino_al": "2026-10-03",
     "righe_cambiate": 1,
-    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
-    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+    "nota": "il fascicolo entra intero nel testo dato a DeepSeek V4 Flash: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to DeepSeek V4 Flash: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
    },
    {
     "file": "versioni/L05/neubauer-fascicolo.md",
     "sha256": "542090712f0137cfd9a381ba904bb03de67e2eafdb3f3376dd78d3bda2466e67",
     "fino_al": "2026-10-03",
     "righe_cambiate": 1,
-    "nota": "il fascicolo entra intero nel testo dato al lettore esterno: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
-    "nota_en": "the dossier goes whole into the text given to the external reader: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
+    "nota": "il fascicolo entra intero nel testo dato a DeepSeek V4 Flash: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
+    "nota_en": "the dossier goes whole into the text given to DeepSeek V4 Flash: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
    }
   ]
  },
@@ -1601,7 +1601,7 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa, prova col passaggio",
   "in_uso": "sperimentale",
   "alias": "",
-  "famiglia": "lettura con un modello esterno",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
   "cambia": "il principio si decide sul passaggio, non sulla sola frase della nota"
  },
@@ -1649,7 +1649,7 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, pagine attorno rilette sui principi proposti",
   "in_uso": "in uso",
   "alias": "",
-  "famiglia": "lettura con un modello esterno",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
   "cambia": "solo la domanda delle pagine attorno, con i principi della riga dati come fissati"
  },
@@ -1731,7 +1731,7 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa senza nome",
   "in_uso": "esperimento",
   "alias": "",
-  "famiglia": "lettura con un modello esterno",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
   "cambia": "stesso modello; la domanda e' se una pagina SENZA il nome riprende il ragionamento del caso o lo prende da un'altra fonte"
  },
@@ -2070,12 +2070,12 @@
   "regola_di_adozione": [
    {
     "data": "2026-09-27",
-    "regola": "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera il lettore esterno fa lui le proposte (§63.26)",
+    "regola": "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera DeepSeek V4 Flash fa lui le proposte (§63.26)",
     "esito": "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte"
    },
    {
     "data": "2026-09-30",
-    "regola": "sostituisce il lettore esterno solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
+    "regola": "sostituisce DeepSeek V4 Flash solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
     "esito": "in attesa dei giudizi senza proposte"
    }
   ],
@@ -2134,12 +2134,12 @@
   "regola_di_adozione": [
    {
     "data": "2026-09-27",
-    "regola": "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera il lettore esterno fa lui le proposte (§63.26)",
+    "regola": "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera DeepSeek V4 Flash fa lui le proposte (§63.26)",
     "esito": "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte"
    },
    {
     "data": "2026-09-30",
-    "regola": "sostituisce il lettore esterno solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
+    "regola": "sostituisce DeepSeek V4 Flash solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
     "esito": "in attesa dei giudizi senza proposte"
    }
   ],

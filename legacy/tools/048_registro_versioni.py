@@ -15,8 +15,8 @@
    i codici V, che restano nel campo `alias`. «Ripresa» e' la relazione fra citazione e caso; «seguito» e' la pagina
    vicina che la prosegue; «versione» per L02/L05 (mai «seconda lettura»), «lettura 1 / lettura 2» per le ripetizioni
    per riga; «righe di prova» per il test set, «citazione testuale» per la frase copiata, «esperimento» per L06;
-   «senza proposte» (campione), «seconda opinione», «Test» (sezione), mai «cieco» da solo; «lettore esterno» =
-   DeepSeek (L), «TRACE-Reader» = T02/T03; «file del caso» = lo yaml, «fascicolo» = il dossier; «principi» e non
+   «senza proposte» (campione), «seconda opinione», «Test» (sezione), mai «cieco» da solo; DeepSeek V4 Flash
+   (L) si chiama col suo nome, mai «lettore esterno» (04/10/2026), «TRACE-Reader» = T02/T03; «file del caso» = lo yaml, «fascicolo» = il dossier; «principi» e non
    sonde; «esecuzione» per un giro.
 
    Scrive su Firestore la collezione `trace_versioni` (lettura ai membri del Corpus, scrittura solo da qui).
@@ -391,9 +391,9 @@ def registro():
                   # LA REGOLA DI ADOZIONE, CON LE DATE (revisione del 30/09/2026, punto 5): la regola del 27/09 e' stata superata e non
                   # applicata; quella del 30/09 non si puo' ancora misurare. Si tengono tutte e due.
                   'regola_di_adozione': [
-                      {'data': '2026-09-27', 'regola': "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera il lettore esterno fa lui le proposte (§63.26)",
+                      {'data': '2026-09-27', 'regola': "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera DeepSeek V4 Flash fa lui le proposte (§63.26)",
                        'esito': "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte"},
-                      {'data': '2026-09-30', 'regola': "sostituisce il lettore esterno solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
+                      {'data': '2026-09-30', 'regola': "sostituisce DeepSeek V4 Flash solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
                        'esito': 'in attesa dei giudizi senza proposte'}],
                   'note': "Distillazione da DeepSeek, dichiarata. Le etichette umane di prova sono di una persona sola e sono state date con le proposte di DeepSeek davanti."})
     # CHE COSA CAMBIA RISPETTO ALLA VERSIONE DI PRIMA (29/09/2026, il PI: «le V sembra che indichino piu' cose»).
@@ -422,7 +422,7 @@ def registro():
     # come `alias`, cosi' quello che e' stato scritto con i codici V si legge ancora.
     VECCHI = {'S01': 'V00', 'S02': 'V10', 'R01': 'V01', 'R02': 'V07', 'L01': 'V02a', 'L02': 'V02', 'L03': 'V03',
               'L04': 'V04', 'L05': 'V05', 'T01': 'V06', 'T02': 'V08', 'T03': 'V09'}
-    FAMIGLIE = {'D': 'dati', 'P': 'sonde (i principi di un caso citato)', 'S': 'ricerca per nome', 'R': 'regola senza modello', 'L': 'lettura con un modello esterno',
+    FAMIGLIE = {'D': 'dati', 'P': 'sonde (i principi di un caso citato)', 'S': 'ricerca per nome', 'R': 'regola senza modello', 'L': 'lettura di DeepSeek V4 Flash, modello linguistico grande',
                 'T': 'modello TRACE addestrato da noi'}
     # NOMI CHE SI CAPISCONO DA SOLI (29/09/2026, il PI: «non capisco piu' nulla»): che cosa fa, per quale caso, e se
     # e' in uso. `in_uso` dice in una parola se le proposte che si vedono oggi vengono da li'.
