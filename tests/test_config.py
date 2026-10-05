@@ -52,11 +52,17 @@ CAMBIATI_DOPO = {
     'carica_lessicali',
     'freni',
     'giornale',
+    'pubblica',
+    'cerca',
+    'unisci_e_aggiungi',
+    'controllo_completezza',
 }
 """Live scripts changed after the harness (02/10/2026 evening: temperature, seed, call record, full reasoning; then the
 options of the five readings, default unchanged: ``--regola R10``, ``--aggiungi-letture``, ``--composizione R11``;
 03/10/2026, the external review: Thai, Lao, Khmer and Myanmar in the evidence check; the journal says its own errors
-on stderr and in ``giornale/errori_giornale.log`` instead of swallowing them)."""
+on stderr and in ``giornale/errori_giornale.log`` instead of swallowing them; 04/10/2026: ``pubblica`` keeps a full
+copy of the rows it overwrites, tools/copia_prima.py; S07: footnote-aware grouping in ``cerca`` and
+``unisci_e_aggiungi``, R15 known to ``controllo_completezza``)."""
 
 
 def _git_show(percorso: str) -> bytes | None:

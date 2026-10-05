@@ -1,0 +1,574 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/klimaseniorinnen.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forma riammessa: VKS
+#   - forme nuove: KlimaSeniroinnen, KlimaSenniorinen, Kilmaseniorinnen, Kumaseniorinnen, Klimasenorinnen, Klimaseniorinen
+#   - forme_parola_intera (nuovo campo, letto solo da cerca_s05.py): VKS, Klimaseniorinen
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+# CASO CITATO — VEREIN KLIMASENIORINNEN SCHWEIZ E ALTRI c. SVIZZERA, query specification v1 (PROPOSTA)
+#
+# Corte europea dei diritti dell'uomo, Grande Camera, sentenza del 9 aprile 2024, ricorso n. 53600/20.
+# Scritto il 1 ottobre 2026 come PROPOSTA per il PI, nella cartella `cited-cases/proposte-2026-10-01/klimaseniorinnen/`.
+# Non sostituisce `cited-cases/klimaseniorinnen.yaml` (il file breve del 19/9, solo forme): lo affianca finche' il PI
+# non decide. Struttura presa da `neubauer-P05.yaml` e `urgenda.yaml`; compagni: `klimaseniorinnen-fascicolo.md`,
+# `klimaseniorinnen-mappa-paragrafi.yaml`, `PROPOSTA.md`, `conta_paragrafi.py`.
+#
+# LINGUA. La sentenza e' resa in inglese e francese, entrambi facenti fede (p. 233: «Done in English and in French»).
+# Nel corpus c'e' solo l'inglese (`judgment_f4b1`): tutti i canonical vengono da li'. Sonde in inglese.
+#
+# PAGINE. `canonical_pagina` = marcatore `<!-- page N -->` del markdown = pagina del PDF. La numerazione stampata
+# della sentenza e' la pagina del PDF meno 2 (la p. 3 del PDF porta il numero 1). La sentenza occupa le pp. 1-234
+# del PDF; il voto separato del giudice Eicke le pp. 235-260. Paragrafi (§) = numerazione della Corte, 1-657.
+#
+# VERBATIM. Ogni canonical e' stato ritrovato nel markdown della sentenza con i soli spazi normalizzati (script di
+# controllo dell'esecutore, 1/10/2026). Nessun canonical attraversa un salto di pagina. Una sola sillabazione di fine
+# riga conservata come nel corpus («sub- paragraphs», § 550), dichiarata nella sonda.
+#
+# SETTE SONDE, PIU' UNA DI RISERVA. Dalla lettura dei §§ 410-657 (la valutazione della Corte) e dal conteggio dei
+# rinvii a paragrafo nel corpus (`conta_paragrafi.py`, risultati in PROPOSTA.md). Intervalli di paragrafi DISGIUNTI.
+# Le parti di ammissibilita' che anticipano il merito sono state separate: i §§ 435-436 e 478 (nesso causale fra
+# omissioni dello Stato e danno) vanno alla sonda dell'art. 8, perche' il § 519 li richiama come proprio fondamento.
+# La sonda sull'art. 6 (accesso al giudice dell'associazione) e' in `sonde_di_riserva`: la pipeline non la legge.
+
+nome: Verein KlimaSeniorinnen Schweiz and Others v. Switzerland
+non_english_name: Verein KlimaSeniorinnen Schweiz et autres c. Suisse
+case: verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852
+codebook_versione: 0.2-pilot
+stato: proposta-da-approvare
+versione_file: 1
+data_versione: 2026-10-01
+
+caso_ancora:
+  misurato: >
+    132 documenti del corpus nominano il caso fuori dai suoi atti e da quelli del giudizio svizzero, in 61 case_id
+    (1/10/2026, `conta_paragrafi.py`). Il file del 19/9 diceva 64 casi: la differenza viene dai due case_id esclusi
+    e dal conteggio solo sul corpo del documento (il front matter di molti documenti riporta il nome nei riassunti).
+  motivazione_selezione: >
+    DA SCRIVERE DAL PI. Proposta dell'esecutore, NON decisa: prima sentenza di una corte internazionale dei diritti
+    umani che accerta la violazione di un diritto (art. 8 CEDU) per l'insufficienza della politica climatica di uno
+    Stato; fissa criteri propri per la qualita' di vittima nel contenzioso climatico (soglia particolarmente alta per i
+    singoli, legittimazione delle associazioni a condizioni), un margine di apprezzamento differenziato (ridotto sugli
+    obiettivi, ampio sui mezzi) e un elenco di requisiti del quadro regolatorio (fra cui un bilancio di carbonio o una
+    quantificazione equivalente).
+  famiglia_giuridica: diritto internazionale dei diritti umani (CEDU), sistema regionale europeo
+  data_prima_pronuncia: 2024-04-09
+  data_ultima_pronuncia: 2024-04-09
+  esito: >
+    accolto in parte: violazione dell'art. 8 (16 voti a 1) e dell'art. 6 § 1 (all'unanimita') per l'associazione;
+    ricorsi delle quattro ricorrenti individuali irricevibili (difetto della qualita' di vittima); art. 2 non esaminato;
+    art. 13 assorbito; nessuna misura specifica indicata ex art. 46.
+  caso_perso: false
+  caso_di_controllo: false
+  documenti_corpus_successivi_alla_decisione: null
+
+docket_numbers:
+  - "53600/20"                            # ricorso alla Corte EDU, depositato il 26/11/2020 (§ 1, § 289)
+identifiers:
+  - "ECLI:CE:ECHR:2024:0409JUD005360020"  # OSSERVATO nel corpus (9 documenti, per es. Milieudefensie c. ING, Greenpeace Paesi Bassi e Bonaire); NON scritto nella sentenza del corpus
+  - "EMD-2020-53600"                      # riferimento Lovdata (Norvegia), OSSERVATO in Greenpeace Nordic c. Ministero dell'energia
+  - "CM/Del/Dec(2025)1521/H46-30"         # decisione del Comitato dei Ministri del 6/3/2025 sull'esecuzione: atto del caso stesso (decision_dacf)
+
+# Gli atti del giudizio KlimaSeniorinnen non citano la sentenza: la producono o la eseguono (29 documenti sotto lo
+# stesso case_id: ricorso, osservazioni, interventi, sentenza, comunicato stampa, due decisioni del Comitato dei
+# Ministri sull'esecuzione del 6/3/2025 e del 17/9/2025). Il giudizio svizzero che l'ha preceduto (DATEC 25/4/2017,
+# Tribunale amministrativo federale A-2992/2017 del 27/11/2018, Tribunale federale 1C_37/2019 del 5/5/2020) sta in
+# un case_id diverso, con 11 documenti: escluso anch'esso, perche' i suoi atti nominano l'associazione e il ricorso
+# a Strasburgo. Nessun altro case_id del corpus risulta essere un grado dello stesso giudizio (controllato sui nomi
+# delle cartelle: Uniterre, Klimaallianz c. FIFA, Muellner c. Austria e gli altri casi svizzeri sono giudizi diversi).
+escludi_case_id:
+  - verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852
+  - association-of-swiss-senior-women-for-climate-protection-v-federal-department-of-the-environment-transport-energy-and-communications-detec-and-others_0123
+
+data_decisione: 2024-04-09
+# il PI (01/10/2026): si cerca solo dopo la pronuncia. Vale la data del DOCUMENTO (dal file d'origine, AAAAMMGG_),
+# non quella della causa: anche le righe col nome anteriori alla sentenza vanno fra gli scarti (cerca.py).
+filtro_data_documento: true
+data_soglia_motivazione: >
+  Unica pronuncia di merito (la sentenza della Grande Camera e' definitiva il giorno stesso, art. 44 § 1). Prima del
+  9/4/2024 si possono riprendere solo il ricorso (26/11/2020), le osservazioni delle parti e degli intervenienti
+  (2021-2022) e le sentenze svizzere: chi lo fa riprende i ricorrenti o i giudici svizzeri, non la Corte. Attenzione:
+  `data_deposito` nel corpus e' spesso la data del caso, non dell'atto (la sentenza stessa porta 2020-01-01).
+
+fonte_primaria:
+  - documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+    file_origine: 20240409_Application-no.-5360020_judgment.pdf
+    descrizione: >
+      Sentenza della Grande Camera, 9 aprile 2024, testo inglese, 260 pagine di PDF (sentenza pp. 1-234, voto in
+      parte concorde e in parte dissenziente del giudice Eicke pp. 235-260), testo nativo.
+    ruolo: fonte di tutti i canonical
+atti_del_caso:
+  - documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-press-release_bcc5    # comunicato stampa del 9/4/2024, 7 pp.: riassunto della Cancelleria, non della Corte
+  - documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-decision_dacf         # Comitato dei Ministri, 6/3/2025, esecuzione
+  - documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-other_f2d7            # Comitato dei Ministri, 17/9/2025, esecuzione
+  # Gli altri 26 documenti sono atti di parte e interventi (2020-2022), voce `parte` o `interveniente`.
+
+# ── Forme testuali (lexical variants) ────────────────────────────────────────────────────────
+# La pipeline (`rete_lessicale` in tools/cerca.py) confronta senza maiuscole e per sottostringa: «KlimaSeniorinnen»
+# copre gia' tutti i composti («KlimaSeniorinnen-arrest», «Verein KlimaSeniorinnen Schweiz ...»). Le altre forme
+# sono elencate perche' la lista deve dire tutto cio' che si cerca (registro di Urgenda), e perche' i conteggi per
+# forma servono in lettura. Conteggi: documenti fuori dagli esclusi, solo corpo del documento, 1/10/2026.
+forme:
+  - 気候保護のためのシニア女性           # OSSERVATA 02/10/2026 (giapponese: Climate Justice Case, ricorso, p. 41: «気候保護のためのシニア女性の会事件»; il nome latino sta solo nell'intestazione)
+  # il nome
+  - KlimaSeniorinnen                                      # OSSERVATA: 128 documenti, 60 case_id
+  - Verein KlimaSeniorinnen                               # OSSERVATA: 111 documenti
+  - Verein KlimaSeniorinnen Schweiz
+  - Verein KlimaSeniorinnen Schweiz and Others v. Switzerland   # titolo ufficiale inglese
+  - KlimaSeniorinnen Schweiz and Others v. Switzerland
+  - KlimaSeniorinnen v. Switzerland                       # OSSERVATA: 16 documenti
+  - KlimaSeniorinnen v Switzerland                        # OSSERVATA: 4 documenti
+  - KlimaSeniorinnen judgment                             # OSSERVATA: 5 documenti
+  - KlimaSeniorinnen-judgment                             # OSSERVATA: 1 documento
+  - KlimaSeniorinnen-arrest                               # OSSERVATA (olandese): 1 documento
+  - KlimaSeniorinnen-Entscheidung                         # OSSERVATA (tedesco): 2 documenti
+  - Entscheid KlimaSeniorinnen                            # OSSERVATA (tedesco svizzero): 1 documento
+  - KlimaSeniorinnen-Urteil                               # PREVISTA
+  # traduzioni del titolo
+  - Verein KlimaSeniorinnen Schweiz et autres c. Suisse   # titolo ufficiale francese; OSSERVATA con «et autres c. Suisse» in 5 documenti
+  - KlimaSeniorinnen c. Suisse                            # OSSERVATA: 2 documenti
+  - arrêt KlimaSeniorinnen                                # OSSERVATA: 1 documento
+  - Verein KlimaSeniorinnen Schweiz und andere gegen die Schweiz   # PREVISTA
+  - KlimaSeniorinnen gegen die Schweiz                    # PREVISTA
+  - Verein KlimaSeniorinnen Schweiz e altri c. Svizzera   # PREVISTA
+  - KlimaSeniorinnen c. Svizzera                          # PREVISTA
+  - sentenza KlimaSeniorinnen                             # PREVISTA
+  - Verein KlimaSeniorinnen Schweiz y otros c. Suiza      # PREVISTA
+  # il nome dell'associazione nelle altre lingue
+  - Senior Women for Climate Protection                   # nome inglese dell'associazione; fuori dagli esclusi 1 documento (vedi forme_escluse: designa anche il giudizio svizzero)
+  - Swiss Senior Women for Climate Protection
+  - Swiss senior women                                    # OSSERVATA («the Swiss senior women's case»): 1 documento
+  - Aînées pour le climat                                 # OSSERVATA (nome francese dell'associazione): 2 documenti
+  - Ainées pour le climat                                 # PREVISTA (accento perso)
+  - arrêt des Aînées                                      # OSSERVATA («l'Arrêt des Aînées», Uniterre): 1 documento
+  - Anziane per il clima                                  # PREVISTA: nome italiano dell'associazione [non verificato nel corpus]
+  - KlimaSeniorinnen Schweiz a další                      # OSSERVATA (ceco, «Verein KlimaSeniorinnen Schweiz a další proti Švýcarsku», Klimatická žaloba ČR); coperta da «KlimaSeniorinnen»
+  # identificativi
+  - "53600/20"                                            # OSSERVATA: 103 documenti, 47 case_id
+  - "53600 /20"                                           # OSSERVATA (Lee e altri c. Yuan legislativo, Taiwan): 1 documento
+  - "ECLI:CE:ECHR:2024:0409JUD005360020"                  # OSSERVATA: 9 documenti
+  - "0409JUD005360020"                                    # coda dell'ECLI, copre le varianti di prefisso
+  - EMD-2020-53600                                        # OSSERVATA (Lovdata): 1 documento
+  # varianti OCR
+  - Klirnaseniorinnen                                     # OSSERVATA (rn per m; Uniterre c. DATEC): 1 documento
+  - Aînées pour le clirnat                                # OSSERVATA (idem): 1 documento
+  - Kiimaseniorinnen                                      # PREVISTA (l letta i)
+  - Klima Seniorinnen                                     # PREVISTA (spazio)
+  - Klima-Seniorinnen                                     # PREVISTA (trattino)
+  # S05 RIAMMESSA (era fra le forme_escluse): sigla con cui gli atti inglesi chiamano la sentenza («applying VKS at [478]-[488]»), a parola intera. Prove, lette nel campione del 02/10: 28 vere su 28: r-friends-of-the-earth-ltd-mr-kevin-jordan-and-mr-doug-paulley-v-secretary-of-state-for-environment-food-rural-affairs-challenge-to-the-third-national-adaptation-programme-application_c78c p. 18; r-friends-of-the-earth-ltd-mr-kevin-jordan-and-mr-doug-paulley-v-secretary-of-state-for-environment-food-rural-affairs-challenge-to-the-third-national-adaptation-programme-application_c78c p. 25; r-friends-of-the-earth-ltd-mr-kevin-jordan-and-mr-doug-paulley-v-secretary-of-state-for-environment-food-rural-affairs-challenge-to-the-third-national-adaptation-programme-judgment_1b5b p. 33; friends-of-the-earth-and-others-v-the-united-kingdom-application_1c7c p. 17
+  - VKS
+  # S05 NUOVE: refusi OCR osservati; la pagina falsa nomina il ricorso pendente in un atto anteriore alla sentenza, che il filtro della data toglie. Prove, lette nel campione del 02/10: 5 vere su 6 (la falsa: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-other_0a65 p. 15): uniterre-et-al-v-swiss-department-of-the-environment-swiss-farmers-case-decision_1854 p. 10; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_a2d8 p. 22; uniterre-et-al-v-swiss-department-of-the-environment-swiss-farmers-case-decision_1854 p. 14; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 8
+  - KlimaSeniroinnen
+  - KlimaSenniorinen
+  - Kilmaseniorinnen
+  - Kumaseniorinnen
+  - Klimasenorinnen
+  - Klimaseniorinen
+
+# S05: forme che valgono solo a parola intera (non attaccate ad altre lettere). Stanno anche in `forme`.
+forme_parola_intera:
+  - VKS
+  - Klimaseniorinen
+
+found_in_corpus:
+  - KlimaSeniorinnen
+  - Verein KlimaSeniorinnen
+  - "53600/20"
+  - "ECLI:CE:ECHR:2024:0409JUD005360020"
+  - KlimaSeniorinnen v. Switzerland
+
+forme_escluse:
+  - forma: Seniorinnen
+    ragione: >
+      Parola tedesca comune («Seniorinnen und Senioren»); da sola non identifica il caso.
+  - forma: VKS
+    ragione_nota: 'RIAMMESSA in S05 (02/10/2026, misura delle perdite della ricerca per nome), vedi le forme.'
+    ragione_prima_di_S05: >
+      Sigla dell'associazione, OSSERVATA una volta («VKS, a non-profit association», R (Friends of the Earth e
+      altri), Regno Unito), ma di tre lettere: sotto la soglia di quattro caratteri e sigla di altro.
+  - forma: Verein case
+    ragione: >
+      OSSERVATA una volta (in una richiesta di parere consultivo, «the Verein case»), ma «Verein» e' la parola tedesca per
+      associazione: produrrebbe omonimie in ogni documento tedesco.
+  - forma: Swiss women
+    ragione: >
+      Generica («the individual Swiss women were not», Aurora, Anton Foley e altri c. Svezia); non e' un nome.
+  - forma: Swiss climate case
+    ragione: >
+      Denominazione giornalistica che copre anche il giudizio svizzero interno e Uniterre c. DATEC (il «caso dei
+      contadini svizzeri»). Nessuna occorrenza oggi.
+  - forma: Climate Seniors
+    ragione: >
+      OSSERVATA solo negli atti del giudizio svizzero (esclusi); generica, puo' indicare altri gruppi di anziani
+      (per es. Senior Citizens c. Corea, nel corpus).
+  - forma: A-2992/2017
+    ragione: >
+      Numero di ruolo della sentenza del Tribunale amministrativo federale del 27/11/2018. Cita il giudizio
+      svizzero, non Strasburgo.
+  - forma: 1C_37/2019
+    ragione: >
+      Numero di ruolo della sentenza del Tribunale federale del 5/5/2020 (BGE 146 I 145). Idem.
+  - forma: BGE 146 I 145
+    ragione: Raccolta ufficiale della sentenza del Tribunale federale. Idem.
+  - forma: "5360020"
+    ragione: >
+      Coda numerica dell'ECLI senza il prefisso, con rischio di cifre casuali in tabelle e indirizzi. Coperta da
+      «0409JUD005360020».
+  - forma: Duarte Agostinho
+    ragione: >
+      Altro ricorso deciso dalla stessa Grande Camera lo stesso giorno (irricevibile). Citato quasi sempre accanto a
+      KlimaSeniorinnen, ma e' un altro caso; idem Carême c. Francia.
+  - forma: 9 April 2024
+    ragione: >
+      Data di tre pronunce della Grande Camera (KlimaSeniorinnen, Duarte Agostinho, Carême), quindi non identifica.
+  - forma: Switzerland
+    ragione: Ovvio; resta solo nelle forme composte.
+  - forma: Senior Women for Climate Protection
+    ragione_nota: >
+      NON esclusa ma segnalata. E' il nome inglese dell'associazione ed e' anche la testa del nome del giudizio
+      svizzero («Union of Swiss Senior Women for Climate Protection v. Federal Department of the Environment,
+      Transport, Energy and Communications (DETEC) and Others», OSSERVATO in Duarte Agostinho, nota 83). Seguita da
+      «v. Federal Department», «v. DETEC», «v. Swiss Federal Council» o «v. Swiss Federal Parliament» indica il
+      giudizio svizzero e non la sentenza di Strasburgo: da rivedere a mano.
+  - forma: KlimaSeniorinnen
+    ragione_nota: >
+      NON esclusa. E' anche il nome dell'associazione (il suo sito klimaseniorinnen.ch, le sue campagne) e del
+      giudizio svizzero: prima del 9/4/2024 un documento che la nomina parla del ricorso o delle sentenze svizzere.
+      Le occorrenze dentro un indirizzo web non contano (regola `e_nome` della pipeline).
+  - forma: KlimaSen- iorinnen
+    ragione_nota: >
+      Sillabazione di fine riga OSSERVATA solo negli atti svizzeri esclusi. La pipeline confronta le forme latine in
+      modo esatto: un nome spezzato dall'a capo non si trova. Segnalata, non aggiunta.
+
+falso_positivo_dichiarato:
+  tipo: citazione in catena
+  nota: >
+    Nelle memorie europee dopo il 2024 il caso e' citato in elenco («Urgenda; Neubauer; KlimaSeniorinnen») e accanto
+    a Duarte Agostinho e Carême, decisi lo stesso giorno: si attende molta `menzione_in_catena`.
+
+# ── Sonde (semantic queries) ────────────────────────────────────────────────────────────────
+# Nessuna contiene il nome del caso, la Svizzera, le cifre del giudizio (20%, 2020, 2024, 2030, 2050, 0,44 Gt) o
+# l'eta' delle ricorrenti. Ogni sonda porta l'elemento proprio della sentenza. Lessico separato: «do its part» (§ 545)
+# non sta in nessuna sonda perche' e' troppo vicino a «own share» (§ 442); «future generations» sta solo nei
+# requisiti (§ 549); «representational disadvantage» in nessuna; «budget» solo nei requisiti; «actio popularis» solo
+# nella qualita' di vittima.
+semantic_queries:
+- id: klimaseniorinnen.vittima_soglia_alta
+  titolo: Qualita' di vittima dei singoli nel contenzioso climatico, esposizione di alta intensita' e bisogno pressante
+    di protezione individuale, con una soglia particolarmente alta
+  testo: 'In climate-change complaints an individual can claim to be a victim only if personally and directly affected:
+    he or she must be subject to a high intensity of exposure to the adverse effects of climate change and there
+    must be a pressing need to ensure his or her individual protection, owing to the absence or inadequacy of reasonable
+    measures to reduce harm. The threshold is especially high, so that complaints do not slip into an actio popularis.
+
+    '
+  paragrafi: §§ 479-488, 527-535
+  fonte: proposta dell'esecutore, 1/10/2026
+  esclusione_di_provenienza: 'Non i principi generali sulla qualita'' di vittima (vittime dirette, indirette, potenziali,
+    §§ 460-472: Aksu, Tănase, Senator Lines, ripresi dalla Corte), ne'' il criterio ambientale classico (gravita''
+    minima, durata, vicinanza geografica, § 472: Tătar, Cordella): una pagina che li enuncia senza i due criteri
+    climatici non riprende questa sentenza. Carême c. Francia (stesso giorno) applica i §§ 487-488: chi cita Carême
+    per i due criteri riprende questa sentenza in forma annidata.
+
+    '
+  canonical: 'Two key criteria have been set out for recognising the victim status of natural persons in the climate-change
+    context: (a) high intensity of exposure of the applicant to the adverse effects of climate change; and (b) a
+    pressing need to ensure the applicant’s individual protection (see paragraphs 487-488 above). The threshold
+    for fulfilling these criteria is especially high (see paragraph 488 above).
+
+    '
+  canonical_paragrafo: § 527
+  canonical_pagina: 199
+  canonical_documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+  nota_canonical: 'Il principio e'' enunciato ai §§ 487-488 (pp. 188-189), che attraversano un salto di pagina;
+    il § 527 lo ripete per intero in una pagina sola ed e'' preferito per la ricerca per frasi.
+
+    '
+- id: klimaseniorinnen.legittimazione_associazioni
+  titolo: Legittimazione delle associazioni ad agire per conto dei membri, a tre condizioni e senza che i rappresentati
+    debbano qualificarsi uno per uno
+  testo: 'An association may lodge a complaint about a State''s failure to protect people against the adverse effects
+    of climate change on behalf of its members and other affected individuals, if it is lawfully established, pursues
+    a dedicated statutory purpose of defending their human rights against climate threats, and is genuinely qualified
+    and representative to act for them. It does not have to show that the people it represents would themselves
+    qualify individually.
+
+    '
+  paragrafi: §§ 489-503, 521-526
+  fonte: proposta dell'esecutore, 1/10/2026
+  esclusione_di_provenienza: 'Non la Convenzione di Aarhus e il diritto UE sull''accesso alla giustizia delle organizzazioni
+    ambientaliste (§§ 490-494, Protect, Deutsche Umwelthilfe), che la Corte richiama ma non applica (§ 501), ne''
+    la giurisprudenza Gorraiz Lizarraga e Câmpeanu sulle «special considerations» (§§ 475-477): chi riconosce la
+    legittimazione di un''associazione ambientalista per quelle vie non riprende i tre requisiti del § 502.
+
+    '
+  canonical: 'In order to be recognised as having locus standi to lodge an application under Article 34 of the Convention
+    on account of the alleged failure of a Contracting State to take adequate measures to protect individuals against
+    the adverse effects of climate change on human lives and health, the association in question must be: (a) lawfully
+    established in the jurisdiction concerned or have standing to act there; (b) able to demonstrate that it pursues
+    a dedicated purpose in accordance with its statutory objectives in the defence of the human rights of its members
+    or other affected individuals within the jurisdiction concerned, whether limited to or including collective
+    action for the protection of those rights against the threats arising from climate change; and (c) able to demonstrate
+    that it can be regarded as genuinely qualified and representative to act on behalf of members or other affected
+    individuals within the jurisdiction who are subject to specific threats or adverse effects of climate change
+    on their lives, health or well-being as protected under the Convention.
+
+    '
+  canonical_paragrafo: § 502
+  canonical_pagina: 193
+  canonical_documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+  nota_verbatim:
+    omissione: 'Il § 502 si apre con «Thus, taking into account the above-noted considerations, the following factors
+      will determine the standing of associations before the Court in the present context.», qui omesso, e prosegue
+      dopo il canonical con i fattori di valutazione e con la frase sull''assenza di un requisito separato di qualita''
+      di vittima dei rappresentati, che passa a p. 194.
+
+      '
+- id: klimaseniorinnen.art8_protezione_effettiva
+  titolo: L'art. 8 comprende un diritto alla protezione effettiva dagli effetti negativi gravi del cambiamento climatico,
+    che obbliga lo Stato a regolare e attuare misure di mitigazione
+  testo: 'Article 8 of the Convention encompasses a right for individuals to effective protection by the State authorities
+    from serious adverse effects of climate change on their life, health, well-being and quality of life, given
+    the causal relationship between State action or inaction and that harm. The State''s primary duty is to adopt,
+    and to effectively apply in practice, regulations and measures capable of mitigating the existing and potentially
+    irreversible future effects of climate change, supplemented by adaptation measures.
+
+    '
+  paragrafi: §§ 435-436, 478, 519-520, 544-546, 552
+  fonte: proposta dell'esecutore, 1/10/2026
+  esclusione_di_provenienza: 'Non Urgenda (Hoge Raad 5.6.2, 5.8, 5.9.1: obblighi positivi degli artt. 2 e 8 contro
+    il rischio climatico), ne'' la giurisprudenza ambientale della Corte che il § 538 riassume (Tătar, Di Sarno,
+    Jugheli, Cordella): chi fonda sugli artt. 2 e 8 un dovere di protezione dal clima citando solo quelle fonti
+    non riprende questa sentenza.
+
+    '
+  canonical: 'Drawing on the above considerations, and having regard to the causal relationship between State actions
+    and/or omissions relating to climate change and the harm, or risk of harm, affecting individuals (see paragraphs
+    435, 436 and 478 above), Article 8 must be seen as encompassing a right for individuals to effective protection
+    by the State authorities from serious adverse effects of climate change on their life, health, well-being and
+    quality of life.
+
+    '
+  canonical_paragrafo: § 519
+  canonical_pagina: 198
+  canonical_documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+  canonical_bis: 'Accordingly, the State’s obligation under Article 8 is to do its part to ensure such protection.
+    In this context, the State’s primary duty is to adopt, and to effectively apply in practice, regulations and
+    measures capable of mitigating the existing and potentially irreversible, future effects of climate change.
+
+    '
+  canonical_bis_paragrafo: § 545
+  canonical_bis_pagina: 206
+- id: klimaseniorinnen.margine_differenziato
+  titolo: Margine di apprezzamento differenziato, ridotto sull'impegno e sugli obiettivi, ampio sulla scelta dei
+    mezzi, con le garanzie procedurali come misura
+  testo: 'The State''s margin of appreciation is reduced as regards its commitment to combating climate change and
+    the setting of the requisite aims and objectives, given the nature and gravity of the threat and the general
+    consensus on what is at stake, but wide as regards the choice of means, including operational choices and policies.
+    Climate protection carries considerable weight in any balancing, and procedural safeguards, such as public access
+    to information and the possibility for those affected to have their views taken into account, are especially
+    material in assessing whether the State stayed within its margin.
+
+    '
+  paragrafi: §§ 542-543, 551, 553-554, 657
+  fonte: proposta dell'esecutore, 1/10/2026
+  esclusione_di_provenienza: 'Non la dottrina generale del margine di apprezzamento in materia ambientale («wide
+    margin», Hatton, Hardy and Maile, § 538 (c)-(d)) e i principi procedurali Taşkın e Flamenbaum (§ 539): un margine
+    ampio senza la distinzione fra obiettivi e mezzi non e'' questa sentenza.
+
+    '
+  canonical: 'Taking as a starting-point the principle that States must enjoy a certain margin of appreciation in
+    this area, the above considerations entail a distinction between the scope of the margin as regards, on the
+    one hand, the State’s commitment to the necessity of combating climate change and its adverse effects, and the
+    setting of the requisite aims and objectives in this respect, and, on the other hand, the choice of means designed
+    to achieve those objectives. As regards the former aspect, the nature and gravity of the threat and the general
+    consensus as to the stakes involved in ensuring the overarching goal of effective climate protection through
+    overall GHG reduction targets in accordance with the Contracting Parties’ accepted commitments to achieve carbon
+    neutrality, call for a reduced margin of appreciation for the States. As regards the latter aspect, namely their
+    choice of means, including operational choices and policies adopted in order to meet internationally anchored
+    targets and commitments in the light of priorities and resources, the States should be accorded a wide margin
+    of appreciation.
+
+    '
+  canonical_paragrafo: § 543
+  canonical_pagina: 205
+  canonical_documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+- id: klimaseniorinnen.requisiti_quadro_regolatorio
+  titolo: Requisiti del quadro regolatorio, con tempi per la neutralita', bilancio di carbonio o quantificazione
+    equivalente, obiettivi intermedi, verifica, aggiornamento e azione tempestiva e coerente
+  testo: 'Effective respect for private life requires each State to reduce its emissions substantially and progressively
+    towards net neutrality within, in principle, the next three decades, through a binding domestic framework that
+    specifies a timeline and the overall remaining carbon budget or another equivalent quantification of future
+    emissions, sets intermediate reduction targets and sectoral pathways, shows compliance and keeps the targets
+    updated. The authorities must act in good time and in an appropriate and consistent manner, and immediate action
+    is needed to avoid a disproportionate burden on future generations.
+
+    '
+  paragrafi: §§ 547-550, 555, 558-573
+  fonte: proposta dell'esecutore, 1/10/2026
+  esclusione_di_provenienza: 'Non Neubauer (BVerfG, Rn. 215-229) per il bilancio di carbonio nazionale: il § 571
+    lo dichiara fonte del rigetto dell''argomento dell''impossibilita'' di determinarlo; una pagina che chiede un
+    bilancio nazionale citando solo Neubauer riprende Neubauer. Non l''Accordo di Parigi, la Legge europea sul clima
+    (bilanci indicativi, § 571) o l''IPCC (§ 116) per gli obiettivi e i bilanci in quanto tali.
+
+    '
+  canonical: 'When assessing whether a State has remained within its margin of appreciation (see paragraph 543 above),
+    the Court will examine whether the competent domestic authorities, be it at the legislative, executive or judicial
+    level, have had due regard to the need to: (a) adopt general measures specifying a target timeline for achieving
+    carbon neutrality and the overall remaining carbon budget for the same time frame, or another equivalent method
+    of quantification of future GHG emissions, in line with the overarching goal for national and/or global climate-change
+    mitigation commitments; (b) set out intermediate GHG emissions reduction targets and pathways (by sector or
+    other relevant methodologies) that are deemed capable, in principle, of meeting the overall national GHG reduction
+    goals within the relevant time frames undertaken in national policies; (c) provide evidence showing whether
+    they have duly complied, or are in the process of complying, with the relevant GHG reduction targets (see sub-
+    paragraphs (a)-(b) above); (d) keep the relevant GHG reduction targets updated with due diligence, and based
+    on the best available evidence; and (e) act in good time and in an appropriate and consistent manner when devising
+    and implementing the relevant legislation and measures.
+
+    '
+  canonical_paragrafo: § 550
+  canonical_pagina: 207
+  canonical_documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+  nota_verbatim:
+    sillabazione: '«sub- paragraphs» e'' cosi'' nel corpus (trattino di fine riga seguito da spazio); conservato
+      come nel testo.
+
+      '
+- id: klimaseniorinnen.possibilita_reale
+  titolo: 'Basta una possibilita'' reale di cambiare l''esito: niente «goccia nel mare» e niente prova del «se non
+    fosse stato per»'
+  testo: 'The drop-in-the-ocean argument does not relieve a State of responsibility: it need not be shown that,
+    but for the authorities'' failings, the harm would not have occurred; it is sufficient that reasonable measures
+    which they failed to take had a real prospect of altering the outcome or mitigating the harm.
+
+    '
+  elemento_proprio: 'Non «ogni Stato risponde della propria quota»: lo dicono Urgenda, Neubauer e qui il § 442.
+    Proprio di KlimaSeniorinnen e'' il criterio causale di Strasburgo portato nel clima: basta la possibilita''
+    reale (real prospect, O''Keeffe) che le misure mancate cambiassero l''esito o attenuassero il danno, invece
+    della prova del «but for».
+
+    '
+  paragrafi: § 444
+  fonte: 'PI, 01/10/2026: sonde distintive (prima «propria_quota», §§ 439, 441-444)'
+  canonical: Rather, what is important, and sufficient to engage the responsibility of the State, is that reasonable
+    measures which the domestic authorities failed to take could have had a real prospect of altering the outcome
+    or mitigating the harm
+  canonical_paragrafo: § 444
+  canonical_pagina: 178
+  canonical_documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+- id: klimaseniorinnen.prospettiva_intergenerazionale
+  titolo: 'La prospettiva fra generazioni giustifica il controllo dei giudici: chi verra'' porta i pesi senza partecipare
+    alle decisioni di oggi'
+  testo: 'Future generations will bear an increasingly severe burden of present failures to combat climate change
+    while having no say in today''s decisions; because short-term interests may prevail in political decision-making,
+    this intergenerational perspective adds justification for judicial review of climate policy.
+
+    '
+  elemento_proprio: 'Non il controllo dei giudici in generale, ne'' la sua compatibilita'' con la democrazia (Urgenda,
+    ordine al legislatore). Proprio di KlimaSeniorinnen e'' il fondamento intergenerazionale del controllo: le generazioni
+    future non partecipano alle decisioni e la politica tende al breve periodo, quindi il giudice ha una ragione
+    in piu'' per intervenire. Neubauer fonda la tutela del futuro sulla liberta'' intertemporale, non sul controllo
+    del giudice.
+
+    '
+  paragrafi: § 420
+  fonte: 'PI, 01/10/2026: sonde distintive (prima «controllo_giudiziale», §§ 410-413, 419-421, 449-451, 639)'
+  canonical: the intergenerational perspective underscores the risk inherent in the relevant political decision-making
+    processes, namely that short-term interests and concerns may come to prevail over, and at the expense of, pressing
+    needs for sustainable policy-making, rendering that risk particularly serious and adding justification for the
+    possibility of judicial review
+  canonical_paragrafo: § 420
+  canonical_pagina: 171
+  canonical_documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+
+sonde_di_riserva:
+- id: klimaseniorinnen.accesso_giudice_associazione
+  titolo: Accesso al giudice (art. 6 § 1) per l'associazione che chiede l'attuazione delle misure di mitigazione gia' previste dalla legge
+  testo: >
+    The right of access to a court does not extend to actions that seek to compel the legislature to enact climate
+    legislation, but an association's action seeking the effective implementation of mitigation measures already
+    required by existing law concerns its members' civil rights and falls within it; a future harm that is real and
+    highly probable need not be strictly imminent. Domestic courts that do not engage seriously with such an action
+    impair the very essence of that right.
+  paragrafi: "§§ 608-625, 629-638"
+  fonte: proposta dell'esecutore, 1/10/2026
+  canonical: >
+    While the complaint concerning policy decisions that are subject to the relevant democratic processes is not a
+    matter falling within the scope of Article 6 (see paragraph 594 above), the applicants’ complaint concerning
+    effective implementation of the mitigation measures under existing law is a matter capable of falling within the
+    scope of that provision, provided that the other conditions for the applicability of Article 6 § 1 are satisfied.
+  canonical_paragrafo: § 616
+  canonical_pagina: 223
+  canonical_documento: verein-klimaseniorinnen-schweiz-and-others-v-switzerland-judgment_f4b1
+
+# ── Gruppi di paragrafi citati nel corpus ma lasciati senza sonda (decisione da confermare, PROPOSTA.md) ────
+gruppi_senza_sonda:
+  - {paragrafi: "§§ 414-418, 422", cosa: "differenze fra cambiamento climatico e danno ambientale classico; approccio su misura"}
+  - {paragrafi: "§§ 424-434", cosa: "dimensioni della causalita', prova, peso dei rapporti IPCC (§ 429), strumento vivente (§ 434)"}
+  - {paragrafi: "§§ 437-438, 440", cosa: "causalita' e obblighi positivi nella giurisprudenza ambientale; soglia di gravita' del rischio"}
+  - {paragrafi: "§§ 445-448", cosa: "nessun diritto all'ambiente in quanto tale; diritto a un ambiente sano come contesto"}
+  - {paragrafi: "§§ 452-457", cosa: "interpretazione armonica ed evolutiva della Convenzione"}
+  - {paragrafi: "§§ 458-477", cosa: "principi generali sulla qualita' di vittima e sulle associazioni (ricapitolazione)"}
+  - {paragrafi: "§§ 507-513, 536-537", cosa: "applicabilita' dell'art. 2 nel contesto climatico; art. 2 non esaminato"}
+  - {paragrafi: "§§ 514-518", cosa: "applicabilita' dell'art. 8 nei casi ambientali (ricapitolazione)"}
+  - {paragrafi: "§§ 538-541", cosa: "principi generali sugli obblighi positivi ambientali (ricapitolazione)"}
+
+nota_analitica:
+  spartiacque_possibili: [2024-04-09]
+  effetto_atteso: >
+    Riprese sostanziali attese sui requisiti (§ 550, il piu' citato), sul margine differenziato (§ 543) e sui criteri
+    di legittimazione (§§ 487-488, 502), nelle sentenze nazionali successive (Paesi Bassi, Belgio, Germania, Repubblica
+    ceca, Norvegia) e nelle richieste di parere consultivo. Riattribuzione possibile a Strasburgo di cio' che Urgenda e
+    Neubauer avevano detto prima (propria quota, bilancio di carbonio, ragione intergenerazionale): da verificare, non
+    da presupporre.
+
+# ── S07 (04/10/2026): RICERCA PER NOME CON I GRUPPI CHE NON ATTRAVERSANO LE NOTE, RETE DESCRITTIVA, DEDUPLICA PER PAGINA ──
+# Tutto quello che sta sopra e' il file S05 identico. Qui due chiavi nuove, lette da tools/cerca_s07.py e
+# tools/rete_descrittiva.py (gli altri strumenti non le leggono):
+#   forme_s07_aggiunte  forme semplici che mancavano, cercate come le altre forme (misura del 04/10/2026, audit/forme);
+#   rete_descrittiva    le regole della RETE DESCRITTIVA: le pagine che citano la pronuncia senza nessuna forma
+#                       dichiarata («BVerfG, a.a.O.», la corte con l'anno e il clima, la data...). Una regola e' un'ancora
+#                       (espressione regolare, maiuscole e minuscole uguali) piu' le parole che devono stare a meno di
+#                       `finestra` caratteri (`con`, tutte); `escludi` toglie la corrispondenza se compare nella stessa
+#                       finestra; `solo_atti_col_nome` la tiene solo negli atti che citano gia' il caso col nome. Le
+#                       espressioni si applicano al testo normalizzato (textnorm: sillabazione tolta, spazi uniti) e la
+#                       posizione torna quella del file. Fuori: gli atti del procedimento stesso (escludi_case_id,
+#                       atti_del_procedimento_altrove), gli atti datati prima della pronuncia, le pagine dove il caso e'
+#                       gia' nominato o ha gia' una riga (come nella misura). Le righe hanno proposto_rete «descrittiva».
+#                       Misura del 04/10: 331 pagine senza nessuna forma, ~250 citazioni vere (audit/forme).
+rete_descrittiva:
+  versione: S07
+  regole:
+  - id: K_ricorso_var
+    ancora: 53 ?600 ?/ ?(20|2020)\b|\b53600\b
+  - id: K_nome_var
+    ancora: kl[i1l]m[a@]\W{0,3}s[e3]n[i1l]o\w{0,10}|klimaatseniorinnen|klima-?senior\w*
+  - id: K_assoc_lingue
+    ancora: a[iî]n[ée]es pour la protection du climat|a[iî]n[ée]es climat|anziane per la protezione del clima|seniorinnen f[üu]r klimaschutz|mujeres mayores (por|para) (el|la protecci[oó]n del) clima|ancianas
+      por el clima|senioras? (pelo|por el|para el) clima|idosas (pelo|pela prote[çc][ãa]o do) clima|senior women for the protection of the climate|senior women.s association|association of (swiss )?senior
+      women|senior women v\.
+  - id: K_anziane_descr
+    ancora: ((elderly|older|senior) (swiss )?women|swiss (grannies|grandmothers|seniors)|climate (grannies|seniors)|[äa]ltere frauen|femmes [âa]g[ée]es|mujeres mayores|donne anziane|mulheres idosas|노인 ?여성|노년
+      ?여성|高齢女性|シニア女性|老年妇女|高齡女性)
+    con:
+    - (switzerland|swiss|suisse|schweiz|svizzera|suiza|su[ií][çc]a|zwitserland|스위스|スイス|瑞士)
+    finestra: 350
+  - id: K_corte_descr
+    ancora: (european court of human rights|\becthr\b|e\.ct\.h\.r|cour europ[ée]enne des droits de l.homme|\bcedh\b|\begmr\b|europ[äa]ische[nr]? gerichtshof f[üu]r menschenrechte|tribunal europeo de derechos
+      humanos|\btedh\b|corte europea dei diritti dell.uomo|\bcedu\b|corte europeia dos direitos humanos|grand chamber|grande chambre|gro(ß|ss)e kammer|gran sala|grande camera|유럽인권재판소|欧州人権裁判所|欧洲人权法院)
+    con:
+    - (switzerland|swiss|suisse|schweiz|svizzera|suiza|su[ií][çc]a|zwitserland|스위스|スイス|瑞士)
+    - (\b2024\b|climat|clima|klima|기후|気候|气候)
+    finestra: 350
+  - id: K_v_svizzera
+    ancora: (v\.? switzerland|c\.? suisse|gegen die schweiz|c\.? svizzera|c\.? suiza|contra suiza|v\.? su[ií][çc]a|tegen zwitserland)
+    con:
+    - (\b2024\b|climat|clima|klima)
+    finestra: 300
+  - id: K_data
+    ancora: (\b9 april 2024|april 9,? 2024|\b9 avril 2024|\b9\. april 2024|\b9 de abril de 2024|\b9 aprile 2024|09\.04\.2024|\b9\.4\.2024|2024年4月9日|2024년 4월 9일)
+    con:
+    - (switzerland|swiss|suisse|schweiz|svizzera|suiza|su[ií][çc]a|zwitserland|스위스|スイス|瑞士)
+    finestra: 350

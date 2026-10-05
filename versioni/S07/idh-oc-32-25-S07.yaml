@@ -1,0 +1,747 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/idh-oc-32-25.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forma riammessa: Urgence climatique et droits de l'homme
+#   - forma riammessa: Urgence climatique et les droits de l'homme
+#   - forme nuove: OC 32/2025, OC32/2025, AO 32/25, AO32/25, AO 32/2025, PC 32/25, PC-32/2025, PC 32/2025
+#   - forme nuove: The Climate Emergency, Inter-Am. Ct. H.R, Climate Emergency Advisory Opinion
+#   - forme nuove: IACtHR AO
+#   - forme nuove: Parecer Consultivo nº 32, Parecer Consultivo n.º 32, Parecer Consultivo n° 32, Parecer Consultivo 32, Opinião Consultiva n° 32, Opiniao Consultiva nº 32, Opiniao Consultiva n. 32
+#   - forme_parola_intera (nuovo campo, letto solo da cerca_s05.py): OC 32/2025, OC32/2025, AO 32/25, AO32/25, AO 32/2025, PC 32/25, PC-32/2025, PC 32/2025, IACtHR AO
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+# CASO CITATO — CORTE INTERAMERICANA DEI DIRITTI UMANI, PARERE CONSULTIVO OC-32/25
+# «Emergencia Climática y Derechos Humanos», 29 maggio 2025, richiesto da Cile e Colombia.
+# PROPOSTA per il PI, 1 ottobre 2026. Versione 2: le otto sonde sono quelle approvate
+# dal PI il 01/10/2026 (principi DISTINTIVI del parere), verificate sul testo spagnolo; forme e intervalli
+# restano da confermare.
+#
+# QUESTO FILE SOSTITUIRA' `cited-cases/oc-32-25.yaml` (v0, 19/09/2026), che aveva solo le forme e due
+# difetti: `escludi_case_id` senza il suffisso `_fbcd` (non corrisponde al case_id del corpus, come era
+# successo a Neubauer) e nessuna sonda. Il v0 resta dov'e' finche' il PI non approva; non e' stato toccato.
+#
+# STRUTTURA. Come `future-generations-P05.yaml` e `neubauer-P05.yaml`: identificativi, esclusione del
+# fascicolo, date, fonte primaria, forme e forme escluse con la ragione, sonde (`semantic_queries`) con
+# `testo` inglese, `probe_es` spagnolo, `paragrafi`, `canonical` verbatim dallo spagnolo.
+#
+# LINGUA. L'originale e' spagnolo («Redactada en español en San José, Costa Rica, el 29 de mayo de 2025»,
+# p. 233): i canonical sono VERBATIM dallo spagnolo (`decision_28df`), con i soli spazi normalizzati, e
+# ognuno sta su una pagina sola, senza richiami di nota. Accanto, la pagina della traduzione inglese
+# della Corte (`decision_3b51`, 219 pp.). I numeri di paragrafo (1-629) sono gli stessi in tutte le
+# lingue: sono la chiave. I punti resolutivi (Opinión, pp. 229-233) hanno una numerazione propria (1-20)
+# e non sono paragrafi.
+#
+# COME SONO STATE SCELTE LE SONDE. Lista del PI (01/10/2026): una sonda e' un elemento PROPRIO del
+# parere, che rende riconoscibile la provenienza di chi lo riprende; non una copertura dei capitoli.
+# Per ognuna gli intervalli sono stati letti sullo spagnolo e ristretti ai paragrafi che enunciano
+# l'elemento (`elemento_proprio` dice che cosa e' proprio e che cosa resta fuori). Gli intervalli non si
+# sovrappongono; tutto il resto del parere e' senza sonda. Conteggi: `conta_paragrafi.py`, accanto a
+# questo file.
+
+nome: Climate Emergency and Human Rights, Advisory Opinion OC-32/25
+non_english_name: Emergencia Climática y Derechos Humanos, Opinión Consultiva OC-32/25
+case: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd
+codebook_versione: 0.2-pilot
+stato: proposta-da-approvare
+versione_file: 2
+data_versione: 2026-10-01
+file_precedente: cited-cases/oc-32-25.yaml   # v0 del 19/09/2026, solo forme; non modificato
+
+politica_formulazioni:
+  eseguita_per_default: testo
+  probe_es: prova — eseguire una volta, misurare da sola, tenere solo se rende almeno quanto `testo`; e' la lingua del parere e di quasi tutti gli atti latinoamericani che lo citano (registro, 2)
+  domande_contrarie: >
+    Nessuna formulazione esclusa scritta in anticipo (come in neubauer-P05): le prime righe bocciate
+    dai validatori diventeranno le domande contrarie. Le esclusioni di provenienza sono scritte per
+    ogni sonda in `esclusione_di_provenienza`.
+
+frasi_della_sentenza:
+  eseguire_come_ricerca_separata: true
+  cosa: i campi `canonical` e `canonical_bis` di ogni sonda, ciascuno come query autonoma
+  mai: incollarli dentro `testo`
+  nota: >
+    Per questo parere la ricerca per frasi conta piu' del solito: gli atti latinoamericani lo citano
+    trascrivendo paragrafi interi («Eis o teor do § 547 da OC-32/25»), in spagnolo o in una
+    traduzione portoghese propria.
+
+caso_ancora:
+  posizione_nella_lista: null           # DA DECIDERE DAL PI: il parere non e' nella lista dei casi ancora [non verificato nel corpus]
+  motivazione_selezione: >
+    DA SCRIVERE DAL PI. Proposta dell'esecutore, NON decisa: primo parere di una corte regionale dei
+    diritti umani interamente dedicato all'emergenza climatica; prima corte a riconoscere un diritto al
+    clima sano distinto dall'ambiente sano; qualifica come jus cogens il divieto di danno irreversibile
+    all'ecosistema comune; colloca la Natura soggetto di diritti nel diritto interamericano; conia la
+    debida diligencia reforzada; rende obbligatoria la valutazione d'impatto climatico; estende il
+    diritto alla scienza ai saperi tradizionali e impone di contrastare la disinformazione; protegge
+    lo sfollamento climatico transfrontaliero; agevola la prova del nesso causale.
+  famiglia_giuridica: sistema interamericano dei diritti umani, funzione consultiva (art. 64.1 CADH)
+  data_prima_pronuncia: 2025-05-29
+  data_ultima_pronuncia: 2025-05-29
+  esito: parere reso (procedura consultiva, nessuna parte soccombente)
+  caso_perso: non applicabile
+  caso_di_controllo: false
+  voti: >
+    Unanimita' sulla competenza e sui punti 1-3, 5, 6, 11, 13, 15, 16, 18, 19. Quattro contro tre sul
+    punto 7 (natura soggetto di diritti) e sul punto 8 (jus cogens): dissentono Hernández López, Sierra
+    Porto, Pérez Goldberg. Cinque contro due, in parte, sul punto 9 (clima sano). Sei contro uno sui
+    punti 4, 10, 12 e 14 (dissente, in tutto o in parte, Pérez Goldberg). Quattro contro tre, in parte,
+    sui punti 17 (accesso alla giustizia) e 20 (gruppi vulnerabili). I voti separati (tre parzialmente
+    dissenzienti, quattro concorrenti) non sono nel corpus [non verificato nel corpus].
+  documenti_corpus_successivi_alla_decisione: null
+  percorsi_di_lettura: >
+    Due percorsi separati, come per gli altri casi: documenti che nominano il parere; corpus intero.
+    ATTENZIONE: 490 dei 511 rinvii a paragrafo trovati il 01/10/2026 vengono da un solo procedimento,
+    la richiesta di parere alla Corte africana (case_id
+    request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis_2579).
+    Ogni misura va data con e senza quel procedimento.
+
+docket_numbers:
+  - OC-32/25
+identifiers:
+  - "Serie A No. 32"                     # serie ufficiale della Corte; da solo collide con Airey c. Irlanda (vedi forme_escluse)
+  - seriea_32                            # nome del file sul sito della Corte (corteidh.or.cr/docs/opiniones/seriea_32_esp.pdf)
+
+# Il fascicolo della richiesta: 43 documenti (domanda, osservazioni scritte, amicus, il parere in quattro
+# versioni) e almeno due written statements alla CIG archiviati qui per errore (other_7253, other_b14c,
+# «INTERNATIONAL COURT OF JUSTICE, OBLIGATIONS OF STATES IN RESPECT OF CLIMATE CHANGE»). Va escluso tutto:
+# chi cerca con le parole della Corte trova prima la Corte, e le osservazioni del 2023-2024 nominano
+# «OC-32» prima che il parere esista.
+escludi_case_id:
+  - request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd
+
+# DATA SOGLIA = PUBBLICAZIONE (decisione del PI, 01/10/2026). `data_decisione` e' la data che la pipeline
+# usa come soglia: qui il 3 luglio 2025, notificazione e pubblicazione. L'adozione e' del 29 maggio 2025.
+data_decisione: 2025-07-03
+data_adozione: 2025-05-29              # «Redactada en español en San José, Costa Rica, el 29 de mayo de 2025», p. 233
+data_pubblicazione: 2025-07-03
+filtro_data_documento: true            # la soglia si applica alla data dell'ATTO (prefisso AAAAMMGG del file in url_origine), non a data_deposito
+data_soglia_motivazione: >
+  Adottato il 29 maggio 2025 (p. 233), notificato e pubblicato il 3 luglio 2025 (i quattro file del
+  corpus portano il prefisso 20250703 nel nome). Prima del 3 luglio nessuno poteva leggerlo: la soglia
+  utile per le citazioni e' il 3 luglio 2025. Chi cita usa l'una o l'altra data, quindi la data non
+  identifica il parere: lo identifica il codice. AVVERTENZA sul corpus: `data_deposito` e' quasi sempre
+  la data di avvio del CASO, non dell'atto (la sentenza Greenpeace Nordic dell'ottobre 2025 porta
+  2021-01-01). Dei 74 documenti che nominano il parere, solo 9 superano la soglia per `data_deposito`,
+  63 per la data nel nome del file (`url_origine`, prefisso AAAAMMGG). La soglia va applicata su
+  quest'ultima.
+
+fonte_primaria:
+  - documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+    file_origine: 20250703_18528_decision.pdf
+    descrizione: Opinión Consultiva OC-32/25, originale spagnolo, 234 pp., testo nativo; note a pie' di pagina mescolate al testo nell'estrazione
+    ruolo: fonte di tutti i canonical
+  - documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_3b51
+    file_origine: 20250703_18528_decision-2.pdf
+    descrizione: traduzione inglese, 219 pp. (paginazione propria); usa «enhanced due diligence» per «debida diligencia reforzada»
+    ruolo: pagina inglese di ogni canonical; e' la versione che le memorie in inglese citano
+fonte_di_confronto:
+  - documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_9329
+    file_origine: 20250703_18528_decision-1.pdf
+    descrizione: seconda versione inglese, 234 pp., con la paginazione dello spagnolo e una traduzione diversa (al § 100 «Furthermore, the poorest», contro «It is the poorest» della 3b51)
+  - documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-opinion_2cd0
+    file_origine: 20250703_18528_opinion.pdf
+    descrizione: versione portoghese, 228 pp.; nel corpus `tipo_atto` da «opinion» (e' il parere, non un voto separato)
+
+# ── Forme testuali ───────────────────────────────────────────────────────────────────────────
+# Il nome per esteso del Sabin Center («Request for an advisory opinion on the scope of the state obligations
+# for responding to the climate emergency») non lo usa
+# nessuno: un parere si cita col codice. Conteggi del 01/10/2026 (conta_paragrafi.py, occorrenze nel
+# CORPO dei documenti fuori dal fascicolo; la ricerca ignora accenti, maiuscole e trattini).
+forme:
+  - OC-32/25                             # OSSERVATA: 144 occorrenze
+  - OC-32/2025                           # OSSERVATA: 8 (atti brasiliani)
+  - OC 32/25                             # coperta da OC-32/25 (trattino facoltativo)
+  - OC32/25
+  - OC-32-2025                           # OSSERVATA: 6 (anche dentro URL)
+  - OC-32/24                             # OSSERVATA: 2, refuso del Ministério Público brasiliano (gia' nel v0)
+  - OC-32                                # OSSERVATA: 33 («IACtHR AO OC-32, para 594»). Nomina anche la RICHIESTA nel 2023-2025: vale solo dopo la soglia
+  - AO-32/25                             # OSSERVATA: 340, la forma piu' frequente (memorie in inglese alla Corte africana)
+  - AO-32/2025
+  - AO-32                                # OSSERVATA: 20 («Advisory Opinion AO 32/25», «AO-32: the direct and active»)
+  - Advisory Opinion OC-32/25            # OSSERVATA: 95
+  - Advisory Opinion 32/25               # OSSERVATA: 47
+  - Advisory Opinion No. 32              # OSSERVATA: 18
+  - Advisory Opinion No 32
+  - Opinión Consultiva OC-32/25          # OSSERVATA: 8
+  - Opinión Consultiva 32/25
+  - Opinión Consultiva No. 32
+  - Opinión Consultiva n.º 32
+  - Opinião Consultiva OC-32/25          # OSSERVATA: 10
+  - Opinião Consultiva nº 32             # OSSERVATA: 8
+  - Opinião Consultiva n.º 32            # OSSERVATA: 3 («Opinião Consultiva n.º 32/2025»)
+  - Opinião Consultiva n°32              # OSSERVATA: 3 («n°32/25», senza spazio)
+  - Opinião Consultiva n. 32             # OSSERVATA nel corpus («na Opinião Consultiva n. 32/25»); il conteggio la attribuisce alla forma con «n.º»
+  - Opinião Consultiva 32                # OSSERVATA: 5
+  - Parecer Consultivo OC-32/25          # OSSERVATA: 1
+  - Parecer Consultivo PC-32/25          # OSSERVATA: 5 (sigla portoghese «PC»)
+  - PC-32/25
+  - Parecer Consultivo n. 32             # OSSERVATA: 2
+  - Avis consultatif OC-32/25            # OSSERVATA: 35
+  - seriea_32                            # OSSERVATA: 22 (URL del sito della Corte)
+  - Emergencia Climática y Derechos Humanos      # OSSERVATA: 5; titolo ufficiale. Nomina anche la richiesta: vale dopo la soglia
+  - Emergência Climática e Direitos Humanos      # OSSERVATA: 14; copre anche il misto «Emergencia Climatica e Direitos Humanos»
+  - Climate Emergency and Human Rights           # OSSERVATA: 101 (da sola). Tenuta (decisione del PI, 01/10/2026): il filtro sulla data dell'atto toglie i falsi anteriori al luglio 2025
+  - Climate Emergency and Human Rights (Advisory Opinion   # OSSERVATA: 17
+  - Climate Emergency and Human Rights, Advisory Opinion   # OSSERVATA: 24
+  - Advisory Opinion Climate Emergency and Human Rights   # OSSERVATA: 7
+  - Advisory Opinion on the Climate Emergency and Human Rights   # OSSERVATA: 16
+  # S05 RIAMMESSA (era fra le forme_escluse): titolo francese del parere; e' anche il titolo dell'avis CNCDH del 27/5/2021, che il filtro della data dell'atto toglie (la pagina falsa del campione e' quella). Prove, lette nel campione del 02/10: 5 vere su 6 (la falsa: notre-affaire-a-tous-les-amis-de-la-terre-and-oxfam-france-v-bnp-paribas-summons_c698 p. 51): request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 14; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 51; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 86; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_bbb6 p. 116
+  - Urgence climatique et droits de l'homme
+  # S05 RIAMMESSA (era fra le forme_escluse): variante con l'articolo.
+  - Urgence climatique et les droits de l'homme
+  # S05 NUOVE: il codice con altri separatori (i trattini tipografici li copre la normalizzazione), a parola intera. Prove, lette nel campione del 02/10: 30 vere su 30: federal-public-prosecutors-office-vs-federal-union-and-others-complaint_9cd2 p. 81; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_cb15 p. 25; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_ee45 p. 7; instituto-preservar-agapan-and-nucleo-amigos-da-terra-vs-federal-union-and-others-climate-emergency-in-rio-grande-do-sul-state-appeal_b242 p. 20
+  - OC 32/2025
+  - OC32/2025
+  - AO 32/25
+  - AO32/25
+  - AO 32/2025
+  - PC 32/25
+  - PC-32/2025
+  - PC 32/2025
+  # S05 NUOVE: la forma breve americana («The Climate Emergency, Inter-Am. Ct. H.R. ¶ 321») e «IACtHR Climate Emergency Advisory Opinion». Prove, lette nel campione del 02/10: 7 vere su 7: request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_f638 p. 54; juliana-youth-v-united-states-of-america-jovenes-ex-juliana-v-estados-unidos-de-america-petition_cbdc p. 75; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_f638 p. 21; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_f638 p. 30
+  - The Climate Emergency, Inter-Am. Ct. H.R
+  - Climate Emergency Advisory Opinion
+  # S05 NUOVE: solo «IACtHR AO» (a parola intera, «IACtHR AOs» no): «Advisory Opinion IACHR» resta ESCLUSA per decisione del PI del 01/10/2026, anche se la pagina Bonaire e' vera. Prove, lette nel campione del 02/10: 4 vere su 4: request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_937b p. 13; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_937b p. 9; greenpeace-netherlands-and-8-citizens-of-bonaire-v-the-netherlands-decision_cfdf p. 68; request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis-other_937b p. 7
+  - IACtHR AO
+  # S05 NUOVE: le grafie portoghesi mancanti. Prove, lette nel campione del 02/10: 4 vere su 4: mpf-and-mpsp-vs-petrobras-and-ibama-stage-4-of-the-pre-salt-complaint_5f3f p. 109; instituto-aimara-and-amapira-vs-piracicaba-municipality-piracicaba-educational-institute-of-the-methodist-church-iep-and-zayo-administradora-de-bens-s-a-complaint_80c7 p. 64; observatorio-do-clima-e-outros-vs-ibama-petrobras-e-uniao-federal-revocation-of-the-operating-license-for-drilling-at-the-mouth-of-the-amazon-river-petition_9933 p. 135; instituto-preservar-agapan-and-nucleo-amigos-da-terra-vs-federal-union-and-others-climate-emergency-in-rio-grande-do-sul-state-appeal_1b3a p. 24
+  - Parecer Consultivo nº 32
+  - Parecer Consultivo n.º 32
+  - Parecer Consultivo n° 32
+  - Parecer Consultivo 32
+  - Opinião Consultiva n° 32
+  - Opiniao Consultiva nº 32
+  - Opiniao Consultiva n. 32
+
+# S05: forme che valgono solo a parola intera (non attaccate ad altre lettere). Stanno anche in `forme`.
+forme_parola_intera:
+  - OC 32/2025
+  - OC32/2025
+  - AO 32/25
+  - AO32/25
+  - AO 32/2025
+  - PC 32/25
+  - PC-32/2025
+  - PC 32/2025
+  - IACtHR AO
+# NOTA SULLA FORMA «Climate Emergency and Human Rights» (titolo inglese ufficiale). E' anche il titolo
+# della RICHIESTA (2023) e, tradotto, dell'avis «Urgence climatique et droits de l'homme» della CNCDH
+# francese (27/5/2021). Nel corpus 11 documenti la contengono senza nessun codice OC-32: tutti falsi
+# (riferimenti alla richiesta, l'avis CNCDH, il titolo di sezione «I. Introduction: The Climate Emergency
+# and Human Rights» di tre ricorsi alla Corte EDU) e tutti anteriori al 3/7/2025 per data del file.
+# Ma 46 rinvii a paragrafo su 511 passano SOLO di qui, nella forma breve OSCOLA («The Climate Emergency and
+# Human Rights paras 233-234»). Decisione del PI: tenuta, con `filtro_data_documento: true`. Le quattro
+# forme composte sopra restano valide in ogni caso.
+
+found_in_corpus:
+  documenti: 74                          # fuori dal fascicolo, 01/10/2026, nominato fuori da ogni forma esclusa
+  casi_distinti: 36
+  dopo_soglia_per_data_del_file: 63         # in 29 casi
+  dopo_soglia_per_data_deposito: 9
+  documenti_con_rinvio_a_paragrafo: 37   # tutti dopo la soglia, in 9 casi (senza la forma «Advisory Opinion IACHR», ora esclusa)
+  rinvii_a_paragrafo: 511                # 490 dal procedimento della Corte africana
+  limite_del_conteggio: >
+    Conta solo i rinvii scritti come «párr./para./§ N» entro 250 caratteri dalla forma. Non vede le
+    trascrizioni: la Corte EDU (Greenpeace Nordic c. Norvegia, 28/10/2025, §§ 132-135 e 322) trascrive
+    i §§ 337, 353, 358-359 nella forma «“337. Given the urgency», dopo aver nominato il parere, e il
+    conteggio non li trova. Lo stesso per gli atti brasiliani che trascrivono paragrafi interi.
+  citazione_della_cig: >
+    La CIG (parere del 23/7/2025, decision_af16, § 385, p. 119) lo cita in blocco, senza paragrafo,
+    fra le decisioni delle corti regionali dei diritti umani.
+
+forme_escluse:
+  - forma: OC-23/17
+    ragione: >
+      PARERE DIVERSO: Corte IDH, «Medio Ambiente y Derechos Humanos», 15/11/2017, richiesto dalla
+      Colombia. Lo stesso OC-32/25 lo cita di continuo (diritto all'ambiente sano come diritto autonomo,
+      §§ 266-278; prevenzione, § 230; debida diligencia proporzionale al rischio, § 232). Una pagina che
+      cita OC-23/17 non cita questo parere.
+  - forma: OC-23/2017
+    ragione: Idem.
+  - forma: Opinión Consultiva OC-23
+    ragione: Idem.
+  - forma: Advisory Opinion OC-23
+    ragione: Idem.
+  - forma: AO-23/17
+    ragione: Idem.
+  - forma: Medio Ambiente y Derechos Humanos
+    ragione: Titolo di OC-23/17. Errore osservato nel corpus (petizione Tenharim, p. 25) «OC-32/25. Medio ambiente y derechos humanos en el contexto de la emergencia climatica»; vale il codice, non il titolo.
+  - forma: The Environment and Human Rights
+    ragione: Titolo inglese di OC-23/17.
+  - forma: Request for an Advisory Opinion on the Climate Emergency and Human Rights
+    ragione: >
+      Nomina la RICHIESTA di Cile e Colombia (9/1/2023), non il parere: e' la forma delle osservazioni
+      scritte e dei written statements alla CIG del 2023-2024. Un'occorrenza della forma «Climate Emergency
+      and Human Rights» dentro questa stringa non conta.
+  - forma: Request for an Advisory Opinion on Climate Emergency and Human Rights
+    ragione: Idem, senza articolo (cosi' nel corpus, per es. Álvarez c. Perù).
+  - forma: Request for Advisory Opinion OC-32
+    ragione: Idem; e' come la Corte stessa chiamava la procedura prima del parere (in inglese, nota 4 della traduzione).
+  - forma: Solicitud de Opinión Consultiva OC-32
+    ragione: Idem in spagnolo; e' la forma della nota 4 del parere stesso (p. 7) e delle risoluzioni di convocazione.
+  - forma: Solicitud de Opinión Consultiva sobre la Emergencia Climática
+    ragione: Idem in spagnolo (titolo della domanda, other_d40b).
+  - forma: Urgence climatique et droits de l'homme
+    ragione_nota: 'RIAMMESSA in S05 (02/10/2026, misura delle perdite della ricerca per nome), vedi le forme.'
+    ragione_prima_di_S05: >
+      Titolo dell'avis della Commission nationale consultative des droits de l'homme (CNCDH, 27/5/2021),
+      citato negli atti francesi contro BNP Paribas e TotalEnergies e dalla commissione coreana. Stesso
+      titolo, altro parere.
+  - forma: Series A No. 32
+    ragione: >
+      Collide con Corte EDU, Airey c. Irlanda (1979), «Series A no. 32», citata nel corpus. Vale solo in
+      composizione con 2025 o con un codice («Series A No 32 (29 May 2025)»).
+  - forma: Serie A No. 32
+    ragione: Idem in spagnolo.
+  - forma: Obligations of States in respect of Climate Change
+    ragione: "PARERE DIVERSO: Corte internazionale di giustizia, 23/7/2025. Citato quasi sempre accanto a questo («ICJ Climate AO, para. 136; IACtHR OC-32/25, para. 320»)."
+  - forma: Climate Change and International Law
+    ragione: "PARERE DIVERSO: ITLOS, 21/5/2024."
+  - forma: OC-31/25
+    ragione: Altro parere della Corte IDH del 2025 (diritto alla cura); il numero vicino genera refusi.
+  - forma: Advisory Opinion IACHR
+    ragione: >
+      Forma breve definita con «hereafter» nella sentenza Bonaire (Rechtbank Den Haag, 28/1/2026:
+      «Advisory Opinion IACHR, §327»), unica occorrenza nel corpus. Altrove puo' indicare OC-23/17 o un
+      altro parere della Corte IDH: esclusa (decisione del PI, 01/10/2026). Il rinvio Bonaire al § 327 si perde.
+  - forma: Opinión Consultiva
+    ragione: Generica; ogni parere della Corte IDH.
+  - forma: Advisory Opinion
+    ragione: Generica; anche CIG, ITLOS, Corte africana.
+  - forma: Corte Interamericana
+    ragione: La corte, non il parere.
+  - forma: Inter-American Court of Human Rights
+    ragione: Idem.
+  - forma: IACtHR
+    ragione: Idem.
+  - forma: emergencia climática
+    ragione: Locuzione comune; il titolo vale solo intero.
+  - forma: climate emergency
+    ragione: Idem.
+
+falso_positivo_dichiarato:
+  tipo: riassunti Sabin, rinvii interni, catene di citazioni
+  nota: >
+    (1) Il `riassunto_caso` di altri casi nomina il parere: lo script cerca solo nel corpo. (2) Rinvii
+    interni del documento citante: la sentenza Greenpeace Nordic scrive «Advisory Opinion OC-32/25 on Climate
+    emergency and human rights (see paragraph 132 above)», dove 132 e' un paragrafo della sentenza stessa. (3) Citazione in catena
+    con la CIG: «ICJ Climate AO, paras. 136; IACtHR OC-32/25, paras. 141–174» (il rinvio della CIG
+    precede quello della Corte IDH). (4) «Concurring Opinion, para. 83» e «operative para 3» non sono
+    paragrafi del parere. Lo script gestisce i quattro casi; restano esclusi i rinvii «ibid., para. 183».
+
+# ── Sonde (semantic queries) ────────────────────────────────────────────────────────────────
+# SERIE APPROVATA DAL PI il 01/10/2026: otto sonde DISTINTIVE. Una sonda e' un principio PROPRIO di
+# questo parere, tale che chi lo riprende sia riconoscibile come debitore dell'OC-32/25; non e' una
+# copertura dei capitoli. Le affermazioni che ogni corte o trattato fa (cooperazione, adattamento come
+# obbligo, uguaglianza, ambiente sano come diritto autonomo) non sono sonde. Le sette sonde della prima
+# proposta sono superate.
+# Nessuna sonda contiene il nome del parere, il codice, «Inter-American» o il nome della Corte.
+# Intervalli verificati sul testo spagnolo e ristretti ai paragrafi che ENUNCIANO l'elemento; disgiunti.
+# Vocabolario separato: «reinforced/enhanced due diligence» solo nella 4; «healthy climate» solo nella
+# 1; «peremptory» solo nella 2; «subject of rights» solo nella 3; «climate impact assessment» solo nella
+# 5; «traditional knowledge» e «disinformation» solo nella 6; «displaced/refoulement» solo nella 7;
+# «causation/burden of proof» solo nella 8.
+semantic_queries:
+- id: idh-oc-32-25.clima_sano_autonomo
+  titolo: 'Il diritto a un clima sano come diritto autonomo, derivato dall''ambiente sano ma distinto, con una dimensione
+    collettiva che protegge l''umanita'' presente e futura e la Natura'
+  testo: 'There is a human right to a healthy climate, derived from but independent of the right to a healthy environment,
+    protecting a climate system free from dangerous anthropogenic interference; in its collective dimension it belongs
+    indivisibly to present and future humanity and to other species.
+
+    '
+  probe_es: 'Existe un derecho humano a un clima sano, derivado del derecho a un ambiente sano pero independiente
+    de él, que protege un sistema climático libre de interferencias antropogénicas peligrosas y, en su dimensión
+    colectiva, a la humanidad presente y futura y a las demás especies.
+
+    '
+  elemento_proprio: 'Il CLIMA sano come diritto a se'', con «una base con entidad propia» (§ 300): prima corte a riconoscerlo.
+    Non e'' l''ambiente sano come diritto autonomo, che e'' di OC-23/17 (§§ 62-64) e che il parere riassume ai §§ 270-274;
+    non e'' il dovere oggettivo verso le generazioni future di Neubauer, ne'' l''art. 8 CEDU di KlimaSeniorinnen; la CIG
+    (23/7/2025, § 393) parla di ambiente pulito, sano e sostenibile come precondizione dei diritti, non di un diritto al clima.
+    L''equita'' intergenerazionale entra solo dove e'' parte del diritto: la titolarita'' collettiva indivisibile dell''umanita''
+    presente e futura (§§ 302, 311-313). I §§ 305-310 (equita'' intergenerazionale come principio, da La Oroya, UNFCCC,
+    Parigi, CIG, ITLOS, CEDU e corti nazionali; ripartizione degli oneri fra generazioni) restano fuori: chi li riprende
+    puo'' prenderli da quelle fonti.'
+  paragrafi: párrs. 297-304, 311-316
+  punto_resolutivo: 9 (cinco votos contra dos, en parte)
+  evidenza: 'rinvii 16, documenti 9, casi 3 (senza la Corte africana: 2 rinvii, 2 documenti, 2 casi)'
+  esclusione_di_provenienza: 'Non OC-23/17, non la risoluzione 76/300 dell''Assemblea generale, non le costituzioni
+    nazionali che riconoscono l''ambiente sano, non La Oroya (aria e acqua pulite). Conta solo il diritto al CLIMA come
+    diritto distinto, o la sua titolarita'' collettiva estesa a umanita'' futura e Natura.'
+  canonical: 'Ante esta situación, la Corte considera que el reconocimiento de un derecho humano a un clima sano como
+    un derecho independiente —derivado del derecho a un ambiente sano— responde a la necesidad de dotar al orden
+    jurídico interamericano de una base con entidad propia, que permita delimitar con claridad las obligaciones
+    estatales específicas frente a la crisis climática y exigir su cumplimiento de manera autónoma respecto de otros
+    deberes vinculados a la protección ambiental.'
+  canonical_paragrafo: párr. 300
+  canonical_pagina: 110
+  canonical_pagina_en: 104
+  canonical_documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+  canonical_bis: 'En su esfera colectiva, este derecho protege el interés colectivo de las generaciones presentes y
+    futuras de seres humanos y de otras especies a mantener un sistema climático apto para asegurar su bienestar
+    y el equilibrio entre ellas, frente a las graves amenazas existenciales derivadas de los efectos de la emergencia
+    climática.'
+  canonical_bis_paragrafo: párr. 302
+  canonical_bis_pagina: 111
+  canonical_bis_pagina_en: 105
+- id: idh-oc-32-25.jus_cogens_dano_irreversible
+  titolo: 'Jus cogens: il divieto imperativo di condotte antropiche che danneggiano in modo irreversibile l''equilibrio
+    dell''ecosistema comune'
+  testo: 'The prohibition of anthropogenic conduct that irreversibly harms the vital balance of the common ecosystem
+    on which the life of all species depends is a peremptory norm of general international law, admitting no agreement
+    to the contrary, because preserving that balance is a precondition of every other fundamental right.
+
+    '
+  probe_es: 'La prohibición de conductas antropogénicas que afectan de forma irreversible el equilibrio vital del
+    ecosistema común que hace posible la vida de las especies es una norma imperativa de jus cogens, que no admite
+    acuerdo en contrario.
+
+    '
+  elemento_proprio: 'La qualifica di JUS COGENS, fondata sul principio di effettivita'' (§§ 292, 294) e sul legame di
+    dipendenza con vita, integrita'', salute e non discriminazione (§ 293). Nessun''altra fonte del corpus lo afferma:
+    la CIG (23/7/2025, § 440) parla di obblighi ERGA OMNES per il sistema climatico come bene comune; OC-23/17 non
+    qualifica nulla come imperativo in materia ambientale; le proposte di un crimine di ecocidio sono diritto penale,
+    non norme imperative. Votato 4 a 3.'
+  paragrafi: párrs. 287-294
+  punto_resolutivo: 8 (cuatro votos contra tres)
+  evidenza: 'rinvii 26, documenti 8, casi 1 (senza la Corte africana: 0)'
+  esclusione_di_provenienza: 'Non la CIG (erga omnes, § 440), non il progetto di conclusioni della Commissione del
+    diritto internazionale sullo jus cogens (2022), non le campagne sull''ecocidio. Conta il carattere imperativo
+    del divieto di danno irreversibile all''ecosistema comune, o l''attribuzione.'
+  canonical: 'Las prohibiciones derivadas de la obligación de preservar nuestro ecosistema común, como precondición
+    al goce de otros derechos ya identificados como fundamentales, son de una trascendencia tal que no deben admitir
+    acuerdo en contrario, por lo que tienen el carácter de jus cogens.'
+  canonical_paragrafo: párr. 291
+  canonical_pagina: 108
+  canonical_pagina_en: 102
+  canonical_documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+- id: idh-oc-32-25.natura_soggetto_diritti
+  titolo: La Natura e i suoi componenti come soggetti di diritti nel sistema interamericano
+  testo: 'Recognising Nature and its components as subjects of rights is a development compatible with, and internal
+    to, the regional human rights corpus: it overcomes the view of Nature as mere property or exploitable resource
+    and strengthens the long-term protection of the integrity and functioning of ecosystems.
+
+    '
+  probe_es: 'El reconocimiento de la Naturaleza y sus componentes como sujetos de derechos es compatible con la Convención
+    Americana y no introduce un contenido ajeno al corpus iuris interamericano: supera su concepción como objeto de
+    propiedad o recurso explotable.
+
+    '
+  elemento_proprio: 'Che una corte regionale dei diritti umani collochi il riconoscimento DENTRO il proprio diritto:
+    compatibile con gli artt. 2 e 26 CADH e con il principio di progressivita'' (§ 281), «manifestación contemporánea»
+    dell''interdipendenza fra diritti umani e ambiente, nessun contenuto «ajeno al corpus iuris interamericano»
+    (§ 282), con l''obbligo positivo di proteggere, restaurare e rigenerare (§ 283). Gia'' altrove, e quindi non proprio:
+    Costituzione dell''Ecuador, T-622/2016 (Atrato), STC4360-2018 (Amazzonia), Te Awa Tupua, leggi municipali brasiliane.
+    I §§ 284-286, che passano in rassegna proprio quegli strumenti e quella tendenza, sono lasciati senza sonda:
+    chi li riprende puo'' prenderli dalle fonti. Votato 4 a 3.'
+  paragrafi: párrs. 279-283
+  punto_resolutivo: 7 (cuatro votos contra tres)
+  evidenza: 'rinvii 8, documenti 3, casi 1 (senza la Corte africana: 0)'
+  esclusione_di_provenienza: 'Non la Costituzione dell''Ecuador (art. 71), non la Corte Constitucional colombiana
+    (T-622/2016), non la Corte Suprema colombiana (STC4360-2018), non Te Awa Tupua, non la Carta mondiale della natura
+    o la CBD. Conta il riconoscimento come sviluppo del diritto interamericano, o l''attribuzione.'
+  canonical: 'Este reconocimiento permite superar concepciones jurídicas heredadas, que concebían a la Naturaleza
+    exclusivamente como objeto de propiedad o recurso explotable. Reconocer a la Naturaleza como sujeto de derechos
+    implica también visibilizar su rol estructural en el equilibrio vital de las condiciones que hacen posible la
+    habitabilidad del planeta.'
+  canonical_paragrafo: párr. 280
+  canonical_pagina: 102
+  canonical_pagina_en: 97
+  canonical_documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+- id: idh-oc-32-25.diligenza_rafforzata
+  titolo: 'La «debida diligencia reforzada»: lo standard rafforzato di prevenzione nell''emergenza climatica'
+  testo: 'Given the extreme gravity of climate impacts, the information available and the urgency of effective measures,
+    States must act with reinforced (enhanced) due diligence to prevent human rights violations, requiring exhaustive
+    risk identification and proactive, ambitious preventive action against the worst climate scenarios.
+
+    '
+  probe_es: 'Ante la extrema gravedad de los impactos climáticos y la urgencia de medidas eficaces, los Estados deben
+    actuar con una debida diligencia reforzada para cumplir con el deber de prevención derivado de la obligación de
+    garantía.
+
+    '
+  elemento_proprio: 'La formula propria «debida diligencia reforzada» (inglese della Corte: «enhanced due diligence»;
+    altra versione: «reinforced»), agganciata all''OBBLIGO DI GARANZIA dei diritti umani (§ 233) e declinata nei suoi
+    contenuti (§ 236). Non e'' la due diligence «apropiado y proporcional» al rischio di OC-23/17 (§ 142, ripresa al
+    § 232), ne'' la «stringent due diligence» dell''ITLOS (21/5/2024) e della CIG (23/7/2025, §§ 138, 246), che sono
+    standard interstatali di prevenzione del danno, non di garanzia dei diritti. I §§ 224-230 (garanzia, prevenzione,
+    precauzione «aún en ausencia de certeza científica», obblighi minimi di regolare e supervisionare) ripetono
+    OC-23/17 e restano fuori.'
+  paragrafi: párrs. 231-237
+  punto_resolutivo: 3
+  evidenza: 'rinvii 29, documenti 9, casi 4 (senza la Corte africana: 7 rinvii, 3 documenti, 3 casi)'
+  esclusione_di_provenienza: 'Non OC-23/17, non ITLOS, non CIG. Conta la qualifica RAFFORZATA della diligenza, o l''attribuzione.'
+  canonical: 'Teniendo en cuenta, en primer lugar, la información existente y aquella que debe ser producida por el
+    Estado a propósito de la emergencia climática (infra párrs. 501-518); en segundo lugar, la extrema gravedad
+    de los impactos climáticos; y, finalmente, la urgencia de medidas eficaces para evitar afectaciones irreparables
+    para las personas (supra párrs. 185-194), la Corte estima que los Estados deben actuar con una debida diligencia
+    reforzada para cumplir con el deber de prevención derivado de la obligación de garantía de los derechos protegidos
+    por la Convención Americana en el contexto de la emergencia climática.'
+  canonical_paragrafo: párr. 233
+  canonical_pagina: 88
+  canonical_pagina_en: 84
+  canonical_documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+- id: idh-oc-32-25.valutazione_impatto_climatico
+  titolo: 'Valutazione d''impatto climatico obbligatoria per i progetti emissivi, vigilanza stretta e obblighi piu''
+    severi per chi emette di piu'''
+  testo: 'Projects or activities that risk generating significant greenhouse gas emissions must undergo a climate impact
+    assessment as part of environmental impact assessment, and States must strictly supervise emitting activities,
+    imposing stricter duties and closer oversight on the firms whose current and historical emissions are largest.
+
+    '
+  probe_es: 'Los proyectos o actividades que impliquen el riesgo de generar emisiones significativas de GEI deben ser
+    sometidos a una evaluación de impacto climático, y los Estados deben supervisar y fiscalizar en forma estricta
+    las actividades generadoras de emisiones.
+
+    '
+  elemento_proprio: 'L''impatto sul SISTEMA CLIMATICO come contenuto obbligatorio della VIA e la «evaluación de impacto
+    climático» come obbligo autonomo (§ 359), con contenuto minimo (§ 361) e greenwashing (§ 360); la vigilanza STRETTA
+    delle attivita'' emissive, come minimo combustibili fossili, cemento, agroindustria (§ 353); obblighi e vigilanza
+    piu'' severi per le imprese secondo il contributo ATTUALE E STORICO alle emissioni (§§ 350, 353). La VIA in se''
+    e'' di OC-23/17 (§§ 156-170) e del diritto ambientale generale;
+    l''ITLOS (§ 367) chiede la VIA per l''inquinamento marino da gas serra. DECISIONE sui §§ 345-351: entra solo il
+    § 350 (obblighi differenziati per contributo storico delle imprese, il paragrafo piu'' citato del parere). I §§
+    345-349 ripetono i Principi guida ONU e il Gruppo di lavoro ONU sulla due diligence d''impresa, il § 351 chiede
+    di rivedere i trattati di investimento: non distintivi, senza sonda.'
+  paragrafi: párrs. 350, 352-363
+  punto_resolutivo: 10 (ii) e (iii); il § 350 sta in 10 (i)
+  evidenza: 'rinvii 48, documenti 8, casi 1 (senza la Corte africana: 0 nel conteggio); a mano: la Corte EDU, Greenpeace Nordic (28/10/2025, §§ 134-135, 322), trascrive i §§ 353, 358-359 e ne riprende la valutazione d''impatto climatico'
+  esclusione_di_provenienza: 'Non OC-23/17 (VIA, supervisione e fiscalizzazione), non ITLOS (§ 367), non la Corte
+    EFTA (2025, effetti indiretti nella VIA), non la Corte suprema del Regno Unito in R (Finch) v Surrey County
+    Council [2024] UKSC 20 (emissioni a valle). Conta la valutazione d''impatto CLIMATICO come obbligo derivato dai diritti
+    umani, o gli obblighi differenziati per contributo storico delle imprese, o l''attribuzione.'
+  canonical: 'En particular, aquellos proyectos o actividades que impliquen el riesgo de generar emisiones significativas
+    de GEI deben ser sometidos a una evaluación de impacto climático.'
+  canonical_paragrafo: párr. 359
+  canonical_pagina: 127
+  canonical_pagina_en: 120
+  canonical_documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+  canonical_bis: 'La Corte considera, en consecuencia, que los Estados deben establecer obligaciones diferenciadas
+    en materia de acción climática basadas en la contribución actual e histórica de las empresas al cambio climático
+    e imponer deberes más estrictos a las empresas que desarrollan actividades generadoras de mayores emisiones de
+    GEI.'
+  canonical_bis_paragrafo: párr. 350
+  canonical_bis_pagina: 125
+  canonical_bis_pagina_en: 118
+- id: idh-oc-32-25.scienza_disinformazione
+  titolo: 'Il diritto alla scienza esteso ai saperi locali, tradizionali e indigeni, e l''obbligo di contrastare la
+    disinformazione climatica'
+  testo: 'By evolutive interpretation, the right to science covers not only the benefits of science in the strict sense
+    but also those of local, traditional and indigenous knowledge, and States must adopt progressive measures to counter
+    climate disinformation while respecting freedom of expression and avoiding prior censorship.
+
+    '
+  probe_es: 'El derecho a la ciencia comprende también el acceso a los beneficios de los saberes locales, tradicionales
+    e indígenas, y los Estados tienen la obligación de adoptar medidas progresivas para contrarrestar la desinformación
+    en materia climática.
+
+    '
+  elemento_proprio: 'Due mosse proprie. (1) L''estensione, per interpretazione evolutiva dell''art. 14 del Protocollo
+    di San Salvador, del diritto alla scienza ai saperi locali, tradizionali e indigeni (§§ 477, 483), con il diritto
+    di tutti ai benefici di misure basate sulla migliore scienza E su quei saperi (§ 478) e gli obblighi di proteggerli
+    e raccoglierli (§ 484). Il diritto alla scienza in se'' (§§ 471-475) e'' del PIDESC e del Commento generale 25: fuori.
+    L''art. 7.5 dell''Accordo di Parigi menziona i saperi tradizionali per l''adattamento, ma non come contenuto di un
+    diritto umano. (2) L''obbligo di adottare misure progressive contro la disinformazione climatica (§ 527), dedotto
+    dall''art. 13 CADH, con il divieto per lo Stato di diffondere informazione non sostenuta dalla scienza o dai saperi
+    (§ 525) e il limite della censura preventiva. I §§ 485-487 (criteri della migliore scienza disponibile, l''IPCC
+    «al tenor de lo considerado por otros tribunales internacionales») restano fuori.'
+  paragrafi: párrs. 476-484, 524-529
+  punto_resolutivo: 14 (seis votos contra uno, en parte) e 15 (iii)
+  evidenza: 'rinvii 22, documenti 5, casi 1 (senza la Corte africana: 0)'
+  esclusione_di_provenienza: 'Non il PIDESC (art. 15) e il Commento generale 25 del Comitato DESC, non l''art. 7.5
+    dell''Accordo di Parigi, non la Dichiarazione ONU sui diritti dei popoli indigeni, non il Patto per il Futuro (2024)
+    sull''alfabetizzazione mediatica. Conta il diritto alla scienza come diritto che INCLUDE i saperi tradizionali, o
+    l''obbligo di contrastare la disinformazione climatica come obbligo convenzionale.'
+  canonical: 'Teniendo en cuenta el valor intrínseco y las características propias de cada tipo de saber, este Tribunal
+    considera que, de acuerdo a una interpretación evolutiva, el “derecho a la ciencia” no solo comprende el acceso
+    a beneficios que se deriven de la ciencia en sentido estricto, sino también, como lo indica el título del artículo
+    14 del Protocolo de San Salvador, el acceso a la cultura o, más precisamente, a los beneficios que puedan derivarse
+    de las formas de conocimiento relacionadas con ésta; es decir, de los saberes locales, tradicionales e indígenas.'
+  canonical_paragrafo: párr. 477
+  canonical_pagina: 174
+  canonical_pagina_en: 163
+  canonical_documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+  canonical_bis: 'En línea con lo anterior, los Estados tienen la obligación de adoptar medidas progresivas para contrarrestar
+    la desinformación en materia climática, con el fin de garantizar el acceso a la información y proteger los derechos
+    sustantivos amenazados en el contexto de la emergencia climática.'
+  canonical_bis_paragrafo: párr. 527
+  canonical_bis_pagina: 191
+  canonical_bis_pagina_en: 179
+- id: idh-oc-32-25.mobilita_climatica
+  titolo: 'Mobilita'' climatica: prevenzione dello sfollamento, ricollocazioni eccezionali, protezione complementare e
+    non respingimento di chi attraversa le frontiere per effetto del cambiamento climatico'
+  testo: 'States must give people displaced across international borders by climate change legal and humanitarian protection,
+    through humanitarian visas, temporary stay or refugee-like status that shields them from refoulement, and must
+    prevent forced displacement, allowing planned relocation only as an exceptional, last-resort measure.
+
+    '
+  probe_es: 'Los Estados deben garantizar la protección jurídica y humanitaria de las personas desplazadas a través
+    de fronteras internacionales por los efectos del cambio climático, mediante visas humanitarias, permanencias temporales
+    o el estatus de refugiado u otros similares que las protejan contra la devolución.
+
+    '
+  elemento_proprio: 'Prima pronuncia di una corte regionale che deduce dalla Convenzione (art. 22 CADH, artt. VIII
+    e XXVII della Dichiarazione) obblighi verso chi si sposta per il clima: prevenire gli sfollamenti forzati (§ 422),
+    ricollocazioni solo «en circunstancias excepcionales» (§ 429), e soprattutto un quadro normativo interno che dia
+    protezione giuridica e umanitaria a chi attraversa una frontiera per gli effetti del cambiamento climatico, con
+    categorie migratorie (visti umanitari, permanenze temporanee, status di rifugiato o simili) che diano «protección
+    contra la devolución» (§ 433, p. 155). Gia'' altrove, e quindi non proprio: il Comitato diritti umani in Teitiota
+    c. Nuova Zelanda (non respingimento in astratto), l''Iniziativa Nansen, il Patto globale sulle migrazioni, il Quadro
+    di Sendai, i Principi guida sugli sfollati interni. I §§ 414-421 (richiamo dell''art. 22 e fatti sulla mobilita''
+    climatica, da ACNUDH e ACNUR) restano fuori.'
+  paragrafi: párrs. 422-434
+  punto_resolutivo: 12
+  evidenza: 'rinvii 8, documenti 5, casi 1 (senza la Corte africana: 0)'
+  esclusione_di_provenienza: 'Non Teitiota c. Nuova Zelanda (Comitato diritti umani, 2020), non l''Iniziativa Nansen
+    (2015), non il Patto globale per migrazioni sicure (2018), non la Corte Constitucional
+    colombiana (T-123/2024, citata dal parere alla nota 723). Conta la protezione complementare e il non respingimento
+    come obbligo convenzionale per lo sfollamento climatico transfrontaliero, o l''attribuzione.'
+  canonical: 'La Corte estima que los Estados deben establecer un marco normativo adecuado que disponga a nivel interno
+    mecanismos legales y/o administrativos efectivos para garantizar la protección jurídica y humanitaria de las personas
+    desplazadas a través de fronteras internacionales debido a los efectos del cambio climático.'
+  canonical_paragrafo: párr. 433
+  canonical_pagina: 154
+  canonical_pagina_en: 145
+  canonical_documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+- id: idh-oc-32-25.prova_agevolata
+  titolo: 'Prova agevolata nelle cause climatiche: standard alternativi per il nesso causale, presunzione del nesso,
+    inversione dell''onere della prova'
+  testo: 'In climate litigation, courts should apply alternative evidentiary standards that establish causation from
+    the generation or tolerance of significant risks and people''s exposure to them, without requiring a direct causal
+    link, may presume the link between emissions and climate degradation, and may reverse the burden of proof.
+
+    '
+  probe_es: 'En los litigios climáticos deben adoptarse estándares probatorios alternativos que permitan establecer
+    la relación causal sin exigir un nexo causal directo, con la posibilidad de presumir el nexo entre las emisiones
+    de GEI y la degradación del sistema climático y de invertir la carga probatoria.
+
+    '
+  elemento_proprio: 'Standard probatori ALTERNATIVI per il nesso causale fondati sul rischio generato o tollerato e
+    sull''esposizione, «sin exigir necesariamente la prueba de un nexo causal directo» (§ 553); la PRESUNZIONE del
+    nesso fra emissioni e degradazione del sistema climatico, e fra questa e i rischi per persone e sistemi naturali
+    (§ 553); l''inversione dell''onere della prova come misura per le asimmetrie fra le parti (§ 554); la prova satellitare
+    (§ 555). L''Accordo di Escazú (art. 8.3) prevede l''inversione dell''onere e il carico dinamico della prova in
+    materia ambientale, e le corti nazionali (Lliuya c. RWE in Germania; i tribunali brasiliani sull''onere
+    invertito nel danno ambientale) hanno strade proprie: proprio del parere e'' la
+    presunzione del nesso emissioni-sistema climatico-rischi, enunciata come standard per le cause climatiche.'
+  paragrafi: párrs. 552-555
+  punto_resolutivo: 17 (cuatro votos contra tres, en parte)
+  evidenza: 'rinvii 0: nessun rinvio puntuale ai §§ 552-555 nel corpus al 01/10/2026'
+  esclusione_di_provenienza: 'Non l''Accordo di Escazú (art. 8.3), non il principio brasiliano dell''inversione dell''onere
+    nel danno ambientale, non la scienza dell''attribuzione citata da sola. Conta lo standard alternativo di causalita''
+    o la presunzione del nesso nelle cause climatiche, o l''attribuzione.'
+  canonical: 'En tal sentido, este Tribunal llama la atención sobre la posibilidad de presumir el nexo causal entre
+    las emisiones de GEI y la degradación del sistema climático, así como aquel existente entre dicha degradación
+    y los riesgos que esta genera sobre los sistemas naturales y las personas.'
+  canonical_paragrafo: párr. 553
+  canonical_pagina: 200
+  canonical_pagina_en: 187
+  canonical_documento: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+  canonical_bis: 'Ello requiere una valoración particularizada de las posibles asimetrías entre las partes y la adopción
+    de medidas adecuadas —como la inversión de la carga probatoria— que permitan garantizar el acceso efectivo a la
+    justicia.'
+  canonical_bis_paragrafo: párr. 554
+  canonical_bis_pagina: 200
+  canonical_bis_pagina_en: 187
+
+# ── Paragrafi senza sonda ─────────────────────────────────────────────────────────────────
+# Per decisione del PI (01/10/2026) non sono sonde: o perche' ripetono fonti altrui (OC-23/17, CIG, ITLOS,
+# trattati, organi ONU), o perche' sono affermazioni generali che ogni corte fa. Rinvii a paragrafo del
+# 01/10/2026, dopo la soglia; fra parentesi quelli fuori dal procedimento della Corte africana. Chi
+# riprende questi paragrafi CITA il parere ma non ne riprende un elemento proprio.
+paragrafi_senza_sonda:
+  - parte: garanzia, prevenzione, precauzione, obblighi minimi (OC-23/17 ripreso)
+    paragrafi: párrs. 224-230
+    evidenza: rinvii 25, documenti 11 (1, 1)
+  - parte: sistema climatico, danno climatico transfrontaliero, giurisdizione
+    paragrafi: párrs. 295-296
+    evidenza: rinvii 12, documenti 8 (2, 2)
+  - parte: equita' intergenerazionale come principio, ripartizione degli oneri fra generazioni
+    paragrafi: párrs. 305-310
+    evidenza: rinvii 14, documenti 8 (0)
+    nota: fonti dichiarate dalla Corte (La Oroya, UNFCCC, Parigi, CIG, ITLOS, CEDU, corti nazionali); il § 310 e' vicino a Neubauer
+  - parte: natura soggetto di diritti, rassegna degli strumenti internazionali e della tendenza nazionale
+    paragrafi: párrs. 284-286
+    evidenza: rinvii 0
+  - parte: meta e strategia di mitigazione (1,5 °C come minimo, contributo storico, combustibili fossili)
+    paragrafi: párrs. 317-344
+    evidenza: rinvii 25, documenti 12 (3, 2)
+    nota: la Corte vi fa proprie KlimaSeniorinnen e l'ITLOS (§§ 333-335); la Corte EDU in Greenpeace Nordic trascrive il § 337
+  - parte: due diligence d'impresa (Principi guida ONU), revisione dei trattati di investimento
+    paragrafi: párrs. 345-349, 351
+    evidenza: rinvii 28, documenti 7 (0)
+  - parte: diritto alla scienza in generale (PIDESC), criteri della migliore scienza, IPCC
+    paragrafi: párrs. 471-475, 485-487
+    evidenza: rinvii 12, documenti 4 (0)
+  - parte: liberta' di circolazione (art. 22) e fatti sulla mobilita' climatica
+    paragrafi: párrs. 414-421
+    evidenza: rinvii 8, documenti 3 (0)
+  - parte: accesso alla giustizia salvo la prova (pro actione, legittimazione, riparazione)
+    paragrafi: párrs. 540-551, 556-560
+    evidenza: rinvii 25, documenti 8 (6, 4)
+    nota: e' la parte piu' usata fuori dalla Corte africana; la legittimazione ampia viene anche da Escazú
+  - parte: difensori ambientali
+    paragrafi: párrs. 561-587
+    evidenza: rinvii 36, documenti 9 (0)
+  - parte: uguaglianza, gruppi vulnerabili, poverta'
+    paragrafi: párrs. 588-629
+    evidenza: rinvii 62, documenti 11 (0)
+  - parte: adattamento, salvo la mobilita'
+    paragrafi: párrs. 377-413, 435-457
+    evidenza: rinvii 27, documenti 7 (0)
+  - parte: democrazia, informazione salvo la disinformazione, partecipazione
+    paragrafi: párrs. 458-470, 488-523, 530-539
+    evidenza: rinvii 29, documenti 8 (0)
+  - parte: obblighi generali e cooperazione
+    paragrafi: párrs. 217-223, 238-265
+    evidenza: rinvii 22, documenti 10 (1, 1)
+  - parte: ambiente sano nella giurisprudenza della Corte (OC-23/17 ripreso)
+    paragrafi: párrs. 266-278
+    evidenza: rinvii 22, documenti 8 (0)
+  - parte: natura e sviluppo sostenibile
+    paragrafi: párrs. 364-376
+    evidenza: rinvii 2, documenti 2 (0)
+  - parte: presentazione, procedura, competenza, fonti, fatti dell'emergenza
+    paragrafi: párrs. 1-216
+    evidenza: rinvii 78, documenti 18 (0)
+
+formulazioni_escluse: []
+
+nota_analitica:
+  spartiacque_possibili: [2025-07-03, 2025-07-23]
+  effetto_atteso: >
+    Ricezione oggi concentrata in un solo procedimento (le memorie alla Corte africana), che cita il
+    parere per paragrafo, quasi sempre accanto alla CIG del 23/7/2025, e per lo piu' su parti NON proprie
+    (fatti, OC-23/17 ripreso, gruppi vulnerabili): 356 rinvii su 511 non toccano nessuna sonda. Le sonde
+    distintive attese fuori di li': diligenza_rafforzata (gia' 3 casi), valutazione_impatto_climatico
+    (Corte EDU, Greenpeace Nordic, per trascrizione), clima_sano_autonomo. prova_agevolata e
+    mobilita_climatica sono scommesse sul contenzioso futuro: oggi zero rinvii fuori dalla Corte africana.
+    Da verificare, non da presupporre.
+
+# ── S07 (04/10/2026): RICERCA PER NOME CON I GRUPPI CHE NON ATTRAVERSANO LE NOTE, RETE DESCRITTIVA, DEDUPLICA PER PAGINA ──
+# Tutto quello che sta sopra e' il file S05 identico. Qui due chiavi nuove, lette da tools/cerca_s07.py e
+# tools/rete_descrittiva.py (gli altri strumenti non le leggono):
+#   forme_s07_aggiunte  forme semplici che mancavano, cercate come le altre forme (misura del 04/10/2026, audit/forme);
+#   rete_descrittiva    le regole della RETE DESCRITTIVA: le pagine che citano la pronuncia senza nessuna forma
+#                       dichiarata («BVerfG, a.a.O.», la corte con l'anno e il clima, la data...). Una regola e' un'ancora
+#                       (espressione regolare, maiuscole e minuscole uguali) piu' le parole che devono stare a meno di
+#                       `finestra` caratteri (`con`, tutte); `escludi` toglie la corrispondenza se compare nella stessa
+#                       finestra; `solo_atti_col_nome` la tiene solo negli atti che citano gia' il caso col nome. Le
+#                       espressioni si applicano al testo normalizzato (textnorm: sillabazione tolta, spazi uniti) e la
+#                       posizione torna quella del file. Fuori: gli atti del procedimento stesso (escludi_case_id,
+#                       atti_del_procedimento_altrove), gli atti datati prima della pronuncia, le pagine dove il caso e'
+#                       gia' nominato o ha gia' una riga (come nella misura). Le righe hanno proposto_rete «descrittiva».
+#                       Misura del 04/10: 331 pagine senza nessuna forma, ~250 citazioni vere (audit/forme).
+rete_descrittiva:
+  versione: S07
+  regole:
+  - id: O_iadh_parere
+    ancora: (iacthr|ia ?ct ?hr|i/a court|inter-? ?am(erican|\.) (court|ct)|corte interamericana|corte idh|\bcidh\b|cour interam[ée]ricaine|interamerikanische[nr]? gerichtshof|\biachr\b|\bidh\b|미주인권재판소|米州人権裁判所|美洲人权法院)
+    con:
+    - (advisory opinion|\bao\b|avis consultatif|opini[oó]n consultiva|parecer consultivo|opini[aã]o consultiva|parere consultivo|gutachten|\badvies\b|咨询意见|諮詢意見|勧告的意見|권고적 ?의견)
+    - \b2025\b
+    finestra: 150
+    escludi: (oc|opini[oó]n consultiva|opini[aã]o consultiva|advisory opinion|parecer consultivo|avis consultatif)\W{0,6}(n[°ºo]\.?\s*|no\.?\s*)?(oc\W?)?23\s*/\s*(20)?17|\boc\W?23\b
+    nota: la Corte interamericana vicino a «parere consultivo» e a 2025, mai il parere OC-23/17

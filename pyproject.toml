@@ -25,12 +25,13 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "Topic :: Text Processing :: Linguistic",
 ]
-dependencies = ["pyyaml"]
+dependencies = ["pyyaml", "rapidfuzz"]
 
 [project.optional-dependencies]
 deepseek = ["openai"]
 firestore = ["google-cloud-firestore"]
-dev = ["pytest", "ruff"]
+pdf = ["pymupdf"]
+dev = ["pytest", "ruff", "pymupdf"]
 
 [project.urls]
 Homepage = "https://www.climpact.it/site/data/trace"

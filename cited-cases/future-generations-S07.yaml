@@ -1,0 +1,1101 @@
+# ── S05 (02/10/2026): PROPOSTA, NON IN USO ──────────────────────────────────────────────────────────────────────
+# Copia di cited-cases/future-generations.yaml (S03) con le forme della ricerca per nome S05. Il file vivo non e' toccato: questo
+# lo legge solo tools/cerca_s05.py, finche' il PI non decide il cambio. Differenze (cercare «S05» qui sotto):
+#   - forme nuove: Future Generations v. Ministry, Future Generations v Ministry, Future Generations vs. Ministry
+#   - forme nuove: Generaciones Futuras v, Generaciones Futuras vs
+#   - forme nuove: STC4360, STC 4360, STC. 4360, STC-4360
+#   - forme nuove: 2018-00319, 201800319
+#   - forme nuove: Barragán, et al. v. Presidencia, Barragan, et al. v. Presidencia, Barragán et al. v. Presidencia, Barragán y otros v. Presidencia
+#   - forme_parola_intera (nuovo campo, letto solo da cerca_s05.py): Generaciones Futuras v, Generaciones Futuras vs
+# Le prove sono le pagine lette nel campione della misura del 02/10/2026 (training/misure/PERDITE-RICERCA-NOME.md,
+# giudizi in perdite_ricerca_nome_2026-10-02_giudizi.jsonl). La normalizzazione del testo (sillabazione, a capo, trattini
+# tipografici) non sta qui: la fa tools/cerca_s05.py su tutte le forme.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+# CASO CITATO — FUTURE GENERATIONS (Generaciones Futuras v. Minambiente), query specification v2
+#
+# VERSIONE 2 (23 settembre 2026): riscrittura della v1 del 9 settembre secondo il Registro di
+# Urgenda (732 righe giudicate, prima misura vera delle sonde). Che cosa cambia, e perche':
+#
+# 1. LA SONDA PORTA LA VIA, NON LA CONCLUSIONE (registro, "Come reimpostare le sonde", 1; falsi
+#    positivi che dicono la stessa cosa di Urgenda prendendola da Parigi, dalla CBDR, da una
+#    costituzione). Test applicato a ogni sonda: "reggerebbe identica se il caso non fosse mai
+#    esistito?" — la domanda che con Qwen ha separato il 56% dal 21%. Tre sonde della v1 non lo
+#    passavano e sono riscritte: `conexidad_diritti` (ora porta «seres sintientes» e la
+#    sopravvivenza di famiglia, societa' e Stato), `deforestazione_clima_diritti` (ora porta la
+#    deforestazione come fonte climatica e la corresponsabilita' dello Stato per solidarieta'),
+#    `ecocentrico_antropico` (ora porta il conio «ecocéntrico-antrópico», «a la par», i
+#    «derechos-deberes»). Le altre quattro lo passavano gia'.
+# 2. ESCLUSIONI DI POLARITA' E DI PROVENIENZA, NON DI STESSO TEMA (registro, 4: stesso tema 27,4%
+#    contro nessuna 32,7%, non distingue; polarita' 13,2%, distingue). Le escluse di stesso tema
+#    della v1 sono tolte. Ogni sonda ha ora: una POLARITA' (chi dice il contrario) e da tre a
+#    cinque PROVENIENZE (chi dice la stessa cosa prendendola da un'altra fonte: costituzione,
+#    Corte Constitucional, Stoccolma, Parigi, dottrina, altro caso). Campo `tipo`.
+# 3. IL TESTO VERO BATTE IL TESTO SCRITTO (registro, 6: passaggi reali 0,681, frasi scritte da un
+#    LLM 0,630). Dove la fonte e' nel fascicolo, l'esclusa e' VERBATIM dal corpus, con documento e
+#    pagina: la Corte cita per esteso le proprie fonti (T-411/1992, C-431/2000, C-449/2015, art. 79
+#    C.P., Stoccolma, Parigi, T-622/2016, T-362/2014, STC 7630/2016, Peces-Barba, Rodríguez Palop),
+#    e il primo grado scrive la polarita' procedurale. Campo `origine: verbatim`. Dove la fonte non
+#    e' nel fascicolo (Rio, UNFCCC, OC-23/17, Ecuador, Neubauer, Juliana, Urgenda), l'esclusa e'
+#    scritta dall'esecutore, `origine: redazionale`, DA SOSTITUIRE con i passaggi veri bocciati dai
+#    validatori dopo la prima esecuzione.
+# 4. UNA FORMULAZIONE SOLA PER DEFAULT (registro, 2: la seconda allarga del 64-80% e su tre sonde su
+#    cinque porta rumore). Si esegue `testo`. `probe_alternativa` e `probe_es` restano nel file
+#    come PROVE: si eseguono una volta, si misurano da sole sul campione giudicato, si tengono solo
+#    se rendono almeno quanto `testo`. Vedi `politica_formulazioni`.
+# 5. MARCATORI SOLO NELLE LINGUE DEL CORPUS, CORTI, DA CONTARE (registro, 7: 44 marcatori su 101
+#    di Urgenda non compaiono mai nel corpus). Tolti it/pt/fr; restano en/es, 1-3 parole;
+#    `contati_sul_corpus: false` finche' non sono contati; `falsi_amici` con la ragione (lezione di
+#    "tort", 6% di precisione).
+# 6. LE FRASI DELLA SENTENZA SONO UNA RICERCA A PARTE (registro, 8: 403 righe mai viste dalle
+#    sonde). `canonical` e `seeds` vanno eseguiti come query autonome, mai incollati nella sonda.
+#    Vedi `frasi_della_sentenza`.
+# Confermato dalla v1 e non toccato: lettore della pipeline (chiavi `nome`, `data_decisione`,
+# `forme`, `semantic_queries` con `titolo` e `testo` PRIMA di `seeds`, `formulazioni_escluse` con
+# `per`); canonical dallo spagnolo integrale con `corpus_legge` e `salto_pagina` dichiarati; data
+# soglia 12 febbraio 2018; `probe_es` (decisioni del ricercatore, 9/9/2026).
+#
+# ESCLUSIONE DEGLI ATTI DEL CASO CITATO (registro, 10 e "Gli errori": nella ricerca a 2.000
+# candidati 46 dei 400 migliori erano atti di Urgenda stessa). `escludi_case_id` va applicato anche
+# alla ricerca allargata e alla ricerca per frasi: chi cerca con le parole del giudice trova prima
+# di tutto il giudice, e qui le parole sono anche nel ricorso (122 pp.) e nell'impugnación.
+
+nome: Future Generations v. Ministry of the Environment and Others
+non_english_name: Demanda Generaciones Futuras v. Minambiente
+case: future-generations-v-ministry-of-the-environment-and-others_f076
+codebook_versione: 0.2-pilot
+stato: bozza-da-approvare
+versione_file: 2
+data_versione: 2026-09-23
+
+politica_formulazioni:
+  eseguita_per_default: testo
+  probe_alternativa: prova — eseguire una volta, misurare da sola, tenere solo se rende almeno quanto testo (registro, 2)
+  probe_es: prova — idem; e' la stessa proposizione nella lingua della sentenza e della regione che la cita di piu'
+  domande_contrarie: >
+    Le formulazioni escluse di questo file sono il primo insieme di domande contrarie (registro,
+    "Piu' domande al primo modello": da 0,571 a 0,681 con passaggi veri bocciati). Dopo la prima
+    validazione, le righe bocciate dal gruppo sostituiscono le escluse `redazionale` e si
+    aggiungono alle `verbatim`.
+
+frasi_della_sentenza:
+  eseguire_come_ricerca_separata: true
+  cosa: i campi `canonical` e `seeds.testo` di ogni sonda, ciascuno come query autonoma
+  mai: incollarli dentro `testo` (registro, 8, e "il lettore rotto" del 2-3 settembre)
+  risultati: si sommano a quelli delle sonde, con il campo `sonda` che indica la frase di origine
+
+caso_ancora:
+  posizione_nella_lista: 10             # guida §2, decisione PI 27/08/2026
+  motivazione_selezione: >
+    DA SCRIVERE DAL PI prima di ogni conteggio (guida §2). Proposta dell'esecutore, NON decisa:
+    prima decisione di una corte suprema latinoamericana che accoglie un ricorso climatico di
+    giovani su base di diritti fondamentali, che tratta i ricorrenti come generazione futura gia'
+    lesa, e che estende a un intero bioma il riconoscimento di soggettivita' giuridica gia' dato
+    a un fiume; rende disponibili la conexidad ambiente-diritti applicata al clima, i diritti
+    delle generazioni future come limite giuridico alle presenti, e la natura soggetto di diritti
+    come rimedio.
+  famiglia_giuridica: civil law, costituzionalismo latinoamericano (Colombia)
+  data_prima_pronuncia: 2018-02-12      # Tribunal Superior de Bogotá, rigetto per subsidiariedad
+  data_ultima_pronuncia: 2018-04-05     # Corte Suprema de Justicia, STC4360-2018; inviata alla Corte Constitucional per eventuale revisione (esito non nel fascicolo)
+  esito: accolto
+  caso_perso: false
+  caso_di_controllo: false
+  documenti_corpus_successivi_alla_decisione: null   # denominatore, da calcolare dalla pipeline
+  percorsi_di_lettura: >
+    Registro, "Dove sta il passaggio": 98,8% se il nome e' nel passaggio, 43% se il documento cita
+    il caso altrove, 5% se non lo nomina mai. I due percorsi (documenti citanti; corpus intero)
+    vanno tenuti separati anche qui e mai sommati in una percentuale unica.
+
+docket_numbers:
+  - 11001-22-03-000-2018-00319-01
+  - 11001-22-03-000-2018-00319-00
+identifiers:
+  - STC4360-2018
+  - "11001 22 03 000 2018 00319 00"     # forma del campo `numero_causa` del corpus (numero di primo grado, copiato su tutti i documenti)
+  - "11001220300020180031900"
+
+escludi_case_id:
+  - future-generations-v-ministry-of-the-environment-and-others_f076
+
+data_decisione: 2018-02-12
+data_soglia_motivazione: >
+  Prima pronuncia del giudizio (Tribunal Superior de Bogotá, 12 febbraio 2018), per la regola del
+  PI del 30 luglio 2026. La mossa dottrinale e' della Corte Suprema del 5 aprile 2018: fra le due
+  date la rete semantica puo' trovare solo riprese del salvamento de voto di Ramírez Cardona
+  (12 febbraio 2018, voce `dissenso`). Decisione del ricercatore, 9/9/2026.
+
+fonte_primaria:
+  - documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    file_origine: 20180405_11001-22-03-000-2018-00319-00_decision-2.pdf
+    descrizione: Corte Suprema de Justicia, Sala de Casación Civil, STC4360-2018, 5 aprile 2018, originale spagnolo integrale, 51 pp., OCR
+    ruolo: fonte di tutti i canonical e delle escluse di provenienza verbatim (la Corte cita le proprie fonti per esteso)
+  - documento: future-generations-v-ministry-of-the-environment-and-others-decision_7592
+    file_origine: 20180405_11001-22-03-000-2018-00319-00_decision.pdf
+    descrizione: estratti selezionati e tradotti in inglese da Dejusticia, 11 pp., testo nativo con a-capo spurii
+    ruolo: fonte di seed; la versione che le corti non ispanofone leggono
+fonte_di_confronto:
+  - documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    file_origine: 20180212_11001-22-03-000-2018-00319-00_decision.pdf
+    descrizione: Tribunal Superior de Bogotá, 12 febbraio 2018, spagnolo, 21 pp.
+    ruolo: primo grado, rigetto per subsidiariedad e perjuicio irremediable non provato; fonte delle polarita' VERBATIM. Nel merito riconosce legittimazione e nesso Amazzonia-Ande
+  - documento: future-generations-v-ministry-of-the-environment-and-others-opinion_e35a
+    file_origine: 20180212_11001-22-03-000-2018-00319-00_opinion.pdf
+    descrizione: salvamento de voto del magistrato Óscar Humberto Ramírez Cardona, 12 febbraio 2018, spagnolo, 18 pp.
+    ruolo: >
+      VOCE `dissenso` di primo grado; anticipa la tesi accolta dalla Corte Suprema. Non e' fonte di
+      canonical. Nel corpus porta `tipo_atto: decisione`: difetto di metadato.
+atti_di_parte_e_amicus:
+  - documento: future-generations-v-ministry-of-the-environment-and-others-complaint_7da3     # tutela, 29 gennaio 2018, 122 pp. — voce `parte`
+  - documento: future-generations-v-ministry-of-the-environment-and-others-appeal_3c21        # impugnación, 16 febbraio 2018, 40 pp. — voce `parte`
+  - documento: future-generations-v-ministry-of-the-environment-and-others-other_e010         # amicus Hansen, 16 marzo 2018, inglese, 4 pp. — voce `amicus`; nel corpus `tipo_atto: decisione`: difetto di metadato
+
+# ── Forme testuali (lexical variants) ────────────────────────────────────────────────────────
+# Il nome del caso E' UNA LOCUZIONE COMUNE: "future generations" / "generaciones futuras" da sola
+# non puo' stare fra le forme. La rete lessicale, che su Urgenda rende il 98,8%, qui copre solo
+# forme composte, numero STC, radicación e nomi delle parti: il richiamo lessicale di questo caso
+# sara' strutturalmente piu' basso e va dichiarato nel metodo. Varianti OCR: nessuna osservata.
+forme:
+  - Future Generations v. Ministry of the Environment and Others
+  - Future Generations v. Ministry of the Environment
+  - Future Generations v. Ministry of Environment and Others
+  - Future Generations v. Colombia
+  - Future Generations v Colombia
+  - Future Generations v. Minambiente
+  - Future Generations case
+  - Colombian Future Generations case
+  - Colombian Amazon case
+  - Colombian Amazon judgment
+  - Colombian Amazon decision
+  - Colombian Amazon ruling
+  - Amazon deforestation case
+  - Demanda Generaciones Futuras v. Minambiente
+  - Generaciones Futuras v. Minambiente
+  - Generaciones Futuras vs. Minambiente
+  - Generaciones Futuras c. Minambiente
+  - Generaciones Futuras contra Minambiente
+  - Generaciones Futuras v. Ministerio de Ambiente
+  - caso Generaciones Futuras
+  - sentencia Generaciones Futuras
+  - sentencia de la Amazonía
+  - sentencia Amazonía sujeto de derechos
+  - Amazonía colombiana sujeto de derechos
+  - Amazonia colombiana sujeto de derechos
+  - Amazonía como sujeto de derechos
+  - caso Amazonía colombiana
+  - tutela de la Amazonía
+  - STC4360-2018
+  - STC 4360-2018
+  - STC4360 de 2018
+  - STC 4360 de 2018
+  - STC-4360-2018
+  - STC-4360 de 2018
+  - "STC4360/2018"
+  - "STC 4360/2018"
+  - 11001-22-03-000-2018-00319-01
+  - 11001-22-03-000-2018-00319-00
+  - 11001220300020180031900
+  - "11001 22 03 000 2018 00319 00"
+  - Andrea Lozano Barragán y otros                    # Corte Suprema
+  - Lozano Barragán y otros
+  - Lozano Barragán v. Presidencia de la República
+  - Andrés Mauricio Salamanca Mancera y otros         # Tribunal Superior
+  - Salamanca Mancera y otros
+  - José Daniel Rodríguez Peña, et al.                # amicus Hansen
+  - Rodríguez Peña v. Presidency of the Republic of Colombia
+  - Rodríguez Peña et al. v. Presidency
+  - Tolosa Villabona, STC4360-2018
+  - Corte Suprema de Justicia, STC4360
+  - Corte Suprema de Justicia de Colombia, 5 de abril de 2018
+  - Colombian Supreme Court, 5 April 2018
+  - Supreme Court of Colombia, 5 April 2018
+  - Supreme Court of Justice of Colombia, 5 April 2018
+  - Generazioni Future c. Colombia
+  - Generazioni Future c. Ministero dell'Ambiente
+  - caso Generazioni Future
+  - Générations Futures c. Colombie
+  - Générations Futures c. Ministère de l'Environnement
+  - Gerações Futuras v. Colômbia
+  - Gerações Futuras vs. Ministério do Meio Ambiente
+  - Zukünftige Generationen gegen Kolumbien
+  - STC436O-2018                                     # PREVISTA: zero letto come O
+  - STC4360-2O18                                     # PREVISTA
+  - Generaciones Futuras v. Minanbiente              # PREVISTA: m->n
+  - Generaciones Futuras v. MinAmbiente
+  # S05 NUOVE: il titolo inglese con qualunque seguito («v. Ministry of Enviroronment», «v. Ministry of Environment and others case»). Prove, lette nel campione del 02/10: 6 vere su 6: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_f161 p. 51; klimaticka-zaloba-cr-v-czech-republic-judgment_f1a4 p. 5; institute-of-amazonian-studies-v-brazil-complaint_b28c p. 31; request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-other_1df8 p. 56
+  - Future Generations v. Ministry
+  - Future Generations v Ministry
+  - Future Generations vs. Ministry
+  # S05 NUOVE: il titolo spagnolo con qualunque convenuto («vs. Ministro del Ambiente», «v. Ministério de Ambiente»), a parola intera; «contra» e «c.» NON si aggiungono: «las generaciones futuras contra los efectos» e' prosa comune. Prove, lette nel campione del 02/10: 9 vere su 9: alvarez-et-al-v-peru-other_9569 p. 23; alvarez-et-al-v-peru-other_9569 p. 22; psb-et-al-v-brazil-on-amazon-fund-decision_dbcc p. 121; request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_d40b p. 46
+  - Generaciones Futuras v
+  - Generaciones Futuras vs
+  # S05 NUOVE: il numero della sentenza senza l'anno o con l'anno attaccato («STC43602018», «stc 4360, 2018»). Prove, lette nel campione del 02/10: 6 vere su 6: asociacion-civil-por-la-justicia-ambiental-v-province-of-entre-rios-et-al-delta-del-parana-case-complaint_fa03 p. 22; psb-et-al-v-brazil-on-amazon-fund-decision_dbcc p. 121; city-of-bucaramanga-et-al-v-ministry-of-environment-et-al-other_fd20 p. 97; greenpeace-nordic-and-others-v-norway-petition_8b17 p. 40
+  - STC4360
+  - STC 4360
+  - STC. 4360
+  - STC-4360
+  # S05 NUOVE: il radicado in forma breve («0002018-00319-01», «000-201800319-01»). Prove, lette nel campione del 02/10: 3 vere su 3: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-other_d40b p. 46; anton-foley-and-others-v-sweden-aurora-case-application_77a8 p. 13; laboratorio-do-observatorio-do-clima-v-minister-of-environment-and-brazil-petition_8fd4 p. 56
+  - 2018-00319
+  - '201800319'
+  # S05 NUOVE: il nome della prima ricorrente col convenuto. Prove, lette nel campione del 02/10: 1 vere su 1: lighthiser-v-trump-amicus-brief_ce2e p. 17
+  - Barragán, et al. v. Presidencia
+  - Barragan, et al. v. Presidencia
+  - Barragán et al. v. Presidencia
+  - Barragán y otros v. Presidencia
+
+# S05: forme che valgono solo a parola intera (non attaccate ad altre lettere). Stanno anche in `forme`.
+forme_parola_intera:
+  - Generaciones Futuras v
+  - Generaciones Futuras vs
+
+found_in_corpus: []
+
+forme_escluse:
+  - forma: Future Generations
+    ragione: Locuzione comune del lessico climatico e dei diritti umani. Da sola produce migliaia di falsi positivi.
+  - forma: generaciones futuras
+    ragione: Idem in spagnolo; e' l'espressione che la Corte stessa usa come concetto, non come nome.
+  - forma: Generaciones Futuras
+    ragione: Idem con maiuscole.
+  - forma: Minambiente
+    ragione: Convenuto in ogni causa ambientale colombiana.
+  - forma: Ministry of the Environment
+    ragione: Ministero dell'ambiente di qualunque Stato.
+  - forma: Amazonía
+    ragione: Toponimo; anche nei documenti brasiliani.
+  - forma: Amazon
+    ragione: Toponimo; anche l'impresa.
+  - forma: STC
+    ragione: Sigla di ogni sentenza di tutela della Sala Civil della Corte Suprema colombiana.
+  - forma: Tolosa Villabona
+    ragione: Ponente di decine di STC. Resta in composizione con il numero.
+  - forma: Dejusticia
+    ragione: Organizzazione ricorrente e traduttrice, parte di molti altri procedimenti.
+  - forma: Atrato
+    ragione: >
+      PROCEDIMENTO DIVERSO (T-622/2016, Corte Constitucional): e' il precedente che questa sentenza
+      dichiara di seguire; chi cita l'Atrato cita l'Atrato.
+  - forma: T-622 de 2016
+    ragione: Idem.
+  - forma: PIVAC
+    ragione_nota: >
+      NON esclusa ma segnalata: sigla del rimedio ordinato; puo' comparire in atti di esecuzione
+      che non citano la sentenza per nome. Da valutare dopo la prima esecuzione.
+  - forma: Hansen
+    ragione: Amicus, non parte; nome ricorrente in tutto il contenzioso climatico statunitense.
+
+falso_positivo_dichiarato:
+  tipo: riassunti Sabin nell'indice
+  nota: >
+    Il `riassunto_caso` di altri casi puo' nominare questo ("as Colombia's Supreme Court did"):
+    se `build_chunks.py` indicizza il front matter, ogni documento di quel caso produce una
+    menzione redazionale. Da verificare con Giuseppe. La table of authorities pesa poco qui:
+    il caso e' poco citato in memorie di common law.
+
+# ── Sonde (semantic queries) ────────────────────────────────────────────────────────────────
+# UNA PROPOSIZIONE PER SONDA, ARTICOLATA (25-35 parole), CHE PORTA L'ELEMENTO PROPRIO DELLA
+# SENTENZA. Nessuna contiene il nome del caso, i numeri del giudizio (1,6°, 2,14°, 2041, 2071, 44%)
+# o l'Amazzonia come toponimo. Tutti i canonical dalla Corte Suprema, spagnolo integrale; dove la
+# formulazione della Corte e' una CITAZIONE (T-622, T-411, C-431, C-389, Peces-Barba, Rodríguez
+# Palop, Kormody), non e' canonical: e' ESCLUSA DI PROVENIENZA, verbatim, qui sotto.
+
+# SONDE DEL 01/10/2026 (P03) (il PI; documento unico §63.40). Le sonde del 23/09 sono in
+# cited-cases/prima-sonde-2026-10-01/future-generations.yaml. Codici nuovi: nessuna sonda vecchia cambia significato sotto lo stesso codice.
+# SERIE P04 (01/10/2026): P03 con i testi delle sonde deboli riscritti e, per Neubauer, i paragrafi riassegnati.
+semantic_queries:
+- id: future-generations.ammissibilita_conexidad
+  titolo: 'Conexidad: la tutela individuale e'' ammessa quando il danno all''ambiente minaccia vita, salute, acqua
+    e dignita'' di ricorrenti identificabili'
+  testo: 'The right to a healthy environment is collective, yet where its impairment threatens the life, health,
+    water and dignity of identifiable claimants, the individual remedy is exceptionally admissible despite the availability
+    of a collective action.
+
+    '
+  paragrafi: pp. 10-16, 30
+  fonte: PI, 01/10/2026 (gemella dell'ammissibilita' di Neubauer; contro KlimaSeniorinnen)
+  canonical: 'Por lo tanto, en este caso está suficientemente demostrada la procedencia excepcional
+
+    de la tutela para resolver de fondo la problemática planteada, porque se reúnen los
+
+    supuestos jurisprudenciales para ello, dada la conexidad del ambiente con derechos
+
+    iusfundamentales.
+
+    '
+  canonical_pagina: 14
+  canonical_paragrafo: 2 (p. 14)
+  canonical_documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+- id: future-generations.diritti_generazioni_future
+  titolo: I diritti delle generazioni future come obbligo di non fare che limita la liberta' dei presenti
+  testo: 'The environmental rights of future generations, founded on the ethical duty of solidarity of the species
+    and the intrinsic value of nature, constitute a binding obligation of non-action that limits the freedom of
+    present generations.
+
+    '
+  paragrafi: pp. 19-23
+  fonte: 'PI, 01/10/2026 (il rovescio di Neubauer Rn. 146: Karlsruhe nega che i non nati siano titolari di diritti)'
+  canonical: 'Lo planteado entonces, formula una relación jurídica obligatoria de los derechos
+
+    ambientales de las generaciones futuras, como la prestación de “no-hacer”, cuyo efecto
+
+    se traduce en una limitación de la libertad de acción de las generaciones presentes,
+
+    al tiempo que esta exigencia implícitamente les atribuye nuevas cargas de compromiso
+
+    ambiental, a tal punto que asuman una actitud de cuidado y custodia de los bienes
+
+    naturales y del mundo humano futuro”.
+
+    '
+  canonical_pagina: 21
+  canonical_paragrafo: 5.3 (p. 21)
+  canonical_documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+- id: future-generations.bioma_soggetto_diritti
+  titolo: L'Amazzonia colombiana soggetto di diritti, per un criterio ecocentrico-antropico
+  testo: 'To protect an ecosystem vital for the global future, the entire rainforest biome is recognised as an entity
+    subject of rights to protection, conservation, maintenance and restoration by the State and its territorial
+    entities; environmental protection transcends the anthropocentric perspective in favour of an ecocentric-anthropic
+    criterion that places the human being on a par with the ecosystem.
+
+    '
+  paragrafi: p. 45; pp. 16-23 (il criterio ecocentrico-antropico)
+  fonte: PI, 01/10/2026; la sonda 5 del PI (criterio ecocentrico-antropico) e' accorpata qui
+  esclusione_di_provenienza: 'Non il fiume Atrato (Corte Constitucional, T-622/2016) ne'' gli altri fiumi, paramos
+    o ecosistemi dichiarati soggetti di diritti da altre corti: una pagina che riconosce diritti a un altro ecosistema
+    non riprende questa sentenza, salvo che la nomini o ne riprenda l''Amazzonia.'
+  canonical: 'Por tanto, en aras de proteger ese ecosistema vital para el devenir global, tal como
+
+    la Corte Constitucional declaró al río Atrato, se reconoce a la Amazonía Colombiana
+
+    como entidad, “sujeto de derechos”, titular de la protección, de la conservación,
+
+    mantenimiento y restauración a cargo del Estado y las entidades territoriales que la
+
+    integran.
+
+    '
+  canonical_pagina: 45
+  canonical_paragrafo: 14 (p. 45)
+  canonical_documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+- id: future-generations.rimedio_strutturale
+  titolo: 'Rimedio strutturale e partecipato: piano d''azione e patto intergenerazionale per l''Amazzonia (PIVAC)'
+  testo: 'The Court orders the Presidency and the ministries to formulate, within fixed deadlines and with the participation
+    of the claimants, the affected communities and scientific bodies, an action plan and an intergenerational pact
+    for the life of the Colombian Amazon, and orders the Amazonian municipalities to update their land-use plans:
+    a structural and participatory remedy whose compliance the courts supervise.
+
+    '
+  paragrafi: pp. 46-50
+  fonte: PI, 01/10/2026; resa concreta con gli ordini della sentenza (deciso con il PI); testo riscritto il 01/10/2026
+    dopo la prova del reranker (P04, documento unico §63.42)
+  canonical: la construcción de un “pacto intergeneracional por la vida del amazonas colombiano -PIVAC”, en donde
+    se adopten medidas encaminadas a reducir a cero la deforestación y las emisiones de gases efecto invernadero,
+    el cual deberá contar con estrategias de ejecución nacional, regional y local, de tipo preventivo, obligatorio,
+    correctivo, y pedagógic
+  canonical_pagina: 46
+  canonical_paragrafo: 14, ordini (p. 46)
+  canonical_documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+  testo_P03: 'The remedy must be structural and participatory: the government is ordered to formulate, within four
+    months, an action plan against deforestation in the Amazon, and, within five months and with the active participation
+    of the claimants, affected communities and scientific bodies, an intergenerational pact for the life of the
+    Colombian Amazon to reduce deforestation and greenhouse gas emissions to zero.
+
+    '
+- id: future-generations.deforestazione_minaccia_diritti
+  titolo: La deforestazione dell'Amazzonia, causa di cambiamento climatico, minaccia i diritti dei ricorrenti presenti
+    e futuri
+  testo: 'Deforestation of the Amazon, by releasing carbon dioxide and altering water and soil, contributes to climate
+    change and causes imminent and serious harm to the fundamental rights to life, health and water of the claimants,
+    present and future; the State''s failure to curb it violates those rights.
+
+    '
+  paragrafi: pp. 32-37
+  fonte: 'proposta approvata dal PI il 01/10/2026: il cuore del merito, il principio piu'' usato dagli
+    atti (31 atti); prima era la sonda omonima del 23/09'
+  canonical: 'Los reseñados factores, generan directamente la deforestación de la Amazonía,
+
+    provocando a corto, mediano y largo plazo, un perjuicio inminente y grave para los
+
+    niños, adolescentes y adultos que acuden a esta acción, y en general, a todos los
+
+    habitantes del territorio nacional, tanto para las generaciones presentes como las
+
+    futuras, pues desboca incontroladamente la emisión de dióxido de carbono (CO2) hacia
+
+    la atmósfera, produciendo el efecto invernadero, el cual transforma y fragmenta
+
+    ecosistemas, alterando el recurso hídrico y con ello, el abastecimiento de agua de los
+
+    centros poblados y degradación del suelo.
+
+    '
+  canonical_pagina: 34-35
+  canonical_paragrafo: 11 (pp. 34-35)
+  canonical_documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+
+formulazioni_escluse:
+
+  # -- conexidad_diritti -----------------------------------------------------------------------
+  - per: future-generations.conexidad_diritti
+    id: prov_art79_ambiente_sano
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Constitución Política de Colombia, art. 79, citato dalla Corte a p. 29'
+    testo: >
+      “(...) Art. 79. Todas las personas tienen derecho a gozar de un ambiente sano. La ley
+      garantizará la participación de la comunidad en las decisiones que puedan afectarlo”.
+      “Es deber del Estado proteger la diversidad e integridad del ambiente, conservar las
+      áreas de especial importancia ecológica y fomentar la educación para el logro de estos
+      fines (...)”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 29
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «las areas de especial» letto «las áreas de especial».
+    ragione: >
+      La stessa conclusione (diritto all'ambiente sano, dovere dello Stato) presa dalla
+      COSTITUZIONE: chi la enuncia cosi' cita l'art. 79, non la sentenza.
+  - per: future-generations.conexidad_diritti
+    id: prov_C449_triple_dimension
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, C-449/2015 (reiterata in C-389/2016), citata a p. 30'
+    testo: >
+      “(...) [L]a defensa del medio ambiente sano constituye un (...) [b]ien jurídico
+      constitucional que presenta una triple dimensión, toda vez que: es un principio que
+      irradia todo el orden jurídico correspondiendo al Estado proteger las riquezas
+      naturales de la Nación; es un derecho constitucional (fundamental y colectivo)
+      exigible por todas las personas a través de diversas vías judiciales; y es una
+      obligación en cabeza de las autoridades, la sociedad y los particulares, al implicar
+      deberes calificados de protección.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 30
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «[Lla defensa» letto «[L]a defensa»; «[bjien jurídico» letto
+        «[b]ien jurídico».
+    ragione: >
+      La qualificazione dell'ambiente sano come principio, diritto (fondamentale e
+      collettivo) e obbligo e' della Corte Constitucional: provenienza dichiarata dalla
+      stessa Sala.
+  - per: future-generations.conexidad_diritti
+    id: prov_C431_entorno_vital
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, C-431/2000, citata a p. 28'
+    testo: >
+      “(...). En cuanto hace parte del entorno vital del hombre, indispensable para su
+      supervivencia y la de las generaciones futuras, el medio ambiente se encuentra al
+      amparo de lo que la jurisprudencia ha denominado “Constitución ecológica”, conformada
+      por el conjunto de disposiciones superiores que fijan los presupuestos a partir de los
+      cuales deben regularse las relaciones de la comunidad con la naturaleza y que, en gran
+      medida, propugnan por su conservación y protección (...)”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 28
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «del entomo vital» letto «del entorno vital».
+    ragione: >
+      «Indispensable para su supervivencia y la de las generaciones futuras» e «Constitución
+      ecológica»: la premessa del canonical, con paternita' dichiarata. Chi la ripete cita
+      C-431.
+  - per: future-generations.conexidad_diritti
+    id: prov_OC23_interdependencia
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Corte IDH, Opinión Consultiva OC-23/17 (15 novembre 2017) — testo NON nel fascicolo'
+    testo: >
+      The right to a healthy environment is an autonomous right, and environmental
+      degradation affects the effective enjoyment of the rights to life and to personal
+      integrity, which are interdependent with it.
+    ragione: >
+      Sistema regionale: la stessa conexidad affermata dalla Corte interamericana cinque
+      mesi prima. Nella regione e' la fonte piu' probabile di una ripresa non attribuita.
+      REDAZIONALE: da sostituire con il testo dell'OC-23/17 se entra nel corpus.
+  - per: future-generations.conexidad_diritti
+    id: prov_leghari_vita_ambiente
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Leghari v. Federation of Pakistan (2015) — cfr. leghari.diritto_vita_ambiente'
+    testo: >
+      The constitutional right to life and to human dignity includes the right to a healthy
+      and clean environment, so that environmental degradation caused by climate change
+      violates the right to life itself.
+    ragione: >
+      Altro caso climatico, stesso movimento (dall'ambiente ai diritti), verso opposto (il
+      diritto alla vita INCLUDE l'ambiente). Coppia da misurare.
+  - per: future-generations.conexidad_diritti
+    id: polarita_ambiente_collettivo_non_fondamentale
+    tipo: polarita
+    origine: verbatim
+    fonte: 'Gobernación de Putumayo, risposta al ricorso, riportata dalla Corte a p. 7'
+    testo: >
+      La Gobernación de Putumayo recalcó la improcedencia de este instrumento “para la
+      protección de derechos colectivos” y adujo cumplir “con sus deberes y obligaciones
+      para con el ambiente y protección de la Amazonía”
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 7
+    ragione: >
+      POLARITA', dentro il fascicolo: l'ambiente e' interesse collettivo, lo strumento e'
+      improcedente. Stesso lessico della sentenza, segno rovesciato.
+
+  # -- generazioni_future_obbligo --------------------------------------------------------------
+  - per: future-generations.generazioni_future_obbligo
+    id: prov_T411_patrimonio_venideras
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, T-411/1992, citata a p. 28'
+    testo: >
+      Al fin y al cabo el patrimonio natural de un país, al igual que ocurre con el
+      histórico - artístico, pertenece a las personas que en él viven, pero también a las
+      generaciones venideras, puesto que estamos en la obligación y el desafío de entregar
+      el legado que hemos recibido en condiciones óptimas a nuestros descendientes”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 28
+    ragione: >
+      La stessa conclusione (le generazioni future sono titolari, le presenti hanno
+      l'obbligo di consegnare) nella forma patrimoniale della Corte Constitucional del 1992:
+      e' la provenienza piu' vicina e la piu' citata in Colombia.
+  - per: future-generations.generazioni_future_obbligo
+    id: prov_palop_solidaridad_diacronica
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Rodríguez Palop, "Claves para entender los nuevos derechos" (2011), citata a p. 19'
+    testo: >
+      la solidaridad no sólo tiene sentido en nuestras coordenadas espacio-temporales, sino
+      que se hace extensible también a las generaciones futuras. Es a esto a lo que nos
+      referimos cuando empleamos el término solidaridad diacrónica, por oposición a la
+      solidaridad sincrónica, o cuando afirmamos que hay que considerar a todos los
+      afectados por las decisiones que adoptamos aquí y ahora. O sea, que las cuestiones que
+      parecen abrirse con la consagración de la solidaridad no sólo se conectan con hacerse
+      cargo, con responsabilizarse de la inclusión del otro, sino también con la
+      problemática que plantea la protección de las generaciones futuras, la responsabilidad
+      de las generaciones actuales frente a ellas y la imposición de ciertos deberes en su
+      favor (...)”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 19
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «(...)”1*.» letto «(...)”.».
+    ragione: >
+      La solidarieta' diacronica e i «deberes en su favor» sono di Rodríguez Palop, citata
+      per esteso: chi riprende questa formulazione riprende la dottrina, non la Corte.
+  - per: future-generations.generazioni_future_obbligo
+    id: prov_estocolmo_meta_imperiosa
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Dichiarazione di Stoccolma 1972, proclama 6, citata a p. 24'
+    testo: >
+      medio ambiente humano para las generaciones presentes y futuras se ha convertido en
+      meta imperiosa de la humanidad, que ha de perseguirse al mismo tiempo que las metas
+      fundamentales ya establecidas de la paz y el desarrollo económico y social en todo el
+      mundo, y de conformidad con ellas”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 24
+    nota_verbatim:
+      omissione: >
+        Omessa la reggente «La defensa y el mejoramiento del» (fine di p. 23).
+    ragione: >
+      «Para las generaciones presentes y futuras» come meta imperiosa dell'umanita':
+      provenienza internazionale del 1972, che la Corte stessa elenca fra le fonti.
+  - per: future-generations.generazioni_future_obbligo
+    id: prov_C389_actuaciones_presentes
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, C-389/2016, citata a p. 17'
+    testo: >
+      “(...) un equilibrio entre el crecimiento económico, el bienestar social y la
+      protección ambiental, bajo el entendido de que las actuaciones presentes deben
+      asegurar la posibilidad de aprovechamiento de los recursos en el porvenir (...)”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 17
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «(...)”8.» letto «(...)”.».
+    ragione: >
+      Sviluppo sostenibile come vincolo delle azioni presenti sul futuro: la forma
+      Brundtland nella voce della Corte Constitucional. Principio di politica, non relazione
+      giuridica obbligatoria.
+  - per: future-generations.generazioni_future_obbligo
+    id: prov_neubauer_liberta_intertemporale
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'BVerfG, Neubauer (24 marzo 2021) — caso ancora n. 2 senza file'
+    testo: >
+      The fundamental rights, as intertemporal guarantees of freedom, oblige the legislature
+      to distribute the burden of emission reductions over time so that future freedom is
+      not disproportionately curtailed by present inaction.
+    ragione: >
+      Altro caso: stessa struttura, fondamento diverso (liberta' futura dei viventi, non
+      diritti di chi non e' nato). Ponte da misurare quando esistera' il file di Neubauer.
+  - per: future-generations.generazioni_future_obbligo
+    id: prov_juliana_public_trust
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Juliana v. United States (Aiken, 2016) — cfr. juliana.public_trust_federale'
+    testo: >
+      The government holds essential natural resources in trust for present and future
+      generations and, as trustee, may not substantially impair them.
+    ragione: >
+      Altro caso: stesso beneficiario, tecnica diversa (trust di common law).
+  - per: future-generations.generazioni_future_obbligo
+    id: polarita_generazioni_future_non_titolari
+    tipo: polarita
+    origine: redazionale
+    fonte: 'obiezione dottrinale (non-identity, indeterminatezza) — nessun testo nel fascicolo'
+    testo: >
+      Persons who do not yet exist cannot be holders of rights, and the interests of future
+      generations, being indeterminate, cannot ground a legal obligation enforceable against
+      those living today.
+    ragione: >
+      POLARITA'. Stesso lessico, segno rovesciato. REDAZIONALE: da sostituire con un
+      passaggio vero che la enunci.
+
+  # -- equita_intergenerazionale_violata ------------------------------------------------------
+  - per: future-generations.equita_intergenerazionale_violata
+    id: prov_hansen_equidad_obliga
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'amicus curiae di James E. Hansen, riportato dalla Corte a p. 9'
+    testo: >
+      “En consecuencia, el principio de la equidad intergeneracional obliga a actuar sin más
+      demora para no sobrecargar desproporcionadamente a los jóvenes y las generaciones
+      futuras.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 9
+    ragione: >
+      L'equita' intergenerazionale come appello ad agire «sin más demora»: e' la
+      formulazione dell'AMICUS, riportata e non fatta propria. Chi la riecheggia riprende
+      Hansen, che circola in tutto il contenzioso giovanile.
+  - per: future-generations.equita_intergenerazionale_violata
+    id: prov_C389_porvenir
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, C-389/2016, citata a p. 17'
+    testo: >
+      “(...) un equilibrio entre el crecimiento económico, el bienestar social y la
+      protección ambiental, bajo el entendido de que las actuaciones presentes deben
+      asegurar la posibilidad de aprovechamiento de los recursos en el porvenir (...)”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 17
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «(...)”8.» letto «(...)”.».
+    ragione: >
+      L'idea intertemporale nella forma dello sviluppo sostenibile: provenienza
+      costituzionale del principio, senza l'applicazione ai ricorrenti.
+  - per: future-generations.equita_intergenerazionale_violata
+    id: prov_rio_principio3
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Dichiarazione di Rio 1992, Principio 3 — testo NON nel fascicolo'
+    testo: >
+      The right to development must be fulfilled so as to equitably meet developmental and
+      environmental needs of present and future generations.
+    ragione: >
+      Il principio in astratto, nella sua fonte internazionale. REDAZIONALE (parafrasi del
+      Principio 3): da sostituire con il testo.
+  - per: future-generations.equita_intergenerazionale_violata
+    id: prov_cbdr_equita_fra_stati
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'UNFCCC art. 3(1), Accordo di Parigi — equita'' FRA Stati'
+    testo: >
+      The fair distribution of mitigation efforts among states must reflect their historical
+      responsibility, level of development and capabilities, in accordance with common but
+      differentiated responsibilities.
+    ragione: >
+      Stessa parola, altro oggetto: equita' fra Stati, non fra generazioni. Falso amico gia'
+      misurato su CCLW e su Urgenda.
+  - per: future-generations.equita_intergenerazionale_violata
+    id: polarita_danno_futuro_speculativo
+    tipo: polarita
+    origine: redazionale
+    fonte: 'Corte EDU, Duarte Agostinho (2024); Ninth Circuit, Juliana (2020) — testi NON nel fascicolo'
+    testo: >
+      Harms projected to occur decades from now are speculative and hypothetical, and cannot
+      establish a present violation of the claimants' rights or confer victim status upon
+      them.
+    ragione: >
+      POLARITA'. La formulazione di chi nega. REDAZIONALE: da sostituire con il passaggio
+      vero di Duarte Agostinho o del Nono Circuito, entrambi nel corpus.
+
+  # -- deforestazione_clima_diritti -----------------------------------------------------------
+  - per: future-generations.deforestazione_clima_diritti
+    id: prov_paris_cooperacion
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Accordo di Parigi 2015, citato dalla Corte a p. 25'
+    testo: >
+      “(...) mantener y promover la cooperación regional e internacional con el fin de
+      movilizar una acción más vigorosa y ambiciosa para hacer frente al clima, por todas
+      las Partes y por los interesados que no son Partes, incluidos la sociedad civil, el
+      sector privado, las instituciones financieras, las ciudades y otras autoridades
+      subnacionales, las comunidades locales y los pueblos indígenas (...)”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 25
+    ragione: >
+      La conclusione «agire contro il clima» presa da PARIGI, nella citazione che la Corte
+      stessa fa: e' la provenienza che il registro di Urgenda indica come la piu' frequente
+      nei falsi positivi.
+  - per: future-generations.deforestazione_clima_diritti
+    id: prov_paris_ndc_deforestacion
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Suprema, 11.3 (p. 38), impegno colombiano a Parigi (NDC, zero deforestazione)'
+    testo: >
+      constituye un grave desconocimiento de las obligaciones adquiridas por el Estado en la
+      Convención Marco sobre el Cambio Climático de París de 2015, en donde Colombia, entre
+      otras responsabilidades, se comprometió a reducir la “deforestación en la Amazonía
+      Colombiana”, cuyo objeto consistía en reducir a cero la deforestación en esa región
+      para el año 2020,
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 38
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «Colombiana”*2, cuyo» letto «Colombiana”, cuyo»; « de Paris de
+        2015» letto « de París de 2015».
+    ragione: >
+      L'ALTRO fondamento della Corte: inadempimento di impegni internazionali, non lesione
+      causale di diritti. Chi cita solo l'impegno NDC prende la conclusione da Parigi. Asse
+      non promosso a sonda.
+  - per: future-generations.deforestazione_clima_diritti
+    id: prov_urgenda_fossili
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Urgenda (HR 2019) e KlimaSeniorinnen (2024) — cfr. obblighi_positivi di Urgenda'
+    testo: >
+      Greenhouse gas emissions from the combustion of fossil fuels cause dangerous climate
+      change that threatens the lives and welfare of the population and engages the State's
+      duty to protect.
+    ragione: >
+      Altro caso: stessa catena, altra fonte delle emissioni. Chi la enuncia riprende la
+      catena generale, non la deforestazione come fonte climatica.
+  - per: future-generations.deforestazione_clima_diritti
+    id: prov_unfccc_deforestacion
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'UNFCCC 1992, preambolo e art. 4(1)(d) — testo NON nel fascicolo'
+    testo: >
+      Parties shall promote sustainable management, conservation and enhancement of sinks
+      and reservoirs of greenhouse gases, including forests, since deforestation contributes
+      to emissions.
+    ragione: >
+      La deforestazione come fonte di emissioni presa dalla Convenzione quadro, senza
+      diritti fondamentali e senza corresponsabilita'. REDAZIONALE.
+  - per: future-generations.deforestazione_clima_diritti
+    id: polarita_perjuicio_no_acreditado
+    tipo: polarita
+    origine: verbatim
+    fonte: 'Tribunal Superior de Bogotá, 12 febbraio 2018, p. 20'
+    testo: >
+      Teniendo en cuenta lo anterior es del caso anotar que la colonización a que se alude,
+      aun cuando la experiencia lo indica como posible, no obra acreditada siquiera en forma
+      sumaria, pues dentro del amplio material probatorio adosado no se aportó prueba alguna
+      de la que deba inferirse que hoy por hoy los terrenos que dejaron de ocupar las FARC,
+      hayan sido colonizados u ocupados por otras personas, menos todavía, que en caso de
+      haberlas, éstas estén adelantando acciones que conlleven su deforestación de manera
+      tal que revistan de la urgencia, inminencia, gravedad e impostergabilidad propias del
+      perjuicio de ese talante. En definitiva la acción popular luce idónea y eficaz para
+      obtener la protección que por esta vía se reclama, lo que impone la negativa del
+      amparo deprecado.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 20
+    ragione: >
+      POLARITA', dentro il fascicolo: il danno non e' provato «siquiera en forma sumaria»,
+      l'acción popular e' idonea, il ricorso e' respinto. Stesso lessico (deforestación,
+      urgencia, inminencia, gravedad), segno rovesciato.
+
+  # -- natura_soggetto_diritti ----------------------------------------------------------------
+  - per: future-generations.natura_soggetto_diritti
+    id: prov_T622_justicia_naturaleza
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, T-622/2016 (Atrato), citata a p. 41'
+    testo: >
+      “(...) [L]a justicia con la naturaleza debe ser aplicada más allá del escenario humano
+      y debe permitir que la naturaleza pueda ser sujeto de derechos. Bajo esta comprensión
+      es que la Sala considera necesario dar un paso adelante en la jurisprudencia hacia la
+      protección constitucional de una de nuestras entes de biodiversidad más importantes:
+      el río Atrato.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 41
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «[Lla justicia» letto «[L]a justicia»; «más “importantes:» letto
+        «más importantes:».
+    ragione: >
+      PATERNITA' DICHIARATA nel canonical. E' il passo che ogni ripresa di «nature as
+      subject of rights» in Colombia cita: chi lo riecheggia cita l'Atrato.
+  - per: future-generations.natura_soggetto_diritti
+    id: prov_T622_sujetos_individualizables
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, T-622/2016, citata a p. 40'
+    testo: >
+      “(...) [E]l desafío más grande que tiene el constitucionalismo contemporáneo en
+      materia ambiental, consiste en lograr la salvaguarda y protección efectiva de la
+      naturaleza, las culturas y formas de vida asociadas a ella y la biodiversidad, no por
+      la simple utilidad material, genética o productiva que estos puedan representar para
+      el ser humano, sino porque al tratarse de una entidad viviente compuesta por otras
+      múltiples formas de vida y representaciones culturales, son sujetos de derechos
+      individualizables, lo que los convierte en un nuevo imperativo de protección integral
+      y respeto por parte de los Estados y las sociedades. En síntesis, solo a partir de una
+      actitud de profundo respeto y humildad con la naturaleza, sus integrantes y su
+      cultura, es posible entrar a relacionarse con ellos en términos justos y equitativos,
+      dejando de lado todo concepto que se limite a lo simplemente utilitario, económico o
+      eficientista”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 40
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «[E]! desafio» letto «[E]l desafío».
+    ragione: >
+      La giustificazione ecocentrica del riconoscimento («entidad viviente», «sujetos de
+      derechos individualizables»): di T-622, non di questa Sala.
+  - per: future-generations.natura_soggetto_diritti
+    id: prov_ecuador_pachamama
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Constitución del Ecuador 2008, art. 71 — testo NON nel fascicolo'
+    testo: >
+      Nature, or Pacha Mama, has the right to integral respect for its existence and the
+      maintenance and regeneration of its life cycles, and any person may demand the
+      enforcement of those rights.
+    ragione: >
+      Riconoscimento per via COSTITUENTE; provenienza andina. REDAZIONALE: da sostituire con
+      il testo dell'art. 71.
+  - per: future-generations.natura_soggetto_diritti
+    id: prov_te_awa_tupua
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Te Awa Tupua (Whanganui River Claims Settlement) Act 2017 — testo NON nel fascicolo'
+    testo: >
+      The river is declared a legal person with all the rights, powers, duties and
+      liabilities of a legal person, represented by guardians appointed under the Act.
+    ragione: >
+      Riconoscimento per LEGGE, con guardiani: tecnica diversa dalla estensione
+      giurisprudenziale a un bioma. REDAZIONALE.
+  - per: future-generations.natura_soggetto_diritti
+    id: polarita_natura_oggetto
+    tipo: polarita
+    origine: redazionale
+    fonte: 'obiezione dottrinale e dei salvamentos de voto alla Corte Suprema (non nel corpus)'
+    testo: >
+      Rights belong to persons; nature and ecosystems are objects of legal protection whose
+      interests are safeguarded through the rights and duties of human beings, not through
+      legal personhood of their own.
+    ragione: >
+      POLARITA'. I tre magistrati dissenzienti della Corte Suprema non sono nel corpus
+      caricato. REDAZIONALE: da sostituire con un passaggio vero.
+
+  # -- ecocentrico_antropico ------------------------------------------------------------------
+  - per: future-generations.ecocentrico_antropico
+    id: prov_T622_interdependencia
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, T-622/2016, citata a p. 40'
+    testo: >
+      “En efecto, la naturaleza y el medio ambiente son un elemento transversal al
+      ordenamiento constitucional colombiano. Su importancia recae por supuesto en atención
+      a los seres humanos que la habitan y la necesidad de contar con un ambiente sano para
+      llevar una vida digna y en condiciones de bienestar, pero también en relación a los
+      demás organismos vivos con quienes se comparte el planeta, entendidas como existencias
+      merecedoras de protección en sí mismas. Se trata de ser conscientes de la
+      interdependencia que nos conecta a todos los seres vivos de la tierra; esto es,
+      reconocernos como partes integrantes del ecosistema global -biósfera-, antes que a
+      partir de categorías normativas de dominación, simple explotación o utilidad.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 40
+    ragione: >
+      Il superamento delle «categorías normativas de dominación» e l'interdipendenza fra i
+      viventi: e' T-622. Chi riprende questo riprende l'Atrato, non il criterio
+      ecocentrico-antropico.
+  - per: future-generations.ecocentrico_antropico
+    id: prov_T411_amo_omnipotente
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, T-411/1992, citata a p. 28'
+    testo: >
+      “El hombre no es el amo omnipotente del universo, con carta blanca para hacer
+      impunemente lo que desee o lo que le convenga en un determinado momento. (...) [E]l
+      mundo en que vivimos está hecho de un tejido inmensamente complejo y misterioso sobre
+      el cual sabemos muy poco y al cual debemos tratar con humildad (...)”
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 28
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «[E]! mundo» letto «[E]l mundo».
+    ragione: >
+      «El hombre no es el amo omnipotente del universo»: la critica dell'antropocentrismo
+      nella voce della Corte Constitucional del 1992, citata per esteso. Provenienza
+      dichiarata.
+  - per: future-generations.ecocentrico_antropico
+    id: prov_peces_derechos_deberes
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Peces-Barba, "Escritos sobre Derechos Fundamentales" (via T-411/1992), citato a p. 18'
+    testo: >
+      “(...) [E]l titular del derecho tiene al mismo tiempo una obligación respecto de esas
+      conductas protegidas por el derecho fundamental. No se trata que frente al derecho del
+      titular otra persona tenga un deber frente a ese derecho, sino que el mismo titular
+      del derecho soporta la exigencia de un deber. Se trata de derechos valorados de una
+      manera tan importante por la comunidad y por su ordenamiento jurídico que no se pueden
+      abandonar a la autonomía de la voluntad sino que el Estado establece deberes para
+      todos, al mismo tiempo que les otorga facultades sobre ellos (...)”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 18
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «[E]! titular» letto «[E]l titular»; «(...)”13.» letto «(...)”.».
+    ragione: >
+      I «derechos-deberes» sono di Peces-Barba, riportato per esteso: chi li enuncia cosi'
+      riprende la dottrina.
+  - per: future-generations.ecocentrico_antropico
+    id: prov_laudato_si
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'Laudato si'' (2015) — testo NON nel fascicolo; citata dal salvamento de voto di primo grado'
+    testo: >
+      Everything is connected: an integral ecology rejects a tyrannical anthropocentrism
+      unconcerned for other creatures and calls for a new relationship between humanity and
+      the natural world.
+    ragione: >
+      Provenienza extra-giuridica molto ripresa nel costituzionalismo latinoamericano, e
+      citata dal dissenso di primo grado (p. 17-18). REDAZIONALE.
+  - per: future-generations.ecocentrico_antropico
+    id: polarita_antropocentrismo_strumentale
+    tipo: polarita
+    origine: redazionale
+    fonte: 'modello che la Corte diagnostica e supera (p. 16)'
+    testo: >
+      Environmental protection is justified solely by its utility to human beings; nature
+      has no value independent of human needs and the environment is protected as a resource
+      for present and future human welfare.
+    ragione: >
+      POLARITA'. Il «modelo antropocéntrico y egoísta» enunciato in positivo. REDAZIONALE.
+
+  # -- tutela_conexidad_collettivo ------------------------------------------------------------
+  - per: future-generations.tutela_conexidad_collettivo
+    id: polarita_accion_popular_idonea
+    tipo: polarita
+    origine: verbatim
+    fonte: 'Tribunal Superior de Bogotá, 12 febbraio 2018, p. 17 (riportata dalla Corte Suprema a p. 9)'
+    testo: >
+      Sin embargo, no es este excepcional remedio constitucional el mecanismo procedente
+      para impartir las órdenes que aquí son objeto de petición, pues para tal fin obra
+      consagrada dentro de la Ley la acción popular, medio judicial que en el caso
+      particular refulge idóneo no solo para amparar el derecho colectivo a gozar un
+      ambiente sano, sino también para garantizar los derechos fundamentales de los que se
+      reclama protección.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_15f3
+    pagina: 17
+    ragione: >
+      POLARITA', dentro il fascicolo: la sentenza impugnata, con lo stesso lessico e il
+      segno rovesciato. Un documento che la riporta per riassumere il primo grado non
+      riprende la sonda.
+  - per: future-generations.tutela_conexidad_collettivo
+    id: prov_T362_estrecha_relacion
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Constitucional, T-362/2014, citata a pp. 12-13'
+    testo: >
+      En tal sentido, podemos decir que cuando en un caso existe una estrecha relación entre
+      derechos colectivos y derechos individuales considerados fundamentales, la acción de
+      tutela es procedente dada la imposibilidad en la mayoría de los casos de separar los
+      ámbitos de protección de los dos grupos de derechos (...)”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 12-13
+    nota_verbatim:
+      corpus_legge: >
+        Il corpus legge: «(...)”°.» letto «(...)”.».
+      salto_pagina: >
+        Passo a cavallo di due pagine: nel corpus, fra le due parti, l'estrazione inserisce
+        il testo delle note a piè di pagina, il numero di pagina e l'intestazione
+        «Radicación n.° 11001-22-03-000-2018-00319-01». Qui rimossi. Fra le due parti solo
+        il numero di pagina «12» e l'intestazione.
+    ragione: >
+      La REGOLA GENERALE della conexidad, nella voce della Corte Constitucional: chi la
+      enuncia senza clima e senza urgenza cita T-362 (o SU-1116/2001), non questa sentenza.
+  - per: future-generations.tutela_conexidad_collettivo
+    id: prov_STC7630_ambiente_sano
+    tipo: provenienza
+    origine: verbatim
+    fonte: 'Corte Suprema de Justicia, STC 7630/2016 (e STC 9813/2016, STC 15985/2017), citate a p. 13'
+    testo: >
+      concluyó la procedencia de la acción de tutela frente a la vulneración del derecho a
+      un ambiente sano, cuando se advierte prima facie que su transgresión produce
+      inevitablemente “la afectación directa de otras prerrogativas de carácter fundamental,
+      entre ellas, la vida, la salud y el acceso al agua de los tutelantes y sus núcleos
+      familiares”.
+    documento: future-generations-v-ministry-of-the-environment-and-others-decision_7519
+    pagina: 13
+    nota_verbatim:
+      omissione: >
+        Omessa la reggente «El anterior criterio ha sido acogido por esta Sala en sentencias
+        STC 7630 [...] en donde al ponderar la situación fáctica y la probatoria,».
+      corpus_legge: >
+        Il corpus legge: «familiares’.» letto «familiares”.».
+    ragione: >
+      I precedenti della stessa Sala: tutela procedente per ambiente sano quando lede vita,
+      salute, acqua. E' la provenienza interna alla Corte, anteriore al clima.
+  - per: future-generations.tutela_conexidad_collettivo
+    id: prov_cedu_victima
+    tipo: provenienza
+    origine: redazionale
+    fonte: 'CEDU art. 34, status di vittima (KlimaSeniorinnen 2024, Urgenda Hof 35) — testi NON nel fascicolo'
+    testo: >
+      An applicant must show that he or she is personally and directly affected by the
+      alleged violation; public interest actions on behalf of the population at large are
+      not admissible.
+    ragione: >
+      Lo stesso nodo (collettivo contro individuale) in un altro sistema e con altro segno.
+      REDAZIONALE.
+
+nota_analitica:
+  spartiacque_possibili: [2018-04-05, 2020-01-01]
+  effetto_atteso: >
+    Ricezione prevalentemente descrittiva e di catena (registro di Urgenda: "argomento non e'
+    provenienza"; qui la paternita' e' dichiarata nei canonical), concentrata su
+    natura_soggetto_diritti e generazioni_future_obbligo; possibile ripresa critica
+    sull'esecuzione del PIVAC dal 2020. Da verificare, non da presupporre.
+
+# ── S07 (04/10/2026): RICERCA PER NOME CON I GRUPPI CHE NON ATTRAVERSANO LE NOTE, RETE DESCRITTIVA, DEDUPLICA PER PAGINA ──
+# Tutto quello che sta sopra e' il file S05 identico. Qui due chiavi nuove, lette da tools/cerca_s07.py e
+# tools/rete_descrittiva.py (gli altri strumenti non le leggono):
+#   forme_s07_aggiunte  forme semplici che mancavano, cercate come le altre forme (misura del 04/10/2026, audit/forme);
+#   rete_descrittiva    le regole della RETE DESCRITTIVA: le pagine che citano la pronuncia senza nessuna forma
+#                       dichiarata («BVerfG, a.a.O.», la corte con l'anno e il clima, la data...). Una regola e' un'ancora
+#                       (espressione regolare, maiuscole e minuscole uguali) piu' le parole che devono stare a meno di
+#                       `finestra` caratteri (`con`, tutte); `escludi` toglie la corrispondenza se compare nella stessa
+#                       finestra; `solo_atti_col_nome` la tiene solo negli atti che citano gia' il caso col nome. Le
+#                       espressioni si applicano al testo normalizzato (textnorm: sillabazione tolta, spazi uniti) e la
+#                       posizione torna quella del file. Fuori: gli atti del procedimento stesso (escludi_case_id,
+#                       atti_del_procedimento_altrove), gli atti datati prima della pronuncia, le pagine dove il caso e'
+#                       gia' nominato o ha gia' una riga (come nella misura). Le righe hanno proposto_rete «descrittiva».
+#                       Misura del 04/10: 331 pagine senza nessuna forma, ~250 citazioni vere (audit/forme).
+rete_descrittiva:
+  versione: S07
+  regole:
+  - id: F_stc_var
+    ancora: stc[\s.\-]*4360|\b4360[\s\-/]*(de )?(20)?18\b
+  - id: F_radicado
+    ancora: 11001[\s\-]?22[\s\-]?03[\s\-]?000[\s\-]?2018[\s\-]?00319|2018[\s\-]00319|\b00319[\s\-]0[01]\b
+  - id: F_nome_var
+    ancora: (future generations|generaciones futuras|gera[çc][õo]es futuras|g[ée]n[ée]rations futures|generazioni future)\s*,?\s*(v\.?|vs\.?|versus|c\.|contra|contre|gegen|y otros|et al\.?)\s
+  - id: F_csj_descr
+    ancora: (corte suprema de justicia|supreme court of (justice of )?colombia|colombian supreme court|colombia.s supreme court|colombia(n)? supreme court of justice|cour supr[eê]me (de )?colombi|corte
+      suprema (de )?colombi|supremo tribunal (de justi[çc]a )?d[ae] col[oô]mbia|콜롬비아 대법원|コロンビア最高裁|哥伦比亚最高法院)
+    con:
+    - \b2018\b
+    - (amazon|deforest|futur|generacion|sujeto de derecho|subject of rights|clima|climat|기후)
+    finestra: 350
+  - id: F_amazzonia_diritti
+    ancora: (amazon\w*.{0,100}(subject of rights|sujeto de derechos|legal person|rights[- ]bearing|sujeito de direitos|sujet de droits?|soggetto di diritt|rechtssubjekt|entity subject)|(subject of rights|sujeto
+      de derechos|sujeito de direitos|sujet de droits?|soggetto di diritti).{0,100}amazon)
+    con:
+    - (colombi|bogot)
+    finestra: 400
+  - id: F_data
+    ancora: (\b5 (de )?(april|abril|avril|aprile) (de )?2018|april 5,? 2018|05/04/2018|\b5\.4\.2018)
+    con:
+    - (colombi|amazon|corte suprema|supreme court)
+    finestra: 350

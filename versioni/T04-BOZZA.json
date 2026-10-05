@@ -1,0 +1,69 @@
+{
+ "BOZZA": "bozza del 04/10/2026, NON scritta in trace_versioni ne' in versioni/registro.json: si registra solo dopo l'addestramento e la misura, col si' del PI",
+ "codice": "T04",
+ "tipo": "modello",
+ "nome": "TRACE-Reranker 0.2 (reasoning)",
+ "nome_tecnico": "TRACE-Reranker 0.2",
+ "nome_inglese": "TRACE Reasoning Reranker 0.2",
+ "compito": "Per ogni citazione proposta legge testo e immagine della pagina e, per ogni principio del caso citato e per ogni pagina attorno (cammino dalla pagina della citazione verso l'esterno, fermo dopo due «no» di fila), dice si'/no/incerto con la ragione scritta e le parole esatte dell'atto (verificate da R14/R16), piu' un punteggio 0-1 dalla probabilita' del token del verdetto, calibrato con la temperatura. Poi decide DeepSeek V4 Flash (L12), Clef controlla.",
+ "data": "2026-10-04",
+ "stato": "bozza (dati e script pronti, addestramento non lanciato)",
+ "sostituisce": "T01 (TRACE-Reranker 0.1, solo punteggio)",
+ "modello_base": [
+  {
+   "nome": "Qwen/Qwen3.5-9B",
+   "revisione": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+   "licenza": "Apache-2.0",
+   "nota": "gia' su ReCaS (scaricato da tools/recas_ragionamento/scarica9b.sh, l'altra misura); Qwen3_5ForConditionalGeneration, testo e immagini; e' il q9 del reranker non addestrato"
+  },
+  {
+   "nome": "Qwen/Qwen3.8-27B",
+   "revisione": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+   "licenza": "Apache-2.0",
+   "nota": "gia' su ReCaS; stesso modello del reranker non addestrato (tools/ragionamento.py, RR)"
+  }
+ ],
+ "addestramento": {
+  "dati": "tools/reranker_dati.py: (a) letture L05 cinque su cinque con le parole verificate R14+R16, col ragionamento di DeepSeek; (b) mappa dei paragrafi (paragrafi citati, passi della decisione riportati alla lettera); (c) giudizi del team solo per pieghe K1-K3 (premio GRPO), mai P (giuria e cieche) ne' K4-K5 (calibrazione); (d) coppie a contrasto (indice contro corpo, stessa pagina per due citazioni, stesso brano con principio si'/no). Tenute fuori tutte le 811 righe giudicate o cieche e ogni riga dei loro 361 atti.",
+  "esempi_sft": {
+   "etichetta | a | RRC | no": 204,
+   "etichetta | a | RRC | si": 72,
+   "etichetta | a | RRL | nessuno": 216,
+   "etichetta | a | RRL | si": 213,
+   "etichetta | a | RRP | no": 858,
+   "etichetta | a | RRP | si": 238,
+   "etichetta | b | RRP | si": 468,
+   "etichetta | d1 | RRL | nessuno": 6
+  },
+  "divisione_sha256": "64d3673cfabcf0923720a0219a985da15c018a6a8b86e23d3d110c71aaf3e909",
+  "domande_da": "tools/ragionamento.py (RRL, RRP, RRC) sha256 1cd77afba0f68c6361e240a937f2c7ba8dac8e11cd89e221feb851504762e718",
+  "impostazioni": "SFT: LoRA rango 16, alfa 32, dropout 0,05 su q/k/v/o e gate/up/down del modello di lingua; 2 passate; lr 1e-4 coseno; accumulo 16; fino a 20.000 token; domanda a lista con l'immagine della pagina della citazione (RRI, 150 dpi) nell'80% degli esempi, RRP e cammino solo testo, come la batteria di tools/ragionamento.py; il punteggio dichiarato nel JSON fuori dalla perdita. GRPO: 16 domande x 8 risposte per passo, lr 1e-5, un aggiornamento per lotto, KL 0, premio = oro + parole verificate (tools/freni.py) + formato + lunghezza (tools/recas_reranker/premi.py). Punteggio 0-1: P(si) + 0,5 P(incerto) dai token del verdetto (ragionamento.punteggio_token), temperatura stimata sulle pieghe K4-K5."
+ },
+ "codice_sorgente": [
+  "tools/reranker_dati.py",
+  "tools/reranker_valuta.py",
+  "tools/recas_reranker/sft.py",
+  "tools/recas_reranker/grpo.py",
+  "tools/recas_reranker/premi.py",
+  "tools/freni.py",
+  "tools/ragionamento.py",
+  "tools/ragionamento_corri.py"
+ ],
+ "software": {
+  "torch": "2.14.0",
+  "transformers": "5.17.0",
+  "peft": "0.21.0",
+  "accelerate": "1.15.0",
+  "qwen_vl_utils": "0.0.14",
+  "flash-linear-attention, kernels": "installati da ambiente.sh in ~/trace/reranker/pyextra (versioni scritte nel registro del lavoro)",
+  "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0, chat/img/vllm.sif)",
+  "TRL": "non usato"
+ },
+ "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+ "misure_previste": [
+  "con la batteria di tools/ragionamento.py (stesse richieste RRL/RRI/RRP/RRC sulle 691 righe giudicate, stesso corridore, stesse metriche): principi P/R/F1 e insieme uguale, pagine P/R/F1, cita il caso, sugli insiemi P (giuria e cieche), giuria137, K1-K3, col_nome, semantiche; contro T01 e contro q9/q27 non addestrati",
+  "punteggio: AUC, Brier ed ECE grezzi e calibrati, dai token del verdetto e detti, contro T01",
+  "fino in fondo: DeepSeek L12 con le proposte di T04 (dr_t9grpo ecc.) contro DT (atto + T01) e DR con q9/q27"
+ ],
+ "famiglia": "modello TRACE addestrato da noi"
+}

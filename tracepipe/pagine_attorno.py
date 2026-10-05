@@ -22,7 +22,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from .config import Config, SoglieFinestra
+from .config import TETTO_PAGINA, Config, SoglieFinestra
 from .corpus import IndicePagine, Pagina
 from .freni import FRENI, Freni
 
@@ -186,7 +186,7 @@ class SceltaPagineAttorno:
                 {
                     'pagina': k,
                     'punteggi': self.punteggi.vicina[pid],
-                    'testo': testi.get(pid, '')[: self.soglie.taglio_vicina],
+                    'testo': testi.get(pid, '')[: self.soglie.taglio_vicina or TETTO_PAGINA],
                 }
                 for _, k, pid in in_ordine
                 if leggibili[pid]

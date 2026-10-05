@@ -215,3 +215,51 @@ def test_coda_cinque_letture_e_seme() -> None:
     con = coda('coda-ds2', ('urgenda',), seme=7).splitlines()
     assert con[1].endswith('--paralleli 32 --seme 7"')
     assert con[2:] == righe[2:]
+
+
+def test_ciclo_pulizie_in_anteprima_non_scrive_e_ripete_nulla(tmp_path: Path) -> None:
+    from tracepipe.orchestratore import CicloPulizie
+
+    comandi: list[list[str]] = []
+    ciclo = CicloPulizie(tmp_path, 'prova', esegui_locale=lambda argv: comandi.append(argv) or 0, dormi=lambda s: None)
+    assert [p.nome for p in ciclo.passi] == ['c03', 'c07', 'controllo_completezza']
+    assert ciclo.esegui() is True
+    assert comandi == [['c03', '--da', 'prova'], ['c07', '--da', 'prova'], ['controlla', 'completezza']]
+    assert all('--scrivi' not in c for c in comandi)
+    comandi.clear()
+    assert ciclo.esegui() is True and comandi == []  # a finished step is never run again
+
+
+def test_ciclo_pulizie_con_scrivi_e_i_file_riletti(tmp_path: Path) -> None:
+    from tracepipe.orchestratore import CicloPulizie
+
+    comandi: list[list[str]] = []
+    ciclo = CicloPulizie(
+        tmp_path,
+        'prova',
+        scrivi=True,
+        rivisto='r.tsv',
+        rilette='ril.tsv',
+        spunte_team='sp.tsv',
+        esegui_locale=lambda argv: comandi.append(argv) or 0,
+    )
+    assert ciclo.esegui() is True
+    assert comandi == [
+        ['c03', '--da', 'prova', '--rivisto', 'r.tsv', '--scrivi'],
+        ['c07', '--da', 'prova', '--rilette', 'ril.tsv', '--spunte-team', 'sp.tsv', '--scrivi'],
+        ['controlla', 'completezza', '--scrivi'],
+    ]
+
+
+def test_ciclo_pulizie_si_ferma_al_primo_passo_che_fallisce(tmp_path: Path) -> None:
+    from tracepipe.orchestratore import CicloPulizie
+
+    comandi: list[list[str]] = []
+
+    def locale(argv: list[str]) -> int:
+        comandi.append(argv)
+        return 1 if argv[0] == 'c03' else 0
+
+    ciclo = CicloPulizie(tmp_path, 'prova', esegui_locale=locale, dormi=lambda s: None)
+    assert ciclo.esegui() is False
+    assert [c[0] for c in comandi] == ['c03'] and ciclo.stato.passi['c03']['esito'] == 'fallito'

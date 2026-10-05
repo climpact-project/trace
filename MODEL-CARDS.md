@@ -4,7 +4,7 @@ The models trained by the CLIMPACT project (University of Bari) for TRACE 0.1, a
 
 Every proposal the models make is shown to people, who confirm or correct it. The models never decide a citation on their own.
 
-Cards updated on 30 September 2026, after an independent review of the registry and of these texts, and on 3 October 2026 for the rules and data versions that changed since (R10, R11, S05, D02, D03). The registry is the single source: where a card and the registry differ, the registry is right.
+Cards updated on 30 September 2026, after an independent review of the registry and of these texts, on 3 October 2026 for the rules and data versions that changed since (R10, R11, S05, D02, D03), and on 5 October 2026 for the readings and the reasoning reranker on trial (L13 and below). The registry is the single source: where a card and the registry differ, the registry is right.
 
 ## T01, TRACE-Reranker 0.1
 
@@ -60,6 +60,37 @@ DeepSeek V4 Flash (deepseek-ai/DeepSeek-V4-Flash-0731, MIT licence) is a large l
 
 Why five: between two independent majorities, on 300 rows of all six cases, Krippendorff's alpha is 0.66 with one reading, 0.78 with three and 0.83 with five on the principles, and 0.67, 0.78 and 0.83 on the type; five is the first number of readings above 0.80, a threshold declared in advance as a convention. Below 0.80 even at five readings: the principles of KlimaSeniorinnen (0.68), the type for the ICJ advisory opinion (0.72) and for the Inter-American Court advisory opinion (0.76).
 
+## L13, the reading of a close pair (on trial, not applied)
+
+**What it does.** For two references to the same cited case in the same filing, less than 5,000 characters apart (the close pairs of S08), the reader gets the true text of the filing from before the first to after the second reference, with the two points marked, and says whether they are **one citation or two**, which one stays, where each sits (body text or footnote), which footnote the sentence calls, and the exact sentence of each. The clues that the code computes (same note, footnote called by the sentence) are never in the question: they are used afterwards, to measure the readings and to send to the team the pairs in which the readings and a strong clue contradict each other.
+
+**Readers.** DeepSeek V4 Flash (the same model as L05, high reasoning, five readings, three of five decide) and Qwen3.5-9B, as released (three readings, two of three decide). Where the two readers agree and no strong clue contradicts them, the pair is merged (as in C03) or kept as two; otherwise it goes to the team. A reading counts only if the two sentences it quotes are in the text of the filing and are not copied from the prompt (the brakes of R14 and R16).
+
+**Status.** On trial, not applied. Nothing is written to the platform by S08 or L13. The pairs of C03 reread one by one (850, 692 of them with both rows in the same filing) are the truth on which the readers are to be measured before anyone relies on them; the strong clues alone, on those 692 pairs, decide 401 (58%) and are right in 397 (99.0%), and leave 291 to the team.
+
+**Limits.** The truth is cut at one page: C03 looked for the same sentence within one page, so it says nothing about pairs farther apart, and the threshold of 5,000 characters is a cost decision, not a measured boundary.
+
+## A reasoning reranker (Qwen3.5-9B, not trained): on trial, not in use
+
+**What it is.** Qwen3.5-9B (revision c2022362), as released and **not trained by the project**, with reasoning on. For every principle of the cited case it writes a reasoning and answers yes, no or uncertain, quotes the words of the filing it relies on and gives a score taken from the probabilities of the verdict tokens. It was tried as a possible replacement for T01 in choosing the principles. **T01 stays the reranker in use for the surrounding pages, and the proposals still come from DeepSeek V4 Flash.**
+
+**Measured** on the 691 citations the research team has judged, and on the 137 of them that form the jury set. The figures are on the principles (precision, recall, F1 against the principles the team confirmed):
+
+| | F1, 137 rows | F1, all answered rows |
+|---|---:|---:|
+| Reasoning reranker, 9B on the text | 0.72 (precision 0.73, recall 0.72) | 0.70 |
+| T01, score of 0.5 or more | 0.50 | 0.53 |
+| The five readings of DeepSeek V4 Flash | 0.70 | 0.70 |
+
+The score is better than T01's at ranking (AUC 0.86 against 0.75 on the same decisions, 137 rows) and worse calibrated (expected calibration error 0.13 against 0.06).
+
+**Cautions.**
+- **The figure is optimistic.** Three rules of the draft instructions given to the 9B were derived from counts taken on these same judged rows (G05: the team's descriptive citations always take a principle, 27 of 27; G06: the missed principle did not come from the proposal that was shown; the third: in advisory opinions the participating States are a «party», 5 of 6). No judgment of a row enters the question of that row, but the effect of these rules on these rows is overstated. The clean measure is the blind sample, which the team has not judged yet. The draft rules are not approved.
+- **Two of the planned trials have run:** the 9B on the text, and the 9B with the image of the page (F1 0.68 on the 55 rows it covers). The walk through the surrounding pages, the form with one principle per call and the larger model have not.
+- The model slips into Chinese or Japanese in the middle of a sentence: 35% of its 526 reasonings contain at least one such character, and 56 answers have one in the final JSON. It is a reason not to rely on it as it is.
+- The team's judgments are the reference, and some were given with machine proposals visible: they measure agreement with the team, not a blind agreement.
+- A LoRA adaptation of the 9B on its own answers that match the team's verdict (94 usable rows out of 526 answers, four folds by filing, then a final adapter) is running on ReCaS-Bari. No figure exists for it, and the base model above is the only one measured.
+
 ## The retriever
 
 TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 0.25) served the July semantic search for implicit uptake without a citation. That search is paused: a check of the July results found about one real implicit uptake per hundred candidate pages. The retriever is **not part of this release**: it has no version code, no code copy and no weight fingerprint in the registry, and it is not in the Zenodo deposit. It will be redone with real citing passages as queries and re-evaluated on that task before any release, and it will enter the registry with a T code at that point.
@@ -76,6 +107,7 @@ TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 
 - Name search: S05, Name search on normalised text, with readmitted and new forms (in use from 2 October 2026). It finds every citation found by the earlier version S03 at the same position and adds new ones only: on a reading of the new rows, 155 of 163 were real citations (95.1%, Wilson 95% interval 90.6-97.5%).
 - Hardware: NVIDIA H100 80GB, ReCaS-Bari data centre (INFN and University of Bari); DeepSeek V4 Flash runs with vLLM on four of them.
 - Every version is recorded with base model revision, weight fingerprints, training data, settings, instructions and code in the TRACE registry, with a note where a text is reconstructed rather than copied.
+- Rules and readings added on 5 October 2026: C03 and C07 (applied), S08 and L13 (on trial), described in the [README](README.md#applied-and-on-trial-5-october-2026) and in the registry.
 - Terms used here: «DeepSeek V4 Flash» is the large language model that reads the citations (codes L); «TRACE-Reader» is T02 and T03, distilled from it; «uptake» is the relation between a citation and the cited case; «continuation» is a nearby page that carries the same uptake on; «case file» is the list of a case's principles (`cited-cases/*.yaml`); «dossier» is the case summary given to DeepSeek V4 Flash (`*-fascicolo.md`); «test rows» is the fixed evaluation set; «judged without proposals» is the one-in-five sample shown with no machine proposal.
 - Authors: G. Naglieri, E. Buono, C. Garofalo, C. Saracino, L. Dell'Atti (CLIMPACT, University of Bari).
 - Citation: Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L. (2026). CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. CLIMPACT, University of Bari. Zenodo. DOI reserved: 10.5281/zenodo.23082522 (active on publication).

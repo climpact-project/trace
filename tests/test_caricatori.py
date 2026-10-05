@@ -221,7 +221,10 @@ def test_ripresa_corretta_e_compat() -> None:
                     diverse.setdefault(k, set()).add(rid)
             for v in nuova['proposto_estensione']:
                 assert v['scelta']['regola'] == 'R08'
-    assert set(diverse) <= {'proposto_estensione', 'provenienza.principi'}
+    # 04/10/2026 (controllo dei tagli): fuori da compat la frase sostenuta arriva a 2.000 caratteri (prima 600) e la
+    # prova di una pagina attorno si cerca nella pagina intera (esito e testuale delle prove, dentro
+    # proposto_estensione)
+    assert set(diverse) <= {'proposto_estensione', 'provenienza.principi', 'proposto_frase_sostenuta'}
 
 
 def test_anteprima_senza_scrivere(tmp_path) -> None:

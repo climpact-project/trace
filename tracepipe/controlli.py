@@ -147,7 +147,7 @@ class ControlloCompletezza:
                 elif t[1].get('proposto_rete') == 'fusa':
                     problemi['unita verso una riga a sua volta unita'].append(r.get('codice') or i)
                 continue
-            if rete not in ('lessicale', 'entrambe'):
+            if rete not in ('lessicale', 'entrambe', 'descrittiva'):
                 continue
             viste[r.get('codice') or ''] += 1
             manca = self.problemi_riga(i, r, pre, versioni, problemi)
@@ -156,7 +156,7 @@ class ControlloCompletezza:
         for cod, n in viste.items():
             if cod and n > 1:
                 problemi['codice doppio'].append(cod)
-        tot = sum(1 for _, r in righe if r.get('proposto_rete') in ('lessicale', 'entrambe'))
+        tot = sum(1 for _, r in righe if r.get('proposto_rete') in ('lessicale', 'entrambe', 'descrittiva'))
         self.stampa(f'\n{caso}: {tot} righe in Uptakes')
         if not problemi:
             self.stampa('   tutto in ordine')

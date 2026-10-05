@@ -86,6 +86,39 @@ def _senza_principi(x: Mapping[str, Any]) -> bool:
     return not [q for q in (x.get('principi') or []) if isinstance(q, str) and q]
 
 
+def pagine_intere(config: Config, cand: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """The proof is looked for in the WHOLE page (04/10/2026, truncation audit): twin of ``pagine_intere`` in
+    ``tools/carica_ripresa.py``. The L05 reader rows carry their surrounding pages cut at 3,500 characters, so a proof
+    copied from the tail (the footnotes) came out «not found». Each surrounding page gets its page-index text (up to
+    12,000 characters) in ``vicine_testo``, only when it starts like the row's text (same source: OCR pages stay)."""
+    if not config.indice_pagine.exists():
+        return cand
+    from .corpus import IndicePagine
+
+    serve = {f"{c['document_id']}#p{v['pagina']}" for c in cand.values() for v in c.get('vicine', [])}
+    testi = {k: t[:12000] for k, t in IndicePagine(config.indice_pagine).testi(serve).items()}
+    for c in cand.values():
+        vt = c.get('vicine_testo') or {}
+        for v in c.get('vicine', []):
+            n = v['pagina']
+            t = testi.get(f"{c['document_id']}#p{n}", '')
+            prima = v.get('testo') or ''
+            if n in vt or str(n) in vt or not t or len(t) <= len(prima) or not t.startswith(prima[:200]):
+                continue
+            vt[n] = t
+        if vt:
+            c['vicine_testo'] = vt
+    return cand
+
+
+_intere = pagine_intere
+
+
+# 04/10/2026, from the truncation audit: the supported sentence was kept to 600 characters and 55% of the cut
+# sentences lost material (footnotes, paragraph numbers, the case name). Now 2,000 (compat=True keeps 600).
+FRASE_MAX = 2000
+
+
 @dataclass
 class _Scelta:
     """The reading the principles come from, and whether it is an L04 reading."""
@@ -373,7 +406,7 @@ class Composizione:
 
         If today's reading has no sentence, the one of an earlier reading is cleared (02/10/2026, NEU-0308).
         """
-        frase = _spazi(l1.get('frase_sostenuta'))[:600]
+        frase = _spazi(l1.get('frase_sostenuta'))[: 600 if self.compat else FRASE_MAX]
         if not frase:
             return {'proposto_frase_sostenuta': '', 'proposto_frase_testuale': False, 'proposto_frase_esito': ''}
         return {
@@ -455,7 +488,7 @@ class Composizione:
         conti: collections.Counter[str] = collections.Counter()
         scritture: list[tuple[str, dict[str, Any]]] = []
         for rid, r in righe_fs:
-            if r.get('proposto_rete') not in ('lessicale', 'entrambe'):
+            if r.get('proposto_rete') not in ('lessicale', 'entrambe', 'descrittiva'):
                 continue
             if r.get('esito'):
                 conti['gia giudicata (non toccata)'] += 1
@@ -527,8 +560,13 @@ class IngressiComposizione:
     ds_seguito: dict[str, dict[str, Any]] | None = None
 
     @classmethod
-    def carica(cls, config: Config, caso: str, principi_da_l04: bool = False) -> IngressiComposizione:
-        """Read the inputs as ``tools/carica_ripresa.py`` (``carica``, ``load_l04`` and the L07 part of ``main``)."""
+    def carica(
+        cls, config: Config, caso: str, principi_da_l04: bool = False, pagine_intere: bool = False
+    ) -> IngressiComposizione:
+        """Read the inputs as ``tools/carica_ripresa.py`` (``carica``, ``load_l04`` and the L07 part of ``main``).
+
+        ``pagine_intere`` (04/10/2026): the proofs are checked on the whole page (:func:`pagine_intere`).
+        """
         cartella = config.principi
         suf = config.suf(caso)
         par = per_id(cartella / f'{caso}_da_paragrafi{suf}.jsonl')
@@ -541,6 +579,8 @@ class IngressiComposizione:
                     if x['dove'] == 'brano':
                         brano[x['riga']][x['principio']] = x['punteggio']
         cand = per_id(cartella / f'{caso}_ripresa_righe{suf}.jsonl')
+        if pagine_intere:
+            cand = _intere(config, cand)
         ds = cls.letture_l05(config, caso)
         ds_principi = cls.letture_l04(config, caso) if principi_da_l04 else None
         ds_seguito = cls.letture_l07(config, caso) if principi_da_l04 else None
@@ -606,7 +646,9 @@ class IngressiMaggioranza:
     tipi: dict[str, dict[str, Any]]
 
     @classmethod
-    def carica(cls, config: Config, caso: str, etichetta: str, etichetta_tipo: str = 'cinque') -> IngressiMaggioranza:
+    def carica(
+        cls, config: Config, caso: str, etichetta: str, etichetta_tipo: str = 'cinque', pagine_intere: bool = False
+    ) -> IngressiMaggioranza:
         if not etichetta:
             raise ValueError('R11 needs a label (the readings and the rows with the R10 surrounding pages)')
         base = IngressiComposizione.carica(config, caso)
@@ -616,7 +658,8 @@ class IngressiMaggioranza:
             par=base.par,
             brano=base.brano,
             ds=per_id(cartella / f'{caso}_ripresa_deepseek_{etichetta}.jsonl'),
-            cand=per_id(cartella / f'{caso}_ripresa_righe_{etichetta}.jsonl'),
+            cand=_intere(config, per_id(cartella / f'{caso}_ripresa_righe_{etichetta}.jsonl')) if pagine_intere
+            else per_id(cartella / f'{caso}_ripresa_righe_{etichetta}.jsonl'),
             tipi=per_id(f_tipi) if f_tipi.exists() else {},
         )
 
@@ -719,7 +762,7 @@ class ComposizioneMaggioranza(Composizione):
             )
         vic = self.filtra_seguito(vic, spuntati)
         ys = maggioranza.lettura_scelta(vp)
-        frase = _spazi(maggioranza.frase_scelta(vp).get('frase_sostenuta'))[:600]
+        frase = _spazi(maggioranza.frase_scelta(vp).get('frase_sostenuta'))[: 600 if self.compat else FRASE_MAX]
         frase_esito = self.freni.verifica(frase, contesto, testi_prompt) if frase else ''
         senza_prova = [
             p
@@ -788,7 +831,7 @@ class ComposizioneMaggioranza(Composizione):
         conti: collections.Counter[str] = collections.Counter()
         scritture: list[tuple[str, dict[str, Any]]] = []
         for rid, r in righe_fs:
-            if r.get('proposto_rete') not in ('lessicale', 'entrambe'):
+            if r.get('proposto_rete') not in ('lessicale', 'entrambe', 'descrittiva'):
                 continue
             if r.get('esito'):
                 conti['gia giudicata (non toccata)'] += 1

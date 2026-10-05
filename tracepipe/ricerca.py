@@ -163,18 +163,81 @@ def e_nome(testo: str, m: re.Match[str]) -> bool:
     return not ('/' in coda or 'www' in coda.lower() or 'http' in coda.lower())
 
 
+INIZIO_NOTA = re.compile(r'\n[ \t]*(?:\[\^?(\d{1,4})\]:?|([¹²³⁴⁵⁶⁷⁸⁹⁰]{1,4})|(\d{1,4}))[ \t]+(?=\S)')
+"""The start of a footnote: a line break, the footnote number (plain, superscript or ``[^12]:``) and a space
+(tools/cerca.py ``INIZIO_NOTA``, S07, 04/10/2026)."""
+_NON_NOTA_DOPO = re.compile(
+    r'(?:Bv[RLEFQ]\b|(?:jan|feb|m[aä]r|apr|ma[iy]|jun|jul|aug|sep|o[ck]t|nov|de[cz]|gen|giu|lug|ago|set|dic|ene|abr'
+    r'|janv|f[ée]v|avr|juil|ao[uû]|d[ée]c|juin|mei|maart)[a-zäéû]*\.?(?=\s|$))',
+    re.I,
+)
+_NON_NOTA_PRIMA = re.compile(
+    r'(?:\b(?:Rn|Rdnr|Randnr|Rz|para|paras|pp?|S|Abs|Art|Arts|No|Nos|Nr|n|nn|vol|Bd|ch|fn|note|nota|par|al|cf|vgl|Ziff'
+    r'|Az)\.?|§§?)[ \t]*$',
+    re.I,
+)
+
+
+def e_inizio_nota(testo: str, x: re.Match[str]) -> bool:
+    """Is the mark found by :data:`INIZIO_NOTA` really a footnote start? Not a year (1800-2099), not a number followed
+    by a month or by ``BvR``, not a number governed by the word before it (``Rn.``, ``para.``, ``S.``, ``§``)."""
+    n = x.group(3)
+    if n and len(n) == 4 and 1800 <= int(n) <= 2099:
+        return False
+    if _NON_NOTA_DOPO.match(testo, x.end()):
+        return False
+    return not _NON_NOTA_PRIMA.search(testo, max(0, x.start() - 40), x.start())
+
+
+def confine_di_nota(testo: str, da: int | None, a: int) -> bool:
+    """Is there a footnote start between ``da`` (end of the previous match) and ``a`` (start of this one)?"""
+    if da is None or a <= da:
+        return False
+    for x in INIZIO_NOTA.finditer(testo, da, min(len(testo), a + 1)):
+        if x.end() > a:
+            break
+        if e_inizio_nota(testo, x):
+            return True
+    return False
+
+
+def inizio_della_nota(testo: str, pos: int, indietro: int = 4000) -> int:
+    """Where the footnote (or stretch of text) containing ``pos`` begins: right after the last footnote start before
+    ``pos``, at most ``indietro`` characters back."""
+    da = max(0, pos - indietro)
+    inizio = da
+    for x in INIZIO_NOTA.finditer(testo, da, min(len(testo), pos + 1)):
+        if x.end() > pos:
+            break
+        if e_inizio_nota(testo, x):
+            inizio = x.end()
+    return inizio
+
+
+def nome_prima_nella_nota(testo: str, ms: Sequence[re.Match[str]], cs: int) -> bool:
+    """Is there a NAME match in the same footnote, before ``cs``? (the merge check of S07: a row with only identifiers
+    is the tail of a split citation only if the name it continues is in its own footnote)."""
+    a = inizio_della_nota(testo, cs)
+    return any(a <= m.start() < cs and e_nome(testo, m) for m in ms)
+
+
 def fondi(testo: str, grezze: Iterable[re.Match[str]]) -> list[list[Any]]:
     """ONE CITATION, ONE ROW: ``[first match, forms, start of the last match]`` per citation.
 
     Matches within 200 characters of the start of the group are one citation; since 29/09/2026 an IDENTIFIER within
-    200 characters of the previous match continues it too, while a NAME beyond 200 characters opens a new one.
+    200 characters of the previous match continues it too, while a NAME beyond 200 characters opens a new one. Since
+    04/10/2026 (S07) neither rule crosses a footnote start (:func:`confine_di_nota`).
     """
     fuse: list[list[Any]] = []
     fine: int | None = None
     for m in grezze:
-        if fuse and (
-            m.start() - fuse[-1][0].start() < FUSIONE
-            or (fine is not None and m.start() - fine < FUSIONE and not e_nome(testo, m))
+        if (
+            fuse
+            and not confine_di_nota(testo, fine, m.start())
+            and (
+                m.start() - fuse[-1][0].start() < FUSIONE
+                or (fine is not None and m.start() - fine < FUSIONE and not e_nome(testo, m))
+            )
         ):
             fuse[-1][1].append(m.group(0))
             fuse[-1][2] = m.start()
@@ -216,14 +279,18 @@ def deduplica(
     document is dropped: the same text in another document stays, and carries ``stesso_testo_di`` =
     ``<document_id>__<char_start>`` of the first passage with that text (empty on the first; the platform row id is
     ``<case>__`` plus this). Measured on 03/10/2026: 425 of the 438 copies dropped were in another document
-    (``training/misure/DEDUP-FRA-ATTI.md``).
+    (``training/misure/DEDUP-FRA-ATTI.md``). Since 04/10/2026 (S07) a copy is dropped only in the same document and on
+    the same PAGE: a copy on another page of the same document is a citation of its own (the three DISPOSITIVO orders of
+    the Agapan judgment, pp. 145-146) and stays with ``stesso_testo_di``.
     """
     visti: dict[Any, dict[str, Any]] = {}
     primo: dict[str, dict[str, Any]] = {}
     uniche = []
     for r in righe:
         testo = chiave_testo(r)
-        k: Any = (r.get('document_id') or '', testo) if per_atto else testo
+        # S07 (04/10/2026): with ``per_atto`` a copy is dropped only in the same document AND on the same PAGE (a
+        # doubled text layer); any other copy stays with ``stesso_testo_di`` (tools/cerca_s05_per_atto.deduplica)
+        k: Any = (r.get('document_id') or '', str(r.get('pagina') or ''), testo) if per_atto else testo
         if k in visti:
             visti[k]['copie'] = int(visti[k].get('copie') or 1) + 1
             r['motivo_scarto'] = 'copia di un altro frammento'
@@ -765,7 +832,11 @@ class UnioneRighe:
                     continue
                 coperti |= {gruppo_di[m.start()] for m in cov}
                 nomi = [m for m in cov if e_nome(testo, m)]
-                (rapp if nomi else code)[gruppo_di[(nomi or cov)[0].start()]].append((i, r))
+                # S07 (04/10/2026): a row with only identifiers is the tail of a split citation only if a NAME stands
+                # before it in its own footnote; otherwise it is a citation of its own and is never merged (28 rows
+                # merged by mistake on 29/09, notes 46 into 44, 51 into 49...)
+                coda = not nomi and nome_prima_nella_nota(testo, ms, cs)
+                (code if coda else rapp)[gruppo_di[(nomi or cov)[0].start()]].append((i, r))
             for g in sorted(set(rapp) | set(code)):
                 if len(rapp[g]) > 1:
                     esito.piu_nomi += 1

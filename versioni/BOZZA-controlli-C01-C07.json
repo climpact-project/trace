@@ -1,0 +1,126 @@
+[
+ {
+  "codice": "C01",
+  "tipo": "regola",
+  "nome": "Copies in the same case counted once",
+  "compito": "Controllo automatico (fase 2 della pipeline): una riga da giudicare il cui brano (160 caratteri attorno al punto) sta identico in un altro atto della stessa causa, con una riga dello stesso caso citato a meno di 30 caratteri, e' la stessa citazione: ne resta una. Esce: mai una giudicata; la piu' recente; lo stesso giorno quella nell'atto con meno righe del caso; poi quella nell'atto contenuto nell'altro. L'esclusione segna la riga (proposto_rete esclusa, esclusa_regola C01, motivo), reversibile con tools/rimetti_righe.py.",
+  "giustificazione": "Decisione del PI del 03/10/2026 (documento unico §63.70): si recuperano solo le copie in un'altra causa. Misura: 46 righe S07 su 46 erano copie (S07-PRECISIONE-2026-10-04.md, 0 buone); la ricerca su tutte le righe ne ha trovate 5 S07 in piu' e 18 piu' vecchie (training/misure/S07-PULIZIA-2026-10-04.md).",
+  "data": "2026-10-04",
+  "stato": "bozza, da approvare",
+  "codice_sorgente": [
+   {
+    "file": "tools/controlli_automatici.py",
+    "funzione": "c01"
+   }
+  ],
+  "prova": "tests/test_controlli_automatici.py"
+ },
+ {
+  "codice": "C02",
+  "tipo": "regola",
+  "nome": "Safe duplicates: repeated annex, false note boundary, name in an annex title, same reference with its link",
+  "compito": "Controllo automatico: esce la riga (a) di un allegato ripetuto nello stesso atto (stesso brano con la sua riga e 3.000 caratteri attorno uguali per piu' della meta'); (b) separata dalla riga precedente dello stesso caso, a meno di 200 caratteri, solo da un numero a capo che non e' una nota (Rn. 182 ff.); (c) col nome subito dopo il segno di un allegato (Annex N, Exhibit, Bilaga, 갑 제N호증, 120 caratteri); (d) con l'ancora dentro l'indirizzo web di una nota che ha gia' la riga.",
+  "giustificazione": "Misura di precisione S07: questi tipi erano sbagliati in ogni riga letta (S07-PRECISIONE-2026-10-04.md, tipi 5, 6, 8, 10); sulle 264 righe confermate dal team non ne colpisce nessuna (training/misure/S07-PULIZIA-2026-10-04.md).",
+  "data": "2026-10-04",
+  "stato": "bozza, da approvare",
+  "codice_sorgente": [
+   {
+    "file": "tools/controlli_automatici.py",
+    "funzione": "c02"
+   },
+   {
+    "file": "tools/descrittiva_stretta.py",
+    "funzione": "identita (5, 9)"
+   }
+  ],
+  "prova": "tests/test_controlli_automatici.py"
+ },
+ {
+  "codice": "C03",
+  "tipo": "regola",
+  "nome": "Body text and its footnote, and translations of the same filing, counted once",
+  "compito": "Applied automatically to every row awaiting judgment. Two rows of the same cited judgment in the same filing, at most one page apart, that support the same sentence (normalised text, similarity of at least 95%) are the mention in the body text and the footnote that the same sentence calls: TRACE keeps the body-text row and marks the footnote row as excluded (rule C03, merged into the kept row), copying the footnote text and the paragraphs it cites into the kept row. Two footnotes supporting the same sentence stay separate citations. The same citation in a translation of the same filing (another language, same case, page count within 15%, same relative position within 3%, half of the surrounding numbers in common) is also counted once: TRACE keeps the version in the filing's original language when it is known from the case metadata, otherwise the first. Nothing is deleted: an excluded row keeps all its fields and can be restored.",
+  "giustificazione": "Precision check of the S07 name search (4 October 2026): body text and its footnote, and translations, counted the same citation twice. Dry run on all rows on 4 October 2026: 622 body/footnote pairs and 117 translation pairs merged; 111 pairs in which the team had already judged one of the rows are left out and reviewed one by one.",
+  "data": "2026-10-04",
+  "stato": "approved by the PI on 4 October 2026; applied (rows marked esclusa_regola C03)",
+  "codice_sorgente": [
+   {
+    "file": "tools/unisci_c03.py"
+   },
+   {
+    "file": "tools/controlli_automatici.py",
+    "funzione": "c03"
+   }
+  ],
+  "prova": "tests/test_controlli_automatici.py"
+ },
+ {
+  "codice": "C04",
+  "tipo": "regola",
+  "nome": "Stricter descriptive net",
+  "compito": "Controllo automatico sulle righe trovate senza il nome (rete descrittiva): le nove prove di tools/descrittiva_stretta.py (parole di conferma nella stessa nota, altra pronuncia della stessa corte, rinvii [Fn. N] e a.a.O. risolti, intestazione, titoli e indici, atti del procedimento, corpo e nota, traduzioni, stesso riferimento). Le righe tolte vanno anche nell'elenco da rivedere a campione.",
+  "giustificazione": "Su 45 righe mai viste: tenute buone 27 su 30 (90%, IC 74-97%); fra le tolte 3 buone su 15. Su 435 righe: 96 tolte, circa 19 buone perse (training/misure/S07-PULIZIA-2026-10-04.md).",
+  "data": "2026-10-04",
+  "stato": "bozza; decisa dalla coordinatrice su delega del PI del 04/10",
+  "codice_sorgente": [
+   {
+    "file": "tools/descrittiva_stretta.py"
+   },
+   {
+    "file": "tools/controlli_automatici.py",
+    "funzione": "c04"
+   }
+  ],
+  "prova": "tests/test_controlli_automatici.py"
+ },
+ {
+  "codice": "C05",
+  "tipo": "regola",
+  "nome": "Counting gate: only rows read by DeepSeek as citing the case (B2)",
+  "compito": "In tools/aggiorna_dati_mappa.py (porta) e tools/porta_conteggi.py: una riga non giudicata entra in mappa, chat, cifre e video solo se letta da DeepSeek con almeno 3 letture su 5 'cita il caso' (4 su 5 per la rete descrittiva); le righe lette due volte a settembre con 2 su 2 entrano. Giudicate dal team: sempre.",
+  "giustificazione": "Si' del PI del 04/10 (righe non lette fuori; 'piu' cose possibili, se non sono spazzatura'). A secco: 6.475 citazioni, 499 atti (training/misure/S07-PULIZIA-2026-10-04.md).",
+  "data": "2026-10-04",
+  "stato": "bozza; la porta senza B2 e' in linea dalle 12:02 del 04/10, B2 non ancora applicata",
+  "codice_sorgente": [
+   {
+    "file": "tools/porta_conteggi.py"
+   },
+   {
+    "file": "tools/aggiorna_dati_mappa.py",
+    "funzione": "porta"
+   }
+  ],
+  "prova": "tests/test_porta_conteggi.py"
+ },
+ {
+  "codice": "C06",
+  "tipo": "regola",
+  "nome": "Completeness check at the end of every round",
+  "compito": "tools/controllo_completezza.py dopo i controlli e prima della mappa, a ogni giro: un giro e' finito solo con zero righe da giudicare senza proposte, salvo le righe in attesa delle letture.",
+  "giustificazione": "Memoria trace-controllo-completezza (29/09: 412 righe senza proposte).",
+  "data": "2026-10-04",
+  "stato": "bozza",
+  "codice_sorgente": [
+   {
+    "file": "tools/controllo_completezza.py"
+   }
+  ],
+  "prova": "tests/test_controlli_automatici.py"
+ },
+ {
+  "codice": "C07",
+  "tipo": "regola",
+  "nome": "Surrounding page that is already a citation of its own: also cited separately",
+  "compito": "Two checks on every candidate surrounding page; either is enough: (1) position, the name of another live row of the same cited judgment in the same filing lies on that page; (2) text, the proof found on the page matches the supported sentence, the reading sentence or the quoted text of that other row (normalised, OCR-tolerant, rapidfuzz partial ratio >= 90). The page is marked 'also cited separately as <code>' with a link, in the Corpus panel, in the prompt of later DeepSeek readings and in the map data. If the two rows share no principle, the page is not a continuation of the first: it is a separate, linked citation and counts once in every public figure. If they share a principle, the page stays a candidate and DeepSeek decides. Pages with a citation of another judgment stay candidates and are counted.",
+  "giustificazione": "Case ICJ-0154 (PI, 4 October 2026). Dry run on all rows: 17,871 of 27,263 candidate pages marked; 9,892 with no principle in common; 43 such pages had been ticked as continuation by the team (listed for review). Hand check of 30 marked pages: 28 hold another citation of the same case.",
+  "data": "2026-10-04",
+  "stato": "draft; PI decision of 4 October 2026 (other principle = separate citation)",
+  "codice_sorgente": [
+   {
+    "file": "tools/controlli_automatici.py",
+    "funzione": "pagine_gia_citate"
+   }
+  ],
+  "prova": "tests/test_controlli_automatici.py"
+ }
+]

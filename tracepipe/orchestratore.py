@@ -582,5 +582,67 @@ class CicloVuote(Orchestratore):
         return self.esegui_locale(['controlla', 'finestra'])
 
 
+class CicloPulizie(Orchestratore):
+    """The clean-up steps that follow the name search, as declared steps (5 October 2026).
+
+    In the order of the cycle: C03 (body text and footnote, translations: :class:`tracepipe.unione_c03.UnioneC03`),
+    C07 (a surrounding page that is a citation of its own: :class:`tracepipe.pagine_gia_citate.ApplicaC07`), the
+    completeness check. Every step is a local ``trace`` command; the remote machine is not used. By default every
+    step is a PREVIEW (no ``--scrivi``): the writes to the platform are asked for explicitly with ``scrivi=True``, as
+    everywhere else. S08 (the close pairs) comes BEFORE these steps in the cycle but waits for the readings of L13 on
+    ReCaS: it is run with ``trace coppie ...`` once they are there.
+
+    Args:
+        radice: the project root.
+        da: who runs the steps (``esclusa_da``, ``c03_da``, ``c07_da``).
+        scrivi: write to the platform (adds ``--scrivi`` to the three steps).
+        rivisto: the list of the C03 pairs reread by hand (``--rivisto``).
+        rilette: the C07 pages reread by hand (``--rilette``).
+        spunte_team: the by-hand review of the pages ticked by the team (``--spunte-team``).
+        Other arguments: see :class:`Orchestratore`.
+    """
+
+    def __init__(
+        self,
+        radice: Path | str,
+        da: str,
+        scrivi: bool = False,
+        rivisto: str = '',
+        rilette: str = '',
+        spunte_team: str = '',
+        trasporto: Trasporto | None = None,
+        **kw: Any,
+    ) -> None:
+        self.da = da
+        self.scrivi = scrivi
+        self.rivisto = rivisto
+        self.rilette = rilette
+        self.spunte_team = spunte_team
+        passi = [
+            Passo('c03', CicloPulizie.c03),
+            Passo('c07', CicloPulizie.c07),
+            Passo('controllo_completezza', CicloPulizie.controllo_completezza, tentativi=3),
+        ]
+        super().__init__(
+            'ciclo_pulizie', radice, trasporto or TrasportoFinto(Path(radice) / 'giornale' / 'nessuno'), passi, **kw
+        )
+
+    def _scrivi(self) -> list[str]:
+        return ['--scrivi'] if self.scrivi else []
+
+    def c03(self) -> None:
+        argv = ['c03', '--da', self.da]
+        self.locale([*argv, *(['--rivisto', self.rivisto] if self.rivisto else []), *self._scrivi()])
+
+    def c07(self) -> None:
+        argv = ['c07', '--da', self.da]
+        argv += ['--rilette', self.rilette] if self.rilette else []
+        argv += ['--spunte-team', self.spunte_team] if self.spunte_team else []
+        self.locale([*argv, *self._scrivi()])
+
+    def controllo_completezza(self) -> None:
+        self.locale(['controlla', 'completezza', *self._scrivi()])
+
+
 def _per_caso(f: Callable[[Any, str], Any], caso: str) -> Callable[[Orchestratore], Any]:
     return lambda o: f(o, caso)

@@ -905,11 +905,343 @@
   ],
   "note": "Misura: training/misure/GIRI-E-DOMANDA.md (02/10/2026). La soglia 0,80 per scegliere 5 letture e' una convenzione dichiarata. Il confronto con le persone vale solo per Urgenda ed e' influenzato dalla proposta che le persone avevano davanti. L08 (un principio alla volta) non adottata.",
   "nome_tecnico": "Composizione delle proposte a maggioranza di cinque letture",
-  "in_uso": "in uso dal ciclo delle cinque letture",
+  "in_uso": "in uso per tipo e pagine attorno",
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R05",
   "cambia": "cinque letture per riga e voto di maggioranza; principi dalle letture L05 invece che da L04; voti e righe incerte scritti; prova mancante segnata, non tolta"
+ },
+ {
+  "codice": "R12",
+  "tipo": "regola",
+  "nome": "Proposals by five readings: a principle needs at least 2 of 5 readings",
+  "compito": "Come R11 (tools/maggioranza.py) in tutto, tranne una regola: un principio e' proposto se lo vota almeno 2 letture valide su 5 (con una sola lettura valida, quella), invece della maggioranza (3 su 5). Tipo, chi parla e pagine attorno restano come in R11 (le pagine a maggioranza). Un principio preso con 2 voti rende la riga incerta (proposto_incerta), quindi chi valida lo vede. Nessun principio tolto rispetto a R11, solo aggiunti.",
+  "data": "2026-10-04",
+  "stato": "in uso (righe con provenienza.composizione R12)",
+  "codice_sorgente": [
+   {
+    "file": "tools/maggioranza.py",
+    "copia": "versioni/R12/maggioranza.py",
+    "sha256": "28363ca061625a003a0e85e77c50f56587679240b67cd750ed6d090ed528118f"
+   },
+   {
+    "file": "tools/carica_ripresa.py",
+    "copia": "versioni/R12/carica_ripresa.py",
+    "sha256": "829e077f205feeadfed291121cfb9ac31bf3b2760ac10dc3a4e16113121a52f7"
+   },
+   {
+    "file": "tools/r12_varianti.py",
+    "copia": "versioni/R12/r12_varianti.py",
+    "sha256": "92777d566776e86ce1b246475ded80e51a226410ea70dbeb905151a1f8d19a74"
+   }
+  ],
+  "impostazioni": {
+   "soglia_principi": "2 letture valide su 5",
+   "tipo_e_pagine": "come R11"
+  },
+  "misure": [
+   {
+    "nome": "principi, F1 contro il team su 116 righe giudicate con la proposta visibile (tools/r12_varianti.py)",
+    "valore": "R12 0,66; R11 0,63; proposta precedente R05 0,76 (ancorata: il team la vedeva). Differenza R12 meno R11 +3 punti [0; +5]"
+   },
+   {
+    "nome": "righe cambiate al caricamento del 04/10/2026",
+    "valore": "498 righe, 569 principi aggiunti, nessuno tolto"
+   },
+   {
+    "nome": "righe giudicate alla cieca",
+    "valore": "solo 10: la scelta fra R05 e le cinque letture aspetta il campione cieco in doppio"
+   }
+  ],
+  "nome_tecnico": "Composizione delle proposte: principi con almeno 2 letture su 5",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R11",
+  "cambia": "principi con almeno 2 letture valide su 5 invece della maggioranza; tipo e pagine attorno invariati"
+ },
+ {
+  "codice": "R13",
+  "tipo": "regola",
+  "nome": "Proposals by five readings: an empty principle list counts as «none»",
+  "compito": "Come R12 in tutto, tranne una regola: una lettura L05 che risponde con l'elenco dei principi vuoto («principi»: [] o una stringa vuota) vota «nessuno», invece di non votare. E' la regola della misura delle cinque letture (training/misure/GIRI-E-DOMANDA.md, tools/stabilita_deepseek.principi: l'elenco vuoto e' l'insieme vuoto, una lettura fallita no). Le letture fallite (vuote, illeggibili, senza il campo) continuano a non votare. I freni (tools/freni.py) non cambiano.",
+  "data": "2026-10-04",
+  "stato": "in uso (righe con provenienza.composizione R13: quelle con almeno una lettura con l'elenco vuoto)",
+  "codice_sorgente": [
+   {
+    "file": "tools/maggioranza.py",
+    "copia": "versioni/R13/maggioranza.py",
+    "sha256": "40e1caec8c186f874f1fc0173419673914423f8fa6f23f1e055961557575ef05"
+   },
+   {
+    "file": "tools/carica_ripresa.py",
+    "copia": "versioni/R13/carica_ripresa.py",
+    "sha256": "c34946eb79481ed74f675f78b6da56d9b90eaf8b9750d1c7bfb143cf840d18cf"
+   },
+   {
+    "file": "tests/test_r13_elenco_vuoto.py",
+    "copia": "versioni/R13/test_r13_elenco_vuoto.py",
+    "sha256": "5eac0949c6a0b89e4fb654f2da281fc970b092006bbe2ff9145ce31d7c2e5fc0"
+   }
+  ],
+  "impostazioni": {
+   "soglia_principi": "2 letture valide su 5, come R12",
+   "elenco_vuoto": "vota «nessuno»",
+   "righe": "solo quelle con almeno una lettura valida con l'elenco vuoto (--solo-elenco-vuoto): sulle altre R13 e R12 coincidono"
+  },
+  "misure": [
+   {
+    "nome": "perche' (letture salvate al 04/10/2026, sei casi)",
+    "valore": "8.894 letture valide su 32.474 con l'elenco vuoto; nel 98% (8.725) il motivo dice che la citazione non prende nessun principio del caso. 704 righe non giudicate avevano tutte e cinque le letture cosi' e nessuna lettura valida per R12. Nessuna lettura era stata scartata dai freni."
+   },
+   {
+    "nome": "principi, F1 contro il team su 136 righe giudicate (tools/r12_varianti.py con la regola R13)",
+    "valore": "R13 0,65 contro R12 0,64: +1 punto [-1; +3]; precisione 0,75 contro 0,72, richiamo uguale (0,57). Alla cieca (12 righe) 0,56 contro 0,59 [-16; 0]"
+   },
+   {
+    "nome": "righe riscritte al caricamento del 04/10/2026",
+    "valore": "2.622: 704 senza lettura valida con R12 (ora 691 «nessuno», 190 con i principi cambiati) e 1.918 ricomposte (218 con i principi cambiati, 214 da un principio a «nessuno»: era preso con 1 voto su 1); nessun principio aggiunto; pagine attorno cambiate in 166 righe"
+   }
+  ],
+  "note": "I freni non c'entravano: la diagnosi su 60 righe del 04/10/2026 ha trovato letture con l'elenco vuoto, non letture respinte. tracepipe/ (la copia pubblica) non ha ancora ne' R12 ne' R13.",
+  "nome_tecnico": "Composizione delle proposte: l'elenco vuoto dei principi vale «nessuno»",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R12",
+  "cambia": "una lettura con l'elenco dei principi vuoto vota «nessuno» invece di non votare, come nella misura delle cinque letture"
+ },
+ {
+  "codice": "R14",
+  "tipo": "regola",
+  "nome": "Proposals by five readings: proofs searched in the text of the filing, without system markers",
+  "compito": "Come R13 in tutto, tranne il freno sulle prove (tools/freni.py, prova_trovata con ricostruisci): la frase sostenuta e le prove delle pagine attorno si cercano, oltre che nella pagina com'e', nel testo dell'atto senza i segni messi dal sistema ([[INIZIO/FINE DEL BRANO SEGNALATO]], ⟦ ⟧, spesso dentro una parola) e con le parole spezzate a capo da un trattino ricucite. Il confronto resta parola per parola sui primi 60 caratteri; il controllo delle prove copiate dal prompt non cambia. Non tocca i principi: cambia l'esito della frase, la prova mancante e le pagine attorno spuntate.",
+  "data": "2026-10-04",
+  "stato": "in uso (righe con provenienza.composizione R14: quelle in cui il freno nuovo cambia la proposta)",
+  "codice_sorgente": [
+   {
+    "file": "tools/freni.py",
+    "copia": "versioni/R14/freni.py",
+    "sha256": "a95833482f4bf6a048e113f091225996c1aa73157c0674d41ff5e51cc1ae6631"
+   },
+   {
+    "file": "tools/carica_ripresa.py",
+    "copia": "versioni/R14/carica_ripresa.py",
+    "sha256": "41ea04475c9c7c041ebdb52641a13dfb581940902fc8304069253e5bffd6ef85"
+   },
+   {
+    "file": "tools/maggioranza.py",
+    "copia": "versioni/R14/maggioranza.py",
+    "sha256": "40e1caec8c186f874f1fc0173419673914423f8fa6f23f1e055961557575ef05"
+   },
+   {
+    "file": "tools/freni_prova.py",
+    "copia": "versioni/R14/freni_prova.py",
+    "sha256": "70cb9926a62c5871c20e0348e680b853f30be0d3cbee93ca2c1494d16b2ada03"
+   },
+   {
+    "file": "tests/test_r14_freni_testo_atto.py",
+    "copia": "versioni/R14/test_r14_freni_testo_atto.py",
+    "sha256": "041ef042a516a31660f31975ece4902d147165a41c904cc9b6f7d70148f83a88"
+   }
+  ],
+  "impostazioni": {
+   "freno": "prova cercata in: pagina com'e', pagina senza i segni, pagina senza i segni con le parole ricucite",
+   "righe": "solo quelle in cui cambia almeno un campo della proposta (--solo-cambiate)"
+  },
+  "misure": [
+   {
+    "nome": "frasi sostenute non trovate per colpa del sistema (letture salvate al 04/10/2026, sei casi)",
+    "valore": "su 4.696 frasi non trovate: 2.211 per i segni del brano (6 delle 9 «inventate» lo erano solo per questo, es. KLS-0127), 684 per le parole spezzate a capo; restano non trovate 1.881"
+   },
+   {
+    "nome": "prove delle pagine attorno non trovate per le parole spezzate a capo",
+    "valore": "3.788 su 28.160"
+   },
+   {
+    "nome": "prova che deve fallire (tools/freni_prova.py, Urgenda, pagine rotte)",
+    "valore": "R05-R13: trovate 1.751, non trovate 157, inventate 13; R14: trovate 1.810, non trovate 98, inventate 13 (le stesse), nessuna prova persa"
+   },
+   {
+    "nome": "contro il team, 136 righe giudicate",
+    "valore": "principi e pagine attorno identici a R13 (nessuna riga giudicata cambia)"
+   },
+   {
+    "nome": "righe riscritte al caricamento del 04/10/2026",
+    "valore": "1.111: frase da non trovata a trovata in 546, prova mancante tolta in 131, 231 pagine attorno spuntate in piu' in 188 righe (185 di Neubauer, tedesco), nessun principio cambiato, nessuna pagina tolta"
+   }
+  ],
+  "note": "Restano non trovate per ragioni non meccaniche (riassunti, frasi su due pagine, numeri di nota attaccati, accenti composti in modo diverso): non toccate, per non allentare il freno. La copia pubblica tracepipe/ non ha ancora questo freno.",
+  "nome_tecnico": "Composizione delle proposte: la prova cercata nel testo dell'atto",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R13",
+  "cambia": "freno sulle prove: anche nel testo dell'atto senza i segni del sistema e con le parole spezzate a capo ricucite"
+ },
+ {
+  "codice": "R15",
+  "tipo": "regola",
+  "nome": "Proposals by five readings: supporting sentence extracted from the text (footnote marker to body sentence)",
+  "compito": "Come R14 in tutto, tranne la frase sostenuta (proposto_frase_sostenuta), che non e' piu' quella copiata da DeepSeek nella lettura L05 ma quella estratta dal testo dell'atto da tools/frase_sostenuta.py, con la definizione delle istruzioni L05 (DOMANDA 3). Se la citazione e' in una nota: la nota si riconosce dal PDF (corpo minore in fondo alla pagina, numero in apice o in testa), il richiamo col suo numero si cerca nel corpo sulla pagina o fino a 2 pagine prima, la frase e' quella che contiene il richiamo. Se e' nel corpo: la frase che contiene il nome (char_start). Frasi ricucite oltre il salto di pagina e la parola spezzata, mai tagliate dopo abbreviazioni (para., Rn., v., art., No., mesi, sigle), numeri di paragrafo tolti, nessun taglio a 60 parole. Quando l'estrazione e' incerta (ambiguo: nessun richiamo, richiamo doppio, nota senza numero, testo dell'OCR mescolato, indice, frase oltre 200 o sotto 4 parole) resta la frase di DeepSeek con il suo esito, come prima. I principi li decide DeepSeek come in R14: non cambiano, ne' la prova mancante.",
+  "data": "2026-10-04",
+  "stato": "in uso (righe non giudicate con provenienza.composizione R15, o provenienza.frase R15)",
+  "codice_sorgente": [
+   {
+    "file": "tools/frase_sostenuta.py",
+    "copia": "versioni/R15/frase_sostenuta.py",
+    "sha256": "f0e27a7cb9bb3f76118af9b33aa8adf0d88ea7ab7268be19273daf51a13f9b13"
+   },
+   {
+    "file": "tools/carica_ripresa.py",
+    "copia": "versioni/R15/carica_ripresa.py",
+    "sha256": "6876fc6462549694d137530537e332ebbe38edd4606f7284fb3621d90f54fa5d"
+   },
+   {
+    "file": "tools/freni.py",
+    "copia": "versioni/R15/freni.py",
+    "sha256": "0268ff53ecee8c7dd6c6541edbb7ff2645cb699218026768d6bdf0d41c0d1f89"
+   },
+   {
+    "file": "tests/test_r15_frase_sostenuta.py",
+    "copia": "versioni/R15/test_r15_frase_sostenuta.py",
+    "sha256": "f05f249f4328390decc7419e146ea29ec290216cdf90666216e933334d816cab"
+   },
+   {
+    "file": "training/misure/R15-campione-60.csv",
+    "copia": "versioni/R15/R15-campione-60.csv",
+    "sha256": "83f1f3e3b430fea74251888c5275719abea9a8cdc41e2051217caf16dcd7f224"
+   }
+  ],
+  "impostazioni": {
+   "pagine_indietro": 2,
+   "parole": "da 4 a 200 (fuori: ambiguo)",
+   "freno": "la frase estratta deve essere ritrovata (freni.verifica, R14) nel corpo delle sue pagine senza i numeri dei richiami",
+   "ambiguo": "resta la frase della lettura L05 col suo esito; la frase della lettura e' sempre conservata in proposto_frase_lettura"
+  },
+  "misure": [
+   {
+    "nome": "precisione a mano, campione cieco di 60 righe (6 casi x nota/corpo, 9 OCR), PDF e Markdown letti",
+    "valore": "54 su 60 (90%): nota->corpo 29/30, corpo 25/30, righe OCR 7/9. Dopo tre correzioni generali (etichette «i.»/«k.», richiamo dopo «[.]»), 57/60 sullo stesso campione (non piu' cieco). Lo sviluppo su altri 180 righe in tre campioni"
+   },
+   {
+    "nome": "quota risolta (righe lessicali dei sei casi al 04/10)",
+    "valore": "6.310 su 6.644 (95,0%); 334 ambigue"
+   },
+   {
+    "nome": "contro la finestra validata dal team (validato_citazione_testuale, 527 righe giudicate)",
+    "valore": "frase del corpo dentro la finestra in 308 su 310; per le note la frase e' altrove (177 su 187), come atteso"
+   },
+   {
+    "nome": "contro la frase di DeepSeek trovata nella pagina",
+    "valore": "uguale nel 78% delle frasi del corpo e nel 62% delle note; sul campione, nelle 12 diverse DeepSeek aveva preso una frase vicina o il testo della nota"
+   },
+   {
+    "nome": "visore (pdf.js ed evidenzia.js del sito, 200 righe)",
+    "valore": "frase accesa 185 su 200 (intera 81, lettere 63, in parte 41); con la frase di DeepSeek 178"
+   },
+   {
+    "nome": "scrittura del 04/10/2026",
+    "valore": "7.473 righe non giudicate: 6.180 proposta R14 con la frase R15; 1.293 solo i campi della frase (1.274 senza lettura valida, fra cui 1.077 righe S07 appena aggiunte, e 19 col resto diverso da R14). Frasi: 4.099 nota->corpo, 3.049 corpo, 325 ambigue (283 resta la frase di DeepSeek trovata, 27 non trovata, 15 senza frase); 5.058 frasi cambiate"
+   }
+  ],
+  "note": "Limiti: testo dell'OCR con note mescolate al corpo, tabelle e indici, frasi senza punto finale nel PDF. Il visore accende la frase solo sulla pagina della citazione: se il richiamo sta nella pagina prima, si accende il nome.",
+  "nome_tecnico": "Composizione delle proposte: la frase sostenuta estratta dal testo (richiamo della nota -> frase del corpo)",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R14",
+  "cambia": "frase sostenuta estratta dal testo (richiamo della nota -> frase del corpo, o frase del nome) invece di quella copiata da DeepSeek"
+ },
+ {
+  "codice": "R16",
+  "tipo": "regola",
+  "nome": "Proposals by five readings: the whole proof must be found in the page, and is repaired from the text of the filing",
+  "compito": "Come R14 in tutto, tranne il freno sulle prove: una frase sostenuta o una prova delle pagine attorno e' «trovata» solo se la trova R14 (primi 60 caratteri) E se sta nella pagina per intero (freni.prova_intera): ogni tratto fra puntini di omissione per conto suo, senza spazi, senza i numeri di nota, senza le cifre incollate alle parole, senza i segni del contesto, con gli accenti ricomposti, anche sulla pagina unita alla pagina dopo e senza le righe di nota; altrimenti almeno il 90% della prova in tratti di 20 caratteri; una lettera diversa per parola solo nei documenti rifatti con l'OCR (D02). Non trova mai niente che R14 non trovi. La prova di una pagina attorno che R14 trova e il controllo intero no si ripara dal testo dell'atto (tools/ripara_prova.py): la frase vera da cui la prova del modello e' partita, tagliata con le regole delle frasi di R15; la prova del modello resta accanto (prova_modello, prova_riparata). La riparazione e' «incerta», e la pagina non si spunta, se la frase continua oltre la pagina senza che il seguito si ritrovi, se il modello aveva rimontato le frasi in un altro ordine, o se la frase copre meno del 60% della prova. Senza un tratto vero di 20 caratteri la prova resta «non trovata». La frase sostenuta resta quella che la riga ha gia'.",
+  "data": "2026-10-04",
+  "stato": "in uso dal 04/10/2026",
+  "codice_sorgente": [
+   {
+    "file": "tools/freni.py",
+    "copia": "versioni/R16/freni.py",
+    "sha256": "0268ff53ecee8c7dd6c6541edbb7ff2645cb699218026768d6bdf0d41c0d1f89"
+   },
+   {
+    "file": "tools/carica_ripresa.py",
+    "copia": "versioni/R16/carica_ripresa.py",
+    "sha256": "84439d03cb3be3a8a0e9ceb8debd09688be9e092282eeb95e7785657aa226047"
+   },
+   {
+    "file": "tools/maggioranza.py",
+    "copia": "versioni/R16/maggioranza.py",
+    "sha256": "40e1caec8c186f874f1fc0173419673914423f8fa6f23f1e055961557575ef05"
+   },
+   {
+    "file": "tools/freni_prova.py",
+    "copia": "versioni/R16/freni_prova.py",
+    "sha256": "18f23589f07bdd52eb943fb38f91ce2b0c048aa543a4e65578dd03a259eef34a"
+   },
+   {
+    "file": "tests/test_r16_prova_intera.py",
+    "copia": "versioni/R16/test_r16_prova_intera.py",
+    "sha256": "499e6d571b7d6e22f5933a8d6001b8bb80ae5d5abfce818e508fe5235d7d9a8e"
+   },
+   {
+    "file": "training/misure/R16-misura.py",
+    "copia": "versioni/R16/R16-misura.py",
+    "sha256": "d4dc2b07cc8096e5c1a043f4f667d8c2fac7df2b8905769dca450d77ee69ea75"
+   },
+   {
+    "file": "tools/ripara_prova.py",
+    "copia": "versioni/R16/ripara_prova.py",
+    "sha256": "85e35b42722607b4686d48c1fc66fc3058936db6e9612605f16266129ade4d6e"
+   },
+   {
+    "file": "tools/r16_unisci.py",
+    "copia": "versioni/R16/r16_unisci.py",
+    "sha256": "900da1a15560fa732dcd11d3f10db56cce0bf8ce606b9cd523b49e1db2622e07"
+   },
+   {
+    "file": "training/misure/R16-riparazione.py",
+    "copia": "versioni/R16/R16-riparazione.py",
+    "sha256": "9ca12b365f2105bb802f6522cf2d4b6189a966c0ceca24bbe06ee2d6ea7cc10d"
+   }
+  ],
+  "impostazioni": {
+   "copertura": "90% della prova in tratti di almeno 20 caratteri",
+   "pagina_dopo": "si', anche senza le righe di nota",
+   "refusi_ocr": "una lettera per parola, solo documenti D02",
+   "frase_sostenuta": "fino a 2.000 caratteri (prima 600)"
+  },
+  "misure": [
+   {
+    "nome": "prove e frasi trovate da R14 che R16 respinge (letture L05 del 03/10, sei casi)",
+    "valore": "1.211 su 119.032 (1,0%): 1.007 prove delle pagine attorno su 88.537, 204 frasi sostenute su 30.495"
+   },
+   {
+    "nome": "20 respinte lette a mano",
+    "valore": "17 non copiate alla lettera (11 parole tolte senza puntini, 3 frasi rimontate, 2 riferimenti o commenti aggiunti dal modello, 1 parola cambiata), 2 rifiutate a torto (intestazione della pagina dopo), 1 non decidibile"
+   },
+   {
+    "nome": "prova che deve fallire (tools/freni_prova.py)",
+    "valore": "le 13 prove copiate dal prompt restano inventate; 1.289 prove vere con la fine inventata: tutte respinte (R14 le passava tutte)"
+   },
+   {
+    "nome": "riparazione dal testo dell'atto, prova a secco (prove delle pagine attorno respinte, letture L05 del 03/10)",
+    "valore": "1.000 riparate su 1.007, 7 restano non trovate; 15 lette a mano: 13 giuste, 2 sbagliate (salto di pagina, frasi rimontate), ora segnate incerte"
+   },
+   {
+    "nome": "righe riscritte il 04/10/2026 (non giudicate, letture del ciclo delle cinque letture e di S06)",
+    "valore": "483 righe; 271 prove riparate, 10 incerte, 9 prove non piu' trovate; principi cambiati in 26 righe di S06 (ricomposte con le regole di R12-R13)"
+   }
+  ],
+  "note": "Limite dichiarato: un solo taglio muto fra due pezzi lunghi piu' di 20 caratteri passa ancora. Varianti piu' severe scartate perche' respingevano a torto 8-11 prove su 20: training/misure/R16-PROVA-INTERA.md.",
+  "nome_tecnico": "Composizione delle proposte: la prova cercata per intero e riparata dal testo dell'atto",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R14",
+  "cambia": "freno sulle prove: la prova deve stare nella pagina per intero, non solo nei primi 60 caratteri; frase sostenuta fino a 2.000 caratteri"
  },
  {
   "codice": "R05",
@@ -1736,6 +2068,83 @@
   "cambia": "stesso modello; la domanda e' se una pagina SENZA il nome riprende il ragionamento del caso o lo prende da un'altra fonte"
  },
  {
+  "codice": "L11",
+  "tipo": "lettore",
+  "nome": "Uptake reading with whole surrounding pages (L05 without the 3,500-character cut)",
+  "compito": "Come L05, con le stesse istruzioni carattere per carattere e le stesse pagine attorno (R10), ma ogni pagina attorno arriva INTERA fino al tetto dell'indice delle pagine (12.000 caratteri) invece che tagliata a 3.500. Le note stanno in fondo alla pagina e la domanda dice «GUARDA LE NOTE».",
+  "data": "2026-10-04",
+  "stato": "in uso dal 04/10/2026 per le righe non giudicate che avevano almeno una pagina attorno tagliata",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licenza": "MIT"
+  },
+  "istruzioni": [
+   {
+    "file": "versioni/L11/istruzioni.txt",
+    "sha256": "189349de11711b11e4e0083ada79722433ba13edd23e405882a7f3bdf20dc665"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/leggi_ripresa.py",
+    "copia": "versioni/L11/leggi_ripresa.py",
+    "sha256": "12441826c3b457d2dd560a2ef083d7238c698cacc16fac3d786c43c31f127f7e"
+   },
+   {
+    "file": "tools/rilettura_l11.py",
+    "copia": "versioni/L11/rilettura_l11.py",
+    "sha256": "70f198d1d69fddca37f37732660b108577feb8af0cc7dc83500d2f116cf84a8d"
+   },
+   {
+    "file": "tools/cinque_letture.py",
+    "copia": "versioni/L11/cinque_letture.py",
+    "sha256": "4919ad8b9043b0b130cdb8744c2a3919c436080fc419eb9ece084282151840a9"
+   }
+  ],
+  "software": {
+   "torch": "2.14.0",
+   "transformers": "5.17.0",
+   "peft": "0.21.0",
+   "huggingface_hub": "1.33.0",
+   "openai (client)": "3.19.2",
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
+  },
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "impostazioni": {
+   "letture_per_riga": 5,
+   "pagine_attorno": "R10, le stesse lette da L05 nel ciclo delle cinque letture",
+   "tetto_pagina": "12.000 caratteri (indice delle pagine)",
+   "contesto": "la domanda sta in 49.024 token (65.536 di vLLM meno 16.000 per la risposta col tetto alto e 512 di margine), stimati dai caratteri col rapporto peggiore misurato per caso sulle letture L05 (2,55-3,13 caratteri per token); se non ci sta, le pagine piu' lunghe si accorciano tenendo testa e coda (le note), mai sotto 3.500",
+   "codebook": "non entra nella domanda della ripresa (la versione del codebook non cambia L11)"
+  },
+  "misure": [
+   {
+    "nome": "il buco (controllo dei tagli del 04/10/2026)",
+    "valore": "5.371 pagine attorno tagliate a 3.500 caratteri su 1.837 righe; su un campione di 20 pagine: 35% perde testo rilevante per il principio, ~10% la nota che attribuisce la frase"
+   },
+   {
+    "nome": "righe rilette",
+    "valore": "1.794 (le 1.837 meno 43 giudicate nel frattempo), 5 letture ciascuna"
+   },
+   {
+    "nome": "domanda identica a L05 tranne le pagine",
+    "valore": "rifatta sul Mac e confrontata con l'impronta SHA-256 di 4.500 letture L05: tutte uguali"
+   },
+   {
+    "nome": "pagine accorciate per il contesto",
+    "valore": "5 righe su 1.794 (4 Urgenda, 1 Future Generations)"
+   }
+  ],
+  "note": "Le letture L05 delle stesse righe restano nei loro file; la proposta delle righe rilette viene da L11 (provenienza.principi e provenienza.seguito dicono L11).",
+  "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa con le pagine attorno intere",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
+  "rispetto_a": "L05",
+  "cambia": "stesse istruzioni e stesse pagine attorno; ogni pagina intera fino a 12.000 caratteri invece del taglio a 3.500"
+ },
+ {
   "codice": "D03",
   "tipo": "corpus",
   "nome": "Documents: D02 with Markdown for 277 filings of the 19/09/2026 update",
@@ -1768,6 +2177,93 @@
   "famiglia": "dati",
   "rispetto_a": "D02",
   "cambia": "il Markdown di 277 atti dell'aggiornamento del 19/09/2026 che avevano solo il testo"
+ },
+ {
+  "codice": "D05",
+  "tipo": "corpus",
+  "nome": "Documents: corpus update of 04/10/2026 (146 new filings, per-page OCR, 111 stamp-only scans re-read)",
+  "compito": "Come D04 (D03 piu' 27 atti del 19/09 riscaricati e 20 non PDF), confrontato col dump del Climate Litigation Database del 04/10/2026 riga per riga contro i Markdown sul disco (document_id e indirizzo, non il manifest). Scaricati con fetch_sabin.py corretto (gia' fatto = coppia atto+indirizzo con http 200; mai una riga http 0; 403/404 ritentati una volta; stessi byte di un file gia' presente = nessuna copia) 631 indirizzi a una richiesta al secondo: 147 file nuovi, 468 identici a file gia' nel corpus (rinumerazioni -N alla fonte, tutti con un Markdown gemello), 16 falliti. Testo con l'OCR deciso PER PAGINA (meno di 200 caratteri, la soglia dell'indice, o illeggibile per freni.leggibile), ocrmypdf/tesseract come D02, solo le pagine scelte; si sostituisce solo se l'OCR e' leggibile e piu' lungo (regola di D02 per le illeggibili). 146 Markdown nuovi in markdown/ (5.973 pagine, 461 rifatte con l'OCR) e una versione nuova di un atto gia' presente a parte; le 111 scansioni col solo timbro rifatte (3.474 pagine provate, 2.974 sostituite) in training/d05/markdown_ocr/, accanto al Markdown vivo che non si tocca. Indice delle pagine D05: D04 senza le 1.298 righe vecchie dei 111 piu' 10.129 pagine nuove o rifatte, 586.977 righe.",
+  "data": "2026-10-04",
+  "stato": "preparato: le righe si caricano dopo la ricerca S07 sui documenti di training/d05/PRONTO.json",
+  "fonte": "Sabin Center for Climate Change Law con Climate Policy Radar, dump del 04/10/2026",
+  "versione": "CCC-whole_data_dump-2026-10-04",
+  "pesi": [
+   {
+    "file": "dumps/CCC-whole_data_dump-2026-10-04.zip",
+    "sha256": "5312b0050fd3cf1d0674ccc641f7162b922c100107ce6e2cef957f4ff662edbf"
+   },
+   {
+    "file": "training/d05/confronto.json",
+    "sha256": "754819ed596ea42045f5a7d1c3533446c8cb48280799caef675c19788e2830c5"
+   },
+   {
+    "file": "training/d05/markdown_d05_registro.json",
+    "sha256": "00dd078109196a1fdf182bf93df87a3c0c89d903c6130894ce72710dd419674d"
+   },
+   {
+    "file": "training/d05/metadata_d05.csv",
+    "sha256": "94ef329cc3e7c5b450d5a8933a80faeed7fc79cfe223c3f1ef4dacbacbeb2497"
+   },
+   {
+    "file": "training/d05/PRONTO.json",
+    "sha256": "4fe9de322a1216f0620d3a000d29d4984248ed2d97fa17a3a4066b121f89355f"
+   },
+   {
+    "file": "index/pagine/pagine.d05.jsonl.gz",
+    "sha256": "2fa2e96129a1b9736bc37a46ef13d9010dc5ff59a61d7f9e13e67deaa732e806"
+   },
+   {
+    "file": "index/pagine/pagine.d05.aggiunte.jsonl.gz",
+    "sha256": "7e609a3c668664817a2be4a000bac2373cf30ae1ebc64112425b1bd9648b965f"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "fetch_sabin.py",
+    "copia": "versioni/D05/fetch_sabin.py",
+    "sha256": "3741fa32bcb9b5dcd7b3a7c2efec654f2085c1276329738db2b54ee2a9705187"
+   },
+   {
+    "file": "tools/d05_confronta.py",
+    "copia": "versioni/D05/d05_confronta.py",
+    "sha256": "82a32d8c34f43b7c7ca9406d710f39e67eff621180fc9fb59789550502dcbb65"
+   },
+   {
+    "file": "tools/d05_testo.py",
+    "copia": "versioni/D05/d05_testo.py",
+    "sha256": "4b0f3c3f0badb624f193ef8493c3cafa6b9839e5d8acdcfc3ae1ea434865c49f"
+   },
+   {
+    "file": "tools/d05_pronto.py",
+    "copia": "versioni/D05/d05_pronto.py",
+    "sha256": "0673fe0810c6e902b2bf9ddaa8bcb272e079935e69da85b3af00168558f48b3d"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "dump del 04/10 contro i Markdown",
+    "valore": "17.648 righe: 16.564 a posto, 509 con l'indirizzo cambiato, 366 con un file ma senza Markdown (365 sono il segnaposto Litigation-404.pdf del CDN, atti senza file), 140 mai scaricati, 33 falliti a luglio, 21 con un indirizzo ereditato, 15 senza indirizzo"
+   },
+   {
+    "nome": "scarico",
+    "valore": "631 indirizzi: 147 file nuovi, 468 stessi byte di un file gia' presente, 16 falliti (10 HTTP 403, 6 HTTP 404)"
+   },
+   {
+    "nome": "atti nuovi dopo la decisione (US / fuori dagli US)",
+    "valore": "Urgenda 51/93, Neubauer 51/91, Future Generations 51/93, KlimaSeniorinnen 51/81, parere CIG 50/67, OC-32/25 51/69; 14 memorie del parere africano"
+   },
+   {
+    "nome": "pagine rifatte con l'OCR",
+    "valore": "2.974 nelle 111 scansioni, 461 negli atti nuovi"
+   }
+  ],
+  "note": "Falliti: 10 HTTP 403 (i file del caso con il nome lunghissimo «JAL-FRA-62023-...-JAL-OTH-892023», rifiutati dal sito), 6 HTTP 404 (file tolti alla fonte). Il PDF di Sebastiao resta troncato alla fonte. metadata.csv non e' toccato: le righe del dump dei nuovi sono in training/d05/metadata_d05.csv. I Markdown dei 111 vanno scambiati col vivo solo dopo S07.",
+  "nome_tecnico": "aggiornamento del corpus del 04/10/2026",
+  "in_uso": "preparato",
+  "alias": "",
+  "famiglia": "dati",
+  "rispetto_a": "D03",
+  "cambia": "con i 47 atti di D04; dump del 04/10/2026 confrontato coi Markdown: 146 atti nuovi e una versione nuova, OCR per pagina, 111 scansioni col solo timbro rifatte (2.974 pagine)"
  },
  {
   "codice": "S05",
@@ -1905,6 +2401,666 @@
     "righe_cambiate": 2
    }
   ]
+ },
+ {
+  "codice": "S06",
+  "tipo": "regola",
+  "nome": "S05 copies in another case, recovered",
+  "compito": "Le citazioni che la ricerca per nome S05 aveva buttato come «copia di un altro frammento» (primi 400 caratteri uguali, spazi uniti e minuscole, in tutto il corpus) quando il frammento tenuto sta in un atto di un'altra causa (case_id diverso). Una riga per atto e testo (la seconda volta nello stesso atto resta una copia, come nella deduplica per atto di cerca_s05_per_atto.py). Si escludono le copie il cui atto e' lo stesso documento dell'atto della riga tenuta o di una copia gia' presa: stessa impronta sha256_pdf nell'intestazione del Markdown, o stessa impronta del testo intero (spazi uniti). Ogni riga porta stesso_testo_di (<document_id>__<char_start> della riga tenuta) e stesso_testo_di_causa. Le righe ricevono le stesse letture delle altre: cinque letture del tipo e cinque letture L05 sulle pagine attorno R10, composte con R11, freni compresi.",
+  "data": "2026-10-03",
+  "stato": "in uso dal caricamento del ciclo S06 (righe con provenienza.estrazione S06)",
+  "codice_sorgente": [
+   {
+    "file": "tools/recupero_s06.py",
+    "copia": "versioni/S06/recupero_s06.py",
+    "sha256": "e684b9967270980eb17b5c538cdeab24c2a14f996c70e53f4d7143fc9ad43575"
+   },
+   {
+    "file": "tools/letture_s06.py",
+    "copia": "versioni/S06/letture_s06.py",
+    "sha256": "5eb0099d5c604027b00d0c3e969852fd09abb4af4d1c739be2d971e5e6021057"
+   },
+   {
+    "file": "tools/punteggi_t01_s06.py",
+    "copia": "versioni/S06/punteggi_t01_s06.py",
+    "sha256": "2edde2ab923ac635ada7dbe0470e9e91eb84e6f59f96ee34a77a2ad64ac3bb4d"
+   },
+   {
+    "file": "tools/ciclo_s06.sh",
+    "copia": "versioni/S06/ciclo_s06.sh",
+    "sha256": "cbdf46d4dbe5baaba339aa606508afe018382ce53cb559a829f68b6bd158225f"
+   },
+   {
+    "file": "tools/launchd/attesa_s06.sh",
+    "copia": "versioni/S06/attesa_s06.sh",
+    "sha256": "7aa876cc192dab558fe81cc1441bcbd212a5a96ffff72c18634d7436d57e9610"
+   },
+   {
+    "file": "tests/test_recupero_s06.py",
+    "copia": "versioni/S06/test_recupero_s06.py",
+    "sha256": "1e225b6220b6f4ff50ac4b27bcb43750d4f6eb7a6e0bfecfff2201bdeab930ac"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "copie di S05 in un atto di un'altra causa (righe distinte; 267 copie nella misura del 03/10)",
+    "valore": "265"
+   },
+   {
+    "nome": "escluse: lo stesso documento due volte nel corpus",
+    "valore": "103 (stesso testo 22, stesso PDF (sha256_pdf) 81)"
+   },
+   {
+    "nome": "righe recuperate",
+    "valore": "162: urgenda 43, neubauer 108, future-generations 6, klimaseniorinnen 3, cig-parere-clima 2"
+   },
+   {
+    "nome": "punteggi T01 delle righe di S06 calcolati con recas-ferma: stesse coppie rifatte contro le H100 del ciclo S05",
+    "valore": "300 coppie, differenza media 0.00267, massima 0.02685, cambi di lato alla soglia 0,5: 0 (0 lontani dalla soglia)"
+   }
+  ],
+  "note": "Provati e non usati per riconoscere lo stesso documento: la stessa pagina della citazione (14 righe la hanno uguale in atti diversi, per esempio i ricorsi paralleli di DUH contro Mercedes e contro BMW) e lo stesso titolo con lo stesso numero di pagine (mai: i titoli portano il nome della causa). Delle 20 coppie lette nella misura 13 erano lo stesso atto due volte, 4 un allegato ripetuto, 3 un atto davvero diverso: gli allegati restano (non si riconoscono con certezza), e stesso_testo_di permette di contarli una volta nell'analisi. I punteggi T01 delle righe e delle pagine attorno senza punteggio: ripresa_punteggi.py sulle H100 nella coda di DeepSeek, vLLM fermato e riacceso come il 01/10, con la prova contro i punteggi del ciclo S05 nelle misure.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Copie di S05 in un atto di un'altra causa, recuperate",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "ricerca per nome",
+  "rispetto_a": "S05",
+  "cambia": "le copie che S05 buttava quando il frammento tenuto sta in un'altra causa tornano righe, tranne lo stesso documento due volte (stesso PDF o stesso testo)"
+ },
+ {
+  "codice": "S07",
+  "tipo": "regola",
+  "nome": "Name search: footnote-aware grouping, descriptive references, same-page dedup",
+  "compito": "La ricerca per nome S05 con tre correzioni e una rete nuova. (1) I gruppi di corrispondenze (regola dei 200 caratteri) non attraversano mai l'inizio di una nota a pie' di pagina (a capo + numero della nota; non un anno, una data, «Rn.», «BvR»): note consecutive sono citazioni distinte. (2) La deduplica butta una copia solo nello stesso atto e sulla stessa pagina (strato di testo doppio); ogni altra copia resta con stesso_testo_di. (3) Forme semplici che mancavano («NL:RBDHA:2015:7145/7196», «Advisory Opinion, ICJ»). (4) La RETE DESCRITTIVA, separata (proposto_rete «descrittiva»): regole dichiarate nel file -S07 di ogni caso (la corte con l'anno e il clima, «BVerfG, a.a.O.» negli atti che citano gia' Neubauer, la data, la forma coreana, l'indirizzo della decisione, la Corte interamericana o la CIG vicino a «parere consultivo» e 2025...), fuori il procedimento stesso, gli atti anteriori alla pronuncia e le pagine dove il caso e' gia' nominato o ha una riga. Una copia in un atto che e' lo stesso documento (stesso PDF o testo) non si aggiunge, e quale copia tiene la riga lo dicono i metadati del catalogo (parte e corte trovate nell'atto), non l'ordine dei percorsi. Anche l'unione delle righe spezzate (unisci_e_aggiungi, tracepipe) unisce una riga di soli identificativi solo se il nome sta nella sua stessa nota. Le righe nuove vanno in corpus_rows fuori dalle code, con provenienza.estrazione S07 e causa_s07, e ricevono le stesse letture delle altre (cinque del tipo, cinque L05 sulle pagine attorno R10). S07 gira a lotti (lotto corpus-d04, poi D05) senza righe doppie: i lotti di prima contano come righe gia' in piattaforma.",
+  "data": "2026-10-04",
+  "stato": "righe scritte fuori dalle code, in attesa delle letture",
+  "codice_sorgente": [
+   {
+    "file": "tools/cerca_s07.py",
+    "copia": "versioni/S07/cerca_s07.py",
+    "sha256": "f81906e6cb7cdc5bc38821cee7212d7eb2ea41140201cea6335e4987233f8db1"
+   },
+   {
+    "file": "tools/rete_descrittiva.py",
+    "copia": "versioni/S07/rete_descrittiva.py",
+    "sha256": "9e4d0f4987d141eb2fbcb844e4167ebf07dd8efc41a8b49603fe6e331a4cfdcf"
+   },
+   {
+    "file": "tools/recupero_s07.py",
+    "copia": "versioni/S07/recupero_s07.py",
+    "sha256": "4c40db7d3e9494617c9af58cfea8d2bcf71e633b724a33ee0490820fd162ac9c"
+   },
+   {
+    "file": "tools/cerca_s05_per_atto.py",
+    "copia": "versioni/S07/cerca_s05_per_atto.py",
+    "sha256": "282750eeb008714adbf60f86b04540d189e565d4ba82d453480fc5b962af624b"
+   },
+   {
+    "file": "tools/cerca.py",
+    "copia": "versioni/S07/cerca.py",
+    "sha256": "92a110596d7c9cdf1d87452bbd9be079ee674b9bc1e4ae72f269b993d083830c"
+   },
+   {
+    "file": "tools/unisci_e_aggiungi.py",
+    "copia": "versioni/S07/unisci_e_aggiungi.py",
+    "sha256": "a98c58530dd2199cccddb93c0542eddc04e630e51df00e6f670406196358e952"
+   },
+   {
+    "file": "tracepipe/ricerca.py",
+    "copia": "versioni/S07/ricerca.py",
+    "sha256": "d4389d065fba10617d532b85a0d2851cbcc604fd9a81ce5b56feaac85c2607bc"
+   },
+   {
+    "file": "tests/test_s07_ricerca.py",
+    "copia": "versioni/S07/test_s07_ricerca.py",
+    "sha256": "caab691258d3fc6c3925bf35e9dda6c8c7e62db39f20e9a4b871f5f9fa31bd67"
+   },
+   {
+    "file": "cited-cases/urgenda-S07.yaml",
+    "copia": "versioni/S07/urgenda-S07.yaml",
+    "sha256": "cf6c56c9bc43f1c94fda2baefd209255e163b3e00419e494a390900a095c98b4"
+   },
+   {
+    "file": "cited-cases/neubauer-S07.yaml",
+    "copia": "versioni/S07/neubauer-S07.yaml",
+    "sha256": "3cc7bf22be009118e91d3fd809752e5c277ec13538c21c60c1aaf8281fa6ae11"
+   },
+   {
+    "file": "cited-cases/future-generations-S07.yaml",
+    "copia": "versioni/S07/future-generations-S07.yaml",
+    "sha256": "c146e98f92b763d3e452b7fe447ea0dac9030c03f5c0f63712edcf2caa697694"
+   },
+   {
+    "file": "cited-cases/klimaseniorinnen-S07.yaml",
+    "copia": "versioni/S07/klimaseniorinnen-S07.yaml",
+    "sha256": "039345804086645282a3655d6e877a1810c8fbc25e1f2bdbb8c2bcfde2582e0f"
+   },
+   {
+    "file": "cited-cases/cig-parere-clima-S07.yaml",
+    "copia": "versioni/S07/cig-parere-clima-S07.yaml",
+    "sha256": "7ba97350cd0cceb637e94e5a4035fb008efdffeeef555eca6b3330cf1dd5a0d8"
+   },
+   {
+    "file": "cited-cases/idh-oc-32-25-S07.yaml",
+    "copia": "versioni/S07/idh-oc-32-25-S07.yaml",
+    "sha256": "b92545ac559e2c0f0ac93e1ddf393b6995eab7853b55af0b805f0ebf93effcb7"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "righe nuove scritte, per causa (lotti: corpus-d04, d05)",
+    "valore": "documento_nuovo 756, raggruppamento 974, raggruppamento_copertura 47, descrittiva 444, deduplica_stesso_atto 8, deduplica_altro_atto_stessa_causa 46, forma_nuova 2"
+   },
+   {
+    "nome": "righe nuove per caso",
+    "valore": "cig-parere-clima 516, future-generations 30, idh-oc-32-25 387, klimaseniorinnen 450, neubauer 684, urgenda 210"
+   },
+   {
+    "nome": "righe che aspettano lo scambio del Markdown (D05: copie rifatte con l'OCR, versione nuova)",
+    "valore": "2"
+   },
+   {
+    "nome": "stima della revisione del 04/10/2026 (prima della correzione)",
+    "valore": "gruppi attraverso le note: ~740 citazioni nascoste (Neubauer ~455, OC-32/25 ~159, CIG ~95, Urgenda ~48); pagine senza nessuna forma: 331, ~250 vere; copie nello stesso atto su un'altra pagina: 6 vere su 13; unioni sbagliate: 28 su 59 lette"
+   }
+  ],
+  "note": "Fuori dalle righe nuove: le righe di S06 e quelle che S06 ha escluso (le tratta S06); un id gia' in banca dati; nei documenti di D04 le righe si scrivono solo dopo il ciclo D04. Correzioni a mano dello stesso giorno: 28 righe unite per sbaglio tornate alla rete di prima, URG-1361 (confermata) tornata com'era con URG-1360 unita a lei, 7 righe di Neubauer spostate dall'atto registrato sotto Allhoff-Cramer a Kaiser e altri contro Volkswagen (stesso PDF), 3 righe di un altro Neubauer escluse. 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1"
+  },
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Name search: footnote-aware grouping, descriptive references, same-page dedup",
+  "in_uso": "righe in attesa delle letture",
+  "alias": "",
+  "famiglia": "ricerca per nome",
+  "rispetto_a": "S05",
+  "cambia": "gruppi che non attraversano le note a pie' di pagina; deduplica solo stesso atto e stessa pagina; forme semplici aggiunte; rete descrittiva separata; la copia di uno stesso documento scelta dai metadati del catalogo",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/S07/cig-parere-clima-S07.yaml",
+    "sha256": "bfcac3693ad8b80b97fcd27dec3fd6cbaad8ec708b26825608ea167cab15b556",
+    "fino_al": "2026-10-05",
+    "righe_cambiate": 10,
+    "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
+    "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
+   },
+   {
+    "file": "versioni/S07/future-generations-S07.yaml",
+    "sha256": "c4e5cab1ca1e6cd653324be5841d513f88d236dfb808bb95779fcb6d5d31326a",
+    "fino_al": "2026-10-05",
+    "righe_cambiate": 1,
+    "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
+    "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
+   },
+   {
+    "file": "versioni/S07/idh-oc-32-25-S07.yaml",
+    "sha256": "5908e53d9f666f08d62cfb7f43f040d46b8066d8b0f047c4bb5b2b671035c542",
+    "fino_al": "2026-10-05",
+    "righe_cambiate": 1,
+    "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
+    "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
+   },
+   {
+    "file": "versioni/S07/neubauer-S07.yaml",
+    "sha256": "977e515bcd1304ea05ebcf994f54e24d6d9b18a7490864930ad288c8682f3cf8",
+    "fino_al": "2026-10-05",
+    "righe_cambiate": 2,
+    "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
+    "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
+   }
+  ]
+ },
+ {
+  "codice": "D04",
+  "tipo": "corpus",
+  "nome": "Documents: D03 with 27 filings of the 19/09/2026 update downloaded again and 20 non-PDF filings extracted",
+  "compito": "Come D03, piu' (1) 27 atti dell'aggiornamento del 19/09/2026 mai scaricati (fetch_sabin.py aveva trovato occupato il nome troncato e scritto in manifest.jsonl, con http 0, l'impronta del file di luglio): riscaricati il 03/10 con un nome nuovo, impronte vere in manifest_supplemento_2026-10-03.jsonl (manifest.jsonl non toccato); 26 file nuovi, 1 identico alla fonte a un atto gia' nel corpus (Suncor amicus-brief-18 = amicus-brief-21, _b0d1) e non riscritto; (2) 20 atti non PDF (16 .docx, 3 .doc, 1 .png) mai estratti, perche' extract_text.py legge solo i PDF. Testo come il corpus (PyMuPDF, OCR Vision solo dove il testo e' inservibile, con freni.leggibile), Markdown con il front matter di build_markdown.py, nomi nuovi in creazione esclusiva, nessun file esistente toccato; 1.025 pagine aggiunte all'indice delle pagine (il vivo di prima resta in index/pagine/pagine.prima-D04.jsonl.gz). Le righe trovate dalla ricerca per nome S05 sui soli documenti nuovi hanno provenienza.corpus D04 ed estrazione S05, e ricevono le stesse letture delle altre: cinque del tipo e cinque L05 sulle pagine attorno R10, composte con R11, freni compresi.",
+  "data": "2026-10-03",
+  "stato": "in uso dal caricamento del ciclo D04 (righe con provenienza.corpus D04)",
+  "fonte": "Sabin Center for Climate Change Law, aggiornamento del 19/09/2026, scaricato di nuovo il 03/10/2026",
+  "versione": "CCC-whole_data_dump-2026-09-19 (27 atti) e file non PDF di luglio",
+  "pesi": [
+   {
+    "file": "manifest_supplemento_2026-10-03.jsonl",
+    "sha256": "cee552b19568a5f9168803561e2c98d6547ad614b8e43841136593366c1e06e2"
+   },
+   {
+    "file": "training/difetti-2026-10-03/registro_non_pdf.json",
+    "sha256": "c0c1dd072b757c313f64894b62c9e8478ed519cf225b83ef7c2b0764255d378f"
+   },
+   {
+    "file": "training/d04/markdown_d04_registro.json",
+    "sha256": "32d1ead0ce7437afbc728602c55bda8ed1e6ceabf2f48ae6250670ecda5025ef"
+   },
+   {
+    "file": "index/pagine/pagine.d04.aggiunte.jsonl.gz",
+    "sha256": "99a8317a11ecac79f5ef92ac062c4c9de96b39e1b60b649ec07723341fb60de8"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/scarica_d04.py",
+    "copia": "versioni/D04/scarica_d04.py",
+    "sha256": "247b0a6995c37e28b5696787e007d52772e294593417d0195336942d5493a553"
+   },
+   {
+    "file": "tools/estrai_non_pdf.py",
+    "copia": "versioni/D04/estrai_non_pdf.py",
+    "sha256": "1bc0979efd9cb7565a529f2b90ec5769a637fedef8b3797237b0ee64eeec4c7e"
+   },
+   {
+    "file": "tools/build_markdown_d04.py",
+    "copia": "versioni/D04/build_markdown_d04.py",
+    "sha256": "67a0b0d225a183af31c40ba9eaa4d922d98a8684c7af69be55ff1be9842dc680"
+   },
+   {
+    "file": "tools/cerca_d04.py",
+    "copia": "versioni/D04/cerca_d04.py",
+    "sha256": "4bb2c180bd3c28a44afbaec07c4c1d3c9b208ecd8a9181539e25d05ee6ec3755"
+   },
+   {
+    "file": "tools/recupero_d04.py",
+    "copia": "versioni/D04/recupero_d04.py",
+    "sha256": "b738b2083bd37bfa895315d16567c89fb0f405008f31406449a55eeaf619124d"
+   },
+   {
+    "file": "tools/letture_d04.py",
+    "copia": "versioni/D04/letture_d04.py",
+    "sha256": "82c58b4da99774810b30630f06b5336b6c2aaf3578077b9756e50804dce91b49"
+   },
+   {
+    "file": "tools/registro_d04.py",
+    "copia": "versioni/D04/registro_d04.py",
+    "sha256": "e618507e8f19c466eebe82bb19cb916cf9cc019f0ba9b58448c6296375ec8e70"
+   },
+   {
+    "file": "tools/ciclo_d04.sh",
+    "copia": "versioni/D04/ciclo_d04.sh",
+    "sha256": "dcbf14df09833039563ed367475a093aa3e7abb19bec5f4c82fe1bf05bcd6982"
+   },
+   {
+    "file": "tools/launchd/attesa_d04.sh",
+    "copia": "versioni/D04/attesa_d04.sh",
+    "sha256": "fecfbc14a8ac0c43d47c2f7a8e9dbd2158f31a0d730c27592accda7dce08902c"
+   },
+   {
+    "file": "tests/test_recupero_d04.py",
+    "copia": "versioni/D04/test_recupero_d04.py",
+    "sha256": "0d1eb6f0b9039b28377c7939606449794a548feb1b915a1808aa63420b9c61ee"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "atti nuovi nel corpus",
+    "valore": "46 Markdown: 26 PDF riscaricati, 20 atti non PDF (16 .docx, 3 .doc, 1 .png); 1.025 pagine aggiunte all'indice delle pagine"
+   },
+   {
+    "nome": "righe nuove della ricerca per nome S05 sui documenti di D04",
+    "valore": "13: urgenda 4, cig-parere-clima 5, idh-oc-32-25 4"
+   },
+   {
+    "nome": "punteggi T01 delle righe di D04 (recas-ferma): stesse coppie rifatte contro le H100 del ciclo S05",
+    "valore": "300 coppie, differenza media 0.003, massima 0.02668, cambi di lato alla soglia 0,5: 0 (0 lontani dalla soglia)"
+   },
+   {
+    "nome": "PDF riscaricati sul server del corpus (corpus.climpact.it/pdf/), serviti con la lunghezza giusta",
+    "valore": "14 su 26"
+   }
+  ],
+  "note": "Verifica dei 27 senza l'impronta del manifest (per loro e' quella sbagliata): tipo application/pdf, lunghezza uguale a Content-Length, PyMuPDF apre il file, impronta diversa da quella del manifest e del file di luglio (e del .pdf.orig), prima pagina letta: il caso e' giusto in tutti. Due file alla fonte non sono il tipo d'atto del titolo: Maules Creek _925f ('judgment') e' la citazione introduttiva (summons), Pacific Coast _4954 ('order') e' un atto di Chevron. Cinque atti non PDF escono a pagina unica (i 3 .doc e 2 .docx senza interruzioni segnate). Resta fuori il PDF di Sebastiao (_67a5), troncato alla fonte. Le righe sugli atti non PDF non hanno un PDF da mostrare: il portale apre la pagina della fonte.",
+  "nome_tecnico": "D03 con 27 atti dell'aggiornamento del 19/09 riscaricati e 20 atti non PDF estratti",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "dati",
+  "rispetto_a": "D03",
+  "cambia": "27 atti dell'aggiornamento del 19/09 riscaricati (mai scaricati per un nome occupato) e 20 atti non PDF estratti"
+ },
+ {
+  "codice": "C03",
+  "tipo": "regola",
+  "nome": "Body text and footnote, and translations of the same filing, counted once",
+  "compito": "Controllo automatico dopo la ricerca per nome: la stessa citazione contata due volte. (1) TESTO E NOTA: due righe vive dello stesso caso nello stesso atto, a non piu' di una pagina di distanza, che sostengono la stessa frase (testo normalizzato, somiglianza rapidfuzz di almeno 95, almeno 40 caratteri) sono la menzione nel testo e la nota che la stessa frase chiama: resta la riga del testo (quella il cui punto cade dentro la frase sostenuta), la riga della nota esce (proposto_rete «esclusa», esclusa_regola C03, unita_a il codice tenuto) e alla riga tenuta passano il testo della nota (proposto_nota_appoggio) e i paragrafi che cita. Due note con la stessa frase restano due citazioni. (2) TRADUZIONI: la stessa citazione nello stesso atto in un'altra lingua (stessa causa, pagine entro il 15%, stesso punto relativo entro il 3%, meta' dei numeri attorno in comune) e' una sola: resta la riga nella lingua ORIGINALE dell'atto. Niente si cancella: la riga uscita conserva tutti i campi e si rimette con tools/rimetti_righe.py. La regola automatica genera le candidate e NON decide: si scrivono solo le coppie rilette una per una (unisci_c03.py --rivisto), perche' l'intestazione dell'atto, da cui la regola leggeva la lingua originale, dava la lingua sbagliata in 46 traduzioni su 105. Prima di scrivere, copia intera delle righe (copia_prima); se non si rilegge, niente scritto.",
+  "data": "2026-10-05",
+  "stato": "applicata il 05/10/2026 alle 07:01: 691 righe escluse (550 testo e nota, 141 traduzioni)",
+  "codice_sorgente": [
+   {
+    "file": "tools/unisci_c03.py",
+    "copia": "versioni/C03/unisci_c03.py",
+    "sha256": "13c4968e385e996a6ba05d38f220f845f8daaa613364167fa99d96da16508a57"
+   },
+   {
+    "file": "tracepipe/unione_c03.py",
+    "copia": "versioni/C03/unione_c03.py",
+    "sha256": "10ef47283bcb786fd374aba7fc16cbd0699f850262f963bacb329bf18e6e92f9"
+   },
+   {
+    "file": "tracepipe/copia_prima.py",
+    "copia": "versioni/C03/copia_prima.py",
+    "sha256": "900e9650378637f9f43560de001e7844ef0189ac94a19fcd5b54087ae35c278b"
+   },
+   {
+    "file": "tests/test_unione_c03.py",
+    "copia": "versioni/C03/test_unione_c03.py",
+    "sha256": "07685bf40609fa1f9d030b72d7e493932db099f86ec67a94a276a2b2294c8dd6"
+   },
+   {
+    "file": "tests/test_copia_prima_classe.py",
+    "copia": "versioni/C03/test_copia_prima_classe.py",
+    "sha256": "0c8a8f11b8eeb2451ccdaa9a6fbb67a57694a39767700f85919dde9cd6a9a6e1"
+   }
+  ],
+  "impostazioni": {
+   "somiglianza_frase": "rapidfuzz ratio almeno 95, almeno 40 caratteri",
+   "distanza": "non piu di una pagina",
+   "traduzioni": "pagine entro il 15%, punto relativo entro il 3%, meta dei numeri attorno in comune",
+   "si_scrive": "solo le coppie rilette una per una (--rivisto), comprese quelle con una riga giudicata dal team"
+  },
+  "misure": [
+   {
+    "nome": "coppie candidate rilette una per una il 04/10/2026, ognuna con la frase esatta che regge la decisione",
+    "valore": "850: 693 da unire (550 testo e nota, 143 traduzioni), 156 da tenere come due citazioni, 1 incerta"
+   },
+   {
+    "nome": "righe scritte il 05/10/2026",
+    "valore": "691 righe escluse: 550 testo e nota, 141 traduzioni"
+   },
+   {
+    "nome": "lingua originale scelta dalla regola dell'intestazione",
+    "valore": "sbagliata in 46 traduzioni su 105: per questo si scrive solo l'elenco riletto"
+   }
+  ],
+  "note": "Una riga uscita si rimette com'era: la copia intera prima della scrittura sta in training/esclusioni/ (prima_unisci_c03_*). Le coppie in cui il team aveva giudicato una riga erano 111 il 04/10: la regola automatica non le scrive, qui sono scritte perche' rilette una per una.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1",
+   "rapidfuzz": "3.14.6"
+  },
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Body text and its footnote, and translations of the same filing, counted once",
+  "in_uso": "applicata il 05/10/2026",
+  "alias": "",
+  "famiglia": "controllo automatico sulle righe (regola senza modello)",
+  "rispetto_a": "S07",
+  "cambia": "la stessa citazione contata una volta: il testo e la nota che la stessa frase chiama, e le traduzioni dello stesso atto; si scrivono solo le coppie rilette una per una"
+ },
+ {
+  "codice": "C07",
+  "tipo": "regola",
+  "nome": "Surrounding page that is already a citation of its own: also cited separately",
+  "compito": "Controllo automatico sulle pagine attorno di ogni riga viva. Una pagina e' «gia' citata» se un'altra riga viva dello stesso caso nello stesso atto sta su quella pagina (per posizione) o se la prova trovata sulla pagina coincide con la frase sostenuta, la frase della lettura o il testo citato di quell'altra riga (testo normalizzato, rapidfuzz partial ratio di almeno 90). Se le due righe non hanno nessun principio in comune, la pagina NON e' un seguito: e' una citazione a parte, collegata. La voce della pagina in proposto_estensione prende c07 (true), c07_altra_riga e c07_segno «also cited separately as <codice>», mostrato nel pannello Corpus, nella domanda delle letture successive e nei dati della mappa; non conta come seguito e conta una volta sola nelle cifre. `prosegue` resta com'era: la lettura di DeepSeek V4 Flash non si cancella, perche' una pagina puo' proseguire il ragionamento E contenere un'altra citazione. Con un principio in comune la pagina resta candidata e decide DeepSeek. Un principio si toglie dalla riga solo se viene soltanto da una pagina marcata, non e' nella mappa dei paragrafi, ha meno di 3 voti su 5 e l'altra riga lo ha gia'; altrimenti resta e va in un elenco per il team. Le pagine che DeepSeek aveva letto «prosegue» si applicano solo se rilette e dette altra citazione. Sulle righe giudicate dal team (non si toccano) si toglie solo la spunta «seguito» delle pagine che la rilettura una per una dice citazione a se', con la traccia in c07_spunte_tolte per rimetterla.",
+  "data": "2026-10-05",
+  "stato": "applicata il 05/10/2026 alle 07:49: segno su 8.113 pagine di 2.778 righe, 71 spunte «seguito» del team tolte su 40 righe giudicate, nessun principio tolto",
+  "codice_sorgente": [
+   {
+    "file": "tools/applica_c07.py",
+    "copia": "versioni/C07/applica_c07.py",
+    "sha256": "e15f7b56115acaf1599c2a445b018e0aacaae218d2e93fd7936b527819180d9a"
+   },
+   {
+    "file": "tools/controlli_automatici.py",
+    "copia": "versioni/C07/controlli_automatici.py",
+    "sha256": "59f0c5f911f86a618ddb88f49bf6a257e607e4e2b9480cc9f7083792bd8fac33"
+   },
+   {
+    "file": "tracepipe/pagine_gia_citate.py",
+    "copia": "versioni/C07/pagine_gia_citate.py",
+    "sha256": "db7f9810d1a4acf5e420be946f0ab813449aebbeadb219674279138e2bc08892"
+   },
+   {
+    "file": "tests/test_pagine_gia_citate.py",
+    "copia": "versioni/C07/test_pagine_gia_citate.py",
+    "sha256": "5b4b9e8b72e631269c3715c1dc155e8362ae7cb27b3ccc41fdaab34ec394ac6b"
+   }
+  ],
+  "impostazioni": {
+   "somiglianza_testo": "rapidfuzz partial ratio almeno 90, prova di almeno 30 caratteri, frase di almeno 40",
+   "soglia_voti_per_tenere_un_principio": "3 su 5",
+   "pagine_prosegue": "solo se rilette e dette altra citazione"
+  },
+  "misure": [
+   {
+    "nome": "prova a secco su tutte le righe (04/10/2026)",
+    "valore": "17.871 pagine marcate su 27.263 candidate; 9.892 senza principi in comune; 43 spuntate come seguito dal team"
+   },
+   {
+    "nome": "controllo a mano di 30 pagine marcate",
+    "valore": "28 contengono un'altra citazione dello stesso caso"
+   },
+   {
+    "nome": "pagine spuntate dal team rilette una per una (229)",
+    "valore": "seguito 88, altra citazione 139, incerto 2; fra le 137 spuntate dal team 64 seguito, 71 altra citazione, 2 incerte"
+   },
+   {
+    "nome": "scritto il 05/10/2026",
+    "valore": "8.113 pagine di 2.778 righe segnate; 71 spunte tolte su 40 righe giudicate; nessun principio tolto"
+   }
+  ],
+  "note": "Il caso che ha dato la regola e' ICJ-0154 (parere CIG, p. 26): le pagine 19, 21 e 23 sono citazioni a se' per altri punti e non seguito. La copia intera delle righe prima della scrittura sta in training/esclusioni/ (prima_applica_c07_*).",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1",
+   "rapidfuzz": "3.14.6"
+  },
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Surrounding page that is already a citation of its own: also cited separately",
+  "in_uso": "applicata il 05/10/2026",
+  "alias": "",
+  "famiglia": "controllo automatico sulle righe (regola senza modello)",
+  "rispetto_a": "R10",
+  "cambia": "una pagina attorno che e' gia' una citazione a se' (altro principio) segnata «also cited separately» e non piu' contata come seguito"
+ },
+ {
+  "codice": "S08",
+  "tipo": "regola",
+  "nome": "Close pairs: two references to the same case in the same filing, read together",
+  "compito": "Dopo la ricerca per nome (S07) e prima dei controlli C01-C04: i riferimenti vivi dello stesso caso e dello stesso atto consecutivi nel testo a meno di 5.000 caratteri sono una COPPIA CANDIDATA (catene: `<codice>a`, `<codice>b`, codici provvisori, mai scritti). La rete descrittiva si rifa' senza il filtro «pagina col nome o con una riga»: la seconda citazione sulla pagina diventa una riga nuova se sta a 200 caratteri o piu' da un nome o da una riga. Ogni coppia e' letta da L13 (DeepSeek V4 Flash, cinque letture) e dal reranker che ragiona (Qwen3.5-9B, tre letture): «una citazione o due?». Una: si uniscono come C03 (resta la riga del testo o quella confermata dal team). Due: contano due. Disaccordo fra i lettori, un lettore incerto o senza letture valide (freni), o un indizio forte contrario: la coppia va al team («To review»). S08 sostituisce la regola automatica di C03 per le righe nuove; la regola C03 resta solo come generatore di candidate. Le traduzioni (due atti) restano a C03 con la lingua originale riletta una per una.",
+  "data": "2026-10-05",
+  "stato": "in prova, non applicata: nessuna riga della banca dati e' cambiata per S08",
+  "codice_sorgente": [
+   {
+    "file": "tools/coppie_vicine.py",
+    "copia": "versioni/S08/coppie_vicine.py",
+    "sha256": "c82e57167a3bd5e747f030d925d2fa51f4116dcd8d3ff5ed7606c018e8b1f18d"
+   },
+   {
+    "file": "tools/coppia_s08.py",
+    "copia": "versioni/S08/coppia_s08.py",
+    "sha256": "70fcbdb67da2178122a965ff1f638dc1fb60e8b722e98ecbfbcc95a2a934778d"
+   },
+   {
+    "file": "tools/decidi_s08.py",
+    "copia": "versioni/S08/decidi_s08.py",
+    "sha256": "a5b6314a8695a70fca5ae13753d2e06c690e0512ea43d517cf4c0d0b48d8ba36"
+   },
+   {
+    "file": "tools/carica_righe_s08.py",
+    "copia": "versioni/S08/carica_righe_s08.py",
+    "sha256": "84c9a9f712e170b80cc0c9e7a8f9f6cf720b3b49d0a52fcda9f3d54a526f1256"
+   },
+   {
+    "file": "tests/test_coppie_vicine.py",
+    "copia": "versioni/S08/test_coppie_vicine.py",
+    "sha256": "60d4a5671aa19ca5650e9a04a80b4f25bfdd72773e6ca44daae604b7983038dd"
+   },
+   {
+    "file": "tracepipe/coppia.py",
+    "copia": "versioni/S08/coppia.py",
+    "sha256": "63d3ec4e077d8143a38e97ec63451cffca369e96c0ef1f6d81d8c611f5dac4c3"
+   },
+   {
+    "file": "tracepipe/decisione_coppie.py",
+    "copia": "versioni/S08/decisione_coppie.py",
+    "sha256": "aca7ae0162e26305462397fd65935de36021d263ede9e707f50fbbfc9adee387"
+   },
+   {
+    "file": "tracepipe/carica_s08.py",
+    "copia": "versioni/S08/carica_s08.py",
+    "sha256": "01fcb9b0c52e03350e8061e03a117fe459dfd8f593d027b5bf64361553b18a35"
+   },
+   {
+    "file": "tests/test_coppie_s08.py",
+    "copia": "versioni/S08/test_coppie_s08.py",
+    "sha256": "f40a8c30e30ccaabd5dd8224723e0326e32574a506b260b9df44509c53958528"
+   },
+   {
+    "file": "tracepipe/coppie_vicine.py",
+    "copia": "versioni/S08/tracepipe_coppie_vicine.py",
+    "sha256": "e7bcca4c913fa701a98d3895ce77a4acd163dc666149e07f155f51798fdf32d4"
+   }
+  ],
+  "impostazioni": {
+   "soglia_caratteri": 5000,
+   "come_si_e_scelta": "la prima soglia dopo la quale ogni UNIRE in piu' costa piu' di 50 legami (decisione di costo, non soglia naturale: le distanze di UNIRE e TENERE si sovrappongono)",
+   "verita": "850 coppie C03 rilette una per una il 04/10/2026 (693 UNIRE, 156 TENERE, 1 INCERTA); 692 nello stesso atto",
+   "decisione": "lettori concordi (DeepSeek almeno 3 su 5, reranker almeno 2 su 3) e nessun indizio forte contrario",
+   "riga_che_resta": "non scartata > confermata dal team > nel testo (dal testo dell'atto) > principale dei lettori > prima nell'atto"
+  },
+  "misure": [
+   {
+    "nome": "UNIRE della verita' nella stessa catena a 5.000 caratteri",
+    "valore": "548/550 (99,6%); a 3.000: 518 (94,2%); a 8.000: 550"
+   },
+   {
+    "nome": "legami (= domande L13) a 5.000 caratteri, righe vive e nuove",
+    "valore": "6.084 (a 3.000: 5.402; a 8.000: 6.551)"
+   },
+   {
+    "nome": "legami in piu' per ogni UNIRE in piu'",
+    "valore": "3.000->5.000: 22,7; 5.000->8.000: 236,5"
+   },
+   {
+    "nome": "indizi soli sulle 692 coppie della verita'",
+    "valore": "401 decise (58%), 397 giuste (99,0%), 291 al team"
+   },
+   {
+    "nome": "righe nuove recuperate dalla scansione (la seconda citazione sulla stessa pagina)",
+    "valore": "376; 353 dopo aver tolto 23 copie dello stesso documento; NON scritte in banca dati"
+   },
+   {
+    "nome": "limite",
+    "valore": "la verita' C03 e' censurata a una pagina (C03 cercava entro una pagina): non dice niente sulle UNIRE piu' lontane"
+   }
+  ],
+  "note": "Il passo e' pensato fisso e automatico dopo la ricerca (training/misure/S08-AGGANCIO.patch), ma e' in prova: la scrittura delle unioni e il caricamento delle righe nuove non sono abilitati. Prova che fallisce se il passo manca: due citazioni lontane sulla stessa pagina (Children of Austria p. 29, BMW p. 10) devono dare due righe.",
+  "software": {
+   "python": "3.14.6",
+   "google-cloud-firestore": "2.28.0",
+   "PyYAML": "6.0.3",
+   "pymupdf": "1.28.0",
+   "regex": "2026.7.19",
+   "numpy": "2.5.1",
+   "rapidfuzz": "3.14.6"
+  },
+  "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
+  "nome_tecnico": "Close pairs: two references to the same case in the same filing, read together",
+  "in_uso": "in prova, non applicata",
+  "alias": "",
+  "famiglia": "ricerca per nome",
+  "rispetto_a": "S07",
+  "cambia": "coppie vicine lette insieme: i riferimenti dello stesso caso e atto a meno di 5.000 caratteri; la seconda citazione sulla pagina non si perde piu'"
+ },
+ {
+  "codice": "L13",
+  "tipo": "lettore",
+  "nome": "Reading of a close pair: one citation or two",
+  "compito": "Per una coppia di riferimenti allo stesso caso nello stesso atto (S08): dato il testo vero dell'atto da prima del primo a dopo il secondo riferimento (segni ⟦A⟧ e ⟦B⟧, [pagina N], note in fondo alla pagina) dire se sono UNA citazione o DUE, quale riga resta, dove sta ciascuno (testo o nota), quale nota e' chiamata, la frase esatta di ciascuno e il motivo. Gli indizi deterministici NON stanno nella domanda. Freni 2-4 (R14 e R16) sulle due frasi: una lettura vale solo se le frasi stanno nell'atto e non sono copiate dal prompt; freno 1 prima di mandare la finestra al modello.",
+  "data": "2026-10-05",
+  "stato": "in prova, non applicata: niente e' scritto in banca dati",
+  "modello_base": {
+   "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
+   "licenza": "MIT"
+  },
+  "altro_modello": {
+   "nome": "Qwen/Qwen3.5-9B",
+   "revisione": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+   "nota": "come rilasciato, non addestrato dal progetto"
+  },
+  "istruzioni": [
+   {
+    "file": "versioni/L13/istruzioni.txt",
+    "sha256": "e20a50270a9e0166be9cc38db66bc6b8a8a9a54ba84723731f633d3bf16222b9"
+   },
+   {
+    "file": "versioni/L13/istruzioni_reranker.txt",
+    "sha256": "09d0bd06ae1462b9b178fe095f1d66dbea5241f0761924f8f51912389d88b34f"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/leggi_coppia_l13.py",
+    "copia": "versioni/L13/leggi_coppia_l13.py",
+    "sha256": "e7e0d024315d39affe20a7d0a48e81f8016e17f3ba2607f71dea303f0511e560"
+   },
+   {
+    "file": "tools/freni.py",
+    "copia": "versioni/L13/freni.py",
+    "sha256": "0268ff53ecee8c7dd6c6541edbb7ff2645cb699218026768d6bdf0d41c0d1f89"
+   },
+   {
+    "file": "tools/chiamata_deepseek.py",
+    "copia": "versioni/L13/chiamata_deepseek.py",
+    "sha256": "37738723392e098b58d400036cb4a15a9f5c96280d77a66979f7022a6a6115ac"
+   },
+   {
+    "file": "tracepipe/lettura_coppia.py",
+    "copia": "versioni/L13/lettura_coppia.py",
+    "sha256": "58b28c403f6f90167b1c06641c91a58e07eb2a5a9b626247a3e6708570692fd8"
+   },
+   {
+    "file": "tracepipe/prova_intera.py",
+    "copia": "versioni/L13/prova_intera.py",
+    "sha256": "d8147a47f1009322771127a3122375527622d0ff40435f018dd2ce92e2982b55"
+   }
+  ],
+  "software": {
+   "torch": "2.14.0",
+   "transformers": "5.17.0",
+   "peft": "0.21.0",
+   "huggingface_hub": "1.33.0",
+   "openai (client)": "3.19.2",
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)"
+  },
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "impostazioni": {
+   "letture_deepseek": 5,
+   "ragionamento_deepseek": "high",
+   "tetto_risposta_deepseek": 24000,
+   "letture_reranker": 3,
+   "tetto_risposta_reranker": 12000,
+   "contesto": 65536,
+   "attorno": "1.500 caratteri prima di A e dopo B, tetto 26.000",
+   "token_domanda": "mediana 2.026, massimo 5.841 (tokenizer DeepSeek, 6.301 coppie)"
+  },
+  "note": "Le coppie della verita' C03 vanno per prime (priorita 0) per misurare i lettori prima di fidarsene.",
+  "nome_tecnico": "DeepSeek V4 Flash 0731 and Qwen3.5-9B, reading of a close pair: one citation or two",
+  "in_uso": "in prova, non applicata",
+  "alias": "",
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
+  "rispetto_a": "L05",
+  "cambia": "stesso modello; la domanda e' se due riferimenti vicini sono una citazione o due, sul testo dell'atto fra i due"
  },
  {
   "codice": "T01",

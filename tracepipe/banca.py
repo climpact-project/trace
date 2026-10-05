@@ -142,6 +142,11 @@ class BancaDati(ABC):
         """Ids of every document of a collection."""
         return {i for i, _ in self.righe(collezione)}
 
+    def esistenti(self, collezione: str, ids: Iterable[str]) -> set[str]:
+        """The ids among ``ids`` that already exist in the collection (read by id where the backend can)."""
+        cercati = set(ids)
+        return cercati & self.ids(collezione)
+
 
 class BancaDatiFirestore(BancaDati):
     """Firestore through ``google.cloud.firestore`` (the real platform, or the harness fake on ``PYTHONPATH``).
@@ -182,6 +187,15 @@ class BancaDatiFirestore(BancaDati):
             q = q.where(filter=self.modulo.FieldFilter(campo, op, valore))
         for d in q.stream():
             yield d.id, d.to_dict()
+
+    def esistenti(self, collezione: str, ids: Iterable[str]) -> set[str]:
+        """By id, 300 references at a time: it does not depend on the case and reads no other document."""
+        cercati = list(ids)
+        gia: set[str] = set()
+        for k in range(0, len(cercati), 300):
+            rif = [self._rif(collezione, i) for i in cercati[k : k + 300]]
+            gia |= {d.id for d in self.client.get_all(rif) if d.exists}
+        return gia
 
     def _applica(self, scritture: list[Scrittura]) -> None:
         b = self.client.batch()
@@ -261,6 +275,9 @@ class BancaDatiMemoria(BancaDati):
         for i in sorted(docs):
             if all(self._passa(docs[i], f) for f in filtri):
                 yield i, copy.deepcopy(docs[i])
+
+    def esistenti(self, collezione: str, ids: Iterable[str]) -> set[str]:
+        return set(ids) & set(self.collezioni.get(collezione, {}))
 
     def _registra(self, s: Scrittura, via: str) -> None:
         self.scritture.append(

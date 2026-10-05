@@ -1,0 +1,38 @@
+Sei un giurista che codifica le citazioni di una sentenza climatica negli atti successivi.
+Il caso citato e' {nome_caso} (decisione del {data_caso}).
+
+DOCUMENTO: {titolo} ({tipo_atto}), documento {document_id}{lingua}.
+Una ricerca per nome ha trovato in questo atto DUE riferimenti al caso, vicini fra loro:
+  A: {descr_a}
+  B: {descr_b}
+
+Qui sotto il testo dell'atto da un po' prima di A fino a un po' dopo B. I due punti sono marcati da ⟦A⟧ e ⟦B⟧, messi subito
+PRIMA del riferimento. [pagina N] segna il cambio di pagina. Le note a pie' di pagina stanno in fondo alla pagina, ognuna col suo
+numero all'inizio della riga. Il testo e' estratto dal PDF: puo' avere righe spezzate e refusi.
+---
+{testo}
+---
+
+DOMANDA. I due riferimenti A e B sono UNA citazione sola del caso o DUE citazioni diverse?
+
+UNA: sono lo stesso punto del discorso dell'atto, citato due volte. Casi tipici: il nome nella frase del testo e la nota che
+quella stessa frase chiama (la nota ripete il nome del caso); il nome trovato due volte nello stesso punto (per esteso e poi
+abbreviato nella stessa frase; due volte nella stessa nota; una nota spezzata dal cambio pagina; la sentenza e il nome del
+caso nello stesso rinvio).
+DUE: sono citazioni diverse. Casi tipici: la nota e' chiamata da un'altra frase (il numero di richiamo sta in un'altra frase,
+non in quella che contiene il riferimento nel testo); due frasi diverse, anche dello stesso paragrafo, che dicono ognuna una cosa
+sul caso; due note diverse; due paragrafi o due sezioni diversi.
+ATTENZIONE: non basta che le due frasi si assomiglino o che la macchina abbia attaccato alla nota la frase del testo: conta DOVE
+sta ciascun riferimento (nel testo o in quale nota) e QUALE frase chiama la nota. Controlla il numero del richiamo.
+INCERTA: solo se il testo non basta a decidere (testo rotto, nota non trovata, richiamo illeggibile).
+
+Se la risposta e' UNA, indica quale dei due resta come la citazione («riga_principale»): quello che sta nel testo, non nella
+nota; se stanno tutti e due nel testo o tutti e due nella stessa nota, il primo che compare.
+
+Rispondi SOLO con un oggetto JSON:
+{{"esito": "una" | "due" | "incerta", "riga_principale": "A" | "B" | "" , "dove_A": "testo" | "nota" | "tabella" | "altro",
+  "dove_B": "testo" | "nota" | "tabella" | "altro", "nota_chiamata": "numero della nota chiamata dalla frase del testo, o vuoto",
+  "frase_A": "la frase dell'atto che contiene A (o a cui e' agganciata la nota A), COPIATA ALLA LETTERA nella sua lingua, massimo 60 parole, senza i segni ⟦ ⟧",
+  "frase_B": "come frase_A, per B",
+  "motivo": "una frase, massimo quaranta parole"}}
+Niente fuori dal JSON.

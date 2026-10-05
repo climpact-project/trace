@@ -49,6 +49,9 @@ class SerieMancanteError(SystemExit):
     """
 
 
+TETTO_PAGINA = 12000  # the cap of the page index (tools/indice_pagine.py)
+
+
 @dataclass(frozen=True)
 class SoglieFinestra:
     """Window of the surrounding pages (tools/leggi_ripresa.py, rule R08 of 01/10/2026).
@@ -56,7 +59,13 @@ class SoglieFinestra:
     The follow-up of an uptake is searched up to ``larga`` pages on each side of the citation page. Within the near
     band (from 2 pages before to 3 after) a page qualifies with a reranker score >= ``soglia_vicina``; farther away
     it needs ``soglia_lontana``. At most ``max_vicine_larga`` pages are kept, and each page text is cut at
-    ``taglio_vicina`` characters before it reaches the model.
+    ``taglio_vicina`` characters before it reaches the model (L05).
+
+    L11 (04/10/2026, from the truncation audit): footnotes sit at the bottom of the page and the question says «GUARDA
+    LE NOTE», so the 3,500-character cut lost the tail of 5,371 pages on 1,837 rows (35% relevant text, ~10% the
+    footnote that attributes the sentence). With ``taglio_vicina=None`` each page goes whole, up to the page-index cap
+    ``TETTO_PAGINA`` (12,000). The context guard (head and tail of the page when the prompt would not fit in vLLM's
+    65,536 tokens) lives in ``tools/rilettura_l11.py``.
     """
 
     larga: int = 10
@@ -65,12 +74,12 @@ class SoglieFinestra:
     max_vicine: int = 3  # MAX_VICINE: the old narrow window, still defined but unused by R08
     max_vicine_larga: int | None = 5
     banda_vicina: tuple[int, int] = (-2, 3)
-    taglio_vicina: int = 3500
+    taglio_vicina: int | None = 3500
     regola: str = 'R08'
 
     @classmethod
     def per_regola(cls, regola: str = 'R08') -> SoglieFinestra:
-        """The window of a rule: ``R08`` (above) or ``R10``.
+        """The window of a rule: ``R08`` (above), ``R10``, or ``R10-L11`` (R10 with whole pages, reading L11).
 
         R10 (02/10/2026, with the PI's yes; measure ``training/misure/PERDITE-PAGINE-ATTORNO.md``): threshold 0.5 at
         every distance within +-10 pages and no cap. Measured recall within +-10 goes from 27% (R08) to 57%, at 4.6
@@ -80,6 +89,8 @@ class SoglieFinestra:
             return cls()
         if regola == 'R10':
             return cls(soglia_lontana=0.5, max_vicine_larga=None, regola='R10')
+        if regola == 'R10-L11':
+            return cls(soglia_lontana=0.5, max_vicine_larga=None, taglio_vicina=None, regola='R10')
         raise ValueError(f'unknown window rule: {regola}')
 
     def vicina(self, distanza: int) -> bool:

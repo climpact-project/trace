@@ -23,7 +23,8 @@
 # si estraggono trenta passaggi difficili dal corpus, il PI li classifica,
 # e da quelle decisioni si riscrivono definizioni e casi limite.
 
-versione: 0.4-pilot          # 01/10/2026: dimensione 7, le pagine ATTORNO alla citazione (10 prima, 10 dopo); prima 0.3-pilot
+versione: 0.5-pilot          # 04/10/2026 (si' del PI): dimensione 2, chi parla «procuratore» (03/10, su URG-1614), e la regola sulle pagine d'indice nei casi limite; prima 0.4-pilot
+# 0.4-pilot, 01/10/2026: dimensione 7, le pagine ATTORNO alla citazione (10 prima, 10 dopo); prima 0.3-pilot
 data: 2026-09-27
 approvato_da: null          # va valorizzato prima dell'uso in produzione
 
@@ -99,6 +100,11 @@ chi_parla:
     nome: Interveniente
   - codice: amicus
     nome: Amicus curiae
+  # 0.5-pilot (il PI, 03/10/2026, su URG-1614): gli organi consultivi presso le corti, che danno un parere alla corte
+  # senza decidere e senza essere parte. La conclusione del procuratore generale presso la Hoge Raad su Urgenda,
+  # citata in una decisione francese, non e' la corte che parla.
+  - codice: procuratore
+    nome: Procuratore generale, avvocato generale o pubblico ministero
   - codice: non_determinabile
     nome: Non determinabile dal passaggio
 
@@ -241,7 +247,25 @@ casi_limite:
   - questione: >
       Il passaggio nomina il bersaglio solo nel titolo di un allegato o
       nell'indice del documento.
-    regola: DA DECIDERE
+    regola: >
+      NON e' una citazione: si scarta con il motivo `indice_o_sommario`.
+      Vale per indici e sommari, tavole delle fonti o delle autorita'
+      (table of authorities, list of authorities, Inhaltsverzeichnis,
+      table des matieres, indice), elenchi degli allegati e titoli di un
+      allegato. Il nome sta li' solo come rimando: la pagina non dice che
+      cosa il documento ricava dal bersaglio.
+      La citazione, se c'e', sta dove l'indice rimanda (corpo o nota): si
+      giudica quella riga. Il portale la mostra sotto «Other citations of
+      ... in this filing». Se quella riga manca, si scrive nella nota dello
+      scarto la pagina del rimando, e la si segnala come citazione mancata.
+      Eccezioni: (a) se la voce dell'indice ha una frase che dice che cosa
+      il documento prende dal bersaglio (un indice ragionato, un abstract,
+      un riassunto dei motivi), non e' un indice: si giudica come ogni
+      altra riga; (b) se l'allegato E' il bersaglio (la sentenza allegata
+      all'atto), non si registra come citazione: lo si scrive nella nota.
+      Una riga d'indice scartata e' un esempio negativo per l'addestramento
+      (motivo indice), mai positivo, e non entra nei numeri della mappa.
+    # 0.5-pilot, 04/10/2026: regola approvata dal PI (proposta in docs/codebook-indici-PROPOSTA.md)
 
   - questione: >
       Il documento e' interamente dedicato al bersaglio (per esempio un

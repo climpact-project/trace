@@ -213,5 +213,41 @@
   "fino_al": "2026-10-03",
   "righe_cambiate": 1,
   "nota": "copia nella cartella del codice di prima (V01, alias di R01), non elencata nella voce"
+ },
+ {
+  "codice": "S07",
+  "file": "versioni/S07/cig-parere-clima-S07.yaml",
+  "sha256": "bfcac3693ad8b80b97fcd27dec3fd6cbaad8ec708b26825608ea167cab15b556",
+  "fino_al": "2026-10-05",
+  "righe_cambiate": 10,
+  "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
+  "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
+ },
+ {
+  "codice": "S07",
+  "file": "versioni/S07/future-generations-S07.yaml",
+  "sha256": "c4e5cab1ca1e6cd653324be5841d513f88d236dfb808bb95779fcb6d5d31326a",
+  "fino_al": "2026-10-05",
+  "righe_cambiate": 1,
+  "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
+  "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
+ },
+ {
+  "codice": "S07",
+  "file": "versioni/S07/idh-oc-32-25-S07.yaml",
+  "sha256": "5908e53d9f666f08d62cfb7f43f040d46b8066d8b0f047c4bb5b2b671035c542",
+  "fino_al": "2026-10-05",
+  "righe_cambiate": 1,
+  "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
+  "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
+ },
+ {
+  "codice": "S07",
+  "file": "versioni/S07/neubauer-S07.yaml",
+  "sha256": "977e515bcd1304ea05ebcf994f54e24d6d9b18a7490864930ad288c8682f3cf8",
+  "fino_al": "2026-10-05",
+  "righe_cambiate": 2,
+  "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
+  "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
  }
 ]

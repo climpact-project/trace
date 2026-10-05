@@ -48,20 +48,66 @@ it for the TRACE 0.1 data, and the versions in the registry.
 | **1. Corpus**<br>Turns each filing into page-marked text, OCRs unreadable pages, builds the page index. | `corpus`: IndicePagine, Documento, Pagina, PosizioniDopoOcr | [`001`](legacy/tools/001_build_markdown.py) to [`010`](legacy/tools/010_indice_pagine.py) | **D01** Documents: Climate Litigation Database, public API snapshot<br>**D02** Documents: D01 with OCR text of unreadable pages<br>**D03** Documents: D02 with Markdown for 277 filings of the 19/09/2026 update |
 | **2. Cited case**<br>The forms of the name of each judgment, its principles (the *probes*), the map from its paragraphs to its principles. | `caso`: CasoCitato, SerieSonde, MappaParagrafi<br>`config`: Config | [`011`](legacy/tools/011_sonde.py) to [`015`](legacy/tools/015_formulazioni_provenienza.py) | **P01** Probes of Urgenda<br>**P05** Probes of Neubauer and Future Generations, second set corrected (second round)<br>**P06** Probes of KlimaSeniorinnen<br>**P08** Probes of IACtHR advisory opinion OC-32/25<br>**P09** Probes of the ICJ climate advisory opinion, 1.5°C probe rewritten<br>**R04** Paragraph map, reviewed<br>**R07** Paragraph map with probes P05<br>**R09** Paragraph maps of the three new cases; Spanish and Portuguese paragraph references |
 | **3. Name search**<br>Finds the name of the case in every page, in all its forms, with no AI. Each hit becomes a citation with a permanent code (`URG-0146`). | `ricerca`: RicercaPerNome, UnioneRighe<br>`dimensioni`: PosizioneNelPdf | [`016`](legacy/tools/016_cerca.py) to [`022`](legacy/tools/022_coda_uptakes.py); S05 in [`versioni/S05`](versioni/S05) | **S01** Name search, first version<br>**S02** Name search, corrected<br>**S03** Name search on OCR text, more Japanese and Korean forms<br>**S05** Name search on normalised text, with readmitted and new forms (in use) |
-| **4. Type of citation**<br>DeepSeek V4 Flash, a large language model, says what each citation does: chain mention, descriptive, substantive, distinguishing, critical. | `lettori`: LettoreTipo<br>`istruzioni`<br>`deepseek`: ClienteDeepSeek<br>`letture`: Lettura | [`023`](legacy/tools/023_giudica_llm.py) to [`025`](legacy/tools/025_carica_lessicali.py) | **L02** Citation reading, Urgenda<br>**L03** Citation reading, every case except Urgenda |
-| **5. Surrounding pages**<br>TRACE-Reranker scores the pages up to ten before and after the citation; a fixed rule picks the ones to read. | `pagine_attorno`: Punteggi, SceltaPagineAttorno | [`026`](legacy/tools/026_prepara_training.py) to [`029`](legacy/tools/029_coppie_ocr.py), [`031`](legacy/tools/031_leggi_ripresa.py); R10 in [`versioni/R10`](versioni/R10) | **T01** TRACE-Reranker 0.1<br>**R08** Choice of the nearby pages, over the full window for every case<br>**R10** Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap |
-| **6. Uptake reading**<br>DeepSeek V4 Flash proposes the principles taken up, the pages that continue the argument and the quotations; brakes in the code reject quotations not on the page. | `lettori`: LettorePrincipi, LettorePagineAttorno<br>`freni`: Freni | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
-| **7. Composition**<br>Fixed rules turn the readings into proposals, only on rows nobody has judged. From 2 October: five readings per row, majority vote. | `composizione`: Composizione, ComposizioneMaggioranza<br>`maggioranza`<br>`caricatori`: CaricatoreTipo, CaricatoreRipresa<br>`banca`: BancaDati | [`025`](legacy/tools/025_carica_lessicali.py), [`035`](legacy/tools/035_carica_ripresa.py); R11 in [`versioni/R11`](versioni/R11) | **R05** Rules that put the proposals together, with the brake for Asian scripts<br>**R11** Proposals by majority vote of five readings (decided 2 October 2026, being applied) |
-| **8. Checks**<br>After every load: every row complete, every page of the window scored. | `controlli`: ControlloCompletezza, ControlloFinestra | [`036`](legacy/tools/036_controllo_completezza.py) to [`039`](legacy/tools/039_freni_prova.py) |  |
-| **9. People**<br>Researchers confirm or correct every citation; one row in five is shown without machine proposals. | (the platform) | [`040`](legacy/tools/040_salva_giudizi.py) | Codebook 0.4-pilot ([`codebook/`](codebook)) |
-| **10. Uptake without the name**<br>Experiment, paused: filings that take up the reasoning without naming the judgment. | (legacy only) | [`041`](legacy/tools/041_distilla.py) to [`043`](legacy/tools/043_unisci_candidati.py) | **S04** Semantic search without the name, redone with the supported sentences<br>**L06** Uptake reading, test: principle decided on the whole passage<br>**L09** Uptake reading without the name: takes up the reasoning, from another source, or same topic only |
-| **11. Measures**<br>Probe tests, stability of DeepSeek V4 Flash. | (legacy only) | [`044`](legacy/tools/044_prova_sonde_reranker.py) to [`047`](legacy/tools/047_stabilita_deepseek.py) |  |
-| **12. Models**<br>Training of the project's own models. | (legacy only) | [`065`](legacy/tools/065_addestra_categoria.py) to [`069`](legacy/tools/069_addestra_riordino.py); history to [`118`](legacy/tools/118_sezioni_llm.py) | **T01** TRACE-Reranker 0.1<br>**T02** TRACE-Reader v0<br>**T03** TRACE-Reader v1 |
-| **13. Registry and journal**<br>The registry of versions, the results, the journal of every run. | `giornale`: Giornale | [`048`](legacy/tools/048_registro_versioni.py) to [`055`](legacy/tools/055_pubblica_repo.py) | all: [`versioni/registro.json`](versioni/registro.json) |
-| **14. Cycles**<br>The automatic chains: steps in order, resume after a crash, checked copies to and from the GPU cluster. | `orchestratore`: Orchestratore, CicloVuote<br>`cli` | [`056`](legacy/tools/056_ciclo_casi_nuovi.sh) to [`064`](legacy/tools/064_carica_blocco.py) |  |
+| **4. Citations counted once**<br>The same citation can reach the database twice: in the body text and again in the footnote that the same sentence calls, in two translations of one filing, or as a surrounding page that holds a citation of its own. Rules mark one of the two; nothing is deleted. | `unione_c03`: UnioneC03, GeneratoreCoppie, CoppieRivedute<br>`pagine_gia_citate`: ApplicaC07, RiconoscitorePagine<br>`copia_prima`: CopiaPrima | (came after the legacy scripts) | **C03** Body text and footnote, and translations of the same filing, counted once (applied 5 October 2026)<br>**C07** Surrounding page that is already a citation of its own: also cited separately (applied 5 October 2026) |
+| **5. Close pairs** (on trial)<br>Two references to the same case in the same filing, less than 5,000 characters apart, are read together: one citation or two? Not applied: nothing is written to the platform. | `coppia`: Coppia<br>`coppie_vicine`: CoppieVicine, Taratura<br>`lettura_coppia`: DomandaL13, LettoreCoppie<br>`decisione_coppie`: Decisore<br>`carica_s08`: CaricaS08<br>`prova_intera`: FreniProvaIntera | (came after the legacy scripts) | **S08** Close pairs: two references to the same case in the same filing, read together (on trial, not applied)<br>**L13** Reading of a close pair: one citation or two (on trial, not applied) |
+| **6. Type of citation**<br>DeepSeek V4 Flash, a large language model, says what each citation does: chain mention, descriptive, substantive, distinguishing, critical. | `lettori`: LettoreTipo<br>`istruzioni`<br>`deepseek`: ClienteDeepSeek<br>`letture`: Lettura | [`023`](legacy/tools/023_giudica_llm.py) to [`025`](legacy/tools/025_carica_lessicali.py) | **L02** Citation reading, Urgenda<br>**L03** Citation reading, every case except Urgenda |
+| **7. Surrounding pages**<br>TRACE-Reranker scores the pages up to ten before and after the citation; a fixed rule picks the ones to read. A reasoning reranker is on trial (see below); T01 stays the one in use. | `pagine_attorno`: Punteggi, SceltaPagineAttorno | [`026`](legacy/tools/026_prepara_training.py) to [`029`](legacy/tools/029_coppie_ocr.py), [`031`](legacy/tools/031_leggi_ripresa.py); R10 in [`versioni/R10`](versioni/R10) | **T01** TRACE-Reranker 0.1<br>**R08** Choice of the nearby pages, over the full window for every case<br>**R10** Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap |
+| **8. Uptake reading**<br>DeepSeek V4 Flash proposes the principles taken up, the pages that continue the argument and the quotations; brakes in the code reject quotations not on the page. | `lettori`: LettorePrincipi, LettorePagineAttorno<br>`freni`: Freni | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
+| **9. Composition**<br>Fixed rules turn the readings into proposals, only on rows nobody has judged. From 2 October: five readings per row, majority vote. | `composizione`: Composizione, ComposizioneMaggioranza<br>`maggioranza`<br>`caricatori`: CaricatoreTipo, CaricatoreRipresa<br>`banca`: BancaDati | [`025`](legacy/tools/025_carica_lessicali.py), [`035`](legacy/tools/035_carica_ripresa.py); R11 in [`versioni/R11`](versioni/R11) | **R05** Rules that put the proposals together, with the brake for Asian scripts<br>**R11** Proposals by majority vote of five readings (decided 2 October 2026, being applied) |
+| **10. Checks**<br>After every load: every row complete, every page of the window scored. | `controlli`: ControlloCompletezza, ControlloFinestra | [`036`](legacy/tools/036_controllo_completezza.py) to [`039`](legacy/tools/039_freni_prova.py) |  |
+| **11. People**<br>Researchers confirm or correct every citation; one row in five is shown without machine proposals. | (the platform) | [`040`](legacy/tools/040_salva_giudizi.py) | Codebook 0.4-pilot ([`codebook/`](codebook)) |
+| **12. Uptake without the name**<br>Experiment, paused: filings that take up the reasoning without naming the judgment. | (legacy only) | [`041`](legacy/tools/041_distilla.py) to [`043`](legacy/tools/043_unisci_candidati.py) | **S04** Semantic search without the name, redone with the supported sentences<br>**L06** Uptake reading, test: principle decided on the whole passage<br>**L09** Uptake reading without the name: takes up the reasoning, from another source, or same topic only |
+| **13. Measures**<br>Probe tests, stability of DeepSeek V4 Flash. | (legacy only) | [`044`](legacy/tools/044_prova_sonde_reranker.py) to [`047`](legacy/tools/047_stabilita_deepseek.py) |  |
+| **14. Models**<br>Training of the project's own models. | (legacy only) | [`065`](legacy/tools/065_addestra_categoria.py) to [`069`](legacy/tools/069_addestra_riordino.py); history to [`118`](legacy/tools/118_sezioni_llm.py) | **T01** TRACE-Reranker 0.1<br>**T02** TRACE-Reader v0<br>**T03** TRACE-Reader v1 |
+| **15. Registry and journal**<br>The registry of versions, the results, the journal of every run. | `giornale`: Giornale | [`048`](legacy/tools/048_registro_versioni.py) to [`055`](legacy/tools/055_pubblica_repo.py) | all: [`versioni/registro.json`](versioni/registro.json) |
+| **16. Cycles**<br>The automatic chains: steps in order, resume after a crash, checked copies to and from the GPU cluster. | `orchestratore`: Orchestratore, CicloVuote<br>`cli` | [`056`](legacy/tools/056_ciclo_casi_nuovi.sh) to [`064`](legacy/tools/064_carica_blocco.py) |  |
 
-Model cards for T01, T02 and T03: [`MODEL-CARDS.md`](MODEL-CARDS.md). The reading order of all 118 legacy scripts:
+Model cards for T01, T02, T03, the reasoning reranker and L13: [`MODEL-CARDS.md`](MODEL-CARDS.md). The reading order of all 118 legacy scripts:
 [`legacy/tools/LEGGIMI.md`](legacy/tools/LEGGIMI.md).
+
+## Applied and on trial (5 October 2026)
+
+Two rules that count a citation once were **applied** to the platform on 5 October 2026. Everything else in this
+section is on trial: no row of the platform has been changed by it.
+
+**Applied**
+
+- **C03, body text and footnote, and translations of the same filing, counted once.** The same citation reached the
+  database twice: in the body text and again in the footnote that the same sentence calls, or in two translations of one
+  filing. The 850 candidate pairs were reread one by one on 4 October 2026, each with the exact sentence that supports
+  the decision: 693 to merge (550 body text and footnote, 143 translations), 156 to keep as two citations, 1 uncertain.
+  On 5 October at 07:01 the merge was written for **691 rows**: 550 body-text and footnote pairs and 141 translations.
+  Only the pairs reread one by one were written: the rule that proposes the pairs took the wrong original language in 46
+  of the 105 translations it tried (it reads the first language in the header of the filing), so it generates candidates
+  and decides nothing. Two footnotes that carry the same sentence stay two citations. Nothing is deleted: an excluded row
+  keeps all its fields and can be restored.
+- **C07, a surrounding page that is already a citation of its own.** A page that DeepSeek V4 Flash reads as «the
+  argument continues» may hold another citation of the same judgment, with a row of its own. If the two rows share no
+  principle, the page is not a continuation: it is marked «also cited separately as `<code>`» and no longer counts as
+  one in the figures. On 5 October at 07:49 the mark was written on **8,113 pages of 2,778 rows**. The reading of
+  DeepSeek V4 Flash («continues») is not erased: the mark sits next to it, because a page can continue the argument and
+  also hold another citation. On 71 pages that the research team had ticked as continuations on 40 judged rows, the
+  pages were reread one by one (229 pages in all, 71 of the ticked ones are a citation of their own): the tick was removed
+  and a trace kept to put it back; the team's verdict and principles were not touched. **No principle was removed.**
+
+Both steps write a full copy of the rows before the first write, and stop without writing if the copy cannot be read back
+(`tracepipe.copia_prima`).
+
+**On trial, not applied**
+
+- **S08, close pairs.** The citations of one case in one filing that are less than 5,000 characters apart become a
+  candidate pair (the threshold is a cost decision, not a natural limit: the distances of the pairs to merge and of
+  the pairs to keep overlap, and the pairs reread for C03 only reach back one page). Each pair would be read by
+  DeepSeek V4 Flash (five readings) and by a second reader (three readings): one citation, two, or doubt; doubt goes
+  to the team. It would also recover 376 citations that the same-page deduplication of the name search lost (two true
+  citations on one page: Children of Austria, p. 29; BMW, p. 10): 353 remain once 23 copies of the same document are
+  removed. They are not written to the platform.
+- **L13, the reading of a close pair** (the question «one citation or two?»), with the two readers above.
+- **A reasoning reranker.** Qwen3.5-9B as released, **not trained by the project**, with reasoning on. On the 137 rows
+  of the jury set it reaches an F1 of 0.72 on the principles, against 0.50 for T01 and 0.70 for the five readings of
+  DeepSeek V4 Flash. Three rules of its draft instructions were derived from the same judged rows (G05, G06 and one on advisory opinions), so
+  the figure is optimistic; two of the planned trials have run. T01 stays the reranker in use. Details and cautions in
+  [`MODEL-CARDS.md`](MODEL-CARDS.md).
 
 ## Install
 
@@ -73,8 +119,9 @@ pip install -e ".[dev]"
 pytest
 ```
 
-Python 3.11 or later. The only runtime dependency is PyYAML; `.[deepseek]` adds the OpenAI client for the readers and
-`.[firestore]` the platform database client.
+Python 3.11 or later. The runtime dependencies are PyYAML and RapidFuzz; `.[pdf]` adds PyMuPDF (the body-or-footnote
+column of the name search reads the PDF); `.[deepseek]` adds the OpenAI client for the readers and `.[firestore]` the
+platform database client.
 
 ## Quick start
 
@@ -159,7 +206,7 @@ Data provided by the Sabin Center for Climate Change Law. Platform operated by C
 
 - **Tests.** `pytest` from a fresh clone runs the tests that need no private data; the ones that need the harness
   sample or the live scripts are skipped, each with its reason. On the team's machine, with the private data, the
-  whole suite of this repository runs (432 tests).
+  whole suite of this repository runs (558 tests).
 - **Reference harness.** Every class of `tracepipe` reproduces a legacy script. A harness, kept with the private data,
   runs the legacy scripts and the package on a fixed sample (180 rows from the six cases, filing texts included, with
   the database, DeepSeek V4 Flash and the clock replaced by recorded fakes) and compares every output file: 298 of
@@ -214,6 +261,10 @@ assets/         images of this page
 - The models of 0.1 were trained on labels that are being corrected (T01) or on the readings of DeepSeek V4 Flash
   (T02, T03: distillation from DeepSeek V4 Flash), and on one cited judgment, Urgenda.
 - The human reference rows used to compare readings are not frozen; those comparisons are provisional.
+- C03 and C07 were applied on pairs and pages reread one by one; the registry keeps the rule, the numbers and the code,
+  and every excluded row can be restored. S08, L13 and the reasoning reranker are on trial: the
+  figures given for them are measured on rows the team already judged, and the reasoning reranker's figure is optimistic
+  (see its model card).
 
 ## What comes next
 

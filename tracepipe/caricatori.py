@@ -256,7 +256,7 @@ class CaricatoreTipo(Caricatore):
         esito = EsitoCaricamento()
         conti = esito.conti
         for rid, r in self.righe():
-            if r.get('proposto_rete') not in ('lessicale', 'entrambe'):
+            if r.get('proposto_rete') not in ('lessicale', 'entrambe', 'descrittiva'):
                 continue
             if r.get('esito'):
                 conti['gia giudicata (non toccata)'] += 1
@@ -346,11 +346,15 @@ class CaricatoreRipresa(Caricatore):
     def calcola(self) -> EsitoCaricamento:
         if self.composizione == 'R11':
             r11 = ComposizioneMaggioranza.per_caso(self.config, self.caso, compat=self.compat)
-            ing = IngressiMaggioranza.carica(self.config, self.caso, self.etichetta, self.etichetta_tipo)
+            ing = IngressiMaggioranza.carica(
+                self.config, self.caso, self.etichetta, self.etichetta_tipo, pagine_intere=not self.compat
+            )
             scritture, conti = r11.componi_r11(self.righe(), ing)
             return EsitoCaricamento(scritture=scritture, conti=conti)
         composizione = Composizione.per_caso(self.config, self.caso, compat=self.compat)
-        ingressi = IngressiComposizione.carica(self.config, self.caso, principi_da_l04=self.principi_da_l04)
+        ingressi = IngressiComposizione.carica(
+            self.config, self.caso, principi_da_l04=self.principi_da_l04, pagine_intere=not self.compat
+        )
         scritture, conti = composizione.componi(self.righe(), ingressi, self.anche_senza_lettura)
         return EsitoCaricamento(scritture=scritture, conti=conti)
 

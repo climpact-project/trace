@@ -14,11 +14,24 @@ Commands, each the class-based twin of a live script of ``tools/``:
 ``trace carica ripresa``           ``carica_ripresa.py``
 ``trace controlla completezza``    ``controllo_completezza.py``
 ``trace controlla finestra``       ``controllo_finestra.py``
+``trace c03``                      ``unisci_c03.py`` (body text and footnote, translations, counted once)
+``trace c07``                      ``applica_c07.py`` (a surrounding page that is a citation of its own)
+``trace coppie elenco``            ``coppie_vicine.py genera`` (S08 close pairs)
+``trace coppie taratura``          ``coppie_vicine.py taratura`` (the S08 threshold, with the numbers)
+``trace coppie prepara``           ``leggi_coppia_l13.py prepara`` (L13 requests)
+``trace coppie secco``             ``leggi_coppia_l13.py secco``
+``trace coppie leggi``             ``leggi_coppia_l13.py leggi``
+``trace coppie raccogli``          ``leggi_coppia_l13.py raccogli``
+``trace coppie prova-freni``       ``leggi_coppia_l13.py prova-freni``
+``trace coppie decidi``            ``decidi_s08.py decidi`` (never writes)
+``trace coppie valuta``            ``decidi_s08.py valuta``
 =================================  ==============================================================
 
 Same options as the live scripts, and the same convention: nothing is written to the platform without ``--scrivi``
-(the readers write their reading files, as live; they never touch the platform). Global options: ``--radice`` (the
-project root; default ``$TRACE_RADICE`` or the folder that contains the package), ``--compat`` (reproduce the live
+(the readers write their reading files, as live; they never touch the platform). The S08 decision never writes (as
+live: it is enabled only with the PI's yes); loading the new S08 rows is :class:`tracepipe.carica_s08.CaricaS08`.
+Global options: ``--radice`` (the project root; default ``$TRACE_RADICE`` or the folder that contains the package),
+``--compat`` (reproduce the live
 defects fixed on 02/10/2026 and the harness record format), ``--senza-giornale``. Every run is written in the
 operations journal (:mod:`tracepipe.giornale`).
 """
@@ -33,6 +46,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import Config
+from .coppie_vicine import SOGLIA_S08
 from .letture import LETTURE_PROTOCOLLO
 
 PREDEFINITA = Path(__file__).resolve().parent.parent
@@ -163,6 +177,76 @@ def parser() -> argparse.ArgumentParser:
     cc = cs2.add_parser('completezza')
     cc.add_argument('--scrivi', action='store_true')
     cs2.add_parser('finestra')
+
+    c3 = sub.add_parser('c03', help='C03: testo e nota, traduzioni, contati una volta')
+    c3.add_argument('--da', required=True, help='chi lo lancia (esclusa_da, c03_da)')
+    c3.add_argument(
+        '--rivisto', default='', help='elenco riletto a mano (C03_da_scrivere_RIVISTO.tsv): si scrive solo quello'
+    )
+    c3.add_argument('--fotografia', default='', help='una fotografia di corpus_rows invece della banca viva')
+    c3.add_argument('--scrivi', action='store_true')
+
+    c7 = sub.add_parser('c07', help="C07: una pagina attorno che e' un'altra citazione")
+    c7.add_argument('--da', required=True, help='chi lo lancia (c07_da)')
+    c7.add_argument('--rilette', default='', help='le pagine «prosegue» rilette a mano (colonne codice, pagina, esito)')
+    c7.add_argument('--spunte-team', default='', help='C07-REVISIONE-SEGUITI: toglie le spunte «seguito» del team')
+    c7.add_argument('--fotografia', default='', help='una fotografia di corpus_rows invece della banca viva')
+    c7.add_argument(
+        '--ipotesi-tutte', action='store_true', help='SOLO ANTEPRIMA: tutte le «prosegue» come altra citazione'
+    )
+    c7.add_argument('--scrivi', action='store_true')
+
+    cp = sub.add_parser('coppie', help='S08: le coppie vicine e la domanda L13 (una citazione o due?)')
+    cps = cp.add_subparsers(dest='cosa', required=True)
+    ce = cps.add_parser('elenco')
+    ce.add_argument('--fotografia', required=True)
+    ce.add_argument('--scansione', default='')
+    ce.add_argument('--soglia', type=int, default=SOGLIA_S08)
+    ce.add_argument('--uscita', required=True)
+    ct2 = cps.add_parser('taratura')
+    ct2.add_argument('--fotografia', required=True)
+    ct2.add_argument('--verita', required=True)
+    ct2.add_argument('--uscita', default='')
+    cpr = cps.add_parser('prepara')
+    cpr.add_argument('--fotografia', required=True)
+    cpr.add_argument('--verita', required=True)
+    cpr.add_argument('--scansione', default='')
+    cpr.add_argument('--soglia', type=int, default=SOGLIA_S08)
+    cpr.add_argument('--lettore', choices=['ds', 'rr'], default='ds')
+    cpr.add_argument('--uscita', required=True)
+    cse = cps.add_parser('secco')
+    cse.add_argument('--richieste', required=True)
+    cse.add_argument('--tokenizer', default='')
+    cse.add_argument('--stampa', type=int, default=1)
+    cle = cps.add_parser('leggi')
+    cle.add_argument('--richieste', required=True)
+    cle.add_argument('--uscita', required=True)
+    cle.add_argument('--base-url', required=True)
+    cle.add_argument('--chiave-file', required=True)
+    cle.add_argument('--modello', required=True)
+    cle.add_argument('--ragionamento', default='deepseek-high', choices=['deepseek-high', 'qwen-pensa'])
+    cle.add_argument('--contesto', type=int, default=65536)
+    cle.add_argument('--paralleli', type=int, default=16)
+    cle.add_argument('--minuti', type=float, default=0)
+    cle.add_argument('--tokenizer', default='')
+    cra = cps.add_parser('raccogli')
+    cra.add_argument('--richieste', required=True)
+    cra.add_argument('--esiti', required=True)
+    cra.add_argument('--uscita', required=True)
+    cps.add_parser('prova-freni')
+    cde = cps.add_parser('decidi')
+    cde.add_argument('--fotografia', required=True)
+    cde.add_argument('--richieste', required=True)
+    cde.add_argument('--ds', default='')
+    cde.add_argument('--rr', default='')
+    cde.add_argument('--uscita', required=True)
+    cde.add_argument('--da', default='S08')
+    cva = cps.add_parser('valuta')
+    cva.add_argument('--fotografia', required=True)
+    cva.add_argument('--verita', required=True)
+    cva.add_argument('--ds', default='')
+    cva.add_argument('--rr', default='')
+    cva.add_argument('--uscita', default='')
     return ap
 
 
@@ -293,7 +377,162 @@ def esegui(a: argparse.Namespace, config: Config, giornale: Any) -> int:
             ControlloCompletezza(config, _banca(giornale), scrivi=a.scrivi).esegui()
             return 0
         return ControlloFinestra(config, compat=a.compat).esegui()
+    if a.comando == 'c03':
+        from .unione_c03 import UnioneC03
+
+        UnioneC03(
+            config,
+            _banca(giornale),
+            a.da,
+            rivisto=a.rivisto,
+            fotografia=a.fotografia,
+            scrivi=a.scrivi,
+        ).esegui()
+        return 0
+    if a.comando == 'c07':
+        return _c07(a, config, giornale)
+    if a.comando == 'coppie':
+        return _coppie(a, config)
     raise AssertionError(a.comando)
+
+
+def _c07(a: argparse.Namespace, config: Config, giornale: Any) -> int:
+    from .pagine_gia_citate import ApplicaC07
+
+    if a.ipotesi_tutte and a.scrivi:
+        print('--ipotesi-tutte non si usa con --scrivi', file=sys.stderr)
+        return 2
+    ApplicaC07(
+        config,
+        _banca(giornale),
+        a.da,
+        rilette=ApplicaC07.leggi_rilette(a.rilette) if a.rilette else None,
+        revisione=a.spunte_team,
+        fotografia=a.fotografia,
+        ipotesi_tutte=a.ipotesi_tutte,
+        scrivi=a.scrivi,
+    ).esegui()
+    return 0
+
+
+def _coppie(a: argparse.Namespace, config: Config) -> int:
+    import json
+
+    from . import lettura_coppia as lc
+    from .coppie_vicine import CoppieVicine, Taratura, classifica_recuperate
+    from .unione_c03 import carica_fotografia
+
+    if a.cosa == 'prova-freni':
+        sbagliati = lc.prova_freni()
+        print('PROVA DEI FRENI:', 'PASSA' if not sbagliati else f'FALLISCE {sbagliati}')
+        return 1 if sbagliati else 0
+    if a.cosa == 'secco':
+        tok = None
+        if a.tokenizer and Path(a.tokenizer).exists():
+            from tokenizers import Tokenizer
+
+            tok = Tokenizer.from_file(a.tokenizer)
+        print(json.dumps(lc.secco(lc.leggi_jsonl(a.richieste), tok, a.stampa), ensure_ascii=False))
+        return 0
+    if a.cosa == 'leggi':
+        from openai import OpenAI
+
+        tok = None
+        if a.tokenizer:
+            from tokenizers import Tokenizer
+
+            tok = Tokenizer.from_file(a.tokenizer)
+        cli = OpenAI(api_key=Path(a.chiave_file).read_text().strip(), base_url=a.base_url, timeout=3600)
+        lettore = lc.LettoreCoppie(
+            cli,
+            a.modello,
+            a.ragionamento,
+            contesto=a.contesto,
+            paralleli=a.paralleli,
+            minuti=a.minuti,
+            tokenizer=tok,
+        )
+        lettore.leggi(a.richieste, a.uscita)
+        return 0
+    if a.cosa == 'raccogli':
+        ris = lc.raccogli(lc.leggi_jsonl(a.richieste), a.esiti)
+        Path(a.uscita).write_text(json.dumps(ris, ensure_ascii=False), encoding='utf-8')
+        print(len(ris), 'coppie ->', a.uscita)
+        return 0
+    banca = carica_fotografia(a.fotografia)
+    if a.cosa == 'elenco':
+        nuove: list[dict[str, Any]] = []
+        if a.scansione and Path(a.scansione).exists():
+            rec = json.loads(Path(a.scansione).read_text(encoding='utf-8'))['recuperate']
+            nuove = [x for x in classifica_recuperate(rec, banca) if x['esito'] == 'nuova']
+        el = CoppieVicine(a.soglia).elenco(banca, nuove)
+        _scrivi_elenco(Path(a.uscita), el)
+        print(f'{len(el)} coppie a {a.soglia} caratteri -> {a.uscita}')
+        return 0
+    if a.cosa == 'taratura':
+        from .coppia import ArchivioAtti
+
+        t = Taratura(banca, a.verita)
+        ris = t.misura() | {'indizi': t.indizi(ArchivioAtti(config.radice))}
+        if a.uscita:
+            Path(a.uscita).mkdir(parents=True, exist_ok=True)
+            (Path(a.uscita) / 'taratura.json').write_text(
+                json.dumps(ris, ensure_ascii=False, indent=1), encoding='utf-8'
+            )
+        print(json.dumps({k: ris[k] for k in ('coppie', 'distanze', 'soglia_scelta')}, ensure_ascii=False, indent=1))
+        return 0
+    if a.cosa == 'prepara':
+        prep = lc.PreparazioneL13(config, banca, a.lettore)
+        coppie = prep.insieme(a.verita, a.soglia, a.scansione)
+        print(len(coppie), 'coppie')
+        print(prep.prepara(coppie, a.uscita), '->', a.uscita)
+        return 0
+    return _decisioni(a, config, banca)
+
+
+def _scrivi_elenco(percorso: Path, elenco: Sequence[dict[str, Any]]) -> None:
+    import csv
+
+    with open(percorso, 'w', newline='', encoding='utf-8') as h:
+        w = csv.writer(h, delimiter='\t')
+        w.writerow(
+            [
+                *['id_coppia', 'caso', 'atto', 'distanza', 'stessa_pagina'],
+                *['a_prov', 'a_codice', 'a_pagina', 'a_char', 'b_prov', 'b_codice', 'b_pagina', 'b_char'],
+            ]
+        )
+        for c in elenco:
+            a, b = c['a'], c['b']
+            w.writerow(
+                [
+                    *[c['id'], c['caso'], c['atto'], c['distanza'], int(c['stessa_pagina'])],
+                    *[a['prov'], a['codice'] or '', a['pagina'], a['char_start']],
+                    *[b['prov'], b['codice'] or '', b['pagina'], b['char_start']],
+                ]
+            )
+
+
+def _decisioni(a: argparse.Namespace, config: Config, banca: dict[str, Any]) -> int:
+    import json
+
+    from .decisione_coppie import DecisioneCoppie
+
+    def raccolta(p: str) -> Any:
+        return json.loads(Path(p).read_text(encoding='utf-8')) if p else None
+
+    dc = DecisioneCoppie(config, banca, getattr(a, 'da', 'S08'))
+    if a.cosa == 'decidi':
+        dc.decidi(dc.leggi_richieste(a.richieste), raccolta(a.ds), raccolta(a.rr), a.uscita)
+        return 0
+    ds, rr = raccolta(a.ds), raccolta(a.rr)
+    v = dc.valuta(a.verita, ds, rr, solo_indizi=not (ds and rr))
+    if a.uscita:
+        Path(a.uscita).mkdir(parents=True, exist_ok=True)
+        (Path(a.uscita) / 'valutazione.json').write_text(
+            json.dumps(v.conti, ensure_ascii=False, indent=1), encoding='utf-8'
+        )
+    print(json.dumps(v.conti, ensure_ascii=False, indent=1))
+    return 0
 
 
 def _prepara(a: argparse.Namespace, config: Config) -> int:
