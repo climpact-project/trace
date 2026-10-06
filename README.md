@@ -51,18 +51,18 @@ it for the TRACE 0.1 data, and the versions in the registry.
 | **4. Citations counted once**<br>The same citation can reach the database twice: in the body text and again in the footnote that the same sentence calls, in two translations of one filing, or as a surrounding page that holds a citation of its own. Rules mark one of the two; nothing is deleted. | `unione_c03`: UnioneC03, GeneratoreCoppie, CoppieRivedute<br>`pagine_gia_citate`: ApplicaC07, RiconoscitorePagine<br>`copia_prima`: CopiaPrima | (came after the legacy scripts) | **C03** Body text and footnote, and translations of the same filing, counted once (applied 5 October 2026)<br>**C07** Surrounding page that is already a citation of its own: also cited separately (applied 5 October 2026) |
 | **5. Close pairs** (on trial)<br>Two references to the same case in the same filing, less than 5,000 characters apart, are read together: one citation or two? Not applied: nothing is written to the platform. | `coppia`: Coppia<br>`coppie_vicine`: CoppieVicine, Taratura<br>`lettura_coppia`: DomandaL13, LettoreCoppie<br>`decisione_coppie`: Decisore<br>`carica_s08`: CaricaS08<br>`prova_intera`: FreniProvaIntera | (came after the legacy scripts) | **S08** Close pairs: two references to the same case in the same filing, read together (on trial, not applied)<br>**L13** Reading of a close pair: one citation or two (on trial, not applied) |
 | **6. Type of citation**<br>DeepSeek V4 Flash, a large language model, says what each citation does: chain mention, descriptive, substantive, distinguishing, critical. | `lettori`: LettoreTipo<br>`istruzioni`<br>`deepseek`: ClienteDeepSeek<br>`letture`: Lettura | [`023`](legacy/tools/023_giudica_llm.py) to [`025`](legacy/tools/025_carica_lessicali.py) | **L02** Citation reading, Urgenda<br>**L03** Citation reading, every case except Urgenda |
-| **7. Surrounding pages**<br>TRACE-Reranker scores the pages up to ten before and after the citation; a fixed rule picks the ones to read. A reasoning reranker is on trial (see below); T01 stays the one in use. | `pagine_attorno`: Punteggi, SceltaPagineAttorno | [`026`](legacy/tools/026_prepara_training.py) to [`029`](legacy/tools/029_coppie_ocr.py), [`031`](legacy/tools/031_leggi_ripresa.py); R10 in [`versioni/R10`](versioni/R10) | **T01** TRACE-Reranker 0.1<br>**R08** Choice of the nearby pages, over the full window for every case<br>**R10** Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap |
+| **7. Surrounding pages**<br>TRACE-Reranker scores the pages up to ten before and after the citation; a fixed rule picks the ones to read. T04, a reasoning reranker trained by the project, is published as a new model (see below); T01 stays the one in use. | `pagine_attorno`: Punteggi, SceltaPagineAttorno | [`026`](legacy/tools/026_prepara_training.py) to [`029`](legacy/tools/029_coppie_ocr.py), [`031`](legacy/tools/031_leggi_ripresa.py); R10 in [`versioni/R10`](versioni/R10) | **T01** TRACE-Reranker 0.1<br>**R08** Choice of the nearby pages, over the full window for every case<br>**R10** Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap |
 | **8. Uptake reading**<br>DeepSeek V4 Flash proposes the principles taken up, the pages that continue the argument and the quotations; brakes in the code reject quotations not on the page. | `lettori`: LettorePrincipi, LettorePagineAttorno<br>`freni`: Freni | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
 | **9. Composition**<br>Fixed rules turn the readings into proposals, only on rows nobody has judged. From 2 October: five readings per row, majority vote. | `composizione`: Composizione, ComposizioneMaggioranza<br>`maggioranza`<br>`caricatori`: CaricatoreTipo, CaricatoreRipresa<br>`banca`: BancaDati | [`025`](legacy/tools/025_carica_lessicali.py), [`035`](legacy/tools/035_carica_ripresa.py); R11 in [`versioni/R11`](versioni/R11) | **R05** Rules that put the proposals together, with the brake for Asian scripts<br>**R11** Proposals by majority vote of five readings (decided 2 October 2026, being applied) |
 | **10. Checks**<br>After every load: every row complete, every page of the window scored. | `controlli`: ControlloCompletezza, ControlloFinestra | [`036`](legacy/tools/036_controllo_completezza.py) to [`039`](legacy/tools/039_freni_prova.py) |  |
 | **11. People**<br>Researchers confirm or correct every citation; one row in five is shown without machine proposals. | (the platform) | [`040`](legacy/tools/040_salva_giudizi.py) | Codebook 0.4-pilot ([`codebook/`](codebook)) |
 | **12. Uptake without the name**<br>Experiment, paused: filings that take up the reasoning without naming the judgment. | (legacy only) | [`041`](legacy/tools/041_distilla.py) to [`043`](legacy/tools/043_unisci_candidati.py) | **S04** Semantic search without the name, redone with the supported sentences<br>**L06** Uptake reading, test: principle decided on the whole passage<br>**L09** Uptake reading without the name: takes up the reasoning, from another source, or same topic only |
 | **13. Measures**<br>Probe tests, stability of DeepSeek V4 Flash. | (legacy only) | [`044`](legacy/tools/044_prova_sonde_reranker.py) to [`047`](legacy/tools/047_stabilita_deepseek.py) |  |
-| **14. Models**<br>Training of the project's own models. | (legacy only) | [`065`](legacy/tools/065_addestra_categoria.py) to [`069`](legacy/tools/069_addestra_riordino.py); history to [`118`](legacy/tools/118_sezioni_llm.py) | **T01** TRACE-Reranker 0.1<br>**T02** TRACE-Reader v0<br>**T03** TRACE-Reader v1 |
+| **14. Models**<br>Training of the project's own models. | (legacy only) | [`065`](legacy/tools/065_addestra_categoria.py) to [`069`](legacy/tools/069_addestra_riordino.py); history to [`118`](legacy/tools/118_sezioni_llm.py) | **T01** TRACE-Reranker 0.1<br>**T02** TRACE-Reader v0<br>**T03** TRACE-Reader v1<br>**T04** TRACE-Reranker, reasoning (new model; training script [`tools/addestra_reranker_ragiona.py`](versioni/T04/addestra_reranker_ragiona.py)) |
 | **15. Registry and journal**<br>The registry of versions, the results, the journal of every run. | `giornale`: Giornale | [`048`](legacy/tools/048_registro_versioni.py) to [`055`](legacy/tools/055_pubblica_repo.py) | all: [`versioni/registro.json`](versioni/registro.json) |
 | **16. Cycles**<br>The automatic chains: steps in order, resume after a crash, checked copies to and from the GPU cluster. | `orchestratore`: Orchestratore, CicloVuote<br>`cli` | [`056`](legacy/tools/056_ciclo_casi_nuovi.sh) to [`064`](legacy/tools/064_carica_blocco.py) |  |
 
-Model cards for T01, T02, T03, the reasoning reranker and L13: [`MODEL-CARDS.md`](MODEL-CARDS.md). The reading order of all 118 legacy scripts:
+Model cards for T01, T02, T03, T04, the untrained reasoning reranker and L13: [`MODEL-CARDS.md`](MODEL-CARDS.md). The reading order of all 118 legacy scripts:
 [`legacy/tools/LEGGIMI.md`](legacy/tools/LEGGIMI.md).
 
 ## Applied and on trial (5 October 2026)
@@ -103,11 +103,14 @@ Both steps write a full copy of the rows before the first write, and stop withou
   citations on one page: Children of Austria, p. 29; BMW, p. 10): 353 remain once 23 copies of the same document are
   removed. They are not written to the platform.
 - **L13, the reading of a close pair** (the question «one citation or two?»), with the two readers above.
-- **A reasoning reranker.** Qwen3.5-9B as released, **not trained by the project**, with reasoning on. On the 137 rows
-  of the jury set it reaches an F1 of 0.72 on the principles, against 0.50 for T01 and 0.70 for the five readings of
-  DeepSeek V4 Flash. Three rules of its draft instructions were derived from the same judged rows (G05, G06 and one on advisory opinions), so
-  the figure is optimistic; two of the planned trials have run. T01 stays the reranker in use. Details and cautions in
-  [`MODEL-CARDS.md`](MODEL-CARDS.md).
+- **A reasoning reranker, trained (T04).** Qwen3.5-9B with a LoRA adapter trained by the project on its own reasoning, kept
+  where it matched the team's verdict (94 examples). On the 137 rows of the jury set, with adapters that had not seen the
+  filing, it reaches an F1 of 0.756 on the principles against 0.730 for the untrained 9B (difference +0.03, 95%
+  interval -0.033 to +0.079: **not proven**), and 0.50 for T01 and 0.70 for the five readings of DeepSeek V4 Flash. It is
+  published as a new model, **not used to produce the data of TRACE 0.1**; rereading the corpus with it is the plan for
+  TRACE 0.2. Three rules of its draft instructions were derived from the same judged rows (G05, G06 and one on advisory
+  opinions), so the figure is optimistic. T01 stays the reranker in use. The untrained 9B it comes from was tried first
+  (F1 0.72 on the same rows). Details and cautions in [`MODEL-CARDS.md`](MODEL-CARDS.md).
 
 ## Install
 
@@ -155,6 +158,8 @@ docstring of each module.
   licence). The readers call it through an OpenAI-compatible endpoint (`--base-url`, key in `chat/chiave`).
 - **TRACE-Reranker (T01).** A LoRA adapter on Qwen3-Reranker-4B; the adapter is to be published on Zenodo with the
   release.
+- **TRACE-Reranker, reasoning (T04).** A LoRA adapter on Qwen3.5-9B (revision c2022362, Apache-2.0), in `peft` format,
+  published on Zenodo with the release with its prompt, its measurement and a check that it fits the base model.
 - **The platform database**, only to load proposals (`--scrivi`): any implementation of `tracepipe.banca.BancaDati`.
   The tests use the in-memory one.
 
@@ -163,7 +168,7 @@ docstring of each module.
 | What | Why | Where to get it |
 |---|---|---|
 | Texts of the filings | Sabin Center terms; party filings can carry their authors' rights | The Climate Litigation Database; the corpus index, tiers 1 to 3 below |
-| Model weights (T01, T02, T03) | Size | Zenodo, to be published with the release |
+| Model weights (T01, T02, T03, T04) | Size | Zenodo, to be published with the release |
 | DeepSeek V4 Flash weights | Third-party model | The official DeepSeek release (MIT) |
 | Readings, scores, human judgments | Platform data with filing text in them | Released as data on Zenodo, to be published with the release |
 | The reference harness sample (`prove/campione`) | Filing texts and platform data | Not redistributed; described under [How to verify](#how-to-verify) |
@@ -259,14 +264,17 @@ assets/         images of this page
   is right. Rows judged without any proposal are being judged now; a blind figure will be published when that sample
   has a base.
 - The models of 0.1 were trained on labels that are being corrected (T01) or on the readings of DeepSeek V4 Flash
-  (T02, T03: distillation from DeepSeek V4 Flash), and on one cited judgment, Urgenda.
+  (T02, T03: distillation from DeepSeek V4 Flash), and on one cited judgment, Urgenda. T04 was trained on 94 answers of the
+  untrained Qwen3.5-9B that matched the team's verdict, from four cited judgments (74 of them Urgenda).
 - The human reference rows used to compare readings are not frozen; those comparisons are provisional.
 - C03 and C07 were applied on pairs and pages reread one by one; the registry keeps the rule, the numbers and the code,
-  and every excluded row can be restored. S08, L13 and the reasoning reranker are on trial: the
-  figures given for them are measured on rows the team already judged, and the reasoning reranker's figure is optimistic
+  and every excluded row can be restored. S08 and L13 are on trial, and T04 is new: the
+  figures given for them are measured on rows the team already judged, and T04's figure is optimistic and not proven
   (see its model card).
 
 ## What comes next
+
+Next: TRACE 0.2. The whole corpus read again with our own reasoning reranker, trained on our team's judgments and released open with TRACE 0.1.
 
 - **More judgments.** Any judgment can be followed once its case file is written: the forms of its name, its
   principles, a map of its paragraphs. New judgments are added release by release, including those other

@@ -3132,6 +3132,142 @@
   "famiglia": "modello TRACE addestrato da noi"
  },
  {
+  "codice": "T04",
+  "tipo": "modello",
+  "nome": "TRACE-Reranker, reasoning (Qwen3.5-9B with a LoRA adapter)",
+  "compito": "Per una citazione del caso citato e per OGNI principio del caso: scrive un ragionamento breve e dice si'/no/incerto, con le parole dell'atto copiate alla lettera (le controllano R14 e R16) e un punteggio 0-1; prima dice se il brano cita davvero il caso. Dove T01 da' solo un punteggio, T04 da' il ragionamento di ogni verdetto.",
+  "data": "2026-10-05",
+  "stato": "pubblicato con TRACE 0.1 come modello nuovo; non ha prodotto nessun dato dello 0.1 (la rilettura del corpus con T04 e' la 0.2)",
+  "sostituisce": "niente per ora: T01 resta il reranker in uso per le pagine attorno",
+  "modello_base": {
+   "nome": "Qwen/Qwen3.5-9B",
+   "revisione": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+   "licenza": "Apache-2.0",
+   "nota": "Qwen3_5ForConditionalGeneration, ragionamento acceso (enable_thinking); e' lo stesso modello non addestrato provato prima (F1 0,72 sulle 137)"
+  },
+  "pesi": [
+   {
+    "file": "training/ragionamento/addestra/adattatori/finale.pt",
+    "sha256": "6ae7468c13fb9a8024dbb600e3d73e7dfc1c2230830caa61856426228db8096e",
+    "nota": "adattatore finale come scritto dall'addestramento (solo i 400 tensori LoRA, float32)"
+   },
+   {
+    "file": "pubblicazione/trace-0.1/zenodo/reranker_ragiona/adapter_model.safetensors",
+    "sha256": "1c12cb735425b163370fffa928282e5711bfd15570cf9e385002c7be68f2758a",
+    "nota": "gli stessi tensori in formato peft (safetensors), quello pubblicato su Zenodo; con adapter_config.json"
+   }
+  ],
+  "addestramento": {
+   "data": "2026-10-05",
+   "lavoro": "ReCaS-Bari, HTCondor 1917420 (quattro piegature per atto + adattatore finale)",
+   "metodo": "autoaddestramento sul proprio ragionamento (STaR, Zelikman e altri 2022, o rejection sampling): le risposte del 9B non addestrato il cui verdetto sui principi coincide con quello del team si tengono; il giudizio del team sceglie le risposte, non e' mai nella domanda",
+   "righe": 94,
+   "dati": "94 righe utili su 526 risposte del 9B alle 691 citazioni giudicate dal team: 63 confermate dal team con principi uguali ai suoi e 31 scartate dal team a cui il modello ha detto no a tutto (al massimo meta' delle confermate); Urgenda 74, Future Generations 14, KlimaSeniorinnen 3, Neubauer 3; 81 atti. Fuori: piu' di due ideogrammi nel ragionamento o uno nella risposta, un «incerto» fra i principi, risposta incompleta o troncata, «riclassificate». I campioni ciechi non sono fra le 691.",
+   "dati_file": {
+    "file": "training/ragionamento/addestra/dati.jsonl.gz",
+    "sha256": "896f082f727ca4127950d1e3361d5e32ce5b941f968823e20e2531f6c14cb6b8",
+    "nota": "contiene i testi degli atti: non si ridistribuisce; gli id delle 94 righe sono in versioni/T04/esempi_di_addestramento_id.txt"
+   },
+   "impostazioni": "LoRA rango 16, alfa 32, dropout 0,05 su attenzione piena e lineare e MLP del modello di lingua (40.108.032 parametri); 3 epoche; lr 1e-4 con avvio e coseno; 8 esempi per aggiornamento; fino a 28.000 token; bfloat16; perdita solo sulla risposta; seme 20261005",
+   "perdita_per_epoca": [
+    0.6768,
+    0.6655,
+    0.6585
+   ],
+   "durata": "circa 20 minuti su una H100"
+  },
+  "istruzioni": [
+   {
+    "file": "versioni/T04/istruzioni_intestazione_e_regole.txt",
+    "sha256": "14d8c1348a9bf789d547b1861893ec3dbd2d043c059b08cfb97f3fd08208a665"
+   },
+   {
+    "file": "versioni/T04/istruzioni_domanda_e_formato.txt",
+    "sha256": "7df04142c3aa92e89983fde05a03479382a5216e54629a65a2a9e735bea5a240"
+   },
+   {
+    "file": "versioni/T04/esempi_di_addestramento_id.txt",
+    "sha256": "3da36ba89c2cd6ebd8f32b2ad82c3676d99bcb5ce98464b2955cbbcd8602d762"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/addestra_reranker_ragiona.py",
+    "copia": "versioni/T04/addestra_reranker_ragiona.py",
+    "sha256": "5cbdf3cd77df97fd6362d769330c2c3ec32266927934a2e82068be4b6ccf4479"
+   },
+   {
+    "file": "tools/ragionamento.py",
+    "copia": "versioni/T04/ragionamento.py",
+    "sha256": "5e3b654a84afdce0f59d831b4281d86975d38b94ad824a6d47f7e879caf498fd"
+   },
+   {
+    "file": "tools/ragionamento_corri.py",
+    "copia": "versioni/T04/ragionamento_corri.py",
+    "sha256": "7f8405fe3c6bdb5955bb10fea4cdfeee6340c79d3e491a261a7bfe23f8f61fc6"
+   },
+   {
+    "file": "tools/freni.py",
+    "copia": "versioni/T04/freni.py",
+    "sha256": "0268ff53ecee8c7dd6c6541edbb7ff2645cb699218026768d6bdf0d41c0d1f89"
+   }
+  ],
+  "software": {
+   "torch": "2.14.0",
+   "transformers": "5.17.0",
+   "peft": "0.21.0",
+   "huggingface_hub": "1.33.0",
+   "openai (client)": "3.19.2",
+   "vLLM": "0.30.0 (immagine vllm/vllm-openai:v0.30.0)",
+   "flash-linear-attention": "0.5.2",
+   "fla-core": "0.5.2",
+   "einops": "0.8.2"
+  },
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "misure": [
+   {
+    "nome": "F1 sui principi, 137 righe della giuria, piegature per atto (adattatori che non hanno visto l'atto)",
+    "valore": "0,756 (precisione 0,780, richiamo 0,733) contro 0,730 del 9B non addestrato (0,727, 0,733); differenza +0,03, intervallo al 95% ricampionando gli atti da -0,033 a +0,079"
+   },
+   {
+    "nome": "F1 sui principi, 485 righe risposte da tutti e due",
+    "valore": "0,740 (0,790, 0,697) contro 0,708 (0,733, 0,686); differenza +0,03, intervallo da -0,005 a +0,070"
+   },
+   {
+    "nome": "F1 per piegatura (righe)",
+    "valore": "0: 0,729 contro 0,682 (132); 1: 0,667 contro 0,686 (140); 2: 0,776 contro 0,728 (113); 3: 0,769 contro 0,729 (100)"
+   },
+   {
+    "nome": "a confronto, stessi giudizi del team (altre esecuzioni, altri insiemi)",
+    "valore": "T01 circa 0,50; le cinque letture di DeepSeek V4 Flash 0,70"
+   },
+   {
+    "nome": "ideogrammi: risposte del modello con almeno un carattere cinese o giapponese",
+    "valore": "ragionamento 36% (250 su 691) e risposta JSON 10% (70) con le piegature addestrate; 35% (184 su 526) e 11% (56) col 9B non addestrato: l'addestramento non l'ha tolto"
+   },
+   {
+    "nome": "prova di caricamento dell'adattatore finale su Qwen3.5-9B",
+    "valore": "400 tensori su 400 al loro posto, forme giuste, nessun modulo senza peso nel checkpoint (prova sul modello senza pesi con peft 0,21.0)"
+   }
+  ],
+  "limiti": [
+   "94 esempi, 74 di Urgenda",
+   "tre regole della bozza (G05, G06, C05) ricavate dai conteggi su queste stesse righe: la validazione per atto non le ripulisce, la cifra e' un tetto alto; le regole G05-G08 non sono approvate",
+   "la misura e' degli adattatori delle piegature, non dell'adattatore finale pubblicato (stessa ricetta, tutti i 94 esempi)",
+   "differenza dal 9B non addestrato non provata: gli intervalli comprendono lo zero",
+   "le righe tenute sono quelle su cui il modello era gia' d'accordo col team: nessun esempio sulle righe difficili",
+   "il 9B scivola in cinese o giapponese a meta' frase e l'addestramento non l'ha tolto",
+   "misurato solo sui giudizi del team, alcuni dati con le proposte delle macchine davanti; il campione cieco non e' ancora giudicato"
+  ],
+  "note": "Pubblicato su Zenodo con TRACE 0.1 come modello nuovo; NON ha prodotto i dati dello 0.1. Un secondo addestramento (campionamento k=4, lavoro 1921688, tools/addestra_reranker_ragiona_k.py) lo sostituisce solo se pari o migliore e finito entro l'11/10/2026; in quel caso questa voce si rifa' con un codice nuovo o con data e lavoro aggiornati. Un'altra idea di T04 (TRACE-Reranker 0.2 con SFT e GRPO) sta in versioni/T04-BOZZA.json e non e' stata lanciata.",
+  "nome_tecnico": "TRACE-Reranker, reasoning (Qwen3.5-9B with a LoRA adapter)",
+  "in_uso": "pubblicato con la 0.1, non usato per i dati 0.1",
+  "alias": "",
+  "famiglia": "modello TRACE addestrato da noi",
+  "rispetto_a": "T01",
+  "cambia": "non piu' un punteggio ma un ragionamento per ogni principio; base Qwen3.5-9B con ragionamento acceso, addestrata sul proprio ragionamento confermato dal team (94 righe)"
+ },
+ {
   "codice": "R02",
   "tipo": "regola",
   "nome": "Rules that put the proposals together",

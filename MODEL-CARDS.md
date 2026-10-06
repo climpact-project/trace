@@ -4,7 +4,7 @@ The models trained by the CLIMPACT project (University of Bari) for TRACE 0.1, a
 
 Every proposal the models make is shown to people, who confirm or correct it. The models never decide a citation on their own.
 
-Cards updated on 30 September 2026, after an independent review of the registry and of these texts, on 3 October 2026 for the rules and data versions that changed since (R10, R11, S05, D02, D03), and on 5 October 2026 for the readings and the reasoning reranker on trial (L13 and below). The registry is the single source: where a card and the registry differ, the registry is right.
+Cards updated on 30 September 2026, after an independent review of the registry and of these texts, on 3 October 2026 for the rules and data versions that changed since (R10, R11, S05, D02, D03), and on 5 October 2026 for the readings and the reasoning reranker on trial (L13 and below), and on 6 October 2026 for T04, the reasoning reranker trained by the project. The registry is the single source: where a card and the registry differ, the registry is right.
 
 ## T01, TRACE-Reranker 0.1
 
@@ -89,7 +89,41 @@ The score is better than T01's at ranking (AUC 0.86 against 0.75 on the same dec
 - **Two of the planned trials have run:** the 9B on the text, and the 9B with the image of the page (F1 0.68 on the 55 rows it covers). The walk through the surrounding pages, the form with one principle per call and the larger model have not.
 - The model slips into Chinese or Japanese in the middle of a sentence: 35% of its 526 reasonings contain at least one such character, and 56 answers have one in the final JSON. It is a reason not to rely on it as it is.
 - The team's judgments are the reference, and some were given with machine proposals visible: they measure agreement with the team, not a blind agreement.
-- A LoRA adaptation of the 9B on its own answers that match the team's verdict (94 usable rows out of 526 answers, four folds by filing, then a final adapter) is running on ReCaS-Bari. No figure exists for it, and the base model above is the only one measured.
+- A LoRA adaptation of the 9B on its own answers that match the team's verdict has been trained and measured: it is **T04**, the next card.
+
+## T04, TRACE-Reranker, reasoning (new in this release)
+
+**What it does.** The same task as the untrained 9B above: for a citation of the cited case, and for **every principle of the case**, it writes a short reasoning and answers yes, no or uncertain, with the words of the filing it relies on (copied letter by letter, checked by the brakes of R14 and R16) and a score from 0 to 1. Where T01 gives only a score, T04 gives the reasoning behind each verdict, so that a person can read why.
+
+**Status.** Published with TRACE 0.1 as a new model, **not used to produce any datum of this release**: the proposals of TRACE 0.1 come from DeepSeek V4 Flash (R11) and T01. Rereading the corpus with T04 is the plan for TRACE 0.2 (a reasoning reranker, DeepSeek V4 Flash at high reasoning, and a decision step after DeepSeek when the rule allows). Until then T01 stays the reranker in use for the surrounding pages.
+
+**Base model.** Qwen3.5-9B (9 billion parameters, Apache-2.0), revision c2022362, with reasoning on.
+
+**Adaptation.** A LoRA adapter (rank 16, alpha 32, dropout 0.05) on the attention, linear-attention and MLP projections of the language model: 40,108,032 trainable parameters, three epochs, learning rate 1e-4 with cosine decay, eight examples per update, sequences of up to 28,000 tokens, loss only on the answer (reasoning, closing and JSON). About 20 minutes on one NVIDIA H100 at ReCaS-Bari, 5 October 2026. The adapter is in `peft` format; the folder includes a check that it fits the base model.
+
+**Training data.** Self-training on the model's own reasoning (STaR, Zelikman and others, 2022): the base 9B had answered 526 of the 691 citations the research team judged; where its verdict on the principles matched the team's, the answer with its reasoning was kept. 94 examples remain: 63 confirmed by the team with principles equal to the team's and 31 rejected by the team to which the model had said no to everything. By cited case: Urgenda 74, Future Generations 14, KlimaSeniorinnen 3, Neubauer 3; 81 filings. Left out: answers with Chinese or Japanese characters in the JSON or more than two in the reasoning, answers with an uncertain among the principles, incomplete or truncated answers and rows marked «reclassified». The judgment of the team only chooses which answers to keep; it is never in the question. The blind samples are not among the 691.
+
+**Instructions.** The question of the reasoning reranker (instruction, general rules G01 to G08, principles of the case with their rules, the citation, its page, the question and the JSON format). Rules G05 to G08 and several parts of the case files are **drafts, not approved by the principal investigator**, and the prompt says so where they are («BOZZA, non approvata»). The fixed blocks are in the folder `prompt/`.
+
+**Evaluation.** Cross-validation by filing: four fold adapters, each trained on three quarters of the filings, answered the quarter it had not seen, and are compared with the untrained 9B on the same rows. F1 on the principles against the principles the team confirmed:
+
+| | T04 method | Untrained 9B | Difference in F1 (95% interval, resampling filings) |
+|---|---:|---:|---:|
+| 485 rows answered by both | 0.740 | 0.708 | +0.03 (-0.005 to +0.070) |
+| the 137 rows of the jury set | 0.756 (precision 0.780, recall 0.733) | 0.730 (0.727, 0.733) | +0.03 (-0.033 to +0.079) |
+
+For reference, T01 has an F1 of about 0.50 on these judgments and the five readings of DeepSeek V4 Flash 0.70 (from different runs and sets, not strictly like for like). **The gain over the untrained 9B is small and not proven: both intervals include zero.**
+
+**Limits.**
+- **Few examples:** 94, from four cited judgments, 74 of them Urgenda.
+- **The figure is optimistic.** Three rules of the draft instructions were derived from counts taken on these same judged rows (G05, G06, and C05 on advisory opinions). The cross-validation by filing cannot clean them. The clean measure is the blind sample, not judged yet.
+- **The published adapter has no measure of its own.** The figures are those of the fold adapters; the published one is trained on all 94 examples with the same recipe.
+- **Selection of the easy:** the examples are answers that already agree with the team; the difficult rows have none.
+- **Language:** the model slips into Chinese or Japanese in the middle of a sentence, and the training did not cure it: 36% of the reasonings of the fold adapters (250 of 691) and 10% of their JSON answers (70) contain such characters, against 35% and 11% for the untrained model.
+- The team's judgments are the reference, and some were given with machine proposals visible: they measure agreement with the team, not a blind agreement.
+- A second training (four sampled answers per row) was running when this card was written; it replaces this adapter only if it is equal or better.
+
+Next: TRACE 0.2. The whole corpus read again with our own reasoning reranker, trained on our team's judgments and released open with TRACE 0.1.
 
 ## The retriever
 
@@ -107,6 +141,7 @@ TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 
 - Name search: S05, Name search on normalised text, with readmitted and new forms (in use from 2 October 2026). It finds every citation found by the earlier version S03 at the same position and adds new ones only: on a reading of the new rows, 155 of 163 were real citations (95.1%, Wilson 95% interval 90.6-97.5%).
 - Hardware: NVIDIA H100 80GB, ReCaS-Bari data centre (INFN and University of Bari); DeepSeek V4 Flash runs with vLLM on four of them.
 - Every version is recorded with base model revision, weight fingerprints, training data, settings, instructions and code in the TRACE registry, with a note where a text is reconstructed rather than copied.
+- T04 (6 October 2026) is trained on answers of the untrained Qwen3.5-9B that matched the team's verdict: its reasoning is its own, selected by the team's judgment, and no judgment of a row is ever in the question of that row.
 - Rules and readings added on 5 October 2026: C03 and C07 (applied), S08 and L13 (on trial), described in the [README](README.md#applied-and-on-trial-5-october-2026) and in the registry.
 - Terms used here: «DeepSeek V4 Flash» is the large language model that reads the citations (codes L); «TRACE-Reader» is T02 and T03, distilled from it; «uptake» is the relation between a citation and the cited case; «continuation» is a nearby page that carries the same uptake on; «case file» is the list of a case's principles (`cited-cases/*.yaml`); «dossier» is the case summary given to DeepSeek V4 Flash (`*-fascicolo.md`); «test rows» is the fixed evaluation set; «judged without proposals» is the one-in-five sample shown with no machine proposal.
 - Authors: G. Naglieri, E. Buono, C. Garofalo, C. Saracino, L. Dell'Atti (CLIMPACT, University of Bari).
