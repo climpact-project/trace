@@ -1,0 +1,506 @@
+# REGOLE DEI PRINCIPI DI TRACE (giudice dei principi G01 e lettore che ragiona L12) — APPROVATE DAL PI IL 06/10/2026
+#
+# Il PI ha approvato tutte le voci il 06/10/2026 («approvo tutte le regole dei principi TRACE»), senza modifiche.
+# Il testo e' quello della bozza del 04/10/2026 (cited-cases/regole-principi-BOZZA.yaml, che resta com'era: e' il
+# testo usato nelle misure del 04-06/10, quando non era ancora approvato). Scritte per la misura di
+# training/misure/RAGIONAMENTO-2026-10-04.md; tre regole generali (G05, G06, C05) vengono da conti fatti sulle righe
+# giudicate dal team: va detto nel paper.
+#
+versione: 2026-10-06
+stato: APPROVATA
+approvato_da: "PI (Giuseppe Naglieri), 06/10/2026"
+
+regole_generali:
+  - id: G01
+    fonte: "codebook 0.5-pilot, casi limite (approvata, PI 28/09/2026)"
+    testo: >
+      Il principio si decide sulla FRASE che la citazione sostiene: la frase del corpo a cui e' agganciata la nota che
+      cita il caso, o la frase che contiene la citazione. Di che cosa parla la pagina non basta.
+  - id: G02
+    fonte: "codebook 0.5-pilot, casi limite (approvata)"
+    testo: >
+      Se la frase ha una propria nota che la attribuisce a un'altra fonte (un altro caso, un trattato, un rapporto),
+      quella frase non prende il principio di questo caso, anche se l'argomento e' lo stesso.
+  - id: G03
+    fonte: "codebook 0.5-pilot, dimensione 6 (approvata)"
+    testo: >
+      Si possono prendere piu' principi. «nessuno»: la citazione non prende nessun principio (menzione in catena,
+      descrizione dei soli fatti o del solo esito, esempio di contenzioso vinto). «altro»: prende qualcosa che non e'
+      nella lista, da scrivere in una frase.
+  - id: G04
+    fonte: "codebook 0.5-pilot, dimensione 6 (approvata)"
+    testo: >
+      Se la citazione indica il paragrafo, vale la mappa dei paragrafi, salvo che il testo dica chiaramente altro.
+  - id: G05
+    fonte: "BOZZA (dai giudizi del team del 3-4/10: 27 citazioni descrittive, nessuna con «nessuno»)"
+    testo: >
+      Una citazione che RIFERISCE il ragionamento del caso («la corte ha ritenuto che ...») prende il principio che
+      riferisce, anche se il testo non lo fa proprio: il tipo (descrittiva) dice come lo usa, il principio dice CHE COSA
+      ne prende. «nessuno» solo se riferisce soltanto fatti, procedura o esito, senza la ragione.
+  - id: G06
+    fonte: "BOZZA (dai giudizi del team: il principio mancato dalle letture non veniva dalla proposta vista in 26 casi su 31)"
+    testo: >
+      Un principio si prende anche quando e' secondario nella frase: se la frase sostenuta attribuisce al caso due
+      proposizioni, si prendono tutte e due. Non si sceglie il principio «piu' importante».
+  - id: G07
+    fonte: "BOZZA (dalla clausola «o l'attribuzione» delle esclusioni di provenienza nei file dei casi)"
+    testo: >
+      L'elemento proprio decide: lo stesso tema retto su un'altra fonte non e' il principio. Ma se l'atto ATTRIBUISCE
+      espressamente a questo caso la proposizione (lo cita per quella), il principio e' preso anche se la proposizione e'
+      comune ad altre fonti.
+  - id: G08
+    fonte: "BOZZA (regola aperta, da decidere dal PI; GIURIA-2026-10-04.md)"
+    testo: >
+      Menzione in catena: oggi la composizione mette «nessuno», mentre il team prende principi in 8 catene su 31. Il
+      giudice decide comunque se la frase prende il principio; la regola della catena si applica dopo, nella composizione.
+
+# CHI PARLA: il codebook 0.5 da' solo i codici e i nomi. Regole di decisione: C01 e' il codice «procuratore» (approvato
+# 0.5, 03/10); C02-C06 sono BOZZA. C05 viene dai giudizi del team: nei pareri consultivi (CIG, Corte IDH) 5 righe su 6 dei
+# documenti degli Stati partecipanti sono «parte» (GIURIA-2026-10-04.md: e' la lacuna del codebook da chiudere).
+chi_parla_regole:
+  - id: C01
+    fonte: "codebook 0.5-pilot (approvata, PI 03/10/2026, su URG-1614)"
+    testo: >
+      «procuratore»: procuratore generale, avvocato generale o pubblico ministero che da' un parere alla corte senza
+      decidere e senza essere parte (per esempio la conclusione del procuratore generale presso la Hoge Raad).
+  - id: C02
+    fonte: "BOZZA"
+    testo: >
+      Chi parla e' chi ENUNCIA la frase che usa il caso, non chi ha scritto il documento: in una sentenza, «i ricorrenti
+      invocano Urgenda» e' la parte (la corte riassume una difesa); la motivazione della corte e' «corte»; un'opinione
+      dissenziente o concorrente e' «corte» (con sede dissenso o concorrente).
+  - id: C03
+    fonte: "BOZZA"
+    testo: >
+      In un atto depositato da una parte (ricorso, memoria, replica) chi parla e' «parte»; in un atto di amicus curiae e'
+      «amicus»; in un atto di un terzo intervenuto e' «interveniente». Il tipo di atto e l'autore stanno nei metadati e
+      nella prima e ultima pagina (intestazione, firme): vanno guardati prima di decidere.
+  - id: C04
+    fonte: "BOZZA"
+    testo: >
+      Se il documento riporta le parole di un altro soggetto (un'audizione, una citazione lunga di un'altra corte), chi
+      parla e' chi fa propria la frase nel documento; se nessuno la fa propria, e' chi la enuncia nel brano riportato.
+  - id: C05
+    fonte: "BOZZA (dai giudizi del team sui pareri consultivi)"
+    testo: >
+      Nei procedimenti consultivi (CIG, Corte IDH, ITLOS, Corte africana) gli Stati e le organizzazioni che depositano
+      osservazioni scritte o orali sono «parte» (partecipanti al procedimento); le ONG e i singoli ammessi come amici
+      della corte sono «amicus».
+  - id: C06
+    fonte: "BOZZA"
+    testo: >
+      «non_determinabile» solo se, dopo metadati, intestazione, firme e titoli di sezione, non si sa chi enuncia la frase
+      (per esempio un rapporto senza autore, un comunicato stampa senza fonte).
+
+principi:
+
+# ═══════════════════════════════ URGENDA (serie P01) ═══════════════════════════════
+  propria_quota:
+    includere:
+      - Lo Stato (o un emettitore) non si sottrae all'obbligo di ridurre adducendo che le sue emissioni sono piccole o che gli altri non riducono.
+      - Ogni Stato risponde della sua parte di un danno globale («its own share», «partial responsibility», «its part»).
+    confini:
+      - Se la frase dice solo che gli artt. 2 e 8 CEDU obbligano a proteggere dal rischio climatico, senza l'argomento del piccolo contributo, e' obblighi_positivi.
+      - Se la frase riguarda il minimo quantificato (25%, 25-40%) che il giudice puo' imporre, e' target_giudiziale; si prendono tutti e due solo se la frase dice anche che la piccola quota non esonera.
+    controesempi:
+      - Un atto che riporta che il cambiamento climatico e' un problema globale che richiede cooperazione, senza negare la difesa del piccolo contributo.
+  obblighi_positivi:
+    includere:
+      - Gli artt. 2 e 8 CEDU (o diritti alla vita e alla vita privata) impongono allo Stato misure adeguate contro il rischio climatico.
+      - Il rischio e' «reale e immediato» anche se si materializza fra decenni e colpisce la popolazione intera.
+    confini:
+      - Il dovere di diligenza civilistico (art. 6:162 BW, «duty of care» del Rechtbank 2015) e' dovere_diligenza; la formula ibrida del Hof 2018 («duty of care under Articles 2 and 8») si legge su tutti e due.
+      - Il diritto CEDU applicato dalla Corte di Strasburgo (KlimaSeniorinnen) non e' Urgenda se l'atto non attribuisce la proposizione a Urgenda.
+    controesempi:
+      - Un atto che elenca Urgenda fra i casi «basati sui diritti umani» senza dire che cosa ne discende (descrizione dell'esito o catena).
+  dovere_diligenza:
+    includere:
+      - Una mitigazione insufficiente e' un illecito civile dello Stato verso i cittadini (negligenza, standard di diligenza, «duty of care», «zorgplicht»).
+      - Le norme aperte del diritto privato, interpretate alla luce di CEDU e diritto internazionale, fondano il dovere dello Stato.
+    confini:
+      - Se la frase fonda l'obbligo direttamente sugli artt. 2 e 8 CEDU (Hoge Raad 2019), e' obblighi_positivi.
+    controesempi:
+      - Un atto di diritto societario o commerciale che usa «duty of care» per gli amministratori, citando Urgenda solo in un elenco.
+  ordine_non_legge:
+    includere:
+      - Il giudice puo' ordinare allo Stato un risultato (ridurre le emissioni) lasciandogli la scelta dei mezzi, senza ordinargli di legiferare con un contenuto.
+      - La separazione dei poteri non impedisce l'ordine giudiziale quando lo Stato e' giuridicamente obbligato ad agire.
+    confini:
+      - Se la frase riguarda la quantificazione del minimo (25%) e non la forma dell'ordine, e' target_giudiziale.
+    controesempi:
+      - "Un atto che dice che i giudici non possono decidere la politica climatica, senza riferirsi alla distinzione fra ordine di risultato e ordine di legiferare (salvo che lo dica criticando Urgenda: allora tipo critica e principio preso)."
+  target_giudiziale:
+    includere:
+      - Il giudice puo' fissare un minimo quantificato di riduzione (per esempio 25% al 2020) ricavandolo dal consenso scientifico e internazionale.
+      - La «quota equa minima» o il «limite inferiore» dello Stato si accertano dai rapporti IPCC e dagli accordi internazionali.
+    confini:
+      - Se la frase dice solo che lo Stato deve fare la sua parte, senza il minimo quantificato o la sua derivazione, e' propria_quota.
+    controesempi:
+      - "Un atto che riporta soltanto che Urgenda ha ottenuto un ordine di riduzione del 25% (esito, senza la ragione): «nessuno» per G03, salvo G05."
+
+# ═══════════════════════════════ NEUBAUER (serie P05) ═══════════════════════════════
+  liberta_intertemporale:
+    includere:
+      - I diritti fondamentali proteggono la liberta' futura contro lo scarico unilaterale degli oneri di riduzione sul futuro.
+      - Le emissioni consentite oggi hanno un effetto anticipato di ingerenza («eingriffsähnliche Vorwirkung») sulle liberta' di domani.
+    escludere:
+      - Il semplice richiamo all'equita' fra generazioni senza la liberta' intertemporale o l'effetto anticipato.
+    confini:
+      - I doveri oggettivi verso le generazioni future (art. 20a GG, i posteri non titolari di diritti) sono dovere_oggettivo_posteri.
+      - L'obbligo di fissare per tempo il percorso dopo il 2030 e' percorso_dopo_2030; si prendono tutti e due se la frase dice entrambe le cose.
+    formule:
+      de: [intertemporale Freiheitssicherung, eingriffsähnliche Vorwirkung, Lastenverteilung zwischen den Generationen]
+      en: [intertemporal guarantees of freedom, advance interference-like effect, offloading the reduction burden onto the future]
+      fr: [garanties intertemporelles de liberté, effet anticipé d'ingérence]
+      es: [garantías intertemporales de libertad, efecto anticipado de injerencia]
+      it: [garanzie intertemporali di liberta', effetto anticipato di ingerenza]
+    controesempi:
+      - Un atto che cita Neubauer solo perche' la Corte costituzionale tedesca ha annullato in parte la legge sul clima (esito).
+  percorso_dopo_2030:
+    includere:
+      - Il legislatore deve fissare per tempo e in modo trasparente il percorso di riduzione dopo il periodo in corso, dando urgenza e certezza di pianificazione.
+      - La transizione verso la neutralita' va avviata in tempo, creando condizioni e incentivi.
+    escludere:
+      - Obiettivi intermedi chiesti sulla base di un'altra fonte (Legge europea sul clima, KlimaSeniorinnen) senza attribuzione a Neubauer.
+    formule:
+      de: [Reduktionspfad nach 2030, rechtzeitig einleiten, Planungssicherheit, Entwicklungsdruck]
+      en: [reduction pathway after 2030, initiated in good time, planning certainty, developmental urgency]
+      fr: [trajectoire de réduction après 2030, sécurité de planification]
+      es: [trayectoria de reducción después de 2030, seguridad de planificación]
+    controesempi:
+      - Un atto che chiede genericamente «obiettivi piu' ambiziosi» senza il tema dei tempi e della trasparenza del percorso futuro.
+  budget_residuo:
+    includere:
+      - Il limite di temperatura di Parigi si traduce in un bilancio di CO2 residuo nazionale che vincola il legislatore.
+      - L'art. 20a GG e' un mandato climatico giustiziabile, specificato dal limite di temperatura concordato.
+    escludere:
+      - Il bilancio di carbonio come concetto scientifico (IPCC) senza il vincolo giuridico per il legislatore.
+    confini:
+      - Se la frase riguarda soprattutto lo scarico degli oneri sul futuro, e' liberta_intertemporale.
+    formule:
+      de: [Restbudget, CO2-Budget, Sachverständigenrat für Umweltfragen, Klimaschutzgebot des Art. 20a GG]
+      en: [remaining carbon budget, remaining national CO2 budget, justiciable climate mandate]
+      fr: [budget carbone résiduel, budget national]
+      es: [presupuesto de carbono restante, presupuesto nacional de CO2]
+      it: [bilancio di carbonio residuo, budget nazionale di CO2]
+    controesempi:
+      - Una relazione che calcola il bilancio di un paese citando l'IPCC, e Neubauer solo in un elenco di casi.
+  dimensione_internazionale:
+    includere:
+      - Lo Stato non si sottrae all'obbligo climatico indicando le emissioni degli altri Stati.
+      - La dipendenza dalla cooperazione internazionale impone di agire a livello nazionale e di non creare incentivi contro la fiducia reciproca.
+    confini:
+      - "La stessa idea attribuita a Urgenda (Hoge Raad 5.7.7) e' Urgenda (propria_quota): Neubauer la cita. Si prende questo principio solo se l'atto la attribuisce a Neubauer."
+    formule:
+      de: [nicht auf die Treibhausgasemissionen in anderen Staaten verweisen, internationales Vertrauen]
+      en: [may not evade its responsibility by pointing to emissions in other states, mutual trust]
+      fr: [ne peut se soustraire à sa responsabilité en invoquant les émissions des autres États]
+      es: [no puede eludir su responsabilidad señalando las emisiones de otros Estados]
+    controesempi:
+      - Un atto che afferma che il clima e' un problema globale, citando Neubauer per la sola esistenza della decisione.
+  dovere_oggettivo_posteri:
+    includere:
+      - Le generazioni future non sono titolari di diritti fondamentali oggi; verso di loro lo Stato ha un dovere oggettivo (art. 20a GG).
+      - Il mandato di proteggere le basi naturali della vita impone di distribuire equamente gli oneri ambientali fra le generazioni.
+    confini:
+      - La protezione dei ricorrenti di oggi per le loro liberta' future e' liberta_intertemporale (diritto soggettivo); questo principio e' il dovere oggettivo.
+    formule:
+      de: [objektivrechtliche Schutzauftrag, künftige Generationen, natürliche Lebensgrundlagen]
+      en: [objective duty, future generations do not yet carry fundamental rights, natural foundations of life]
+      fr: [obligation objective envers les générations futures, fondements naturels de la vie]
+      es: [deber objetivo hacia las generaciones futuras, bases naturales de la vida]
+    controesempi:
+      - Un atto che invoca i «diritti delle generazioni future» come diritti soggettivi, attribuendoli a Future Generations (Colombia).
+  dovere_protezione_vita_salute:
+    includere:
+      - Il dovere di proteggere vita e integrita' fisica (art. 2(2) GG) copre anche i pericoli del cambiamento climatico, con mitigazione e adattamento.
+      - Il legislatore ha un ampio margine; il dovere e' violato solo se le misure mancano del tutto o sono manifestamente inadatte.
+    formule:
+      de: [Schutzpflicht aus Art. 2 Abs. 2 GG, evident unzureichend, Untermaßverbot]
+      en: [duty of protection, Article 2(2) Basic Law, manifestly unsuitable, wide margin]
+      fr: [obligation de protection, manifestement inappropriées]
+      es: [deber de protección, manifiestamente inadecuadas]
+    controesempi:
+      - Un atto che cita Neubauer per la liberta' futura (liberta_intertemporale), con il diritto alla vita solo nominato.
+  ammissibilita_legittimazione:
+    includere:
+      - I ricorrenti sono individualmente colpiti anche se il rischio riguarda quasi tutti; non e' un'actio popularis.
+      - I ricorrenti residenti all'estero sono ammessi, le associazioni ambientaliste no; non si fanno valere diritti dei posteri.
+    formule:
+      de: [Beschwerdebefugnis, "selbst, gegenwärtig und unmittelbar betroffen", Popularklage, Umweltverbände]
+      en: [standing, individually and directly affected, actio popularis, complainants living abroad]
+      fr: [qualité pour agir, directement et individuellement concernés]
+      es: [legitimación, afectados individual y directamente]
+    controesempi:
+      - Un atto che discute la legittimazione di un'associazione sotto la Convenzione di Aarhus (non e' Neubauer; in KlimaSeniorinnen e' legittimazione_associazioni).
+
+# ═══════════════════════════════ FUTURE GENERATIONS (serie P05) ═══════════════════════════════
+  ammissibilita_conexidad:
+    includere:
+      - La tutela individuale (acción de tutela) e' ammessa per un diritto collettivo all'ambiente quando il danno minaccia vita, salute, acqua o dignita' di ricorrenti identificabili (conexidad).
+    escludere:
+      - L'ammissibilita' della tutela per ragioni diverse dal legame fra ambiente e diritti fondamentali.
+    confini:
+      - Se la frase riguarda la minaccia della deforestazione ai diritti nel merito, e' deforestazione_minaccia_diritti.
+    formule:
+      es: [conexidad, procedencia excepcional de la tutela, derechos colectivos, acción popular]
+      en: [connectedness, exceptional admissibility of the tutela, collective right]
+      pt: [conexidade, tutela individual]
+      fr: [connexité, recevabilité exceptionnelle]
+    controesempi:
+      - "Un atto che descrive i 25 giovani ricorrenti e la vittoria del caso, senza la questione di ammissibilita' (G03: esito)."
+  diritti_generazioni_future:
+    includere:
+      - I diritti ambientali delle generazioni future fondano un obbligo di non fare che limita la liberta' delle generazioni presenti.
+      - Il fondamento e' la solidarieta' della specie e il valore intrinseco della natura.
+    escludere:
+      - L'equita' intergenerazionale come principio generale (Dichiarazione di Rio, UNFCCC) senza attribuzione a questa sentenza.
+    confini:
+      - Il dovere oggettivo verso i posteri di Neubauer (che nega i diritti dei posteri) non e' questo principio.
+    formule:
+      es: [derechos de las generaciones futuras, obligación de no hacer, solidaridad de la especie]
+      en: [rights of future generations, obligation of non-action, limits the freedom of present generations]
+      pt: [direitos das gerações futuras]
+      fr: [droits des générations futures, obligation de ne pas faire]
+    controesempi:
+      - Un atto che cita il caso col suo nome «Generaciones Futuras» come esempio di contenzioso giovanile, senza la ragione.
+  bioma_soggetto_diritti:
+    includere:
+      - L'Amazzonia colombiana (o il bioma intero) e' riconosciuta soggetto di diritti alla protezione, conservazione, mantenimento e restauro.
+      - Il criterio ecocentrico-antropico supera la prospettiva antropocentrica.
+    formule:
+      es: [sujeto de derechos, Amazonía colombiana, ecocéntrico-antrópico]
+      en: [subject of rights, Colombian Amazon, ecocentric]
+      pt: [sujeito de direitos, Amazônia]
+      fr: [sujet de droits, Amazonie colombienne]
+    controesempi:
+      - Un atto che riconosce diritti a un fiume citando T-622/2016 (Atrato) e nomina la sentenza sull'Amazzonia solo in elenco (esclusione di provenienza del file del caso).
+  rimedio_strutturale:
+    includere:
+      - Il giudice ordina piani d'azione con scadenze e la partecipazione dei ricorrenti e delle comunita' (PIVAC, patto intergenerazionale), con supervisione dell'esecuzione.
+    escludere:
+      - L'ordine di un risultato senza la struttura partecipata e la supervisione (Urgenda, ordine_non_legge).
+    formule:
+      es: [pacto intergeneracional, PIVAC, plan de acción, órdenes estructurales, seguimiento del cumplimiento]
+      en: [intergenerational pact, structural remedy, action plan, participatory]
+      pt: [ordens estruturais, pacto intergeracional]
+      fr: [injonction structurelle, pacte intergénérationnel]
+    controesempi:
+      - Un atto che lamenta il mancato rispetto della sentenza da parte del governo colombiano (fatto sull'esecuzione, senza il principio del rimedio), salvo che ne tragga la necessita' del rimedio strutturale.
+  deforestazione_minaccia_diritti:
+    includere:
+      - La deforestazione dell'Amazzonia contribuisce al cambiamento climatico e minaccia in modo imminente e grave vita, salute e acqua dei ricorrenti presenti e futuri.
+      - L'omissione dello Stato nel frenarla viola quei diritti.
+    escludere:
+      - Il legame deforestazione-clima come dato scientifico (IPCC, studi) senza la violazione dei diritti attribuita alla sentenza.
+    formule:
+      es: [deforestación, perjuicio inminente y grave, derechos a la vida, la salud y el agua]
+      en: [deforestation, imminent and serious harm, rights to life, health and water]
+      pt: [desmatamento, dano iminente e grave]
+      fr: [déforestation, préjudice imminent et grave]
+    controesempi:
+      - Una memoria che cita il caso come «hito» del contenzioso contro la deforestazione senza dire che cosa la corte ha ritenuto (G03), salvo G05.
+
+# ═══════════════════════════════ KLIMASENIORINNEN (serie P06) ═══════════════════════════════
+  vittima_soglia_alta:
+    includere:
+      - "I due criteri climatici per la qualita' di vittima individuale: esposizione di alta intensita' e bisogno pressante di protezione individuale, con soglia particolarmente alta."
+    formule:
+      en: [high intensity of exposure, pressing need to ensure individual protection, especially high threshold, victim status]
+      fr: [intensité élevée d'exposition, besoin impérieux de protection individuelle, qualité de victime]
+      de: [Opfereigenschaft, hohe Intensität der Exposition, dringendes Schutzbedürfnis]
+      es: [condición de víctima, alta intensidad de exposición]
+      it: [qualita' di vittima, esposizione di alta intensita', soglia particolarmente alta]
+    controesempi:
+      - Un atto che dice che le quattro ricorrenti individuali sono state dichiarate irricevibili (esito), senza i criteri.
+  legittimazione_associazioni:
+    includere:
+      - Un'associazione puo' agire per i membri e altri colpiti se legalmente costituita, con scopo statutario dedicato e genuinamente qualificata e rappresentativa, senza che ciascuno dei rappresentati debba qualificarsi come vittima.
+    formule:
+      en: [standing of associations, lawfully established, dedicated purpose, genuinely qualified and representative]
+      fr: [qualité pour agir des associations, régulièrement constituée, véritablement qualifiée et représentative]
+      de: [Klagebefugnis von Verbänden, satzungsmäßiger Zweck]
+      es: [legitimación de las asociaciones]
+    controesempi:
+      - Un atto che riconosce la legittimazione di una ONG per la Convenzione di Aarhus (esclusione di provenienza).
+  art8_protezione_effettiva:
+    includere:
+      - L'art. 8 CEDU comprende un diritto alla protezione effettiva dagli effetti negativi gravi del cambiamento climatico su vita, salute, benessere.
+      - Il dovere primario dello Stato e' adottare e applicare davvero misure capaci di mitigare, integrate dall'adattamento.
+    confini:
+      - I requisiti specifici del quadro regolatorio (tempi, bilancio, obiettivi intermedi) sono requisiti_quadro_regolatorio; si prendono tutti e due se la frase dice entrambe le cose.
+    formule:
+      en: [right to effective protection, serious adverse effects of climate change, Article 8 encompasses]
+      fr: [droit à une protection effective, effets néfastes graves du changement climatique]
+      de: [Recht auf wirksamen Schutz, Art. 8 EMRK]
+      es: [derecho a una protección efectiva frente a los efectos adversos graves]
+      it: [diritto alla protezione effettiva, effetti negativi gravi del cambiamento climatico]
+    controesempi:
+      - Un atto che fonda il dovere di proteggere dal clima sugli artt. 2 e 8 citando solo Urgenda (esclusione di provenienza).
+  margine_differenziato:
+    includere:
+      - Il margine e' ridotto sull'impegno e sugli obiettivi, ampio sulla scelta dei mezzi; le garanzie procedurali misurano se lo Stato vi e' rimasto.
+    formule:
+      en: [reduced margin of appreciation, wide margin as regards the choice of means, procedural safeguards]
+      fr: [marge d'appréciation réduite, choix des moyens, garanties procédurales]
+      de: [Ermessensspielraum, Wahl der Mittel]
+      es: [margen de apreciación reducido, elección de los medios]
+    controesempi:
+      - Un atto che invoca un «ampio margine» dello Stato in materia ambientale citando Hatton (esclusione di provenienza).
+  requisiti_quadro_regolatorio:
+    includere:
+      - Lo Stato deve avere un quadro vincolante con tempi per la neutralita', bilancio di carbonio o quantificazione equivalente, obiettivi intermedi e percorsi settoriali, verifica e aggiornamento, azione tempestiva e coerente.
+    formule:
+      en: [carbon budget or another equivalent quantification, intermediate reduction targets, in good time and in an appropriate and consistent manner]
+      fr: [budget carbone ou autre méthode équivalente de quantification, objectifs intermédiaires]
+      de: [CO2-Budget oder gleichwertige Quantifizierung, Zwischenziele]
+      es: [presupuesto de carbono u otra cuantificación equivalente, objetivos intermedios]
+    controesempi:
+      - Un atto che chiede un bilancio nazionale di carbonio citando solo Neubauer (esclusione di provenienza).
+  possibilita_reale:
+    includere:
+      - Basta che le misure mancate avessero una possibilita' reale di cambiare l'esito o attenuare il danno; non serve la prova del «but for».
+    formule:
+      en: [real prospect of altering the outcome, drop in the ocean, but for]
+      fr: [chance réelle de modifier l'issue, goutte d'eau dans l'océan]
+      de: [reale Aussicht, das Ergebnis zu ändern, Tropfen auf den heißen Stein]
+      es: [posibilidad real de alterar el resultado, gota en el océano]
+    controesempi:
+      - "Un atto che dice solo che ogni Stato risponde della propria quota (elemento proprio: e' Urgenda o Neubauer)."
+  prospettiva_intergenerazionale:
+    includere:
+      - Le generazioni future portano i pesi delle scelte di oggi senza parteciparvi; questa prospettiva giustifica il controllo dei giudici.
+    formule:
+      en: [intergenerational burden-sharing, no say in today's decisions, justification for judicial review]
+      fr: [perspective intergénérationnelle, contrôle juridictionnel]
+      de: [intergenerationelle Perspektive, gerichtliche Kontrolle]
+      es: [perspectiva intergeneracional, control judicial]
+    controesempi:
+      - Un atto che difende la legittimita' democratica del controllo giudiziale in generale, senza il fondamento intergenerazionale.
+
+# ═══════════════════════════════ CIG, PARERE SUL CLIMA (serie P09) ═══════════════════════════════
+  obiettivo_1_5:
+    includere:
+      - L'1,5 gradi e' l'obiettivo primario giuridicamente vincolante di Parigi, per accordo successivo delle parti.
+    formule:
+      en: [1.5°C as the primary temperature goal, subsequent agreement, consensus of the parties]
+      fr: ["1,5 °C comme objectif principal de température", accord ultérieur]
+      es: ["1,5 °C como objetivo principal de temperatura"]
+      de: ["1,5-Grad-Ziel als primäres Temperaturziel"]
+    controesempi:
+      - Un atto che cita il parere per la sola esistenza degli obblighi climatici e indica l'1,5 come dato dell'IPCC.
+  ndc_discrezionalita_limitata:
+    includere:
+      - "Gli NDC non sono a discrezione libera: devono riflettere la massima ambizione possibile come standard giuridico, e insieme raggiungere lo scopo dell'Accordo."
+    formule:
+      en: [highest possible ambition, discretion is limited, nationally determined contributions, stringent standard]
+      fr: [ambition la plus élevée possible, pouvoir discrétionnaire limité, contributions déterminées au niveau national]
+      es: [mayor ambición posible, discrecionalidad limitada, contribuciones determinadas a nivel nacional]
+    controesempi:
+      - Un atto che riporta le cifre del 43% al 2030 dal primo bilancio globale (esclusione di provenienza).
+  diligenza_stringente_clima:
+    includere:
+      - Il dovere consuetudinario di prevenire danni significativi si applica al sistema climatico nonostante il danno cumulativo e diffuso, con diligenza stringente.
+      - La diligenza dovuta e' graduata sulle capacita' ma non giustifica ritardi; comprende valutazione del rischio e precauzione.
+    formule:
+      en: [stringent due diligence, duty to prevent significant harm, climate system, customary international law]
+      fr: [diligence requise stricte, obligation de prévenir des dommages significatifs]
+      es: [diligencia debida estricta, obligación de prevenir daños significativos]
+    controesempi:
+      - Un atto che cita l'ITLOS per la diligenza stringente nell'ambiente marino (elemento proprio).
+  non_lex_specialis:
+    includere:
+      - I trattati sul clima non escludono il diritto internazionale generale, il diritto del mare e i diritti umani, che si applicano accanto a loro.
+    formule:
+      en: [not lex specialis, apply alongside, general international law]
+      fr: [pas une lex specialis, s'appliquent parallèlement]
+      es: [no constituyen lex specialis]
+    controesempi:
+      - Un atto che definisce la lex specialis citando il commento ILC (esclusione di provenienza).
+  fossili_illecito:
+    includere:
+      - Produzione, consumo, licenze e sussidi ai combustibili fossili, o il difetto di regolare i privati, possono costituire un illecito internazionale attribuibile allo Stato.
+    formule:
+      en: [fossil fuel production, fossil fuel subsidies, exploration licences, internationally wrongful act]
+      fr: [production de combustibles fossiles, subventions, fait internationalement illicite]
+      es: [producción de combustibles fósiles, subsidios, hecho internacionalmente ilícito]
+    controesempi:
+      - Un atto che riguarda le licenze petrolifere sotto l'art. 8 CEDU citando Greenpeace Nordic (elemento proprio).
+  erga_omnes:
+    includere:
+      - "Gli obblighi climatici sono erga omnes (ed erga omnes partes): ogni Stato puo' invocarne la violazione; seguono cessazione, garanzie e riparazione."
+    formule:
+      en: [erga omnes, erga omnes partes, any State may invoke, full reparation]
+      fr: [erga omnes, tout État peut invoquer, réparation intégrale]
+      es: [erga omnes, cualquier Estado puede invocar]
+    controesempi:
+      - Un atto che cita Barcelona Traction per la nozione di erga omnes (elemento proprio).
+  continuita_stato:
+    includere:
+      - Lo Stato non perde necessariamente la statualita' se il mare ne sommerge il territorio; le zone marittime stabilite non vanno ridisegnate.
+    formule:
+      en: [continuity of statehood, sea-level rise, maritime zones need not be redrawn]
+      fr: [continuité de l'État, élévation du niveau de la mer]
+      es: [continuidad de la condición de Estado, aumento del nivel del mar]
+    controesempi:
+      - Un atto che cita la Dichiarazione del Pacific Islands Forum del 2021 (esclusione di provenienza).
+
+# ═══════════════════════════════ CORTE IDH, OC-32/25 (serie P08) ═══════════════════════════════
+# Per OC-32/25 il file del caso ha gia' `probe_es`, `elemento_proprio` ed `esclusione_di_provenienza` per ogni principio:
+# qui solo le formule in altre lingue e un controesempio.
+  clima_sano_autonomo:
+    formule:
+      en: [right to a healthy climate, autonomous right, collective dimension]
+      pt: [direito a um clima saudável]
+      fr: [droit à un climat sain]
+    controesempi:
+      - Un atto che cita OC-32/25 per il diritto a un ambiente sano (che e' di OC-23/17, esclusione di provenienza).
+  jus_cogens_dano_irreversible:
+    formule:
+      en: [jus cogens, peremptory norm, irreversible harm to the common ecosystem]
+      pt: [jus cogens, norma imperativa]
+      fr: [jus cogens, norme impérative]
+    controesempi:
+      - Un atto che qualifica gli obblighi climatici come erga omnes citando la CIG (esclusione di provenienza).
+  natura_soggetto_diritti:
+    formule:
+      en: [Nature as a subject of rights, inter-American corpus iuris]
+      pt: [natureza como sujeito de direitos]
+      fr: [la Nature comme sujet de droits]
+    controesempi:
+      - Un atto che cita la Costituzione dell'Ecuador e nomina OC-32/25 solo in elenco.
+  diligenza_rafforzata:
+    formule:
+      en: [enhanced due diligence, reinforced due diligence]
+      pt: [devida diligência reforçada]
+      fr: [diligence raisonnable renforcée]
+    controesempi:
+      - Un atto che chiede «due diligence» proporzionata al rischio citando OC-23/17 (esclusione di provenienza).
+  valutazione_impatto_climatico:
+    formule:
+      en: [climate impact assessment, strict supervision, historical emissions of companies]
+      pt: [avaliação de impacto climático]
+      fr: [évaluation de l'impact climatique]
+    controesempi:
+      - Un atto che chiede la VIA per le emissioni a valle citando Finch (esclusione di provenienza).
+  scienza_disinformazione:
+    formule:
+      en: [right to science, traditional and indigenous knowledge, climate disinformation]
+      pt: [direito à ciência, desinformação climática]
+      fr: [droit à la science, désinformation climatique]
+    controesempi:
+      - Un atto che cita il Commento generale 25 sul diritto alla scienza (esclusione di provenienza).
+  mobilita_climatica:
+    formule:
+      en: [climate displacement, humanitarian visas, protection against refoulement, planned relocation]
+      pt: [deslocamento climático, vistos humanitários, não devolução]
+      fr: [déplacement climatique, non-refoulement]
+    controesempi:
+      - Un atto che cita Teitiota c. Nuova Zelanda per il non respingimento (esclusione di provenienza).
+  prova_agevolata:
+    formule:
+      en: [alternative evidentiary standards, presumption of the causal link, reversal of the burden of proof]
+      pt: [inversão do ônus da prova, presunção do nexo causal]
+      fr: [renversement de la charge de la preuve, présomption du lien de causalité]
+    controesempi:
+      - Un atto che invoca l'inversione dell'onere della prova per l'Accordo di Escazú (esclusione di provenienza).

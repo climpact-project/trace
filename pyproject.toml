@@ -16,6 +16,7 @@ authors = [
     { name = "Carlotta Garofalo" },
     { name = "Ciro Saracino" },
     { name = "Luca Dell'Atti" },
+    { name = "Gabriel A. Rojas Verdugo" },
 ]
 keywords = ["climate litigation", "citation analysis", "legal NLP", "judicial uptake"]
 classifiers = [

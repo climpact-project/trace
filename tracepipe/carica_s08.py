@@ -50,14 +50,8 @@ from .righe import RETI_VIVE, Riga
 
 ESTRAZIONE = 'S08'
 CAUSA = 'S08_stessa_pagina'
-PREFISSI: Mapping[str, str] = {
-    'urgenda': 'URG',
-    'neubauer': 'NEU',
-    'future-generations': 'FGC',
-    'klimaseniorinnen': 'KLS',
-    'cig-parere-clima': 'ICJ',
-    'idh-oc-32-25': 'IAC',
-}
+from . import casi_registro  # noqa: E402
+PREFISSI: Mapping[str, str] = dict(casi_registro.PREFISSI)
 MOTIVO = (
     "citazione sulla stessa pagina di un'altra riga dello stesso caso, che la deduplica della pagina di S07 "
     'perdeva, recuperata da S08 (coppie vicine, 05/10/2026)'
@@ -332,7 +326,7 @@ class Caricatore:
             for k, r in enumerate(mie):
                 rid = self.id_di(r)
                 if rid in self.banca:
-                    raise ValueError(f'riga gia in banca dati: {rid}')
+                    raise ValueError(f'row already in the database: {rid}')
                 d = self.documento(dict(r), caso)
                 n += 1
                 prov: dict[str, Any] = {
@@ -498,22 +492,22 @@ class CaricaS08:
         docs = esito.documenti
         per = collections.Counter(d['caso_citato'] for d in docs.values())
         con = collections.Counter(d['caso_citato'] for d in docs.values() if 's08_vicina_id' in d)
-        self.stampa(f'{len(docs)} righe nuove (esito «nuova» del TSV)')
+        self.stampa(f'{len(docs)} new rows (outcome «nuova» of the TSV)')
         for caso in self.config.casi:
             self.stampa(
-                f'  {caso:20s} {per[caso]:4d}   con una riga viva entro {soglia}: {con[caso]:4d}   '
-                f'sole: {per[caso] - con[caso]:4d}'
+                f'  {caso:20s} {per[caso]:4d}   with a live row within {soglia}: {con[caso]:4d}   '
+                f'alone: {per[caso] - con[caso]:4d}'
             )
         self.stampa(
-            f'  TOTALE               {len(docs):4d}   con una riga viva entro {soglia}: {sum(con.values()):4d}   '
-            f'sole: {len(docs) - sum(con.values()):4d}'
+            f'  TOTAL                {len(docs):4d}   with a live row within {soglia}: {sum(con.values()):4d}   '
+            f'alone: {len(docs) - sum(con.values()):4d}'
         )
         resta = sum(1 for d in docs.values() if d['c04_resta'])
-        self.stampa(f'  indizio C04: resta {resta}, scarterebbe {len(docs) - resta} (indizio, non esclusione)')
+        self.stampa(f'  C04 clue: {resta} stay, {len(docs) - resta} would be discarded (a clue, not an exclusion)')
         for rid in list(docs)[:2]:
             self.stampa(f'\n--- {rid}\n' + json.dumps(docs[rid], ensure_ascii=False, indent=1, default=str))
         for descr, ok, det in esito.verifiche:
-            self.stampa(('OK    ' if ok else 'FALLITA ') + f'{descr}: {det}')
+            self.stampa(('OK     ' if ok else 'FAILED ') + f'{descr}: {det}')
 
     def esegui(self) -> EsitoCaricamento:
         """Build and check; with ``scrivi`` create the rows (list of ids first)."""
@@ -526,7 +520,7 @@ class CaricaS08:
             for e in escluse:
                 h.write(json.dumps(e, ensure_ascii=False, default=str) + '\n')
         motivi = collections.Counter(e['perche'].split(':')[0] for e in escluse).most_common()
-        self.stampa(f'copie dello stesso documento e righe rimandate (D04, S06): {len(escluse)} escluse, {motivi}')
+        self.stampa(f'copies of the same document and deferred rows (D04, S06): {len(escluse)} excluded, {motivi}')
         esito.documenti = car.documenti(righe)
         gia = self.banca.esistenti('corpus_rows', esito.documenti)
         (self.cartella / 'documenti_s08_da_scrivere.json').write_text(
@@ -535,16 +529,16 @@ class CaricaS08:
         esito.verifiche = verifiche(esito.documenti, righe, gia)
         self.anteprima(esito)
         if not self.scrivi:
-            self.stampa('\nANTEPRIMA: niente scritto')
+            self.stampa('\nPREVIEW: nothing written')
             return esito
         if not esito.ok:
-            raise RuntimeError('verifiche fallite: non scrivo')
+            raise RuntimeError('checks failed: nothing written')
         esito.copia = self.copia_prima(esito.documenti)
-        self.stampa(f'copia di sicurezza: {esito.copia}')
+        self.stampa(f'safety copy: {esito.copia}')
         ora = self.banca.ora_del_server
         scritture = [
             Scrittura('create', 'corpus_rows', rid, {**d, 'creato_il': ora}) for rid, d in esito.documenti.items()
         ]
         esito.scritti = self.banca.scrivi_a_lotti(scritture, LOTTO)
-        self.stampa(f'   scritte: {esito.scritti}/{len(scritture)}')
+        self.stampa(f'   written: {esito.scritti}/{len(scritture)}')
         return esito

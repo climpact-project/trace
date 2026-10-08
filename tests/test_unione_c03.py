@@ -238,10 +238,10 @@ def test_coppie_rivedute_saltano_quello_che_non_si_puo_scrivere(tmp_path: Path) 
     assert [(c.tenuta['codice'], c.esce['codice']) for c in coppie] == [('NEU-0001', 'NEU-0002')]
     assert sorted(detto) == sorted(
         [
-            "saltate (riga che esce gia' in un'altra coppia): 1",
-            'saltate (riga da tenere non viva o scartata): 1',
-            "saltate (riga che esce gia' esclusa): 1",
-            'saltate (riga assente o catena chiusa su se stessa): 1',
+            "skipped (riga che esce gia' in un'altra coppia): 1",
+            'skipped (riga da tenere non viva o scartata): 1',
+            "skipped (riga che esce gia' esclusa): 1",
+            'skipped (riga assente o catena chiusa su se stessa): 1',
         ]
     )
 
@@ -250,7 +250,7 @@ def test_una_riga_non_si_unisce_a_se_stessa(tmp_path: Path) -> None:
     elenco = scrivi_elenco(tmp_path / 'giro.tsv', [('testo_nota', 'NEU-0001', 'NEU-0001', 'a')])
     detto: list[str] = []
     assert CoppieRivedute(detto.append).coppie(banca_base(), elenco) == []
-    assert detto == ['saltate (riga assente o catena chiusa su se stessa): 1']
+    assert detto == ['skipped (riga assente o catena chiusa su se stessa): 1']
 
 
 # the step
@@ -286,7 +286,7 @@ def test_anteprima_scrive_gli_elenchi_e_niente_in_banca(tmp_path: Path) -> None:
     elenco = tmp_path / 'training' / 'esclusioni' / 'C03_da_scrivere.tsv'
     assert elenco.read_text(encoding='utf-8').splitlines()[1].startswith('testo_nota\tNEU-0001\tNEU-0002')
     assert (tmp_path / 'training' / 'esclusioni' / 'C03_giudicate_da_rivedere.tsv').exists()
-    assert p.detto[-1] == 'ANTEPRIMA: niente scritto in banca dati'
+    assert p.detto[-1] == 'PREVIEW: nothing written to the database'
     esclusa = esito.scritture['neubauer__doc1__900']
     assert esclusa['esclusa_il'] is ORA_DEL_SERVER
 

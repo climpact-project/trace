@@ -23,6 +23,9 @@ authors:
   - family-names: "Dell'Atti"
     given-names: Luca
     affiliation: "CLIMPACT, University of Bari"
+  - family-names: "Rojas Verdugo"
+    given-names: "Gabriel A."
+    affiliation: "CLIMPACT, University of Bari"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.23082522"

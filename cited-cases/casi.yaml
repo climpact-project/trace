@@ -1,0 +1,69 @@
+# REGISTRO UNICO DEI CASI CITATI DI TRACE (06/10/2026).
+# Un caso nuovo si aggiunge QUI (una voce in fondo) e in cited-cases/<id>.yaml: gli strumenti leggono l'elenco da questo
+# file tramite tools/casi_registro.py (gemello: tracepipe/casi_registro.py), niente piu' liste scritte nei file.
+# L'ORDINE conta (e' quello di tutti gli output: conti, rapporti, cicli): i casi nuovi vanno in fondo.
+# Formato: elenco semplice di voci "chiave: valore" (niente liste annidate); i valori sono sempre testo.
+#   id           nome del file in cited-cases/ e valore di caso_citato in corpus_rows
+#   prefisso     il prefisso dei codici delle citazioni (URG-0001...)
+#   nome         il nome pubblico breve (lo stesso di pubblicazione/mappa/casi.json)
+#   colore       il colore del caso nella mappa
+#   serie_prima  la prima serie di sonde del caso (quella dei file senza suffisso), come tools/sonde.PRIMA_SERIE
+#   serie_in_uso la serie in uso senza TRACE_SONDE, come tools/sonde.SERIE_IN_USO (vuota = nessuna: file senza suffisso)
+#   soglia_d05   data minima degli atti scaricati da D05 (tools/d05_pronto.py)
+#   codice_mappa codice di registro della mappa dei paragrafi, se diverso dal predefinito R04 (tools/carica_ripresa.py)
+#   attivo       si' = entra negli elenchi CASI; no = tenuto qui ma fuori dai cicli
+casi:
+  - id: urgenda
+    prefisso: URG
+    nome: Urgenda
+    colore: "#5cb6ee"
+    serie_prima: P01
+    serie_in_uso:
+    soglia_d05: 2015-06-24
+    codice_mappa:
+    attivo: si
+  - id: neubauer
+    prefisso: NEU
+    nome: Neubauer
+    colore: "#ee8fd6"
+    serie_prima: P02
+    serie_in_uso: P05
+    soglia_d05: 2021-03-24
+    codice_mappa:
+    attivo: si
+  - id: future-generations
+    prefisso: FGC
+    nome: Future Generations
+    colore: "#ffd98a"
+    serie_prima: P02
+    serie_in_uso: P05
+    soglia_d05: 2018-02-12
+    codice_mappa:
+    attivo: si
+  - id: klimaseniorinnen
+    prefisso: KLS
+    nome: KlimaSeniorinnen
+    colore: "#86dcae"
+    serie_prima: P06
+    serie_in_uso:
+    soglia_d05: 2024-04-09
+    codice_mappa: R09
+    attivo: si
+  - id: cig-parere-clima
+    prefisso: ICJ
+    nome: ICJ Advisory Opinion
+    colore: "#b7a4ff"
+    serie_prima: P07
+    serie_in_uso: P09
+    soglia_d05: 2025-07-23
+    codice_mappa: R18  # 08/10/2026: mappa P09 approvata dal PI (sonde_P09, sostengono_P09, dispositivo_P09)
+    attivo: si
+  - id: idh-oc-32-25
+    prefisso: IAC
+    nome: Advisory Opinion OC-32/25
+    colore: "#ffa476"
+    serie_prima: P08
+    serie_in_uso:
+    soglia_d05: 2025-07-03
+    codice_mappa: R09
+    attivo: si

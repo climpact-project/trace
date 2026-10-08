@@ -1,0 +1,507 @@
+# RULES FOR THE PRINCIPLES OF TRACE (principle judge G01 and reasoning reader L12) - APPROVED BY THE PI ON 6 OCTOBER 2026
+#
+# Approved by the PI on 6 October 2026. Translated from the Italian original (regole-principi.it.yaml).
+# The Italian text is the one used in the measurements of 4-6 October 2026, when the rules were not yet approved.
+# Written for the measurement in training/misure/RAGIONAMENTO-2026-10-04.md; three general rules (G05, G06, C05) come
+# from counts made on the rows judged by the team: this must be stated in the paper.
+#
+versione: 2026-10-06
+stato: APPROVATA
+approvato_da: "PI, 6 October 2026"
+
+regole_generali:
+  - id: G01
+    fonte: "codebook 0.5-pilot, borderline cases (approved, PI 28/09/2026)"
+    testo: >
+      The principle is decided on the SENTENCE that the citation supports: the body sentence to which the footnote
+      citing the case is attached, or the sentence that contains the citation. What the page is about is not enough.
+  - id: G02
+    fonte: "codebook 0.5-pilot, borderline cases (approved)"
+    testo: >
+      If the sentence has a footnote of its own attributing it to another source (another case, a treaty, a report),
+      that sentence does not take this case's principle, even if the subject matter is the same.
+  - id: G03
+    fonte: "codebook 0.5-pilot, dimension 6 (approved)"
+    testo: >
+      More than one principle may be taken. "none": the citation takes no principle (mention in a chain, description of
+      the facts alone or of the outcome alone, example of a litigation win). "other": it takes something that is not in
+      the list, to be written in one sentence.
+  - id: G04
+    fonte: "codebook 0.5-pilot, dimension 6 (approved)"
+    testo: >
+      If the citation indicates the paragraph, the paragraph map applies, unless the text clearly says otherwise.
+  - id: G05
+    fonte: "DRAFT (from the team's judgments of 3-4/10: 27 descriptive citations, none with \"none\")"
+    testo: >
+      A citation that REPORTS the case's reasoning ("the court held that ...") takes the principle it reports, even if
+      the text does not adopt it as its own: the type (descriptive) says how it uses it, the principle says WHAT it takes
+      from it. "none" only if it reports nothing but facts, procedure or outcome, without the reason.
+  - id: G06
+    fonte: "DRAFT (from the team's judgments: the principle missed by the readings did not come from the proposal seen in 26 cases out of 31)"
+    testo: >
+      A principle is taken even when it is secondary in the sentence: if the supported sentence attributes two
+      propositions to the case, both are taken. The "most important" principle is not chosen.
+  - id: G07
+    fonte: "DRAFT (from the clause \"or the attribution\" of the provenance exclusions in the case files)"
+    testo: >
+      The distinctive element decides: the same theme resting on another source is not the principle. But if the filing
+      expressly ATTRIBUTES the proposition to this case (cites it for that), the principle is taken even if the
+      proposition is common to other sources.
+  - id: G08
+    fonte: "DRAFT (open rule, to be decided by the PI; GIURIA-2026-10-04.md)"
+    testo: >
+      Chain mention: at present the composition puts "none", whereas the team takes principles in 8 chains out of 31. The
+      judge still decides whether the sentence takes the principle; the chain rule is applied afterwards, in the
+      composition.
+
+# WHO SPEAKS: codebook 0.5 gives only the codes and names. Decision rules: C01 is the code "prosecutor" (approved 0.5,
+# 03/10); C02-C06 are DRAFT. C05 comes from the team's judgments: in advisory opinions (ICJ, IACtHR) 5 rows out of 6
+# of the documents of participating States are "party" (GIURIA-2026-10-04.md: this is the gap in the codebook to be closed).
+chi_parla_regole:
+  - id: C01
+    fonte: "codebook 0.5-pilot (approved, PI 03/10/2026, on URG-1614)"
+    testo: >
+      "prosecutor": procurator general, advocate general or public prosecutor who gives an opinion to the court without
+      deciding and without being a party (for example the conclusion of the procurator general at the Hoge Raad).
+  - id: C02
+    fonte: "DRAFT"
+    testo: >
+      The speaker is whoever STATES the sentence that uses the case, not whoever wrote the document: in a judgment, "the
+      appellants invoke Urgenda" is the party (the court summarises an argument); the court's reasoning is "court"; a
+      dissenting or concurring opinion is "court" (with seat dissent or concurring).
+  - id: C03
+    fonte: "DRAFT"
+    testo: >
+      In a document filed by a party (application, brief, reply) the speaker is "party"; in an amicus curiae filing it is
+      "amicus"; in a filing by an intervening third party it is "intervener". The type of document and the author are in
+      the metadata and on the first and last page (heading, signatures): they must be looked at before deciding.
+  - id: C04
+    fonte: "DRAFT"
+    testo: >
+      If the document reports the words of another speaker (a hearing, a long quotation from another court), the speaker
+      is whoever adopts the sentence in the document as their own; if no one adopts it, it is whoever states it in the
+      quoted passage.
+  - id: C05
+    fonte: "DRAFT (from the team's judgments on advisory opinions)"
+    testo: >
+      In advisory proceedings (ICJ, IACtHR, ITLOS, African Court) the States and organisations that file written or oral
+      observations are "party" (participants in the proceedings); NGOs and individuals admitted as friends of the court
+      are "amicus".
+  - id: C06
+    fonte: "DRAFT"
+    testo: >
+      "not determinable" only if, after metadata, heading, signatures and section titles, it is not known who states the
+      sentence (for example a report with no author, a press release with no source).
+
+principi:
+
+# ═══════════════════════════════ URGENDA (series P01) ═══════════════════════════════
+  propria_quota:
+    includere:
+      - The State (or an emitter) cannot evade the obligation to reduce by arguing that its emissions are small or that others are not reducing.
+      - Each State answers for its share of a global harm ("its own share", "partial responsibility", "its part").
+    confini:
+      - If the sentence says only that Articles 2 and 8 ECHR oblige States to protect against climate risk, without the argument of the small contribution, it is obblighi_positivi.
+      - If the sentence concerns the quantified minimum (25%, 25-40%) that the court may impose, it is target_giudiziale; both are taken only if the sentence also says that the small share does not exonerate.
+    controesempi:
+      - A filing that reports that climate change is a global problem requiring cooperation, without rejecting the small-contribution defence.
+  obblighi_positivi:
+    includere:
+      - Articles 2 and 8 ECHR (or the rights to life and to private life) impose on the State adequate measures against climate risk.
+      - The risk is "real and immediate" even if it materialises in decades and affects the whole population.
+    confini:
+      - The civil-law duty of care (Art. 6:162 BW, the Rechtbank 2015 "duty of care") is dovere_diligenza; the hybrid formula of the Hof 2018 ("duty of care under Articles 2 and 8") is read under both.
+      - The ECHR right applied by the Strasbourg Court (KlimaSeniorinnen) is not Urgenda unless the filing attributes the proposition to Urgenda.
+    controesempi:
+      - A filing that lists Urgenda among the "human-rights-based" cases without saying what follows from it (description of the outcome, or chain).
+  dovere_diligenza:
+    includere:
+      - Insufficient mitigation is a civil wrong by the State towards its citizens (negligence, standard of care, "duty of care", "zorgplicht").
+      - The open norms of private law, interpreted in the light of the ECHR and international law, ground the State's duty.
+    confini:
+      - If the sentence grounds the obligation directly on Articles 2 and 8 ECHR (Hoge Raad 2019), it is obblighi_positivi.
+    controesempi:
+      - A corporate or commercial law filing that uses "duty of care" for directors, citing Urgenda only in a list.
+  ordine_non_legge:
+    includere:
+      - The court may order the State to achieve a result (reduce emissions), leaving it the choice of means, without ordering it to legislate with a particular content.
+      - The separation of powers does not prevent a court order when the State is legally obliged to act.
+    confini:
+      - If the sentence concerns the quantification of the minimum (25%) and not the form of the order, it is target_giudiziale.
+    controesempi:
+      - "A filing that says that courts cannot decide climate policy, without referring to the distinction between an order of result and an order to legislate (unless it says so while criticising Urgenda: then type critical and principle taken)."
+  target_giudiziale:
+    includere:
+      - The court may set a quantified minimum reduction (for example 25% by 2020) derived from scientific and international consensus.
+      - The State's "minimum fair share" or "lower limit" is established from IPCC reports and international agreements.
+    confini:
+      - If the sentence says only that the State must do its part, without the quantified minimum or its derivation, it is propria_quota.
+    controesempi:
+      - "A filing that reports only that Urgenda obtained an order to reduce by 25% (outcome, without the reason): \"none\" under G03, unless G05 applies."
+
+# ═══════════════════════════════ NEUBAUER (series P05) ═══════════════════════════════
+  liberta_intertemporale:
+    includere:
+      - Fundamental rights protect future freedom against the unilateral offloading of reduction burdens onto the future.
+      - Emissions permitted today have an advance interference-like effect ("eingriffsähnliche Vorwirkung") on tomorrow's freedoms.
+    escludere:
+      - A mere reference to fairness between generations without intertemporal freedom or the advance effect.
+    confini:
+      - Objective duties towards future generations (Art. 20a GG, posterity not being holders of rights) are dovere_oggettivo_posteri.
+      - The obligation to set the pathway after 2030 in good time is percorso_dopo_2030; both are taken if the sentence says both things.
+    formule:
+      de: [intertemporale Freiheitssicherung, eingriffsähnliche Vorwirkung, Lastenverteilung zwischen den Generationen]
+      en: [intertemporal guarantees of freedom, advance interference-like effect, offloading the reduction burden onto the future]
+      fr: [garanties intertemporelles de liberté, effet anticipé d'ingérence]
+      es: [garantías intertemporales de libertad, efecto anticipado de injerencia]
+      it: [garanzie intertemporali di liberta', effetto anticipato di ingerenza]
+    controesempi:
+      - A filing that cites Neubauer only because the German Federal Constitutional Court partly annulled the climate law (outcome).
+  percorso_dopo_2030:
+    includere:
+      - The legislature must set the reduction pathway after the current period in good time and transparently, giving urgency and planning certainty.
+      - The transition to neutrality must be started in time, creating conditions and incentives.
+    escludere:
+      - Intermediate targets demanded on the basis of another source (European Climate Law, KlimaSeniorinnen) without attribution to Neubauer.
+    formule:
+      de: [Reduktionspfad nach 2030, rechtzeitig einleiten, Planungssicherheit, Entwicklungsdruck]
+      en: [reduction pathway after 2030, initiated in good time, planning certainty, developmental urgency]
+      fr: [trajectoire de réduction après 2030, sécurité de planification]
+      es: [trayectoria de reducción después de 2030, seguridad de planificación]
+    controesempi:
+      - A filing that generically asks for "more ambitious targets" without the theme of timing and transparency of the future pathway.
+  budget_residuo:
+    includere:
+      - The Paris temperature limit translates into a remaining national CO2 budget that binds the legislature.
+      - Art. 20a GG is a justiciable climate mandate, specified by the agreed temperature limit.
+    escludere:
+      - The carbon budget as a scientific concept (IPCC) without the legal constraint on the legislature.
+    confini:
+      - If the sentence is mainly about offloading burdens onto the future, it is liberta_intertemporale.
+    formule:
+      de: [Restbudget, CO2-Budget, Sachverständigenrat für Umweltfragen, Klimaschutzgebot des Art. 20a GG]
+      en: [remaining carbon budget, remaining national CO2 budget, justiciable climate mandate]
+      fr: [budget carbone résiduel, budget national]
+      es: [presupuesto de carbono restante, presupuesto nacional de CO2]
+      it: [bilancio di carbonio residuo, budget nazionale di CO2]
+    controesempi:
+      - A report that calculates a country's budget citing the IPCC, and Neubauer only in a list of cases.
+  dimensione_internazionale:
+    includere:
+      - The State cannot evade the climate obligation by pointing to the emissions of other States.
+      - Dependence on international cooperation requires acting at national level and not creating incentives against mutual trust.
+    confini:
+      - "The same idea attributed to Urgenda (Hoge Raad 5.7.7) is Urgenda (propria_quota): Neubauer cites it. This principle is taken only if the filing attributes it to Neubauer."
+    formule:
+      de: [nicht auf die Treibhausgasemissionen in anderen Staaten verweisen, internationales Vertrauen]
+      en: [may not evade its responsibility by pointing to emissions in other states, mutual trust]
+      fr: [ne peut se soustraire à sa responsabilité en invoquant les émissions des autres États]
+      es: [no puede eludir su responsabilidad señalando las emisiones de otros Estados]
+    controesempi:
+      - A filing that states that climate is a global problem, citing Neubauer only for the existence of the decision.
+  dovere_oggettivo_posteri:
+    includere:
+      - Future generations do not hold fundamental rights today; towards them the State has an objective duty (Art. 20a GG).
+      - The mandate to protect the natural foundations of life requires distributing environmental burdens fairly between generations.
+    confini:
+      - The protection of today's complainants for their future freedoms is liberta_intertemporale (subjective right); this principle is the objective duty.
+    formule:
+      de: [objektivrechtliche Schutzauftrag, künftige Generationen, natürliche Lebensgrundlagen]
+      en: [objective duty, future generations do not yet carry fundamental rights, natural foundations of life]
+      fr: [obligation objective envers les générations futures, fondements naturels de la vie]
+      es: [deber objetivo hacia las generaciones futuras, bases naturales de la vida]
+    controesempi:
+      - A filing that invokes the "rights of future generations" as subjective rights, attributing them to Future Generations (Colombia).
+  dovere_protezione_vita_salute:
+    includere:
+      - The duty to protect life and physical integrity (Art. 2(2) GG) also covers the dangers of climate change, through mitigation and adaptation.
+      - The legislature has wide latitude; the duty is violated only if measures are entirely lacking or manifestly unsuitable.
+    formule:
+      de: [Schutzpflicht aus Art. 2 Abs. 2 GG, evident unzureichend, Untermaßverbot]
+      en: [duty of protection, Article 2(2) Basic Law, manifestly unsuitable, wide margin]
+      fr: [obligation de protection, manifestement inappropriées]
+      es: [deber de protección, manifiestamente inadecuadas]
+    controesempi:
+      - A filing that cites Neubauer for future freedom (liberta_intertemporale), with the right to life merely mentioned.
+  ammissibilita_legittimazione:
+    includere:
+      - The complainants are individually affected even if the risk concerns almost everyone; it is not an actio popularis.
+      - Complainants resident abroad are admitted, environmental associations are not; the rights of posterity are not asserted.
+    formule:
+      de: [Beschwerdebefugnis, "selbst, gegenwärtig und unmittelbar betroffen", Popularklage, Umweltverbände]
+      en: [standing, individually and directly affected, actio popularis, complainants living abroad]
+      fr: [qualité pour agir, directement et individuellement concernés]
+      es: [legitimación, afectados individual y directamente]
+    controesempi:
+      - A filing that discusses the standing of an association under the Aarhus Convention (not Neubauer; in KlimaSeniorinnen it is legittimazione_associazioni).
+
+# ═══════════════════════════════ FUTURE GENERATIONS (series P05) ═══════════════════════════════
+  ammissibilita_conexidad:
+    includere:
+      - Individual protection (acción de tutela) is admissible for a collective right to the environment when the harm threatens the life, health, water or dignity of identifiable complainants (conexidad).
+    escludere:
+      - The admissibility of tutela for reasons other than the link between the environment and fundamental rights.
+    confini:
+      - If the sentence concerns the threat of deforestation to rights on the merits, it is deforestazione_minaccia_diritti.
+    formule:
+      es: [conexidad, procedencia excepcional de la tutela, derechos colectivos, acción popular]
+      en: [connectedness, exceptional admissibility of the tutela, collective right]
+      pt: [conexidade, tutela individual]
+      fr: [connexité, recevabilité exceptionnelle]
+    controesempi:
+      - "A filing that describes the 25 young complainants and the victory in the case, without the admissibility question (G03: outcome)."
+  diritti_generazioni_future:
+    includere:
+      - The environmental rights of future generations ground an obligation of non-action that limits the freedom of present generations.
+      - The basis is the solidarity of the species and the intrinsic value of nature.
+    escludere:
+      - Intergenerational equity as a general principle (Rio Declaration, UNFCCC) without attribution to this judgment.
+    confini:
+      - Neubauer's objective duty towards posterity (which denies the rights of posterity) is not this principle.
+    formule:
+      es: [derechos de las generaciones futuras, obligación de no hacer, solidaridad de la especie]
+      en: [rights of future generations, obligation of non-action, limits the freedom of present generations]
+      pt: [direitos das gerações futuras]
+      fr: [droits des générations futures, obligation de ne pas faire]
+    controesempi:
+      - A filing that cites the case by its name "Generaciones Futuras" as an example of youth litigation, without the reason.
+  bioma_soggetto_diritti:
+    includere:
+      - The Colombian Amazon (or the whole biome) is recognised as a subject of rights to protection, conservation, maintenance and restoration.
+      - The ecocentric-anthropic criterion goes beyond the anthropocentric perspective.
+    formule:
+      es: [sujeto de derechos, Amazonía colombiana, ecocéntrico-antrópico]
+      en: [subject of rights, Colombian Amazon, ecocentric]
+      pt: [sujeito de direitos, Amazônia]
+      fr: [sujet de droits, Amazonie colombienne]
+    controesempi:
+      - A filing that recognises rights for a river citing T-622/2016 (Atrato) and names the Amazon judgment only in a list (provenance exclusion of the case file).
+  rimedio_strutturale:
+    includere:
+      - The court orders action plans with deadlines and the participation of the complainants and communities (PIVAC, intergenerational pact), with supervision of implementation.
+    escludere:
+      - An order of result without the participatory structure and the supervision (Urgenda, ordine_non_legge).
+    formule:
+      es: [pacto intergeneracional, PIVAC, plan de acción, órdenes estructurales, seguimiento del cumplimiento]
+      en: [intergenerational pact, structural remedy, action plan, participatory]
+      pt: [ordens estruturais, pacto intergeracional]
+      fr: [injonction structurelle, pacte intergénérationnel]
+    controesempi:
+      - A filing that complains of the Colombian government's failure to comply with the judgment (fact about enforcement, without the principle of the remedy), unless it draws from it the necessity of the structural remedy.
+  deforestazione_minaccia_diritti:
+    includere:
+      - Deforestation of the Amazon contributes to climate change and imminently and seriously threatens the life, health and water of present and future complainants.
+      - The State's omission to curb it violates those rights.
+    escludere:
+      - The deforestation-climate link as scientific data (IPCC, studies) without the violation of rights attributed to the judgment.
+    formule:
+      es: [deforestación, perjuicio inminente y grave, derechos a la vida, la salud y el agua]
+      en: [deforestation, imminent and serious harm, rights to life, health and water]
+      pt: [desmatamento, dano iminente e grave]
+      fr: [déforestation, préjudice imminent et grave]
+    controesempi:
+      - A brief that cites the case as a "hito" of litigation against deforestation without saying what the court held (G03), unless G05 applies.
+
+# ═══════════════════════════════ KLIMASENIORINNEN (series P06) ═══════════════════════════════
+  vittima_soglia_alta:
+    includere:
+      - "The two climate criteria for individual victim status: high-intensity exposure and pressing need for individual protection, with a particularly high threshold."
+    formule:
+      en: [high intensity of exposure, pressing need to ensure individual protection, especially high threshold, victim status]
+      fr: [intensité élevée d'exposition, besoin impérieux de protection individuelle, qualité de victime]
+      de: [Opfereigenschaft, hohe Intensität der Exposition, dringendes Schutzbedürfnis]
+      es: [condición de víctima, alta intensidad de exposición]
+      it: [qualita' di vittima, esposizione di alta intensita', soglia particolarmente alta]
+    controesempi:
+      - A filing that says the four individual complainants were declared inadmissible (outcome), without the criteria.
+  legittimazione_associazioni:
+    includere:
+      - An association may act for its members and others affected if lawfully established, with a dedicated statutory purpose and genuinely qualified and representative, without each of those represented having to qualify as a victim.
+    formule:
+      en: [standing of associations, lawfully established, dedicated purpose, genuinely qualified and representative]
+      fr: [qualité pour agir des associations, régulièrement constituée, véritablement qualifiée et représentative]
+      de: [Klagebefugnis von Verbänden, satzungsmäßiger Zweck]
+      es: [legitimación de las asociaciones]
+    controesempi:
+      - A filing that recognises the standing of an NGO under the Aarhus Convention (provenance exclusion).
+  art8_protezione_effettiva:
+    includere:
+      - Article 8 ECHR includes a right to effective protection from the serious adverse effects of climate change on life, health and well-being.
+      - The State's primary duty is to adopt and actually apply measures capable of mitigating, complemented by adaptation.
+    confini:
+      - The specific requirements of the regulatory framework (timing, budget, intermediate targets) are requisiti_quadro_regolatorio; both are taken if the sentence says both things.
+    formule:
+      en: [right to effective protection, serious adverse effects of climate change, Article 8 encompasses]
+      fr: [droit à une protection effective, effets néfastes graves du changement climatique]
+      de: [Recht auf wirksamen Schutz, Art. 8 EMRK]
+      es: [derecho a una protección efectiva frente a los efectos adversos graves]
+      it: [diritto alla protezione effettiva, effetti negativi gravi del cambiamento climatico]
+    controesempi:
+      - A filing that grounds the duty to protect from climate on Articles 2 and 8 citing only Urgenda (provenance exclusion).
+  margine_differenziato:
+    includere:
+      - The margin is reduced as to the commitment and the objectives, wide as to the choice of means; the procedural safeguards measure whether the State stayed within it.
+    formule:
+      en: [reduced margin of appreciation, wide margin as regards the choice of means, procedural safeguards]
+      fr: [marge d'appréciation réduite, choix des moyens, garanties procédurales]
+      de: [Ermessensspielraum, Wahl der Mittel]
+      es: [margen de apreciación reducido, elección de los medios]
+    controesempi:
+      - A filing that invokes a "wide margin" of the State in environmental matters citing Hatton (provenance exclusion).
+  requisiti_quadro_regolatorio:
+    includere:
+      - The State must have a binding framework with timelines for neutrality, a carbon budget or equivalent quantification, intermediate targets and sectoral pathways, verification and updating, timely and consistent action.
+    formule:
+      en: [carbon budget or another equivalent quantification, intermediate reduction targets, in good time and in an appropriate and consistent manner]
+      fr: [budget carbone ou autre méthode équivalente de quantification, objectifs intermédiaires]
+      de: [CO2-Budget oder gleichwertige Quantifizierung, Zwischenziele]
+      es: [presupuesto de carbono u otra cuantificación equivalente, objetivos intermedios]
+    controesempi:
+      - A filing that asks for a national carbon budget citing only Neubauer (provenance exclusion).
+  possibilita_reale:
+    includere:
+      - It is enough that the measures not taken had a real prospect of changing the outcome or mitigating the harm; proof of "but for" is not required.
+    formule:
+      en: [real prospect of altering the outcome, drop in the ocean, but for]
+      fr: [chance réelle de modifier l'issue, goutte d'eau dans l'océan]
+      de: [reale Aussicht, das Ergebnis zu ändern, Tropfen auf den heißen Stein]
+      es: [posibilidad real de alterar el resultado, gota en el océano]
+    controesempi:
+      - "A filing that says only that each State answers for its own share (distinctive element: it is Urgenda or Neubauer)."
+  prospettiva_intergenerazionale:
+    includere:
+      - Future generations bear the burdens of today's choices without taking part in them; this perspective justifies judicial review.
+    formule:
+      en: [intergenerational burden-sharing, no say in today's decisions, justification for judicial review]
+      fr: [perspective intergénérationnelle, contrôle juridictionnel]
+      de: [intergenerationelle Perspektive, gerichtliche Kontrolle]
+      es: [perspectiva intergeneracional, control judicial]
+    controesempi:
+      - A filing that defends the democratic legitimacy of judicial review in general, without the intergenerational basis.
+
+# ═══════════════════════════════ ICJ, ADVISORY OPINION ON CLIMATE (series P09) ═══════════════════════════════
+  obiettivo_1_5:
+    includere:
+      - 1.5 degrees is the primary legally binding goal of Paris, by subsequent agreement of the parties.
+    formule:
+      en: [1.5°C as the primary temperature goal, subsequent agreement, consensus of the parties]
+      fr: ["1,5 °C comme objectif principal de température", accord ultérieur]
+      es: ["1,5 °C como objetivo principal de temperatura"]
+      de: ["1,5-Grad-Ziel als primäres Temperaturziel"]
+    controesempi:
+      - A filing that cites the opinion only for the existence of climate obligations and gives 1.5 as an IPCC datum.
+  ndc_discrezionalita_limitata:
+    includere:
+      - "NDCs are not at free discretion: they must reflect the highest possible ambition as a legal standard, and at the same time achieve the purpose of the Agreement."
+    formule:
+      en: [highest possible ambition, discretion is limited, nationally determined contributions, stringent standard]
+      fr: [ambition la plus élevée possible, pouvoir discrétionnaire limité, contributions déterminées au niveau national]
+      es: [mayor ambición posible, discrecionalidad limitada, contribuciones determinadas a nivel nacional]
+    controesempi:
+      - A filing that reports the figures of 43% by 2030 from the first global stocktake (provenance exclusion).
+  diligenza_stringente_clima:
+    includere:
+      - The customary duty to prevent significant harm applies to the climate system despite cumulative and diffuse harm, with stringent diligence.
+      - The due diligence required is graded by capacities but does not justify delay; it includes risk assessment and precaution.
+    formule:
+      en: [stringent due diligence, duty to prevent significant harm, climate system, customary international law]
+      fr: [diligence requise stricte, obligation de prévenir des dommages significatifs]
+      es: [diligencia debida estricta, obligación de prevenir daños significativos]
+    controesempi:
+      - A filing that cites ITLOS for stringent diligence in the marine environment (distinctive element).
+  non_lex_specialis:
+    includere:
+      - The climate treaties do not exclude general international law, the law of the sea and human rights, which apply alongside them.
+    formule:
+      en: [not lex specialis, apply alongside, general international law]
+      fr: [pas une lex specialis, s'appliquent parallèlement]
+      es: [no constituyen lex specialis]
+    controesempi:
+      - A filing that defines lex specialis citing the ILC commentary (provenance exclusion).
+  fossili_illecito:
+    includere:
+      - Production, consumption, licences and subsidies for fossil fuels, or the failure to regulate private actors, may constitute an internationally wrongful act attributable to the State.
+    formule:
+      en: [fossil fuel production, fossil fuel subsidies, exploration licences, internationally wrongful act]
+      fr: [production de combustibles fossiles, subventions, fait internationalement illicite]
+      es: [producción de combustibles fósiles, subsidios, hecho internacionalmente ilícito]
+    controesempi:
+      - A filing that concerns oil licences under Article 8 ECHR citing Greenpeace Nordic (distinctive element).
+  erga_omnes:
+    includere:
+      - "Climate obligations are erga omnes (and erga omnes partes): every State may invoke their violation; cessation, guarantees and reparation follow."
+    formule:
+      en: [erga omnes, erga omnes partes, any State may invoke, full reparation]
+      fr: [erga omnes, tout État peut invoquer, réparation intégrale]
+      es: [erga omnes, cualquier Estado puede invocar]
+    controesempi:
+      - A filing that cites Barcelona Traction for the notion of erga omnes (distinctive element).
+  continuita_stato:
+    includere:
+      - A State does not necessarily lose statehood if the sea submerges its territory; established maritime zones need not be redrawn.
+    formule:
+      en: [continuity of statehood, sea-level rise, maritime zones need not be redrawn]
+      fr: [continuité de l'État, élévation du niveau de la mer]
+      es: [continuidad de la condición de Estado, aumento del nivel del mar]
+    controesempi:
+      - A filing that cites the 2021 Pacific Islands Forum Declaration (provenance exclusion).
+
+# ═══════════════════════════════ IACtHR, OC-32/25 (series P08) ═══════════════════════════════
+# For OC-32/25 the case file already has `probe_es`, `elemento_proprio` and `esclusione_di_provenienza` for each principle:
+# here only the formulas in other languages and one counterexample.
+  clima_sano_autonomo:
+    formule:
+      en: [right to a healthy climate, autonomous right, collective dimension]
+      pt: [direito a um clima saudável]
+      fr: [droit à un climat sain]
+    controesempi:
+      - A filing that cites OC-32/25 for the right to a healthy environment (which comes from OC-23/17, provenance exclusion).
+  jus_cogens_dano_irreversible:
+    formule:
+      en: [jus cogens, peremptory norm, irreversible harm to the common ecosystem]
+      pt: [jus cogens, norma imperativa]
+      fr: [jus cogens, norme impérative]
+    controesempi:
+      - A filing that characterises climate obligations as erga omnes citing the ICJ (provenance exclusion).
+  natura_soggetto_diritti:
+    formule:
+      en: [Nature as a subject of rights, inter-American corpus iuris]
+      pt: [natureza como sujeito de direitos]
+      fr: [la Nature comme sujet de droits]
+    controesempi:
+      - A filing that cites the Constitution of Ecuador and names OC-32/25 only in a list.
+  diligenza_rafforzata:
+    formule:
+      en: [enhanced due diligence, reinforced due diligence]
+      pt: [devida diligência reforçada]
+      fr: [diligence raisonnable renforcée]
+    controesempi:
+      - A filing that asks for "due diligence" proportionate to the risk citing OC-23/17 (provenance exclusion).
+  valutazione_impatto_climatico:
+    formule:
+      en: [climate impact assessment, strict supervision, historical emissions of companies]
+      pt: [avaliação de impacto climático]
+      fr: [évaluation de l'impact climatique]
+    controesempi:
+      - A filing that asks for an impact assessment (EIA) for downstream emissions citing Finch (provenance exclusion).
+  scienza_disinformazione:
+    formule:
+      en: [right to science, traditional and indigenous knowledge, climate disinformation]
+      pt: [direito à ciência, desinformação climática]
+      fr: [droit à la science, désinformation climatique]
+    controesempi:
+      - A filing that cites General Comment 25 on the right to science (provenance exclusion).
+  mobilita_climatica:
+    formule:
+      en: [climate displacement, humanitarian visas, protection against refoulement, planned relocation]
+      pt: [deslocamento climático, vistos humanitários, não devolução]
+      fr: [déplacement climatique, non-refoulement]
+    controesempi:
+      - A filing that cites Teitiota v. New Zealand for non-refoulement (provenance exclusion).
+  prova_agevolata:
+    formule:
+      en: [alternative evidentiary standards, presumption of the causal link, reversal of the burden of proof]
+      pt: [inversão do ônus da prova, presunção do nexo causal]
+      fr: [renversement de la charge de la preuve, présomption du lien de causalité]
+    controesempi:
+      - A filing that invokes the reversal of the burden of proof for the Escazú Agreement (provenance exclusion).

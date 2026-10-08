@@ -61,7 +61,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
     verbatim: "It can furthermore give rise to an objective duty to protect future generations."
 
@@ -74,7 +74,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
     verbatim: "Art. 20a of the Basic Law obliges the state to take climate action. This includes the aim of achieving climate neutrality."
 
@@ -87,7 +87,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
     verbatim: "a special duty of care imposed upon the legislator by Art. 20a of the Basic Law"
 
@@ -100,7 +100,7 @@ voci:
     sonde_P03: [dimensione_internazionale]
     sonde_P04: [dimensione_internazionale]
     sonde_P05: [dimensione_internazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [c]
     verbatim: "The state cannot evade its responsibility by pointing to greenhouse gas emissions in other states."
 
@@ -113,7 +113,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
 
   - paragrafo: "Leitsatz 2e"
@@ -125,7 +125,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
     verbatim: "Art. 20a of the Basic Law is a justiciable legal provision designed to commit the political process to a favouring of ecological interests, partly with a view to future generations."
 
@@ -139,7 +139,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [proporzionalita_intergenerazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]"
     anelli: [f]
 
   - paragrafo: "Leitsatz 4"
@@ -151,7 +151,7 @@ voci:
     sonde_P03: [percorso_dopo_2030]
     sonde_P04: [percorso_dopo_2030]
     sonde_P05: [percorso_dopo_2030]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
     anelli: [e, f, g]
     verbatim: "fundamental rights – as intertemporal guarantees of freedom – afford protection against the greenhouse gas reduction burdens imposed by Art. 20a of the Basic Law being unilaterally offloaded onto the future"
 
@@ -164,7 +164,7 @@ voci:
     sonde_P03: [percorso_dopo_2030]
     sonde_P04: [percorso_dopo_2030]
     sonde_P05: [percorso_dopo_2030]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [g]
     verbatim: "The legislator itself must set out the necessary provisions specifying the overall emission amounts that are allowed for certain periods."
 
@@ -177,7 +177,7 @@ voci:
     sonde_P03: [liberta_intertemporale]
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
     anelli: [g]
     verbatim: "The legislator must enact provisions by no later than 31 December 2022 on the updating of reduction targets for periods from 2031 as set forth in the reasons."
 
@@ -204,7 +204,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [a]
 
   - paragrafo: "18-21"
@@ -228,7 +228,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [schutzpflicht_clima]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [a]
 
   - paragrafo: "29-31"
@@ -252,7 +252,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [budget_co2_parametro, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro, vorwirkung_liberta_intertemporale]"
     anelli: [a]
     verbatim: "every additional amount of CO2 that enters the Earth’s atmosphere and is not then artificially removed"
 
@@ -266,7 +266,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [schutzpflicht_clima]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [a]
 
   - paragrafo: "35-36"
@@ -279,7 +279,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [a, d]
     verbatim: "this amount is referred to as the “carbon budget” or “CO2 budget”"
 
@@ -293,7 +293,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [a, e]
 
   - paragrafo: "38-89"
@@ -306,7 +306,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
     prepara: [protezione_extraterritoriale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: []
 
 # ═══════════════════════════ B. AMMISSIBILITA' (Rn. 90-142) ═══════════════════════════
@@ -321,7 +321,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
     prepara: [protezione_extraterritoriale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: []
 
   - paragrafo: "96-98"
@@ -334,7 +334,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [dovere_protezione_vita_salute]
     prepara: [schutzpflicht_clima, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "99"
@@ -346,7 +346,7 @@ voci:
     sonde_P03: [ammissibilita_legittimazione]
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b, c]
     verbatim: "this does not render it impossible or superfluous for Germany to make its own contribution towards protecting the climate"
 
@@ -360,7 +360,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [dovere_protezione_vita_salute]
     prepara: [schutzpflicht_clima]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "101"
@@ -372,7 +372,7 @@ voci:
     sonde_P03: [ammissibilita_legittimazione]
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: [h]
     verbatim: "The validity of German fundamental rights vis-à-vis these complainants does not appear to be ruled out from the outset"
 
@@ -386,7 +386,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [dovere_protezione_vita_salute]
     prepara: [schutzpflicht_clima]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: []
 
   - paragrafo: "108"
@@ -399,7 +399,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
     prepara: [schutzpflicht_clima, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [a, e]
 
   - paragrafo: "109"
@@ -412,7 +412,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
     prepara: [schutzpflicht_clima, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima, vorwirkung_liberta_intertemporale]"
     anelli: [b, e]
     verbatim: "The complainants are not asserting the rights of unborn persons or even of entire future generations, neither of whom enjoy subjective fundamental rights"
 
@@ -447,7 +447,7 @@ voci:
     sonde_P03: [ammissibilita_legittimazione]
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
     verbatim: "However, Art. 20a GG does not entail any subjective rights"
 
@@ -461,7 +461,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [dovere_protezione_vita_salute]
     prepara: [schutzpflicht_clima, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "116"
@@ -473,7 +473,7 @@ voci:
     sonde_P03: [ammissibilita_legittimazione]
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
     verbatim: "This advance effect on future freedom might have violated the fundamental rights of the complainants."
 
@@ -487,7 +487,7 @@ voci:
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
     prepara: [art20a_giustiziabile_autovincolo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
 
   - paragrafo: "118"
@@ -499,7 +499,7 @@ voci:
     sonde_P03: [liberta_intertemporale]
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
     verbatim: "not just in factual terms, but with advance legal effects"
 
@@ -513,7 +513,7 @@ voci:
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [a]
     verbatim: "The world has a so-called remaining CO2 budget."
 
@@ -527,7 +527,7 @@ voci:
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
     prepara: [proporzionalita_intergenerazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro, vorwirkung_liberta_intertemporale]"
     anelli: [d, e]
     verbatim: "The restrictions on freedom that will be necessary in the future are thus already built into the generosity of the current climate change legislation."
 
@@ -541,7 +541,7 @@ voci:
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
     prepara: [proporzionalita_intergenerazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
 
   - paragrafo: "122"
@@ -553,7 +553,7 @@ voci:
     sonde_P03: [liberta_intertemporale]
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
     verbatim: "the Basic Law’s fundamental rights – as intertemporal guarantees of freedom – afford protection against provisions that allow such consumption without taking sufficient account of the future freedom jeopardised as a result"
 
@@ -567,7 +567,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [liberta_intertemporale]
     prepara: [budget_co2_parametro, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro, vorwirkung_liberta_intertemporale]"
     anelli: [e]
 
   - paragrafo: "126-128"
@@ -580,7 +580,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [liberta_intertemporale]
     prepara: [vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
 
   - paragrafo: "129-131"
@@ -592,7 +592,7 @@ voci:
     sonde_P03: [ammissibilita_legittimazione]
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
     verbatim: "They are themselves capable of experiencing the measures necessary to reduce CO2 emissions after 2030."
 
@@ -606,7 +606,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
     prepara: [protezione_extraterritoriale, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale, vorwirkung_liberta_intertemporale]"
     anelli: [h]
 
   - paragrafo: "133-134"
@@ -619,7 +619,7 @@ voci:
     sonde_P04: [ammissibilita_legittimazione]
     sonde_P05: [ammissibilita_legittimazione]
     prepara: [vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
 
   - paragrafo: "135-137"
@@ -654,7 +654,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [art20a_giustiziabile_autovincolo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale, schutzpflicht_clima, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale, schutzpflicht_clima, vorwirkung_liberta_intertemporale]"
     anelli: [b, e, f]
 
 # ═══════════════════════════ C.I SCHUTZPFLICHT VERSO I RESIDENTI (Rn. 143-172) ═══════════════════════════
@@ -668,7 +668,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "144"
@@ -680,7 +680,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
     verbatim: "These steps must be supplemented by positive measures aimed at alleviating the consequences of climate change (“adaptation measures”)."
 
@@ -693,7 +693,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "146"
@@ -705,7 +705,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_oggettivo_posteri]
     sonde_P05: [dovere_oggettivo_posteri]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
     verbatim: "this duty to afford intergenerational protection has a solely objective dimension"
 
@@ -718,7 +718,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "148"
@@ -730,7 +730,7 @@ voci:
     sonde_P03: [dovere_oggettivo_posteri]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
     verbatim: "the state is obliged to afford this protection to the current population and also, in light of objective legal requirements, to future generations"
 
@@ -743,7 +743,7 @@ voci:
     sonde_P03: [dovere_oggettivo_posteri]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b, c]
     verbatim: "does not, in principle, rule out the possibility of a duty of protection arising from fundamental rights"
 
@@ -756,7 +756,7 @@ voci:
     sonde_P03: [dovere_oggettivo_posteri]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "151-152"
@@ -768,7 +768,7 @@ voci:
     sonde_P03: [dovere_oggettivo_posteri]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
     verbatim: "if no precautionary measures whatsoever have been taken, or if the adopted provisions and measures prove to be manifestly unsuitable or completely inadequate for achieving the required protection goal, or if the provisions and measures fall significantly short of the protection goal"
 
@@ -782,7 +782,7 @@ voci:
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "157"
@@ -794,7 +794,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
     verbatim: "A completely inadequate approach would be to allow climate change to simply run its course, using nothing but adaptation measures"
 
@@ -808,7 +808,7 @@ voci:
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro, schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro, schutzpflicht_clima]"
     anelli: [b]
     verbatim: "this may be regarded as politically too unambitious"
 
@@ -821,7 +821,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "166-168"
@@ -834,7 +834,7 @@ voci:
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
     prepara: [budget_co2_parametro, proporzionalita_intergenerazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro, schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro, schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "169-170"
@@ -846,7 +846,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "171-172"
@@ -858,7 +858,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
 # ═══════════════════════════ C.II RICORRENTI DEL BANGLADESH E DEL NEPAL (Rn. 173-181) ═══════════════════════════
@@ -872,7 +872,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: [h]
 
   - paragrafo: "174"
@@ -884,7 +884,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: [h]
     verbatim: "Although it does appear conceivable in principle, there is no need to decide at this point"
 
@@ -897,7 +897,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: [h]
     verbatim: "caused to some – albeit small – extent by greenhouse gas emissions emanating from Germany"
 
@@ -910,7 +910,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: [h]
     verbatim: "would not in any case have the same content as that vis-à-vis people in Germany"
 
@@ -924,7 +924,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [protezione_extraterritoriale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale, schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale, schutzpflicht_clima]"
     anelli: [b, h]
 
   - paragrafo: "178"
@@ -936,7 +936,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: [h]
     verbatim: "it is practically impossible for the German state to afford protection to people living abroad by implementing adaptation measures there"
 
@@ -949,7 +949,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: [h]
 
   - paragrafo: "180-181"
@@ -961,7 +961,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [protezione_extraterritoriale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [protezione_extraterritoriale]"
     anelli: [h]
 
 # ═══════════════════════════ C.III GARANZIA INTERTEMPORALE DELLA LIBERTA' (Rn. 182-265) ═══════════════════════════
@@ -975,7 +975,7 @@ voci:
     sonde_P03: [dovere_protezione_vita_salute]
     sonde_P04: [dovere_protezione_vita_salute]
     sonde_P05: [dovere_protezione_vita_salute]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
     anelli: [e, f]
 
   - paragrafo: "183"
@@ -987,7 +987,7 @@ voci:
     sonde_P03: [liberta_intertemporale]
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
     anelli: [e, f, g]
     verbatim: "has an advance interference-like effect (eingriffsähnliche Vorwirkung) on the freedom of the complainants"
 
@@ -1001,7 +1001,7 @@ voci:
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo, vorwirkung_liberta_intertemporale]"
     anelli: [e]
 
   - paragrafo: "186"
@@ -1014,7 +1014,7 @@ voci:
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
     prepara: [proporzionalita_intergenerazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro, vorwirkung_liberta_intertemporale]"
     anelli: [e]
     verbatim: "every amount of CO2 that is allowed today irreversibly depletes the remaining budget that was predetermined in accordance with constitutional law"
 
@@ -1027,7 +1027,7 @@ voci:
     sonde_P03: [liberta_intertemporale]
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [vorwirkung_liberta_intertemporale]"
     anelli: [e]
     verbatim: "This advance effect operates not only de facto but also de jure."
 
@@ -1041,7 +1041,7 @@ voci:
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
     prepara: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]"
     anelli: [f]
 
   - paragrafo: "191"
@@ -1053,7 +1053,7 @@ voci:
     sonde_P03: [liberta_intertemporale]
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [schutzpflicht_clima]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [schutzpflicht_clima]"
     anelli: [b]
 
   - paragrafo: "192"
@@ -1065,7 +1065,7 @@ voci:
     sonde_P03: [liberta_intertemporale]
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale]"
     anelli: [f]
     verbatim: "one generation must not be allowed to consume large portions of the CO2 budget while bearing a relatively minor share of the reduction effort"
 
@@ -1078,7 +1078,7 @@ voci:
     sonde_P03: [dovere_oggettivo_posteri]
     sonde_P04: [dovere_oggettivo_posteri]
     sonde_P05: [dovere_oggettivo_posteri]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale]"
     anelli: [f]
     verbatim: "are not forced to engage in radical abstinence"
 
@@ -1092,7 +1092,7 @@ voci:
     sonde_P04: [liberta_intertemporale]
     sonde_P05: [liberta_intertemporale]
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale]"
     anelli: [f, g]
     verbatim: "It is thus imperative to prevent an overly short-sighted and thus one-sided distribution of freedom and reduction burdens to the detriment of the future."
 
@@ -1106,7 +1106,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [art20a_giustiziabile_autovincolo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]"
     anelli: [f]
 
   - paragrafo: "196-197"
@@ -1118,7 +1118,7 @@ voci:
     sonde_P03: [dovere_oggettivo_posteri]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
 
   - paragrafo: "198"
@@ -1130,7 +1130,7 @@ voci:
     sonde_P03: [dovere_oggettivo_posteri]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
     verbatim: "Within the balancing process, the obligation to take climate action is accorded increasing weight as climate change intensifies."
 
@@ -1143,7 +1143,7 @@ voci:
     sonde_P03: [dimensione_internazionale]
     sonde_P04: [dimensione_internazionale]
     sonde_P05: [dimensione_internazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [c]
 
   - paragrafo: "200"
@@ -1155,7 +1155,7 @@ voci:
     sonde_P03: [dimensione_internazionale]
     sonde_P04: [dimensione_internazionale]
     sonde_P05: [dimensione_internazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [c]
     verbatim: "No state can stop global warming on its own. Furthermore, emissions from every state contribute to climate change in the same way"
 
@@ -1168,7 +1168,7 @@ voci:
     sonde_P03: [dimensione_internazionale]
     sonde_P04: [dimensione_internazionale]
     sonde_P05: [dimensione_internazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [c]
 
   - paragrafo: "202"
@@ -1180,7 +1180,7 @@ voci:
     sonde_P03: [dimensione_internazionale]
     sonde_P04: [dimensione_internazionale]
     sonde_P05: [dimensione_internazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [c]
     verbatim: "the obligation to take national climate action cannot be invalidated by arguing that such action would be incapable of stopping climate change"
 
@@ -1193,7 +1193,7 @@ voci:
     sonde_P03: [dimensione_internazionale]
     sonde_P04: [dimensione_internazionale]
     sonde_P05: [dimensione_internazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [c]
     verbatim: "The state may not evade its responsibility here by pointing to greenhouse gas emissions in other states"
 
@@ -1218,7 +1218,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
     verbatim: "Art. 20a GG is a justiciable legal provision."
 
@@ -1231,7 +1231,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
     verbatim: "future generations - those who will be most affected - naturally have no voice of their own in shaping the current political agenda"
 
@@ -1245,7 +1245,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo, budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo, budget_co2_parametro]"
     anelli: [c, d]
     verbatim: "It is not, in principle, for the courts to translate the open wording of Art. 20a GG into quantifiable global warming limits and corresponding emission amounts or reduction targets."
 
@@ -1258,7 +1258,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
     verbatim: "The temperature limit specified in § 1 third sentence KSG is the relevant standard under constitutional law and must also form the basis of the Federal Constitutional Court’s review."
 
@@ -1272,7 +1272,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo, budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo, budget_co2_parametro]"
     anelli: [c]
 
   - paragrafo: "213"
@@ -1284,7 +1284,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
     verbatim: "it must be held to its own specification of the goal arising from constitutional law"
 
@@ -1298,7 +1298,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [art20a_giustiziabile_autovincolo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
     verbatim: "the temperature measurement must be converted into an emission measurement"
 
@@ -1311,7 +1311,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
     verbatim: "The second step is to determine how much of this is attributable to Germany - this is the specific remaining national CO2 budget."
 
@@ -1324,7 +1324,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
     verbatim: "Letztlich bedeutete dies, Klimaschutz ins Blaue hinein zu betreiben."
 
@@ -1338,7 +1338,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
 
   - paragrafo: "220-223"
@@ -1350,7 +1350,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
 
   - paragrafo: "224-227"
@@ -1362,7 +1362,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
     verbatim: "Nor can a specific constitutional obligation to reduce CO2 emissions be invalidated by simply arguing that Germany’s share of the reduction burden and of the global CO2 budget are impossible to determine."
 
@@ -1375,7 +1375,7 @@ voci:
     sonde_P03: [budget_residuo]
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
 
   - paragrafo: "229"
@@ -1388,7 +1388,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [art20a_giustiziabile_autovincolo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
     verbatim: "the legislator must even take account of mere indications pointing to the possibility of serious or irreversible impairments, as long as these indications are sufficiently reliable"
 
@@ -1402,7 +1402,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [art20a_giustiziabile_autovincolo, proporzionalita_intergenerazionale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
 
   - paragrafo: "236-237"
@@ -1415,7 +1415,7 @@ voci:
     sonde_P04: [budget_residuo]
     sonde_P05: [budget_residuo]
     prepara: [art20a_giustiziabile_autovincolo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro]"
     anelli: [d]
     verbatim: "currently too great to allow the budget size calculated by the Advisory Council to serve as an exact numerical benchmark for review by the Federal Constitutional Court"
 
@@ -1428,7 +1428,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
 
   - paragrafo: "239-241"
@@ -1441,7 +1441,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [art20a_giustiziabile_autovincolo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo]"
     anelli: [c]
 
   - paragrafo: "242"
@@ -1454,7 +1454,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [budget_co2_parametro]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [art20a_giustiziabile_autovincolo, budget_co2_parametro]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [art20a_giustiziabile_autovincolo, budget_co2_parametro]"
     anelli: [c, d]
 
   - paragrafo: "243"
@@ -1466,7 +1466,7 @@ voci:
     sonde_P03: []
     sonde_P04: []
     sonde_P05: []
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale]"
     anelli: [f]
     verbatim: "is spread out over time in a forward-looking manner that respects fundamental rights"
 
@@ -1479,7 +1479,7 @@ voci:
     sonde_P03: [percorso_dopo_2030]
     sonde_P04: [percorso_dopo_2030]
     sonde_P05: [percorso_dopo_2030]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale, vorwirkung_liberta_intertemporale]"
     anelli: [f]
 
   - paragrafo: "246"
@@ -1491,7 +1491,7 @@ voci:
     sonde_P03: [percorso_dopo_2030]
     sonde_P04: [percorso_dopo_2030]
     sonde_P05: [percorso_dopo_2030]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro, proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro, proporzionalita_intergenerazionale]"
     anelli: [f]
     verbatim: "would barely last for a further year"
 
@@ -1504,7 +1504,7 @@ voci:
     sonde_P03: [percorso_dopo_2030]
     sonde_P04: [percorso_dopo_2030]
     sonde_P05: [percorso_dopo_2030]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [budget_co2_parametro, proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [budget_co2_parametro, proporzionalita_intergenerazionale]"
     anelli: [f, g]
 
   - paragrafo: "248-250"
@@ -1517,7 +1517,7 @@ voci:
     sonde_P04: [percorso_dopo_2030]
     sonde_P05: [percorso_dopo_2030]
     prepara: [vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale]"
     anelli: [g]
     verbatim: "respecting future freedom requires that the transition to climate neutrality be initiated in good time"
 
@@ -1531,7 +1531,7 @@ voci:
     sonde_P04: [percorso_dopo_2030]
     sonde_P05: [percorso_dopo_2030]
     prepara: [art20a_giustiziabile_autovincolo, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale]"
     anelli: [g]
     verbatim: "it is imperative under constitutional law that further reduction targets beyond 2030 are specified in good time, extending sufficiently far into the future"
 
@@ -1544,7 +1544,7 @@ voci:
     sonde_P03: [percorso_dopo_2030]
     sonde_P04: [percorso_dopo_2030]
     sonde_P05: [percorso_dopo_2030]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale]"
     anelli: [g]
 
   - paragrafo: "259-265"
@@ -1571,7 +1571,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [art20a_giustiziabile_autovincolo, budget_co2_parametro, vorwirkung_liberta_intertemporale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [proporzionalita_intergenerazionale]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [proporzionalita_intergenerazionale]"
     anelli: [g]
     verbatim: "der Gesetzgeber muss die Fortschreibung der Minderungsziele für Zeiträume nach 2030 jedoch bis zum 31. Dezember 2022 unter Beachtung der Maßgaben dieses Beschlusses näher regeln"
 

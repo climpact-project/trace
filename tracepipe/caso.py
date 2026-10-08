@@ -202,6 +202,9 @@ CORTE = (
     ('hof_2018', re.compile(r'court of appeal|gerechtshof|\bhof\b|2018', re.I)),
     ('rechtbank_2015', re.compile(r'district court|rechtbank|2015', re.I)),
 )
+# the sub-points after a paragraph number (tools/principi_da_paragrafi.py SOTTO, SOTTO_ALTRO; 08/10/2026)
+SOTTO = re.compile(r'\s?((?:\(\s*[0-9A-Za-z]{1,4}\s*\)){1,4})')
+SOTTO_ALTRO = re.compile(r'\s*,\s*((?:\(\s*[0-9A-Za-z]{1,4}\s*\)){1,4})')
 _SEGNO = re.compile(r'^\s*(?:§§?|paras?\.?|Rn\.|p[áa]rrs?\.?)\s*', re.I)
 _PAGINA_CITAZIONE = '===== PAGINA DELLA CITAZIONE ====='
 _PAGINA_SUCCESSIVA = '===== PAGINA SUCCESSIVA'
@@ -278,8 +281,21 @@ class MappaParagrafi:
                 s if caso == 'urgenda' or s.startswith(caso + '.') else f'{caso}.{s}' for s in (v.get(campo) or [])
             ]
             par_ = str(v.get('paragrafo', v.get('paragrafi', '')))
-            for n in cls.espandi(_SEGNO.sub('', par_)):
-                per[pr][n] = sorted(set(per[pr].get(n, [])) | set(sonde))
+            # only the supporting paragraphs (08/10/2026): ``sostengono_<series>`` restricts the entry's probes to the
+            # listed paragraphs; the others of the entry prepare. Read only with a series.
+            serie = campo[len('sonde') :] if campo.startswith('sonde_P') else None
+            sost = v.get('sostengono' + serie) if serie else None
+            dentro = {str(x) for x in sost} if sost else None
+            nums_voce = cls.espandi(_SEGNO.sub('', par_))
+            for n in nums_voce:
+                ss = set(sonde) if dentro is None or n in dentro else set()
+                per[pr][n] = sorted(set(per[pr].get(n, [])) | ss)
+            # the sub-points of the operative clause (08/10/2026, ICJ para. 457): key ``457(3)(B)(a)``
+            disp = v.get('dispositivo' + serie) if serie else None
+            if disp and len(nums_voce) == 1:
+                for k, lista in disp.items():
+                    ss_ = [s if caso == 'urgenda' or s.startswith(caso + '.') else f'{caso}.{s}' for s in (lista or [])]
+                    per[pr][nums_voce[0] + re.sub(r'\s', '', str(k))] = sorted(ss_)
         if campo.startswith('sonde_P') and caso == 'neubauer':
             for q in _yaml(config.cited_cases / f'{caso}-{campo.split("_")[1]}.yaml')['semantic_queries']:
                 testo = q.get('paragrafi', '').split(';')[0]
@@ -288,6 +304,27 @@ class MappaParagrafi:
                 for n in nums:
                     per['unica'][str(n)] = sorted(set(per['unica'].get(str(n), [])) | {q['id']})
         return per
+
+    @staticmethod
+    def sottopunti(dopo: str) -> list[str]:
+        """The parenthesised sub-points right after a reference's last number (``457(3)(B)(a), (3)(E)``)."""
+        out: list[str] = []
+        m = SOTTO.match(dopo)
+        while m:
+            out.append(re.sub(r'\s', '', m.group(1)))
+            dopo = dopo[m.end() :]
+            m = SOTTO_ALTRO.match(dopo)
+        return out
+
+    @staticmethod
+    def sottopunto(tab: Mapping[str, Any], n: str, s: str) -> str | None:
+        """The map key for sub-point ``s`` of paragraph ``n``: equal, or the only key that completes a citation omitting
+        the first level (``457(B)(a)`` -> ``457(3)(B)(a)``); never a wider or narrower sub-point."""
+        if n + s in tab:
+            return n + s
+        rx = re.escape(n) + r'\([0-9A-Za-z]{1,4}\)' + re.escape(s)
+        c = [k for k in tab if k.startswith(n + '(') and re.fullmatch(rx, k)]
+        return c[0] if len(c) == 1 else None
 
     @staticmethod
     def pagina_citazione(contesto: str) -> str:
@@ -322,6 +359,15 @@ class MappaParagrafi:
                     dove = [corte] if in_corte else [c for c in self.per if n in self.per[c]]
                     if len(dove) == 1:
                         out.append((dove[0], n, tuple(self.per[dove[0]][n])))
+                for s in self.sottopunti(fin[p.end() :]) if nums else []:
+                    if corte is not None and self.sottopunto(self.per.get(corte, {}), nums[-1], s):
+                        dove = [corte]
+                    else:
+                        dove = [c for c in self.per if self.sottopunto(self.per[c], nums[-1], s)]
+                    if len(dove) == 1:
+                        k = self.sottopunto(self.per[dove[0]], nums[-1], s)
+                        assert k is not None
+                        out.append((dove[0], k, tuple(self.per[dove[0]][k])))
         return out
 
     def principi_riga(self, riga: Mapping[str, Any]) -> dict[str, Any]:

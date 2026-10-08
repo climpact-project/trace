@@ -14,6 +14,7 @@ from typing import Any
 import finto_firestore
 import pytest
 from conftest import ATTESI, CAMPIONE, CASI, attesi_file, attesi_jsonl, richiede_attesi, richiede_campione
+from schermo_en import in_inglese
 
 from tracepipe.banca import BancaDatiMemoria
 from tracepipe.caricatori import CaricatoreRipresa, CaricatoreTipo, versione_codebook
@@ -99,7 +100,7 @@ def test_tipo_come_carica_lessicali(vivi, monkeypatch, tmp_path, caso, sovrascri
         Config(radice=r), caso, banca, etichetta=etichetta, sovrascrivi=sovrascrivi, scrivi=scrivi, stampa=righe.append
     ).esegui()
     assert banca.scritture == vivo.scritture
-    assert '\n'.join(righe) + '\n' == out.getvalue()
+    assert '\n'.join(righe) + '\n' == in_inglese(out.getvalue())
     if scrivi:
         assert banca.scritture, 'the synthetic rows produce writes'
 
@@ -157,7 +158,8 @@ def test_passo_09_del_banco(tmp_path, caso) -> None:
     ).esegui()
     attese = attesi_jsonl(ATTESI / f'09_carica_lessicali_rif_{caso}' / 'firestore_scritture.jsonl')
     assert [json.loads(json.dumps(x, sort_keys=True)) for x in banca.scritture] == attese
-    assert '\n'.join(righe) + '\n' == (ATTESI / f'09_carica_lessicali_rif_{caso}' / 'stdout.txt').read_text()
+    atteso = (ATTESI / f'09_carica_lessicali_rif_{caso}' / 'stdout.txt').read_text()
+    assert '\n'.join(righe) + '\n' == in_inglese(atteso)
 
 
 # the ripresa loader against the live one, on the sample files as they are
@@ -185,6 +187,10 @@ def test_ripresa_come_carica_ripresa(ripresa_viva, monkeypatch, tmp_path, caso) 
         ripresa_viva.main()
     banca = BancaDatiMemoria({'corpus_rows': fixture})
     righe: list[str] = []
+    # the harness copy writes the map code it had at the reference commit (R09 for the ICJ); the ICJ map is R18 from 08/10/2026
+    from tracepipe import casi_registro as tcr
+
+    monkeypatch.setattr(tcr, 'CODICE_MAPPA', {**tcr.CODICE_MAPPA, 'cig-parere-clima': 'R09'})
     CaricatoreRipresa(
         Config(radice=CAMPIONE),
         caso,
@@ -196,7 +202,7 @@ def test_ripresa_come_carica_ripresa(ripresa_viva, monkeypatch, tmp_path, caso) 
         stampa=righe.append,
     ).esegui()
     assert banca.scritture == vivo.scritture
-    assert '\n'.join(righe).replace(str(sp), str(sv)) + '\n' == out.getvalue()
+    assert '\n'.join(righe).replace(str(sp), str(sv)) + '\n' == in_inglese(out.getvalue())
     assert sp.read_bytes() == sv.read_bytes()
 
 
@@ -232,7 +238,7 @@ def test_anteprima_senza_scrivere(tmp_path) -> None:
     banca = BancaDatiMemoria({'corpus_rows': _righe('neubauer')})
     righe: list[str] = []
     e = CaricatoreTipo(Config(radice=r), 'neubauer', banca, etichetta='', stampa=righe.append).esegui()
-    assert e.scritture and banca.scritture == [] and righe[-1] == 'ANTEPRIMA: niente scritto'
+    assert e.scritture and banca.scritture == [] and righe[-1] == 'PREVIEW: nothing written'
 
 
 # R11 (02/10/2026): the type by majority, written also over an earlier proposal; never on a judged row

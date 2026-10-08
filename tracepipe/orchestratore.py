@@ -95,19 +95,19 @@ class TrasportoSsh:
             ['scp', '-q', str(locale), f'{self.host}:{self.cartella}/{remoto}'], timeout=self.timeout, check=False
         )
         if r.returncode:
-            raise CopiaRovinataError(f'scp verso {remoto}: uscita {r.returncode}')
+            raise CopiaRovinataError(f'scp to {remoto}: exit {r.returncode}')
 
     def prendi(self, remoto: str, locale: Path) -> None:
         r = subprocess.run(
             ['scp', '-q', f'{self.host}:{self.cartella}/{remoto}', str(locale)], timeout=self.timeout, check=False
         )
         if r.returncode:
-            raise CopiaRovinataError(f'scp da {remoto}: uscita {r.returncode}')
+            raise CopiaRovinataError(f'scp from {remoto}: exit {r.returncode}')
 
     def scrivi(self, remoto: str, testo: str) -> None:
         codice, out = self._ssh(f'cat > ~/{self.cartella}/{shlex.quote(remoto)}', testo)
         if codice:
-            raise RuntimeError(f'scrittura di {remoto}: {out[-300:]}')
+            raise RuntimeError(f'writing {remoto}: {out[-300:]}')
 
     def impronta(self, remoto: str) -> tuple[str, int] | None:
         q = shlex.quote(remoto)
@@ -249,7 +249,7 @@ class Orchestratore:
         self.passi = list(passi)
         nomi = [p.nome for p in self.passi]
         if len(set(nomi)) != len(nomi):
-            raise ValueError(f'passi con lo stesso nome: {nomi}')
+            raise ValueError(f'steps with the same name: {nomi}')
         self.esegui_locale = esegui_locale or _cli_locale
         self.dormi = dormi
         self.orologio = orologio
@@ -278,13 +278,13 @@ class Orchestratore:
             except CopiaRovinataError as e:
                 self.fase(f'{e} (tentativo {k})')
             self.dormi(60)
-        raise CopiaRovinataError(f'{relativo}: {tentativi} copie non riuscite')
+        raise CopiaRovinataError(f'{relativo}: {tentativi} copies failed')
 
     def prendi(self, relativo: str, locale: Path, tentativi: int = 5) -> tuple[str, int]:
         """Take a remote file; the local hash and lines must equal the remote ones."""
         atteso = self.trasporto.impronta(relativo)
         if atteso is None:
-            raise FileNotFoundError(f'remoto: {relativo}')
+            raise FileNotFoundError(f'remote: {relativo}')
         for k in range(1, tentativi + 1):
             try:
                 self.trasporto.prendi(relativo, locale)
@@ -294,20 +294,20 @@ class Orchestratore:
             except CopiaRovinataError as e:
                 self.fase(f'{e} (tentativo {k})')
             self.dormi(60)
-        raise CopiaRovinataError(f'{relativo}: {tentativi} copie non riuscite')
+        raise CopiaRovinataError(f'{relativo}: {tentativi} copies failed')
 
     def remoto(self, comando: str) -> str:
         """A remote command that must succeed."""
         codice, out = self.trasporto.esegui(comando)
         if codice:
-            raise RuntimeError(f'remoto, uscita {codice}: {comando[:80]} {out[-300:]}')
+            raise RuntimeError(f'remote, exit {codice}: {comando[:80]} {out[-300:]}')
         return out
 
     def locale(self, argv: list[str]) -> None:
         """A local ``trace`` command that must succeed."""
         codice = self.esegui_locale(argv)
         if codice:
-            raise RuntimeError(f'trace {" ".join(argv)}: uscita {codice}')
+            raise RuntimeError(f'trace {" ".join(argv)}: exit {codice}')
 
     # running
     def esegui(self) -> bool:
@@ -358,7 +358,8 @@ def _cli_locale(argv: list[str]) -> int:
 
 # the cycle of the empty readings (tools/ciclo_vuote.sh)
 
-CASI = ('urgenda', 'neubauer', 'future-generations', 'klimaseniorinnen', 'cig-parere-clima', 'idh-oc-32-25')
+from . import casi_registro  # noqa: E402
+CASI = casi_registro.CASI
 L05 = {
     'urgenda': 'v2',
     'neubauer': 'P05',
@@ -541,7 +542,7 @@ class CicloVuote(Orchestratore):
             if self.trasporto.esegui(prova)[0] == 0:
                 return k
             self.dormi(self.attesa_s)
-        raise TimeoutError(f'code non finite dopo {self.massimo_attese} sguardi')
+        raise TimeoutError(f'queues not finished after {self.massimo_attese} checks')
 
     def riprendi_file(self) -> dict[str, Any]:
         """Take each file back only if it has the same rows and no more empty readings (backup kept)."""

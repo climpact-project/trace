@@ -16,6 +16,7 @@ from typing import Any
 import finto_firestore
 import pytest
 from conftest import ATTESI, CAMPIONE, attesi_jsonl, richiede_attesi, richiede_campione
+from schermo_en import in_inglese
 
 from tracepipe.banca import BancaDatiMemoria
 from tracepipe.config import Config
@@ -95,7 +96,7 @@ def test_completezza_come_il_vivo(vivi, monkeypatch, tmp_path, scrivi) -> None:
     rapporto = ControlloCompletezza(
         Config(radice=rp), banca, scrivi=scrivi, stampa=righe.append, orologio=FERMA
     ).esegui()
-    assert '\n'.join(righe) + '\n' == out.getvalue()
+    assert '\n'.join(righe) + '\n' == in_inglese(out.getvalue())
     assert banca.scritture == vivo.scritture
     assert sorted(p.name for p in (rv / 'training').iterdir()) == sorted(p.name for p in (rp / 'training').iterdir())
     for p in (rv / 'training').iterdir():
@@ -112,7 +113,7 @@ def test_completezza_del_banco(tmp_path) -> None:
     (tmp_path / 'training').mkdir()
     righe: list[str] = []
     ControlloCompletezza(Config(radice=tmp_path), banca, scrivi=True, stampa=righe.append, orologio=FERMA).esegui()
-    assert '\n'.join(righe) + '\n' == (ATTESI / '11_controllo_completezza' / 'stdout.txt').read_text()
+    assert '\n'.join(righe) + '\n' == in_inglese((ATTESI / '11_controllo_completezza' / 'stdout.txt').read_text())
     attese = attesi_jsonl(ATTESI / '11_controllo_completezza' / 'firestore_scritture.jsonl')
     assert [json.loads(json.dumps(x, sort_keys=True)) for x in banca.scritture] == attese
 
@@ -125,7 +126,7 @@ def test_finestra_come_il_vivo(vivi, monkeypatch) -> None:
         codice = cf.main()
     righe: list[str] = []
     assert ControlloFinestra(Config(radice=CAMPIONE), compat=True, stampa=righe.append).esegui() == codice
-    assert '\n'.join(righe) + '\n' == out.getvalue()
+    assert '\n'.join(righe) + '\n' == in_inglese(out.getvalue())
 
 
 def _radice_finestra(tmp: Path) -> Path:
@@ -159,5 +160,5 @@ def test_finestra_pagina_mancante_e_riga_senza_pagina(tmp_path, compat) -> None:
     righe: list[str] = []
     assert ControlloFinestra(Config(radice=r), compat=compat, stampa=righe.append).esegui() == 1
     # page 5 has no score: row a (page 3) sees it; row b without a page only with the live defect (window from 0)
-    assert righe[0] == f'urgenda (sonde P01): pagine della finestra senza punteggio 1, citazioni con buchi {1 + compat}'
-    assert righe[-1] == 'FINESTRA INCOMPLETA: 1 pagine senza punteggio'
+    assert righe[0] == f'urgenda (probes P01): window pages without a score 1, citations with gaps {1 + compat}'
+    assert righe[-1] == 'WINDOW INCOMPLETE: 1 pages without a score'

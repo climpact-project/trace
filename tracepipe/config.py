@@ -14,31 +14,18 @@ from pathlib import Path
 from types import MappingProxyType
 
 # The six cited cases of the pipeline (prove/esegui_riferimento.py CASI).
-CASI: tuple[str, ...] = (
-    'urgenda',
-    'neubauer',
-    'future-generations',
-    'klimaseniorinnen',
-    'cig-parere-clima',
-    'idh-oc-32-25',
-)
+from . import casi_registro  # noqa: E402
+CASI: tuple[str, ...] = casi_registro.CASI
 
 # tools/sonde.py SERIE_IN_USO: the probe series in use per case when TRACE_SONDE is not set.
 SERIE_IN_USO: Mapping[str, str] = MappingProxyType(
-    {'neubauer': 'P05', 'future-generations': 'P05', 'cig-parere-clima': 'P09'}
+    dict(casi_registro.SERIE_IN_USO)
 )
 # tools/sonde.py STORICHE: historical series, whose derived files carry no suffix.
 STORICHE: frozenset[str] = frozenset({'P01', 'P02'})
 # tools/sonde.py PRIMA_SERIE: the first series of each case, the one of the files without suffix.
 PRIMA_SERIE: Mapping[str, str] = MappingProxyType(
-    {
-        'urgenda': 'P01',
-        'neubauer': 'P02',
-        'future-generations': 'P02',
-        'klimaseniorinnen': 'P06',
-        'cig-parere-clima': 'P07',
-        'idh-oc-32-25': 'P08',
-    }
+    dict(casi_registro.PRIMA_SERIE)
 )
 
 
@@ -197,7 +184,7 @@ class Config:
         """
         s = self.trace_sonde or (self.serie_in_uso.get(caso, '') if caso else '')
         if s and caso and not (self.cited_cases / f'{caso}-{s}.yaml').exists():
-            raise SerieMancanteError(f'TRACE_SONDE={s}: manca cited-cases/{caso}-{s}.yaml')
+            raise SerieMancanteError(f'TRACE_SONDE={s}: cited-cases/{caso}-{s}.yaml is missing')
         return s
 
     def suf(self, caso: str | None = None) -> str:
@@ -226,8 +213,4 @@ class Config:
 
     def codice_mappa(self, caso: str) -> str:
         """Register code of the paragraph map used for ``caso`` (tools/carica_ripresa.py ``main``)."""
-        return {'P03': 'R06', 'P05': 'R07'}.get(self.serie(caso)) or {
-            'klimaseniorinnen': 'R09',
-            'cig-parere-clima': 'R09',
-            'idh-oc-32-25': 'R09',
-        }.get(caso, 'R04')
+        return {'P03': 'R06', 'P05': 'R07'}.get(self.serie(caso)) or casi_registro.CODICE_MAPPA.get(caso, 'R04')

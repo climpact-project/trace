@@ -210,7 +210,7 @@ class BancaDatiFirestore(BancaDati):
             elif s.op == 'delete':
                 b.delete(rif)
             else:
-                raise ValueError(f'operazione sconosciuta: {s.op}')
+                raise ValueError(f'unknown operation: {s.op}')
         b.commit()
 
     def imposta(self, collezione: str, doc_id: str, dati: Mapping[str, Any], merge: bool = False) -> None:
@@ -268,7 +268,7 @@ class BancaDatiMemoria(BancaDati):
             x = x[k]
         if op == '==':
             return x == valore
-        raise NotImplementedError(f'operatore {op!r}')
+        raise NotImplementedError(f'operator {op!r}')
 
     def righe(self, collezione: str, filtri: Sequence[Filtro] = ()) -> Iterator[tuple[str, dict[str, Any]]]:
         docs = self.collezioni.get(collezione, {})

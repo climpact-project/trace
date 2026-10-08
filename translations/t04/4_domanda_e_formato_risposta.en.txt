@@ -1,0 +1,13 @@
+[English translation of prompt/4_domanda_e_formato_risposta.txt of the T04 package (TRACE-Reranker, reasoning).
+ Original: pubblicazione/trace-0.1/t04/prompt/4_domanda_e_formato_risposta.txt, as published in the Zenodo package of T04
+ under prompt/.
+ SHA-256 of the original: 7df04142c3aa92e89983fde05a03479382a5216e54629a65a2a9e735bea5a240
+ A reading aid, not a runnable copy: T04 was trained and measured on the Italian text, which must stay as it is.
+ The values the model answers with ("si", "no", "incerto") and the names of the JSON fields ("cita_il_caso" [cites the
+ case], "esito" [outcome], "ragione" [reason], "punteggio" [score], "principi" [principles], "principio" [principle],
+ "parole" [words], "altro" [other]) are protocol values and stay Italian. This bracketed header is not part of the
+ translation.]
+
+QUESTION. For EVERY principle of the list (none excluded): does the citation take it? To take = to use, apply, discuss, reject or report the reasoning of the case on that point (general rules G01-G08). For each one reason: which sentence the citation supports, what it attributes to the case, whether it is that principle in the light of definition, distinctive element, exclusions and boundaries.
+But first: does the passage really CITE or TAKE UP the case (not an index, not a namesake, not another source)?
+Answer ONLY with a JSON object: {"cita_il_caso": {"esito": "si" | "no" | "incerto", "ragione": "at most 40 words", "punteggio": number from 0 to 1}, "principi": [{"principio": "id", "esito": "si" | "no" | "incerto", "ragione": "at most 40 words", "parole": "words of the filing copied letter for letter, at most 40; empty if no", "punteggio": number from 0 to 1}, ...], "altro": "one sentence if the citation takes something that is not in the list, otherwise empty"}

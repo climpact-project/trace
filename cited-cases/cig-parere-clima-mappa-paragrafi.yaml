@@ -27,6 +27,16 @@
 # La prima versione della mappa (sette sonde diverse) e' sostituita da questa.
 # `verbatim`, dove c'e', e' una frase breve ritrovata identica nel testo del corpus (spazi normalizzati).
 
+# CAMPI DELLA SERIE P09 (08/10/2026): proposta dell'8/10 (training/mappa_cig_P09/PROPOSTA-2026-10-08.md) rivista dal gruppo di
+# ricerca con le decisioni del PI dell'8/10/2026; Claude Opus 5.5 come supporto ancillare (sistemazione e riordino).
+#   sonde_P09       sonde P09 che la voce SOSTIENE (id senza il prefisso del caso); le legge tools/principi_da_paragrafi.py
+#                   con --sonde P09. Il vecchio campo `sonde` (P07) resta com'era.
+#   sostengono_P09  quando c'e': i soli paragrafi della voce che sostengono; gli altri della voce preparano
+#   prepara_P09     sonde che la voce soltanto PREPARA: non entra in principi_da_paragrafi
+#   dispositivo_P09 (solo § 457) i sottopunti del dispositivo con le loro sonde; una citazione «457(3)(B)(a)» prende le
+#                   sonde del sottopunto citato (anche scritto «457(B)(a)»), il «§ 457» nudo solo prepara
+#   confidenza_P09, ragione_P09, verbatim_P09  come nella proposta; «decided by PI» sulle tre voci decise dal PI
+
 documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
 voci:
 - paragrafo: 1-36
@@ -36,12 +46,20 @@ voci:
   sintesi: 'Procedura: la risoluzione 77/276 dell''Assemblea generale (29/3/2023), le ordinanze sui termini, le memorie
     e i commenti scritti, l''incontro con gli autori dell''IPCC, le udienze di dicembre 2024 e le domande dei giudici.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Procedure (request, orders, written and oral phase): prepares nothing specific.'
 - paragrafo: 37-43
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 34-35
   pagina_stampa: 27-28
   sintesi: 'Competenza: la richiesta pone questioni giuridiche; la Corte e'' competente a rendere il parere.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Jurisdiction: no probe content.'
 - paragrafo: 44-49
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 35-36
@@ -49,6 +67,10 @@ voci:
   sintesi: 'Discrezionalita'': nessuna ragione decisiva per rifiutare; la risoluzione e'' stata adottata senza voto; la
     Corte dichiara il diritto esistente e non legifera.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Discretion to give the opinion: no probe content.'
 - paragrafo: 50-71
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 36-41
@@ -56,6 +78,10 @@ voci:
   sintesi: 'Contesto storico: dalla risoluzione 2398 (1968) e da Stoccolma (1972) all''IPCC, all''UNFCCC, a Kyoto, a Parigi
     e alla risoluzione 77/276.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Historical background of the regime: context only.'
 - paragrafo: 72-74
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 41-42
@@ -63,6 +89,12 @@ voci:
   sintesi: Le conseguenze del cambiamento climatico; la Corte si fonda soprattutto sui rapporti dell'IPCC, migliore scienza
     disponibile secondo i partecipanti.
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - diligenza_stringente_clima
+  - obiettivo_1_5
+  confidenza_P09: high
+  ragione_P09: 'Facts and choice of IPCC as best available science (74 is cross-referenced by 224): prepares only.'
 - paragrafo: 75-87
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 42-46
@@ -70,12 +102,21 @@ voci:
   sintesi: 'Definizioni e risultanze dell''IPCC: sistema climatico, cambiamento climatico, gas serra, riscaldamento di 1,1
     gradi causato dall''uomo, rischi crescenti a ogni incremento, mitigazione e adattamento e loro limiti.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - diligenza_stringente_clima
+  confidenza_P09: high
+  ragione_P09: 'IPCC definitions and findings on cumulative emissions (relied on in 137, 277): science prepares.'
 - paragrafo: 88-93
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 46-47
   pagina_stampa: 39-40
   sintesi: Le due domande dell'Assemblea generale; la Corte non le riformula ma ne chiarisce portata e significato.
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'The two questions and their reformulation: procedure.'
 - paragrafo: 94-95
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 47-48
@@ -85,6 +126,15 @@ voci:
     sono i partecipanti, non la Corte, a nominare produzione, licenze e sussidi ai combustibili fossili (l''elemento torna,
     detto dalla Corte, al § 427).'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - fossili_illecito
+  confidenza_P09: high
+  ragione_P09: 'Material scope: production and consumption in scope, fossil fuels named only via participants; the element
+    is stated by the Court at 427.'
+  verbatim_P09:
+    paragrafo: 94
+    testo: including both consumption and production activities
   verbatim: including both consumption and production activities
 - paragrafo: 96-97
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -93,6 +143,10 @@ voci:
   sintesi: Ambito territoriale globale; i problemi temporali (non retroattivita', nascita delle norme consuetudinarie) restano
     alla valutazione in concreto.
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Territorial and temporal scope: no probe content.'
 - paragrafo: 98-100
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '49'
@@ -100,6 +154,10 @@ voci:
   sintesi: 'Domanda (a): gli obblighi dell''intero diritto internazionale; la Corte identifica il diritto esistente e non
     anticipa il legislatore.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Scope of question (a): no probe content.'
 - paragrafo: 101-111
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 49-52
@@ -108,24 +166,41 @@ voci:
     giudizio su singoli Stati; gli Stati piu'' vulnerabili hanno gli stessi rimedi; innalzamento del mare rinviato alla
     domanda (a); i diritti degli individui dipendono dai trattati che li prevedono.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - erga_omnes
+  confidenza_P09: high
+  ragione_P09: 'Scope of question (b) and of "legal consequences": framing for the responsibility part, prepares only.'
 - paragrafo: 112-115
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 52-53
   pagina_stampa: 45-46
   sintesi: 'Diritto applicabile: la Carta delle Nazioni Unite e il dovere di cooperare in buona fede.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Plan of the opinion and UN Charter as applicable law: generic.'
 - paragrafo: 116-121
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 53-54
   pagina_stampa: 46-47
   sintesi: I tre trattati sul clima (UNFCCC, Kyoto, Parigi) si completano; Kyoto non e' estinto.
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'The three climate treaties as applicable law: list of instruments.'
 - paragrafo: 122-124
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '54'
   pagina_stampa: '47'
   sintesi: UNCLOS fa parte del diritto applicabile; richiamo al parere ITLOS del 21 maggio 2024.
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'UNCLOS as applicable law: list of instruments.'
 - paragrafo: 125-130
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 54-55
@@ -133,6 +208,10 @@ voci:
   sintesi: Trattati sull'ozono, Convenzione sulla biodiversita' e sulla desertificazione fanno parte del diritto applicabile;
     gli altri trattati settoriali e regionali restano fuori dall'esame.
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Ozone, biodiversity, desertification treaties as applicable law: list of instruments.'
 - paragrafo: 131-133
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 55-56
@@ -140,6 +219,11 @@ voci:
   sintesi: 'Dovere di prevenire danni significativi: lo riconoscono i partecipanti (Pulp Mills); due posizioni sulla sua
     applicazione al clima.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - diligenza_stringente_clima
+  confidenza_P09: high
+  ragione_P09: 'Introduction and participants'' two positions on the duty to prevent: prepares.'
 - paragrafo: 134-139
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 56-57
@@ -148,6 +232,15 @@ voci:
     diligenza; rischio universale e urgente, standard generale; diligenza stringente e vigilanza accresciuta.
   sonde:
   - diligenza_stringente_clima
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Court states that the customary duty to prevent applies to the climate system and that its due diligence standard
+    is stringent.
+  verbatim_P09:
+    paragrafo: 138
+    testo: the standard of due diligence for preventing significant harm to the climate system is stringent
   verbatim: the standard of due diligence for preventing significant harm to the climate system is stringent
 - paragrafo: 140-142
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -156,6 +249,10 @@ voci:
   sintesi: 'Dovere consuetudinario di cooperare per la protezione dell''ambiente: carattere consuetudinario accertato, legato
     al dovere di prevenzione, principio guida per interpretare altre regole.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Customary duty to co-operate: generic principle excluded from the P09 probes.'
   verbatim: the duty of States to co-operate for the protection of the environment is a rule whose customary character has
     been established
 - paragrafo: 143-145
@@ -165,12 +262,20 @@ voci:
   sintesi: 'Il diritto internazionale dei diritti umani (Patti del 1966 e diritti consuetudinari) fa parte del diritto applicabile:
     protezione dell''ambiente e diritti umani sono interdipendenti.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Human rights law as applicable law: generic, excluded from the probes.'
 - paragrafo: 146-147
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '59'
   pagina_stampa: '52'
   sintesi: 'Principi guida: lo sviluppo sostenibile orienta l''interpretazione dei trattati e delle regole consuetudinarie.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Sustainable development as guiding principle: generic.'
 - paragrafo: 148-151
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 59-60
@@ -178,12 +283,21 @@ voci:
   sintesi: 'Responsabilita'' comuni ma differenziate e rispettive capacita'': ripartizione equa degli oneri secondo contributi
     storici e attuali e capacita''; non crea obblighi nuovi ma orienta l''interpretazione.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - diligenza_stringente_clima
+  confidenza_P09: high
+  ragione_P09: 'CBDR-RC as guiding principle; later used to scale due diligence (290-292): prepares.'
 - paragrafo: 152-154
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 60-61
   pagina_stampa: 53-54
   sintesi: Equita' come principio infra legem, non contra o extra legem.
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Equity infra legem: generic.'
 - paragrafo: 155-157
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 61-62
@@ -191,6 +305,10 @@ voci:
   sintesi: 'Equita'' intergenerazionale: le generazioni presenti come fiduciarie dell''umanita''; vale come guida interpretativa
     infra legem e chiede di considerare gli interessi delle generazioni future.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Intergenerational equity as interpretive guide: generic, excluded.'
   verbatim: present generations are trustees of humanity
 - paragrafo: '158'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -198,6 +316,11 @@ voci:
   pagina_stampa: '55'
   sintesi: Approccio o principio di precauzione (Rio, principio 15; art. 3(3) UNFCCC).
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - diligenza_stringente_clima
+  confidenza_P09: high
+  ragione_P09: 'Precaution as guiding principle; applied inside due diligence only at 293-294: prepares.'
 - paragrafo: 159-160
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 62-63
@@ -205,6 +328,10 @@ voci:
   sintesi: Il principio chi inquina paga non fa parte del diritto applicabile fra Stati; resta aperta la responsabilita'
     oggettiva per atti non illeciti.
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Polluter pays not applicable between States: no probe content.'
 - paragrafo: '161'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '63'
@@ -212,6 +339,10 @@ voci:
   sintesi: 'Conclusione: sviluppo sostenibile, CBDR-RC, equita'', equita'' intergenerazionale e precauzione sono principi
     guida per interpretare e applicare le regole.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Conclusion on guiding principles: generic list.'
 - paragrafo: 162-164
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 63-64
@@ -219,6 +350,11 @@ voci:
   sintesi: 'Lex specialis: le posizioni dei partecipanti (i trattati sul clima come unico diritto applicabile, o parte di
     un insieme piu'' ampio).'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - non_lex_specialis
+  confidenza_P09: high
+  ragione_P09: 'Framing of the lex specialis question and participants'' positions: prepares.'
 - paragrafo: 165-171
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 64-65
@@ -227,6 +363,15 @@ voci:
     di escludere; nessuna delle due nei trattati sul clima; non sono l''unico diritto applicabile.'
   sonde:
   - non_lex_specialis
+  sonde_P09:
+  - non_lex_specialis
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Court''s own answer: no actual inconsistency, no discernible intention, so climate treaties are not lex specialis.'
+  verbatim_P09:
+    paragrafo: 171
+    testo: the principle of lex specialis does not lead to a general exclusion by the climate change treaties of other rules
+      of international law
   verbatim: the principle of lex specialis does not lead to a general exclusion by the climate change treaties of other
     rules of international law
 - paragrafo: 172-173
@@ -236,6 +381,12 @@ voci:
   sintesi: Elenco del diritto applicabile piu' direttamente rilevante; senza pregiudizio per commercio, investimenti e diritto
     umanitario.
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - non_lex_specialis
+  confidenza_P09: medium
+  ragione_P09: 'Own-voice conclusion, but it is a list of the applicable law ("without prejudice" to other rules): a list
+    only prepares.'
 - paragrafo: 174-186
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 66-69
@@ -244,6 +395,15 @@ voci:
     di Vienna; i principi dell''art. 3 UNFCCC orientano l''interpretazione; effetti giuridici delle decisioni delle COP;
     mitigazione, adattamento, cooperazione.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - obiettivo_1_5
+  confidenza_P09: medium
+  ragione_P09: 'General method; 184 states that COP decisions may be subsequent agreements, the premise applied to 1.5°C at
+    224: prepares.'
+  verbatim_P09:
+    paragrafo: 184
+    testo: decisions of these bodies may constitute subsequent agreements
 - paragrafo: 187-195
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 69-72
@@ -251,6 +411,11 @@ voci:
   sintesi: 'Rapporto fra UNFCCC, Kyoto e Parigi: non opera la lex posterior; i tre trattati sono compatibili e si sostengono
     a vicenda.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Relationship among the three climate treaties (lex posterior, compatibility): internal question, not the external
+    lex specialis probe.'
 - paragrafo: 196-206
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 72-75
@@ -258,6 +423,10 @@ voci:
   sintesi: 'UNFCCC: obiettivo ultimo dell''art. 2; obblighi di mitigazione dell''art. 4(1) per tutte le parti e dell''art.
     4(2) per l''Allegato I, giuridicamente vincolanti, di condotta e di risultato.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'UNFCCC mitigation obligations: treaty reading, no distinctive probe.'
 - paragrafo: 207-208
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 75-76
@@ -265,6 +434,15 @@ voci:
   sintesi: 'Obblighi di condotta e di risultato sono tutti vincolanti; adottare politiche e misure come mera formalita''
     non adempie l''obbligo: devono essere idonee a raggiungere lo scopo.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - ndc_discrezionalita_limitata
+  confidenza_P09: medium
+  ragione_P09: 'UNFCCC Art. 4(2): policies adopted "as a mere formality" do not discharge the obligation; reused for NDCs
+    at 236, so it prepares.'
+  verbatim_P09:
+    paragrafo: 208
+    testo: as a mere formality is not sufficient to discharge the obligation of result
   verbatim: the adoption of a policy, and the taking of related measures, as a mere formality is not sufficient to discharge
     the obligation of result
 - paragrafo: 209-213
@@ -274,6 +452,10 @@ voci:
   sintesi: 'UNFCCC, adattamento: obblighi vincolanti per tutte le parti; assistenza dell''Allegato II ai paesi vulnerabili;
     margine nell''attuazione degli artt. 4(8) e 4(9).'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'UNFCCC adaptation: generic, excluded.'
 - paragrafo: 214-218
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 77-78
@@ -282,6 +464,10 @@ voci:
     si riflette nell''art. 4; obbligo di condotta valutato con la diligenza, adeguatezza dei trasferimenti decisa in buona
     fede caso per caso.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'UNFCCC co-operation and assistance: generic, excluded.'
   verbatim: international co-operation is indispensable in the field of climate change
 - paragrafo: 219-221
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -290,12 +476,21 @@ voci:
   sintesi: 'Kyoto: impegni quantificati dell''Allegato B per due periodi; il Protocollo resta in vigore e l''inadempimento
     degli impegni puo'' essere un fatto illecito.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Kyoto Protocol: no distinctive probe.'
 - paragrafo: '222'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '79'
   pagina_stampa: '72'
   sintesi: Introduzione agli obblighi dell'Accordo di Parigi.
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - obiettivo_1_5
+  confidenza_P09: high
+  ragione_P09: One-line introduction to the Paris Agreement section.
 - paragrafo: 223-225
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 79-81
@@ -305,6 +500,17 @@ voci:
     con la migliore scienza disponibile; l''obiettivo e'' il mezzo per lo scopo della Convenzione.'
   sonde:
   - obiettivo_1_5
+  sonde_P09:
+  - obiettivo_1_5
+  prepara_P09: []
+  sostengono_P09:
+  - 224
+  confidenza_P09: medium
+  ragione_P09: Only 224 states the probe (1/CMA.3 and 1/CMA.5 as subsequent agreements make 1.5°C the primary goal); 223 quotes
+    the treaty letter and 225 is object and purpose, which only prepare.
+  verbatim_P09:
+    paragrafo: 224
+    testo: the Court considers the 1.5°C threshold to be the parties’ agreed primary temperature goal
   verbatim: the 1.5°C threshold to be the parties’ agreed primary temperature goal
 - paragrafo: '226'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -313,6 +519,10 @@ voci:
   sintesi: 'CBDR-RC nell''Accordo di Parigi: l''inciso «in the light of different national circumstances» riconosce che
     lo status di paese sviluppato o in via di sviluppo non e'' statico.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'CBDR-RC "in the light of different national circumstances": generic.'
 - paragrafo: '227'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '81'
@@ -320,12 +530,21 @@ voci:
   sintesi: Le disposizioni di Parigi su finanza, tecnologia e capacita' a favore dei paesi in via di sviluppo riflettono
     un dovere di cooperare.
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Support provisions reflect a duty to co-operate: generic.'
 - paragrafo: 228-229
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '81'
   pagina_stampa: '74'
   sintesi: Gli obblighi di condotta di Parigi si valutano sulla diligenza e sui migliori sforzi con tutti i mezzi a disposizione.
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - ndc_discrezionalita_limitata
+  confidenza_P09: medium
+  ragione_P09: 'Paris obligations of conduct assessed by due diligence: general premise for the NDC standard, prepares.'
 - paragrafo: 230-231
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 81-82
@@ -334,12 +553,22 @@ voci:
     e'' rivolto alle parti nel loro insieme ed e'' il contesto per interpretare gli altri obblighi (non vi si qualifica
     l''1,5).'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - obiettivo_1_5
+  confidenza_P09: medium
+  ragione_P09: 'Art. 4(1) and the temperature goal as "context": does not state 1.5°C as the primary legal goal, prepares
+    (the PI had indicated 230-231 on 1/10, excluded on verification).'
 - paragrafo: '232'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '82'
   pagina_stampa: '75'
   sintesi: 'Art. 5: pozzi e serbatoi, compresi i boschi.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Sinks and reservoirs (Art. 5): no probe content.'
 - paragrafo: 233-235
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 82-83
@@ -347,6 +576,11 @@ voci:
   sintesi: 'Art. 4(2): preparare, comunicare e mantenere NDC successivi, comunicarli ogni cinque anni, contabilizzarli e
     registrarli sono obblighi di risultato procedurali.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - ndc_discrezionalita_limitata
+  confidenza_P09: high
+  ragione_P09: 'Procedural NDC obligations of result: prepares the content question.'
 - paragrafo: '236'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '83'
@@ -354,6 +588,14 @@ voci:
   sintesi: 'La mera presentazione formale degli NDC non basta: anche il contenuto conta per l''adempimento.'
   sonde:
   - ndc_discrezionalita_limitata
+  sonde_P09:
+  - ndc_discrezionalita_limitata
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Court states that formal submission of NDCs is not enough; content determines compliance.
+  verbatim_P09:
+    paragrafo: 236
+    testo: the mere formal preparation, communication and maintenance of successive NDCs is not sufficient
 - paragrafo: 237-249
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 83-86
@@ -363,6 +605,25 @@ voci:
     di 1,5 gradi; lo standard varia con contributi storici e circostanze nazionali.'
   sonde:
   - ndc_discrezionalita_limitata
+  sonde_P09:
+  - ndc_discrezionalita_limitata
+  prepara_P09: []
+  sostengono_P09:
+  - 240
+  - 241
+  - 242
+  - 244
+  - 245
+  - 246
+  - 247
+  - 248
+  - 249
+  confidenza_P09: high
+  ragione_P09: Court develops limited discretion, prescriptive "will", highest possible ambition, collective capability; 237-239
+    frame the question and 243 recites the stocktake figures (excluded as provenance), so they only prepare.
+  verbatim_P09:
+    paragrafo: 245
+    testo: the discretion of parties in the preparation of their NDCs is limited
   verbatim: the discretion of parties in the preparation of their NDCs is limited
 - paragrafo: 250-254
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -371,6 +632,18 @@ voci:
   sintesi: 'Art. 4(2), seconda frase: perseguire misure interne di mitigazione e'' obbligo di condotta sostanziale; diligenza
     stringente, anche verso le attivita'' dei privati; misure ragionevolmente idonee a raggiungere gli NDC.'
   sonde: []
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  confidenza_P09: decided by PI
+  ragione_P09: 'PI decision, 8 October 2026: § 254 supports diligenza_stringente_clima (the Court states the stringent standard
+    in its own voice and ties it to § 138); §§ 250-253 only prepare. Not ndc_discrezionalita_limitata: that probe is about
+    setting NDCs (Art. 4(3)), not implementing them.'
+  verbatim_P09:
+    paragrafo: 254
+    testo: the standard of due diligence attaching to the obligation to pursue domestic mitigation measures is stringent
+  sostengono_P09:
+  - 254
 - paragrafo: 255-259
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 87-88
@@ -378,6 +651,10 @@ voci:
   sintesi: 'Adattamento nell''Accordo di Parigi: art. 7(9) vincolante; adempimento valutato con la diligenza e i migliori
     sforzi secondo la scienza; complementare alla mitigazione.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Paris adaptation obligations: generic, excluded.'
 - paragrafo: 260-267
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 88-90
@@ -385,12 +662,20 @@ voci:
   sintesi: 'Cooperazione nell''Accordo di Parigi: il dovere consuetudinario rafforza quello pattizio; liberta'' nella scelta
     dei mezzi; finanza (art. 9) a un livello che permetta gli obiettivi dell''art. 2; tecnologia e rafforzamento delle capacita''.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Paris co-operation, finance, technology, capacity-building: generic, excluded.'
 - paragrafo: 268-269
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 90-91
   pagina_stampa: 83-84
   sintesi: 'Sintesi: i trattati sul clima stabiliscono obblighi stringenti; UNFCCC e Kyoto.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Summary on UNFCCC and Kyoto: no distinctive probe.'
 - paragrafo: '270'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '91'
@@ -400,6 +685,16 @@ voci:
     ambizione.'
   sonde:
   - obiettivo_1_5
+  sonde_P09:
+  - obiettivo_1_5
+  - ndc_discrezionalita_limitata
+  prepara_P09: []
+  confidenza_P09: medium
+  ragione_P09: Own-voice summary that restates both the 1.5°C primary goal and limited NDC discretion and highest possible
+    ambition; the codebook counts summaries as applying the probes they incorporate (old map allowed one probe per paragraph).
+  verbatim_P09:
+    paragrafo: 270
+    testo: parties do not enjoy unfettered discretion in the preparation of their NDCs
   verbatim: an objective of primarily holding the increase in the global average temperature to 1.5°C
 - paragrafo: 271-272
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -407,6 +702,11 @@ voci:
   pagina_stampa: 84-85
   sintesi: Introduzione alla consuetudine; storia della regola di prevenzione dal Trail Smelter a Pulp Mills.
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - diligenza_stringente_clima
+  confidenza_P09: high
+  ragione_P09: 'Introduction and history of the prevention rule (Trail Smelter, Corfu, Pulp Mills): prepares.'
 - paragrafo: 273-279
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 92-94
@@ -416,6 +716,15 @@ voci:
     non esclude l'applicazione del dovere.
   sonde:
   - diligenza_stringente_clima
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Court applies the customary duty to the climate system and holds that cumulative, diffuse causation does not
+    preclude it.
+  verbatim_P09:
+    paragrafo: 279
+    testo: does not preclude the application of the duty to prevent significant harm to the climate system
   verbatim: does not preclude the application of the duty to prevent significant harm to the climate system
 - paragrafo: 280-289
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -426,6 +735,25 @@ voci:
     regole e standard internazionali, anche decisioni delle COP; elementi sostanziali e procedurali.'
   sonde:
   - diligenza_stringente_clima
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  sostengono_P09:
+  - 280
+  - 282
+  - 283
+  - 284
+  - 285
+  - 286
+  - 287
+  - 289
+  confidenza_P09: high
+  ragione_P09: Court develops the content of due diligence for climate (deep, rapid, sustained reductions; science; standards).
+    281 is mainly quotation of Pulp Mills and ITLOS (excluded as provenance) and 288 concerns COP decisions as evidence of
+    custom, so they only prepare.
+  verbatim_P09:
+    paragrafo: 282
+    testo: deep, rapid, and sustained reductions of GHG emissions
   verbatim: deep, rapid, and sustained reductions of GHG emissions
 - paragrafo: 290-292
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -436,6 +764,14 @@ voci:
     i mezzi disponibili non giustificano ritardi.'
   sonde:
   - diligenza_stringente_clima
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Capabilities graduate the standard; developed States must do more; standard rises as capacity grows.
+  verbatim_P09:
+    paragrafo: 292
+    testo: developed States, in the context of climate change, must take more demanding measures
   verbatim: cannot justify undue delay or a general exemption from the obligation to exercise due diligence
 - paragrafo: 293-294
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -445,6 +781,14 @@ voci:
     della diligenza.'
   sonde:
   - diligenza_stringente_clima
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Precaution as part of due diligence under the customary duty; no delay for scientific uncertainty.
+  verbatim_P09:
+    paragrafo: 293
+    testo: States should also not refrain from or delay taking actions of prevention in the face of scientific uncertainty
 - paragrafo: 295-298
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 98-99
@@ -454,6 +798,14 @@ voci:
     anche per gli effetti a valle.'
   sonde:
   - diligenza_stringente_clima
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Risk assessment and EIA as procedural elements of the customary duty, adapted to climate risk.
+  verbatim_P09:
+    paragrafo: 297
+    testo: any EIA for the purpose of preventing significant harm to the climate system
 - paragrafo: 299-300
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 99-100
@@ -462,6 +814,12 @@ voci:
     ai gas serra; lo standard si determina oggettivamente.
   sonde:
   - diligenza_stringente_clima
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  confidenza_P09: medium
+  ragione_P09: 'Notification and consultation and objective determination of the standard: elements of the same duty, less
+    distinctive than 280-298.'
 - paragrafo: 301-308
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 100-102
@@ -470,6 +828,10 @@ voci:
     cooperazione; sforzi verso forme di azione collettiva; importanza per l''obiettivo collettivo di temperatura; la discrezionalita''
     non giustifica contributi puramente volontari; la cooperazione e'' obbligo giuridico, non scelta.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Customary duty to co-operate: generic principle excluded from the probes.'
   verbatim: Co-operation is not a matter of choice for States but a pressing need and a legal obligation
 - paragrafo: '309'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -477,6 +839,11 @@ voci:
   pagina_stampa: '95'
   sintesi: Introduzione al rapporto fra trattati e consuetudine.
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - non_lex_specialis
+  confidenza_P09: high
+  ragione_P09: One-line introduction to treaty/custom relationship.
 - paragrafo: 310-315
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 102-104
@@ -486,6 +853,15 @@ voci:
     lo Stato non parte deve dimostrare la propria conformita''.'
   sonde:
   - non_lex_specialis
+  sonde_P09:
+  - non_lex_specialis
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Court''s own rule: treaties and custom inform each other; full compliance with the treaties suggests, without
+    guaranteeing, compliance with custom.'
+  verbatim_P09:
+    paragrafo: 314
+    testo: suggests that this State substantially complies with the general customary duties
   verbatim: they establish independent obligations that do not necessarily overlap
 - paragrafo: 316-334
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -494,6 +870,11 @@ voci:
   sintesi: 'Altri trattati ambientali: ozono e Montreal con l''emendamento di Kigali, biodiversita'', desertificazione;
     obblighi che contribuiscono alla protezione del sistema climatico; ruolo di ICAO e altre organizzazioni.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - non_lex_specialis
+  confidenza_P09: high
+  ragione_P09: 'Obligations under ozone, biodiversity and desertification treaties: material that 335 concludes on, prepares.'
 - paragrafo: '335'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '108'
@@ -502,6 +883,14 @@ voci:
     nell'attuazione.
   sonde:
   - non_lex_specialis
+  sonde_P09:
+  - non_lex_specialis
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Court states that environmental treaties, climate treaties and custom inform each other.
+  verbatim_P09:
+    paragrafo: 335
+    testo: the climate change treaties and the relevant obligations under customary international law inform each other
 - paragrafo: 336-353
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 108-111
@@ -509,6 +898,20 @@ voci:
   sintesi: 'UNCLOS: le emissioni di gas serra sono inquinamento marino; artt. 192, 194, 197, 206 con diligenza stringente,
     sulla scia del parere ITLOS; adempiere UNFCCC e Parigi non basta necessariamente per l''art. 194(1).'
   sonde: []
+  sonde_P09:
+  - diligenza_stringente_clima
+  prepara_P09: []
+  confidenza_P09: decided by PI
+  ragione_P09: 'PI decision, 8 October 2026: only §§ 343, 347 and 349 support diligenza_stringente_clima (the Court says the
+    standard is stringent, citing § 138); all the other paragraphs prepare.'
+  verbatim_P09:
+    paragrafo: 349
+    testo: The standard of due diligence to be applied when complying with the obligation under Article 194, paragraph 2,
+      is stringent
+  sostengono_P09:
+  - 343
+  - 347
+  - 349
 - paragrafo: '354'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 111-112
@@ -516,6 +919,14 @@ voci:
   sintesi: UNCLOS, trattati sul clima, altri trattati ambientali e consuetudine si informano a vicenda.
   sonde:
   - non_lex_specialis
+  sonde_P09:
+  - non_lex_specialis
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Court states that UNCLOS, climate treaties, other treaties and custom inform each other.
+  verbatim_P09:
+    paragrafo: 354
+    testo: inform each other
 - paragrafo: 355-357
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '112'
@@ -523,6 +934,11 @@ voci:
   sintesi: 'Innalzamento del mare: le preoccupazioni dei partecipanti per zone marittime e statualita''; per l''IPCC e''
     inevitabile; legame con integrita'' territoriale, sovranita'' sulle risorse e autodeterminazione.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - continuita_stato
+  confidenza_P09: high
+  ragione_P09: 'Participants'' concerns and IPCC science on sea level rise: prepares.'
 - paragrafo: 358-363
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 112-114
@@ -532,6 +948,19 @@ voci:
     comporta necessariamente la perdita della statualita'.
   sonde:
   - continuita_stato
+  sonde_P09:
+  - continuita_stato
+  prepara_P09: []
+  sostengono_P09:
+  - 359
+  - 362
+  - 363
+  confidenza_P09: high
+  ragione_P09: Court holds that baselines need not be updated (359, 362) and that statehood is not necessarily lost (363);
+    358 sets out UNCLOS provisions and 360-361 report State practice and ILC work (excluded as provenance).
+  verbatim_P09:
+    paragrafo: 363
+    testo: the disappearance of one of its constituent elements would not necessarily entail the loss of its statehood
   verbatim: would not necessarily entail the loss of its statehood
 - paragrafo: 364-365
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -540,12 +969,20 @@ voci:
   sintesi: 'Il dovere di cooperare ha speciale rilievo per l''innalzamento del mare: obbligo giuridico di lavorare insieme
     verso soluzioni eque.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Duty to co-operate on sea level rise: generic co-operation, excluded.'
 - paragrafo: 366-368
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 114-115
   pagina_stampa: 107-108
   sintesi: 'Altri strumenti sul mare: MARPOL e IMO; l''Accordo BBNJ non ancora in vigore.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Other marine instruments (MARPOL, BBNJ): list of instruments.'
 - paragrafo: 369-386
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 115-119
@@ -555,6 +992,10 @@ voci:
     e familiare (adattamento tardivo, Billy c. Australia), diritti di donne, bambini e popoli indigeni; richiamo a OC-32/25
     e KlimaSeniorinnen.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Climate effects on human rights: generic, excluded by the PI.'
   verbatim: the protection of the environment is a precondition for the enjoyment of human rights
 - paragrafo: 387-393
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -563,6 +1004,10 @@ voci:
   sintesi: 'Diritto a un ambiente pulito, sano e sostenibile: da Stoccolma e Rio alle carte regionali, alle costituzioni
     e alla risoluzione 76/300; e'' inerente al godimento degli altri diritti ed essenziale per esso.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Right to a clean, healthy and sustainable environment: generic, excluded.'
   verbatim: the human right to a clean, healthy and sustainable environment is essential for the enjoyment of other human
     rights
 - paragrafo: 394-402
@@ -573,6 +1018,10 @@ voci:
     Stato esercita giurisdizione fuori dal territorio (Muro, 2004); la Corte non precisa quando, perche'' dipende da ciascun
     trattato.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Territorial scope of human rights treaties: no probe content.'
 - paragrafo: '403'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '122'
@@ -580,6 +1029,10 @@ voci:
   sintesi: 'Il pieno godimento dei diritti umani non e'' assicurato senza proteggere il sistema climatico: gli Stati devono
     adottare misure necessarie di mitigazione e adattamento, standard e leggi, regolazione dei privati.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Human rights require protecting the climate system: generic.'
   verbatim: the full enjoyment of human rights cannot be ensured without the protection of the climate system
 - paragrafo: '404'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -588,6 +1041,14 @@ voci:
   sintesi: Diritti umani, trattati sul clima, altri trattati ambientali e consuetudine si informano a vicenda.
   sonde:
   - non_lex_specialis
+  sonde_P09:
+  - non_lex_specialis
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Court states that human rights law, climate and environmental treaties and custom inform each other.
+  verbatim_P09:
+    paragrafo: 404
+    testo: inform each other
 - paragrafo: 405-406
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: '123'
@@ -595,6 +1056,11 @@ voci:
   sintesi: 'Domanda (b): conseguenze dei fatti illeciti, non degli atti leciti dannosi; la Corte traccia il quadro generale
     e non accerta responsabilita'' individuali.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - erga_omnes
+  confidenza_P09: high
+  ragione_P09: 'Introduction to question (b): framing.'
 - paragrafo: 407-409
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 123-124
@@ -603,6 +1069,13 @@ voci:
     impegna la responsabilita''; lo Stato che non esercita la diligenza dovuta per prevenire danni significativi commette
     un fatto illecito.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - fossili_illecito
+  - erga_omnes
+  confidenza_P09: medium
+  ragione_P09: 'Applicable law of responsibility; 409 states that a failure of due diligence is a wrongful act, the premise
+    of 427: prepares.'
   verbatim: commits an internationally wrongful act entailing its responsibility
 - paragrafo: 410-420
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -614,6 +1087,27 @@ voci:
     e la sua invocazione), non gli obblighi primari: per questo sta con la sonda erga_omnes.'
   sonde:
   - erga_omnes
+  sonde_P09:
+  - erga_omnes
+  prepara_P09: []
+  sostengono_P09:
+  - 411
+  - 412
+  - 414
+  - 415
+  - 416
+  - 417
+  - 418
+  - 419
+  - 420
+  confidenza_P09: medium
+  ragione_P09: Court holds that loss-and-damage, compliance and dispute mechanisms do not displace general responsibility
+    rules (assigned to erga_omnes by the PI on 1/10); 410 and 413 report participants. The lex specialis wording could also
+    suggest non_lex_specialis.
+  verbatim_P09:
+    paragrafo: 420
+    testo: is to be determined by applying the well-established rules on State responsibility under customary international
+      law
   verbatim: do not support the proposition that the parties intended to exclude the general rules on State responsibility
 - paragrafo: 421-426
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -623,6 +1117,12 @@ voci:
     temporalita' alla valutazione in concreto; due sensi di «attribuzione»; le tesi dei partecipanti sulla difficolta' di
     attribuire.
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - fossili_illecito
+  confidenza_P09: high
+  ragione_P09: 'Special features of climate for responsibility and participants'' views on attribution (426 lists fossil fuel
+    conduct as argued): prepares.'
 - paragrafo: 427-432
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 129-130
@@ -633,6 +1133,15 @@ voci:
     responsabili e lesi.'
   sonde:
   - fossili_illecito
+  sonde_P09:
+  - fossili_illecito
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: Court names fossil fuel production, consumption, licences and subsidies as possible wrongful acts; regulatory
+    failure for private actors; plurality of States.
+  verbatim_P09:
+    paragrafo: 427
+    testo: the granting of fossil fuel exploration licences or the provision of fossil fuel subsidies
   verbatim: the granting of fossil fuel exploration licences or the provision of fossil fuel subsidies
 - paragrafo: 433-438
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -642,6 +1151,21 @@ voci:
     sufficientemente diretto e certo, flessibile; due elementi, il primo affidabile alla scienza; accertamento in concreto.'
   sonde:
   - fossili_illecito
+  sonde_P09:
+  - fossili_illecito
+  prepara_P09: []
+  sostengono_P09:
+  - 433
+  - 435
+  - 436
+  - 437
+  - 438
+  confidenza_P09: medium
+  ragione_P09: Causation is required for reparation, not responsibility, and can be established in concreto (included by the
+    PI); 434 reports participants. Less distinctive than 427-428.
+  verbatim_P09:
+    paragrafo: 438
+    testo: this does not mean that the identification of a causal link is impossible in the climate change context
   verbatim: a sufficiently direct and certain causal nexus
 - paragrafo: 439-443
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -652,6 +1176,20 @@ voci:
     dei lesi.'
   sonde:
   - erga_omnes
+  sonde_P09:
+  - erga_omnes
+  prepara_P09: []
+  sostengono_P09:
+  - 440
+  - 441
+  - 442
+  - 443
+  confidenza_P09: high
+  ragione_P09: Court qualifies climate obligations as erga omnes and erga omnes partes, any State may invoke; 439 reports
+    participants.
+  verbatim_P09:
+    paragrafo: 440
+    testo: are obligations erga omnes
   verbatim: are obligations erga omnes
 - paragrafo: 444-455
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -662,6 +1200,16 @@ voci:
     (infrastrutture, ecosistemi), indennizzo anche con somma globale secondo equita'', soddisfazione.'
   sonde:
   - erga_omnes
+  sonde_P09:
+  - erga_omnes
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Consequences: continuing performance (a court may order a conforming NDC), cessation, guarantees, full reparation
+    incl. global-sum compensation.'
+  verbatim_P09:
+    paragrafo: 446
+    testo: a competent court or tribunal could order that State to perform its obligations by adopting an NDC consistent with
+      its obligations under the Paris Agreement
   verbatim: a competent court or tribunal could order that State to perform its obligations by adopting an NDC
 - paragrafo: '456'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
@@ -670,6 +1218,10 @@ voci:
   sintesi: 'Considerazione finale: un problema esistenziale di proporzioni planetarie; il diritto internazionale ha un ruolo
     importante ma limitato.'
   sonde: []
+  sonde_P09: []
+  prepara_P09: []
+  confidenza_P09: high
+  ragione_P09: 'Closing remarks: no probe content.'
 - paragrafo: '457'
   documento: request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change-decision_af16
   pagina: 137-140
@@ -683,3 +1235,28 @@ voci:
     erga_omnes (cessazione, garanzie, riparazione). Non hanno un sottopunto del dispositivo: non_lex_specialis, continuita_stato,
     e la parte erga omnes in senso stretto.'
   sonde: []
+  sonde_P09: []
+  prepara_P09:
+  - ndc_discrezionalita_limitata
+  - obiettivo_1_5
+  - diligenza_stringente_clima
+  - non_lex_specialis
+  - erga_omnes
+  confidenza_P09: decided by PI
+  ragione_P09: 'PI decision, 8 October 2026: the sub-points are mapped separately (dispositivo_P09): (3)(A)(f) supports ndc_discrezionalita_limitata
+    and obiettivo_1_5; (3)(B)(a) supports diligenza_stringente_clima; (3)(A)-(E) together (key «(3)») support non_lex_specialis;
+    (4) supports erga_omnes (consequences). A citation of the bare «§ 457» with no sub-point only prepares.'
+  verbatim_P09:
+    paragrafo: 457
+    testo: when taken together, are capable of achieving the temperature goal of limiting global warming to 1.5°C above pre-industrial
+      levels
+  dispositivo_P09:
+    (3)(A)(f):
+    - ndc_discrezionalita_limitata
+    - obiettivo_1_5
+    (3)(B)(a):
+    - diligenza_stringente_clima
+    (3):
+    - non_lex_specialis
+    (4):
+    - erga_omnes

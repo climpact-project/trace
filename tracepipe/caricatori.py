@@ -87,7 +87,7 @@ class Caricatore:
     def mostra(self, esito: EsitoCaricamento) -> None:
         self.stampa(json.dumps(dict(esito.conti), ensure_ascii=False, indent=1))
         if esito.scritture:
-            self.stampa('esempio: ' + json.dumps(esito.scritture[0][1], ensure_ascii=False)[: self.TAGLIO_ESEMPIO])
+            self.stampa('example: ' + json.dumps(esito.scritture[0][1], ensure_ascii=False)[: self.TAGLIO_ESEMPIO])
 
     def dopo_conti(self, esito: EsitoCaricamento) -> None:
         """Between the counts and the writes (``--salva`` of the ripresa loader)."""
@@ -106,10 +106,10 @@ class Caricatore:
         self.mostra(esito)
         self.dopo_conti(esito)
         if not self.scrivi:
-            self.stampa('ANTEPRIMA: niente scritto')
+            self.stampa('PREVIEW: nothing written')
             return esito
         esito.scritte = self.scrivi_tutto(esito)
-        self.stampa(f'scritte {esito.scritte} righe')
+        self.stampa(f'written {esito.scritte} rows')
         return esito
 
 
@@ -157,7 +157,7 @@ class CaricatoreTipo(Caricatore):
         if self.salva:
             with open(self.salva, 'w', encoding='utf-8') as f:
                 json.dump(dict(esito.scritture), f, ensure_ascii=False, default=str)
-            self.stampa(f'campi salvati in {self.salva}')
+            self.stampa(f'fields saved in {self.salva}')
 
     def campi_r11(self, r: dict[str, Any], x: dict[str, Any], vt: dict[str, Any]) -> dict[str, Any]:
         """The type fields with R11 (rules in :mod:`tracepipe.maggioranza`; twin of ``carica_lessicali.campi_r11``)."""
@@ -362,4 +362,4 @@ class CaricatoreRipresa(Caricatore):
         if self.salva:
             with open(self.salva, 'w', encoding='utf-8') as f:
                 json.dump(dict(esito.scritture), f, ensure_ascii=False, default=str)
-            self.stampa(f'proposte salvate in {self.salva}')
+            self.stampa(f'proposals saved in {self.salva}')

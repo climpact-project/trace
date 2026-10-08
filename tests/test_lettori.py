@@ -383,7 +383,7 @@ def test_righe_a_schermo(tmp_path) -> None:
     LettorePagineAttorno(
         Config(radice=r), 'neubauer', cli, etichetta='rif', stampa=righe.append, orologio=lambda: next(t)
     ).esegui()
-    assert righe == ['5 righe, 0 fatte, 5 da fare', 'fatto in 3s']
+    assert righe == ['5 rows, 0 done, 5 to do', 'done in 3s']
 
 
 def test_lettura_tenuta_come_vivo() -> None:

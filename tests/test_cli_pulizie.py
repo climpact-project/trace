@@ -53,20 +53,20 @@ def test_c03_in_anteprima_scrive_gli_elenchi_e_niente_altro(
     tmp_path: Path, foto: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     assert main(['--radice', str(tmp_path), '--senza-giornale', 'c03', '--da', 'prova', '--fotografia', str(foto)]) == 0
-    assert 'ANTEPRIMA: niente scritto in banca dati' in capsys.readouterr().out
+    assert 'PREVIEW: nothing written to the database' in capsys.readouterr().out
     elenco = tmp_path / 'training' / 'esclusioni' / 'C03_da_scrivere.tsv'
     assert elenco.read_text(encoding='utf-8').splitlines()[1].startswith('testo_nota\tNEU-0001\tNEU-0002')
 
 
 def test_c07_in_anteprima(tmp_path: Path, foto: Path, capsys: pytest.CaptureFixture[str]) -> None:
     assert main(['--radice', str(tmp_path), '--senza-giornale', 'c07', '--da', 'prova', '--fotografia', str(foto)]) == 0
-    assert 'righe toccate 0' in capsys.readouterr().out
+    assert 'rows touched 0' in capsys.readouterr().out
     assert main(['--radice', str(tmp_path), '--senza-giornale', 'c07', '--da', 'p', '--ipotesi-tutte', '--scrivi']) == 2
 
 
 def test_la_prova_dei_freni_da_riga_di_comando(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(['--senza-giornale', 'coppie', 'prova-freni']) == 0
-    assert 'PROVA DEI FRENI: PASSA' in capsys.readouterr().out
+    assert 'BRAKES TEST: PASSES' in capsys.readouterr().out
 
 
 def test_l_elenco_delle_coppie_vicine(tmp_path: Path, foto: Path, capsys: pytest.CaptureFixture[str]) -> None:
@@ -75,6 +75,6 @@ def test_l_elenco_delle_coppie_vicine(tmp_path: Path, foto: Path, capsys: pytest
     assert main([*base, '--uscita', str(uscita)]) == 0
     righe = uscita.read_text(encoding='utf-8').splitlines()
     assert righe[0].startswith('id_coppia\tcaso') and righe[1].split('\t')[:2] == ['NEU-0001a-NEU-0001b', 'neubauer']
-    assert '1 coppie a 5000 caratteri' in capsys.readouterr().out
+    assert '1 pairs at 5000 characters' in capsys.readouterr().out
     assert main([*base, '--soglia', '50', '--uscita', str(uscita)]) == 0
     assert len(uscita.read_text(encoding='utf-8').splitlines()) == 1

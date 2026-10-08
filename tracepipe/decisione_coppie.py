@@ -358,8 +358,8 @@ class DecisioneCoppie:
             encoding='utf-8',
         )
         self.stampa(
-            f'{collections.Counter(d.esito for d in decisioni)} scritture preparate: {len(scritture)} {saltate} '
-            '(A SECCO: niente scritto)'
+            f'{collections.Counter(d.esito for d in decisioni)} writes prepared: {len(scritture)} {saltate} '
+            '(DRY RUN: nothing written)'
         )
         return decisioni, scritture, saltate
 

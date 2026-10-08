@@ -249,5 +249,95 @@
   "righe_cambiate": 2,
   "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
   "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
+ },
+ {
+  "codice": "R04",
+  "file": "versioni/R04/future-generations-mappa-paragrafi.yaml",
+  "sha256": "396f9785a7cfcc00299d35cfeea7939233eddc0adfbd8c511eee8c580904057d",
+  "fino_al": "2026-10-07",
+  "righe_cambiate": 62,
+  "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+  "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+ },
+ {
+  "codice": "R04",
+  "file": "versioni/R04/neubauer-mappa-paragrafi.yaml",
+  "sha256": "4be20b12ab9dc6de82fcd6859b141b276f6ec043ee676dc877a07e17583037c7",
+  "fino_al": "2026-10-07",
+  "righe_cambiate": 109,
+  "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+  "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+ },
+ {
+  "codice": "R04",
+  "file": "versioni/R04/urgenda-mappa-paragrafi.yaml",
+  "sha256": "37f769d65d7e6334f590cfb615d3ecbab1be2870731954319ef3ddcc6d917ea2",
+  "fino_al": "2026-10-07",
+  "righe_cambiate": 105,
+  "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+  "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+ },
+ {
+  "codice": "R06",
+  "file": "versioni/R06/future-generations-mappa-paragrafi.yaml",
+  "sha256": "2c719642f9cb59ba4d6e9de57d2822348fbfb756daf2fb0e006dfb0927e9b29c",
+  "fino_al": "2026-10-07",
+  "righe_cambiate": 62,
+  "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+  "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+ },
+ {
+  "codice": "R06",
+  "file": "versioni/R06/neubauer-mappa-paragrafi.yaml",
+  "sha256": "155bd7a46a11e249f41f4b7b085276b89d70128121246702b36b8720ad5f1732",
+  "fino_al": "2026-10-07",
+  "righe_cambiate": 109,
+  "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+  "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+ },
+ {
+  "codice": "R07",
+  "file": "versioni/R07/future-generations-mappa-paragrafi.yaml",
+  "sha256": "861438ec7f22504da89639a4cb40dda8af52b1781d8206be1bf5ae699379f457",
+  "fino_al": "2026-10-07",
+  "righe_cambiate": 62,
+  "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+  "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+ },
+ {
+  "codice": "R07",
+  "file": "versioni/R07/neubauer-mappa-paragrafi.yaml",
+  "sha256": "e6498c8297fba21e7feced30c664d4a41a8ed8cf2c10a05052ae9658305109b2",
+  "fino_al": "2026-10-07",
+  "righe_cambiate": 109,
+  "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+  "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+ },
+ {
+  "codice": "R18",
+  "file": "versioni/R18/cig-parere-clima-mappa-paragrafi.yaml",
+  "sha256": "543294e80301593c3f42d908890a2fd1c1aa65fba6e193b4984dfe1e275d1fd8",
+  "fino_al": "2026-10-08",
+  "righe_cambiate": 1,
+  "nota": "tolta solo la frase d'intestazione che nominava il modello come autore; contenuto identico",
+  "nota_en": "only the header phrase naming the model as author removed; content identical"
+ },
+ {
+  "codice": "R18",
+  "file": "versioni/R18/cig-parere-clima-P09.yaml",
+  "sha256": "da5d040d01566cccb18e9b0340071e5473b6e6b12a897276662fa71ea1c32411",
+  "fino_al": "2026-10-08",
+  "righe_cambiate": 10,
+  "nota": "tolte solo le frasi che nominavano il modello come autore o verificatore (intestazione e campo fonte delle sonde); contenuto identico",
+  "nota_en": "only the phrases naming the model as author or verifier removed (header and the fonte field of the probes); content identical"
+ },
+ {
+  "codice": "R18",
+  "file": "versioni/R18/PROPOSTA-2026-10-08.yaml",
+  "sha256": "9183682c6671501efe562e3a68ec945e9b36c09d3fac30742cf5833642ab6e63",
+  "fino_al": "2026-10-08",
+  "righe_cambiate": 1,
+  "nota": "cambiata solo la riga d'intestazione: il ruolo del modello detto come supporto ancillare; contenuto identico",
+  "nota_en": "only the header line changed: the model's role stated as ancillary support; content identical"
  }
 ]

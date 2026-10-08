@@ -75,7 +75,7 @@ def id_malformato(rid: str, conti: collections.Counter[str]) -> bool:
     ``tools/carica_ripresa.id_malformato``. Braces are replaced: the chain reads the counts from the first ``{``."""
     if len(str(rid).split('__')) > 1:
         return False
-    testo = ('id di riga malformato, riga saltata: ' + repr(rid)).replace('{', '(').replace('}', ')')
+    testo = ('malformed row id, row skipped: ' + repr(rid)).replace('{', '(').replace('}', ')')
     print(testo, file=sys.stderr)
     conti['id malformato (saltata)'] += 1
     return True

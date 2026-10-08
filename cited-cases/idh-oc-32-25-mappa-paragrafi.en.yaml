@@ -1,0 +1,738 @@
+# English translation of the Italian case file used by TRACE 0.1 (idh-oc-32-25-mappa-paragrafi.yaml, SHA-256 dbe5e4d60e18e7c3b0e56c0f08e5f4562cbf0e35476bae80e96be0d6f2552db6), made on 7 October 2026 with DeepSeek V4 Flash and not yet checked by the research team.
+# PARAGRAPH MAP OF OC-32/25 (IACtHR, «Emergencia Climática y Derechos Humanos», 29/5/2025)
+# Version 2, 1 October 2026, PROPOSAL for the PI: probes of the series approved by the PI
+# (eight distinguishing principles); only the paragraphs that state the element carry the probe, all others `sonde: []`. Companion to `idh-oc-32-25-fascicolo.md`
+# and to `idh-oc-32-25.yaml`. It serves to decipher cross-references of the type «OC-32/25, párr. 233», «AO-32/25, paras. 345-350»,
+# «IACtHR, Climate Emergency and Human Rights, ¶ 546», and to know which probe a paragraph supports.
+#
+# SOURCES. One ruling, four versions in the corpus; the paragraph numbers (1-629) are the same in all.
+#   ES  decision_28df  (original Spanish, 234 pp.)           -> `pagina_es`
+#   EN  decision_3b51  (Court's English translation, 219 pp.) -> `pagina_en`
+#   (EN bis decision_9329, 234 pp., same pagination as the Spanish; PT opinion_2cd0, 228 pp.)
+#   The full ids begin with request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-
+# `pagina` = markdown marker `<!-- page N -->`, which coincides with the PDF page. The pages are those in
+# which the first paragraph of the group begins and the last one ends.
+#
+# HOW THE NUMBERS WERE ESTABLISHED. The paragraph numbers are printed at the beginning of each paragraph, in sequence from 1 to 629,
+# identical in both versions: no reconstruction. The section headings are those of the table of contents (pp. 2-4) and of the
+# text. The resolutive points (VII. Opinión, pp. 229-233) have their own numbering, 1-20, preceded by «decide 1»
+# on jurisdiction: «operative para 3» in citing texts means resolutive point 3, not § 3.
+#
+# GROUPS. The opinion has 629 paragraphs: the map groups them by subsection, without gaps and without overlaps
+# (checked by the script that generated it). `sonde` uses the ids of `idh-oc-32-25.yaml` without prefix.
+# Empty list = no probe: facts, procedure, method, surveys, connecting passages, or a non-promoted axis (`nota`).
+# `punto_resolutivo` = the point of the Opinión that refers to those paragraphs. `verbatim` = fragment found in the
+# Spanish markdown by normalizing only spaces (with its page).
+
+documenti:
+  es: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_28df
+  en: request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency-decision_3b51
+
+sonde:                               # series approved by the PI on 01/10/2026 (distinctive principles)
+  - clima_sano_autonomo              # párrs. 297-304, 311-316
+  - jus_cogens_dano_irreversible     # párrs. 287-294
+  - natura_soggetto_diritti          # párrs. 279-283
+  - diligenza_rafforzata             # párrs. 231-237
+  - valutazione_impatto_climatico    # párrs. 350, 352-363
+  - scienza_disinformazione          # párrs. 476-484, 524-529
+  - mobilita_climatica               # párrs. 422-434
+  - prova_agevolata                  # párrs. 552-555
+
+voci:
+
+  - paragrafi: "párrs. 1-4"
+    sezione: "I. Presentación de la consulta"
+    pagina_es: "5-6"
+    pagina_en: "5-6"
+    sintesi: "Request by Chile and Colombia of 9/1/2023; the reasons for the request (SET OUT); appointment of agents."
+    sonde: []
+
+  - paragrafi: "párrs. 5-13"
+    sezione: "II. Procedimiento ante la Corte"
+    pagina_es: "6-8"
+    pagina_en: "6-7"
+    sintesi: "Procedure: 263 written observations, 185 delegations at the hearings in Bridgetown (Barbados), Brasilia and Manaus (Brazil), April-May 2024; deliberation."
+    sonde: []
+
+  - paragrafi: "párrs. 14-23"
+    sezione: "III. Competencia y admisibilidad"
+    pagina_es: "8-10"
+    pagina_en: "7-10"
+    sintesi: "The Court has jurisdiction and the request is admissible; it does not serve to resolve a dispute. Operative paragraph «decide» 1."
+    sonde: []
+    punto_resolutivo: "decide 1"
+
+  - paragrafi: "párrs. 24-29"
+    sezione: "IV.A. Objeto y preguntas"
+    pagina_es: "10-12"
+    pagina_en: "10-12"
+    sintesi: "Subject matter of the opinion; the two groups of rights related to the environment (from OC-23/17); reformulation of the questions."
+    sonde: []
+    nota: "§ 26 refers to OC-23/17: origin"
+
+  - paragrafi: "párrs. 30-32"
+    sezione: "IV.B. Estructura"
+    pagina_es: "12-13"
+    pagina_en: "12-12"
+    sintesi: "Structure in two parts: context (ch. V) and interpretation (ch. VI)."
+    sonde: []
+
+  - paragrafi: "párrs. 33-38"
+    sezione: "IV.C. Fuentes"
+    pagina_es: "13-16"
+    pagina_en: "12-15"
+    sintesi: "Science as the factual basis, the rules of interpretation (Vienna Convention), systemic integration, the international corpus juris. Method, not obligation."
+    sonde: []
+    nota: "much cited in the submissions to the African Court (§ 35: 13 references); no probe per rule"
+
+  - paragrafi: "párrs. 39-41"
+    sezione: "IV.D. Alcance"
+    pagina_es: "16-16"
+    pagina_en: "15-16"
+    sintesi: "Scope of the opinion: it applies to all OAS member states (American Declaration, Democratic Charter)."
+    sonde: []
+
+  - paragrafi: "párrs. 42-43"
+    sezione: "V. La emergencia climática"
+    pagina_es: "16-17"
+    pagina_en: "16-16"
+    sintesi: "The «triplice crisi planetaria»; plan of the chapter."
+    sonde: []
+
+  - paragrafi: "párrs. 44-50"
+    sezione: "V.A.1. Emisiones de GEI"
+    pagina_es: "17-21"
+    pagina_en: "16-20"
+    sintesi: "Causes of climate change: greenhouse gases of human origin (CO2, methane, nitrous oxide, short-lived climate pollutants). FACTS."
+    sonde: []
+
+  - paragrafi: "párrs. 51-63"
+    sezione: "V.A.2. Contribución de sectores, Estados y población"
+    pagina_es: "21-26"
+    pagina_en: "20-25"
+    sintesi: "Distribution of emissions by economic sector, state and region (historical emitters in the OAS, AFOLU in Latin America), population groups. FACTS."
+    sonde: []
+
+  - paragrafi: "párrs. 64-88"
+    sezione: "V.B.1. Impactos en sistemas naturales"
+    pagina_es: "26-35"
+    pagina_en: "25-33"
+    sintesi: "Temperatures and weather events, oceans, cryosphere, biodiversity. FACTS from the IPCC."
+    sonde: []
+
+  - paragrafi: "párrs. 89-104"
+    sezione: "V.B.2. Impactos en las personas"
+    pagina_es: "35-41"
+    pagina_en: "33-39"
+    sintesi: "Impacts on health, food, water, migration, poverty; the poorest and most unequal regions are the most vulnerable. FACTS."
+    sonde: []
+    nota: "cited in the submissions to the African Court (§§ 89-94)"
+
+  - paragrafi: "párrs. 105-119"
+    sezione: "V.B.3. Territorios de especial vulnerabilidad"
+    pagina_es: "41-46"
+    pagina_en: "39-44"
+    sintesi: "The Amazon; island territories and Caribbean states. FACTS."
+    sonde: []
+
+  - paragrafi: "párrs. 120-151"
+    sezione: "V.C.1. Normas sobre clima y ambiente"
+    pagina_es: "46-60"
+    pagina_en: "44-57"
+    sintesi: "International legal framework: UNFCCC, COP, Paris Agreement, Montreal Protocol, international and regional environmental standards (Escazú). SURVEY."
+    sonde: []
+
+  - paragrafi: "párrs. 152-159"
+    sezione: "V.C.2. Órganos de tratados y procedimientos especiales"
+    pagina_es: "60-64"
+    pagina_en: "57-61"
+    sintesi: "Climate in UN committees and special rapporteurs (Teitiota, Billy, Sacchi; General Comments). SURVEY."
+    sonde: []
+
+  - paragrafi: "párrs. 160-171"
+    sezione: "V.C.3-C.5. OIT, comercio, inversión, financiamiento"
+    pagina_es: "64-68"
+    pagina_en: "61-65"
+    sintesi: "Climate in the ILO, the WTO, investment agreements, climate finance (IDB). SURVEY."
+    sonde: []
+
+  - paragrafi: "párrs. 172-175"
+    sezione: "V.D. Desarrollo normativo en los Estados de la OEA"
+    pagina_es: "68-70"
+    pagina_en: "65-67"
+    sintesi: "Constitutions with the right to a healthy environment and climate provisions; NDCs and national adaptation plans. SURVEY."
+    sonde: []
+
+  - paragrafi: "párrs. 176-180"
+    sezione: "V.E. Litigios y decisiones judiciales"
+    pagina_es: "70-73"
+    pagina_en: "67-69"
+    sintesi: "The climate litigation: approximately 2,666 cases; international and national decisions: in the text Urgenda, Neubauer, Leghari, Grande-Synthe, Klimaatzaak, Milieudefensie v. Shell; in the footnote KlimaSeniorinnen and Future Generations (STC4360-2018). SURVEY."
+    sonde: []
+    nota: "here the opinion cites the other cases as well: source of citation chains"
+
+  - paragrafi: "párrs. 181-194"
+    sezione: "V.F.1. Urgencia de acciones eficaces"
+    pagina_es: "73-76"
+    pagina_en: "69-73"
+    sintesi: "Definition of climate emergency: urgency (carbon budget, emissions gap, adaptation needs). FACTS and legal characterization."
+    sonde: []
+    punto_resolutivo: "1"
+    nota: "operative paragraph 1 refers to §§ 183 and 205-216"
+
+  - paragrafi: "párrs. 195-203"
+    sezione: "V.F.2. Gravedad de los impactos"
+    pagina_es: "76-79"
+    pagina_en: "73-76"
+    sintesi: "Severity of impacts, loss and damage, the Loss and Damage Fund."
+    sonde: []
+
+  - paragrafi: "párrs. 204-216"
+    sezione: "V.F.3. Complejidad de las respuestas"
+    pagina_es: "79-83"
+    pagina_en: "76-80"
+    sintesi: "Complexity: resilience, international coordination, sustainable development, democracy and dialogue with science."
+    sonde: []
+    punto_resolutivo: "1"
+
+  - paragrafi: "párrs. 217-218"
+    sezione: "VI. Obligaciones (introducción)"
+    pagina_es: "83-84"
+    pagina_en: "80-80"
+    sintesi: "Outline of the chapter on obligations."
+    sonde: []
+
+  - paragrafi: "párrs. 219-223"
+    sezione: "VI.A.1. Obligación de respetar"
+    pagina_es: "84-85"
+    pagina_en: "80-81"
+    sintesi: "Respect: refrain from conduct that slows down or cuts off protection, prohibition of regressive measures, non-discrimination."
+    sonde: []
+    punto_resolutivo: "2"
+    nota: "axis not promoted (general obligations)"
+
+  - paragrafi: "párrs. 224-230"
+    sezione: "VI.A.2.1. Deber de garantía"
+    pagina_es: "85-87"
+    pagina_en: "81-83"
+    sintesi: "Protection and prevention with regard to third parties; precaution «aún en ausencia de certeza científica»; minimum obligations: regulate, supervise, fiscalize, EIA, contingency plans, mitigate. It is OC-23/17 as reiterated."
+    sonde: []
+    punto_resolutivo: "3"
+    verbatim: "los Estados deben adoptar las medidas “eficaces” que sean necesarias para prevenir un daño grave o irreversible al ambiente"
+    verbatim_pagina_es: 86
+    nota: "without probe: repeats OC-23/17"
+
+  - paragrafi: "párrs. 231-237"
+    sezione: "VI.A.2.2. Debida diligencia reforzada"
+    pagina_es: "87-89"
+    pagina_en: "83-85"
+    sintesi: "Obligation of means; variable due diligence (ITLOS); in the climate emergency debida diligencia REINFORCED (§ 233) and its contents (§ 236)."
+    sonde: [diligenza_rafforzata]
+    punto_resolutivo: "3"
+    verbatim: "los Estados deben actuar con una debida diligencia reforzada"
+    verbatim_pagina_es: 88
+    nota: "canonical of the probe: § 233"
+
+  - paragrafi: "párrs. 238-243"
+    sezione: "VI.A.3. Desarrollo progresivo de los DESCA"
+    pagina_es: "89-92"
+    pagina_en: "85-87"
+    sintesi: "Immediate and progressive obligations; maximum available resources for those most exposed."
+    sonde: []
+    punto_resolutivo: "4 (seis contra uno)"
+    nota: "axis not promoted"
+
+  - paragrafi: "párrs. 244-246"
+    sezione: "VI.A.4. Disposiciones de derecho interno"
+    pagina_es: "92-92"
+    pagina_en: "87-88"
+    sintesi: "Adapt domestic law to the climate emergency, including for businesses."
+    sonde: []
+    punto_resolutivo: "5"
+    nota: "axis not promoted"
+
+  - paragrafi: "párrs. 247-265"
+    sezione: "VI.A.5. Obligación de cooperación"
+    pagina_es: "92-98"
+    pagina_en: "88-93"
+    sintesi: "Good faith cooperation, customary; read with equity and common but differentiated responsibilities; finance, technology, open economic system, progressive taxation."
+    sonde: []
+    punto_resolutivo: "6"
+    nota: "axis not promoted"
+
+  - paragrafi: "párrs. 266-269"
+    sezione: "VI.B. Derechos sustantivos (introducción)"
+    pagina_es: "98-99"
+    pagina_en: "93-94"
+    sintesi: "The two groups of rights linked to the environment; outline of the section."
+    sonde: []
+
+  - paragrafi: "párrs. 270-278"
+    sezione: "VI.B.1.1. Ambiente sano en la jurisprudencia"
+    pagina_es: "99-102"
+    pagina_en: "94-96"
+    sintesi: "Summary of the case law: healthy environment as an autonomous right (Art. 26), individual and collective dimension, prevention, jurisdiction for transboundary harm. It is OC-23/17 RECALLED."
+    sonde: []
+    nota: "provenance OC-23/17: no probe for construction; it serves to acknowledge the references to OC-23/17 attributed to OC-32/25"
+
+  - paragrafi: "párrs. 279-283"
+    sezione: "VI.B.1.2. Naturaleza como sujeto de derechos"
+    pagina_es: "102-103"
+    pagina_en: "96-98"
+    sintesi: "Recognizing rights of nature to ecosystems: it overcomes nature as an object of property, compatible with Arts. 2 and 26, pro natura and pro persona, no content alien to the inter-American corpus iuris; duty to protect, restore and regenerate."
+    sonde: [natura_soggetto_diritti]
+    punto_resolutivo: "7 (cuatro contra tres)"
+    verbatim: "Reconocer a la Naturaleza como sujeto de derechos implica también visibilizar su rol estructural"
+    verbatim_pagina_es: 102
+    nota: "canonical: § 280"
+
+  - paragrafi: "párrs. 284-286"
+    sezione: "VI.B.1.2. Naturaleza: instrumentos y tendencia"
+    pagina_es: "103-106"
+    pagina_en: "98-100"
+    sintesi: "World Charter for Nature, CBD, UN resolutions, Pact for the Future; national normative and jurisprudential trend (laws and judgments in the footnote)."
+    sonde: []
+    punto_resolutivo: "7"
+    nota: "without probe: review of external sources"
+
+  - paragrafi: "párrs. 287-294"
+    sezione: "VI.B.1.3. Jus cogens"
+    pagina_es: "106-109"
+    pagina_en: "100-103"
+    sintesi: "Conduct causing irreversible harm to the balance of the common ecosystem (large-scale deforestation, biodiversity loss, persistent pollution, alteration of biogeochemical cycles); their prohibition is jus cogens under the principle of effectiveness; all States must cooperate to bring them to an end."
+    sonde: [jus_cogens_dano_irreversible]
+    punto_resolutivo: "8 (cuatro contra tres)"
+    verbatim: "por lo que tienen el carácter de jus cogens"
+    verbatim_pagina_es: 108
+    nota: "canonical: § 291"
+
+  - paragrafi: "párrs. 295-296"
+    sezione: "VI.B.1.4. Protección del sistema climático global"
+    pagina_es: "109-109"
+    pagina_en: "103-103"
+    sintesi: "Damage to the climate system is environmental damage, transboundary by definition; its prevention is subject to debida diligencia reforzada; jurisdiction of the State of origin."
+    sonde: []
+    verbatim: "El daño ambiental que afecta el sistema climático, o daño climático, es, por definición, un daño transfronterizo"
+    verbatim_pagina_es: 109
+    nota: "without probe; cited by two Brazilian pleadings (Tenharim, Agapan)"
+
+  - paragrafi: "párrs. 297-304"
+    sezione: "VI.B.1.4-1.5. Derecho a un clima sano"
+    pagina_es: "109-112"
+    pagina_en: "103-106"
+    sintesi: "From the right to the environment derives a right to a healthy climate; independent right (§ 300); climate free from dangerous anthropogenic interference; collective dimension (present and future generations, other species) and individual dimension."
+    sonde: [clima_sano_autonomo]
+    punto_resolutivo: "9 (cinco contra dos, en parte)"
+    verbatim: "un derecho humano a un clima sano como un derecho independiente"
+    verbatim_pagina_es: 110
+    nota: "canonical: § 300; canonical_bis: § 302"
+
+  - paragrafi: "párrs. 305-310"
+    sezione: "VI.B.1.5.i. Equidad intergeneracional"
+    pagina_es: "112-114"
+    pagina_en: "106-108"
+    sintesi: "Intergenerational equity as a principle (La Oroya, UNFCCC, Paris, ICJ, ITLOS, ECtHR, national courts), reinforced by intragenerational equity and CBDR; fair allocation of burdens, deferral shifts costs onto the future (§ 310)."
+    sonde: []
+    punto_resolutivo: "9"
+    verbatim: "dejando los costos y el daño a cargo de las generaciones futuras"
+    verbatim_pagina_es: 114
+    nota: "without probe: principle taken from declared sources"
+
+  - paragrafi: "párrs. 311-313"
+    sezione: "VI.B.1.5.i. Humanidad presente y futura"
+    pagina_es: "114-115"
+    pagina_en: "108-109"
+    sintesi: "Humanity as a moral and legal community lasting over time; intra- and intergenerational equity essential to interpret the right to a healthy climate in its collective dimension."
+    sonde: [clima_sano_autonomo]
+    punto_resolutivo: "9"
+
+  - paragrafi: "párrs. 314-316"
+    sezione: "VI.B.1.5.ii. Protección de la Naturaleza"
+    pagina_es: "115-116"
+    pagina_en: "109-109"
+    sintesi: "A healthy climate also protects Nature; systemic approach that overcomes anthropocentrism."
+    sonde: [clima_sano_autonomo]
+    punto_resolutivo: "9"
+
+  - paragrafi: "párrs. 317-320"
+    sezione: "VI.B.1.6. Obligaciones derivadas (introducción)"
+    pagina_es: "116-116"
+    pagina_en: "109-110"
+    sintesi: "Link: from a healthy climate, mitigation obligations; from a healthy environment, protection of nature and sustainable development."
+    sonde: []
+    nota: "linking paragraphs"
+
+  - paragrafi: "párrs. 321-332"
+    sezione: "VI.B.1.6.i.a.1. Meta de mitigación"
+    pagina_es: "116-119"
+    pagina_en: "110-113"
+    sintesi: "Obligation to mitigate (including protecting sinks); the goal: preventing harm, 1.5 °C as a MINIMUM starting point (§ 326), justice (historical contribution, capacity, circumstances, §§ 327-330), as ambitious as possible and binding (§ 331)."
+    sonde: []
+    punto_resolutivo: "10 (i)"
+    verbatim: "debe ser lo más ambiciosa posible, figurar en una norma vinculante"
+    verbatim_pagina_es: 119
+    nota: "without probe (PI decision, 01/10/2026)"
+
+  - paragrafi: "párrs. 333-344"
+    sezione: "VI.B.1.6.i.a.2. Estrategia de mitigación"
+    pagina_es: "119-123"
+    pagina_en: "113-116"
+    sintesi: "Human rights-based strategy (ITLOS, KlimaSeniorinnen cited); fossil fuels, agriculture, deforestation, short-lived pollutants (§ 337); Montreal and methane; Indigenous knowledge and practices; just transition (§§ 341-342); coherence of trade, investment, and public finance (§ 344)."
+    sonde: []
+    punto_resolutivo: "10 (i)"
+    nota: "without probe; §§ 334-335: the opinion adopts KlimaSeniorinnen; § 337 quoted by the ECtHR in Greenpeace Nordic"
+
+  - paragrafi: "párrs. 345-349"
+    sezione: "VI.B.1.6.i.a.3. Regulación de las empresas"
+    pagina_es: "123-125"
+    pagina_en: "116-118"
+    sintesi: "Businesses have climate obligations; States must impose environmental and human rights due diligence along supply chains, with monitoring and compliance (UN Guiding Principles)."
+    sonde: []
+    punto_resolutivo: "10 (i)"
+    verbatim: "No cabe duda a este Tribunal que las empresas están llamadas a desempeñar un papel fundamental en la atención de la emergencia climática."
+    verbatim_pagina_es: 123
+    nota: "without probe: UN Guiding Principles"
+
+  - paragrafi: "párr. 350"
+    sezione: "VI.B.1.6.i.a.3. Empresas: obligaciones diferenciadas"
+    pagina_es: "125-125"
+    pagina_en: "118-118"
+    sintesi: "Differentiated obligations based on companies' current and historical contribution, stricter for major emitters."
+    sonde: [valutazione_impatto_climatico]
+    punto_resolutivo: "10 (i)"
+    verbatim: "obligaciones diferenciadas en materia de acción climática basadas en la contribución actual e histórica de las empresas"
+    verbatim_pagina_es: 125
+    nota: "canonical_bis of the probe; the most cited paragraph of the opinion"
+
+  - paragrafi: "párr. 351"
+    sezione: "VI.B.1.6.i.a.3. Comercio e inversión"
+    pagina_es: "125-125"
+    pagina_en: "118-118"
+    sintesi: "Revision of trade and investment treaties and of ISDS."
+    sonde: []
+    punto_resolutivo: "10 (i)"
+    nota: "without probe"
+
+  - paragrafi: "párrs. 352-357"
+    sezione: "VI.B.1.6.i.b. Supervisión y fiscalización"
+    pagina_es: "125-127"
+    pagina_en: "118-120"
+    sintesi: "Strict supervision of public and private emitting activities (at minimum: fossil fuels, cement, agribusiness); independent bodies; sanctions; corruption."
+    sonde: [valutazione_impatto_climatico]
+    punto_resolutivo: "10 (ii)"
+    verbatim: "supervisar y fiscalizar en forma estricta las actividades, públicas y privadas, generadoras de emisiones de GEI"
+    verbatim_pagina_es: 126
+
+  - paragrafi: "párrs. 358-363"
+    sezione: "VI.B.1.6.i.c. Impacto climático"
+    pagina_es: "127-129"
+    pagina_en: "120-122"
+    sintesi: "EIA must assess the impact on the climate system; climate impact assessment for projects with significant emissions; greenwashing; minimum content of regulation."
+    sonde: [valutazione_impatto_climatico]
+    punto_resolutivo: "10 (iii)"
+    verbatim: "deben ser sometidos a una evaluación de impacto climático"
+    verbatim_pagina_es: 127
+    nota: "canonical of the probe: § 359; quoted by the ECtHR in Greenpeace Nordic"
+
+  - paragrafi: "párrs. 364-367"
+    sezione: "VI.B.1.6.ii. Protección de la Naturaleza y sus componentes"
+    pagina_es: "129-130"
+    pagina_en: "122-123"
+    sintesi: "Mitigate the harm that has occurred; protect ecosystems from climate impacts with the best available science and procedural rights."
+    sonde: []
+    punto_resolutivo: "11"
+    nota: "axis not promoted"
+
+  - paragrafi: "párrs. 368-376"
+    sezione: "VI.B.1.6.iii. Desarrollo sostenible"
+    pagina_es: "130-132"
+    pagina_en: "123-125"
+    sintesi: "Strategy towards sustainable development, progressive obligation, non-regression, fight against poverty."
+    sonde: []
+    punto_resolutivo: "11"
+    nota: "axis not promoted"
+
+  - paragrafi: "párrs. 377-391"
+    sezione: "VI.B.2.1. Adaptación: obligaciones comunes"
+    pagina_es: "132-138"
+    pagina_en: "125-130"
+    sintesi: "Adaptation as an obligation of immediate enforceability: goal and national plan, iterative COP cycle, science, precaution, non-discrimination."
+    sonde: []
+    punto_resolutivo: "12"
+    nota: "axis not promoted; § 383 cites KlimaSeniorinnen"
+
+  - paragrafi: "párrs. 392-402"
+    sezione: "VI.B.2.2.i. Vida, integridad personal y salud"
+    pagina_es: "138-142"
+    pagina_en: "130-134"
+    sintesi: "Climate risks to life, integrity, and health (heat, extreme events, mental health); specific obligations."
+    sonde: []
+    punto_resolutivo: "12"
+
+  - paragrafi: "párrs. 403-404"
+    sezione: "VI.B.2.2.ii. Vida privada y familiar"
+    pagina_es: "142-143"
+    pagina_en: "134-135"
+    sintesi: "Risks and obligations for private and family life."
+    sonde: []
+    punto_resolutivo: "12"
+
+  - paragrafi: "párrs. 405-413"
+    sezione: "VI.B.2.2.iii. Propiedad privada y vivienda"
+    pagina_es: "143-147"
+    pagina_en: "135-138"
+    sintesi: "Loss of homes and territories (sea-level rise); most vulnerable States; obligations of protection and relocation."
+    sonde: []
+    punto_resolutivo: "12"
+
+  - paragrafi: "párrs. 414-421"
+    sezione: "VI.B.2.2.iv. Residencia y circulación: marco y hechos"
+    pagina_es: "147-150"
+    pagina_en: "138-141"
+    sintesi: "Art. 22 ACHR and Arts. VIII and XXVII of the Declaration; climate mobility scenarios (OHCHR, UNHCR): internal and cross-border displacement, immobility. FACTS and reference."
+    sonde: []
+    punto_resolutivo: "12"
+    nota: "without probe"
+
+  - paragrafi: "párrs. 422-434"
+    sezione: "VI.B.2.2.iv. Movilidad climática: obligaciones"
+    pagina_es: "150-156"
+    pagina_en: "141-146"
+    sintesi: "Preventing forced displacement with debida diligencia reforzada; assistance, procedural rights, resettlement; relocations only as an exception; cooperation; domestic protection framework for those crossing borders (humanitarian visas, temporary stays, refugee status or similar, protection against refoulement, § 433); childhood."
+    sonde: [mobilita_climatica]
+    punto_resolutivo: "12"
+    verbatim: "Las relocalizaciones solo deben ocurrir en circunstancias excepcionales"
+    verbatim_pagina_es: 152
+    nota: "canonical: § 433; § 433 cited for non-refoulement"
+
+  - paragrafi: "párrs. 435-440"
+    sezione: "VI.B.2.2.v. Agua y alimentación"
+    pagina_es: "156-159"
+    pagina_en: "146-149"
+    sintesi: "Impacts on water and food; obligations."
+    sonde: []
+    punto_resolutivo: "12"
+
+  - paragrafi: "párrs. 441-447"
+    sezione: "VI.B.2.2.vi. Trabajo y seguridad social"
+    pagina_es: "159-162"
+    pagina_en: "149-153"
+    sintesi: "Impacts on work and social security; obligations."
+    sonde: []
+    punto_resolutivo: "12"
+
+  - paragrafi: "párrs. 448-452"
+    sezione: "VI.B.2.2.vii. Cultura"
+    pagina_es: "162-164"
+    pagina_en: "153-154"
+    sintesi: "Cultural heritage and cultural life; obligations."
+    sonde: []
+    punto_resolutivo: "12"
+
+  - paragrafi: "párrs. 453-457"
+    sezione: "VI.B.2.2.viii. Educación"
+    pagina_es: "164-166"
+    pagina_en: "154-156"
+    sintesi: "Impacts on education; climate education."
+    sonde: []
+    punto_resolutivo: "12"
+
+  - paragrafi: "párrs. 458-470"
+    sezione: "VI.C.1. Democracia y derechos de procedimiento"
+    pagina_es: "166-170"
+    pagina_en: "156-160"
+    sintesi: "Environmental democracy, rule of law, Escazú; participatory and inclusive decisions."
+    sonde: []
+    punto_resolutivo: "13"
+    nota: "ground not raised"
+
+  - paragrafi: "párrs. 471-475"
+    sezione: "VI.C.2. Derecho a la ciencia"
+    pagina_es: "170-173"
+    pagina_en: "160-162"
+    sintesi: "Right to science (American Declaration Art. XIII, Protocol Art. 14, ICESCR and General Comment 25); content and cooperation."
+    sonde: []
+    punto_resolutivo: "14 (seis contra uno, en parte)"
+    nota: "without probe"
+
+  - paragrafi: "párrs. 476-484"
+    sezione: "VI.C.2. Saberes locales, tradicionales e indígenas"
+    pagina_es: "173-176"
+    pagina_en: "162-165"
+    sintesi: "By evolutive interpretation, the right to science includes the benefits of local, traditional and indigenous knowledge (§ 477); right to benefit from measures based on the best available science and on such knowledge (§ 478); dialogue among knowledge systems; indigenous women; obligations of protection and collection."
+    sonde: [scienza_disinformazione]
+    punto_resolutivo: "14"
+    verbatim: "la protección del derecho a la ciencia se extiende también a los desarrollos intelectuales y prácticos"
+    verbatim_pagina_es: 176
+    nota: "canonical: § 477"
+
+  - paragrafi: "párrs. 485-487"
+    sezione: "VI.C.2. Mejor ciencia disponible"
+    pagina_es: "176-177"
+    pagina_en: "165-166"
+    sintesi: "Obligation to use the best available science; seven criteria to identify it; the IPCC as best available science «al tenor» of other international tribunals."
+    sonde: []
+    punto_resolutivo: "14"
+    nota: "without probe"
+
+  - paragrafi: "párrs. 488-500"
+    sezione: "VI.C.3. Acceso a la información (marco)"
+    pagina_es: "177-183"
+    pagina_en: "166-172"
+    sintesi: "Right of access to information and active transparency; Aarhus, Bali, OAS model law; knowledge gaps."
+    sonde: []
+    punto_resolutivo: "15"
+    nota: "ground not raised"
+
+  - paragrafi: "párrs. 501-518"
+    sezione: "VI.C.3.1. Producción de información climática"
+    pagina_es: "183-188"
+    pagina_en: "172-177"
+    sintesi: "Producing information: indicators, emission inventories, data for adaptation and disasters, EIA, climate public finance."
+    sonde: []
+    punto_resolutivo: "15"
+    nota: "ground not raised; § 506 heavily cited"
+
+  - paragrafi: "párrs. 519-523"
+    sezione: "VI.C.3.2. Divulgación"
+    pagina_es: "188-190"
+    pagina_en: "177-178"
+    sintesi: "Clear and accessible dissemination, application procedures."
+    sonde: []
+    punto_resolutivo: "15"
+
+  - paragrafi: "párrs. 524-529"
+    sezione: "VI.C.3.3. Desinformación"
+    pagina_es: "190-192"
+    pagina_en: "178-180"
+    sintesi: "Climate disinformation distorts scientific consensus; States must not disseminate information not supported by science or knowledge (§ 525); progressive measures to counter it without prior censorship (§ 527); role of media, platforms, civil society."
+    sonde: [scienza_disinformazione]
+    punto_resolutivo: "15 (iii)"
+    verbatim: "deben abstenerse de difundir información que no esté respaldada por la mejor ciencia disponible o por saberes locales, tradicionales o indígenas pertinentes"
+    verbatim_pagina_es: 190
+    nota: "canonical_bis of the probe: § 527"
+
+  - paragrafi: "párrs. 530-539"
+    sezione: "VI.C.4. Participación política"
+    pagina_es: "192-196"
+    pagina_en: "180-184"
+    sintesi: "Meaningful participation in climate decisions; prior consultation of indigenous and tribal peoples."
+    sonde: []
+    punto_resolutivo: "16"
+    nota: "axis not promoted"
+
+  - paragrafi: "párrs. 540-545"
+    sezione: "VI.C.5.1-5.3. Acceso a la justicia: medios, pro actione, plazo"
+    pagina_es: "196-198"
+    pagina_en: "184-186"
+    sintesi: "Effective remedy; training of judges; pro actione; expeditiousness and reasonable time commensurate with the imminence of the risk."
+    sonde: []
+    punto_resolutivo: "17 (cuatro contra tres, en parte)"
+    nota: "§§ 540-541 cited in Juliana (petition to the IACHR); § 543 in a Chilean instrument"
+
+  - paragrafi: "párrs. 546-551"
+    sezione: "VI.C.5.4. Legitimación activa"
+    pagina_es: "198-199"
+    pagina_en: "186-187"
+    sintesi: "Pro actione on admissibility and standing; broad collective standing (§ 547); individual actions; standing of those outside the territory for transboundary climate harm (§ 551)."
+    sonde: []
+    punto_resolutivo: "17"
+    verbatim: "las autoridades judiciales deben aplicar el principio pro actione"
+    verbatim_pagina_es: 198
+    nota: "canonical: § 546; § 547 quoted in full from a Brazilian decision (Agapan, p. 37)"
+
+  - paragrafi: "párrs. 552-555"
+    sezione: "VI.C.5.5. Prueba"
+    pagina_es: "199-200"
+    pagina_en: "187-188"
+    sintesi: "Alternative evidentiary standards for causation, flexibility, reversal of the burden of proof, satellite evidence."
+    sonde: [prova_agevolata]
+    punto_resolutivo: "17"
+    verbatim: "la inversión de la carga probatoria"
+    verbatim_pagina_es: 200
+
+  - paragrafi: "párrs. 556-559"
+    sezione: "VI.C.5.6. Reparación"
+    pagina_es: "200-201"
+    pagina_en: "188-189"
+    sintesi: "Full reparation: restoration of the climate system and ecosystems, rehabilitation, compensation, guarantees of non-repetition; not only pecuniary."
+    sonde: []
+    punto_resolutivo: "17"
+    verbatim: "medidas de restitución orientadas al restablecimiento del sistema climático"
+    verbatim_pagina_es: 201
+
+  - paragrafi: "párr. 560"
+    sezione: "VI.C.5.7. Estándares interamericanos"
+    pagina_es: "201-201"
+    pagina_en: "189-189"
+    sintesi: "Conventionality control with the standards of this opinion, for all OAS States."
+    sonde: []
+    punto_resolutivo: "17"
+
+  - paragrafi: "párrs. 561-587"
+    sezione: "VI.C.6. Personas defensoras del ambiente"
+    pagina_es: "201-211"
+    pagina_en: "189-197"
+    sintesi: "Autonomous right to defend rights; special duty of protection of environmental defenders; risks (SLAPP, criminalization), intersectionality, journalists; obligations: data, protection programs, investigations with enhanced diligence, against criminalization."
+    sonde: []
+    punto_resolutivo: "18"
+    nota: "axis not promoted, the strongest (PROPOSAL, question 1)"
+
+  - paragrafi: "párrs. 588-594"
+    sezione: "VI.D.1. Igualdad y no discriminación"
+    pagina_es: "211-213"
+    pagina_en: "197-200"
+    sintesi: "Equality and non-discrimination (jus cogens under the Court's jurisprudence); intersectionality; extraordinary risks for certain groups."
+    sonde: []
+    punto_resolutivo: "20"
+    nota: "axis not promoted"
+
+  - paragrafi: "párrs. 595-596"
+    sezione: "VI.D.2. Protección diferenciada (introducción)"
+    pagina_es: "213-214"
+    pagina_en: "200-200"
+    sintesi: "Collect information on vulnerability factors; differentiated measures in all actions."
+    sonde: []
+    punto_resolutivo: "20"
+
+  - paragrafi: "párrs. 597-604"
+    sezione: "VI.D.2.i. Niñez"
+    pagina_es: "214-218"
+    pagina_en: "200-204"
+    sintesi: "Childhood: health, education, procedural rights, participation, child defenders, access to justice."
+    sonde: []
+    punto_resolutivo: "20"
+
+  - paragrafi: "párrs. 605-613"
+    sezione: "VI.D.2.ii. Pueblos indígenas, tribales, afrodescendientes, campesinos, pescadores"
+    pagina_es: "218-222"
+    pagina_en: "204-208"
+    sintesi: "Disproportionate impact; representative institutions; consultation and free, prior and informed consent; access to justice."
+    sonde: []
+    punto_resolutivo: "20"
+
+  - paragrafi: "párrs. 614-618"
+    sezione: "VI.D.2.iii. Desastres climáticos"
+    pagina_es: "222-225"
+    pagina_en: "208-210"
+    sintesi: "Women, older persons, persons with disabilities, LGBTIQ+ persons in disasters."
+    sonde: []
+    punto_resolutivo: "20"
+
+  - paragrafi: "párrs. 619-627"
+    sezione: "VI.D.3. Pobreza"
+    pagina_es: "225-227"
+    pagina_en: "210-213"
+    sintesi: "Multidimensional poverty as a structural factor; climate aggravates it; policies and just transition."
+    sonde: []
+    punto_resolutivo: "19"
+    nota: "axis not promoted"
+
+  - paragrafi: "párrs. 628-629"
+    sezione: "VI.D.3. Vulnerabilidad dinámica"
+    pagina_es: "227-228"
+    pagina_en: "213-213"
+    sintesi: "Vulnerability as a dynamic and contextual condition; new forms of vulnerability."
+    sonde: []
+    punto_resolutivo: "20"
+    nota: "in the extracted text, § 629 extends into the operative parts (pp. 229-234), which are not paragraphs"

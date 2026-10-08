@@ -537,7 +537,7 @@ def test_il_lettore_scrive_una_riga_per_lettura_e_riprende(tmp_path: Path) -> No
     lettore = LettoreCoppie(cliente, 'm', paralleli=2, stampa=righe.append)
     uscita = tmp_path / 'u.jsonl'
     assert lettore.leggi(rq, uscita) is True
-    assert len(leggi_jsonl(uscita)) == 3 and cliente.chiamate == 3 and righe[-1].endswith('FINITO')
+    assert len(leggi_jsonl(uscita)) == 3 and cliente.chiamate == 3 and righe[-1].endswith('FINITO (finished)')
     assert {x['codice'] for x in leggi_jsonl(uscita)} == {'L13'}
     assert lettore.leggi(rq, uscita) is True and cliente.chiamate == 3  # a second run does nothing
 
@@ -817,7 +817,7 @@ def test_codici_progressivi_e_nessun_id_doppio() -> None:
     c = Caricatore(banca_viva(), '2026-10-05')
     docs = c.documenti([riga_nuova(10), riga_nuova(20), riga_nuova(30)])
     assert sorted(d['codice'] for d in docs.values()) == ['NEU-0301', 'NEU-0302', 'NEU-0303']
-    with pytest.raises(ValueError, match='gia in banca'):
+    with pytest.raises(ValueError, match='already in the database'):
         c.documenti([riga_nuova(70664)])  # the id is already in the database: the write refuses
 
 
@@ -918,17 +918,17 @@ def test_la_prova_d_anteprima_non_scrive_niente(tmp_path: Path) -> None:
     c, db, detto = carica(tmp_path, righe)
     esito = c.esegui()
     assert len(esito.documenti) == 2 and db.scritture == [] and esito.scritti == 0 and esito.copia is None
-    assert detto[-1] == '\nANTEPRIMA: niente scritto'
+    assert detto[-1] == '\nPREVIEW: nothing written'
     assert (tmp_path / 'training' / 's08' / 'escluse_copie_s08.jsonl').exists()
     assert (tmp_path / 'training' / 's08' / 'documenti_s08_da_scrivere.json').exists()
-    assert any('TOTALE' in x for x in detto) and any(
-        x.startswith('FALLITA') for x in detto
+    assert any('TOTAL' in x for x in detto) and any(
+        x.startswith('FAILED') for x in detto
     )  # the proof cases are absent
 
 
 def test_non_scrive_se_le_verifiche_falliscono(tmp_path: Path) -> None:
     c, db, _ = carica(tmp_path, [riga_nuova(10)], scrivi=True)
-    with pytest.raises(RuntimeError, match='verifiche fallite'):
+    with pytest.raises(RuntimeError, match='checks failed'):
         c.esegui()
     assert db.scritture == []
 
@@ -948,7 +948,7 @@ def test_scrive_le_righe_nuove_con_create_e_la_lista_degli_id(tmp_path: Path, mo
 
 def test_un_id_gia_in_banca_blocca_la_scrittura(tmp_path: Path) -> None:
     c, db, _ = carica(tmp_path, [riga_nuova(70664)], scrivi=True)
-    with pytest.raises(ValueError, match='gia in banca'):
+    with pytest.raises(ValueError, match='already in the database'):
         c.esegui()
     assert db.scritture == []
 

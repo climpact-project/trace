@@ -244,8 +244,8 @@ def test_le_spunte_del_team_si_tolgono_con_la_traccia(tmp_path: Path) -> None:
     assert voce['c07'] and voce['c07_altra_riga'] == 'NEU-0002'
     assert c['c07_spunte_tolte'][0]['pagina'] == 2 and c['c07_spunte_tolte'][0]['motivo'] == 'C07 letta a mano'
     assert 'esito' not in c and 'validato_principi' not in c  # the verdict and the principles stay the team's
-    assert any('saltate (riga assente): 1' in x for x in p.detto)
-    assert any("saltate (spunta gia' tolta): 1" in x for x in p.detto)
+    assert any('skipped (riga assente): 1' in x for x in p.detto)
+    assert any("skipped (spunta gia' tolta): 1" in x for x in p.detto)
 
 
 def test_scrive_la_copia_prima_poi_le_righe(tmp_path: Path) -> None:
@@ -273,7 +273,7 @@ def test_gli_elenchi_e_gli_esempi_si_scrivono_anche_in_anteprima(tmp_path: Path)
         assert (cartella / f'{nome}.tsv').read_text(encoding='utf-8').splitlines()[0].startswith('codice')
     esempi = (cartella / 'C07_esempi.tsv').read_text(encoding='utf-8').splitlines()
     assert 'altra citazione NEU-0002' in esempi[1]
-    assert p.detto[-1] == 'ANTEPRIMA: niente scritto in banca dati'
+    assert p.detto[-1] == 'PREVIEW: nothing written to the database'
 
 
 def test_con_la_fotografia_non_serve_la_banca(tmp_path: Path) -> None:

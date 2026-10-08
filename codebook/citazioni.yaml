@@ -18,15 +18,15 @@
 # cercare. Il primo cambia raramente e con una revisione; il secondo cambia
 # a ogni caso.
 #
-# STATO: BOZZA. Le categorie sotto sono una proposta da correggere sui
-# passaggi reali, non da approvare in astratto. La procedura prevista e':
-# si estraggono trenta passaggi difficili dal corpus, il PI li classifica,
-# e da quelle decisioni si riscrivono definizioni e casi limite.
+# STATO: APPROVATO DAL PI PER TRACE 0.1 (07/10/2026: «per ora e' finale ma cambiera' di sicuro»). La versione
+# 0.5-pilot e' quella con cui sono state prodotte e giudicate le righe della 0.1; le modifiche entrano nella 0.2.
+# Prima di oggi: BOZZA, una proposta da correggere sui passaggi reali (trenta passaggi difficili classificati
+# dal PI, e da quelle decisioni definizioni e casi limite riscritti).
 
 versione: 0.5-pilot          # 04/10/2026 (si' del PI): dimensione 2, chi parla «procuratore» (03/10, su URG-1614), e la regola sulle pagine d'indice nei casi limite; prima 0.4-pilot
 # 0.4-pilot, 01/10/2026: dimensione 7, le pagine ATTORNO alla citazione (10 prima, 10 dopo); prima 0.3-pilot
 data: 2026-09-27
-approvato_da: null          # va valorizzato prima dell'uso in produzione
+approvato_da: Giuseppe Naglieri (PI), 07/10/2026, per TRACE 0.1
 
 # ── Dimensione 1: che cosa fa la citazione nel testo ─────────────────────
 #

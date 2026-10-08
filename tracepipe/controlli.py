@@ -26,14 +26,8 @@ from .banca import BancaDati
 from .config import Config
 from .pagine_attorno import numero_pagina
 
-PREFISSI: Mapping[str, str] = {
-    'urgenda': 'URG',
-    'neubauer': 'NEU',
-    'future-generations': 'FGC',
-    'klimaseniorinnen': 'KLS',
-    'cig-parere-clima': 'ICJ',
-    'idh-oc-32-25': 'IAC',
-}
+from . import casi_registro  # noqa: E402
+PREFISSI: Mapping[str, str] = dict(casi_registro.PREFISSI)
 """The code prefix of each case (``URG-0001``...)."""
 
 Stampa = Callable[[str], None]
@@ -157,15 +151,15 @@ class ControlloCompletezza:
             if cod and n > 1:
                 problemi['codice doppio'].append(cod)
         tot = sum(1 for _, r in righe if r.get('proposto_rete') in ('lessicale', 'entrambe', 'descrittiva'))
-        self.stampa(f'\n{caso}: {tot} righe in Uptakes')
+        self.stampa(f'\n{caso}: {tot} rows in Uptakes')
         if not problemi:
-            self.stampa('   tutto in ordine')
+            self.stampa('   all in order')
         for k, v in sorted(problemi.items()):
             self.stampa(f'   {k}: {len(v)}  {v[:8]}')
         if mancanti:
             f = self.config.training / f'mancanti_{caso}_{oggi}.txt'
             f.write_text('\n'.join(mancanti) + '\n')
-            self.stampa(f'   righe da giudicare senza proposte: {len(mancanti)} -> {f.name}')
+            self.stampa(f'   rows to judge without proposals: {len(mancanti)} -> {f.name}')
         return {
             'righe': tot,
             'problemi': {k: {'quante': len(v), 'esempi': v[:50]} for k, v in problemi.items()},
@@ -185,7 +179,7 @@ class ControlloCompletezza:
             rapporto['casi'][caso] = self.caso(caso, pre, versioni, oggi)
         if self.scrivi:
             self.banca.imposta('trace_controlli', oggi, rapporto)
-            self.stampa(f'\nscritto trace_controlli/{oggi}')
+            self.stampa(f'\nwritten trace_controlli/{oggi}')
         return rapporto
 
 
@@ -255,8 +249,8 @@ class ControlloFinestra:
                     righe_con_buchi += bool(buchi)
             totale += len(manca)
             self.stampa(
-                f'{caso} (sonde {self.config.codice(caso)}): pagine della finestra senza punteggio {len(manca)}, '
-                f'citazioni con buchi {righe_con_buchi}'
+                f'{caso} (probes {self.config.codice(caso)}): window pages without a score {len(manca)}, '
+                f'citations with gaps {righe_con_buchi}'
             )
-        self.stampa('FINESTRA COMPLETA' if totale == 0 else f'FINESTRA INCOMPLETA: {totale} pagine senza punteggio')
+        self.stampa('WINDOW COMPLETE' if totale == 0 else f'WINDOW INCOMPLETE: {totale} pages without a score')
         return 0 if totale == 0 else 1

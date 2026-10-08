@@ -434,7 +434,7 @@ class LettoreCoppie:
         fatte = {x['chiave'] for x in leggi_jsonl(uscita)}
         lavori = self.lavori(leggi_jsonl(richieste_file), fatte)
         self.stampa(
-            f"{len(lavori)} letture da fare ({len(fatte)} gia' fatte), {self.modello}, contesto {self.contesto}"
+            f'{len(lavori)} readings to do ({len(fatte)} already done), {self.modello}, context {self.contesto}'
         )
         t0, blocco, stop = self.orologio(), threading.Lock(), threading.Event()
 
@@ -475,8 +475,8 @@ class LettoreCoppie:
                         self.stampa(f'  {fatte_ora}/{len(lavori)} [{self.orologio() - t0:.0f}s]')
         resto = len(lavori) - fatte_ora
         self.stampa(
-            f'fatte {fatte_ora} in {self.orologio() - t0:.0f}s; '
-            + ('FINITO' if resto == 0 else f'TEMPO: ne restano {resto}')
+            f'done {fatte_ora} in {self.orologio() - t0:.0f}s; '
+            + ('FINITO (finished)' if resto == 0 else f'TIME: {resto} left')
         )
         return resto == 0
 

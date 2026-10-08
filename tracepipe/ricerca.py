@@ -362,7 +362,7 @@ class RicercaPerNome:
         orologio: Callable[[], float] = time.time,
     ) -> None:
         if not solo_lessicale:
-            raise NotImplementedError('la rete semantica non fa parte del pacchetto: si usa tools/cerca.py')
+            raise NotImplementedError('the semantic network is not part of the package: use tools/cerca.py')
         self.config = config
         self.caso = caso
         self.uscita = uscita
@@ -487,32 +487,32 @@ class RicercaPerNome:
             percorso = self.radice / 'cited-cases' / f'{self.caso}.yaml'
         if not percorso.exists():
             disponibili = sorted(p.stem for p in (self.radice / 'cited-cases').glob('*.yaml'))
-            s(f'Caso citato non trovato: {self.caso}')
-            s(f'Disponibili: {", ".join(disponibili) or "nessuno"}')
+            s(f'Cited case not found: {self.caso}')
+            s(f'Available: {", ".join(disponibili) or "none"}')
             return EsitoRicerca(codice=1)
         conf = leggi_caso(percorso, con_alternative=self.con_alternative)
         tipi = self.tipi()
         cb_file = self.radice / 'codebook' / 'citazioni.yaml'
         cb_testo = cb_file.read_text(encoding='utf-8') if cb_file.exists() else ''
         m = re.search(r'^versione:\s*(.+)$', cb_testo, re.M)
-        cb_versione = m.group(1).strip() if m else 'assente'
+        cb_versione = m.group(1).strip() if m else 'absent'
         m = re.search(r'^approvato_da:\s*(.+)$', cb_testo, re.M)
         cb_approvato = m.group(1).strip() if m else 'null'
         if cb_approvato in ('null', '', 'None'):
-            s(f'codebook    : {cb_versione}   NON ANCORA APPROVATO — le codifiche prodotte ora non sono definitive')
+            s(f'codebook    : {cb_versione}   NOT YET APPROVED: the codings produced now are not final')
         else:
-            s(f'codebook    : {cb_versione}   approvato da {cb_approvato}')
+            s(f'codebook    : {cb_versione}   approved by {cb_approvato}')
         nome = conf.get('nome', Path(self.caso).stem)
-        s(f'caso citato : {nome}')
-        s(f'forme       : {len(conf["forme"])}')
-        s(f'sonde       : {len(conf["sonde"])}')
+        s(f'cited case  : {nome}')
+        s(f'forms       : {len(conf["forme"])}')
+        s(f'probes      : {len(conf["sonde"])}')
         if tipi:
-            s(f'FILTRO      : solo {", ".join(sorted(tipi))}')
+            s(f'FILTER      : only {", ".join(sorted(tipi))}')
         s('')
-        s('rete lessicale (esaustiva)…')
+        s('lexical network (exhaustive)…')
         t0 = self.orologio()
         less = self.rete_lessicale(conf['forme'], conf.get('escludi_case_id', ''), tipi)
-        s(f'  {len(less):,} occorrenze in {self.orologio() - t0:.0f}s\n')
+        s(f'  {len(less):,} occurrences in {self.orologio() - t0:.0f}s\n')
 
         righe = [self.riga_csv(r, cb_versione) for r in less]
         esito = EsitoRicerca()
@@ -541,16 +541,16 @@ class RicercaPerNome:
         righe = uniche
         gemelle = sum(1 for r in righe if r.get('stesso_testo_di'))
         if gemelle:
-            s(f'stesso testo in un altro atto: {gemelle:,} righe tenute, con stesso_testo_di')
+            s(f'same text in another filing: {gemelle:,} rows kept, with stesso_testo_di')
         # the reranker runs only on semantic candidates: none in the lexical network
         righe.sort(key=lambda x: (x['file'], x['pagina']))
-        s('\ncorpo o nota (dal PDF)…')
+        s('\nbody or footnote (from the PDF)…')
         t0 = self.orologio()
         try:
             import fitz  # noqa: F401
         except ImportError:
-            s('  FERMO: manca PyMuPDF, la colonna corpo/nota non si puo')
-            s('  calcolare. Installalo e rilancia:')
+            s('  STOPPED: PyMuPDF is missing, the body/footnote column cannot')
+            s('  be computed. Install it and run again:')
             s('    ./.venv/bin/pip install pymupdf')
             esito.codice = 1
             return esito
@@ -584,33 +584,30 @@ class RicercaPerNome:
         """The counts at the end, the discards file and the reading instructions next to the CSV."""
         s, righe, out = self.stampa, esito.righe, esito.uscita
         assert out is not None
-        s(f'RIGHE      : {len(righe):,}')
+        s(f'ROWS       : {len(righe):,}')
         for k, v in collections.Counter(r['rete'] for r in righe).most_common():
             s(f'  {k:12s}: {v:,}')
-        s(f'documenti  : {len({r["document_id"] for r in righe}):,}')
-        s('sede (proposta):')
+        s(f'documents   : {len({r["document_id"] for r in righe}):,}')
+        s('seat (proposed):')
         for k, v in collections.Counter(r['sede_auto'] for r in righe).most_common():
             s(f'  {k:18s}: {v:,}')
         n = collections.Counter(r['posizione_auto'] for r in righe)
-        s(f'posizione  : corpo {n.get("corpo", 0):,}   nota {n.get("nota", 0):,}')
+        s(f'position    : corpo (body) {n.get("corpo", 0):,}   nota (footnote) {n.get("nota", 0):,}')
         if dmin and not self.con_anteriori:
             s(
-                f'anteriori  : {esito.anteriori:,} candidati in documenti '
-                f'precedenti al {dmin} — tolti (con --con-anteriori restano)'
+                f'earlier     : {esito.anteriori:,} candidates in documents '
+                f'before {dmin}, removed (with --con-anteriori they stay)'
             )
         if esito.duplicati:
-            s(f'duplicati  : {esito.duplicati:,} righe erano copie dello stesso testo')
+            s(f'duplicates  : {esito.duplicati:,} rows were copies of the same text')
         sosp = sum(1 for r in righe if r['sospetto'])
         if sosp:
-            s(
-                f'SOSPETTE   : {sosp:,} righe piu vicine a una formulazione esclusa '
-                'che alla sonda — da leggere per prime'
-            )
+            s(f'SUSPECT     : {sosp:,} rows closer to an excluded formulation than to the probe, to be read first')
         b = sum(1 for r in righe if r['dimensioni_confidenza'] == 'bassa')
         if b:
-            s(f'da guardare per prime: {b:,} righe con confidenza bassa')
-        s(f'casi       : {len({r["case_id"] for r in righe}):,}')
-        s(f'uscita     : {out}')
+            s(f'to look at first: {b:,} rows with low confidence')
+        s(f'cases       : {len({r["case_id"] for r in righe}):,}')
+        s(f'output      : {out}')
         if esito.scarti:
             fs = out.with_name(out.stem + '.SCARTI.csv')
             # the columns of the CSV and the reason; a discard has no key of its own besides it (its
@@ -623,7 +620,7 @@ class RicercaPerNome:
                     r.setdefault('copie', '')
                     r.setdefault('anteriore', '')
                     w.writerow({k: r.get(k, '') for k in campi})
-            s(f'scarti     : {fs}')
+            s(f'discards    : {fs}')
             for k, v in collections.Counter(
                 r.get('motivo_scarto', '?').split(' ')[0] for r in esito.scarti
             ).most_common():
@@ -632,14 +629,14 @@ class RicercaPerNome:
         if istr:
             gemello = out.with_suffix('.ISTRUZIONI.md')
             gemello.write_text(
-                f'# Come classificare — codebook {cb_versione}\n\n'
-                f'Caso citato: **{nome}**\n\n'
-                f'Righe da classificare: {len(righe):,}\n\n'
+                f'# How to classify: codebook {cb_versione}\n\n'
+                f'Cited case: **{nome}**\n\n'
+                f'Rows to classify: {len(righe):,}\n\n'
                 + '\n'.join(riga[2:] if riga.startswith('  ') else riga for riga in istr.group(1).split('\n')).strip()
-                + '\n\n---\n\nCategorie e casi limite: `codebook/citazioni.yaml`.\n',
+                + '\n\n---\n\nCategories and borderline cases: `codebook/citazioni.yaml`.\n',
                 encoding='utf-8',
             )
-            s(f'istruzioni : {gemello}')
+            s(f'instructions: {gemello}')
 
 
 # the comparison with the platform (tools/unisci_e_aggiungi.py)
@@ -903,20 +900,20 @@ class UnioneRighe:
 
     def mostra(self, e: EsitoUnione) -> None:
         pre, n, s = PREFISSI[e.caso], e.ultimo_codice, self.stampa
-        s(f'\n== {e.caso}: in piattaforma {e.nominali} righe col nome; ricerca nuova {e.nella_ricerca} citazioni')
+        s(f'\n== {e.caso}: on the platform {e.nominali} rows with the name; new search {e.nella_ricerca} citations')
         s(
-            f'   da aggiungere {len(e.nuove)} (codici {pre}-{n - len(e.nuove) + 1:04d}..{pre}-{n:04d}), validatori '
-            f'{e.validatori}, alla cieca {sum(d["campione_cieco"] for d in e.nuove.values())}'
+            f'   to add {len(e.nuove)} (codes {pre}-{n - len(e.nuove) + 1:04d}..{pre}-{n:04d}), validators '
+            f'{e.validatori}, blind {sum(d["campione_cieco"] for d in e.nuove.values())}'
         )
         sp = self.da_contare(e)
         s(
-            f'   citazioni spezzate {len(sp)}: righe da unire {sum(len(x[1]) for x in sp)}, '
-            f"con una riga giudicata {sum(1 for x in sp if x[2])}, con PIU' righe giudicate "
+            f'   split citations {len(sp)}: rows to merge {sum(len(x[1]) for x in sp)}, '
+            f'with one judged row {sum(1 for x in sp if x[2])}, with MORE than one judged row '
             f'{sum(1 for x in sp if x[2] > 1)}'
         )
         s(
-            f'   righe della piattaforma senza gruppo nella ricerca nuova (non si toccano): {len(e.orfane)}; '
-            f"gruppi con piu' righe che nominano il caso (restano tutte): {e.piu_nomi}"
+            f'   platform rows with no group in the new search (left alone): {len(e.orfane)}; '
+            f'groups with several rows that name the case (all stay): {e.piu_nomi}'
         )
         for _, r in e.orfane[:5]:
             s(f'      {r.get("codice")} {r["document_id"][:60]} {r.get("char_start")}')
@@ -996,7 +993,7 @@ class UnioneRighe:
             w, corsa = self.scritture(e, f.read_text(encoding='utf-8'), len(leggi_caso(f)['forme']))
             self.banca.scrivi_a_lotti(w)
             self.banca.imposta(corsa.collezione, corsa.doc_id, dict(corsa.dati or {}))
-            self.stampa(f'   scritte: {len(e.nuove)} nuove, {sum(len(x[1]) for x in e.spezzate)} unite')
+            self.stampa(f'   written: {len(e.nuove)} new, {sum(len(x[1]) for x in e.spezzate)} merged')
         with open(self.config.training / f'nomi_unisci_aggiungi_{self.data}.json', 'w') as f:
             json.dump(rapporto, f, ensure_ascii=False, indent=1)
         return rapporto

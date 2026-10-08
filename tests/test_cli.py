@@ -48,7 +48,7 @@ def test_comandi() -> None:
 
 def test_cerca_solo_lessicale(tmp_path: Path, capsys) -> None:
     assert cli.main(['--radice', str(tmp_path), '--senza-giornale', 'cerca', '--caso', 'urgenda']) == 2
-    assert 'rete semantica' in capsys.readouterr().err
+    assert 'semantic network' in capsys.readouterr().err
 
 
 def test_anteprima_e_giornale(tmp_path: Path, monkeypatch, capsys) -> None:
@@ -69,7 +69,7 @@ def test_anteprima_e_giornale(tmp_path: Path, monkeypatch, capsys) -> None:
     monkeypatch.setattr(cli, '_banca', banca)
     argv = ['--radice', str(tmp_path), 'carica', 'tipo', '--caso', 'neubauer', '--etichetta', '']
     assert cli.main(argv) == 0
-    assert banche[-1].scritture == [] and 'ANTEPRIMA: niente scritto' in capsys.readouterr().out
+    assert banche[-1].scritture == [] and 'PREVIEW: nothing written' in capsys.readouterr().out
     assert cli.main([*argv, '--scrivi']) == 0
     assert len(banche[-1].scritture) == 1
     righe = [json.loads(x) for f in (tmp_path / 'giornale').rglob('*.jsonl') for x in f.read_text().split('\n') if x]

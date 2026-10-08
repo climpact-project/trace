@@ -235,8 +235,8 @@ class PosizioneNelPdf:
             import fitz
         except ImportError as e:
             raise RuntimeError(
-                'PyMuPDF non e installato: la colonna corpo/nota non si puo '
-                'calcolare. Installalo con  ./.venv/bin/pip install pymupdf'
+                'PyMuPDF is not installed: the body/footnote column cannot '
+                'be computed. Install it with  ./.venv/bin/pip install pymupdf'
             ) from e
         chiave = str(pdf)
         d = self._aperti.get(chiave)

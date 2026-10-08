@@ -55,7 +55,7 @@ it for the TRACE 0.1 data, and the versions in the registry.
 | **8. Uptake reading**<br>DeepSeek V4 Flash proposes the principles taken up, the pages that continue the argument and the quotations; brakes in the code reject quotations not on the page. | `lettori`: LettorePrincipi, LettorePagineAttorno<br>`freni`: Freni | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
 | **9. Composition**<br>Fixed rules turn the readings into proposals, only on rows nobody has judged. From 2 October: five readings per row, majority vote. | `composizione`: Composizione, ComposizioneMaggioranza<br>`maggioranza`<br>`caricatori`: CaricatoreTipo, CaricatoreRipresa<br>`banca`: BancaDati | [`025`](legacy/tools/025_carica_lessicali.py), [`035`](legacy/tools/035_carica_ripresa.py); R11 in [`versioni/R11`](versioni/R11) | **R05** Rules that put the proposals together, with the brake for Asian scripts<br>**R11** Proposals by majority vote of five readings (decided 2 October 2026, being applied) |
 | **10. Checks**<br>After every load: every row complete, every page of the window scored. | `controlli`: ControlloCompletezza, ControlloFinestra | [`036`](legacy/tools/036_controllo_completezza.py) to [`039`](legacy/tools/039_freni_prova.py) |  |
-| **11. People**<br>Researchers confirm or correct every citation; one row in five is shown without machine proposals. | (the platform) | [`040`](legacy/tools/040_salva_giudizi.py) | Codebook 0.4-pilot ([`codebook/`](codebook)) |
+| **11. People**<br>Researchers confirm or correct every citation; one row in five is shown without machine proposals. | (the platform) | [`040`](legacy/tools/040_salva_giudizi.py) | Codebook 0.5-pilot ([`codebook/`](codebook)) |
 | **12. Uptake without the name**<br>Experiment, paused: filings that take up the reasoning without naming the judgment. | (legacy only) | [`041`](legacy/tools/041_distilla.py) to [`043`](legacy/tools/043_unisci_candidati.py) | **S04** Semantic search without the name, redone with the supported sentences<br>**L06** Uptake reading, test: principle decided on the whole passage<br>**L09** Uptake reading without the name: takes up the reasoning, from another source, or same topic only |
 | **13. Measures**<br>Probe tests, stability of DeepSeek V4 Flash. | (legacy only) | [`044`](legacy/tools/044_prova_sonde_reranker.py) to [`047`](legacy/tools/047_stabilita_deepseek.py) |  |
 | **14. Models**<br>Training of the project's own models. | (legacy only) | [`065`](legacy/tools/065_addestra_categoria.py) to [`069`](legacy/tools/069_addestra_riordino.py); history to [`118`](legacy/tools/118_sezioni_llm.py) | **T01** TRACE-Reranker 0.1<br>**T02** TRACE-Reader v0<br>**T03** TRACE-Reader v1<br>**T04** TRACE-Reranker, reasoning (new model; training script [`tools/addestra_reranker_ragiona.py`](versioni/T04/addestra_reranker_ragiona.py)) |
@@ -143,8 +143,49 @@ trace carica ripresa --caso urgenda --composizione R11 --etichetta prova  # dry 
 trace controlla completezza
 ```
 
-Comments, command options and messages are in Italian, the team's working language; the vocabulary is explained in the
-docstring of each module.
+Comments and docstrings are in English. The names of modules, classes, functions and command options are Italian, the
+team's working language, and so were the screen messages until 6 October 2026, when they were put into English (the
+`--help` of every command too); see [A note on language](#a-note-on-language) for the glossary.
+
+## A note on language
+
+The instructions, case files, codebook and prompts that produced the TRACE 0.1 data are in Italian, the working language of the team. They are published exactly as they ran: each is fingerprinted (SHA-256) in `versioni/registro.json`, and translating them would change the text the models read and break the match with the registry. Where useful, an English rendering sits next to them in [`translations/`](translations/); it is a reading aid, not a runnable copy. Package names, command options and registry fields are Italian identifiers; the glossary below gives their English meaning. Labels in the published data are in English.
+
+What is in English, and what is not:
+
+| In English | Italian, kept as it ran |
+|---|---|
+| This page, the model cards, the citation file, `docs/`, `scripts/`; comments and docstrings of `tracepipe/`; screen messages and `--help` of `trace`; the Zenodo data (every column), the corpus index READMEs; the English registry fields `*_en` | Names of modules, functions, classes and command options (renaming them would break every import and every documented command); the prompts the readers sent (`tracepipe/istruzioni.py`, `tracepipe/lettura_coppia.py`); the codebook (`codebook/`); the case files (`cited-cases/`); `versioni/` and `legacy/tools/`, frozen as they ran; values written to the platform database (`una`, `due`, `incerta`, `testo`, `nota`...), which are protocol codes |
+
+English renderings of the prompts and the codebook are in `translations/` (each file says at the top which original it translates and the SHA-256 of that original). The quotations from the filings (`canonical`, `testo`, `verbatim` in the case files, `sentence` and `passage` in the data) are in the language of the filing and are never translated. The case files and the paragraph maps are in Italian, as the readers used them, with the quotations from the filings in their original language; English translations sit next to them in `cited-cases/` (`*.en.md`, `*.en.yaml`), each stating the SHA-256 of the Italian file it translates.
+
+**Glossary of the Italian terms that remain in identifiers, options and frozen files**
+
+| Italian | English | Italian | English |
+|---|---|---|---|
+| `caso` | case (the cited judgment) | `atto` | filing (any document of the corpus) |
+| `riga` | row (one citation in the database) | `ripresa` | uptake (what a citation takes from the case) |
+| `pagine attorno` | surrounding pages (10 before, 10 after) | `banca dati` | database (the platform's) |
+| `fascicolo` | case file, or dossier of a case | `mappa dei paragrafi` | paragraph map |
+| `sonda` | probe (a principle of the case, with its text) | `principio` | principle |
+| `freni` | brakes (checks that stop an unsupported answer) | `lettore` | reader (a model that reads a citation) |
+| `lettura` | reading | `registro` | registry (`versioni/registro.json`) |
+| `versioni` | versions | `codebook` | codebook (coding categories and rules) |
+| `cerca` | search | `unisci` | merge |
+| `prepara` | prepare | `leggi` | read |
+| `carica` | load (to the platform) | `controlla` | check |
+| `coppie` | pairs | `taratura` | calibration |
+| `scrivi` / `--scrivi` | write / the flag that writes to the platform | `fotografia` | snapshot (of the database) |
+| `solo-lessicale` | lexical network only (name search) | `etichetta` | label (of a run) |
+| `giornale` | journal (log of every run) | `composizione` | composition (rules that turn readings into proposals) |
+| `tipo_atto` | type of document (filing type) | `tipo_citazione` | type of citation |
+| `chi_parla` | who speaks | `corte` / `parte` | court / party |
+| `una` / `due` / `incerta` | one / two / uncertain (answer of L13) | `si` / `no` / `incerto` | yes / no / uncertain |
+| `corpo` / `nota` | body text / footnote | `menzione_in_catena` | chain mention |
+| `descrittiva` | descriptive | `sostanziale` | substantive |
+| `distinguente` | distinguishing | `critica` | critical |
+| `implicita` | implicit | `prosegue` | continues (the argument continues on the page) |
+| `compito`, `stato`, `note`, `nota`, `cambia`, `limiti`, `regole`, `esito` | task, status, notes, note, what changes, limits, rules, outcome (registry fields; English counterparts end in `_en`) | `BOZZA, non approvata` | DRAFT, not approved by the principal investigator |
 
 ## What you need to run it
 
@@ -186,6 +227,15 @@ name search) is released in three tiers, to be published with the release:
 | 3. Full index | restricted, on request | 16,993 | 577,121 | the page index with the text of every page, party filings and OCR text included, to verify TRACE results |
 
 Of the 559,499 pages whose text comes from the PDF's own text layer, 559,072 rebuild byte for byte from tier 1.
+
+**Team judgments.** The data record also carries `trace-0.1-team-judgments.csv` (and a `.jsonl` with real lists): one row
+per citation judged by the CLIMPACT team, discarded citations included with the reason for the discard. For the function
+of the citation, who speaks, where it sits, the principles and the surrounding pages it gives two columns each, the
+machine proposal (`machine_*`) and the team's decision (`team_*`), and it adds the outcome (confirmed, discarded or
+reclassified), `blind` (whether the judgment was given without the proposal on the screen), the codebook version, the
+date and a pseudonymous `coder` (coder A, coder B...). For double-coded citations it adds the second coder's outcome,
+function and principles and whether the outcomes agree. Not published: coders' names, accounts and emails (coders
+appear only as pseudonyms), the time spent on each row and the free-text notes.
 
 **DOIs.** Reserved on Zenodo; they become active when the records are published, by the release of 12 October 2026.
 
@@ -251,8 +301,9 @@ tracepipe/      the pipeline package (maintained)
 tests/          its tests
 legacy/tools/   the 118 scripts that produced the TRACE 0.1 data
 versioni/       the registry, and a frozen copy of each version's code
-cited-cases/    case files, probe series, dossiers, paragraph maps
+cited-cases/    case files, probe series, dossiers, paragraph maps (in Italian, as used; English translations next to them, *.en.md / *.en.yaml)
 codebook/       coding categories and rules for hard cases
+translations/   English renderings of the Italian prompts and codebook (reading aids, next to the frozen originals)
 scripts/        verify_registry.py
 assets/         images of this page
 ```
@@ -293,7 +344,7 @@ Next: TRACE 0.2. The whole corpus read again with our own reasoning reranker, tr
 
 ## How to cite
 
-> Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L. (2026). *CLIMPACT TRACE 0.1: Traceable Reception
+> Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L., Rojas Verdugo, G. A. (2026). *CLIMPACT TRACE 0.1: Traceable Reception
 > and Attribution in Climate-law Evidence.* CLIMPACT, University of Bari. Zenodo. DOI reserved: 10.5281/zenodo.23082522
 > (active on publication).
 

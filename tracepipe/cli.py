@@ -73,22 +73,85 @@ reproducing a registry version (see versioni/registro.json; the journal records 
 nothing is written to the platform without --scrivi.
 """
 
+# The English help of the options that do not carry one in ``parser`` (06/10/2026): one line per option string.
+AIUTO_OPZIONI = {
+    '--caso': 'the cited case (the name of its file in cited-cases/)',
+    '--uscita': 'the output file (or folder)',
+    '--solo-lessicale': 'lexical network only (the name search, no semantic network)',
+    '--con-alternative': 'also search the alternative forms of the name',
+    '--solo-decisioni': 'only documents that are decisions',
+    '--tipo-atto': 'only this type of document',
+    '--con-anteriori': 'keep candidates in documents earlier than the cited decision',
+    '--data': 'the date written on the rows (YYYY-MM-DD)',
+    '--scrivi': 'write to the platform database (without it: a dry run that only prints)',
+    '--sonde': 'the probe series to use (TRACE_SONDE)',
+    '--etichetta': 'label of the run, added to the file names',
+    '--paralleli': 'calls in parallel',
+    '--solo-vuote': 'redo only the rows with an empty reading',
+    '--temperatura': 'sampling temperature (if given, it goes in the journal)',
+    '--modello': 'the model name sent to the server',
+    '--base-url': 'the OpenAI-compatible endpoint of the server',
+    '--chiave-file': 'file with the key (default: chat/chiave under the root)',
+    '--gruppo': 'which group of rows to read',
+    '--sforzo': 'reasoning effort of the model',
+    '--kwargs-modello': 'JSON of the chat template options (replaces --sforzo)',
+    '--solo-id': 'read only the row with this id',
+    '--max-righe': 'read at most this many rows (0: all)',
+    '--uscita-suffisso': 'suffix of the output file name',
+    '--sovrascrivi': 'overwrite proposals already in the database',
+    '--salva': 'save the proposals to this file',
+    '--principi-da-l04': 'take the principles from the L04 readings',
+    '--anche-senza-lettura': 'also propose rows that have no reading',
+    '--fotografia': 'a snapshot of corpus_rows (JSON) instead of the live database',
+    '--scansione': 'the scan of new references (JSON) to include',
+    '--soglia': 'distance threshold in characters',
+    '--verita': 'the file of the truth (the pairs judged by hand)',
+    '--lettore': 'which reader: ds (DeepSeek) or rr (reasoning reranker)',
+    '--richieste': 'the requests file (jsonl.gz)',
+    '--tokenizer': 'path of a tokenizers file, for the real token count',
+    '--stampa': 'how many requests to print in full',
+    '--ragionamento': 'the reasoning mode of the reader',
+    '--contesto': 'the context of the server in tokens',
+    '--minuti': 'minutes after which no new call starts (0: no limit)',
+    '--esiti': 'the readings file',
+    '--ds': 'the collected DeepSeek readings (JSON)',
+    '--rr': 'the collected reasoning-reranker readings (JSON)',
+    '--da': 'who runs it (written on the rows)',
+}
+
+
+def _aiuti(ap: argparse.ArgumentParser) -> None:
+    """Fill in the English help of the options that have none (recursively through the sub-commands)."""
+    for az in ap._actions:
+        if isinstance(az, argparse._SubParsersAction):
+            for sotto in az.choices.values():
+                _aiuti(sotto)
+        elif az.help is None:
+            for o in az.option_strings:
+                if o in AIUTO_OPZIONI:
+                    az.help = AIUTO_OPZIONI[o]
+                    break
+
 
 def parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(
         prog='trace',
-        description='TRACE pipeline (pacchetto tracepipe)',
+        description='TRACE pipeline (the tracepipe package)',
         epilog=VERSIONI_E_OPZIONI,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    ap.add_argument('--radice', default='', help='la radice del progetto (predefinita: $TRACE_RADICE o ~/sabin-corpus)')
     ap.add_argument(
-        '--compat', action='store_true', help='i difetti vivi corretti il 02/10/2026 (per il banco di prova)'
+        '--radice',
+        default='',
+        help='the project root (default: $TRACE_RADICE, or the folder that contains the package)',
     )
-    ap.add_argument('--senza-giornale', action='store_true', help='non scrive nel giornale delle operazioni')
+    ap.add_argument(
+        '--compat', action='store_true', help='the live defects fixed on 02/10/2026 (for the reference harness)'
+    )
+    ap.add_argument('--senza-giornale', action='store_true', help='do not write to the operations journal')
     sub = ap.add_subparsers(dest='comando', required=True)
 
-    c = sub.add_parser('cerca', help='la ricerca per nome (rete lessicale)')
+    c = sub.add_parser('cerca', help='the name search (lexical network)')
     c.add_argument('--caso', required=True)
     c.add_argument('--uscita', default='')
     c.add_argument('--solo-lessicale', action='store_true')
@@ -96,31 +159,31 @@ def parser() -> argparse.ArgumentParser:
     c.add_argument('--solo-decisioni', action='store_true')
     c.add_argument('--tipo-atto', default='')
     c.add_argument('--con-anteriori', action='store_true')
-    c.add_argument('--k', type=int, default=100, help='(rete semantica: non usato)')
+    c.add_argument('--k', type=int, default=100, help='(semantic network: not used)')
     c.add_argument(
         '--dedup-per-atto',
         action='store_true',
-        help='copie tolte solo dentro lo stesso atto; fra atti diversi restano, con stesso_testo_di (non in uso)',
+        help='copies dropped only within the same filing; between filings they stay, with stesso_testo_di (not in use)',
     )
 
-    u = sub.add_parser('unisci', help='unire le citazioni spezzate e aggiungere le mancanti')
+    u = sub.add_parser('unisci', help='merge the split citations and add the missing ones')
     u.add_argument('--caso', default='')
     u.add_argument('--data', default='2026-09-29')
     u.add_argument('--scrivi', action='store_true')
 
-    p = sub.add_parser('prepara', help='le righe per i lettori')
+    p = sub.add_parser('prepara', help='the rows for the readers')
     ps = p.add_subparsers(dest='cosa', required=True)
-    pp = ps.add_parser('paragrafi', help='la mappa dei paragrafi')
+    pp = ps.add_parser('paragrafi', help='the paragraph map')
     pp.add_argument('--caso', default='urgenda')
     pp.add_argument('--sonde', default='')
-    pa = ps.add_parser('pagine-attorno', help='le pagine attorno scelte dal reranker (R08, o R10)')
+    pa = ps.add_parser('pagine-attorno', help='the surrounding pages chosen by the reranker (R08, or R10)')
     pa.add_argument('--caso', default='urgenda')
     pa.add_argument(
-        '--regola', default='R08', choices=['R08', 'R10'], help='R10: soglia 0,5 a ogni distanza, senza tetto'
+        '--regola', default='R08', choices=['R08', 'R10'], help='R10: threshold 0.5 at every distance, no cap'
     )
-    pa.add_argument('--etichetta', default='', help='il file <caso>_ripresa_righe_<etichetta>.jsonl (R10 la vuole)')
+    pa.add_argument('--etichetta', default='', help='the file <case>_ripresa_righe_<label>.jsonl (R10 requires it)')
 
-    lg = sub.add_parser('leggi', help='le letture di DeepSeek')
+    lg = sub.add_parser('leggi', help='the DeepSeek readings')
     ls = lg.add_subparsers(dest='lettore', required=True)
     for nome, etichetta in (('tipo', ''), ('principi', 'l04nuove'), ('pagine-attorno', '')):
         x = ls.add_parser(nome)
@@ -129,7 +192,7 @@ def parser() -> argparse.ArgumentParser:
             '--letture',
             type=int,
             default=LETTURE_PROTOCOLLO,
-            help=f'letture per riga (predefinite {LETTURE_PROTOCOLLO}, il protocollo misurato di R11)',
+            help=f'readings per row (default {LETTURE_PROTOCOLLO}, the measured protocol of R11)',
         )
         x.add_argument('--paralleli', type=int, default=48)
         x.add_argument('--etichetta', default=etichetta)
@@ -137,10 +200,10 @@ def parser() -> argparse.ArgumentParser:
         x.add_argument(
             '--aggiungi-letture',
             action='store_true',
-            help='fino a --letture letture valide, tenendo quelle con la stessa domanda',
+            help='up to --letture valid readings, keeping those with the same question',
         )
         x.add_argument('--temperatura', type=float, default=None)
-        x.add_argument('--seme', type=int, default=None, help='seme del campionamento: se dato, va nel giornale')
+        x.add_argument('--seme', type=int, default=None, help='sampling seed: if given, it goes in the journal')
         x.add_argument('--modello', default='deepseek-v4-flash')
         x.add_argument('--base-url', default='http://127.0.0.1:8000/v1')
         x.add_argument('--chiave-file', default='')
@@ -153,13 +216,13 @@ def parser() -> argparse.ArgumentParser:
         else:
             x.add_argument('--uscita-suffisso', default='')
 
-    ca = sub.add_parser('carica', help='le proposte in piattaforma')
+    ca = sub.add_parser('carica', help='the proposals to the platform')
     cs = ca.add_subparsers(dest='cosa', required=True)
     ct = cs.add_parser('tipo')
     ct.add_argument('--caso', default='urgenda')
     ct.add_argument('--etichetta', default='v2')
     ct.add_argument('--sovrascrivi', action='store_true')
-    ct.add_argument('--composizione', default='', choices=['', 'R11'], help='R11: il tipo a maggioranza delle letture')
+    ct.add_argument('--composizione', default='', choices=['', 'R11'], help='R11: the type by majority of the readings')
     ct.add_argument('--salva', default='')
     ct.add_argument('--scrivi', action='store_true')
     cr = cs.add_parser('ripresa')
@@ -167,36 +230,42 @@ def parser() -> argparse.ArgumentParser:
     cr.add_argument('--principi-da-l04', action='store_true')
     cr.add_argument('--anche-senza-lettura', action='store_true')
     cr.add_argument('--salva', default='')
-    cr.add_argument('--composizione', default='R05', choices=['R05', 'R11'], help='R11: maggioranza delle letture L05')
-    cr.add_argument('--etichetta', default='', help='R11: le letture e le righe con questa etichetta')
-    cr.add_argument('--etichetta-tipo', default='cinque', help='R11: le letture del tipo con questa etichetta')
+    cr.add_argument('--composizione', default='R05', choices=['R05', 'R11'], help='R11: majority of the L05 readings')
+    cr.add_argument('--etichetta', default='', help='R11: the readings and rows with this label')
+    cr.add_argument('--etichetta-tipo', default='cinque', help='R11: the type readings with this label')
     cr.add_argument('--scrivi', action='store_true')
 
-    co = sub.add_parser('controlla', help='i controlli dopo ogni caricamento')
+    co = sub.add_parser('controlla', help='the checks after every load')
     cs2 = co.add_subparsers(dest='cosa', required=True)
     cc = cs2.add_parser('completezza')
     cc.add_argument('--scrivi', action='store_true')
     cs2.add_parser('finestra')
 
-    c3 = sub.add_parser('c03', help='C03: testo e nota, traduzioni, contati una volta')
-    c3.add_argument('--da', required=True, help='chi lo lancia (esclusa_da, c03_da)')
+    c3 = sub.add_parser('c03', help='C03: body text and footnote, translations, counted once')
+    c3.add_argument('--da', required=True, help='who runs it (esclusa_da, c03_da)')
     c3.add_argument(
-        '--rivisto', default='', help='elenco riletto a mano (C03_da_scrivere_RIVISTO.tsv): si scrive solo quello'
+        '--rivisto', default='', help='list reread by hand (C03_da_scrivere_RIVISTO.tsv): only that is written'
     )
-    c3.add_argument('--fotografia', default='', help='una fotografia di corpus_rows invece della banca viva')
+    c3.add_argument('--fotografia', default='', help='a snapshot of corpus_rows instead of the live database')
     c3.add_argument('--scrivi', action='store_true')
 
-    c7 = sub.add_parser('c07', help="C07: una pagina attorno che e' un'altra citazione")
-    c7.add_argument('--da', required=True, help='chi lo lancia (c07_da)')
-    c7.add_argument('--rilette', default='', help='le pagine «prosegue» rilette a mano (colonne codice, pagina, esito)')
-    c7.add_argument('--spunte-team', default='', help='C07-REVISIONE-SEGUITI: toglie le spunte «seguito» del team')
-    c7.add_argument('--fotografia', default='', help='una fotografia di corpus_rows invece della banca viva')
+    c7 = sub.add_parser('c07', help='C07: a surrounding page that is another citation')
+    c7.add_argument('--da', required=True, help='who runs it (c07_da)')
     c7.add_argument(
-        '--ipotesi-tutte', action='store_true', help='SOLO ANTEPRIMA: tutte le «prosegue» come altra citazione'
+        '--rilette', default='', help='the «prosegue» (continues) pages reread by hand (columns codice, pagina, esito)'
+    )
+    c7.add_argument(
+        '--spunte-team', default='', help="C07-REVISIONE-SEGUITI: removes the team's «seguito» (continuation) ticks"
+    )
+    c7.add_argument('--fotografia', default='', help='a snapshot of corpus_rows instead of the live database')
+    c7.add_argument(
+        '--ipotesi-tutte',
+        action='store_true',
+        help='PREVIEW ONLY: every «prosegue» (continues) counted as another citation',
     )
     c7.add_argument('--scrivi', action='store_true')
 
-    cp = sub.add_parser('coppie', help='S08: le coppie vicine e la domanda L13 (una citazione o due?)')
+    cp = sub.add_parser('coppie', help='S08: the close pairs and the L13 question (one citation or two?)')
     cps = cp.add_subparsers(dest='cosa', required=True)
     ce = cps.add_parser('elenco')
     ce.add_argument('--fotografia', required=True)
@@ -247,6 +316,7 @@ def parser() -> argparse.ArgumentParser:
     cva.add_argument('--ds', default='')
     cva.add_argument('--rr', default='')
     cva.add_argument('--uscita', default='')
+    _aiuti(ap)
     return ap
 
 
@@ -288,7 +358,10 @@ def esegui(a: argparse.Namespace, config: Config, giornale: Any) -> int:
         from .ricerca import RicercaPerNome
 
         if not a.solo_lessicale:
-            print('la rete semantica non fa parte del pacchetto: --solo-lessicale, o tools/cerca.py', file=sys.stderr)
+            print(
+                'the semantic network is not part of the package: use --solo-lessicale, or tools/cerca.py',
+                file=sys.stderr,
+            )
             return 2
         r = RicercaPerNome(
             config,
@@ -400,7 +473,7 @@ def _c07(a: argparse.Namespace, config: Config, giornale: Any) -> int:
     from .pagine_gia_citate import ApplicaC07
 
     if a.ipotesi_tutte and a.scrivi:
-        print('--ipotesi-tutte non si usa con --scrivi', file=sys.stderr)
+        print('--ipotesi-tutte cannot be used with --scrivi', file=sys.stderr)
         return 2
     ApplicaC07(
         config,
@@ -424,7 +497,7 @@ def _coppie(a: argparse.Namespace, config: Config) -> int:
 
     if a.cosa == 'prova-freni':
         sbagliati = lc.prova_freni()
-        print('PROVA DEI FRENI:', 'PASSA' if not sbagliati else f'FALLISCE {sbagliati}')
+        print('BRAKES TEST:', 'PASSES' if not sbagliati else f'FAILS {sbagliati}')
         return 1 if sbagliati else 0
     if a.cosa == 'secco':
         tok = None
@@ -457,7 +530,7 @@ def _coppie(a: argparse.Namespace, config: Config) -> int:
     if a.cosa == 'raccogli':
         ris = lc.raccogli(lc.leggi_jsonl(a.richieste), a.esiti)
         Path(a.uscita).write_text(json.dumps(ris, ensure_ascii=False), encoding='utf-8')
-        print(len(ris), 'coppie ->', a.uscita)
+        print(len(ris), 'pairs ->', a.uscita)
         return 0
     banca = carica_fotografia(a.fotografia)
     if a.cosa == 'elenco':
@@ -467,7 +540,7 @@ def _coppie(a: argparse.Namespace, config: Config) -> int:
             nuove = [x for x in classifica_recuperate(rec, banca) if x['esito'] == 'nuova']
         el = CoppieVicine(a.soglia).elenco(banca, nuove)
         _scrivi_elenco(Path(a.uscita), el)
-        print(f'{len(el)} coppie a {a.soglia} caratteri -> {a.uscita}')
+        print(f'{len(el)} pairs at {a.soglia} characters -> {a.uscita}')
         return 0
     if a.cosa == 'taratura':
         from .coppia import ArchivioAtti
@@ -484,7 +557,7 @@ def _coppie(a: argparse.Namespace, config: Config) -> int:
     if a.cosa == 'prepara':
         prep = lc.PreparazioneL13(config, banca, a.lettore)
         coppie = prep.insieme(a.verita, a.soglia, a.scansione)
-        print(len(coppie), 'coppie')
+        print(len(coppie), 'pairs')
         print(prep.prepara(coppie, a.uscita), '->', a.uscita)
         return 0
     return _decisioni(a, config, banca)
@@ -549,7 +622,7 @@ def _prepara(a: argparse.Namespace, config: Config) -> int:
         from .pagine_attorno import SceltaPagineAttorno
 
         if a.regola != 'R08' and not a.etichetta:
-            print(f'{a.regola} vuole --etichetta: il file vivo delle righe resta di R08', file=sys.stderr)
+            print(f'{a.regola} requires --etichetta: the live rows file stays that of R08', file=sys.stderr)
             return 2
         out, conti = SceltaPagineAttorno.prepara_caso(config, a.caso, compat=a.compat, regola=a.regola)
         uscita = SceltaPagineAttorno.file_uscita(config, a.caso, a.etichetta)

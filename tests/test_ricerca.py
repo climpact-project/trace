@@ -15,6 +15,7 @@ from typing import Any
 import finto_firestore
 import pytest
 from conftest import CAMPIONE, richiede_campione
+from schermo_en import in_inglese
 
 from tracepipe.banca import BancaDatiMemoria
 from tracepipe.config import Config
@@ -102,12 +103,22 @@ def test_ricerca_come_cerca(vivi, monkeypatch, radice, caso) -> None:
     cp, op = _cerca(radice, monkeypatch, caso_arg, f'index/p_{caso}.csv')
     assert cp == cv
     norm = lambda t: DURATA.sub('Ns', t).replace(f'/p_{caso}.', '/v_{caso}.'.replace('{caso}', caso))  # noqa: E731
-    assert norm(op) == DURATA.sub('Ns', ov)
+    assert norm(op) == DURATA.sub('Ns', in_inglese(ov))
     for suf in ('.csv', '.SCARTI.csv', '.ISTRUZIONI.md'):
         v, p = radice / 'index' / f'v_{caso}{suf}', radice / 'index' / f'p_{caso}{suf}'
         assert v.exists() == p.exists(), suf
         if v.exists():
-            assert p.read_bytes() == v.read_bytes(), suf
+            vivo = v.read_bytes()
+            if suf == '.ISTRUZIONI.md':   # the header of the file is in English in the package (06/10/2026)
+                intestazioni = (
+                    ('# Come classificare — codebook', '# How to classify: codebook'),
+                    ('Caso citato:', 'Cited case:'),
+                    ('Righe da classificare:', 'Rows to classify:'),
+                    ('Categorie e casi limite:', 'Categories and borderline cases:'),
+                )
+                for it, en in intestazioni:
+                    vivo = vivo.replace(it.encode(), en.encode())
+            assert p.read_bytes() == vivo, suf
 
 
 def test_ricerca_rifiuta_la_rete_semantica() -> None:
@@ -117,7 +128,7 @@ def test_ricerca_rifiuta_la_rete_semantica() -> None:
 
 def test_caso_che_non_esiste(radice, monkeypatch) -> None:
     codice, out = _cerca(radice, monkeypatch, 'nessuno', 'index/x.csv')
-    assert codice == 1 and out.startswith('Caso citato non trovato: nessuno\nDisponibili: ')
+    assert codice == 1 and out.startswith('Cited case not found: nessuno\nAvailable: ')
 
 
 def test_pezzi_come_cerca(vivi, radice) -> None:
@@ -220,7 +231,7 @@ def test_unione_come_unisci(vivi, monkeypatch, radice, caso, scrivi) -> None:
     banca = BancaDatiMemoria({'corpus_rows': righe})
     stampa: list[str] = []
     UnioneRighe(Config(radice=radice), banca, data=data, casi=[caso], scrivi=scrivi, stampa=stampa.append).esegui()
-    assert '\n'.join(stampa) + '\n' == out.getvalue()
+    assert '\n'.join(stampa) + '\n' == in_inglese(out.getvalue())
     assert (radice / 'training' / f'nomi_unisci_aggiungi_{data}.json').read_bytes() == rapporto_vivo
     assert banca.scritture == vivo.scritture
     if caso == 'urgenda':

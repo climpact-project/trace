@@ -1,0 +1,334 @@
+# English translation of codebook/citazioni.yaml (codebook 0.5-pilot).
+# Original: codebook/citazioni.yaml
+# SHA-256 of the original: 4896d420e0af1c4c92169abb6bb8407384dc4a8c5cdbd4bb81ed33cc0b1b7682
+#
+# A reading aid, NOT a runnable copy: the code reads the Italian file, whose text goes to the readers as it is
+# (translating it would change what DeepSeek reads). Keys and codes (tipo_citazione, menzione_in_catena, corte...)
+# stay as in the original because they are the protocol values written to the database; the human-readable names,
+# definitions, clues, comments and rules are translated. Quoted formulas in English ('see also', 'as held in X')
+# are the original ones. The note «BOZZA» [draft] in the original means: not yet approved by the principal investigator.
+# ---------------------------------------------------------------------------------------------------------------
+# CODEBOOK: TYPES OF CITATION
+#
+# WHAT THIS FILE IS. It is the coding instrument of the project. It defines the categories, their boundaries and the
+# rules for doubtful cases. It holds for all researchers and all months: it is NOT rewritten for every search.
+#
+# WHY A FILE AND NOT A SENTENCE SAID EVERY TIME. Four people who formulate the same criterion from memory produce four
+# different criteria. Nobody notices, because the results look plausible anyway, and the sample check would measure
+# the variability of the wording instead of the quality of the coding. With a versioned file, "the same query" really
+# means the same.
+#
+# HOW IT IS USED:
+#     cerca --codebook codebook/citazioni.yaml --bersaglio bersagli/urgenda.yaml
+#
+# The codebook (this file) says HOW to classify. The target says WHAT to look for. The first changes rarely and with a
+# review; the second changes with every case.
+#
+# STATUS: APPROVED BY THE PI FOR TRACE 0.1 (07/10/2026: «for now it is final, but it will certainly change»). Version
+# 0.5-pilot is the one with which the rows of 0.1 were produced and judged; changes go into 0.2.
+# Before today: DRAFT, a proposal to be corrected on real passages (thirty hard passages classified by the PI, and the
+# definitions and borderline cases rewritten from those decisions).
+
+versione: 0.5-pilot          # 04/10/2026 (PI's yes): dimension 2, who speaks «procuratore» [prosecutor] (03/10, on URG-1614), and the rule on index pages in the borderline cases; before 0.4-pilot
+# 0.4-pilot, 01/10/2026: dimension 7, the pages AROUND the citation (10 before, 10 after); before 0.3-pilot
+data: 2026-09-27
+approvato_da: Giuseppe Naglieri (PI), 07/10/2026, for TRACE 0.1
+
+# -- Dimension 1: what the citation does in the text -------------------------------------------------------------
+#
+# The categories are EXCLUSIVE: one only is assigned to each passage. If a passage seems to fall into two, it is a
+# borderline case and goes to the corresponding rule in `casi_limite`.
+
+tipo_citazione:
+
+  - codice: menzione_in_catena
+    nome: Chain mention
+    definizione: >
+      The precedent appears in a list of precedents without the text drawing anything from it. It does no
+      argumentative work: removing it would not change the reasoning.
+    indizi: [ "list separated by semicolons", "'see also'", "'cfr.'", "footnote that lists several precedents without using any of them" ]
+    # The clue on notes used to read «footnote without comment»: it contradicted the PI's rule of 26/09/2026 on notes
+    # (casi_limite), by which a note that supports the body sentence is substantive.
+    # Aligned on 27/09/2026, before the second reading by DeepSeek.
+
+  - codice: descrittiva
+    nome: Descriptive
+    definizione: >
+      The text reports what the precedent decided, without applying it to the present case and without making its
+      reasoning its own.
+    indizi: [ "'the court in X held that'", "'X concerned'", "summary of the facts or of the operative part" ]
+
+  - codice: sostanziale
+    nome: Substantive
+    definizione: >
+      The precedent is used to support a proposition that the deciding body or the party makes its own. It is the
+      central category of the research.
+    indizi: [ "'as held in X'", "'following X'", "'consistent with X'", "the reasoning goes on applying the rule" ]
+
+  - codice: distinguente
+    nome: Distinguishing
+    definizione: >
+      The precedent is invoked to state that it does not apply in the present case: different legal system,
+      different premises, different petitum. It is not a rejection: it is a delimitation.
+    indizi: [ "'unlike in X'", "'X is distinguishable'", "'does not apply'", "'differs from'" ]
+
+  - codice: critica
+    nome: Critical
+    definizione: >
+      The precedent is invoked to dissent from its content or to contest its correctness.
+    indizi: [ "'wrongly decided'", "'unpersuasive'", "'should not be followed'", "'erroneous'" ]
+
+  - codice: implicita
+    nome: Implicit
+    definizione: >
+      The reasoning of the precedent is taken up without the precedent ever being named or cited. It is the category
+      that no textual search can produce.
+    indizi: [ "corresponding substantive formula without a reference", "coincidence of argument", "same logical chain with specific premises" ]
+
+# -- Dimension 2: who states -------------------------------------------------------------------------------------
+#
+# INDEPENDENT of the first, and always to be recorded. A substantive citation made by a party and one made by the
+# deciding body have very different weight, and confusing them makes the data unusable.
+
+chi_parla:
+  - codice: corte
+    nome: Deciding body
+  - codice: parte
+    nome: Party to the proceedings
+  - codice: interveniente
+    nome: Intervener
+  - codice: amicus
+    nome: Amicus curiae
+  # 0.5-pilot (the PI, 03/10/2026, on URG-1614): the advisory bodies attached to courts, which give an opinion to the
+  # court without deciding and without being a party. The conclusion of the Procurator General at the Hoge Raad on
+  # Urgenda, cited in a French decision, is not the court speaking.
+  - codice: procuratore
+    nome: Procurator general, advocate general or public prosecutor
+  - codice: non_determinabile
+    nome: Not determinable from the passage
+
+# -- Dimension 3: nesting ----------------------------------------------------------------------------------------
+
+annidata:
+  descrizione: >
+    True when the body that writes the document reports a passage of another ruling that in turn cites the target.
+    Decision of the PI (30 July 2026): the case must be FLAGGED, not assimilated to a direct citation.
+  valori: [ "si", "no", "ambiguo" ]       # [yes, no, ambiguous]
+  fonte_intermedia: >
+    When identifiable, the intermediate ruling is recorded.
+
+# -- Borderline cases --------------------------------------------------------------------------------------------
+#
+# They are the part that counts. Anyone assigns the easy categories; disagreement between coders always arises here.
+
+# -- Dimension 4: where the reference is -------------------------------------------------------------------------
+#
+# PRE-FILLED BY THE SYSTEM. It is read from the PDF (the size of the type and the position on the page), not from the
+# extracted text, where the signal does not survive. The reader corrects it only when it is wrong.
+#
+# WHY IT MATTERS. The note is the place where one declares TO WHOM a principle is attributed. A reference in a note and
+# one in the body do not weigh the same, and adding them without distinguishing is an error that is no longer seen
+# downstream.
+
+posizione:
+  - codice: corpo
+    nome: In the running text
+  - codice: nota
+    nome: In a footnote
+  - codice: non_determinabile
+    nome: The PDF does not tell the two apart (flat page, or OCR text)
+
+# -- Dimension 5: seat of the passage ----------------------------------------------------------------------------
+#
+# PRE-FILLED BY THE SYSTEM, from the type of document and from the formulas with which a court attributes an argument
+# to whoever proposed it.
+#
+# WHY IT MATTERS. "The applicants invoke Urgenda", written in a judgment, is not the court citing Urgenda: it is the
+# court summarising a defence. Counting them together inflates precisely the most discussed cases, the ones that the
+# parties invoke most, which are the cases on which we want to say something.
+
+sede:
+  - codice: motivazione
+    nome: Reasoning of the deciding body
+  - codice: difese_riportate
+    nome: The court summarises an argument of a party
+  - codice: dissenso
+    nome: Dissenting opinion
+  - codice: concorrente
+    nome: Concurring opinion
+  - codice: atto_di_parte
+    nome: Document filed by a party or an amicus
+  - codice: non_determinabile
+    nome: The document has no procedural structure (letter, report, notice)
+
+# -- Dimension 6: principle taken up -----------------------------------------------------------------------------
+#
+# ADDED ON 27/09/2026, with the new TRACE system (single document §63.25).
+#
+# WHY. Knowing that a filing cites Urgenda is not enough: the research wants to know WHAT it takes from it. On 27/09 the
+# reread of the July judgments showed that true implicit uptake, without the name, is rare (3-4 on 400 pages judged) and
+# that almost always whoever takes up Urgenda names it. The work therefore starts from the explicit citation and asks
+# which principle it takes.
+#
+# THE LIST OF PRINCIPLES IS NOT HERE: it is that of the cited case, in its file (`cited-cases/<case>.yaml`, field
+# `semantic_queries`: id, title, text), with the paragraphs that support it in the map
+# (`cited-cases/<case>-mappa-paragrafi.yaml`). Here are the rules, the same for every case.
+#
+# RULES.
+#   - MORE principles can be indicated: many citations refer to a group of paragraphs.
+#   - If the citation indicates the paragraph, the paragraph map holds, unless the text clearly says otherwise (the
+#     validator writes it in a note).
+#   - «nessuno» [none]: the citation takes no principle (chain mention, description of the facts or of the outcome,
+#     example of won litigation).
+#   - «altro» [other]: the citation takes something that is not in the list (for example the standing of associations,
+#     the separation of powers, the precautionary principle). It is written in one sentence. When many «altro» say the
+#     same thing, the coordination makes of it a new principle of the case, with definition, paragraphs and date: the
+#     list grows from the data.
+
+principio_ripreso:
+  multiplo: true
+  lista: from the file of the cited case (semantic_queries)
+  valori_speciali:
+    - codice: nessuno
+      nome: Takes no principle
+    - codice: altro
+      nome: Takes a principle that is not in the list (to be written)
+
+# -- Dimension 7: extension of the uptake ------------------------------------------------------------------------
+#
+# ADDED ON 27/09/2026, REVISED ON 01/10/2026 (version 0.4). Implicit uptake is no longer searched blindly in the
+# corpus: it is searched in the pages AROUND an explicit citation, before and after. A filing that cites Urgenda on p.
+# 30 often develops the same principle in the nearby pages without repeating its name, and often prepares it in the
+# pages before. Up to 0.3 we said «seguito» [continuation] and the window was two pages before and three after; the
+# PI: «we always talk about continuation, but we look before and after: I would say around».
+#
+# RULE. A page around (up to ten before and ten after; which ones to read is proposed by the reranker, rule R08)
+# belongs to the uptake if it DEVELOPS THE SAME PRINCIPLE IN THE SAME REASONING started by the citation. It is not
+# enough that it speaks of the same theme: if the filing has moved to another topic, or supports the same theme on
+# another source (general ECHR, Paris, another case), the page does not belong to the uptake.
+
+estensione:
+  valori: [pages of the same document, around the citation, that develop the same uptake]
+  finestra: {prima: 10, dopo: 10}      # {before: 10, after: 10}
+
+casi_limite:
+
+  - questione: >
+      A party cites the target and the deciding body reports its defence by summarising it. One row or two?
+    regola: TO BE DECIDED
+
+  - questione: >
+      The target has several instances. Must they be distinguished?
+    regola: >
+      NO. Decision of the PI (30 July 2026): whoever cites the target cites the target, regardless of the instance.
+      The instance is not recorded.
+
+  - questione: >
+      Citation contained in a citation (see `annidata`).
+    regola: >
+      It is recorded as a citation of the document that contains it, with `annidata = si`.
+
+  - questione: >
+      The passage names the target only in the title of an annex or in the index of the document.
+    regola: >
+      It is NOT a citation: it is discarded with the reason `indice_o_sommario`.
+      It holds for indexes and summaries, tables of sources or of authorities (table of authorities, list of
+      authorities, Inhaltsverzeichnis, table des matieres, indice), lists of annexes and titles of an annex. The name
+      is there only as a cross-reference: the page does not say what the document draws from the target.
+      The citation, if there is one, is where the index refers (body or note): that row is judged. The portal shows it
+      under «Other citations of ... in this filing». If that row is missing, the page of the cross-reference is written
+      in the note of the discard, and it is flagged as a missed citation.
+      Exceptions: (a) if the index entry has a sentence that says what the document takes from the target (a reasoned
+      index, an abstract, a summary of the grounds), it is not an index: it is judged like any other row; (b) if the
+      annex IS the target (the judgment annexed to the filing), it is not recorded as a citation: it is written in the
+      note.
+      A discarded index row is a negative example for training (reason: index), never a positive one, and does not
+      enter the numbers of the map.
+    # 0.5-pilot, 04/10/2026: rule approved by the PI (proposal in docs/codebook-indici-PROPOSTA.md)
+
+  - questione: >
+      The document is entirely devoted to the target (for example a commentary on that judgment). Is every
+      mention a distinct citation?
+    regola: TO BE DECIDED
+
+  - questione: >
+      A footnote cites the target in support of the body sentence to which it is attached. Substantive or chain
+      mention?
+    regola: >
+      As a rule SUBSTANTIVE: the note declares the source of a proposition that the text makes its own, so the target
+      supports that proposition. It stays CHAIN MENTION when the target is one of several precedents listed in the same
+      note without any of them being used (list separated by semicolons, "see also", "cfr."): there the note does no
+      argumentative work with the target. Decision of the PI (26 September 2026), taken after DeepSeek and the
+      validators diverged mostly in notes (agreement 0.32 in notes against 0.60 in the body).
+
+  - questione: >
+      The sentence being reasoned on (that of the citation, or that of a nearby page) has a note of its own that
+      attributes it to another source: another case, a treaty, a report.
+    regola: >
+      The principle of the cited case is that of the sentence to which the note that CITES THE CASE is attached; what
+      the page talks about is not enough. A nearby page whose sentence is attributed in a note to another source does
+      not continue the uptake, even if the topic is the same. Example of the PI (28/09/2026): memorial for the
+      Inter-American Court, Urgenda in a list at note 194 of p. 51; on p. 54 the sentence on the fair share has note
+      205, Klimaatzaak.
+
+# -- Output schema -----------------------------------------------------------------------------------------------
+#
+# The columns are FIXED. Four people who produce different prose do not generate summable data; four people who fill
+# in the same columns do.
+
+uscita:
+  colonne:
+    - case_id                 # from the front matter, not deduced
+    - case_name
+    - giurisdizioni
+    - document_id
+    - tipo_atto               # from the front matter
+    - tipo_atto_sabin         # official label of the source
+    - pagina
+    - citazione_testuale      # verbatim, verifiable
+    - tipo_citazione          # dimension 1
+    - chi_parla               # dimension 2
+    - posizione               # dimension 4, pre-filled
+    - sede                    # dimension 5, pre-filled
+    - chi_cita_auto           # the machine's proposals: they are NOT modified
+    - posizione_auto
+    - sede_auto
+    - dimensioni_confidenza   # alta | media | bassa  [high | medium | low]
+    - annidata                # dimension 3
+    - fonte_intermedia
+    - proposizione_sostenuta  # in support of what
+    - confidenza              # alta | media | bassa
+    - rete                    # lessicale | semantica | entrambe  [lexical | semantic | both]
+    - file                    # path, to reopen
+    - char_start
+    - char_end
+    - url_documento           # the page on the source's site
+    - codebook_versione       # which version of this file produced the row
+    - indice_versione         # on which index
+
+# -- Instructions for reading ------------------------------------------------------------------------------------
+#
+# They are the part that the tool hands to whoever reads (person or model) together with each passage.
+
+istruzioni_lettura: |
+  You are shown a passage with the context around it and the metadata of the document.
+
+  1. Establish whether the passage really concerns the target. If it does not, discard it and say so: a false positive
+     discarded is a correct outcome, not a failure.
+  2. Assign ONE category of `tipo_citazione`. If you see two, it is a borderline case: apply the corresponding rule,
+     and if the rule says TO BE DECIDED flag the passage instead of choosing.
+  3. `chi_parla`, `posizione` and `sede` arrive ALREADY FILLED IN by the system. They are not to be rewritten: they are
+     to be checked, and corrected only where they are wrong. The columns that end in `_auto` are the machine's proposal
+     and are never touched: they serve to measure how often the reader corrects it.
+  3ter. THE 20% SAMPLE MUST ALSO INCLUDE THE DISCARDS. Next to the CSV there is a `.SCARTI.csv` file with the
+     candidates that the system removed by itself: under the threshold of the reranker, earlier than the cited
+     decision, copies of another fragment. Nobody else reads those rows. If the sample looked only at what was kept,
+     one would never notice a threshold that throws away good material: the error would be invisible by construction.
+  3bis. Start from the rows with `dimensioni_confidenza: bassa`: they are the ones where the system found no clues and
+     fell back.
+  4. Report the VERBATIM citation, without rewriting it and without abbreviating it. It is the only element that makes
+     the row verifiable.
+  5. Give the page as it appears in the metadata, not by counting it.
+  6. If you are unsure, `confidenza: bassa`. A declared uncertainty is usable; a hidden uncertainty is not.
+
+  Never deduce `case_id`, `tipo_atto` or `pagina`: they come from the metadata.

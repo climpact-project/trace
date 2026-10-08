@@ -141,11 +141,11 @@ class CopiaPrima:
                 json.dump(documento, f, ensure_ascii=False, default=str)
             riletto = self.leggi(tmp)
             if riletto.get('n_righe') != len(righe) or set(riletto.get('righe') or {}) != set(righe):
-                raise ValueError('copia riletta diversa')
+                raise ValueError('the copy read back is different')
             os.replace(tmp, p)
         except Exception as e:  # no copy, no write
-            raise CopiaNonRiuscitaError(f'copia prima non riuscita ({e}): niente scritto') from e
-        self.stampa(f'copia prima della scrittura: {p} ({len(righe)} righe)')
+            raise CopiaNonRiuscitaError(f'copy before writing failed ({e}): nothing written') from e
+        self.stampa(f'copy before writing: {p} ({len(righe)} rows)')
         return p
 
     @staticmethod

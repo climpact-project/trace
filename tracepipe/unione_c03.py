@@ -309,7 +309,7 @@ class CoppieRivedute:
                 visti.add(n['codice'])
                 out.append(CoppiaC03(x['tipo'], t, n, x['motivo']))
         for k, v in saltate.items():
-            self.stampa(f'saltate ({k}): {v}')
+            self.stampa(f'skipped ({k}): {v}')
         return out
 
 
@@ -462,18 +462,18 @@ class UnioneC03:
         k = collections.Counter(c.tipo for c in esito.libere)
         g = collections.Counter(c.tipo for c in esito.giudicate)
         self.stampa(
-            f'coppie: {len(esito.coppie)} | da scrivere {len(esito.libere)} {dict(k)} | '
-            f'giudicate, da rivedere {len(esito.giudicate)} {dict(g)}'
+            f'pairs: {len(esito.coppie)} | to write {len(esito.libere)} {dict(k)} | '
+            f'judged, to review {len(esito.giudicate)} {dict(g)}'
         )
-        self.stampa(f'elenchi: {uscita} {giudicate}')
+        self.stampa(f'lists: {uscita} {giudicate}')
         esito.scritture = self.prepara_scritture(banca, esito.libere)
         if not self.scrivi:
-            self.stampa('ANTEPRIMA: niente scritto in banca dati')
+            self.stampa('PREVIEW: nothing written to the database')
             return esito
         prima = {rid: banca[rid] for rid in esito.scritture}
         esito.copia = self.copia.salva('unisci_c03', 'tutti', prima, esito.scritture, ciclo='esclusioni')
         self.banca.scrivi_a_lotti(Scrittura('update', 'corpus_rows', rid, c) for rid, c in esito.scritture.items())
         self.stampa(
-            f'scritte {len(esito.scritture)} righe | copia {esito.copia} | {self.orologio().strftime("%d/%m/%Y %H:%M")}'
+            f'written {len(esito.scritture)} rows | copy {esito.copia} | {self.orologio().strftime("%d/%m/%Y %H:%M")}'
         )
         return esito

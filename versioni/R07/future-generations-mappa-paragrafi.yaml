@@ -67,7 +67,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
     anelli: [c]
     verbatim: "la generación futura que enfrentará los efectos del cambio climático en el período 2041-2070 y 2071-2100"
 
@@ -81,7 +81,7 @@ voci:
     sonde_P04: [rimedio_strutturale]
     sonde_P05: [rimedio_strutturale]
     prepara: [tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [tutela_conexidad_collettivo]"
     anelli: [a]
 
   - pronuncia: corte_suprema_2018
@@ -94,7 +94,7 @@ voci:
     sonde_P04: [rimedio_strutturale]
     sonde_P05: [rimedio_strutturale]
     prepara: [generazioni_future_obbligo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [generazioni_future_obbligo]"
     anelli: [e]
     verbatim: "un acuerdo intergeneracional sobre las medidas que se adoptarán para reducir la deforestación"
 
@@ -108,7 +108,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
     anelli: []
     verbatim: "el principio de la equidad intergeneracional obliga a actuar sin más demora"
 
@@ -122,7 +122,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
     anelli: []
 
   - pronuncia: corte_suprema_2018
@@ -135,7 +135,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [tutela_conexidad_collettivo]"
     anelli: [a]
 
   - pronuncia: corte_suprema_2018
@@ -147,7 +147,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad, rimedio_strutturale]
     sonde_P04: [ammissibilita_conexidad, rimedio_strutturale]
     sonde_P05: [ammissibilita_conexidad, rimedio_strutturale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [tutela_conexidad_collettivo]"
     anelli: [a]
     verbatim: "La conexidad entre la vulneración de derechos colectivos y la violación a uno u otros de tipo primario, fundamental e individual"
 
@@ -160,7 +160,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad]
     sonde_P04: [ammissibilita_conexidad]
     sonde_P05: [ammissibilita_conexidad]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti, tutela_conexidad_collettivo]"
     anelli: [a, b]
     verbatim: "están ligados sustancialmente y determinados por el entorno y el ecosistema"
 
@@ -174,7 +174,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
     anelli: [a, c]
     verbatim: "se encuentran legitimados para actuar en causa propia"
 
@@ -188,7 +188,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [ecocentrico_antropico]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [ecocentrico_antropico]"
     anelli: [b]
     verbatim: "la adopción de un modelo antropocéntrico y egoísta"
 
@@ -202,7 +202,7 @@ voci:
     sonde_P04: [bioma_soggetto_diritti]
     sonde_P05: [bioma_soggetto_diritti]
     prepara: [generazioni_future_obbligo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [ecocentrico_antropico, generazioni_future_obbligo]"
     anelli: [b]
     verbatim: "Hay surgimiento de movimientos favorables a una nueva ideología de sociedad"
 
@@ -215,7 +215,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad, bioma_soggetto_diritti]
     sonde_P04: [ammissibilita_conexidad, bioma_soggetto_diritti]
     sonde_P05: [ammissibilita_conexidad, bioma_soggetto_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, ecocentrico_antropico]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti, ecocentrico_antropico]"
     anelli: [b]
     verbatim: "todos los actos que impactan negativamente la naturaleza, implican indiscutiblemente menoscabo de los derechos fundamentales personales"
 
@@ -229,7 +229,7 @@ voci:
     sonde_P04: [diritti_generazioni_future]
     sonde_P05: [diritti_generazioni_future]
     prepara: [ecocentrico_antropico]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [generazioni_future_obbligo]"
     anelli: [b]
     verbatim: "incluye a los sujetos aun no nacidos, quienes merecen disfrutar de las mismas condiciones medioambientales vividas por nosotros"
 
@@ -242,7 +242,7 @@ voci:
     sonde_P03: [bioma_soggetto_diritti, diritti_generazioni_future]
     sonde_P04: [bioma_soggetto_diritti, diritti_generazioni_future]
     sonde_P05: [bioma_soggetto_diritti, diritti_generazioni_future]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [ecocentrico_antropico, generazioni_future_obbligo]"
     anelli: [b]
     verbatim: "una limitación de la libertad de acción de las generaciones presentes"
 
@@ -256,7 +256,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, generazioni_future_obbligo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, generazioni_future_obbligo]"
     anelli: []
     verbatim: "constituye un orden público ecológico mundial y sirve de criterio orientador para las legislaciones patrias"
 
@@ -270,7 +270,7 @@ voci:
     sonde_P04: [bioma_soggetto_diritti, diritti_generazioni_future]
     sonde_P05: [bioma_soggetto_diritti, diritti_generazioni_future]
     prepara: [conexidad_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, ecocentrico_antropico, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti, ecocentrico_antropico, generazioni_future_obbligo]"
     anelli: [b]
     verbatim: "pertenece a las personas que en él viven, pero también a las generaciones venideras"
 
@@ -284,7 +284,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [conexidad_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti]"
     anelli: [b]
     verbatim: "Todas las personas tienen derecho a gozar de un ambiente sano"
 
@@ -297,7 +297,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad]
     sonde_P04: [ammissibilita_conexidad]
     sonde_P05: [ammissibilita_conexidad]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti, tutela_conexidad_collettivo]"
     anelli: [a]
     verbatim: "ello permite concluir la ineficacia de la acción popular"
 
@@ -311,7 +311,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, natura_soggetto_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, natura_soggetto_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, natura_soggetto_diritti]"
     anelli: [e]
     verbatim: "La conservación de la Amazonía es una obligación nacional y global"
 
@@ -325,7 +325,7 @@ voci:
     sonde_P04: [deforestazione_minaccia_diritti]
     sonde_P05: [deforestazione_minaccia_diritti]
     prepara: [equita_intergenerazionale_violata, tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
     anelli: [c]
     verbatim: "un perjuicio inminente y grave para los niños, adolescentes y adultos que acuden a esta acción"
 
@@ -338,7 +338,7 @@ voci:
     sonde_P03: [deforestazione_minaccia_diritti]
     sonde_P04: [deforestazione_minaccia_diritti]
     sonde_P05: [deforestazione_minaccia_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti]"
     anelli: [c]
     verbatim: "no cabe duda que existe peligro de daño"
 
@@ -352,7 +352,7 @@ voci:
     sonde_P04: [deforestazione_minaccia_diritti, diritti_generazioni_future]
     sonde_P05: [deforestazione_minaccia_diritti, diritti_generazioni_future]
     prepara: [generazioni_future_obbligo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [equita_intergenerazionale_violata, generazioni_future_obbligo]"
     anelli: [c]
     verbatim: "es obvia su transgresión"
 
@@ -365,7 +365,7 @@ voci:
     sonde_P03: [deforestazione_minaccia_diritti]
     sonde_P04: [deforestazione_minaccia_diritti]
     sonde_P05: [deforestazione_minaccia_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti]"
     anelli: [c]
     verbatim: "corresponsabilidad del Estado colombiano en detener las causas que provocan la emisión de GEI"
 
@@ -378,7 +378,7 @@ voci:
     sonde_P03: [deforestazione_minaccia_diritti]
     sonde_P04: [deforestazione_minaccia_diritti]
     sonde_P05: [deforestazione_minaccia_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti]"
     anelli: [d]
     verbatim: "constituye un grave desconocimiento de las obligaciones adquiridas por el Estado"
 
@@ -392,7 +392,7 @@ voci:
     sonde_P04: [ammissibilita_conexidad, bioma_soggetto_diritti]
     sonde_P05: [ammissibilita_conexidad, bioma_soggetto_diritti]
     prepara: [tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, ecocentrico_antropico, natura_soggetto_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti, ecocentrico_antropico, natura_soggetto_diritti]"
     anelli: [b, e]
     verbatim: "relacionada con el reconocimiento de la naturaleza como un auténtico sujeto de derechos"
 
@@ -406,7 +406,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti]"
     anelli: [d]
     verbatim: "ha enfrentado eficientemente la"
 
@@ -420,7 +420,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [d]
     verbatim: "no estan cumpliendo sus funciones de evaluar, controlar y monitorear los recursos naturales"
 
@@ -434,7 +434,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [d]
     verbatim: "es prueba de la omisión en el cumplimiento de las funciones legales"
 
@@ -448,7 +448,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [d]
 
   - pronuncia: corte_suprema_2018
@@ -472,7 +472,7 @@ voci:
     sonde_P04: [bioma_soggetto_diritti, rimedio_strutturale]
     sonde_P05: [bioma_soggetto_diritti, rimedio_strutturale]
     prepara: [generazioni_future_obbligo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
     anelli: [e]
     verbatim: "se reconoce a la Amazonía Colombiana como entidad, “sujeto de derechos”, titular de la protección, de la conservación, mantenimiento y restauración a cargo del Estado y las entidades territoriales que la integran"
 
@@ -486,7 +486,7 @@ voci:
     sonde_P04: [deforestazione_minaccia_diritti, diritti_generazioni_future, rimedio_strutturale]
     sonde_P05: [deforestazione_minaccia_diritti, diritti_generazioni_future, rimedio_strutturale]
     prepara: [natura_soggetto_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
     anelli: [e]
     verbatim: "pacto intergeneracional por la vida del amazonas colombiano -PIVAC"
 
@@ -514,7 +514,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
     anelli: [c]
     verbatim: "net rate of deforestation to zero in the Colombian Amazon by 2020"
 
@@ -528,7 +528,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [equita_intergenerazionale_violata]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [equita_intergenerazionale_violata]"
     anelli: []
     verbatim: "the principle of intergenerational equity compels action without further delay"
 
@@ -541,7 +541,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad]
     sonde_P04: [ammissibilita_conexidad]
     sonde_P05: [ammissibilita_conexidad]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti, tutela_conexidad_collettivo]"
     anelli: [a, b]
     verbatim: "Without a healthy environment, subjects of law and sentient beings in general will not be able to survive"
 
@@ -555,7 +555,7 @@ voci:
     sonde_P04: [diritti_generazioni_future]
     sonde_P05: [diritti_generazioni_future]
     prepara: [ecocentrico_antropico]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [ecocentrico_antropico, generazioni_future_obbligo]"
     anelli: [b]
     verbatim: "The environmental rights of future generations are based on the (i) ethical duty of the solidarity of the species and (ii) on the intrinsic value of nature"
 
@@ -568,7 +568,7 @@ voci:
     sonde_P03: [bioma_soggetto_diritti, diritti_generazioni_future]
     sonde_P04: [bioma_soggetto_diritti, diritti_generazioni_future]
     sonde_P05: [bioma_soggetto_diritti, diritti_generazioni_future]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [ecocentrico_antropico, generazioni_future_obbligo]"
     anelli: [b]
     verbatim: "a limitation to the freedom of action of present generations"
 
@@ -582,7 +582,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [natura_soggetto_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [natura_soggetto_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [natura_soggetto_diritti]"
     anelli: [e]
     verbatim: "The conservation of the Amazon is a national and global obligation"
 
@@ -596,7 +596,7 @@ voci:
     sonde_P04: [deforestazione_minaccia_diritti]
     sonde_P05: [deforestazione_minaccia_diritti]
     prepara: [equita_intergenerazionale_violata]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti]"
     anelli: [c]
     verbatim: "imminent and serious damage to the children, adolescents and adults who filed this lawsuit"
 
@@ -610,7 +610,7 @@ voci:
     sonde_P04: [deforestazione_minaccia_diritti, diritti_generazioni_future]
     sonde_P05: [deforestazione_minaccia_diritti, diritti_generazioni_future]
     prepara: [conexidad_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
     anelli: [c, d]
     verbatim: "future generations, including children who brought this action, will be directly affected, unless we presently reduce the deforestation rate to zero"
 
@@ -624,7 +624,7 @@ voci:
     sonde_P04: [bioma_soggetto_diritti, rimedio_strutturale]
     sonde_P05: [bioma_soggetto_diritti, rimedio_strutturale]
     prepara: [deforestazione_clima_diritti, generazioni_future_obbligo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [generazioni_future_obbligo, natura_soggetto_diritti]"
     anelli: [e]
     verbatim: "the Colombian Amazon is recognized as a “subject of rights,” entitled to protection, conservation, maintenance and restoration led by the State and the territorial agencies"
 
@@ -637,7 +637,7 @@ voci:
     sonde_P03: [deforestazione_minaccia_diritti, rimedio_strutturale]
     sonde_P04: [deforestazione_minaccia_diritti, rimedio_strutturale]
     sonde_P05: [deforestazione_minaccia_diritti, rimedio_strutturale]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: [e]
     verbatim: "issuing minority opinion"
 
@@ -653,7 +653,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [equita_intergenerazionale_violata]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [equita_intergenerazionale_violata]"
     anelli: []
     verbatim: "como miembros de las futuras generaciones"
 
@@ -667,7 +667,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
     anelli: [c]
 
   - pronuncia: tribunal_superior_2018
@@ -680,7 +680,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [natura_soggetto_diritti, tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [natura_soggetto_diritti, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [natura_soggetto_diritti, tutela_conexidad_collettivo]"
     anelli: []
     verbatim: "se reconozca a la Amazonía como un sujeto de derechos de protección, conservación, mantenimiento y restauración"
 
@@ -694,7 +694,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [tutela_conexidad_collettivo]"
     anelli: [a]
     verbatim: "miembros de las generaciones futuras"
 
@@ -707,7 +707,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad]
     sonde_P04: [ammissibilita_conexidad]
     sonde_P05: [ammissibilita_conexidad]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [tutela_conexidad_collettivo]"
     anelli: [a]
     verbatim: "Que exista conexidad entre la vulneración de un derecho colectivo y la violación"
 
@@ -720,7 +720,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad]
     sonde_P04: [ammissibilita_conexidad]
     sonde_P05: [ammissibilita_conexidad]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti]"
     anelli: [b]
     verbatim: "ha dado connotación de fundamental a la garantía al ambiente sano en conexidad con la vida, la salud, el agua y la alimentación"
 
@@ -734,7 +734,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti]"
     anelli: []
 
   - pronuncia: tribunal_superior_2018
@@ -747,7 +747,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata, tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
     anelli: [c]
     verbatim: "el papel protagónico de la Amazonía Colombiana respecto del clima global"
 
@@ -761,7 +761,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
     anelli: []
     verbatim: "En definitiva la acción popular luce idónea y eficaz para obtener la protección que por esta vía se reclama"
 
@@ -775,7 +775,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [tutela_conexidad_collettivo]"
     anelli: []
     verbatim: "NO CONCEDER el amparo solicitado"
 
@@ -791,7 +791,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [conexidad_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: []"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: []"
     anelli: []
     verbatim: "no solamente de la generación actual, sino la futura"
 
@@ -804,7 +804,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad]
     sonde_P04: [ammissibilita_conexidad]
     sonde_P05: [ammissibilita_conexidad]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [tutela_conexidad_collettivo]"
     anelli: [a]
 
   - pronuncia: salvamento_2018
@@ -817,7 +817,7 @@ voci:
     sonde_P04: [ammissibilita_conexidad, deforestazione_minaccia_diritti]
     sonde_P05: [ammissibilita_conexidad, deforestazione_minaccia_diritti]
     prepara: [equita_intergenerazionale_violata, natura_soggetto_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata, tutela_conexidad_collettivo]"
     anelli: [a, c]
     verbatim: "personas reales, que son las que acuden al amparo"
 
@@ -830,7 +830,7 @@ voci:
     sonde_P03: [ammissibilita_conexidad, deforestazione_minaccia_diritti, diritti_generazioni_future]
     sonde_P04: [ammissibilita_conexidad, deforestazione_minaccia_diritti, diritti_generazioni_future]
     sonde_P05: [ammissibilita_conexidad, deforestazione_minaccia_diritti, diritti_generazioni_future]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [conexidad_diritti, equita_intergenerazionale_violata, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [conexidad_diritti, equita_intergenerazionale_violata, generazioni_future_obbligo]"
     anelli: [b, c]
     verbatim: "las generaciones futuras como sujeto de derechos"
 
@@ -843,7 +843,7 @@ voci:
     sonde_P03: [bioma_soggetto_diritti]
     sonde_P04: [bioma_soggetto_diritti]
     sonde_P05: [bioma_soggetto_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [ecocentrico_antropico, natura_soggetto_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [ecocentrico_antropico, natura_soggetto_diritti]"
     anelli: [e]
     verbatim: "la Amazonia como sujeto de derechos"
 
@@ -856,7 +856,7 @@ voci:
     sonde_P03: [deforestazione_minaccia_diritti]
     sonde_P04: [deforestazione_minaccia_diritti]
     sonde_P05: [deforestazione_minaccia_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti]"
     anelli: [c]
 
   - pronuncia: salvamento_2018
@@ -869,7 +869,7 @@ voci:
     sonde_P04: [diritti_generazioni_future]
     sonde_P05: [diritti_generazioni_future]
     prepara: [deforestazione_clima_diritti]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [generazioni_future_obbligo]"
     anelli: [e]
     verbatim: "el derecho fundamental al diseño e implementación de un plan escrito"
 
@@ -885,7 +885,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [equita_intergenerazionale_violata, generazioni_future_obbligo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata, generazioni_future_obbligo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [equita_intergenerazionale_violata, generazioni_future_obbligo]"
     anelli: [c]
     verbatim: "somos la generación futura que"
 
@@ -899,7 +899,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, equita_intergenerazionale_violata]"
     anelli: [c]
 
   - pronuncia: impugnacion_2018
@@ -912,7 +912,7 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [conexidad_diritti, deforestazione_clima_diritti, tutela_conexidad_collettivo]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [deforestazione_clima_diritti, tutela_conexidad_collettivo]"
     anelli: [a, c]
 
   - pronuncia: amicus_hansen_2018
@@ -925,6 +925,6 @@ voci:
     sonde_P04: []
     sonde_P05: []
     prepara: [deforestazione_clima_diritti, equita_intergenerazionale_violata]
-    rivista: "30/09/2026, lettura sul testo del paragrafo, da confermare dal giurista del team; prima: [equita_intergenerazionale_violata]"
+    rivista: "30/09/2026, rilettura del gruppo di ricerca sul testo del paragrafo (Claude Fable 5.1: supporto ancillare, sistemazione e riordino); prima: [equita_intergenerazionale_violata]"
     anelli: []
     verbatim: "twenty-five young persons, representing future generations"

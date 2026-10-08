@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import subprocess
 from pathlib import Path
 
@@ -56,13 +57,17 @@ CAMBIATI_DOPO = {
     'cerca',
     'unisci_e_aggiungi',
     'controllo_completezza',
+    'principi_da_paragrafi',  # 08/10/2026: sostengono_<serie> e sottopunti del dispositivo (mappa P09 della CIG)
+    'controllo_finestra',
+    'sonde',
 }
 """Live scripts changed after the harness (02/10/2026 evening: temperature, seed, call record, full reasoning; then the
 options of the five readings, default unchanged: ``--regola R10``, ``--aggiungi-letture``, ``--composizione R11``;
 03/10/2026, the external review: Thai, Lao, Khmer and Myanmar in the evidence check; the journal says its own errors
 on stderr and in ``giornale/errori_giornale.log`` instead of swallowing them; 04/10/2026: ``pubblica`` keeps a full
 copy of the rows it overwrites, tools/copia_prima.py; S07: footnote-aware grouping in ``cerca`` and
-``unisci_e_aggiungi``, R15 known to ``controllo_completezza``)."""
+``unisci_e_aggiungi``, R15 known to ``controllo_completezza``; 06/10/2026: ``sonde`` and ``controllo_finestra`` read the list of the cases
+from ``cited-cases/casi.yaml`` via ``casi_registro``)."""
 
 
 def _git_show(percorso: str) -> bytes | None:
@@ -150,7 +155,8 @@ def test_serie_suf_storica_codice(vivi, monkeypatch: pytest.MonkeyPatch, trace_s
         except SystemExit as e:
             with pytest.raises(SerieMancanteError) as err:
                 c.serie(caso)
-            assert str(err.value) == str(e)
+            # the package says it in English (06/10/2026): «manca X» -> «X is missing»
+            assert str(err.value) == re.sub(r'manca (\S+)$', r'\1 is missing', str(e))
             continue
         assert (c.serie(caso), c.suf(caso), c.storica(caso)) == atteso
         if caso:
@@ -168,4 +174,4 @@ def test_codice_mappa() -> None:
     c = Config()
     assert c.codice_mappa('neubauer') == 'R07'
     assert c.codice_mappa('urgenda') == 'R04'
-    assert c.codice_mappa('cig-parere-clima') == 'R09'
+    assert c.codice_mappa('cig-parere-clima') == 'R18'

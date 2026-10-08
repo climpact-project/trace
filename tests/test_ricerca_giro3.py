@@ -179,8 +179,8 @@ def test_csv_con_gemelle_per_atto(radice: Path) -> None:
     assert [(r['document_id'], r['stesso_testo_di'], r['motivo_scarto']) for r in scarti] == [
         ('a', '', 'copia di un altro frammento')
     ]
-    assert 'stesso testo in un altro atto: 1 righe tenute, con stesso_testo_di' in schermo
-    assert 'duplicati  : 1 righe erano copie dello stesso testo' in schermo
+    assert 'same text in another filing: 1 rows kept, with stesso_testo_di' in schermo
+    assert 'duplicates  : 1 rows were copies of the same text' in schermo
 
 
 def test_csv_su_tutto_il_corpus(radice: Path) -> None:
@@ -191,7 +191,7 @@ def test_csv_su_tutto_il_corpus(radice: Path) -> None:
     assert [(r['document_id'], r['copie']) for r in righe] == [('a', '3'), ('c', '1')]
     campi_s, scarti = _leggi(radice / 'index' / 'urgenda.SCARTI.csv')
     assert campi_s == [*campi, 'motivo_scarto'] and [r['document_id'] for r in scarti] == ['a', 'b']
-    assert not any('stesso testo in un altro atto' in s for s in schermo)
+    assert not any('same text in another filing' in s for s in schermo)
 
 
 @pytest.mark.parametrize('per_atto', [False, True])
@@ -203,7 +203,7 @@ def test_caso_svuotato_dal_filtro(radice: Path, per_atto: bool) -> None:
     campi_s, scarti = _leggi(radice / 'index' / 'filtrato.SCARTI.csv')
     assert campi_s == [*campi, 'motivo_scarto'] and len(scarti) == 4
     assert all(r['anteriore'] == 'si' and 'anteriore alla pronuncia' in r['motivo_scarto'] for r in scarti)
-    assert 'RIGHE      : 0' in schermo
+    assert 'ROWS       : 0' in schermo
 
 
 def test_caso_senza_occorrenze(radice: Path) -> None:
@@ -287,12 +287,12 @@ def test_conto_delle_spezzate_solo_gruppi_da_unire(radice: Path) -> None:
     u, e, schermo = _due_nomi_e_un_codice_giudicato(radice)
     u.mostra(e)
     assert u.da_contare(e) == []
-    assert any(r.startswith('   citazioni spezzate 0: righe da unire 0, con una riga giudicata 0,') for r in schermo)
+    assert any(r.startswith('   split citations 0: rows to merge 0, with one judged row 0,') for r in schermo)
     schermo.clear()
     u.compat = True
     u.mostra(e)
     assert len(u.da_contare(e)) == 1
-    assert any(r.startswith('   citazioni spezzate 1: righe da unire 0, con una riga giudicata 1,') for r in schermo)
+    assert any(r.startswith('   split citations 1: rows to merge 0, with one judged row 1,') for r in schermo)
 
 
 @pytest.mark.parametrize('compat', [False, True])
@@ -302,7 +302,7 @@ def test_conto_delle_spezzate_con_una_fusione(radice: Path, compat: bool) -> Non
     schermo: list[str] = []
     u.stampa, u.compat = schermo.append, compat
     u.mostra(u.confronta('urgenda'))
-    assert any(r.startswith('   citazioni spezzate 1: righe da unire 1,') for r in schermo)
+    assert any(r.startswith('   split citations 1: rows to merge 1,') for r in schermo)
 
 
 def test_unione_riga_senza_file(radice: Path) -> None:

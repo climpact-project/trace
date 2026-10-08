@@ -259,7 +259,7 @@ class ApplicaC07:
         stampa: Stampa = _stampa,
     ) -> None:
         if ipotesi_tutte and scrivi:
-            raise ValueError('--ipotesi-tutte non si usa con --scrivi')
+            raise ValueError('--ipotesi-tutte cannot be used with --scrivi')
         self.config = config
         self.banca = banca
         self.da = da
@@ -416,7 +416,7 @@ class ApplicaC07:
                     e['c07_segno'] = segno_c07([altra])
             c['c07_spunte_tolte'].append({'pagina': p, 'altra_riga': altra, 'motivo': 'C07 ' + x['motivo'][:300]})
         for k, v in saltate.items():
-            self.stampa(f'spunte del team saltate ({k}): {v}')
+            self.stampa(f'team ticks skipped ({k}): {v}')
         return scritture
 
     def scrivi_elenchi(self, ris: RisultatoC07) -> None:
@@ -468,7 +468,7 @@ class ApplicaC07:
                     ';'.join(c.get('proposto_principi', r.get('proposto_principi') or [])),
                 ]
                 w.writerow(riga)
-                self.stampa('ESEMPIO ' + ' | '.join(riga))
+                self.stampa('EXAMPLE ' + ' | '.join(riga))
 
     def esegui(self) -> RisultatoC07:
         """Compute, write the lists and the examples, and with ``scrivi`` write the rows (copy first)."""
@@ -477,23 +477,23 @@ class ApplicaC07:
         if self.revisione:
             spunte = self.spunte_del_team(banca, self.revisione)
             if set(spunte) & set(ris.scritture):
-                raise ValueError("una riga giudicata e' finita anche fra quelle della regola")
+                raise ValueError('a judged row ended up among those of the rule too')
             n = sum(len(c['c07_spunte_tolte']) - len(banca[i].get('c07_spunte_tolte') or []) for i, c in spunte.items())
-            self.stampa(f'spunte del team tolte: {n} pagine su {len(spunte)} righe giudicate')
+            self.stampa(f'team ticks removed: {n} pages on {len(spunte)} judged rows')
             ris.scritture.update(spunte)
         self.scrivi_elenchi(ris)
         giudicate = {x[0] for x in ris.saltate}
         self.stampa(
-            f'righe toccate {len(ris.scritture)} | segni {ris.segni} | principi tolti {len(ris.tolti)} | '
-            f'per il team {len(ris.per_il_team)} | giudicate saltate {len(giudicate)} righe '
-            f'({len(ris.saltate)} pagine) | '
-            f'«prosegue» tenute a parte {len(ris.da_rileggere)}'
+            f'rows touched {len(ris.scritture)} | marks {ris.segni} | principles removed {len(ris.tolti)} | '
+            f'for the team {len(ris.per_il_team)} | judged skipped {len(giudicate)} rows '
+            f'({len(ris.saltate)} pages) | '
+            f'«prosegue» (continues) kept aside {len(ris.da_rileggere)}'
         )
-        self.stampa(f'tolti per caso: {dict(collections.Counter(x[1] for x in ris.tolti))}')
-        self.stampa(f'tolti per principio: {collections.Counter(x[2] for x in ris.tolti).most_common()}')
+        self.stampa(f'removed per case: {dict(collections.Counter(x[1] for x in ris.tolti))}')
+        self.stampa(f'removed per principle: {collections.Counter(x[2] for x in ris.tolti).most_common()}')
         self.scrivi_esempi(banca, ris.scritture)
         if not self.scrivi:
-            self.stampa('ANTEPRIMA: niente scritto in banca dati')
+            self.stampa('PREVIEW: nothing written to the database')
             return ris
         ora = self.banca.ora_del_server
         for c in ris.scritture.values():
@@ -503,5 +503,5 @@ class ApplicaC07:
             'applica_c07', 'tutti', {i: banca[i] for i in ris.scritture}, ris.scritture, 'esclusioni'
         )
         self.banca.scrivi_a_lotti(Scrittura('update', 'corpus_rows', rid, c) for rid, c in ris.scritture.items())
-        self.stampa(f'scritte {len(ris.scritture)} | copia {copia} | {self.orologio().strftime("%d/%m/%Y %H:%M")}')
+        self.stampa(f'written {len(ris.scritture)} | copy {copia} | {self.orologio().strftime("%d/%m/%Y %H:%M")}')
         return ris

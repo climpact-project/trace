@@ -131,3 +131,17 @@ def test_trovati_sintetico() -> None:
         'principi': ['urgenda.a', 'urgenda.b'],
         'metodo': 'mappa dei paragrafi',
     }
+
+
+def test_sottopunti_come_vivi(vivi_oggi) -> None:
+    """Sub-points of the operative clause (08/10/2026): same reading as the live script."""
+    pp = vivi_oggi('principi_da_paragrafi')
+    for dopo in ['(3)(B)(a), (3)(E). 404', ' (3)(A)(f).', '(A).', ', 273', '(2019)']:
+        assert MappaParagrafi.sottopunti(dopo) == pp.sottopunti(dopo)
+    tab = {'457': [], '457(3)(B)(a)': ['x'], '457(3)': ['y']}
+    for n, s, atteso in [('457', '(3)(B)(a)', '457(3)(B)(a)'), ('457', '(B)(a)', '457(3)(B)(a)'), ('457', '(3)(E)', None),
+                         ('457', '(3)', '457(3)'), ('45', '(2019)', None)]:
+        assert MappaParagrafi.sottopunto(tab, n, s) == atteso == pp.sottopunto(tab, n, s)
+    m = MappaParagrafi('c', {'unica': tab}, re.compile(r'ICJ'))
+    r = m.principi_riga({'id': 'x', 'contesto': '===== PAGINA DELLA CITAZIONE =====\nICJ ¶¶ 457(B)(a), (3)(E).'})
+    assert r['paragrafi'] == ['unica:457', 'unica:457(3)(B)(a)'] and r['principi'] == ['x']

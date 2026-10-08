@@ -200,9 +200,9 @@ class Lettore(ABC):
             self._tenute = {r['id']: self.tenute(esistenti.get(r['id']), self.prompt(r)) for r in righe}
             fare = [r for r in righe if len(self._tenute[r['id']][0]) < self.letture]
             self.stampa(
-                f'aggiunte: {sum(1 for r in fare if self._tenute[r["id"]][0])} righe da completare, '
-                f'{sum(1 for r in fare if not self._tenute[r["id"]][0])} da capo, '
-                f"{sum(self._tenute[r['id']][1] for r in fare)} letture scartate perche' la domanda e' cambiata"
+                f'additions: {sum(1 for r in fare if self._tenute[r["id"]][0])} rows to complete, '
+                f'{sum(1 for r in fare if not self._tenute[r["id"]][0])} from scratch, '
+                f'{sum(self._tenute[r["id"]][1] for r in fare)} readings dropped because the question changed'
             )
             return fare
         if self.solo_vuote:
@@ -267,7 +267,7 @@ class Lettore(ABC):
                     f.flush()
                 if n % self.OGNI == 0:
                     self.stampa(f'  {n}/{len(da_fare)} [{self.orologio() - t0:.0f}s]')
-        self.stampa(f'fatto in {self.orologio() - t0:.0f}s')
+        self.stampa(f'done in {self.orologio() - t0:.0f}s')
         return n
 
     @staticmethod
@@ -371,7 +371,7 @@ class LettoreTipo(Lettore):
         return {'chat_template_kwargs': {'thinking': True, 'reasoning_effort': self.sforzo}}
 
     def messaggio_inizio(self, righe: list[dict[str, Any]], fatte: set[str], da_fare: list[dict[str, Any]]) -> str:
-        return f"{self.gruppo}: {len(righe)} righe, {len(fatte)} gia' fatte in tutto, {len(da_fare)} da fare"
+        return f'{self.gruppo}: {len(righe)} rows, {len(fatte)} already done in all, {len(da_fare)} to do'
 
     def nuova(self, x: Mapping[str, Any]) -> list[Any]:
         # NOTE(bug): in today's live reader (02/10/2026 evening) a comment swallowed
@@ -503,7 +503,7 @@ class LettorePagineAttorno(Lettore):
         return {'chat_template_kwargs': {'thinking': True, 'reasoning_effort': 'low'}}
 
     def messaggio_inizio(self, righe: list[dict[str, Any]], fatte: set[str], da_fare: list[dict[str, Any]]) -> str:
-        return f'{len(righe)} righe, {len(fatte)} fatte, {len(da_fare)} da fare'
+        return f'{len(righe)} rows, {len(fatte)} done, {len(da_fare)} to do'
 
     def nuova(self, x: Mapping[str, Any]) -> list[Any]:
         # NOTE(bug): in today's live reader a comment swallowed `chiamate.append(x['chiamata'])`, so fresh readings

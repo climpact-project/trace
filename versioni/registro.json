@@ -18,7 +18,12 @@
   "nome_tecnico": "Climate Litigation Database, whole-database export",
   "in_uso": "in uso",
   "alias": "",
-  "famiglia": "dati"
+  "famiglia": "dati",
+  "compito_en": "The documents: filings, pages, extracted text. Every citation comes from here.",
+  "stato_en": "in use",
+  "note_en": "16,791 filings, 569,218 pages indexed. Text extracted with OCR where needed (METHODOLOGY.md).",
+  "famiglia_en": "data",
+  "in_uso_en": "in use"
  },
  {
   "codice": "S01",
@@ -60,7 +65,12 @@
   "nome_tecnico": "Ricerca per nome, prima versione (con la rete semantica di luglio)",
   "in_uso": "sostituita",
   "alias": "V00",
-  "famiglia": "ricerca per nome"
+  "famiglia": "ricerca per nome",
+  "compito_en": "Finds the citations (the name of the case in its forms) and extracts page and passage. The rows and the passage shown come from here.",
+  "stato_en": "replaced by S02 for the rows with the name (29/09/2026); the semantic search of July has been paused since 27/09/2026",
+  "note_en": "The forms of the name are in the case files (74 for Urgenda). Rows of Urgenda from the run of 3/09, of Neubauer and Future Generations from 23/09. Two defects, fixed in S02: the semantic filters (reranker, date) also touched the 'entrambe' (both) rows that name the case; long references were split into two rows. Code: `cerca.py` as it was on 28/09/2026 (history of the repository), the last version before the fixes of S02; the runs of 3/09 and 23/09 may have used an earlier revision.",
+  "famiglia_en": "name search",
+  "in_uso_en": "replaced"
  },
  {
   "codice": "S02",
@@ -126,7 +136,13 @@
   "alias": "V10",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S01",
-  "cambia": "niente filtri semantici sulle righe col nome; un riferimento lungo resta una citazione; forme coreana e giapponese"
+  "cambia": "niente filtri semantici sulle righe col nome; un riferimento lungo resta una citazione; forme coreana e giapponese",
+  "compito_en": "Finds the citations with the name of the case. No semantic filter on the rows with the name; an identifier (docket number, ECLI, web address) next to the previous match continues the same citation; Korean and Japanese forms of Urgenda.",
+  "stato_en": "replaced by S03 on 01/10/2026 (the rows it added stay, with their provenance)",
+  "note_en": "The merged rows stay in the database with proposto_rete 'fusa' (merged) and fusa_in (merged into). The added rows do not yet have the machine's readings.",
+  "cambia_en": "no semantic filters on the rows with the name; a long reference stays one citation; Korean and Japanese forms",
+  "famiglia_en": "name search",
+  "in_uso_en": "replaced"
  },
  {
   "codice": "S03",
@@ -219,7 +235,13 @@
   "alias": "",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S02",
-  "cambia": "testo OCR delle pagine illeggibili (PDF controllato con l'impronta); altre forme giapponesi e coreane; l'a capo ammesso dentro i nomi in quelle scritture"
+  "cambia": "testo OCR delle pagine illeggibili (PDF controllato con l'impronta); altre forme giapponesi e coreane; l'a capo ammesso dentro i nomi in quelle scritture",
+  "compito_en": "As S02, on 158 unreadable pages redone with OCR in 7 documents (Korean, traditional Chinese, Spanish). New forms: アージェンダ事件, アージェンダ財団 (Urgenda), ノイバウアー, 노이바우어 (Neubauer). For the forms in Japanese, Chinese and Korean a space or a line break between one character and the next is allowed (in those texts the line break also falls inside a name); the Latin forms stay exact. In the redone documents the position of the old rows is translated into the new text (posizione_dopo_ocr.py) instead of being changed, because it is part of the identifier.",
+  "stato_en": "replaced by S05 (the rows it added stay, with their provenance)",
+  "note_en": "URG-1737 was found with the code of S02 on the OCR text of the first round (provenienza.ocr); the other five with S03. The first round of OCR had taken two wrong PDFs: single document §63.39.",
+  "cambia_en": "OCR text of the unreadable pages (PDF checked by its fingerprint); more Japanese and Korean forms; the line break allowed inside names in those scripts",
+  "famiglia_en": "name search",
+  "in_uso_en": "replaced"
  },
  {
   "codice": "D02",
@@ -310,7 +332,13 @@
   "alias": "",
   "famiglia": "dati",
   "rispetto_a": "D01",
-  "cambia": "pagine illeggibili rifatte con l'OCR, dal PDF controllato con l'impronta: 158 pagine in 7 atti il 01/10, 3.171 pagine in 94 atti dal 02/10"
+  "cambia": "pagine illeggibili rifatte con l'OCR, dal PDF controllato con l'impronta: 158 pagine in 7 atti il 01/10, 3.171 pagine in 94 atti dal 02/10",
+  "compito_en": "As D01, but the unreadable pages (broken characters, or Latin letters without sense in place of Korean, Japanese and Chinese script) have their text redone with OCR (ocrmypdf), only where the old page was unreadable and the new one readable. The PDF first passes four checks: the sha256_pdf fingerprint in the header of the text (or of the .orig copy), the name, the number of pages, the similarity. Two phases: 01/10/2026, 158 pages in 7 filings (Korean, traditional Chinese, Spanish); 02/10/2026, the OCR extended to 115 filings on a list, 94 of which with pages replaced: 3,171 pages in all.",
+  "stato_en": "in use: 3,171 pages in 94 filings since 02/10/2026",
+  "note_en": "The rows of the 94 filings carry provenienza.corpus = D02 (the load decides it on today's list). Copies of the earlier text: training/ocr/prima/. Dates reconstructed from the copies made before (one per filing, 01/10 for 7 filings, 02/10 for 87), from the date of the Markdown files and from the journal (2 writes at 17:05); the OCR logs are in training/ocr/<filing>.log. In the page index the field ocr is 2026-10-01 for all the replaced pages (2,939), including those of 02/10: it is written as a fixed value by applica_ocr.py, it is not the date of the OCR. D03 starts from this state (3,171 pages) and adds the Markdown of 277 filings. Revision of this entry: 03/10/2026, training/misure/CORPUS-DIFETTI-2026-10-03.md.",
+  "cambia_en": "unreadable pages redone with OCR, from the PDF checked by its fingerprint: 158 pages in 7 filings on 01/10, 3,171 pages in 94 filings since 02/10",
+  "famiglia_en": "data",
+  "in_uso_en": "in use"
  },
  {
   "codice": "P01",
@@ -328,7 +356,11 @@
   "nome_tecnico": "Sonde di Urgenda",
   "in_uso": "in uso",
   "alias": "",
-  "famiglia": "sonde (i principi di un caso citato)"
+  "famiglia": "sonde (i principi di un caso citato)",
+  "compito_en": "The five principles of Urgenda against which the reranker gives the scores and among which the reading chooses.",
+  "stato_en": "in use",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "in use"
  },
  {
   "codice": "P02",
@@ -346,7 +378,11 @@
   "nome_tecnico": "Sonde di Neubauer e Future Generations, prima serie",
   "in_uso": "sostituita",
   "alias": "",
-  "famiglia": "sonde (i principi di un caso citato)"
+  "famiglia": "sonde (i principi di un caso citato)",
+  "compito_en": "Six principles of Neubauer and seven of STC4360-2018, written on 23/09/2026.",
+  "stato_en": "replaced by P05 on 01/10/2026; its files stay (cited-cases/<case>-P02.yaml, derived files without a suffix)",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "replaced"
  },
  {
   "codice": "P03",
@@ -366,7 +402,12 @@
   "alias": "",
   "famiglia": "sonde (i principi di un caso citato)",
   "rispetto_a": "P02",
-  "cambia": "le sonde del PI: Neubauer da 6 a 7 (due nuove: vita e salute, ammissibilita'), STC4360-2018 da 7 a 5"
+  "cambia": "le sonde del PI: Neubauer da 6 a 7 (due nuove: vita e salute, ammissibilita'), STC4360-2018 da 7 a 5",
+  "compito_en": "Seven principles of Neubauer and five of STC4360-2018, by the PI on 01/10/2026, with the paragraphs they rest on; decisions taken on the counts of the citations (single document §63.40).",
+  "stato_en": "on trial: readings and scores in separate files, the platform does not change until the comparison with P02",
+  "cambia_en": "the PI's probes: Neubauer from 6 to 7 (two new: life and health, admissibility), STC4360-2018 from 7 to 5",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "superseded by P05"
  },
  {
   "codice": "P04",
@@ -392,7 +433,12 @@
   "alias": "",
   "famiglia": "sonde (i principi di un caso citato)",
   "rispetto_a": "P03",
-  "cambia": "testi delle sonde deboli riscritti, paragrafi di Neubauer riassegnati"
+  "cambia": "testi delle sonde deboli riscritti, paragrafi di Neubauer riassegnati",
+  "compito_en": "P03 with the texts of the weak probes rewritten after the reranker test and, for Neubauer, the paragraphs reassigned (Rn. 148-152 to life and health, Rn. 195-198 to the budget, duty towards posterity on Rn. 146 and 193).",
+  "stato_en": "superseded by P05 (an intermediate step of the test)",
+  "cambia_en": "texts of the weak probes rewritten, paragraphs of Neubauer reassigned",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "superseded"
  },
  {
   "codice": "P05",
@@ -422,7 +468,12 @@
   "alias": "",
   "famiglia": "sonde (i principi di un caso citato)",
   "rispetto_a": "P04",
-  "cambia": "ammissibilita' di Neubauer ristretta al suo punto proprio"
+  "cambia": "ammissibilita' di Neubauer ristretta al suo punto proprio",
+  "compito_en": "P04 with the admissibility of Neubauer restricted to its own point (Rn. 89-95, 101, 108-112, 129-137) and the merits paragraphs discussed within admissibility moved to life and health and to intertemporal freedom.",
+  "stato_en": "in use since 01/10/2026 at 12:18 (the PI: the team must judge with the new probes); DeepSeek readings under way, meanwhile provisional proposals from the paragraphs and from the reranker",
+  "cambia_en": "admissibility of Neubauer restricted to its own point",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R07",
@@ -435,12 +486,12 @@
    {
     "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
     "copia": "versioni/R07/neubauer-mappa-paragrafi.yaml",
-    "sha256": "e6498c8297fba21e7feced30c664d4a41a8ed8cf2c10a05052ae9658305109b2"
+    "sha256": "c0f6ca8091ef72bee29b3de199c61ec337ac43fbb60c0c9812190fddc58b1817"
    },
    {
     "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
     "copia": "versioni/R07/future-generations-mappa-paragrafi.yaml",
-    "sha256": "861438ec7f22504da89639a4cb40dda8af52b1781d8206be1bf5ae699379f457"
+    "sha256": "5325f70b78c031071841a579723592f72a2a928d8b904d3ddd16e5f4b827e1da"
    },
    {
     "file": "cited-cases/neubauer-P05.yaml",
@@ -495,9 +546,31 @@
     "sha256": "1227e17266e2d3b128540afd22c050702185185ebddc33d56881429f30d834bf",
     "fino_al": "2026-10-03",
     "righe_cambiate": 110
+   },
+   {
+    "file": "versioni/R07/future-generations-mappa-paragrafi.yaml",
+    "sha256": "861438ec7f22504da89639a4cb40dda8af52b1781d8206be1bf5ae699379f457",
+    "fino_al": "2026-10-07",
+    "righe_cambiate": 62,
+    "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+    "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+   },
+   {
+    "file": "versioni/R07/neubauer-mappa-paragrafi.yaml",
+    "sha256": "e6498c8297fba21e7feced30c664d4a41a8ed8cf2c10a05052ae9658305109b2",
+    "fino_al": "2026-10-07",
+    "righe_cambiate": 109,
+    "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+    "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
    }
   ],
-  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical. 07/10/2026: nel campo rivista tolta la frase sul giurista del team, ruolo del modello detto come supporto ancillare; contenuto identico. / 07/10/2026: in the rivista field the phrase on the team jurist removed, the model's role stated as ancillary support; content identical.",
+  "compito_en": "As R06, with the probes P05 (field sonde_P05; for Neubauer the Randnummer ranges of P05).",
+  "stato_en": "in use with P05",
+  "note_en": "03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical. 07/10/2026: in the rivista field the phrase on the team jurist removed, the role of the model stated as ancillary support; content identical.",
+  "cambia_en": "the probes P05",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "P06",
@@ -525,7 +598,11 @@
   "nome_tecnico": "Sonde di KlimaSeniorinnen (CEDU, 9/4/2024)",
   "in_uso": "in uso",
   "alias": "",
-  "famiglia": "sonde (i principi di un caso citato)"
+  "famiglia": "sonde (i principi di un caso citato)",
+  "compito_en": "DISTINCTIVE probes (the PI, 01/10/2026): the element proper to the decision, what distinguishes it from the other sources, so that an uptake reveals its provenance; not a coverage of the chapters. Proposed by agents that read the decision, reviewed with the PI, sentences of the decision checked letter for letter in the corpus.",
+  "stato_en": "in use",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "in use"
  },
  {
   "codice": "P07",
@@ -570,7 +647,12 @@
     "righe_cambiate": 10
    }
   ],
-  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "compito_en": "DISTINCTIVE probes (the PI, 01/10/2026): the element proper to the decision, what distinguishes it from the other sources, so that an uptake reveals its provenance; not a coverage of the chapters. Proposed by agents that read the decision, reviewed with the PI, sentences of the decision checked letter for letter in the corpus.",
+  "stato_en": "superseded by P09 on 02/10/2026",
+  "note_en": "03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "superseded"
  },
  {
   "codice": "P08",
@@ -615,7 +697,12 @@
     "righe_cambiate": 1
    }
   ],
-  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "compito_en": "DISTINCTIVE probes (the PI, 01/10/2026): the element proper to the decision, what distinguishes it from the other sources, so that an uptake reveals its provenance; not a coverage of the chapters. Proposed by agents that read the decision, reviewed with the PI, sentences of the decision checked letter for letter in the corpus.",
+  "stato_en": "in use",
+  "note_en": "03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "in use"
  },
  {
   "codice": "P09",
@@ -678,7 +765,12 @@
     "righe_cambiate": 10
    }
   ],
-  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "compito_en": "As P07, except the probe obiettivo_1_5 (the 1.5 degree target): three alternative formulations for each of the seven weak probes of the new cases (A the sentence of the decision, B a short one, C as whoever cites summarises it) tried with TRACE-Reranker; chosen on the development half, measured on the verification half. Only the C of 1.5 improves; the others stay.",
+  "stato_en": "in use since 02/10/2026",
+  "note_en": "03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "famiglia_en": "probes (the principles of a cited case)",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R09",
@@ -741,7 +833,138 @@
     "righe_cambiate": 1
    }
   ],
-  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "compito_en": "The paragraph map of KlimaSeniorinnen, of the ICJ opinion and of OC-32/25 (only the paragraphs with the proper element carry a probe). The tool now also recognises «párr.», «parágrafo» and maps written «§§ 1-9» or «párrs. 1-9».",
+  "stato_en": "in use",
+  "note_en": "03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "cambia_en": "maps of the three new cases; paragraph references in Spanish and Portuguese",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
+ },
+ {
+  "codice": "R17",
+  "tipo": "regola",
+  "nome": "Paragraph map supplied by the requester, reviewed by the team",
+  "compito": "Per un caso nuovo inviato con «Run TRACE on your case» la mappa dei paragrafi la scrive chi chiede (obbligatoria, anche solo uno schema dei paragrafi essenziali: decisione del PI del 06/10/2026), nello stesso formato di cited-cases/<caso>-mappa-paragrafi.yaml; una bozza di DeepSeek controllata da tools/controlla_mappe.py puo' completarla dopo l'invio, mai sostituirla; un giurista del team la rivede prima di Start. Lo strumento che la legge e' lo stesso di R09 (tools/principi_da_paragrafi.py). Il file del caso porta il nome di chi l'ha scritta e di chi l'ha rivista.",
+  "data": "2026-10-06",
+  "stato": "pronta, nessun caso ancora",
+  "codice_sorgente": [
+   {
+    "file": "tools/principi_da_paragrafi.py",
+    "copia": "versioni/R17/principi_da_paragrafi.py",
+    "sha256": "44deaa017a121581c12addd9ddc6c509f44fb7137d10ac69bd2e03adc35f528f"
+   }
+  ],
+  "nome_tecnico": "Mappa dei paragrafi fornita da chi chiede, rivista dal team",
+  "in_uso": "sperimentale",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "compito_en": "For a new case sent with «Run TRACE on your case», the paragraph map is written by whoever asks (mandatory, even only an outline of the essential paragraphs: decision of the PI of 06/10/2026), in the same format as cited-cases/<case>-mappa-paragrafi.yaml; a draft by DeepSeek checked by tools/controlla_mappe.py may complete it after submission, never replace it; a jurist of the team reviews it before Start. The tool that reads it is the same as R09 (tools/principi_da_paragrafi.py). The case file carries the name of whoever wrote it and of whoever reviewed it.",
+  "stato_en": "ready, no case yet",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "experimental"
+ },
+ {
+  "codice": "R18",
+  "tipo": "regola",
+  "nome": "Paragraph map of the ICJ advisory opinion with probes P09",
+  "compito": "La mappa dei paragrafi del parere della CIG con le sonde P09 (campi sonde_P09, prepara_P09, sostengono_P09, dispositivo_P09; il vecchio campo sonde resta). Una voce con sostengono_P09 da' le sue sonde solo ai paragrafi elencati, gli altri preparano; i sottopunti del dispositivo (§ 457) hanno sonde proprie: (3)(A)(f) ndc_discrezionalita_limitata e obiettivo_1_5, (3)(B)(a) diligenza_stringente_clima, (3)(A)-(E) insieme non_lex_specialis, (4) erga_omnes; il § 457 citato senza sottopunto solo prepara. Lo strumento legge ora il sottopunto attaccato al numero («¶ 457(3)(B)(a)», anche «457(B)(a)»). I principi si caricano sulle righe vive con tools/carica_mappa_paragrafi.py, che rifa' solo i campi che dipendono dalla mappa con la regola di composizione di R11-R16.",
+  "data": "2026-10-08",
+  "stato": "in uso per il parere della CIG (serie P09)",
+  "istruzioni": [
+   {
+    "file": "cited-cases/cig-parere-clima-mappa-paragrafi.yaml",
+    "copia": "versioni/R18/cig-parere-clima-mappa-paragrafi.yaml",
+    "sha256": "490b227243e7f29a1654378d0f647568a1b00c103f4320bdd7b83bc803995aaa"
+   },
+   {
+    "file": "cited-cases/cig-parere-clima-P09.yaml",
+    "copia": "versioni/R18/cig-parere-clima-P09.yaml",
+    "sha256": "6869d789019a944843fbf91e20c6498cb35086d42f7460f122f1e0b08f46653a"
+   },
+   {
+    "file": "training/mappa_cig_P09/PROPOSTA-2026-10-08.yaml",
+    "copia": "versioni/R18/PROPOSTA-2026-10-08.yaml",
+    "sha256": "dd7f9216e463b8142c826b9cd3f36e3082aaa1ca3566d3e915cbd2129c856c24"
+   }
+  ],
+  "codice_sorgente": [
+   {
+    "file": "tools/principi_da_paragrafi.py",
+    "copia": "versioni/R18/principi_da_paragrafi.py",
+    "sha256": "9950af8b055a3edd9eb29c94cbad73fd0ca2c89822fd500b9b3e911cc79a1ae1"
+   },
+   {
+    "file": "tools/carica_mappa_paragrafi.py",
+    "copia": "versioni/R18/carica_mappa_paragrafi.py",
+    "sha256": "41218fa2200692f264c51662991021c337fdb7a880c8bb8c4b0e947e3fab1229"
+   }
+  ],
+  "misure": [
+   {
+    "nome": "citazioni con un principio dai paragrafi (file del 08/10)",
+    "valore": "636 su 1.592 (620 senza paragrafi, 336 con paragrafi che non portano sonde); con la sola proposta dell'8/10 (variante B) 632"
+   },
+   {
+    "nome": "sottopunti del dispositivo riconosciuti",
+    "valore": "457(3)(B)(a) in 17 citazioni, 457(3)(A)(f) in 3"
+   },
+   {
+    "nome": "righe vive scritte",
+    "valore": "543 (80 del campione senza proposte); 539 con un principio dai paragrafi; 688 invariate"
+   },
+   {
+    "nome": "proposte di principi cambiate",
+    "valore": "283 righe (48 del campione senza proposte): aggiunti diligenza_stringente_clima 90, ndc_discrezionalita_limitata 82, erga_omnes 63, fossili_illecito 61, non_lex_specialis 49, obiettivo_1_5 39, continuita_stato 6; «nessuno» tolto da 48; nessun principio tolto"
+   },
+   {
+    "nome": "pagine attorno che tornano a proseguire",
+    "valore": "7 (maggioranza e prova trovata, fermate prima solo perche' il principio non era spuntato)"
+   },
+   {
+    "nome": "righe non toccate",
+    "valore": "23 giudicate (in 8 la mappa direbbe altro: ICJ-0154, 0190, 0317, 0347, 0446, 0585, 0889, 0909; i campi validato_* restano), 167 mai composte con R11-R16 (39 con un principio dai paragrafi), 171 escluse"
+   }
+  ],
+  "note": "Rivista dal gruppo di ricerca con le decisioni del ricercatore principale, 8 ottobre 2026; Claude Opus 5.5 come supporto ancillare (sistemazione e riordino). Proposta: training/mappa_cig_P09/PROPOSTA-2026-10-08.md. Decisioni del PI sulle tre voci incerte: §§ 250-254 sostiene solo il § 254; §§ 336-353 sostengono solo i §§ 343, 347, 349; § 457 per sottopunti. Causa del vuoto: training/principi/cig-parere-clima_da_paragrafi_P09.jsonl (e _P07) erano collegamenti al file principale, che l'esecuzione del 06/10 con --sonde P09 aveva riscritto vuoto; collegamenti tolti, file rifatti veri (il principale col campo sonde). Copie prima: training/ripresa/prima_carica_mappa_paragrafi_cig-parere-clima_2026-10-08_055631.json.gz e _055911 (11 righe tenute da unioni C03/S08: i paragrafi delle righe unite restano). 08/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 08/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "nome_tecnico": "Mappa dei paragrafi del parere della CIG con le sonde P09",
+  "in_uso": "in uso",
+  "alias": "",
+  "famiglia": "regola senza modello",
+  "rispetto_a": "R09",
+  "cambia": "per la CIG: sonde P09, solo i paragrafi che sostengono, sottopunti del dispositivo",
+  "impronte_precedenti": [
+   {
+    "file": "versioni/R18/cig-parere-clima-mappa-paragrafi.yaml",
+    "sha256": "543294e80301593c3f42d908890a2fd1c1aa65fba6e193b4984dfe1e275d1fd8",
+    "fino_al": "2026-10-08",
+    "righe_cambiate": 1,
+    "nota": "tolta solo la frase d'intestazione che nominava il modello come autore; contenuto identico",
+    "nota_en": "only the header phrase naming the model as author removed; content identical"
+   },
+   {
+    "file": "versioni/R18/cig-parere-clima-P09.yaml",
+    "sha256": "da5d040d01566cccb18e9b0340071e5473b6e6b12a897276662fa71ea1c32411",
+    "fino_al": "2026-10-08",
+    "righe_cambiate": 10,
+    "nota": "tolte solo le frasi che nominavano il modello come autore o verificatore (intestazione e campo fonte delle sonde); contenuto identico",
+    "nota_en": "only the phrases naming the model as author or verifier removed (header and the fonte field of the probes); content identical"
+   },
+   {
+    "file": "versioni/R18/PROPOSTA-2026-10-08.yaml",
+    "sha256": "9183682c6671501efe562e3a68ec945e9b36c09d3fac30742cf5833642ab6e63",
+    "fino_al": "2026-10-08",
+    "righe_cambiate": 1,
+    "nota": "cambiata solo la riga d'intestazione: il ruolo del modello detto come supporto ancillare; contenuto identico",
+    "nota_en": "only the header line changed: the model's role stated as ancillary support; content identical"
+   }
+  ],
+  "compito_en": "The paragraph map of the ICJ opinion with probes P09 (fields sonde_P09, prepara_P09, sostengono_P09, dispositivo_P09; the old field sonde is kept). An entry with sostengono_P09 gives its probes only to the listed paragraphs, the others prepare; the sub-points of the operative clause (para. 457) carry their own probes: (3)(A)(f) ndc_discrezionalita_limitata and obiettivo_1_5, (3)(B)(a) diligenza_stringente_clima, (3)(A)-(E) together non_lex_specialis, (4) erga_omnes; para. 457 cited without a sub-point only prepares. The tool now reads the sub-point attached to the number («¶ 457(3)(B)(a)», also «457(B)(a)»). The principles are loaded onto the live rows with tools/carica_mappa_paragrafi.py, which redoes only the fields that depend on the map, with the composition rule of R11-R16.",
+  "stato_en": "in use for the ICJ opinion (probe set P09)",
+  "note_en": "Reviewed by the research team with the principal investigator's decisions, 8 October 2026; Claude Opus 5.5 as ancillary support (arranging and reordering). PI decisions on the three uncertain entries: paras 250-254 only para. 254 supports; paras 336-353 only paras 343, 347, 349 support; para. 457 by sub-point. Cause of the gap: the P09 (and P07) paragraph files were symlinks to the main file, which the 06/10 run with --sonde P09 had rewritten empty; symlinks removed, files rebuilt. 08/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "cambia_en": "for the ICJ: probes P09, only the supporting paragraphs, sub-points of the operative clause",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R08",
@@ -786,7 +1009,12 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R03",
-  "cambia": "i punteggi su tutta la finestra di 10 pagine prima e dopo, per ogni caso"
+  "cambia": "i punteggi su tutta la finestra di 10 pagine prima e dopo, per ogni caso",
+  "compito_en": "As R03 (up to 10 pages before and after, thresholds 0.5 and 0.8, at most 5 pages), but with the reranker scores on ALL the pages of the window of each citation. With R03 the scoring tool went from 2 pages before to 3 after: pages 4 to 10 had a score only for Urgenda and, by chance, where another citation was near.",
+  "stato_en": "in use",
+  "cambia_en": "the scores over the whole window of 10 pages before and after, for every case",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R10",
@@ -831,7 +1059,13 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R08",
-  "cambia": "soglia 0,5 a ogni distanza dentro +-10 pagine (R08: 0,8 oltre 2 prima e 3 dopo) e nessun tetto (R08: 5 pagine)"
+  "cambia": "soglia 0,5 a ogni distanza dentro +-10 pagine (R08: 0,8 oltre 2 prima e 3 dopo) e nessun tetto (R08: 5 pagine)",
+  "compito_en": "As R08 (up to 10 pages before and after the citation, T01 scores over the whole window), but a page enters if its highest score on a principle is at least 0.5 AT EVERY DISTANCE (R08: 0.5 from 2 before to 3 after, 0.8 farther) and WITHOUT A CAP (R08: at most 5 pages, the best). Unreadable pages stay out (brake 1). It is chosen with `leggi_ripresa.py prepara --regola R10 --etichetta E`, always into a file with a label: the rows file of R08 is not touched.",
+  "stato_en": "in use since the cycle of the five readings (tools/ciclo_cinque_letture.sh)",
+  "note_en": "Measure: training/misure/PERDITE-PAGINE-ATTORNO.md (02/10/2026). The judge is DeepSeek, not the team: the absolute shares are worth as much as the judge; comparisons between rules are more solid because the same judge reads everything blind. Neubauer reaches up to 20 pages per citation.",
+  "cambia_en": "threshold 0.5 at every distance within +-10 pages (R08: 0.8 beyond 2 before and 3 after) and no cap (R08: 5 pages)",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use since the cycle of the five readings"
  },
  {
   "codice": "R11",
@@ -909,7 +1143,13 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R05",
-  "cambia": "cinque letture per riga e voto di maggioranza; principi dalle letture L05 invece che da L04; voti e righe incerte scritti; prova mancante segnata, non tolta"
+  "cambia": "cinque letture per riga e voto di maggioranza; principi dalle letture L05 invece che da L04; voti e righe incerte scritti; prova mancante segnata, non tolta",
+  "compito_en": "Five readings per row, majority vote (full rules in tools/maggioranza.py). TYPE: the most voted among the valid readings of the type (L02 Urgenda, L03 the other cases, codebook 0.4-pilot); in a tie the first in the order of the readings wins among the tied types; uncertain if the margin is at most 1 vote; confidence high only with a margin of at least 2. PRINCIPLES: from the five L05 readings (no longer from L04 as in R05), proposed if the majority of the valid readings votes it (3 out of 5), with the votes written for each principle («4/5»); if none reaches the majority, «nessuno» (none); the principles of the paragraph map stay, and «nessuno» for a chain mention (type by majority). SURROUNDING PAGES (R10): a page continues if the majority says so and the evidence of at least one of those readings is on the page. SUPPORTED SENTENCE: from the first reading with the majority set of principles, otherwise from the first with a sentence, checked with the brakes. MISSING EVIDENCE: a principle proposed by a single reading without a sentence found or a page ticked with evidence stays, marked (proposto_prova_mancante). Uncertain rows (type or a principle with a margin of at most 1) are marked proposto_incerta and with low confidence. The readings already done with the same question, character for character (SHA-256 fingerprint), are kept (--aggiungi-letture); the others are redone.",
+  "stato_en": "in use since the cycle of the five readings (rows with provenienza.composizione R11)",
+  "note_en": "Measure: training/misure/GIRI-E-DOMANDA.md (02/10/2026). The threshold 0.80 for choosing 5 readings is a declared convention. The comparison with the people holds only for Urgenda and is influenced by the proposal the people had in front of them. L08 (one principle at a time) not adopted.",
+  "cambia_en": "five readings per row and majority vote; principles from the L05 readings instead of L04; votes and uncertain rows written; missing evidence marked, not removed",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use for type and surrounding pages"
  },
  {
   "codice": "R12",
@@ -958,7 +1198,12 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R11",
-  "cambia": "principi con almeno 2 letture valide su 5 invece della maggioranza; tipo e pagine attorno invariati"
+  "cambia": "principi con almeno 2 letture valide su 5 invece della maggioranza; tipo e pagine attorno invariati",
+  "compito_en": "As R11 (tools/maggioranza.py) in everything except one rule: a principle is proposed if at least 2 valid readings out of 5 vote for it (with a single valid reading, that one), instead of the majority (3 out of 5). Type, who speaks and surrounding pages stay as in R11 (the pages by majority). A principle taken with 2 votes makes the row uncertain (proposto_incerta), so whoever validates sees it. No principle removed compared with R11, only added.",
+  "stato_en": "in use (rows with provenienza.composizione R12)",
+  "cambia_en": "principles with at least 2 valid readings out of 5 instead of the majority; type and surrounding pages unchanged",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R13",
@@ -1009,7 +1254,13 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R12",
-  "cambia": "una lettura con l'elenco dei principi vuoto vota «nessuno» invece di non votare, come nella misura delle cinque letture"
+  "cambia": "una lettura con l'elenco dei principi vuoto vota «nessuno» invece di non votare, come nella misura delle cinque letture",
+  "compito_en": "As R12 in everything except one rule: an L05 reading that answers with an empty list of principles («principi»: [] or an empty string) votes «nessuno» (none), instead of not voting. It is the rule of the measure of the five readings (training/misure/GIRI-E-DOMANDA.md, tools/stabilita_deepseek.principi: the empty list is the empty set, a failed reading is not). Failed readings (empty, unreadable, without the field) still do not vote. The brakes (tools/freni.py) do not change.",
+  "stato_en": "in use (rows with provenienza.composizione R13: those with at least one reading with an empty list)",
+  "note_en": "The brakes were not the cause: the diagnosis on 60 rows of 04/10/2026 found readings with an empty list, not rejected readings. tracepipe/ (the public copy) has neither R12 nor R13 yet.",
+  "cambia_en": "a reading with an empty list of principles votes «nessuno» instead of not voting, as in the measure of the five readings",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R14",
@@ -1077,7 +1328,13 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R13",
-  "cambia": "freno sulle prove: anche nel testo dell'atto senza i segni del sistema e con le parole spezzate a capo ricucite"
+  "cambia": "freno sulle prove: anche nel testo dell'atto senza i segni del sistema e con le parole spezzate a capo ricucite",
+  "compito_en": "As R13 in everything except the brake on the evidence (tools/freni.py, prova_trovata with ricostruisci): the supported sentence and the evidence of the surrounding pages are searched, besides in the page as it is, in the text of the filing without the marks put by the system ([[INIZIO/FINE DEL BRANO SEGNALATO]], ⟦ ⟧, often inside a word) and with the words split at a line end by a hyphen stitched together. The comparison stays word by word on the first 60 characters; the check of evidence copied from the prompt does not change. It does not touch the principles: it changes the outcome of the sentence, the missing evidence and the surrounding pages ticked.",
+  "stato_en": "in use (rows with provenienza.composizione R14: those in which the new brake changes the proposal)",
+  "note_en": "They stay not found for non-mechanical reasons (summaries, sentences over two pages, attached note numbers, accents composed in a different way): not touched, so as not to loosen the brake. The public copy tracepipe/ does not have this brake yet.",
+  "cambia_en": "brake on the evidence: also in the text of the filing without the marks of the system and with the words split at a line end stitched together",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R15",
@@ -1151,7 +1408,13 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R14",
-  "cambia": "frase sostenuta estratta dal testo (richiamo della nota -> frase del corpo, o frase del nome) invece di quella copiata da DeepSeek"
+  "cambia": "frase sostenuta estratta dal testo (richiamo della nota -> frase del corpo, o frase del nome) invece di quella copiata da DeepSeek",
+  "compito_en": "As R14 in everything except the supported sentence (proposto_frase_sostenuta), which is no longer the one copied by DeepSeek in the L05 reading but the one extracted from the text of the filing by tools/frase_sostenuta.py, with the definition of the L05 instructions (QUESTION 3). If the citation is in a footnote: the note is recognised from the PDF (smaller type at the bottom of the page, number in superscript or at the head), the call with its number is searched in the body on the page or up to 2 pages before, the sentence is the one that contains the call. If it is in the body: the sentence that contains the name (char_start). Sentences stitched across the page break and the split word, never cut after abbreviations (para., Rn., v., art., No., months, acronyms), paragraph numbers removed, no cut at 60 words. When the extraction is uncertain (ambiguous: no call, double call, note without a number, OCR text mixed up, index, sentence over 200 or under 4 words) the DeepSeek sentence stays with its outcome, as before. The principles are decided by DeepSeek as in R14: they do not change, nor does the missing evidence.",
+  "stato_en": "in use (unjudged rows with provenienza.composizione R15, or provenienza.frase R15)",
+  "note_en": "Limits: OCR text with notes mixed into the body, tables and indexes, sentences without a final full stop in the PDF. The viewer lights the sentence only on the page of the citation: if the call is on the previous page, the name is lit.",
+  "cambia_en": "supported sentence extracted from the text (note call -> sentence of the body, or sentence of the name) instead of the one copied by DeepSeek",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R16",
@@ -1241,7 +1504,13 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R14",
-  "cambia": "freno sulle prove: la prova deve stare nella pagina per intero, non solo nei primi 60 caratteri; frase sostenuta fino a 2.000 caratteri"
+  "cambia": "freno sulle prove: la prova deve stare nella pagina per intero, non solo nei primi 60 caratteri; frase sostenuta fino a 2.000 caratteri",
+  "compito_en": "As R14 in everything except the brake on the evidence: a supported sentence or an evidence of the surrounding pages is «found» only if R14 finds it (first 60 characters) AND it is in the page in full (freni.prova_intera): each stretch between ellipsis dots on its own, without spaces, without the note numbers, without the digits glued to words, without the marks of the context, with the accents recomposed, also on the page joined to the next page and without the note lines; otherwise at least 90% of the evidence in stretches of 20 characters; one different letter per word only in the documents redone with OCR (D02). It never finds anything that R14 does not find. The evidence of a surrounding page that R14 finds and the full check does not is repaired from the text of the filing (tools/ripara_prova.py): the true sentence from which the model's evidence started, cut with the sentence rules of R15; the model's evidence stays next to it (prova_modello, prova_riparata). The repair is «uncertain», and the page is not ticked, if the sentence continues beyond the page without the continuation being found, if the model had reassembled the sentences in another order, or if the sentence covers less than 60% of the evidence. Without a true stretch of 20 characters the evidence stays «not found». The supported sentence stays the one the row already has.",
+  "stato_en": "in use since 04/10/2026",
+  "note_en": "Declared limit: a single silent cut between two pieces longer than 20 characters still passes. Stricter variants discarded because they wrongly rejected 8-11 evidences out of 20: training/misure/R16-PROVA-INTERA.md.",
+  "cambia_en": "brake on the evidence: the evidence must be in the page in full, not only in the first 60 characters; supported sentence up to 2,000 characters",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R05",
@@ -1296,7 +1565,12 @@
   "alias": "",
   "famiglia": "regola senza modello",
   "rispetto_a": "R02",
-  "cambia": "precedenza alle righe rilette sul testo OCR; freno sulle prove senza spazi nelle scritture asiatiche"
+  "cambia": "precedenza alle righe rilette sul testo OCR; freno sulle prove senza spazi nelle scritture asiatiche",
+  "compito_en": "As R02, plus: the rows reread on the OCR text take the place of the readings made on the unreadable page (type, principles, continuation, reranker scores); the brake on the evidence compares without spaces the sentences in Japanese, Chinese and Korean, where the line break falls inside words.",
+  "stato_en": "in use",
+  "cambia_en": "precedence to the rows reread on the OCR text; brake on the evidence without spaces in the Asian scripts",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "R06",
@@ -1316,12 +1590,12 @@
    {
     "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
     "copia": "versioni/R06/neubauer-mappa-paragrafi.yaml",
-    "sha256": "155bd7a46a11e249f41f4b7b085276b89d70128121246702b36b8720ad5f1732"
+    "sha256": "dd26b87e85ff3646fd7b4b4af3c341548fbdbe205471e8e466db727b2d57bfef"
    },
    {
     "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
     "copia": "versioni/R06/future-generations-mappa-paragrafi.yaml",
-    "sha256": "2c719642f9cb59ba4d6e9de57d2822348fbfb756daf2fb0e006dfb0927e9b29c"
+    "sha256": "11c25af0915398c8f470c428b195835a03ac74cfbb264b81bc59135cd284bac2"
    },
    {
     "file": "cited-cases/neubauer-P03.yaml",
@@ -1370,9 +1644,31 @@
     "sha256": "24a8550816ebd24236967c5651795c7c9a54252747513a79f26beee9acb6e8f1",
     "fino_al": "2026-10-03",
     "righe_cambiate": 110
+   },
+   {
+    "file": "versioni/R06/future-generations-mappa-paragrafi.yaml",
+    "sha256": "2c719642f9cb59ba4d6e9de57d2822348fbfb756daf2fb0e006dfb0927e9b29c",
+    "fino_al": "2026-10-07",
+    "righe_cambiate": 62,
+    "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+    "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+   },
+   {
+    "file": "versioni/R06/neubauer-mappa-paragrafi.yaml",
+    "sha256": "155bd7a46a11e249f41f4b7b085276b89d70128121246702b36b8720ad5f1732",
+    "fino_al": "2026-10-07",
+    "righe_cambiate": 109,
+    "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+    "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
    }
   ],
-  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical."
+  "note": "03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical. 07/10/2026: nel campo rivista tolta la frase sul giurista del team, ruolo del modello detto come supporto ancillare; contenuto identico. / 07/10/2026: in the rivista field the phrase on the team jurist removed, the model's role stated as ancillary support; content identical.",
+  "compito_en": "As R04, with the probes P03: for Neubauer every Randnummer of the ranges written in the case file carries its probe; for STC4360-2018 the entries move from the old probes to the new ones, plus the orders to the structural remedy.",
+  "stato_en": "on trial with P03",
+  "note_en": "03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical. 07/10/2026: in the rivista field the phrase on the team jurist removed, the role of the model stated as ancillary support; content identical.",
+  "cambia_en": "the probes P03; Neubauer by Randnummer",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "superseded"
  },
  {
   "codice": "L01",
@@ -1406,7 +1702,12 @@
    "max_token_risposta": 8000,
    "in_parallelo": 48
   },
-  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)"
+  "macchina": "NVIDIA H100 80GB HBM3, cluster HTCondor ReCaS-Bari (INFN, Universita di Bari)",
+  "compito_en": "As L02, without the rule on footnotes. Two readings per row, on all the citations of Urgenda.",
+  "stato_en": "superseded by L02 (the readings stay in the archive)",
+  "note_en": "Replaced because DeepSeek and the validators diverged mostly in notes (agreement 0.32 in notes against 0.60 in the body). The code of this first reading was not kept separately: it is `classifica_lessicali.py` before the rule on notes (L02).",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "no longer in use"
  },
  {
   "codice": "R03",
@@ -1445,7 +1746,12 @@
   "nome_tecnico": "Scelta delle pagine vicine da far leggere",
   "in_uso": "sostituita",
   "alias": "",
-  "famiglia": "regola senza modello"
+  "famiglia": "regola senza modello",
+  "compito_en": "On top of the T01 scores: a page up to 10 before or after the citation enters the reading of the uptake if its highest score on a principle is at least 0.5 (from 2 pages before to 3 after) or 0.8 (farther); at most 5 pages per citation.",
+  "stato_en": "in use",
+  "note_en": "A rule, not a model: calibrating it does not retrain T01. If T01 is retrained, the thresholds are recalibrated. The codebook 0.3-pilot (dimension 7) still writes the window {prima: 2, dopo: 3} (before: 2, after: 3): it will be updated to 10 in the next version of the codebook, not in the file recorded for L02 and L03, whose fingerprint is not touched.",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "replaced"
  },
  {
   "codice": "R01",
@@ -1525,7 +1831,12 @@
     "righe_cambiate": 1,
     "nota": "copia nella cartella del codice di prima (V01, alias di R01), non elencata nella voce"
    }
-  ]
+  ],
+  "compito_en": "Principle taken by a citation that indicates the paragraph («para. 5.7.7»): no model, a label usable for training.",
+  "stato_en": "in use",
+  "note_en": "Corrected on 28/09/2026: it read only two-digit numbers and went past the semicolon (single document §63.25). Replaced by R04 on 01/10/2026. 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "replaced"
  },
  {
   "codice": "R04",
@@ -1545,17 +1856,17 @@
    {
     "file": "cited-cases/urgenda-mappa-paragrafi.yaml",
     "copia": "versioni/R04/urgenda-mappa-paragrafi.yaml",
-    "sha256": "37f769d65d7e6334f590cfb615d3ecbab1be2870731954319ef3ddcc6d917ea2"
+    "sha256": "0a1d1578ecf3bbc17d03eb8eac333149eaccd4f152fe1b1f8c85ef7d02e3d795"
    },
    {
     "file": "cited-cases/neubauer-mappa-paragrafi.yaml",
     "copia": "versioni/R04/neubauer-mappa-paragrafi.yaml",
-    "sha256": "4be20b12ab9dc6de82fcd6859b141b276f6ec043ee676dc877a07e17583037c7"
+    "sha256": "f73a535ad86c9f57414ca95b52f670a2c70527f9c005d0645dbc58ef0f2d144f"
    },
    {
     "file": "cited-cases/future-generations-mappa-paragrafi.yaml",
     "copia": "versioni/R04/future-generations-mappa-paragrafi.yaml",
-    "sha256": "396f9785a7cfcc00299d35cfeea7939233eddc0adfbd8c511eee8c580904057d"
+    "sha256": "fc488dbca8ce888cd0b04362b505f47ca62f3a960a82b5ca4ab93415cf2a813e"
    }
   ],
   "misure": [
@@ -1568,7 +1879,7 @@
     "valore": "Urgenda 490, Neubauer 895, Future Generations 11"
    }
   ],
-  "note": "Revisione fatta da un modello leggendo il testo intero dei paragrafi come un giurista, il 30/09/2026 (`pubblicazione/mappa/REVISIONE-MAPPE-GIURISTA.md`); da confermare dal giurista del team. Ogni voce cambiata porta il campo `rivista` con le sonde di prima. 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "note": "Revisione del gruppo di ricerca sul testo intero dei paragrafi, il 30/09/2026, con Claude Fable 5.1 come supporto ancillare (sistemazione e riordino) (`pubblicazione/mappa/REVISIONE-MAPPE-GIURISTA.md`). Ogni voce cambiata porta il campo `rivista` con le sonde di prima. 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical. 07/10/2026: nel campo rivista tolta la frase sul giurista del team, ruolo del modello detto come supporto ancillare; contenuto identico. / 07/10/2026: in the rivista field the phrase on the team jurist removed, the model's role stated as ancillary support; content identical.",
   "nome_tecnico": "Mappa dei paragrafi, rivista",
   "in_uso": "in uso",
   "alias": "",
@@ -1593,8 +1904,38 @@
     "sha256": "9bc4f7d47ca8158990c996b6f69313587c5f8594fae6392edb4c5112a7e4d3e7",
     "fino_al": "2026-10-03",
     "righe_cambiate": 105
+   },
+   {
+    "file": "versioni/R04/future-generations-mappa-paragrafi.yaml",
+    "sha256": "396f9785a7cfcc00299d35cfeea7939233eddc0adfbd8c511eee8c580904057d",
+    "fino_al": "2026-10-07",
+    "righe_cambiate": 62,
+    "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+    "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+   },
+   {
+    "file": "versioni/R04/neubauer-mappa-paragrafi.yaml",
+    "sha256": "4be20b12ab9dc6de82fcd6859b141b276f6ec043ee676dc877a07e17583037c7",
+    "fino_al": "2026-10-07",
+    "righe_cambiate": 109,
+    "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+    "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
+   },
+   {
+    "file": "versioni/R04/urgenda-mappa-paragrafi.yaml",
+    "sha256": "37f769d65d7e6334f590cfb615d3ecbab1be2870731954319ef3ddcc6d917ea2",
+    "fino_al": "2026-10-07",
+    "righe_cambiate": 105,
+    "nota": "cambiata solo la frase della rivista (tolta la frase sulla conferma da parte del giurista del team, il ruolo del modello detto come supporto ancillare); contenuto identico",
+    "nota_en": "only the rivista (reviewed) phrase changed (removed the phrase on confirmation by the jurist of the team, the model's role stated as ancillary support); content identical"
    }
-  ]
+  ],
+  "compito_en": "As R01, with the maps reread on the text of the paragraphs: an entry carries a principle only if the paragraph states, applies or develops it; facts, arguments of a party, narrative summaries and premises go to «prepara» (prepare) and give no principles.",
+  "stato_en": "in use",
+  "note_en": "Review by the research group on the whole text of the paragraphs, on 30/09/2026, with Claude Fable 5.1 as ancillary support (arrangement and reordering) (`pubblicazione/mappa/REVISIONE-MAPPE-GIURISTA.md`). Every changed entry carries the field `rivista` (reviewed) with the earlier probes. 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical. 07/10/2026: in the rivista field the phrase on the team jurist removed and the role of the model stated as ancillary support; content identical.",
+  "cambia_en": "entries reread on the text of the paragraphs: facts, arguments of a party and premises go to «prepara»",
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "L02",
@@ -1666,7 +2007,13 @@
   "alias": "V02",
   "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L01",
-  "cambia": "stesso modello e stesse impostazioni; le istruzioni aggiungono la regola sulle note a pie' di pagina"
+  "cambia": "stesso modello e stesse impostazioni; le istruzioni aggiungono la regola sulle note a pie' di pagina",
+  "compito_en": "For each citation: is it really the case? type of citation, who speaks, proposition, reason. Two readings per row.",
+  "stato_en": "in use",
+  "note_en": "Version with the PI's rule on footnotes (§63.23).",
+  "cambia_en": "same model and same settings; the instructions add the rule on footnotes",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "L03",
@@ -1744,7 +2091,13 @@
     "nota": "il fascicolo entra intero nel testo dato a DeepSeek V4 Flash: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
     "nota_en": "the dossier goes whole into the text given to DeepSeek V4 Flash: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
    }
-  ]
+  ],
+  "compito_en": "For each citation: is it really the case? type of citation, who speaks, proposition, reason. Two readings per row.",
+  "stato_en": "in use",
+  "note_en": "Same instructions, generalised to the case: the name can also be the person (Luisa Neubauer). It also holds for Future Generations. 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "cambia_en": "same instructions, generalised to the other cases: the name can be a person or a party",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "L04",
@@ -1798,7 +2151,12 @@
   "nome_tecnico": "DeepSeek V4 Flash 0731, lettura della ripresa",
   "in_uso": "in uso",
   "alias": "V04",
-  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande"
+  "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
+  "compito_en": "Which principles the citation takes, and which nearby pages continue the uptake, with a quotation and a comment.",
+  "stato_en": "in use for the principles since 30/09/2026 (with the PI's yes, §63.35): the principles proposed on the rows to judge come again from L04; everything else of the row from L05 (or L07 for the continuation)",
+  "note_en": "Readings: Urgenda on 27/09/2026 (file of 20:49); Neubauer and Future Generations on 28/09/2026 at 15:32, with a text that may differ from that of Urgenda (not saved). Quotations copied from the page in 64% of the cases (measured on 30/09 on Urgenda). Since 30/09 it is again the source of the principles proposed on the rows to judge (with the PI's yes, §63.35). The rows it had not read were read on 30/09 with `tools/leggi_l04.py`; the review of the evening of 30/09 still counts 38 rows to judge without any L04 reading (15 Urgenda, 23 Neubauer) and 207 with an empty list of principles, which the completeness check does not flag.",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "L05",
@@ -1880,7 +2238,13 @@
     "nota": "il fascicolo entra intero nel testo dato a DeepSeek V4 Flash: l'impronta precedente e' quella del testo che il modello ha letto, la copia di oggi differisce da quel testo solo per la riga d'intestazione",
     "nota_en": "the dossier goes whole into the text given to DeepSeek V4 Flash: the previous fingerprint is that of the text the model read; today's copy differs from it only in the header line"
    }
-  ]
+  ],
+  "compito_en": "As L04, with the dossier of the case and two rules: a sentence with a note to another source does not continue; the quotation must be copied letter for letter. In addition question 3: the sentence of the filing that the citation supports.",
+  "stato_en": "in use since the evening of 29/09/2026 for the continuation, the quotations and the supported sentence (window up to 10 pages, R03). Not for the principles, since 30/09: it decides on the sole sentence of the note and against the PI's judgments it does worse than L04 (§63.35)",
+  "note_en": "Instructions of the evening of 28/09/2026; readings run on 29/09/2026. The rule on notes comes from a case flagged by the PI: memorial for the Inter-American Court, p. 51 and p. 54 (Klimaatzaak at note 205). 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "cambia_en": "same model; the instructions add the dossier of the case, the rule of notes, the sentence letter for letter and the supported sentence",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "L06",
@@ -1935,7 +2299,13 @@
   "alias": "",
   "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
-  "cambia": "il principio si decide sul passaggio, non sulla sola frase della nota"
+  "cambia": "il principio si decide sul passaggio, non sulla sola frase della nota",
+  "compito_en": "As L05, but the principle is decided on the reasoning in which the citation sits, not on the sole sentence of the note.",
+  "stato_en": "experiment on 120 rows of Urgenda (4 readings): it does not beat L04 against the PI's judgments, it does not enter the platform",
+  "note_en": "An experiment, not a version in use: the PI's judgments used as the reference were given with the proposals in front of them.",
+  "cambia_en": "the principle is decided on the passage, not on the sole sentence of the note",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "experimental"
  },
  {
   "codice": "L07",
@@ -1983,7 +2353,12 @@
   "alias": "",
   "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
-  "cambia": "solo la domanda delle pagine attorno, con i principi della riga dati come fissati"
+  "cambia": "solo la domanda delle pagine attorno, con i principi della riga dati come fissati",
+  "compito_en": "Only the question on the continuation, with the instructions of L05, taking as fixed the principles that the row proposes (from L04).",
+  "stato_en": "in use since 30/09/2026 on the rows to judge where the principles of L04 differ from those of L05 and there are candidate pages",
+  "cambia_en": "only the question on the surrounding pages, with the principles of the row taken as fixed",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "S04",
@@ -2024,7 +2399,13 @@
   "alias": "",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S01",
-  "cambia": "la ricerca semantica di luglio rifatta: domande dalle frasi sostenute, solo atti che non nominano il caso, T01 e lettura L09"
+  "cambia": "la ricerca semantica di luglio rifatta: domande dalle frasi sostenute, solo atti che non nominano il caso, T01 e lettura L09",
+  "compito_en": "Searches for uptakes WITHOUT the name of the case: the questions are the supported sentences of L05 (name and ECLI masked); the search uses pplx-embed-v1-4b only in filings after the decision that do not name the case; the pages found go through T01 on the principle of the question; the best ones are read by L09.",
+  "stato_en": "experiment: no row on the platform; Urgenda on 29/09, the three new cases on 02/10",
+  "note_en": "Different from the semantic search of July (e5-large and bge-reranker), which is inside S01 and produced the «semantica» rows on the platform.",
+  "cambia_en": "the semantic search of July redone: questions from the supported sentences, only filings that do not name the case, T01 and the L09 reading",
+  "famiglia_en": "name search",
+  "in_uso_en": "experiment"
  },
  {
   "codice": "L09",
@@ -2065,7 +2446,12 @@
   "alias": "",
   "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
-  "cambia": "stesso modello; la domanda e' se una pagina SENZA il nome riprende il ragionamento del caso o lo prende da un'altra fonte"
+  "cambia": "stesso modello; la domanda e' se una pagina SENZA il nome riprende il ragionamento del caso o lo prende da un'altra fonte",
+  "compito_en": "For a page found by S04: does it take up the reasoning of the case, does it take it from another source, or is it only the same topic?",
+  "stato_en": "experiment, not on the platform",
+  "cambia_en": "same model; the question is whether a page WITHOUT the name takes up the reasoning of the case or takes it from another source",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "experiment"
  },
  {
   "codice": "L11",
@@ -2142,7 +2528,13 @@
   "alias": "",
   "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
-  "cambia": "stesse istruzioni e stesse pagine attorno; ogni pagina intera fino a 12.000 caratteri invece del taglio a 3.500"
+  "cambia": "stesse istruzioni e stesse pagine attorno; ogni pagina intera fino a 12.000 caratteri invece del taglio a 3.500",
+  "compito_en": "As L05, with the same instructions character for character and the same surrounding pages (R10), but every surrounding page arrives WHOLE up to the cap of the page index (12,000 characters) instead of cut at 3,500. The notes are at the bottom of the page and the question says «LOOK AT THE NOTES».",
+  "stato_en": "in use since 04/10/2026 for the unjudged rows that had at least one surrounding page cut",
+  "note_en": "The L05 readings of the same rows stay in their files; the proposal of the reread rows comes from L11 (provenienza.principi and provenienza.seguito say L11).",
+  "cambia_en": "same instructions and same surrounding pages; every page whole up to 12,000 characters instead of the cut at 3,500",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "in use"
  },
  {
   "codice": "D03",
@@ -2176,7 +2568,13 @@
   "alias": "",
   "famiglia": "dati",
   "rispetto_a": "D02",
-  "cambia": "il Markdown di 277 atti dell'aggiornamento del 19/09/2026 che avevano solo il testo"
+  "cambia": "il Markdown di 277 atti dell'aggiornamento del 19/09/2026 che avevano solo il testo",
+  "compito_en": "As D02, plus 277 filings downloaded with the update of the Climate Litigation Database of 19/09/2026 that had the text but not the Markdown (metadata never merged into metadata.csv). Markdown written with the same front matter as build_markdown.py, text intact, no existing Markdown touched; 7,671 pages added to the page index.",
+  "stato_en": "in use since the load of the S05 cycle",
+  "note_en": "36 filings remain without Markdown. The diagnosis written on 02/10 («24 filings that are the same PDF as a July filing under another identifier», «3 July PDFs overwritten on disk by different files», «1 PDF without text, to be passed to OCR») was corrected on 03/10 (training/misure/CORPUS-DIFETTI-2026-10-03.md): the 27 PDFs were never downloaded (manifest.jsonl, http 0: fetch_sabin.py found the truncated name taken and wrote the fingerprint of the July file); the 3 pae-antimary are the July petitions rewritten by the OCR of 31/07, with the original in .pdf.orig; the PDF of Sebastiao is already truncated at the source (2,310,144 bytes, without the final table). The 8 non-PDF files (20 in all in the corpus) were extracted on 03/10 into a separate folder (training/difetti-2026-10-03/), outside D03. Fingerprints of every input and output in the registry of the Markdown files.",
+  "cambia_en": "the Markdown of 277 filings of the update of 19/09/2026 that had only the text",
+  "famiglia_en": "data",
+  "in_uso_en": "in use"
  },
  {
   "codice": "D05",
@@ -2263,7 +2661,13 @@
   "alias": "",
   "famiglia": "dati",
   "rispetto_a": "D03",
-  "cambia": "con i 47 atti di D04; dump del 04/10/2026 confrontato coi Markdown: 146 atti nuovi e una versione nuova, OCR per pagina, 111 scansioni col solo timbro rifatte (2.974 pagine)"
+  "cambia": "con i 47 atti di D04; dump del 04/10/2026 confrontato coi Markdown: 146 atti nuovi e una versione nuova, OCR per pagina, 111 scansioni col solo timbro rifatte (2.974 pagine)",
+  "compito_en": "As D04 (D03 plus 27 filings of 19/09 downloaded again and 20 non-PDF), compared with the dump of the Climate Litigation Database of 04/10/2026 row by row against the Markdown files on disk (document_id and address, not the manifest). Downloaded with the corrected fetch_sabin.py (already done = pair filing+address with http 200; never a row with http 0; 403/404 retried once; same bytes as a file already present = no copy) 631 addresses at one request per second: 147 new files, 468 identical to files already in the corpus (renumberings -N at the source, all with a twin Markdown), 16 failed. Text with OCR decided PER PAGE (fewer than 200 characters, the threshold of the index, or unreadable by freni.leggibile), ocrmypdf/tesseract as D02, only the chosen pages; replaced only if the OCR is readable and longer (rule of D02 for the unreadable). 146 new Markdown files in markdown/ (5,973 pages, 461 redone with OCR) and a new version of a filing already present kept apart; the 111 scans with only the stamp redone (3,474 pages tried, 2,974 replaced) in training/d05/markdown_ocr/, next to the live Markdown, which is not touched. Page index D05: D04 without the 1,298 old rows of the 111 plus 10,129 new or redone pages, 586,977 rows.",
+  "stato_en": "prepared: the rows are loaded after the S07 search on the documents of training/d05/PRONTO.json",
+  "note_en": "Failed: 10 HTTP 403 (the files of the case with the very long name «JAL-FRA-62023-...-JAL-OTH-892023», refused by the site), 6 HTTP 404 (files removed at the source). The PDF of Sebastiao stays truncated at the source. metadata.csv is not touched: the dump rows of the new ones are in training/d05/metadata_d05.csv. The Markdown of the 111 are swapped with the live ones only after S07.",
+  "cambia_en": "with the 47 filings of D04; dump of 04/10/2026 compared with the Markdown: 146 new filings and a new version, OCR per page, 111 scans with only the stamp redone (2,974 pages)",
+  "famiglia_en": "data",
+  "in_uso_en": "prepared"
  },
  {
   "codice": "S05",
@@ -2400,7 +2804,13 @@
     "fino_al": "2026-10-03",
     "righe_cambiate": 2
    }
-  ]
+  ],
+  "compito_en": "As S03, but: (1) the Latin forms are searched tolerantly, with the rules of textnorm (end-of-line hyphenation, line breaks and spaces inside multi-word forms, typographic hyphens, curly apostrophes, decomposed letters), always on the original text, hence with the same positions; the matches of S03 stay identical and the new ones are added only where they do not touch them; (2) also in the 277 filings of D03; (3) readmitted forms («VKS» for KlimaSeniorinnen, «Urgence climatique et droits de l'homme» for OC-32/25) and new forms tried in the sample of the measure, some only as a whole word (field forme_parola_intera). Only new rows are added: no existing row is merged or touched.",
+  "stato_en": "in use since the load of the S05 cycle (rows with provenienza.estrazione S05)",
+  "note_en": "The rows of S03 stay with their provenance. Where a new match links two existing rows in the same group (Urgenda 4, Neubauer 42, OC-32/25 3) the rows stay separate. The 'esclusa' (excluded) rows cover their group (Neubauer: 12). 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "cambia_en": "normalised text with the same positions (hyphenation, line breaks, typographic hyphens); the 277 filings of D03; readmitted forms and new forms tried; only added rows",
+  "famiglia_en": "name search",
+  "in_uso_en": "in use"
  },
  {
   "codice": "S06",
@@ -2474,7 +2884,13 @@
   "alias": "",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S05",
-  "cambia": "le copie che S05 buttava quando il frammento tenuto sta in un'altra causa tornano righe, tranne lo stesso documento due volte (stesso PDF o stesso testo)"
+  "cambia": "le copie che S05 buttava quando il frammento tenuto sta in un'altra causa tornano righe, tranne lo stesso documento due volte (stesso PDF o stesso testo)",
+  "compito_en": "The citations that the S05 name search had thrown away as «copy of another fragment» (first 400 characters equal, spaces joined and lower case, across the whole corpus) when the fragment kept is in a filing of another case (different case_id). One row per filing and text (the second time in the same filing stays a copy, as in the per-filing deduplication of cerca_s05_per_atto.py). Copies are excluded whose filing is the same document as the filing of the kept row or of a copy already taken: same sha256_pdf fingerprint in the header of the Markdown, or same fingerprint of the whole text (spaces joined). Each row carries stesso_testo_di (same text as: <document_id>__<char_start> of the kept row) and stesso_testo_di_causa (same text, case). The rows receive the same readings as the others: five readings of the type and five L05 readings on the surrounding pages R10, composed with R11, brakes included.",
+  "stato_en": "in use since the load of the S06 cycle (rows with provenienza.estrazione S06)",
+  "note_en": "Tried and not used to recognise the same document: the same page of the citation (14 rows have it equal in different filings, for example the parallel appeals of DUH against Mercedes and against BMW) and the same title with the same number of pages (never: the titles carry the name of the case). Of the 20 pairs read in the measure, 13 were the same filing twice, 4 a repeated annex, 3 a truly different filing: the annexes stay (they cannot be recognised with certainty), and stesso_testo_di allows counting them once in the analysis. The T01 scores of the rows and of the surrounding pages without a score: ripresa_punteggi.py on the H100s in the DeepSeek queue, vLLM stopped and restarted as on 01/10, with the check against the scores of the S05 cycle in the measures.",
+  "cambia_en": "the copies that S05 threw away when the fragment kept is in another case come back as rows, except the same document twice (same PDF or same text)",
+  "famiglia_en": "name search",
+  "in_uso_en": "in use"
  },
  {
   "codice": "S07",
@@ -2573,7 +2989,7 @@
     "valore": "gruppi attraverso le note: ~740 citazioni nascoste (Neubauer ~455, OC-32/25 ~159, CIG ~95, Urgenda ~48); pagine senza nessuna forma: 331, ~250 vere; copie nello stesso atto su un'altra pagina: 6 vere su 13; unioni sbagliate: 28 su 59 lette"
    }
   ],
-  "note": "Fuori dalle righe nuove: le righe di S06 e quelle che S06 ha escluso (le tratta S06); un id gia' in banca dati; nei documenti di D04 le righe si scrivono solo dopo il ciclo D04. Correzioni a mano dello stesso giorno: 28 righe unite per sbaglio tornate alla rete di prima, URG-1361 (confermata) tornata com'era con URG-1360 unita a lei, 7 righe di Neubauer spostate dall'atto registrato sotto Allhoff-Cramer a Kaiser e altri contro Volkswagen (stesso PDF), 3 righe di un altro Neubauer escluse. 03/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "note": "Fuori dalle righe nuove: le righe di S06 e quelle che S06 ha escluso (le tratta S06); un id gia' in banca dati; nei documenti di D04 le righe si scrivono solo dopo il ciclo D04. Correzioni a mano dello stesso giorno: 28 righe unite per sbaglio tornate alla rete di prima, URG-1361 (confermata) tornata com'era con URG-1360 unita a lei, 7 righe di Neubauer spostate dall'atto registrato sotto Allhoff-Cramer a Kaiser e altri contro Volkswagen (stesso PDF), 3 righe di un altro Neubauer escluse. 05/10/2026: tolta solo la riga d'intestazione sull'autore (e la stessa menzione nei campi fonte e rivista); contenuto identico. / 05/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -2622,7 +3038,13 @@
     "nota": "tolta solo la frase sul modello che aveva proposto il paragrafo nel campo fonte; contenuto identico",
     "nota_en": "only the phrase naming the model that proposed the paragraph was removed from the fonte field; content identical"
    }
-  ]
+  ],
+  "compito_en": "The S05 name search with three corrections and a new network. (1) The groups of matches (the 200-character rule) never cross the start of a footnote (line break + note number; not a year, a date, «Rn.», «BvR»): consecutive notes are distinct citations. (2) The deduplication throws away a copy only in the same filing and on the same page (double text layer); every other copy stays with stesso_testo_di. (3) Simple forms that were missing («NL:RBDHA:2015:7145/7196», «Advisory Opinion, ICJ»). (4) The DESCRIPTIVE NETWORK, separate (proposto_rete «descrittiva»): rules declared in the -S07 file of each case (the court with the year and the climate, «BVerfG, a.a.O.» in filings that already cite Neubauer, the date, the Korean form, the address of the decision, the Inter-American Court or the ICJ near «advisory opinion» and 2025...), leaving out the proceeding itself, the filings earlier than the ruling and the pages where the case is already named or has a row. A copy in a filing that is the same document (same PDF or text) is not added, and which copy keeps the row is told by the catalogue metadata (party and court found in the filing), not by the order of the paths. The merge of split rows (unisci_e_aggiungi, tracepipe) also merges a row of identifiers only if the name is in its own note. The new rows go into corpus_rows outside the queues, with provenienza.estrazione S07 and causa_s07, and receive the same readings as the others (five of the type, five L05 on the surrounding pages R10). S07 runs in batches (batch corpus-d04, then D05) without duplicate rows: the earlier batches count as rows already on the platform.",
+  "stato_en": "rows written outside the queues, awaiting the readings",
+  "note_en": "Left out of the new rows: the rows of S06 and those S06 excluded (S06 handles them); an id already in the database; in the documents of D04 the rows are written only after the D04 cycle. Manual corrections of the same day: 28 rows merged by mistake returned to the earlier network, URG-1361 (confirmed) returned as it was with URG-1360 merged into it, 7 rows of Neubauer moved from the filing recorded under Allhoff-Cramer to Kaiser and others against Volkswagen (same PDF), 3 rows of another Neubauer excluded. 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
+  "cambia_en": "groups that do not cross footnotes; deduplication only same filing and same page; simple forms added; separate descriptive network; the copy of the same document chosen from the catalogue metadata",
+  "famiglia_en": "name search",
+  "in_uso_en": "rows awaiting the readings"
  },
  {
   "codice": "D04",
@@ -2727,7 +3149,13 @@
   "alias": "",
   "famiglia": "dati",
   "rispetto_a": "D03",
-  "cambia": "27 atti dell'aggiornamento del 19/09 riscaricati (mai scaricati per un nome occupato) e 20 atti non PDF estratti"
+  "cambia": "27 atti dell'aggiornamento del 19/09 riscaricati (mai scaricati per un nome occupato) e 20 atti non PDF estratti",
+  "compito_en": "As D03, plus (1) 27 filings of the update of 19/09/2026 never downloaded (fetch_sabin.py had found the truncated name taken and wrote in manifest.jsonl, with http 0, the fingerprint of the July file): downloaded again on 03/10 with a new name, true fingerprints in manifest_supplemento_2026-10-03.jsonl (manifest.jsonl not touched); 26 new files, 1 identical at the source to a filing already in the corpus (Suncor amicus-brief-18 = amicus-brief-21, _b0d1) and not rewritten; (2) 20 non-PDF filings (16 .docx, 3 .doc, 1 .png) never extracted, because extract_text.py reads only PDFs. Text like the corpus (PyMuPDF, Vision OCR only where the text is unusable, with freni.leggibile), Markdown with the front matter of build_markdown.py, new names created exclusively, no existing file touched; 1,025 pages added to the page index (the live one from before stays in index/pagine/pagine.prima-D04.jsonl.gz). The rows found by the S05 name search on the new documents alone have provenienza.corpus D04 and extraction S05, and receive the same readings as the others: five of the type and five L05 on the surrounding pages R10, composed with R11, brakes included.",
+  "stato_en": "in use since the load of the D04 cycle (rows with provenienza.corpus D04)",
+  "note_en": "Check of the 27 without the manifest fingerprint (for them it is the wrong one): type application/pdf, length equal to Content-Length, PyMuPDF opens the file, fingerprint different from that of the manifest and of the July file (and of the .pdf.orig), first page read: the case is right in all. Two files at the source are not the type of filing of the title: Maules Creek _925f ('judgment') is the introductory citation (summons), Pacific Coast _4954 ('order') is a filing of Chevron. Five non-PDF filings come out as a single page (the 3 .doc and 2 .docx without marked breaks). The PDF of Sebastiao (_67a5), truncated at the source, stays out. The rows on non-PDF filings have no PDF to show: the portal opens the page of the source.",
+  "cambia_en": "27 filings of the update of 19/09 downloaded again (never downloaded because of a taken name) and 20 non-PDF filings extracted",
+  "famiglia_en": "data",
+  "in_uso_en": "in use"
  },
  {
   "codice": "C03",
@@ -2799,7 +3227,13 @@
   "alias": "",
   "famiglia": "controllo automatico sulle righe (regola senza modello)",
   "rispetto_a": "S07",
-  "cambia": "la stessa citazione contata una volta: il testo e la nota che la stessa frase chiama, e le traduzioni dello stesso atto; si scrivono solo le coppie rilette una per una"
+  "cambia": "la stessa citazione contata una volta: il testo e la nota che la stessa frase chiama, e le traduzioni dello stesso atto; si scrivono solo le coppie rilette una per una",
+  "compito_en": "Automatic check after the name search: the same citation counted twice. (1) BODY TEXT AND FOOTNOTE: two live rows of the same case in the same filing, at most one page apart, that support the same sentence (normalised text, rapidfuzz similarity of at least 95, at least 40 characters) are the mention in the text and the note that the same sentence calls: the row of the text stays (the one whose point falls inside the supported sentence), the row of the note goes out (proposto_rete «esclusa» (excluded), esclusa_regola C03, unita_a (merged into) the code kept) and to the kept row pass the text of the note (proposto_nota_appoggio) and the paragraphs it cites. Two notes with the same sentence stay two citations. (2) TRANSLATIONS: the same citation in the same filing in another language (same case, pages within 15%, same relative point within 3%, half of the surrounding numbers in common) is one: the row in the ORIGINAL language of the filing stays. Nothing is deleted: the row that went out keeps all its fields and is put back with tools/rimetti_righe.py. The automatic rule generates the candidates and does NOT decide: only the pairs reread one by one are written (unisci_c03.py --rivisto), because the header of the filing, from which the rule read the original language, gave the wrong language in 46 translations out of 105. Before writing, a full copy of the rows (copia_prima); if it cannot be read back, nothing is written.",
+  "stato_en": "applied on 05/10/2026 at 07:01: 691 rows excluded (550 body text and footnote, 141 translations)",
+  "note_en": "A row that went out is put back as it was: the full copy before writing is in training/esclusioni/ (prima_unisci_c03_*). The pairs in which the team had judged a row were 111 on 04/10: the automatic rule does not write them, here they are written because reread one by one.",
+  "cambia_en": "the same citation counted once: the text and the note that the same sentence calls, and the translations of the same filing; only the pairs reread one by one are written",
+  "famiglia_en": "automatic check on the rows (rule without a model)",
+  "in_uso_en": "applied on 05/10/2026"
  },
  {
   "codice": "C07",
@@ -2869,7 +3303,13 @@
   "alias": "",
   "famiglia": "controllo automatico sulle righe (regola senza modello)",
   "rispetto_a": "R10",
-  "cambia": "una pagina attorno che e' gia' una citazione a se' (altro principio) segnata «also cited separately» e non piu' contata come seguito"
+  "cambia": "una pagina attorno che e' gia' una citazione a se' (altro principio) segnata «also cited separately» e non piu' contata come seguito",
+  "compito_en": "Automatic check on the surrounding pages of every live row. A page is «already cited» if another live row of the same case in the same filing is on that page (by position) or if the evidence found on the page coincides with the supported sentence, the sentence of the reading or the cited text of that other row (normalised text, rapidfuzz partial ratio of at least 90). If the two rows have no principle in common, the page is NOT a continuation: it is a citation of its own, linked. The entry of the page in proposto_estensione takes c07 (true), c07_altra_riga (other row) and c07_segno «also cited separately as <code>», shown in the Corpus panel, in the question of the following readings and in the data of the map; it does not count as a continuation and counts only once in the figures. `prosegue` (continues) stays as it was: the reading by DeepSeek V4 Flash is not erased, because a page can continue the reasoning AND contain another citation. With a principle in common the page stays a candidate and DeepSeek decides. A principle is removed from the row only if it comes only from a marked page, is not in the paragraph map, has fewer than 3 votes out of 5 and the other row already has it; otherwise it stays and goes into a list for the team. The pages that DeepSeek had read as «prosegue» apply only if reread and said to be another citation. On the rows judged by the team (not touched) only the «seguito» (continuation) tick is removed from the pages that the one-by-one rereading says are a citation of their own, with the trace in c07_spunte_tolte (ticks removed) to put it back.",
+  "stato_en": "applied on 05/10/2026 at 07:49: mark on 8,113 pages of 2,778 rows, 71 «seguito» ticks of the team removed on 40 judged rows, no principle removed",
+  "note_en": "The case that gave the rule is ICJ-0154 (ICJ opinion, p. 26): pages 19, 21 and 23 are citations of their own for other points and not a continuation. The full copy of the rows before writing is in training/esclusioni/ (prima_applica_c07_*).",
+  "cambia_en": "a surrounding page that is already a citation of its own (another principle) marked «also cited separately» and no longer counted as a continuation",
+  "famiglia_en": "automatic check on the rows (rule without a model)",
+  "in_uso_en": "applied on 05/10/2026"
  },
  {
   "codice": "S08",
@@ -2979,7 +3419,13 @@
   "alias": "",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S07",
-  "cambia": "coppie vicine lette insieme: i riferimenti dello stesso caso e atto a meno di 5.000 caratteri; la seconda citazione sulla pagina non si perde piu'"
+  "cambia": "coppie vicine lette insieme: i riferimenti dello stesso caso e atto a meno di 5.000 caratteri; la seconda citazione sulla pagina non si perde piu'",
+  "compito_en": "After the name search (S07) and before the checks C01-C04: the live references of the same case and the same filing that are consecutive in the text less than 5,000 characters apart are a CANDIDATE PAIR (chains: `<code>a`, `<code>b`, provisional codes, never written). The descriptive network is redone without the filter «page with the name or with a row»: the second citation on the page becomes a new row if it is 200 characters or more from a name or from a row. Each pair is read by L13 (DeepSeek V4 Flash, five readings) and by the reasoning reranker (Qwen3.5-9B, three readings): «one citation or two?». One: they are merged like C03 (the row of the text or the one confirmed by the team stays). Two: they count as two. Disagreement between the readers, an uncertain reader or one without valid readings (brakes), or a strong clue to the contrary: the pair goes to the team («To review»). S08 replaces the automatic rule of C03 for the new rows; the C03 rule stays only as a generator of candidates. The translations (two filings) stay with C03 with the original language reread one by one.",
+  "stato_en": "on trial, not applied: no row of the database has changed for S08",
+  "note_en": "The step is designed as fixed and automatic after the search (training/misure/S08-AGGANCIO.patch), but it is on trial: the writing of the merges and the loading of the new rows are not enabled. A test that fails if the step is missing: two distant citations on the same page (Children of Austria p. 29, BMW p. 10) must give two rows.",
+  "cambia_en": "close pairs read together: the references of the same case and filing less than 5,000 characters apart; the second citation on the page is no longer lost",
+  "famiglia_en": "name search",
+  "in_uso_en": "on trial, not applied"
  },
  {
   "codice": "L13",
@@ -3060,7 +3506,13 @@
   "alias": "",
   "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
-  "cambia": "stesso modello; la domanda e' se due riferimenti vicini sono una citazione o due, sul testo dell'atto fra i due"
+  "cambia": "stesso modello; la domanda e' se due riferimenti vicini sono una citazione o due, sul testo dell'atto fra i due",
+  "compito_en": "For a pair of references to the same case in the same filing (S08): given the true text of the filing from before the first to after the second reference (marks ⟦A⟧ and ⟦B⟧, [pagina N], notes at the bottom of the page) say whether they are ONE citation or TWO, which row stays, where each is (text or note), which note is called, the exact sentence of each and the reason. The deterministic clues are NOT in the question. Brakes 2-4 (R14 and R16) on the two sentences: a reading counts only if the sentences are in the filing and are not copied from the prompt; brake 1 before sending the window to the model.",
+  "stato_en": "on trial, not applied: nothing is written to the database",
+  "note_en": "The pairs of the C03 truth go first (priority 0) to measure the readers before trusting them.",
+  "cambia_en": "same model; the question is whether two close references are one citation or two, on the text of the filing between the two",
+  "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
+  "in_uso_en": "on trial, not applied"
  },
  {
   "codice": "T01",
@@ -3129,7 +3581,12 @@
   "nome_tecnico": "TRACE-Reranker 0.1",
   "in_uso": "in uso",
   "alias": "V06",
-  "famiglia": "modello TRACE addestrato da noi"
+  "famiglia": "modello TRACE addestrato da noi",
+  "compito_en": "Score between a principle and a text (passage of the citation, nearby pages): proposes the principles and the nearby pages to read.",
+  "stato_en": "in use",
+  "note_en": "Trained on labels of July that confused topic and source (§63.24): to be retrained on the confirmed principles.",
+  "famiglia_en": "TRACE model trained by us",
+  "in_uso_en": "in use"
  },
  {
   "codice": "T04",
@@ -3265,7 +3722,22 @@
   "alias": "",
   "famiglia": "modello TRACE addestrato da noi",
   "rispetto_a": "T01",
-  "cambia": "non piu' un punteggio ma un ragionamento per ogni principio; base Qwen3.5-9B con ragionamento acceso, addestrata sul proprio ragionamento confermato dal team (94 righe)"
+  "cambia": "non piu' un punteggio ma un ragionamento per ogni principio; base Qwen3.5-9B con ragionamento acceso, addestrata sul proprio ragionamento confermato dal team (94 righe)",
+  "compito_en": "For a citation of the cited case and for EVERY principle of the case: writes a short reasoning and says yes/no/uncertain, with the words of the filing copied letter for letter (checked by R14 and R16) and a score 0-1; first it says whether the passage really cites the case. Where T01 gives only a score, T04 gives the reasoning of every verdict.",
+  "stato_en": "published with TRACE 0.1 as a new model; it produced no data of 0.1 (rereading the corpus with T04 is 0.2)",
+  "note_en": "Published on Zenodo with TRACE 0.1 as a new model; it did NOT produce the data of 0.1. A second training (sampling k=4, job 1921688, tools/addestra_reranker_ragiona_k.py) replaces it only if equal or better and finished by 11/10/2026; in that case this entry is redone with a new code or with updated date and job. Another idea of T04 (TRACE-Reranker 0.2 with SFT and GRPO) is in versioni/T04-BOZZA.json and was not launched.",
+  "cambia_en": "no longer a score but a reasoning for every principle; base Qwen3.5-9B with reasoning on, trained on its own reasoning confirmed by the team (94 rows)",
+  "limiti_en": [
+   "94 examples, 74 of Urgenda",
+   "three rules of the draft (G05, G06, C05) derived from the counts on these same rows: the validation by filing does not clean them, the figure is a high ceiling; the rules G05-G08 are not approved",
+   "the measure is of the adapters of the folds, not of the final adapter published (same recipe, all 94 examples)",
+   "difference from the untrained 9B not proven: the intervals include zero",
+   "the rows kept are those on which the model already agreed with the team: no example on the hard rows",
+   "the 9B slips into Chinese or Japanese mid-sentence and the training did not remove it",
+   "measured only on the team's judgments, some given with the machines' proposals in front of them; the blind sample is not yet judged"
+  ],
+  "famiglia_en": "TRACE model trained by us",
+  "in_uso_en": "published with 0.1, not used for the 0.1 data"
  },
  {
   "codice": "R02",
@@ -3311,7 +3783,19 @@
   "nome_tecnico": "Composizione delle proposte",
   "in_uso": "sostituita",
   "alias": "V07",
-  "famiglia": "regola senza modello"
+  "famiglia": "regola senza modello",
+  "compito_en": "Puts together R01, the L02-L05 and L07 readings and the T01 scores into the proposals that the team sees, with the rules of the codebook.",
+  "stato_en": "replaced by R05 on 01/10/2026 (rule added on 30/09/2026)",
+  "note_en": "Writes only on rows without an outcome: the team's judgments are not touched. Open defect (review of 30/09/2026, point 2): the principles written by the reader without the prefix of the case are silently discarded in the comparison with the ids of the case file; the correction of the prefix exists only for the pages of the continuation.",
+  "regole_en": [
+   "principles ticked: those of the paragraph (R01) and of the reading (L04 since 30/09; before L05); the reranker (T01) is a clue, it does not tick",
+   "chain mention: principle «nessuno» (none), the clues stay visible",
+   "no continuation ticked if the citation takes no principle",
+   "the sentence under a nearby page is shown as a quotation only if it is found in the page",
+   "since 30/09/2026: a page ticked on a principle that the row does not propose stays listed, it is not removed"
+  ],
+  "famiglia_en": "rule without a model",
+  "in_uso_en": "replaced"
  },
  {
   "codice": "T02",
@@ -3363,19 +3847,28 @@
    {
     "data": "2026-09-27",
     "regola": "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera DeepSeek V4 Flash fa lui le proposte (§63.26)",
-    "esito": "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte"
+    "esito": "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte",
+    "regola_en": "on the 317 rows of Urgenda with a type given by people, if TRACE-Reader equals or exceeds DeepSeek V4 Flash it makes the proposals (§63.26)",
+    "esito_en": "TRACE-Reader v0 0.596 against DeepSeek 0.568: exceeded, but NOT applied, because those 317 rows had been judged with the DeepSeek proposals in front of them and the PI wanted a measure without proposals"
    },
    {
     "data": "2026-09-30",
     "regola": "sostituisce DeepSeek V4 Flash solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
-    "esito": "in attesa dei giudizi senza proposte"
+    "esito": "in attesa dei giudizi senza proposte",
+    "regola_en": "replaces DeepSeek V4 Flash only if it equals it on the rows that the team judges without proposals (sample of one in five); rows with a comparable type at the evening of 30/09: zero",
+    "esito_en": "waiting for the judgments without proposals"
    }
   ],
   "note": "Distillazione da DeepSeek, dichiarata. Le etichette umane di prova sono di una persona sola e sono state date con le proposte di DeepSeek davanti.",
   "nome_tecnico": "TRACE-Reader v0",
   "in_uso": "sperimentale",
   "alias": "V08",
-  "famiglia": "modello TRACE addestrato da noi"
+  "famiglia": "modello TRACE addestrato da noi",
+  "compito_en": "DeepSeek's work on a single GPU: type, who speaks, proposition, reason",
+  "stato_en": "experimental (the proposals on the platform still come from DeepSeek)",
+  "note_en": "Distillation from DeepSeek, declared. The human test labels are from a single person and were given with the DeepSeek proposals in front of them.",
+  "famiglia_en": "TRACE model trained by us",
+  "in_uso_en": "experimental"
  },
  {
   "codice": "T03",
@@ -3427,12 +3920,16 @@
    {
     "data": "2026-09-27",
     "regola": "sulle 317 righe di Urgenda con un tipo dato dalle persone, se TRACE-Reader eguaglia o supera DeepSeek V4 Flash fa lui le proposte (§63.26)",
-    "esito": "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte"
+    "esito": "TRACE-Reader v0 0,596 contro DeepSeek 0,568: superata, ma NON applicata, perche' quelle 317 righe erano state giudicate con le proposte di DeepSeek davanti e il PI ha voluto una misura senza proposte",
+    "regola_en": "on the 317 rows of Urgenda with a type given by people, if TRACE-Reader equals or exceeds DeepSeek V4 Flash it makes the proposals (§63.26)",
+    "esito_en": "TRACE-Reader v0 0.596 against DeepSeek 0.568: exceeded, but NOT applied, because those 317 rows had been judged with the DeepSeek proposals in front of them and the PI wanted a measure without proposals"
    },
    {
     "data": "2026-09-30",
     "regola": "sostituisce DeepSeek V4 Flash solo se lo eguaglia sulle righe che il team giudica senza proposte (campione di una su cinque); righe con un tipo confrontabile al 30/09 sera: zero",
-    "esito": "in attesa dei giudizi senza proposte"
+    "esito": "in attesa dei giudizi senza proposte",
+    "regola_en": "replaces DeepSeek V4 Flash only if it equals it on the rows that the team judges without proposals (sample of one in five); rows with a comparable type at the evening of 30/09: zero",
+    "esito_en": "waiting for the judgments without proposals"
    }
   ],
   "note": "Distillazione da DeepSeek, dichiarata. Le etichette umane di prova sono di una persona sola e sono state date con le proposte di DeepSeek davanti.",
@@ -3441,6 +3938,12 @@
   "alias": "V09",
   "famiglia": "modello TRACE addestrato da noi",
   "rispetto_a": "T02",
-  "cambia": "stessa base e stesso metodo; impara anche i principi e le pagine vicine, con testi piu' lunghi (8.192 token)"
+  "cambia": "stessa base e stesso metodo; impara anche i principi e le pagine vicine, con testi piu' lunghi (8.192 token)",
+  "compito_en": "DeepSeek's work on a single GPU: type, who speaks, proposition, reason, principles and nearby pages",
+  "stato_en": "experimental (the proposals on the platform still come from DeepSeek)",
+  "note_en": "Distillation from DeepSeek, declared. The human test labels are from a single person and were given with the DeepSeek proposals in front of them.",
+  "cambia_en": "same base and same method; it also learns the principles and the nearby pages, with longer texts (8,192 tokens)",
+  "famiglia_en": "TRACE model trained by us",
+  "in_uso_en": "experimental"
  }
 ]

@@ -68,7 +68,7 @@ def test_due_copie_nello_stesso_secondo_non_si_sovrascrivono(tmp_path: Path) -> 
 
 def test_se_la_copia_non_si_scrive_niente_si_scrive(tmp_path: Path) -> None:
     (tmp_path / 'copie').write_text('un file al posto della cartella', encoding='utf-8')
-    with pytest.raises(CopiaNonRiuscitaError, match='niente scritto'):
+    with pytest.raises(CopiaNonRiuscitaError, match='nothing written'):
         copia(tmp_path).salva('p', 'tutti', {}, {'r': {'x': 1}})
 
 
