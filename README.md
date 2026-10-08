@@ -217,6 +217,9 @@ English renderings of the prompts and the codebook are in `translations/` (each 
 
 ## Data
 
+The citation dataset of TRACE 0.1 holds 7,893 citations of the six judgments in 541 later filings
+(record 10.5281/zenodo.23082590, CC BY-NC 4.0).
+
 The corpus index of TRACE 0.1 (corpus version D03: 577,121 pages of 16,993 documents, 6,482 citations found by the
 name search) is released in three tiers, to be published with the release:
 
