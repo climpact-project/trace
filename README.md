@@ -18,11 +18,13 @@
 
 <p align="center"><sub>DOI reserved: 10.5281/zenodo.23082522 (active on publication)</sub></p>
 
-> **Beta.** TRACE 0.1 is a first release. Every proposal it makes is checked by the CLIMPACT research team, and the
+> **Beta.** TRACE 0.1 is a first release. Every proposal it makes is open to checking by the CLIMPACT research team: at
+> release 414 of the 7,893 citations are verified, and the others are machine proposals, not findings. The
 > figures it publishes are provisional until the rows judged without machine proposals have a base (see [Limits](#limits)).
 > The proposals come from **DeepSeek V4 Flash** (DeepSeek-V4-Flash-0731, MIT licence), a large language model with open
-> weights that we run with vLLM on four NVIDIA H100 GPUs at ReCaS-Bari (INFN and University of Bari): it reads each
-> citation five times and the majority decides (R11, Proposals by majority vote of five readings). The codes L are its
+> weights that we run with vLLM on NVIDIA H100 GPUs at ReCaS-Bari (INFN and University of Bari): it reads each
+> citation five times and the majority decides (R11, Proposals by majority vote of five readings; R15 and R16 keep the
+> same vote and take the supporting sentence and the evidence from the text of the filing). The codes L are its
 > readings.
 
 For a climate judgment (the *cited case*), TRACE finds every later filing that cites it, in the Climate Litigation
@@ -49,7 +51,7 @@ it for the TRACE 0.1 data, and the versions in the registry.
 | **2. Cited case**<br>The forms of the name of each judgment, its principles (the *probes*), the map from its paragraphs to its principles. | `caso`: CasoCitato, SerieSonde, MappaParagrafi<br>`config`: Config | [`011`](legacy/tools/011_sonde.py) to [`015`](legacy/tools/015_formulazioni_provenienza.py) | **P01** Probes of Urgenda<br>**P05** Probes of Neubauer and Future Generations, second set corrected (second round)<br>**P06** Probes of KlimaSeniorinnen<br>**P08** Probes of IACtHR advisory opinion OC-32/25<br>**P09** Probes of the ICJ climate advisory opinion, 1.5°C probe rewritten<br>**R04** Paragraph map, reviewed<br>**R07** Paragraph map with probes P05<br>**R09** Paragraph maps of the three new cases; Spanish and Portuguese paragraph references |
 | **3. Name search**<br>Finds the name of the case in every page, in all its forms, with no AI. Each hit becomes a citation with a permanent code (`URG-0146`). | `ricerca`: RicercaPerNome, UnioneRighe<br>`dimensioni`: PosizioneNelPdf | [`016`](legacy/tools/016_cerca.py) to [`022`](legacy/tools/022_coda_uptakes.py); S05 in [`versioni/S05`](versioni/S05) | **S01** Name search, first version<br>**S02** Name search, corrected<br>**S03** Name search on OCR text, more Japanese and Korean forms<br>**S05** Name search on normalised text, with readmitted and new forms (in use) |
 | **4. Citations counted once**<br>The same citation can reach the database twice: in the body text and again in the footnote that the same sentence calls, in two translations of one filing, or as a surrounding page that holds a citation of its own. Rules mark one of the two; nothing is deleted. | `unione_c03`: UnioneC03, GeneratoreCoppie, CoppieRivedute<br>`pagine_gia_citate`: ApplicaC07, RiconoscitorePagine<br>`copia_prima`: CopiaPrima | (came after the legacy scripts) | **C03** Body text and footnote, and translations of the same filing, counted once (applied 5 October 2026)<br>**C07** Surrounding page that is already a citation of its own: also cited separately (applied 5 October 2026) |
-| **5. Close pairs** (on trial)<br>Two references to the same case in the same filing, less than 5,000 characters apart, are read together: one citation or two? Not applied: nothing is written to the platform. | `coppia`: Coppia<br>`coppie_vicine`: CoppieVicine, Taratura<br>`lettura_coppia`: DomandaL13, LettoreCoppie<br>`decisione_coppie`: Decisore<br>`carica_s08`: CaricaS08<br>`prova_intera`: FreniProvaIntera | (came after the legacy scripts) | **S08** Close pairs: two references to the same case in the same filing, read together (on trial, not applied)<br>**L13** Reading of a close pair: one citation or two (on trial, not applied) |
+| **5. Close pairs**<br>Two references to the same case in the same filing, less than 5,000 characters apart, are read together: one citation or two? Applied on 8 October 2026. | `coppia`: Coppia<br>`coppie_vicine`: CoppieVicine, Taratura<br>`lettura_coppia`: DomandaL13, LettoreCoppie<br>`decisione_coppie`: Decisore<br>`carica_s08`: CaricaS08<br>`prova_intera`: FreniProvaIntera | (came after the legacy scripts) | **S08** Close pairs: two references to the same case in the same filing, read together (applied on 8 October 2026)<br>**L13** Reading of a close pair: one citation or two (applied with S08) |
 | **6. Type of citation**<br>DeepSeek V4 Flash, a large language model, says what each citation does: chain mention, descriptive, substantive, distinguishing, critical. | `lettori`: LettoreTipo<br>`istruzioni`<br>`deepseek`: ClienteDeepSeek<br>`letture`: Lettura | [`023`](legacy/tools/023_giudica_llm.py) to [`025`](legacy/tools/025_carica_lessicali.py) | **L02** Citation reading, Urgenda<br>**L03** Citation reading, every case except Urgenda |
 | **7. Surrounding pages**<br>TRACE-Reranker scores the pages up to ten before and after the citation; a fixed rule picks the ones to read. T04, a reasoning reranker trained by the project, is published as a new model (see below); T01 stays the one in use. | `pagine_attorno`: Punteggi, SceltaPagineAttorno | [`026`](legacy/tools/026_prepara_training.py) to [`029`](legacy/tools/029_coppie_ocr.py), [`031`](legacy/tools/031_leggi_ripresa.py); R10 in [`versioni/R10`](versioni/R10) | **T01** TRACE-Reranker 0.1<br>**R08** Choice of the nearby pages, over the full window for every case<br>**R10** Choice of the surrounding pages: 0.5 at every distance within 10 pages, no cap |
 | **8. Uptake reading**<br>DeepSeek V4 Flash proposes the principles taken up, the pages that continue the argument and the quotations; brakes in the code reject quotations not on the page. | `lettori`: LettorePrincipi, LettorePagineAttorno<br>`freni`: Freni | [`030`](legacy/tools/030_prepara_l05.py) to [`034`](legacy/tools/034_freni.py) | **L04** Uptake reading, first version: the principles<br>**L05** Uptake reading with the case dossier: surrounding pages, quotes, supported sentence<br>**L07** Surrounding pages reread on the proposed principles |
@@ -65,10 +67,10 @@ it for the TRACE 0.1 data, and the versions in the registry.
 Model cards for T01, T02, T03, T04, the untrained reasoning reranker and L13: [`MODEL-CARDS.md`](MODEL-CARDS.md). The reading order of all 118 legacy scripts:
 [`legacy/tools/LEGGIMI.md`](legacy/tools/LEGGIMI.md).
 
-## Applied and on trial (5 October 2026)
+## Applied and on trial (5 and 8 October 2026)
 
-Two rules that count a citation once were **applied** to the platform on 5 October 2026. Everything else in this
-section is on trial: no row of the platform has been changed by it.
+Three steps that count a citation once were **applied** to the platform: C03 and C07 on 5 October 2026, S08 (with
+the reading L13) on 8 October 2026. T04 is published as a new model and produced no data of this release.
 
 **Applied**
 
@@ -93,24 +95,27 @@ section is on trial: no row of the platform has been changed by it.
 Both steps write a full copy of the rows before the first write, and stop without writing if the copy cannot be read back
 (`tracepipe.copia_prima`).
 
-**On trial, not applied**
+- **S08, close pairs (applied on 8 October 2026).** The citations of one case in one filing that are less than 5,000
+  characters apart become a candidate pair (the threshold is a cost decision, not a natural limit: the distances of the
+  pairs to merge and of the pairs to keep overlap). Each pair is read by DeepSeek V4 Flash (five readings) and by
+  Qwen3.5-9B as released, not trained (three readings), with L13 (Reading of a close pair: one citation or two): it is merged only if both
+  say one citation and no strong clue says two, kept as two only if both say two, and otherwise sent to the team. The
+  search also brings back 353 citations that the same-page deduplication of the name search lost, once 23 copies of the
+  same document are removed. Of the 6,290 pairs decided and written on 8 October 2026, 222 were merged (the other row
+  stays attached to the one kept), 791 were sent to the research team with 1,398 «To review» requests, 4,612 stay two
+  rows, and 665 needed no writing. A merge that would remove a row the team has judged goes to the team instead.
 
-- **S08, close pairs.** The citations of one case in one filing that are less than 5,000 characters apart become a
-  candidate pair (the threshold is a cost decision, not a natural limit: the distances of the pairs to merge and of
-  the pairs to keep overlap, and the pairs reread for C03 only reach back one page). Each pair would be read by
-  DeepSeek V4 Flash (five readings) and by a second reader (three readings): one citation, two, or doubt; doubt goes
-  to the team. It would also recover 376 citations that the same-page deduplication of the name search lost (two true
-  citations on one page: Children of Austria, p. 29; BMW, p. 10): 353 remain once 23 copies of the same document are
-  removed. They are not written to the platform.
-- **L13, the reading of a close pair** (the question «one citation or two?»), with the two readers above.
+**New model, not used for the data**
+
 - **A reasoning reranker, trained (T04).** Qwen3.5-9B with a LoRA adapter trained by the project on its own reasoning, kept
-  where it matched the team's verdict (94 examples). On the 137 rows of the jury set, with adapters that had not seen the
-  filing, it reaches an F1 of 0.756 on the principles against 0.730 for the untrained 9B (difference +0.03, 95%
-  interval -0.033 to +0.079: **not proven**), and 0.50 for T01 and 0.70 for the five readings of DeepSeek V4 Flash. It is
+  where it matched the team's verdict (94 examples). With cross-validation by filing, on the 485 rows answered by both
+  models, it reaches an F1 of 0.740 on the principles against 0.708 for the untrained 9B (difference +0.03, 95%
+  interval -0.005 to +0.070: **not proven**), and about 0.50 for T01 (TRACE-Reranker 0.1). It is
   published as a new model, **not used to produce the data of TRACE 0.1**; rereading the corpus with it is the plan for
-  TRACE 0.2. Three rules of its draft instructions were derived from the same judged rows (G05, G06 and one on advisory
-  opinions), so the figure is optimistic. T01 stays the reranker in use. The untrained 9B it comes from was tried first
-  (F1 0.72 on the same rows). Details and cautions in [`MODEL-CARDS.md`](MODEL-CARDS.md).
+  TRACE 0.2. Three rules of its instructions (G05, G06 and one on advisory opinions) were derived from counts on the same judged rows, so the
+  figure is optimistic; the principal investigator approved all the rules on 6 October 2026. T01 (TRACE-Reranker 0.1)
+  stays the reranker in use. The untrained 9B it comes from was tried first (F1 0.70 on the 137 rows of the jury set,
+  against 0.70 for the five readings of DeepSeek V4 Flash). Details and cautions in [`MODEL-CARDS.md`](MODEL-CARDS.md).
 
 ## Install
 
@@ -194,7 +199,7 @@ English renderings of the prompts and the codebook are in `translations/` (each 
   turns the downloaded PDFs into the page-marked text the pipeline reads, and the public corpus index (see
   [Data](#data)) lists every document with its source URL and the SHA-256 of the PDF used, with a script that rebuilds
   and verifies the page text.
-- **DeepSeek V4 Flash**, the large language model that reads the citations (codes L). We serve it with vLLM on four
+- **DeepSeek V4 Flash**, the large language model that reads the citations (codes L). We serve it with vLLM on
   NVIDIA H100 GPUs at ReCaS-Bari; the weights come from the official DeepSeek release (DeepSeek-V4-Flash-0731, MIT
   licence). The readers call it through an OpenAI-compatible endpoint (`--base-url`, key in `chat/chiave`).
 - **TRACE-Reranker (T01).** A LoRA adapter on Qwen3-Reranker-4B; the adapter is to be published on Zenodo with the
@@ -220,16 +225,17 @@ English renderings of the prompts and the codebook are in `translations/` (each 
 The citation dataset of TRACE 0.1 holds 7,893 citations of the six judgments in 541 later filings
 (record 10.5281/zenodo.23082590, CC BY-NC 4.0).
 
-The corpus index of TRACE 0.1 (corpus version D03: 577,121 pages of 16,993 documents, 6,482 citations found by the
-name search) is released in three tiers, to be published with the release:
+The corpus index of TRACE 0.1 (the index live on 5 October 2026: 578,146 pages of 17,039 documents, 7,042 citations
+found by the name search) is released in three tiers, in two records (10.5281/zenodo.23116958 public, 10.5281/zenodo.23116960 restricted):
 
 | Tier | Access | Documents | Pages | What it holds |
 |---|---|---:|---:|---|
-| 1. Public index, no text | public, CC BY-NC 4.0 | 16,993 | 577,121 | every page and document without its text: identifiers, character offsets, the SHA-256 of the page text, OCR and readability flags, the position of every citation, and a script that rebuilds the page text from the original PDFs and verifies it page by page |
-| 2. Public-authority documents | public | 4,259 | 103,832 | the page text of documents issued by courts and other public authorities, which are free of copyright; Westlaw and LexisNexis prints, unofficial translations, United Kingdom documents and attached exhibits are left out |
-| 3. Full index | restricted, on request | 16,993 | 577,121 | the page index with the text of every page, party filings and OCR text included, to verify TRACE results |
+| 1. Public index, no text | public, CC BY-NC 4.0 | 17,039 | 578,146 | every page and document without its text: identifiers, character offsets, the SHA-256 of the page text, OCR and readability flags, the position of every citation, and a script that rebuilds the page text from the original PDFs and verifies it page by page |
+| 2. Public-authority documents | public | 4,275 | 104,117 | the page text of documents issued by courts and other public authorities, which are free of copyright; Westlaw and LexisNexis prints, unofficial translations, United Kingdom documents and attached exhibits are left out |
+| 3. Full index | restricted, on request | 17,039 | 578,146 | the page index with the text of every page, party filings and OCR text included, to verify TRACE results |
 
-Of the 559,499 pages whose text comes from the PDF's own text layer, 559,072 rebuild byte for byte from tier 1.
+Of the 578,146 pages, 560,524 take their text from the PDF's own text layer; measured on 3 October 2026, 559,072 of
+559,499 of them rebuild byte for byte from tier 1.
 
 **Team judgments.** The data record also carries `trace-0.1-team-judgments.csv` (and a `.jsonl` with real lists): one row
 per citation judged by the CLIMPACT team, discarded citations included with the reason for the discard. For the function
@@ -322,8 +328,8 @@ assets/         images of this page
   untrained Qwen3.5-9B that matched the team's verdict, from four cited judgments (74 of them Urgenda).
 - The human reference rows used to compare readings are not frozen; those comparisons are provisional.
 - C03 and C07 were applied on pairs and pages reread one by one; the registry keeps the rule, the numbers and the code,
-  and every excluded row can be restored. S08 and L13 are on trial, and T04 is new: the
-  figures given for them are measured on rows the team already judged, and T04's figure is optimistic and not proven
+  and every excluded row can be restored. S08 was applied on pairs decided by two readers, with every
+  disagreement sent to the team. T04 is new: its figure is measured on rows the team already judged, is optimistic and not proven
   (see its model card).
 
 ## What comes next

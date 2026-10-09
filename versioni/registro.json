@@ -2898,7 +2898,7 @@
   "nome": "Name search: footnote-aware grouping, descriptive references, same-page dedup",
   "compito": "La ricerca per nome S05 con tre correzioni e una rete nuova. (1) I gruppi di corrispondenze (regola dei 200 caratteri) non attraversano mai l'inizio di una nota a pie' di pagina (a capo + numero della nota; non un anno, una data, «Rn.», «BvR»): note consecutive sono citazioni distinte. (2) La deduplica butta una copia solo nello stesso atto e sulla stessa pagina (strato di testo doppio); ogni altra copia resta con stesso_testo_di. (3) Forme semplici che mancavano («NL:RBDHA:2015:7145/7196», «Advisory Opinion, ICJ»). (4) La RETE DESCRITTIVA, separata (proposto_rete «descrittiva»): regole dichiarate nel file -S07 di ogni caso (la corte con l'anno e il clima, «BVerfG, a.a.O.» negli atti che citano gia' Neubauer, la data, la forma coreana, l'indirizzo della decisione, la Corte interamericana o la CIG vicino a «parere consultivo» e 2025...), fuori il procedimento stesso, gli atti anteriori alla pronuncia e le pagine dove il caso e' gia' nominato o ha una riga. Una copia in un atto che e' lo stesso documento (stesso PDF o testo) non si aggiunge, e quale copia tiene la riga lo dicono i metadati del catalogo (parte e corte trovate nell'atto), non l'ordine dei percorsi. Anche l'unione delle righe spezzate (unisci_e_aggiungi, tracepipe) unisce una riga di soli identificativi solo se il nome sta nella sua stessa nota. Le righe nuove vanno in corpus_rows fuori dalle code, con provenienza.estrazione S07 e causa_s07, e ricevono le stesse letture delle altre (cinque del tipo, cinque L05 sulle pagine attorno R10). S07 gira a lotti (lotto corpus-d04, poi D05) senza righe doppie: i lotti di prima contano come righe gia' in piattaforma.",
   "data": "2026-10-04",
-  "stato": "righe scritte fuori dalle code, in attesa delle letture",
+  "stato": "in uso: 1.925 righe del rilascio di TRACE 0.1 (found_by S07), lette come le altre",
   "codice_sorgente": [
    {
     "file": "tools/cerca_s07.py",
@@ -3000,7 +3000,7 @@
   },
   "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
   "nome_tecnico": "Name search: footnote-aware grouping, descriptive references, same-page dedup",
-  "in_uso": "righe in attesa delle letture",
+  "in_uso": "in uso",
   "alias": "",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S05",
@@ -3040,11 +3040,11 @@
    }
   ],
   "compito_en": "The S05 name search with three corrections and a new network. (1) The groups of matches (the 200-character rule) never cross the start of a footnote (line break + note number; not a year, a date, «Rn.», «BvR»): consecutive notes are distinct citations. (2) The deduplication throws away a copy only in the same filing and on the same page (double text layer); every other copy stays with stesso_testo_di. (3) Simple forms that were missing («NL:RBDHA:2015:7145/7196», «Advisory Opinion, ICJ»). (4) The DESCRIPTIVE NETWORK, separate (proposto_rete «descrittiva»): rules declared in the -S07 file of each case (the court with the year and the climate, «BVerfG, a.a.O.» in filings that already cite Neubauer, the date, the Korean form, the address of the decision, the Inter-American Court or the ICJ near «advisory opinion» and 2025...), leaving out the proceeding itself, the filings earlier than the ruling and the pages where the case is already named or has a row. A copy in a filing that is the same document (same PDF or text) is not added, and which copy keeps the row is told by the catalogue metadata (party and court found in the filing), not by the order of the paths. The merge of split rows (unisci_e_aggiungi, tracepipe) also merges a row of identifiers only if the name is in its own note. The new rows go into corpus_rows outside the queues, with provenienza.estrazione S07 and causa_s07, and receive the same readings as the others (five of the type, five L05 on the surrounding pages R10). S07 runs in batches (batch corpus-d04, then D05) without duplicate rows: the earlier batches count as rows already on the platform.",
-  "stato_en": "rows written outside the queues, awaiting the readings",
+  "stato_en": "in use: 1,925 rows of the TRACE 0.1 release (found_by S07), read like the others",
   "note_en": "Left out of the new rows: the rows of S06 and those S06 excluded (S06 handles them); an id already in the database; in the documents of D04 the rows are written only after the D04 cycle. Manual corrections of the same day: 28 rows merged by mistake returned to the earlier network, URG-1361 (confirmed) returned as it was with URG-1360 merged into it, 7 rows of Neubauer moved from the filing recorded under Allhoff-Cramer to Kaiser and others against Volkswagen (same PDF), 3 rows of another Neubauer excluded. 03/10/2026: only the header line naming the author removed (and the same mention in the fonte and rivista fields); content identical.",
   "cambia_en": "groups that do not cross footnotes; deduplication only same filing and same page; simple forms added; separate descriptive network; the copy of the same document chosen from the catalogue metadata",
   "famiglia_en": "name search",
-  "in_uso_en": "rows awaiting the readings"
+  "in_uso_en": "in use"
  },
  {
   "codice": "D04",
@@ -3317,7 +3317,7 @@
   "nome": "Close pairs: two references to the same case in the same filing, read together",
   "compito": "Dopo la ricerca per nome (S07) e prima dei controlli C01-C04: i riferimenti vivi dello stesso caso e dello stesso atto consecutivi nel testo a meno di 5.000 caratteri sono una COPPIA CANDIDATA (catene: `<codice>a`, `<codice>b`, codici provvisori, mai scritti). La rete descrittiva si rifa' senza il filtro «pagina col nome o con una riga»: la seconda citazione sulla pagina diventa una riga nuova se sta a 200 caratteri o piu' da un nome o da una riga. Ogni coppia e' letta da L13 (DeepSeek V4 Flash, cinque letture) e dal reranker che ragiona (Qwen3.5-9B, tre letture): «una citazione o due?». Una: si uniscono come C03 (resta la riga del testo o quella confermata dal team). Due: contano due. Disaccordo fra i lettori, un lettore incerto o senza letture valide (freni), o un indizio forte contrario: la coppia va al team («To review»). S08 sostituisce la regola automatica di C03 per le righe nuove; la regola C03 resta solo come generatore di candidate. Le traduzioni (due atti) restano a C03 con la lingua originale riletta una per una.",
   "data": "2026-10-05",
-  "stato": "in prova, non applicata: nessuna riga della banca dati e' cambiata per S08",
+  "stato": "applicata l'08/10/2026: delle 6.290 coppie decise, 222 unite, 791 al team (1.398 richieste «To review»), 4.612 restano due righe, 665 senza scrittura",
   "codice_sorgente": [
    {
     "file": "tools/coppie_vicine.py",
@@ -3396,14 +3396,14 @@
    },
    {
     "nome": "righe nuove recuperate dalla scansione (la seconda citazione sulla stessa pagina)",
-    "valore": "376; 353 dopo aver tolto 23 copie dello stesso documento; NON scritte in banca dati"
+    "valore": "376; 353 dopo aver tolto 23 copie dello stesso documento; scritte in banca dati l'08/10/2026"
    },
    {
     "nome": "limite",
     "valore": "la verita' C03 e' censurata a una pagina (C03 cercava entro una pagina): non dice niente sulle UNIRE piu' lontane"
    }
   ],
-  "note": "Il passo e' pensato fisso e automatico dopo la ricerca (training/misure/S08-AGGANCIO.patch), ma e' in prova: la scrittura delle unioni e il caricamento delle righe nuove non sono abilitati. Prova che fallisce se il passo manca: due citazioni lontane sulla stessa pagina (Children of Austria p. 29, BMW p. 10) devono dare due righe.",
+  "note": "Il passo e' pensato fisso e automatico dopo la ricerca (training/misure/S08-AGGANCIO.patch); applicato l'08/10/2026 (unioni e righe nuove scritte, disaccordi al team). Prova che fallisce se il passo manca: due citazioni lontane sulla stessa pagina (Children of Austria p. 29, BMW p. 10) devono dare due righe.",
   "software": {
    "python": "3.14.6",
    "google-cloud-firestore": "2.28.0",
@@ -3415,17 +3415,17 @@
   },
   "macchina": "Apple M5 Pro, macOS 27.0 (Mac del gruppo di ricerca)",
   "nome_tecnico": "Close pairs: two references to the same case in the same filing, read together",
-  "in_uso": "in prova, non applicata",
+  "in_uso": "applicata l'08/10/2026",
   "alias": "",
   "famiglia": "ricerca per nome",
   "rispetto_a": "S07",
   "cambia": "coppie vicine lette insieme: i riferimenti dello stesso caso e atto a meno di 5.000 caratteri; la seconda citazione sulla pagina non si perde piu'",
   "compito_en": "After the name search (S07) and before the checks C01-C04: the live references of the same case and the same filing that are consecutive in the text less than 5,000 characters apart are a CANDIDATE PAIR (chains: `<code>a`, `<code>b`, provisional codes, never written). The descriptive network is redone without the filter «page with the name or with a row»: the second citation on the page becomes a new row if it is 200 characters or more from a name or from a row. Each pair is read by L13 (DeepSeek V4 Flash, five readings) and by the reasoning reranker (Qwen3.5-9B, three readings): «one citation or two?». One: they are merged like C03 (the row of the text or the one confirmed by the team stays). Two: they count as two. Disagreement between the readers, an uncertain reader or one without valid readings (brakes), or a strong clue to the contrary: the pair goes to the team («To review»). S08 replaces the automatic rule of C03 for the new rows; the C03 rule stays only as a generator of candidates. The translations (two filings) stay with C03 with the original language reread one by one.",
-  "stato_en": "on trial, not applied: no row of the database has changed for S08",
-  "note_en": "The step is designed as fixed and automatic after the search (training/misure/S08-AGGANCIO.patch), but it is on trial: the writing of the merges and the loading of the new rows are not enabled. A test that fails if the step is missing: two distant citations on the same page (Children of Austria p. 29, BMW p. 10) must give two rows.",
+  "stato_en": "applied on 08/10/2026: of the 6,290 pairs decided, 222 merged, 791 sent to the team (1,398 «To review» requests), 4,612 kept as two rows, 665 needed no writing",
+  "note_en": "The step is designed as fixed and automatic after the search (training/misure/S08-AGGANCIO.patch); applied on 08/10/2026 (merges and new rows written, disagreements sent to the team). A test that fails if the step is missing: two distant citations on the same page (Children of Austria p. 29, BMW p. 10) must give two rows.",
   "cambia_en": "close pairs read together: the references of the same case and filing less than 5,000 characters apart; the second citation on the page is no longer lost",
   "famiglia_en": "name search",
-  "in_uso_en": "on trial, not applied"
+  "in_uso_en": "applied on 08/10/2026"
  },
  {
   "codice": "L13",
@@ -3433,7 +3433,7 @@
   "nome": "Reading of a close pair: one citation or two",
   "compito": "Per una coppia di riferimenti allo stesso caso nello stesso atto (S08): dato il testo vero dell'atto da prima del primo a dopo il secondo riferimento (segni ⟦A⟧ e ⟦B⟧, [pagina N], note in fondo alla pagina) dire se sono UNA citazione o DUE, quale riga resta, dove sta ciascuno (testo o nota), quale nota e' chiamata, la frase esatta di ciascuno e il motivo. Gli indizi deterministici NON stanno nella domanda. Freni 2-4 (R14 e R16) sulle due frasi: una lettura vale solo se le frasi stanno nell'atto e non sono copiate dal prompt; freno 1 prima di mandare la finestra al modello.",
   "data": "2026-10-05",
-  "stato": "in prova, non applicata: niente e' scritto in banca dati",
+  "stato": "applicata con S08 l'08/10/2026",
   "modello_base": {
    "nome": "deepseek-ai/DeepSeek-V4-Flash-0731",
    "revisione": "7872f01b1d1fe23eabc4c98b48bffcef5a386062",
@@ -3502,17 +3502,17 @@
   },
   "note": "Le coppie della verita' C03 vanno per prime (priorita 0) per misurare i lettori prima di fidarsene.",
   "nome_tecnico": "DeepSeek V4 Flash 0731 and Qwen3.5-9B, reading of a close pair: one citation or two",
-  "in_uso": "in prova, non applicata",
+  "in_uso": "applicata l'08/10/2026",
   "alias": "",
   "famiglia": "lettura di DeepSeek V4 Flash, modello linguistico grande",
   "rispetto_a": "L05",
   "cambia": "stesso modello; la domanda e' se due riferimenti vicini sono una citazione o due, sul testo dell'atto fra i due",
   "compito_en": "For a pair of references to the same case in the same filing (S08): given the true text of the filing from before the first to after the second reference (marks ⟦A⟧ and ⟦B⟧, [pagina N], notes at the bottom of the page) say whether they are ONE citation or TWO, which row stays, where each is (text or note), which note is called, the exact sentence of each and the reason. The deterministic clues are NOT in the question. Brakes 2-4 (R14 and R16) on the two sentences: a reading counts only if the sentences are in the filing and are not copied from the prompt; brake 1 before sending the window to the model.",
-  "stato_en": "on trial, not applied: nothing is written to the database",
+  "stato_en": "applied with S08 on 08/10/2026",
   "note_en": "The pairs of the C03 truth go first (priority 0) to measure the readers before trusting them.",
   "cambia_en": "same model; the question is whether two close references are one citation or two, on the text of the filing between the two",
   "famiglia_en": "reading by DeepSeek V4 Flash, a large language model",
-  "in_uso_en": "on trial, not applied"
+  "in_uso_en": "applied on 08/10/2026"
  },
  {
   "codice": "T01",
@@ -3600,7 +3600,7 @@
    "nome": "Qwen/Qwen3.5-9B",
    "revisione": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
    "licenza": "Apache-2.0",
-   "nota": "Qwen3_5ForConditionalGeneration, ragionamento acceso (enable_thinking); e' lo stesso modello non addestrato provato prima (F1 0,72 sulle 137)"
+   "nota": "Qwen3_5ForConditionalGeneration, ragionamento acceso (enable_thinking); e' lo stesso modello non addestrato provato prima (F1 0,70 sulle 137)"
   },
   "pesi": [
    {
@@ -3709,7 +3709,7 @@
   ],
   "limiti": [
    "94 esempi, 74 di Urgenda",
-   "tre regole della bozza (G05, G06, C05) ricavate dai conteggi su queste stesse righe: la validazione per atto non le ripulisce, la cifra e' un tetto alto; le regole G05-G08 non sono approvate",
+   "tre regole della bozza (G05, G06, C05) ricavate dai conteggi su queste stesse righe: la validazione per atto non le ripulisce, la cifra e' un tetto alto; le regole G05-G08 sono state approvate dal PI il 06/10/2026, dopo l'addestramento",
    "la misura e' degli adattatori delle piegature, non dell'adattatore finale pubblicato (stessa ricetta, tutti i 94 esempi)",
    "differenza dal 9B non addestrato non provata: gli intervalli comprendono lo zero",
    "le righe tenute sono quelle su cui il modello era gia' d'accordo col team: nessun esempio sulle righe difficili",
@@ -3729,7 +3729,7 @@
   "cambia_en": "no longer a score but a reasoning for every principle; base Qwen3.5-9B with reasoning on, trained on its own reasoning confirmed by the team (94 rows)",
   "limiti_en": [
    "94 examples, 74 of Urgenda",
-   "three rules of the draft (G05, G06, C05) derived from the counts on these same rows: the validation by filing does not clean them, the figure is a high ceiling; the rules G05-G08 are not approved",
+   "three rules of the draft (G05, G06, C05) derived from the counts on these same rows: the validation by filing does not clean them, the figure is a high ceiling; the rules G05-G08 were approved by the principal investigator on 06/10/2026, after training",
    "the measure is of the adapters of the folds, not of the final adapter published (same recipe, all 94 examples)",
    "difference from the untrained 9B not proven: the intervals include zero",
    "the rows kept are those on which the model already agreed with the team: no example on the hard rows",
