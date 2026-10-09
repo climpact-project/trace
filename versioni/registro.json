@@ -3692,11 +3692,11 @@
    },
    {
     "nome": "F1 sui principi fra semi (09/10/2026, regola scritta prima: training/misure/T04-SEMI-2026-10-09.md; dati training/misure/t04_semi_2026-10-09.json)",
-    "valore": "5 addestramenti (l'originale e 4 semi): media 0,718 (ds 0,023, da 0,686 a 0,740) contro 0,706 del non addestrato, differenza +0,012 (positiva in 3 semi su 5, intervallo fra i semi da -0,011 a +0,036); sulle 137 della giuria media 0,720, differenza -0,002 (da -0,034 a +0,031): T04 e' PARI al modello non addestrato, la cifra di un seme (0,740, 0,756) non e' la sua cifra tipica"
+    "valore": "9 semi (l'originale e 8): sulle 137 della giuria 0,718 ± 0,028 (da 0,672 a 0,756), differenza dal non addestrato -0,004 (intervallo al 95% fra i semi da -0,024 a +0,017), positiva in 5 semi su 9: T04 e' PARI al modello non addestrato e lo 0,756 e' il seme migliore su nove; sulle confermate appaiate +0,013 (da +0,002 a +0,025), positiva in 6 su 9: le due misure non concordano"
    },
    {
     "nome": "secondo addestramento (09/10/2026)",
-    "valore": "in corso: razionalizzazione STaR sui giudizi del team (delle 691 citazioni giudicate, le 427 che il primo non poteva usare), piu' semi, stessa validazione per atto; braccio con le letture unanimi di DeepSeek V4 Flash previsto; nessun risultato, l'esito e' della versione successiva (training/misure/T04-RAZIONALIZZA-2026-10-09.md)"
+    "valore": "in corso: razionalizzazione STaR sui giudizi del team, 214 righe d'addestramento invece di 94, per la 0.2, piu' semi, stessa validazione per atto; braccio con le letture unanimi di DeepSeek V4 Flash previsto; nessun risultato, l'esito e' della versione successiva (training/misure/T04-RAZIONALIZZA-2026-10-09.md)"
    },
    {
     "nome": "F1 per piegatura (righe)",
