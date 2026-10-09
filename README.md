@@ -23,8 +23,9 @@
 > figures it publishes are provisional until the rows judged without machine proposals have a base (see [Limits](#limits)).
 > The proposals come from **DeepSeek V4 Flash** (DeepSeek-V4-Flash-0731, MIT licence), a large language model with open
 > weights that we run with vLLM on NVIDIA H100 GPUs at ReCaS-Bari (INFN and University of Bari): it reads each
-> citation five times and the majority decides (R11, Proposals by majority vote of five readings; R15 and R16 keep the
-> same vote and take the supporting sentence and the evidence from the text of the filing). The codes L are its
+> citation five times and the majority decides (R11, Proposals by majority vote of five readings: a principle with 3 of 5; R12, a principle
+> needs two votes, and the rules built on it, R13 to R16, propose a principle with 2 of 5 and flag the row as uncertain;
+> R15 and R16 also take the supporting sentence and the evidence from the text of the filing). The codes L are its
 > readings.
 
 For a climate judgment (the *cited case*), TRACE finds every later filing that cites it, in the Climate Litigation
@@ -109,13 +110,30 @@ Both steps write a full copy of the rows before the first write, and stop withou
 
 - **A reasoning reranker, trained (T04).** Qwen3.5-9B with a LoRA adapter trained by the project on its own reasoning, kept
   where it matched the team's verdict (94 examples). With cross-validation by filing, on the 485 rows answered by both
-  models, it reaches an F1 of 0.740 on the principles against 0.708 for the untrained 9B (difference +0.03, 95%
-  interval -0.005 to +0.070: **not proven**), and about 0.50 for T01 (TRACE-Reranker 0.1). It is
+  models, the first training reached an F1 of 0.740 on the principles against 0.708 for the untrained 9B (difference +0.03, 95%
+  interval -0.005 to +0.070: **not proven**), and about 0.50 for T01 (TRACE-Reranker 0.1). Over 5 trainings with different seeds (the original and 4 more; the others planned belong to TRACE 0.2) the F1 on the principles is 0.718 on average (standard deviation 0.023, from 0.686 to 0.740) against 0.706 for the untrained model: the difference is +0.012 on average, positive for 3 of 5 seeds, with a 95% interval across seeds of -0.011 to +0.036; on the 137 rows of the jury set the mean is 0.720 and the difference -0.002 (-0.034 to +0.031). By the rule written before the results, T04 is **on a par with the untrained model**: the gain lies within the variation between identical trainings, and the single-seed F1 of 0.740 is not its typical value. A second training of T04 started on 9 October 2026 and is in progress: it learns also from the rows where the untrained model was wrong, from the judgments of the research team (of the 691 judged citations, the 427 that the first training could not use), with the model writing the reasoning that leads to the team's answer (the rationalisation step of STaR), on several seeds and with the same cross-validation by filing; a separate arm, with the rows on which the five readings of DeepSeek V4 Flash agree as machine labels, declared as such, is planned. It has no result yet, and its outcome belongs to the next release. It is
   published as a new model, **not used to produce the data of TRACE 0.1**; rereading the corpus with it is the plan for
   TRACE 0.2. Three rules of its instructions (G05, G06 and one on advisory opinions) were derived from counts on the same judged rows, so the
   figure is optimistic; the principal investigator approved all the rules on 6 October 2026. T01 (TRACE-Reranker 0.1)
   stays the reranker in use. The untrained 9B it comes from was tried first (F1 0.70 on the 137 rows of the jury set,
   against 0.70 for the five readings of DeepSeek V4 Flash). Details and cautions in [`MODEL-CARDS.md`](MODEL-CARDS.md).
+
+**Trials reported in the technical report, not part of this release**
+
+- **Decision models after DeepSeek V4 Flash.** Three decision models (Clef, Lux and Vega) were tried between DeepSeek V4
+  Flash and the research team, under a rule of adoption written before any number was known. None passes: against the
+  platform's F1 of 0.844 on the principles, Clef reaches 0.696, Lux 0.699 and Vega 0.710, with the interval of the
+  difference entirely below zero. As a checker of the type of citation Vega catches 7 of the 18 wrong types, on too few
+  rows to show an advantage; it is not used in this release. The proposals stay the majority of five readings.
+- **Precedents, and the page as an image.** Giving DeepSeek V4 Flash the most similar rows already judged by the team, as
+  precedents, brings no gain (type 95 of 133 against 97 of 133 without them). An open vision model (Qwen3.8-27B), shown
+  only the image of a page, said yes on 132 of the 136 pages of confirmed citations and no on 40 of 40 pages of the same
+  filings that cite none of the judgments: a way to find citations where the text of a page is broken, not part of this
+  release.
+- **Uptake without the name, by pairing.** A route that pairs passages of later filings with the paragraphs of a judgment,
+  with a small open model discarding the pairs that are clearly not an uptake, was calibrated on 9 October 2026: it
+  discarded with certainty 21 of 88 known uptakes (23.9%, 95% interval 16.2% to 33.7%) and turned 16 of 163 pairs
+  discarded by the team into proposals. It did not meet the criterion written before the calibration.
 
 ## Install
 
@@ -319,17 +337,20 @@ assets/         images of this page
 
 ## Limits
 
-- **No agreement figure published so far is a blind measure.** The figures the platform computes come from judgments
-  given with the machine's proposals visible: they say how often people changed a proposal, not how often the machine
-  is right. Rows judged without any proposal are being judged now; a blind figure will be published when that sample
-  has a base.
+- **Agreement is measured mostly with the proposals in view, which overstates it.** The figures the platform computes come
+  from judgments given with the machine's proposals visible: they say how often people changed a proposal, not how often
+  the machine is right. The first blind figure (technical report, section 8) rests on 85 judgments given blind, against
+  304 given with the proposal visible: the team kept the machine's type of citation in 39 of 76 blind rows (51.3%, 95%
+  interval 40.3% to 62.2%) against 239 of 295 (81.0%), and the F1 on the principles is 0.543 (0.435 to 0.646) against
+  0.773. On blind rows agreement is lower: this is anchoring, measured. The base is small and the two groups are
+  different rows; it is agreement with one person per row, not accuracy; the clean yardstick remains the blind double coding.
 - The models of 0.1 were trained on labels that are being corrected (T01) or on the readings of DeepSeek V4 Flash
   (T02, T03: distillation from DeepSeek V4 Flash), and on one cited judgment, Urgenda. T04 was trained on 94 answers of the
   untrained Qwen3.5-9B that matched the team's verdict, from four cited judgments (74 of them Urgenda).
 - The human reference rows used to compare readings are not frozen; those comparisons are provisional.
 - C03 and C07 were applied on pairs and pages reread one by one; the registry keeps the rule, the numbers and the code,
   and every excluded row can be restored. S08 was applied on pairs decided by two readers, with every
-  disagreement sent to the team. T04 is new: its figure is measured on rows the team already judged, is optimistic and not proven
+  disagreement sent to the team. T04 is new: across training seeds it is on a par with the untrained model, and a second training is in progress
   (see its model card).
 
 ## What comes next

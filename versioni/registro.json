@@ -3691,6 +3691,14 @@
     "valore": "0,740 (0,790, 0,697) contro 0,708 (0,733, 0,686); differenza +0,03, intervallo da -0,005 a +0,070"
    },
    {
+    "nome": "F1 sui principi fra semi (09/10/2026, regola scritta prima: training/misure/T04-SEMI-2026-10-09.md; dati training/misure/t04_semi_2026-10-09.json)",
+    "valore": "5 addestramenti (l'originale e 4 semi): media 0,718 (ds 0,023, da 0,686 a 0,740) contro 0,706 del non addestrato, differenza +0,012 (positiva in 3 semi su 5, intervallo fra i semi da -0,011 a +0,036); sulle 137 della giuria media 0,720, differenza -0,002 (da -0,034 a +0,031): T04 e' PARI al modello non addestrato, la cifra di un seme (0,740, 0,756) non e' la sua cifra tipica"
+   },
+   {
+    "nome": "secondo addestramento (09/10/2026)",
+    "valore": "in corso: razionalizzazione STaR sui giudizi del team (delle 691 citazioni giudicate, le 427 che il primo non poteva usare), piu' semi, stessa validazione per atto; braccio con le letture unanimi di DeepSeek V4 Flash previsto; nessun risultato, l'esito e' della versione successiva (training/misure/T04-RAZIONALIZZA-2026-10-09.md)"
+   },
+   {
     "nome": "F1 per piegatura (righe)",
     "valore": "0: 0,729 contro 0,682 (132); 1: 0,667 contro 0,686 (140); 2: 0,776 contro 0,728 (113); 3: 0,769 contro 0,729 (100)"
    },
