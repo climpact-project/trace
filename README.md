@@ -18,6 +18,8 @@
 
 <p align="center"><sub>DOI reserved: 10.5281/zenodo.23275400 (active on publication)</sub></p>
 
+**What TRACE is for.** TRACE brings to the surface what no research team could find by reading alone: every citation of the climate judgments it follows, across hundreds of later filings and thousands of pages, each with the sentence that carries it and a proposal of what it does, and hands it to the people who decide. People stay at its centre. Its strength is the pipeline. It stacks many layers on top of one another: name searches, paragraph maps, rules, five independent readings, models trained on the team's judgments, and a version code on every step. Each layer is measured, and every proposal can be traced back to the exact words on the page and the exact version that produced it. That order is what made these results possible with just over 400 citations judged by people. This first release is a beta, and a starting point, not a ceiling. Every new human judgment enters a pipeline that is already ordered and traceable to the smallest piece, and becomes clean training data, so each one makes the next model better informed. TRACE 0.2 will measure how far that takes it.
+
 > **Beta.** TRACE 0.1 is a first release. Every proposal it makes is open to checking by the CLIMPACT research team: at
 > release 414 of the 7,893 citations are verified, and the others are machine proposals, not findings. The
 > figures it publishes are provisional until the rows judged without machine proposals have a base (see [Limits](#limits)).
@@ -164,8 +166,13 @@ trace unisci --caso urgenda                  # dry run: the citations it would m
 trace prepara pagine-attorno --caso urgenda --regola R10 --etichetta prova
 trace leggi pagine-attorno --caso urgenda --letture 5 --etichetta prova   # needs a DeepSeek server
 trace carica ripresa --caso urgenda --composizione R11 --etichetta prova  # dry run of the composition
+trace carica ripresa --caso urgenda --composizione R16 --etichetta prova  # the rules of the TRACE 0.1 data
 trace controlla completezza
 ```
+
+To try the code without the corpus, `examples/synthetic/` is a tiny invented corpus (an invented judgment and a few
+invented pages, no real text) on which the name search and the compositions R11 to R16 run; its README gives the
+commands.
 
 Comments and docstrings are in English. The names of modules, classes, functions and command options are Italian, the
 team's working language, and so were the screen messages until 6 October 2026, when they were put into English (the
@@ -333,8 +340,66 @@ cited-cases/    case files, probe series, dossiers, paragraph maps (in Italian, 
 codebook/       coding categories and rules for hard cases
 translations/   English renderings of the Italian prompts and codebook (reading aids, next to the frozen originals)
 scripts/        verify_registry.py
+reproduce/      the scripts behind the figures of the technical report (see Reproducing every figure in the report)
+examples/       a tiny synthetic corpus to try the code
 assets/         images of this page
 ```
+
+## Reproducing every figure in the report
+
+The folder `reproduce/` holds the scripts that compute the figures of the TRACE 0.1 technical report. Each one is the
+measurement tool that produced the figure, with the same computation; only the file paths became command-line
+arguments (or the `TRACE_ROOT` environment variable), and the comments are in English. The first lines of each script
+name the original tool and where its frozen copy is. No script writes to a database; Firestore is read only, behind an
+option, and every script can also run from files.
+
+### Three levels of inputs
+
+- **(a) Public files.** The TRACE 0.1 dataset (DOI 10.5281/zenodo.23082590), the public index tiers
+  (DOI 10.5281/zenodo.23116958) and the version registry `versioni/registro.json` with the frozen code in `versioni/`
+  of this repository.
+- **(b) Restricted index**, with the texts of the filings (DOI 10.5281/zenodo.23116960). It is given on request, for
+  research use, where the licence of the source texts allows (see "How to request tier 3" above).
+- **(c) Data that are not published**: the raw readings of DeepSeek V4 Flash, the answers of Qwen3.5-9B and of T04,
+  snapshots of the project database (Firestore), the rich map data (`dati_ricchi.json`), and team data outside the
+  dataset. They can be requested from the CLIMPACT team (CLIMPACT, University of Bari, trace@climpact.it), for research
+  use, where the licence of the source texts allows. Coders' names and accounts are never released.
+
+### Figure, script, inputs, command
+
+| Figure in the report | Script | Inputs (level) | Command | Checked against the published figure |
+|---|---|---|---|---|
+| Dataset counts: 7,893 citations in 541 documents, 414 checked, 6,778 with five readings, rules R11 to R16, 651 team judgments (430 counted: 414 confirmed, 16 discarded), 108 blind | `prepare_dataset.py check` | dataset files (a) | `python reproduce/prepare_dataset.py check --dataset <dataset folder>` | yes, same counts, SHA256SUMS match |
+| The dataset files themselves (citations CSV and JSONL, team judgments CSV and JSONL, README, SHA256SUMS) | `prepare_dataset.py build` (with `team_judgments.py`) | `dati_ricchi.json`, `casi.json`, `globo/dati.js` (c); team judgments from Firestore (c) or from the published JSONL (a) | `python reproduce/prepare_dataset.py build --map-dir <map folder> --out-dir <out> --team-judgments-from trace-0.1-team-judgments.jsonl` | yes, all six files byte-identical to the deposit |
+| First blind figure: machine-team agreement blind against visible (outcome, function, speaker, principles F1, same set) with Wilson and bootstrap intervals | `blind_agreement.py` | team judgments and citations JSONL (a); `dati_ricchi.json` for the citing filing of discarded rows (c, optional) | `python reproduce/blind_agreement.py --team-judgments trace-0.1-team-judgments.jsonl --citations trace-0.1-citations.jsonl [--rich-data dati_ricchi.json] --out cieca.json` | yes: identical with `--rich-data`; from public files only, the same point figures, bootstrap intervals differ in the third decimal (11 codes without a public filing) |
+| Krippendorff's alpha of repeated DeepSeek readings, per case (type, principles L04 and L05; within run, between runs, four coders) | `krippendorff_alpha.py` | raw DeepSeek V4 Flash readings (c); `cited-cases/` (a) | `python reproduce/krippendorff_alpha.py --root <project root> --out alfa_2026-10-02` | same output as the original tool on the same files; the reading files of L04/L05 have grown since 02/10, so the "within run" alpha of L04/L05 is not the frozen one (type and between-run alpha are identical) |
+| T04 across nine seeds: 0.718 +/- 0.028 on the 137 rows of the jury, difference from the untrained model -0.004 [-0.024, +0.017] | `t04_seeds.py` (runs the measuring step of the frozen `versioni/T04/`) | answers of each seed and of the untrained 9B, T04 training set, team judgments of the measure (c) | `python reproduce/t04_seeds.py measure --seeds-dir <semi> --base q9_rrl.jsonl --data dati.jsonl.gz --verita verita.json --insieme insieme.json --out t04_semi.json` | yes, summary and per-seed files byte-identical |
+| T04 compared with DeepSeek V4 Flash (R11 and published proposal), T01 and the team | `compare_t04.py` | live rows snapshot and T04 answers (c); training ids `versioni/T04/esempi_di_addestramento_id.txt` (a) | `python reproduce/compare_t04.py --rows righe_vive.jsonl.gz --answers-dir esiti --insieme insieme.json --r11-judged r11_su_giudicate.json --out-dir <out>` | yes, JSON, CSV and report byte-identical |
+| T04 training (the published adapter) | `train_t04.py` (runs the frozen `versioni/T04/`, after checking its SHA-256 against the registry) | training set with the texts of the filings (b, c); Qwen3.5-9B; one GPU | `python reproduce/train_t04.py verify`, then `python reproduce/train_t04.py addestra --root <project root> -- --pesi <Qwen3.5-9B> --piega 0 ...` | not re-run (GPU); frozen files match the registry |
+| The proposals of the TRACE 0.1 data (rules R12, R13, R15, R16: principles, uncertain flag, missing-proof flag, surrounding pages and their proofs, supporting sentence) | `golden_rules.py` (the package: `trace carica ripresa --composizione R12` ... `R16`) | the five raw readings of DeepSeek V4 Flash, the rows with their surrounding pages, the type readings, the copies taken before every write (c); the texts of the filings (b) | `TRACE_ROOT=<private root> python reproduce/golden_rules.py` | yes: R15 recomputed on 7,473 rows, 7,184 compared with the state written on 4 October 2026, 0 different; R16 on 483 rows, 472 compared, 0 different (the others have no later state to compare with). The raw readings are not in the dataset nor in the deposits, so this check runs only on the team's machine; `examples/synthetic/` lets anyone run the same rules on invented data |
+| The count gate (which machine rows enter the totals: 3 of 5 readings by name, 4 of 5 descriptive, team judgment first) | `count_gate.py` | rows snapshot and reading files (c) | `python reproduce/count_gate.py --rows <rows.jsonl.gz> --readings-dir <training>` | same decision as the original on all 9,356 live rows of 07/10 |
+
+Not ported to code that recomputes them in this release (planned for 0.1.1): the T01 scores (TRACE-Reranker 0.1) are read
+by the package, and the code that computed them is the frozen copy `versioni/T01/` (`ripresa_punteggi.py`,
+`prova_riordinatori.py`, also `legacy/tools/027_*` and `028_*`), with the adapters on Zenodo.
+
+### Figures without a script in this folder yet
+
+These figures of the report come from tools of the working tree that are not yet ported here, or from reports written
+by hand. They are listed so that nobody takes them as reproducible from this folder today:
+
+- recall of the name search (S03) and its losses: `tools/misura_perdite_ricerca_nome.py` (inputs b and c);
+- what the surrounding pages lose (rule R08): `tools/misura_perdite_attorno.py` (inputs b and c);
+- readings per row and alpha by number of readings: `tools/prova_giri.py`;
+- determinism of DeepSeek and of the reader at temperature zero: `tools/misura_determinismo.py`,
+  `tools/misura_determinismo_reader.py`;
+- the reasoning reranker and the reasoning scale: `tools/ragionamento.py misure`, `tools/scala.py`;
+- decision models after DeepSeek: `tools/decisori_regola_dopo.py`, `tools/decisori_controllore.py`,
+  `tools/confronta_decisori.py`;
+- precedents and page images: `tools/precedenti_prova.py`; S08 pairs: `tools/decidi_s08.py`;
+- double-coded blind sample: `tools/doppia_cieche.py`; index statistics: `pubblicazione/trace-0.1/indice/prepara_indice.py`;
+- figures read from reports written by hand (S07 precision, C03 and C07 reviews, corpus defects, Bridge, the
+  rationalisation of T04, the across-citations layer, the semantic rows): they have no script.
 
 ## Limits
 

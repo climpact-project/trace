@@ -1,0 +1,31 @@
+35,39c35,41
+< 2. DISTINTIVA O LUOGO COMUNE. Secondo il fascicolo (elementi distintivi, fonti concorrenti, falsi amici), la proposizione e' propria
+<    di questa decisione o e' un luogo comune che si trova anche altrove: scienza del clima e rapporti IPCC, effetti del riscaldamento
+<    sulla salute o sugli ecosistemi, diritti umani in generale, testi e storia dei trattati (UNFCCC, Kyoto, Parigi, Montreal),
+<    bilancio di carbonio, urgenza di ridurre? Se e' un luogo comune, da questa finestra non si puo' riconoscere una ripresa di
+<    QUESTA decisione: la risposta e' NO.
+---
+> 2. DISTINTIVA O LUOGO COMUNE. Distintiva e' la proposizione propria di questa decisione: la sua regola, il suo criterio, la sua
+>    formula, la sua applicazione o la sua conclusione su quel punto, anche se il fascicolo non ne fa una sonda (un paragrafo senza
+>    sonda nel fascicolo NON e' per questo un luogo comune). Luogo comune e' solo cio' che si trova uguale altrove e che il fascicolo
+>    indica fra le fonti concorrenti o i falsi amici: scienza del clima e rapporti IPCC, effetti del riscaldamento sulla salute o
+>    sugli ecosistemi, diritti umani in generale, testi e storia dei trattati (UNFCCC, Kyoto, Parigi, Montreal), bilancio di
+>    carbonio, urgenza di ridurre. Se e' un luogo comune, da questa finestra non si puo' riconoscere una ripresa di QUESTA
+>    decisione: la risposta e' NO.
+42,45c44,49
+< 4. FONTI ALTERNATIVE. La finestra attribuisce l'idea a qualcun altro (un esperto, l'IPCC o un altro rapporto scientifico, un'altra
+<    corte o un'altra decisione, una legge, un trattato), o la stessa idea viene da una fonte comune che anche la decisione usa (lo
+<    stesso perito, lo stesso rapporto)? Il fascicolo elenca le fonti concorrenti. Se si', la risposta e' NO, o FORSE se la
+<    formulazione resta propria di questa decisione.
+---
+> 4. FONTI ALTERNATIVE. La finestra attribuisce l'idea a qualcun ALTRO (un esperto, l'IPCC o un altro rapporto scientifico,
+>    un'altra corte o un'altra decisione, una legge, un trattato), o la stessa idea viene da una fonte comune che anche la decisione
+>    usa (lo stesso perito, lo stesso rapporto)? Il fascicolo elenca le fonti concorrenti. Se si', la risposta e' NO, o FORSE se la
+>    formulazione resta propria di questa decisione. QUESTA decisione indicata senza il nome (la corte che l'ha emessa, la data, il
+>    tipo di pronuncia, un numero di paragrafo) NON e' una fonte alternativa: e' la decisione stessa, che la ricerca per nome non ha
+>    trovato; non scriverla in fonte_alternativa e non e' un motivo per rispondere NO.
+52c56,57
+<    bibliografia, un testo rotto; oppure la finestra nomina la decisione stessa (scrivilo nel motivo: non e' implicita).
+---
+>    bibliografia, un testo rotto. Se la finestra indica questa decisione senza il nome (corte, data, paragrafo), decidi sulla
+>    proposizione come per ogni altra finestra e scrivilo nel motivo.

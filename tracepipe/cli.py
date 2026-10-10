@@ -67,7 +67,8 @@ reproducing a registry version (see versioni/registro.json; the journal records 
   R10 surrounding pages (in use)  trace prepara pagine-attorno --regola R10
   L05 with five readings          trace leggi pagine-attorno --letture 5     (default; --letture 2 = before 02/10)
   R05 composition                 trace carica ripresa --composizione R05    (default)
-  R11 majority of five (in use)   trace carica ripresa --composizione R11; trace carica tipo --composizione R11
+  R11 majority of five            trace carica ripresa --composizione R11; trace carica tipo --composizione R11
+  R12-R16 (the TRACE 0.1 data)    trace carica ripresa --composizione R12|R13|R14|R15|R16 --etichetta <label>
   harness / old outputs           trace --compat ...   reproduces the four live defects fixed on 02/10/2026
                                                        and the old split-citation count of trace unisci (03/10/2026)
 nothing is written to the platform without --scrivi.
@@ -230,9 +231,33 @@ def parser() -> argparse.ArgumentParser:
     cr.add_argument('--principi-da-l04', action='store_true')
     cr.add_argument('--anche-senza-lettura', action='store_true')
     cr.add_argument('--salva', default='')
-    cr.add_argument('--composizione', default='R05', choices=['R05', 'R11'], help='R11: majority of the L05 readings')
-    cr.add_argument('--etichetta', default='', help='R11: the readings and rows with this label')
-    cr.add_argument('--etichetta-tipo', default='cinque', help='R11: the type readings with this label')
+    cr.add_argument(
+        '--composizione',
+        default='R05',
+        choices=['R05', 'R11', 'R12', 'R13', 'R14', 'R15', 'R16'],
+        help='R11: majority of the five L05 readings; R12: a principle with 2 of 5 readings (flagged uncertain); '
+        'R13: an empty principle list counts as «nessuno»; R14: proofs searched in the text of the filing; '
+        'R15: supporting sentence extracted from the text of the filing; R16: the whole proof must be in the page '
+        '(repaired from the text otherwise)',
+    )
+    cr.add_argument('--etichetta', default='', help='R11-R16: the readings and rows with this label')
+    cr.add_argument('--etichetta-tipo', default='cinque', help='R11-R16: the type readings with this label')
+    cr.add_argument(
+        '--solo-elenco-vuoto',
+        action='store_true',
+        help='R13: only the rows with a valid reading with an empty principle list (where R13 and R12 can differ)',
+    )
+    cr.add_argument(
+        '--solo-cambiate', action='store_true', help='R14-R16: only the rows where a field of the proposal changes'
+    )
+    cr.add_argument(
+        '--tieni-frase', action='store_true', help="R16: keep the row's supporting sentence (no new R15 sentence)"
+    )
+    cr.add_argument(
+        '--fotografia',
+        default='',
+        help='a snapshot of corpus_rows (JSON {id: row}, .gz allowed) instead of the live database: preview only',
+    )
     cr.add_argument('--scrivi', action='store_true')
 
     co = sub.add_parser('controlla', help='the checks after every load')
@@ -416,7 +441,16 @@ def esegui(a: argparse.Namespace, config: Config, giornale: Any) -> int:
     if a.comando == 'carica':
         from .caricatori import CaricatoreRipresa, CaricatoreTipo
 
-        banca = _banca(giornale)
+        if getattr(a, 'fotografia', ''):
+            # rows from a file (the synthetic example, or a saved snapshot): nothing can be written
+            from .banca import BancaDatiMemoria
+            from .unione_c03 import carica_fotografia
+
+            if a.scrivi:
+                raise SystemExit('--fotografia is a preview: --scrivi is not allowed with it')
+            banca = BancaDatiMemoria({'corpus_rows': carica_fotografia(a.fotografia)})
+        else:
+            banca = _banca(giornale)
         if a.cosa == 'tipo':
             CaricatoreTipo(
                 config,
@@ -440,6 +474,9 @@ def esegui(a: argparse.Namespace, config: Config, giornale: Any) -> int:
                 composizione=a.composizione,
                 etichetta=a.etichetta,
                 etichetta_tipo=a.etichetta_tipo,
+                solo_elenco_vuoto=a.solo_elenco_vuoto,
+                solo_cambiate=a.solo_cambiate,
+                tieni_frase=a.tieni_frase,
                 scrivi=a.scrivi,
             ).esegui()
         return 0

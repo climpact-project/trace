@@ -9,7 +9,10 @@ chat/
 *.key
 .deepseek_key
 .env*
-training/
-markdown/
-index/
+/training/
+/markdown/
+/index/
 *.zip
+# the synthetic example ships its own invented training/ and markdown/ folders
+!examples/synthetic/training/
+!examples/synthetic/markdown/

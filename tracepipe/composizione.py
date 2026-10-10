@@ -90,12 +90,17 @@ def pagine_intere(config: Config, cand: dict[str, dict[str, Any]]) -> dict[str, 
     """The proof is looked for in the WHOLE page (04/10/2026, truncation audit): twin of ``pagine_intere`` in
     ``tools/carica_ripresa.py``. The L05 reader rows carry their surrounding pages cut at 3,500 characters, so a proof
     copied from the tail (the footnotes) came out «not found». Each surrounding page gets its page-index text (up to
-    12,000 characters) in ``vicine_testo``, only when it starts like the row's text (same source: OCR pages stay)."""
+    12,000 characters) in ``vicine_testo``, only when it starts like the row's text (same source: OCR pages stay).
+
+    Each row also gets ``vicine_dopo``: the text of the page AFTER each surrounding page (R16: the sentence of a proof
+    can go on after the footnotes, on the next page)."""
     if not config.indice_pagine.exists():
         return cand
     from .corpus import IndicePagine
 
-    serve = {f"{c['document_id']}#p{v['pagina']}" for c in cand.values() for v in c.get('vicine', [])}
+    serve = {
+        f"{c['document_id']}#p{v['pagina'] + k}" for c in cand.values() for v in c.get('vicine', []) for k in (0, 1)
+    }
     testi = {k: t[:12000] for k, t in IndicePagine(config.indice_pagine).testi(serve).items()}
     for c in cand.values():
         vt = c.get('vicine_testo') or {}
@@ -108,6 +113,11 @@ def pagine_intere(config: Config, cand: dict[str, dict[str, Any]]) -> dict[str, 
             vt[n] = t
         if vt:
             c['vicine_testo'] = vt
+        c['vicine_dopo'] = {
+            v['pagina']: testi[f"{c['document_id']}#p{v['pagina'] + 1}"]
+            for v in c.get('vicine', [])
+            if f"{c['document_id']}#p{v['pagina'] + 1}" in testi
+        }
     return cand
 
 
@@ -664,11 +674,64 @@ class IngressiMaggioranza:
         )
 
 
-class ComposizioneMaggioranza(Composizione):
-    """The R11 composition: twin of ``tools/carica_ripresa.py`` ``proposta_r11``.
+# R12-R16: the rules of 04/10/2026 on the five readings (rules of the TRACE 0.1 data)
+REGOLE_CINQUE = ('R11', 'R12', 'R13', 'R14', 'R15', 'R16')
+"""The compositions on the five L05 readings, each one "as the previous one, except one rule":
 
-    The voting rules are in :mod:`tracepipe.maggioranza`.
+- R11: the majority of the valid readings (``tracepipe.maggioranza``);
+- R12: a principle needs 2 valid readings (``maggioranza.soglia_due``), the pages stay at the majority;
+- R13: an empty principle list votes «nessuno» (``maggioranza.elenco_vuoto``);
+- R14: the proofs are also searched in the text of the filing without the system marks
+  (``FreniProvaIntera(ricostruisci=True)``);
+- R15: as R14, and the supported sentence is extracted from the text (:mod:`tracepipe.frase_sostenuta`), applied by
+  :meth:`ComposizioneMaggioranza.componi_r11` (``r15_da_scrivere``);
+- R16: as R14, and the proof must be in the page WHOLE (``FreniProvaIntera.prova_intera``); a proof R14 finds and R16
+  does not is repaired from the text of the filing (:mod:`tracepipe.ripara_prova`).
+"""
+
+LETTORE_REGOLA = {
+    'R12': 'con almeno 2 voti per principio (R12)',
+    'R13': "con almeno 2 voti per principio, l'elenco vuoto vale «nessuno» (R13)",
+    'R14': "con almeno 2 voti per principio, l'elenco vuoto vale «nessuno», prove cercate nel testo dell'atto (R14)",
+    'R15': "con almeno 2 voti per principio, l'elenco vuoto vale «nessuno», prove cercate nel testo dell'atto, "
+    'frase sostenuta estratta dal testo (R15)',
+    'R16': "con almeno 2 voti per principio, l'elenco vuoto vale «nessuno», prove cercate per intero nel testo "
+    "dell'atto (R16)",
+}
+"""The reader line written with each rule (Italian: it is data, written into ``proposto_ripresa_lettore``)."""
+
+
+def uguale_a_oggi(r: Mapping[str, Any], campi: Mapping[str, Any]) -> bool:
+    """R14 (04/10/2026): True if the computed proposal equals the one the row has today, field by field, not counting
+    the provenance (``provenienza.*``) and the reader line (they only change the rule label). Twin of
+    ``tools/carica_ripresa.uguale_a_oggi``."""
+    for k, v in campi.items():
+        if k.startswith('provenienza.') or k == 'proposto_ripresa_lettore':
+            continue
+        if json.dumps(r.get(k), sort_keys=True, ensure_ascii=False, default=str) != json.dumps(
+            v, sort_keys=True, ensure_ascii=False, default=str
+        ):
+            return False
+    return True
+
+
+class ComposizioneMaggioranza(Composizione):
+    """The compositions on the five readings, R11 to R16: twin of ``tools/carica_ripresa.py`` ``proposta_r11`` and
+    ``main_r11`` (frozen copies ``versioni/R12`` to ``versioni/R16``).
+
+    The voting rules are in :mod:`tracepipe.maggioranza`, the brakes in :mod:`tracepipe.prova_intera`, the sentence of
+    R15 in :mod:`tracepipe.frase_sostenuta` and the repair of R16 in :mod:`tracepipe.ripara_prova`.
     """
+
+    radice: Path | None = None
+    """The corpus root that the row paths (``file``, ``file_pdf``) start from: needed by R15 only."""
+
+    @classmethod
+    def per_caso(cls, config: Config, caso: str, compat: bool = False) -> ComposizioneMaggioranza:
+        c = super().per_caso(config, caso, compat)
+        assert isinstance(c, ComposizioneMaggioranza)
+        c.radice = config.radice
+        return c
 
     def proposta_r11(
         self,
@@ -679,13 +742,47 @@ class ComposizioneMaggioranza(Composizione):
         cand: Righe,
         vt: Mapping[str, Any] | None = None,
         tipo_fs: str = '',
+        composizione: str = 'R11',
+        lettura: str = 'L05',
     ) -> dict[str, Any] | None:
-        """The proposed fields of one row with R11, or ``None`` when the row has no valid L05 reading."""
-        from . import maggioranza
+        """The proposed fields of one row, or ``None`` when the row has no valid L05 reading.
 
+        Args:
+            rid, par, brano, ds, cand: as :meth:`Composizione.proposta`.
+            vt: the majority type (:func:`tracepipe.maggioranza.voto_tipo`), or ``None``.
+            tipo_fs: the type the row has, used when ``vt`` is ``None``.
+            composizione: ``R11`` ... ``R16`` (see :data:`REGOLE_CINQUE`). For ``R15`` this is R14: the sentence of
+                R15 is put in by :meth:`componi_r11`.
+            lettura: the reading code written in the provenance (``L05``, or ``L11`` for the readings of the whole
+                surrounding pages).
+        """
+        from . import maggioranza
+        from .prova_intera import FreniProvaIntera
+
+        if composizione not in REGOLE_CINQUE:
+            raise ValueError(f'unknown composition {composizione!r}: one of {", ".join(REGOLE_CINQUE)}')
         ids = self.ids
         rec = ds.get(rid) or {}
-        vp = maggioranza.voto_principi(rec.get('letture') or [], ids, self.canonico)
+        dopo_r11 = composizione != 'R11'
+        vp = maggioranza.voto_principi(
+            rec.get('letture') or [],
+            ids,
+            self.canonico,
+            maggioranza.soglia_due if dopo_r11 else None,
+            composizione in ('R13', 'R14', 'R15', 'R16'),
+        )
+        ric = composizione in ('R14', 'R15', 'R16')  # the brakes on the text of the filing (R14; R15 is R14 here)
+        intera = composizione == 'R16'  # and the whole proof (R16)
+        ocr_doc = documento_di(rid) in self.documenti_ocr
+        freni = self.freni if isinstance(self.freni, FreniProvaIntera) else FreniProvaIntera()
+
+        def verifica_r(prova: str, testo: str, tp: list[str], seguito: str = '') -> str:
+            if intera:
+                return freni.verifica(prova, testo, tp, True, True, seguito, ocr_doc)
+            if ric:
+                return freni.verifica(prova, testo, tp, True)
+            return self.freni.verifica(prova, testo, tp)
+
         if vp is None:
             return None
         fonti: collections.defaultdict[str, list[str]] = collections.defaultdict(list)
@@ -711,10 +808,22 @@ class ComposizioneMaggioranza(Composizione):
         pagine_cand = {v['pagina']: v for v in c.get('vicine', [])}
         pag_cit = self.pagina_citazione(c)
 
-        def esito(v: Mapping[str, Any], n: int) -> tuple[Mapping[str, Any], str, str]:
+        def esito(v: Mapping[str, Any], n: int) -> tuple[Any, ...]:
             prova = _spazi(v.get('prova'))[:300]
-            testo = (c.get('vicine_testo') or {}).get(n) or pagine_cand[n].get('testo', '')
-            return v, prova, self.freni.verifica(prova, testo, testi_prompt)
+            pagina = (c.get('vicine_testo') or {}).get(n) or pagine_cand[n].get('testo', '')
+            dopo = (c.get('vicine_dopo') or {}).get(n, '')
+            e = verifica_r(prova, pagina, testi_prompt, dopo)
+            # THE REPAIR (R16): a proof R14 finds and R16 does not has a true beginning and the rest summarised or
+            # reassembled by the model: in its place the true sentence of the filing the model started from, with the
+            # model's proof next to it. Without a true stretch of 20 characters it stays «non trovata».
+            if intera and e == 'non trovata' and freni.prova_trovata(prova, pagina, True):
+                from . import ripara_prova
+
+                rp = ripara_prova.ripara(prova, pagina, dopo)
+                if rp['esito'] == 'riparata':
+                    # an uncertain repair is not «trovata»: the page is not ticked
+                    return rp['frase'][:FRASE_MAX], ('incerta' if rp.get('incerta') else 'trovata'), prova
+            return prova, e
 
         vic = []
         for n, voci in sorted(maggioranza.voto_pagine(vp).items()):
@@ -726,7 +835,7 @@ class ComposizioneMaggioranza(Composizione):
                 nomi = [self.principio_pagina(v) for v in si]
                 conta = collections.Counter(nomi)
                 principio = max(conta, key=lambda q: (conta[q], -nomi.index(q)))
-                prove = [esito(v, n) for v in si]
+                prove = [(v, *esito(v, n)) for v in si]
                 rapp = (
                     next((x for x in prove if x[2] == 'trovata' and self.principio_pagina(x[0]) == principio), None)
                     or next((x for x in prove if x[2] == 'trovata'), None)
@@ -735,14 +844,17 @@ class ComposizioneMaggioranza(Composizione):
                 # ticked only with a found evidence OF the winning principle (03/10/2026, external review)
                 trovata = any(x[2] == 'trovata' and self.principio_pagina(x[0]) == principio for x in prove)
             else:
-                rapp = esito(voci[0][1], n)
+                rapp = (voci[0][1], *esito(voci[0][1], n))
                 principio = self.principio_pagina(voci[0][1])
                 trovata = False
             punti = pagine_cand[n].get('punteggi') or {}
             migliore = max(punti.items(), key=lambda kv: kv[1]) if punti else (None, None)
             dist = n - pag_cit if pag_cit else None
+            # R16: the proof repaired from the text of the filing, the model's proof next to it
+            riparata = {'prova_riparata': True, 'prova_modello': rapp[3]} if len(rapp) > 3 and rapp[3] else {}
             vic.append(
                 {
+                    **riparata,
                     'pagina': n,
                     'prosegue': bool(maggioranza_si and trovata),
                     'principio': principio,
@@ -763,7 +875,7 @@ class ComposizioneMaggioranza(Composizione):
         vic = self.filtra_seguito(vic, spuntati)
         ys = maggioranza.lettura_scelta(vp)
         frase = _spazi(maggioranza.frase_scelta(vp).get('frase_sostenuta'))[: 600 if self.compat else FRASE_MAX]
-        frase_esito = self.freni.verifica(frase, contesto, testi_prompt) if frase else ''
+        frase_esito = verifica_r(frase, contesto, testi_prompt) if frase else ''
         senza_prova = [
             p
             for p in spuntati
@@ -773,20 +885,28 @@ class ComposizioneMaggioranza(Composizione):
             and frase_esito != 'trovata'
             and not any(v['prosegue'] and v['principio'] == p for v in vic)
         ]
-        codici = {'paragrafo': self.codice_mappa, 'lettura': 'L05', 'reranker': 'T01'}
+        codici = {'paragrafo': self.codice_mappa, 'lettura': lettura, 'reranker': 'T01'}
         prin_prov = {k: sorted({codici[f] for f in v}) for k, v in fonti.items() if v}
         if ALTRO in spuntati and ALTRO not in prin_prov:
-            prin_prov[ALTRO] = ['L05']
+            prin_prov[ALTRO] = [lettura]
         # row uncertainty only from the decisions that make the proposal (03/10/2026, external review): an adopted
         # principle with margin <= 1, or, when none is adopted, a near miss; the type confidence is not mixed in
         adottati = [p for p in vp['maggioranza'] if p in vp['voti'] and p != NESSUNO]
         incerta = any(p in vp['incerti'] for p in adottati) if adottati else bool(vp['incerti'])
         data = '/'.join(reversed(str(rec.get('data') or '')[:10].split('-')))
-        ocr = {'provenienza.corpus': 'D02'} if documento_di(rid) in self.documenti_ocr else {}
+        ocr = {'provenienza.corpus': 'D02'} if ocr_doc else {}
+        if ric:
+            testuale = bool(frase) and (
+                freni.prova_trovata(frase, contesto, True)
+                and (not intera or freni.prova_intera(frase, contesto, '', ocr_doc))
+            )
+        else:
+            testuale = bool(frase) and _norm(frase)[:60] in _norm(contesto)
+        regola = LETTORE_REGOLA.get(composizione) or 'a maggioranza (R11)'
         out: dict[str, Any] = {
             'provenienza.principi': prin_prov,
-            'provenienza.seguito': 'L05' if vic else '',
-            'provenienza.composizione': 'R11',
+            'provenienza.seguito': lettura if vic else '',
+            'provenienza.composizione': composizione,
             'provenienza.sonde': self.codice_sonde,
             'provenienza.scelta_vicine': 'R10' if vic else '',
             'provenienza.letture': {'principi': vp['n'], 'tipo': vt['n'] if vt else 0},
@@ -794,7 +914,7 @@ class ComposizioneMaggioranza(Composizione):
             **ocr,
             'proposto_testo_impronta': hashlib.sha256(contesto.encode('utf-8')).hexdigest(),
             'proposto_frase_sostenuta': frase,
-            'proposto_frase_testuale': bool(frase) and _norm(frase)[:60] in _norm(contesto),
+            'proposto_frase_testuale': testuale,
             'proposto_frase_esito': frase_esito,
             'proposto_principi': spuntati,
             'proposto_principi_fonti': {k: v for k, v in fonti.items() if v},
@@ -804,8 +924,8 @@ class ComposizioneMaggioranza(Composizione):
             'proposto_principi_motivo': ('Menzione in catena: nessun principio proposto. ' if in_catena else '')
             + _spazi(ys.get('motivo'))[:400],
             'proposto_ripresa_lettore': (
-                f'mappa dei paragrafi + DeepSeek V4 Flash 0731, {vp["n"]} letture a maggioranza (R11), {data} '
-                '+ TRACE-Reranker, pagine attorno R10'
+                f'mappa dei paragrafi + DeepSeek V4 Flash 0731, {vp["n"]} letture {regola}, {data} '
+                '+ TRACE-Reranker, pagine attorno R10' + (', pagine intere (L11)' if lettura == 'L11' else '')
             ),
             # the two sources apart (03/10/2026, external review): the ticked principles are map + majority; here each
             # on its own, before the chain-mention rule, so the analysis can separate them
@@ -821,10 +941,77 @@ class ComposizioneMaggioranza(Composizione):
         # the type confidence is written by the type loader only (CaricatoreTipo, R11)
         return out
 
+    def _r15_scrivi(
+        self,
+        rid: str,
+        r: Mapping[str, Any],
+        campi: dict[str, Any] | None,
+        conti: collections.Counter[str],
+        scritture: list[tuple[str, dict[str, Any]]],
+    ) -> None:
+        """R15: queue the write of the row as :func:`tracepipe.frase_sostenuta.r15_da_scrivere` says, and count."""
+        from . import frase_sostenuta as fs
+
+        out, etichetta, e = fs.r15_da_scrivere(r, campi, uguale_a_oggi, self.radice)
+        conti[f'R15 frase: {e["metodo"]}'] += 1
+        if out is None:
+            conti['R15 invariata (non toccata)'] += 1
+            return
+        conti[f'R15 {etichetta}'] += 1
+        if e['metodo'] == 'ambiguo':
+            conti['R15 ambigua: resta la frase di DeepSeek ' + (out.get('proposto_frase_esito') or 'assente')] += 1
+        if (out.get('proposto_frase_sostenuta') or '') != (r.get('proposto_frase_sostenuta') or ''):
+            conti['R15 frase cambiata'] += 1
+        scritture.append((rid, out))
+        conti['da scrivere'] += 1
+
+    @staticmethod
+    def tieni_frase(r: Mapping[str, Any], campi: dict[str, Any]) -> dict[str, Any]:
+        """R16 ``--tieni-frase``: the supported sentence stays the one the row has today, with all its fields (its
+        provenance too); R16 brings only proofs, pages and principles. The missing-proof flag is redone with the
+        outcome of the row's sentence."""
+        from . import frase_sostenuta as fs
+
+        campi = {k: v for k, v in campi.items() if k not in fs.CAMPI_FRASE}
+        campi.update({k: r[k] for k in fs.CAMPI_FRASE if k in r})
+        fonti = campi.get('proposto_principi_fonti') or {}
+        vic = campi.get('proposto_estensione') or []
+        sp = [
+            p
+            for p in (campi.get('proposto_principi') or [])
+            if p in fonti
+            and 'lettura' in fonti[p]
+            and 'paragrafo' not in fonti[p]
+            and r.get('proposto_frase_esito') != 'trovata'
+            and not any(v['prosegue'] and v['principio'] == p for v in vic)
+        ]
+        campi['proposto_principi_senza_prova'] = sp
+        campi['proposto_prova_mancante'] = bool(sp)
+        return campi
+
     def componi_r11(
-        self, righe_fs: Iterable[tuple[str, Mapping[str, Any]]], ingressi: IngressiMaggioranza
+        self,
+        righe_fs: Iterable[tuple[str, Mapping[str, Any]]],
+        ingressi: IngressiMaggioranza,
+        composizione: str = 'R11',
+        solo_elenco_vuoto: bool = False,
+        solo_cambiate: bool = False,
+        tieni_frase: bool = False,
+        etichetta: str = '',
     ) -> tuple[list[tuple[str, dict[str, Any]]], collections.Counter[str]]:
-        """The R11 fields of every lexical row without a verdict that has readings; counts as the live ``main_r11``."""
+        """The fields of every lexical row without a verdict that has readings; counts as the live ``main_r11``.
+
+        Args:
+            righe_fs: ``(row id, fields)`` of the platform rows of the case, in stream order.
+            ingressi: the inputs read from the files.
+            composizione: ``R11`` ... ``R16``.
+            solo_elenco_vuoto: R13, only the rows with at least one valid reading with an empty principle list (the
+                only ones where R13 and R12 can differ).
+            solo_cambiate: R14 on, only the rows where at least one field of the proposal changes.
+            tieni_frase: R16, the supported sentence stays the one of the row (no new R15 sentence).
+            etichetta: the label of the readings; ``...l11`` and ``...s07`` readings are L11 when a reading carries no
+                ``lettore`` field.
+        """
         from . import maggioranza
 
         g = ingressi
@@ -838,13 +1025,43 @@ class ComposizioneMaggioranza(Composizione):
                 continue
             if id_malformato(rid, conti):
                 continue
+            if rid not in g.ds and composizione == 'R15':  # R15: also without readings, the sentence from the text only
+                self._r15_scrivi(rid, r, None, conti, scritture)
+                continue
             if rid not in g.ds:
                 conti['senza lettura (non toccata)'] += 1
                 continue
+            if solo_elenco_vuoto and not any(
+                maggioranza.valida(y) and maggioranza.elenco_vuoto(y) for y in g.ds[rid].get('letture') or []
+            ):
+                conti['nessuna lettura con elenco vuoto (non toccata)'] += 1
+                continue
             vt = maggioranza.voto_tipo((g.tipi.get(rid) or {}).get('letture') or [])
-            campi = self.proposta_r11(rid, g.par, g.brano, g.ds, g.cand, vt, r.get('proposto_tipo_citazione') or '')
+            lettura = g.ds[rid].get('lettore') or ('L11' if etichetta.endswith(('l11', 's07')) else 'L05')
+            campi = self.proposta_r11(
+                rid, g.par, g.brano, g.ds, g.cand, vt, r.get('proposto_tipo_citazione') or '', composizione, lettura
+            )
+            if composizione == 'R16' and campi is not None and tieni_frase and r.get('proposto_frase_sostenuta'):
+                campi = self.tieni_frase(r, campi)
+            elif composizione == 'R16' and campi is not None:  # R16 carries the sentence of R15 (from the text)
+                from . import frase_sostenuta as fs
+
+                fr, _ = fs.campi_r15(
+                    r,
+                    campi.get('proposto_frase_sostenuta') or '',
+                    campi.get('proposto_frase_esito') or '',
+                    campi.get('proposto_frase_testuale'),
+                    self.radice,
+                )
+                campi = {**campi, **fr, 'provenienza.frase': fs.VERSIONE}
+            if composizione == 'R15':  # the supported sentence extracted from the text, then written
+                self._r15_scrivi(rid, r, campi, conti, scritture)
+                continue
             if campi is None:
                 conti['nessuna lettura valida (non toccata)'] += 1
+                continue
+            if solo_cambiate and uguale_a_oggi(r, campi):
+                conti['proposta invariata (non toccata)'] += 1
                 continue
             if not vt:
                 conti['tipo a maggioranza mancante: tipo della riga'] += 1

@@ -19,7 +19,13 @@ from pathlib import Path
 from typing import Any
 
 from .banca import LOTTO, BancaDati, Scrittura
-from .composizione import Composizione, ComposizioneMaggioranza, IngressiComposizione, IngressiMaggioranza
+from .composizione import (
+    REGOLE_CINQUE,
+    Composizione,
+    ComposizioneMaggioranza,
+    IngressiComposizione,
+    IngressiMaggioranza,
+)
 from .config import Config
 
 CATEGORIE = frozenset({'menzione_in_catena', 'descrittiva', 'sostanziale', 'distinguente', 'critica', 'implicita'})
@@ -308,13 +314,16 @@ class CaricatoreTipo(Caricatore):
 
 
 class CaricatoreRipresa(Caricatore):
-    """The proposals of principles, surrounding pages and sentence (``tools/carica_ripresa.py``, rule R05).
+    """The proposals of principles, surrounding pages and sentence (``tools/carica_ripresa.py``): rule R05, or the
+    compositions on the five readings R11 to R16 (:data:`tracepipe.composizione.REGOLE_CINQUE`).
 
     Args:
         principi_da_l04: principles from the L04 reading, the rest from L05 (``--principi-da-l04``).
         anche_senza_lettura: also rows DeepSeek has not read (provisional proposal, ``--anche-senza-lettura``).
         salva: a JSON file where the computed proposals are saved (``--salva``), relative to the working folder.
         compat: the live defects fixed on 02/10/2026 (see :class:`tracepipe.composizione.Composizione`).
+        composizione: ``R05`` (default) or ``R11`` ... ``R16``; ``etichetta``/``etichetta_tipo``: the readings used.
+        solo_elenco_vuoto, solo_cambiate, tieni_frase: see :meth:`ComposizioneMaggioranza.componi_r11`.
         Other arguments: see :class:`Caricatore`.
     """
 
@@ -332,9 +341,15 @@ class CaricatoreRipresa(Caricatore):
         composizione: str = 'R05',
         etichetta: str = '',
         etichetta_tipo: str = 'cinque',
+        solo_elenco_vuoto: bool = False,
+        solo_cambiate: bool = False,
+        tieni_frase: bool = False,
         **kw: Any,
     ) -> None:
         super().__init__(config, caso, banca, **kw)
+        self.solo_elenco_vuoto = solo_elenco_vuoto
+        self.solo_cambiate = solo_cambiate
+        self.tieni_frase = tieni_frase
         self.principi_da_l04 = principi_da_l04
         self.anche_senza_lettura = anche_senza_lettura
         self.salva = salva
@@ -344,12 +359,20 @@ class CaricatoreRipresa(Caricatore):
         self.etichetta_tipo = etichetta_tipo
 
     def calcola(self) -> EsitoCaricamento:
-        if self.composizione == 'R11':
+        if self.composizione in REGOLE_CINQUE:
             r11 = ComposizioneMaggioranza.per_caso(self.config, self.caso, compat=self.compat)
             ing = IngressiMaggioranza.carica(
                 self.config, self.caso, self.etichetta, self.etichetta_tipo, pagine_intere=not self.compat
             )
-            scritture, conti = r11.componi_r11(self.righe(), ing)
+            scritture, conti = r11.componi_r11(
+                self.righe(),
+                ing,
+                composizione=self.composizione,
+                solo_elenco_vuoto=self.solo_elenco_vuoto,
+                solo_cambiate=self.solo_cambiate,
+                tieni_frase=self.tieni_frase,
+                etichetta=self.etichetta,
+            )
             return EsitoCaricamento(scritture=scritture, conti=conti)
         composizione = Composizione.per_caso(self.config, self.caso, compat=self.compat)
         ingressi = IngressiComposizione.carica(

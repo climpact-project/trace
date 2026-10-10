@@ -61,6 +61,9 @@ select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "RUF"]
 "tracepipe/istruzioni.py" = ["E501"]
 # the patterns of the dimensions are copied verbatim, typographic apostrophes included
 "tracepipe/dimensioni.py" = ["RUF001"]
+# R15 and R16 cut sentences on typographic quotes, dashes and full-width punctuation: those characters are the data
+"tracepipe/frase_sostenuta.py" = ["RUF001"]
+"tracepipe/ripara_prova.py" = ["RUF001"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["tracepipe"]

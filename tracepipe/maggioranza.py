@@ -103,20 +103,53 @@ def insieme(y: Mapping[str, Any], ids: Sequence[str], canonico: Callable[[str], 
     return s or [NESSUNO]
 
 
-def voto_principi(letture: Sequence[Any], ids: Sequence[str], canonico: Callable[[str], str]) -> dict[str, Any] | None:
-    """The votes of the valid L05 readings; ``None`` when there is none (an empty list is not an answer, R05)."""
-    valide = [(k, y) for k, y in enumerate(letture or []) if valida(y) and principi_lettura(y, canonico)]
+def soglia_due(n: int) -> int:
+    """R12 (04/10/2026): a principle is proposed when at least 2 valid readings take it (1 when there is only one;
+    2 of 2 as before). Measure: ``tools/r12_varianti.py``. Principles only: the surrounding pages stay at the
+    majority."""
+    return min(2, soglia(n))
+
+
+def elenco_vuoto(y: Any) -> bool:
+    """R13 (04/10/2026): the reading answered with an EMPTY principle list (``"principi"`` is there and is ``[]`` or an
+    empty string). A missing field or ``None`` is not an answer, nor is a list of non-strings."""
+    if not isinstance(y, dict) or 'principi' not in y:
+        return False
+    pr = y.get('principi')
+    return (isinstance(pr, list) and not pr) or (isinstance(pr, str) and not pr.strip())
+
+
+def voto_principi(
+    letture: Sequence[Any],
+    ids: Sequence[str],
+    canonico: Callable[[str], str],
+    soglia_principi: Callable[[int], int] | None = None,
+    vuota_vota: bool = False,
+) -> dict[str, Any] | None:
+    """The votes of the valid L05 readings; ``None`` when there is none.
+
+    Up to R12 a reading with an empty principle list is not an answer (R05) and does not vote. ``vuota_vota`` (R13): the
+    empty list votes "nessuno", as in the measure of the five readings (``training/misure/GIRI-E-DOMANDA.md``).
+    ``soglia_principi`` (R12): the function ``n -> minimum votes`` to propose a principle; ``None`` is the majority
+    (R11). The ``soglia`` of the result stays the majority: the surrounding pages use it.
+    """
+    valide = [
+        (k, y)
+        for k, y in enumerate(letture or [])
+        if valida(y) and (principi_lettura(y, canonico) or (vuota_vota and elenco_vuoto(y)))
+    ]
     n = len(valide)
     if not n:
         return None
     insiemi = [(k, y, insieme(y, ids, canonico)) for k, y in valide]
     voti = collections.Counter(p for _, _, s in insiemi for p in s)
-    t = soglia(n)
+    t = soglia_principi(n) if soglia_principi else soglia(n)
     presi = [p for p in ids if voti[p] >= t] + ([ALTRO] if voti[ALTRO] >= t else [])
     ordine = [p for p in ids if voti[p]] + [p for p in (ALTRO, NESSUNO) if voti[p]]
     return {
         'n': n,
-        'soglia': t,
+        'soglia': soglia(n),
+        'soglia_principi': t,
         'insiemi': insiemi,
         'voti': {p: voti[p] for p in ordine},
         'maggioranza': presi or [NESSUNO],

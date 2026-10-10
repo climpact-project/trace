@@ -1,0 +1,22 @@
+# INVENTED CITED CASE, for trying the code. No real judgment is described here.
+nome: Example Foundation v. State of Exempla
+data_decisione: 2019-12-20
+forme:
+  - Example Foundation
+  - EX:SC:2019:88
+semantic_queries:
+  - id: own_share
+    titolo: "Responsibility for its own share: a small contribution is no excuse"
+    testo: |
+      A state answers for its own share of a global harm and cannot escape that responsibility by arguing that its
+      contribution is small compared with that of others.
+  - id: duty_of_care
+    titolo: "Duty of care: reasonable and timely measures against a known risk"
+    testo: |
+      The state owes its residents a duty of care that requires reasonable and timely protective measures against a
+      known and serious environmental risk.
+  - id: court_order
+    titolo: "A court may order a reduction target without writing the law"
+    testo: |
+      A court may order the state to reach a minimum reduction target while leaving to the legislature the choice of
+      the measures that achieve it.

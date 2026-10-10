@@ -1,0 +1,12 @@
+# The registry of the synthetic example (invented case). Use it with TRACE_CASI=examples/synthetic/cited-cases/casi.yaml
+# when a command needs the case in the registry (trace unisci); trace cerca and trace carica ripresa do not.
+casi:
+  - id: example-foundation
+    prefisso: EXF
+    nome: Example Foundation
+    colore: "#5cb6ee"
+    serie_prima: P01
+    serie_in_uso:
+    soglia_d05: 2019-12-20
+    codice_mappa:
+    attivo: si
