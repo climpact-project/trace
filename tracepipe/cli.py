@@ -341,6 +341,8 @@ def parser() -> argparse.ArgumentParser:
     cva.add_argument('--ds', default='')
     cva.add_argument('--rr', default='')
     cva.add_argument('--uscita', default='')
+    from .punteggio_t01 import aggiungi_parser as _parser_t01  # T01 (TRACE-Reranker 0.1): the page scores
+    _parser_t01(sub)
     _aiuti(ap)
     return ap
 
@@ -379,6 +381,9 @@ def _banca(giornale: Any) -> Any:
 
 def esegui(a: argparse.Namespace, config: Config, giornale: Any) -> int:
     """Run the command; returns the exit code."""
+    if a.comando == 'punteggi':
+        from .punteggio_t01 import esegui as esegui_t01
+        return esegui_t01(a, config)
     if a.comando == 'cerca':
         from .ricerca import RicercaPerNome
 
