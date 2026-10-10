@@ -16,6 +16,7 @@ Notes for reading them:
 - Comments, prompts and messages are in Italian.
 - They expect the corpus folders (`markdown/`, `index/`, `training/`) next to `tools/`, and they talk to the CLIMPACT
   platform database (Firestore) and to a DeepSeek V4 Flash server; neither is part of this repository.
-- The versions that came after 2 October (R10 surrounding pages, R11 majority vote of five readings, S05 name search on
-  normalised text, D03 documents) are not in this folder: their exact code is frozen in [`versioni/`](../versioni),
-  next to the registry entry that describes them.
+- The versions that came after 2 October (R10 surrounding pages, R11 majority vote of five readings, R12 to R16 rules
+  of the five readings, S05 name search on normalised text, S06 copies in another case, S07 name search with footnote
+  grouping, S08 close pairs, C03 and C07 checks, L11 and L13 readings, D03 documents) are not in this folder: their
+  exact code is frozen in [`versioni/`](../versioni), next to the registry entry that describes them.

@@ -130,6 +130,8 @@ def _documento(caso_id: str, doc: str, corpo: str, anno: str = '2021') -> str:
 
 @pytest.fixture
 def radice(tmp_path: Path) -> Path:
+    # the name search computes the body-or-footnote column from the PDF and stops without PyMuPDF (the `pdf` extra)
+    pytest.importorskip('fitz', reason='needs PyMuPDF: pip install ".[pdf]"')
     (tmp_path / 'cited-cases').mkdir()
     (tmp_path / 'cited-cases' / 'urgenda.yaml').write_text(
         "nome: Urgenda\nforme:\n  - Urgenda\n  - 'ECLI:NL:RBDHA:2015:7145'\n", encoding='utf-8'

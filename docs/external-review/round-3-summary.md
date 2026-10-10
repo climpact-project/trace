@@ -37,7 +37,7 @@ An earlier suggestion was also taken up: `trace --help` now says which options r
 
 ## Checks after round 3
 
-- `ruff check`: clean.
+- `ruff check` on `tracepipe/`: clean (the tests are not ruff-clean; precision of 10 October 2026).
 - Full test suite of the team's working copy, with the private data and the live scripts: 509 passed and 1 skipped
   (this repository's own suite, 432 tests, runs the ones that need no private data).
 - Reference harness in compatibility mode (`prove/esegui_pacchetto.py`, compared by `prove/confronta.py`): 298 of 298

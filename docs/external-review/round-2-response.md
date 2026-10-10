@@ -93,7 +93,8 @@ without a file, because either one would have stopped the run.
 
 ## Checks
 
-- ruff check on `tracepipe/` and `tests/`: clean. ruff format: `tracepipe/` and the new tests are formatted.
+- ruff check on `tracepipe/`: clean (correction of 10 October 2026: this line also said `tests/`, which is not
+  ruff-clean). ruff format: `tracepipe/` and the new tests are formatted.
   `tests/test_recupero_s06.py` is not formatted yet: it belongs to a chain that is running now, and it will be
   formatted when that chain finishes.
 - full pytest: 506 passed and 1 skipped. Of these, 15 are in `tests/test_ricerca_giro3.py`.

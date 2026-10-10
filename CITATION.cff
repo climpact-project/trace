@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use TRACE, please cite it as below. The DOI is reserved and becomes active on publication."
 title: "CLIMPACT TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence"
 type: software
-version: "0.1"
+version: "0.1.0"
 date-released: "2026-10-12"
 license: MIT
 repository-code: "https://github.com/climpact-project/trace"

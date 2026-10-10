@@ -1,22 +1,38 @@
-"""IL REGISTRO UNICO DEI CASI CITATI (06/10/2026). Legge cited-cases/casi.yaml: e' l'unico posto dove sta l'elenco dei casi
-di TRACE e i loro attributi (prefisso dei codici, serie delle sonde, soglia di D05, codice della mappa...). Prima la lista
-dei sei casi era scritta dentro una cinquantina di file; ora gli strumenti fanno `import casi_registro as CR` e usano
-CR.CASI, CR.PREFISSI, CR.PRIMA_SERIE, CR.SERIE_IN_USO, CR.SOGLIE_D05, CR.CODICE_MAPPA, CR.NOMI, CR.COLORI.
+"""IL REGISTRO UNICO DEI CASI CITATI (06/10/2026). Legge cited-cases/casi.yaml: e' l'unico posto dove sta l'elenco dei
+casi di TRACE e i loro attributi (prefisso dei codici, serie delle sonde, soglia di D05, codice della mappa...).
+Prima la lista dei sei casi era scritta dentro una cinquantina di file; ora gli strumenti fanno `import
+casi_registro as CR` e usano CR.CASI, CR.PREFISSI, CR.PRIMA_SERIE, CR.SERIE_IN_USO, CR.SOGLIE_D05, CR.CODICE_MAPPA,
+CR.NOMI, CR.COLORI.
 
 Un CASO NUOVO: una voce in fondo a cited-cases/casi.yaml e il suo cited-cases/<id>.yaml; niente codice da toccare.
 L'ORDINE del file e' l'ordine dei casi in tutti gli output. Per le prove: TRACE_CASI=<altro file indice> usa quello (le
 sonde e i file di un caso finto si provano cosi', senza toccare il repository).
 
-Il file si legge con un lettore minimo (elenco piatto di "chiave: valore", nessuna dipendenza: gira anche dove PyYAML non c'e').
+Il file si legge con un lettore minimo (elenco piatto di "chiave: valore", nessuna dipendenza: gira anche dove PyYAML
+non c'e').
+
+DOVE STA IL FILE (10/10/2026): TRACE_CASI se c'e'; altrimenti cited-cases/casi.yaml accanto al pacchetto (la copia del
+repository, come prima), poi sotto TRACE_RADICE, poi nella cartella corrente. Se non c'e' da nessuna parte l'import non
+si rompe (con `pip install .` il pacchetto sta in site-packages e `trace --help` deve rispondere): il registro resta
+vuoto e CASI, PREFISSI ecc. sono vuoti; `leggi()` chiamata da sola alza l'errore col percorso.
+
 Gemello nel pacchetto: tracepipe/casi_registro.py (stessa logica; tests/test_casi_registro.py li confronta)."""
-import os, pathlib
+
+import os
+import pathlib
 
 QUI = pathlib.Path(__file__).resolve().parent.parent
 CAMPI = ('id', 'prefisso', 'nome', 'colore', 'serie_prima', 'serie_in_uso', 'soglia_d05', 'codice_mappa', 'attivo')
 
 
 def file_indice():
-    return pathlib.Path(os.environ['TRACE_CASI']) if os.environ.get('TRACE_CASI') else QUI/'cited-cases'/'casi.yaml'
+    if os.environ.get('TRACE_CASI'):
+        return pathlib.Path(os.environ['TRACE_CASI'])
+    radici = [pathlib.Path(os.environ['TRACE_RADICE'])] if os.environ.get('TRACE_RADICE') else []
+    for radice in [QUI, *radici, pathlib.Path.cwd()]:
+        if (radice / 'cited-cases' / 'casi.yaml').is_file():
+            return radice / 'cited-cases' / 'casi.yaml'
+    return QUI / 'cited-cases' / 'casi.yaml'
 
 
 def _valore(s):
@@ -37,7 +53,9 @@ def leggi(percorso=None):
             continue
         t = riga.strip()
         if t.startswith('- '):
-            cur = {c: '' for c in CAMPI}; voci.append(cur); t = t[2:]
+            cur = {c: '' for c in CAMPI}
+            voci.append(cur)
+            t = t[2:]
         if cur is None or ':' not in t:
             raise ValueError(f'{percorso}:{n}: riga non valida: {riga!r}')
         k, v = t.split(':', 1)
@@ -51,7 +69,8 @@ def leggi(percorso=None):
 
 
 def _tutti():
-    return leggi()
+    percorso = file_indice()
+    return leggi(percorso) if percorso.is_file() else []
 
 
 VOCI = _tutti()

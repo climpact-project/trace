@@ -22,11 +22,11 @@ import re
 from collections.abc import Callable, Mapping
 from typing import Any
 
+from . import casi_registro
 from .banca import BancaDati
 from .config import Config
 from .pagine_attorno import numero_pagina
 
-from . import casi_registro  # noqa: E402
 PREFISSI: Mapping[str, str] = dict(casi_registro.PREFISSI)
 """The code prefix of each case (``URG-0001``...)."""
 

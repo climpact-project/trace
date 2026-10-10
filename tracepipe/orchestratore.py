@@ -359,6 +359,7 @@ def _cli_locale(argv: list[str]) -> int:
 # the cycle of the empty readings (tools/ciclo_vuote.sh)
 
 from . import casi_registro  # noqa: E402
+
 CASI = casi_registro.CASI
 L05 = {
     'urgenda': 'v2',

@@ -14,7 +14,8 @@ from pathlib import Path
 from types import MappingProxyType
 
 # The six cited cases of the pipeline (prove/esegui_riferimento.py CASI).
-from . import casi_registro  # noqa: E402
+from . import casi_registro
+
 CASI: tuple[str, ...] = casi_registro.CASI
 
 # tools/sonde.py SERIE_IN_USO: the probe series in use per case when TRACE_SONDE is not set.

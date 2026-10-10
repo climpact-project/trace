@@ -51,6 +51,7 @@ from .righe import RETI_VIVE, Riga
 ESTRAZIONE = 'S08'
 CAUSA = 'S08_stessa_pagina'
 from . import casi_registro  # noqa: E402
+
 PREFISSI: Mapping[str, str] = dict(casi_registro.PREFISSI)
 MOTIVO = (
     "citazione sulla stessa pagina di un'altra riga dello stesso caso, che la deduplica della pagina di S07 "
