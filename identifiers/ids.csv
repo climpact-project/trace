@@ -1,0 +1,16 @@
+climpact_id,type,case_id,label,date,court,citation_prefix,status,replaced_by,assigned_on,first_release
+CL-C-000001-3,case,CL-C-000001-3,Urgenda Foundation v. State of the Netherlands,2015-06-24,Rechtbank Den Haag; Gerechtshof Den Haag; Hoge Raad der Nederlanden,URG,active,,2026-10-10,TRACE 0.1
+CL-D-000001-7,decision,CL-C-000001-3,"Urgenda, District Court of The Hague, judgment (C/09/456689 / HA ZA 13-1396)",2015-06-24,Rechtbank Den Haag,,active,,2026-10-10,
+CL-D-000002-5,decision,CL-C-000001-3,"Urgenda, Hague Court of Appeal, judgment (200.178.245/01)",2018-10-09,Gerechtshof Den Haag,,active,,2026-10-10,
+CL-D-000003-3,decision,CL-C-000001-3,"Urgenda, Supreme Court of the Netherlands, judgment (19/00135)",2019-12-20,Hoge Raad der Nederlanden,,active,,2026-10-10,
+CL-C-000002-1,case,CL-C-000002-1,Neubauer et al. v. Germany,2021-03-24,Bundesverfassungsgericht,NEU,active,,2026-10-10,TRACE 0.1
+CL-D-000004-1,decision,CL-C-000002-1,"Neubauer, Federal Constitutional Court, order of the First Senate (1 BvR 2656/18, 1 BvR 78/20, 1 BvR 96/20, 1 BvR 288/20)",2021-03-24,Bundesverfassungsgericht,,active,,2026-10-10,
+CL-C-000003-X,case,CL-C-000003-X,Future Generations v. Ministry of the Environment and Others (Generaciones Futuras v. Minambiente),2018-04-05,Tribunal Superior de Bogota; Corte Suprema de Justicia de Colombia,FGC,active,,2026-10-10,TRACE 0.1
+CL-D-000005-X,decision,CL-C-000003-X,"Future Generations, Superior Tribunal of Bogota, first-instance tutela judgment (11001-22-03-000-2018-00319-00)",2018-02-12,"Tribunal Superior del Distrito Judicial de Bogota, Sala Civil Especializada en Restitucion de Tierras",,active,,2026-10-10,
+CL-D-000006-8,decision,CL-C-000003-X,"Future Generations, Supreme Court of Justice, Civil Chamber, STC4360-2018 (11001-22-03-000-2018-00319-01)",2018-04-05,"Corte Suprema de Justicia, Sala de Casacion Civil",,active,,2026-10-10,
+CL-C-000004-8,case,CL-C-000004-8,Verein KlimaSeniorinnen Schweiz and Others v. Switzerland,2024-04-09,European Court of Human Rights,KLS,active,,2026-10-10,TRACE 0.1
+CL-D-000007-6,decision,CL-C-000004-8,"KlimaSeniorinnen, European Court of Human Rights, Grand Chamber judgment (application no. 53600/20)",2024-04-09,"European Court of Human Rights, Grand Chamber",,active,,2026-10-10,
+CL-C-000005-6,case,CL-C-000005-6,"Obligations of States in respect of Climate Change (Request for Advisory Opinion), International Court of Justice",2025-07-23,International Court of Justice,ICJ,active,,2026-10-10,TRACE 0.1
+CL-D-000008-4,decision,CL-C-000005-6,ICJ Advisory Opinion of 23 July 2025 (General List No. 187),2025-07-23,International Court of Justice,,active,,2026-10-10,
+CL-C-000006-4,case,CL-C-000006-4,"Climate Emergency and Human Rights (Request for Advisory Opinion by Chile and Colombia), Inter-American Court of Human Rights",2025-05-29,Inter-American Court of Human Rights,IAC,active,,2026-10-10,TRACE 0.1
+CL-D-000009-2,decision,CL-C-000006-4,Advisory Opinion OC-32/25 of 29 May 2025 (notified 3 July 2025),2025-05-29,Inter-American Court of Human Rights,,active,,2026-10-10,

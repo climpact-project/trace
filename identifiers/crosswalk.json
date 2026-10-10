@@ -1,0 +1,781 @@
+{
+ "@context": {
+  "schema": "https://schema.org/",
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "dcterms": "http://purl.org/dc/terms/",
+  "identifier": "schema:identifier",
+  "name": "schema:name",
+  "date": "schema:dateCreated",
+  "license": {
+   "@id": "schema:license",
+   "@type": "@id"
+  },
+  "url": {
+   "@id": "schema:url",
+   "@type": "@id"
+  },
+  "decisions": {
+   "@id": "schema:hasPart",
+   "@container": "@list"
+  },
+  "replacedBy": {
+   "@id": "dcterms:isReplacedBy",
+   "@type": "@id"
+  }
+ },
+ "name": "CLIMPACT case identifiers: crosswalk to external identifiers",
+ "description": "One CLIMPACT identifier per case (CL-C-000001-3) and per decision (CL-D-000001-7), with the equivalent identifiers in the Sabin Center Climate Litigation Database, Climate Policy Radar, Climate Change Laws of the World, ECLI, Wikidata and the courts. Rules: RULES.md.",
+ "publisher": "CLIMPACT, University of Bari Aldo Moro",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "dateModified": "2026-10-10",
+ "cases": [
+  {
+   "@id": "https://www.climpact.it/id/CL-C-000001-3",
+   "@type": "skos:Concept",
+   "identifier": "CL-C-000001-3",
+   "name": "Urgenda Foundation v. State of the Netherlands",
+   "date": "2015-06-24",
+   "court": "Rechtbank Den Haag; Gerechtshof Den Haag; Hoge Raad der Nederlanden",
+   "status": "active",
+   "citationCodePrefix": "URG",
+   "firstRelease": "TRACE 0.1",
+   "links": [
+    {
+     "scheme": "trace_citation_prefix",
+     "externalId": "URG",
+     "relation": "skos:exactMatch",
+     "note": "citation codes URG-0001... of TRACE 0.1 cite this case; the prefix is a label of the case, never an identifier",
+     "source": "TRACE 0.1 dataset, citation_code column (DOI 10.5281/zenodo.23082590)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "sabin_case",
+     "externalId": "urgenda-foundation-v-state-of-the-netherlands_3297",
+     "url": "https://www.climatecasechart.com/document/urgenda-foundation-v-state-of-the-netherlands_3297",
+     "relation": "skos:exactMatch",
+     "note": "case page (not a filing)",
+     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cpr_family",
+     "externalId": "Sabin.family.2823.0",
+     "url": "https://app.climatepolicyradar.org/document/urgenda-foundation-v-state-of-the-netherlands_3297",
+     "relation": "skos:exactMatch",
+     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cclw",
+     "externalId": "Sabin.family.2823.0",
+     "url": "https://climate-laws.org/document/urgenda-foundation-v-state-of-the-netherlands_3297",
+     "relation": "skos:exactMatch",
+     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "source": "Climate Change Laws of the World page (import_id)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "wikidata",
+     "externalId": "Q79372212",
+     "url": "https://www.wikidata.org/wiki/Q79372212",
+     "relation": "skos:exactMatch",
+     "note": "instance of legal case; the item carries the 2019 Supreme Court date",
+     "source": "Wikidata API (wbgetentities)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    }
+   ],
+   "decisions": [
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000001-7",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000001-7",
+     "name": "Urgenda, District Court of The Hague, judgment (C/09/456689 / HA ZA 13-1396)",
+     "date": "2015-06-24",
+     "court": "Rechtbank Den Haag",
+     "status": "active",
+     "links": [
+      {
+       "scheme": "ecli",
+       "externalId": "ECLI:NL:RBDHA:2015:7145",
+       "url": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:RBDHA:2015:7145",
+       "relation": "skos:exactMatch",
+       "note": "original Dutch text",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "ecli",
+       "externalId": "ECLI:NL:RBDHA:2015:7196",
+       "url": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:RBDHA:2015:7196",
+       "relation": "skos:closeMatch",
+       "note": "English translation, published under its own ECLI",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "C/09/456689 / HA ZA 13-1396",
+       "relation": "skos:exactMatch",
+       "note": "case number of the District Court",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      }
+     ]
+    },
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000002-5",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000002-5",
+     "name": "Urgenda, Hague Court of Appeal, judgment (200.178.245/01)",
+     "date": "2018-10-09",
+     "court": "Gerechtshof Den Haag",
+     "status": "active",
+     "links": [
+      {
+       "scheme": "ecli",
+       "externalId": "ECLI:NL:GHDHA:2018:2591",
+       "url": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:GHDHA:2018:2591",
+       "relation": "skos:exactMatch",
+       "note": "original Dutch text",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "ecli",
+       "externalId": "ECLI:NL:GHDHA:2018:2610",
+       "url": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:GHDHA:2018:2610",
+       "relation": "skos:closeMatch",
+       "note": "English translation, published under its own ECLI",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "200.178.245/01",
+       "relation": "skos:exactMatch",
+       "note": "case number of the Court of Appeal",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      }
+     ]
+    },
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000003-3",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000003-3",
+     "name": "Urgenda, Supreme Court of the Netherlands, judgment (19/00135)",
+     "date": "2019-12-20",
+     "court": "Hoge Raad der Nederlanden",
+     "status": "active",
+     "links": [
+      {
+       "scheme": "ecli",
+       "externalId": "ECLI:NL:HR:2019:2006",
+       "url": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2019:2006",
+       "relation": "skos:exactMatch",
+       "note": "original Dutch text",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "ecli",
+       "externalId": "ECLI:NL:HR:2019:2007",
+       "url": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2019:2007",
+       "relation": "skos:closeMatch",
+       "note": "English translation, published under its own ECLI",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "19/00135",
+       "relation": "skos:exactMatch",
+       "note": "case number of the Supreme Court",
+       "source": "rechtspraak.nl open data (data.rechtspraak.nl, metadata of the ECLI)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "@id": "https://www.climpact.it/id/CL-C-000002-1",
+   "@type": "skos:Concept",
+   "identifier": "CL-C-000002-1",
+   "name": "Neubauer et al. v. Germany",
+   "date": "2021-03-24",
+   "court": "Bundesverfassungsgericht",
+   "status": "active",
+   "citationCodePrefix": "NEU",
+   "firstRelease": "TRACE 0.1",
+   "links": [
+    {
+     "scheme": "trace_citation_prefix",
+     "externalId": "NEU",
+     "relation": "skos:exactMatch",
+     "note": "citation codes NEU-0001... of TRACE 0.1 cite this case; the prefix is a label of the case, never an identifier",
+     "source": "TRACE 0.1 dataset, citation_code column (DOI 10.5281/zenodo.23082590)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "sabin_case",
+     "externalId": "neubauer-et-al-v-germany_0a3e",
+     "url": "https://www.climatecasechart.com/document/neubauer-et-al-v-germany_0a3e",
+     "relation": "skos:exactMatch",
+     "note": "case page (not a filing)",
+     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cpr_family",
+     "externalId": "Sabin.family.11817.0",
+     "url": "https://app.climatepolicyradar.org/document/neubauer-et-al-v-germany_0a3e",
+     "relation": "skos:exactMatch",
+     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cclw",
+     "externalId": "Sabin.family.11817.0",
+     "url": "https://climate-laws.org/document/neubauer-et-al-v-germany_0a3e",
+     "relation": "skos:exactMatch",
+     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "source": "Climate Change Laws of the World page (import_id)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "wikidata",
+     "externalId": "Q118901973",
+     "url": "https://www.wikidata.org/wiki/Q118901973",
+     "relation": "skos:exactMatch",
+     "note": "instance of legal case, English Wikipedia article Neubauer v Germany",
+     "source": "Wikidata API (wbgetentities)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "wikidata",
+     "externalId": "Q116893854",
+     "url": "https://www.wikidata.org/wiki/Q116893854",
+     "relation": "skos:closeMatch",
+     "note": "second Wikidata item for the same case; its English Wikipedia link is a redirect to the article of Q118901973 (probable duplicate on Wikidata)",
+     "source": "Wikidata API (wbgetentities)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    }
+   ],
+   "decisions": [
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000004-1",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000004-1",
+     "name": "Neubauer, Federal Constitutional Court, order of the First Senate (1 BvR 2656/18, 1 BvR 78/20, 1 BvR 96/20, 1 BvR 288/20)",
+     "date": "2021-03-24",
+     "court": "Bundesverfassungsgericht",
+     "status": "active",
+     "links": [
+      {
+       "scheme": "wikidata",
+       "externalId": "Q120442604",
+       "url": "https://www.wikidata.org/wiki/Q120442604",
+       "relation": "skos:exactMatch",
+       "note": "Klima-Beschluss, instance of court order; carries the ECLI (P3570)",
+       "source": "Wikidata API (wbgetentities)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "ecli",
+       "externalId": "ECLI:DE:BVerfG:2021:rs20210324.1bvr265618",
+       "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2021/03/rs20210324_1bvr265618.html",
+       "relation": "skos:exactMatch",
+       "note": "official text (German)",
+       "source": "Federal Constitutional Court website (ECLI printed on the decision page)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_url",
+       "externalId": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/EN/2021/03/rs20210324_1bvr265618en.html",
+       "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/EN/2021/03/rs20210324_1bvr265618en.html",
+       "relation": "skos:closeMatch",
+       "note": "official English translation",
+       "source": "Federal Constitutional Court website (ECLI printed on the decision page)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "1 BvR 2656/18",
+       "relation": "skos:narrowMatch",
+       "note": "one of the four joined constitutional complaints decided together",
+       "source": "Federal Constitutional Court website (ECLI printed on the decision page)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "1 BvR 78/20",
+       "relation": "skos:narrowMatch",
+       "note": "one of the four joined constitutional complaints decided together",
+       "source": "Federal Constitutional Court website (ECLI printed on the decision page)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "1 BvR 96/20",
+       "relation": "skos:narrowMatch",
+       "note": "one of the four joined constitutional complaints decided together",
+       "source": "Federal Constitutional Court website (ECLI printed on the decision page)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "1 BvR 288/20",
+       "relation": "skos:narrowMatch",
+       "note": "one of the four joined constitutional complaints decided together",
+       "source": "Federal Constitutional Court website (ECLI printed on the decision page)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "@id": "https://www.climpact.it/id/CL-C-000003-X",
+   "@type": "skos:Concept",
+   "identifier": "CL-C-000003-X",
+   "name": "Future Generations v. Ministry of the Environment and Others (Generaciones Futuras v. Minambiente)",
+   "date": "2018-04-05",
+   "court": "Tribunal Superior de Bogota; Corte Suprema de Justicia de Colombia",
+   "status": "active",
+   "citationCodePrefix": "FGC",
+   "firstRelease": "TRACE 0.1",
+   "links": [
+    {
+     "scheme": "trace_citation_prefix",
+     "externalId": "FGC",
+     "relation": "skos:exactMatch",
+     "note": "citation codes FGC-0001... of TRACE 0.1 cite this case; the prefix is a label of the case, never an identifier",
+     "source": "TRACE 0.1 dataset, citation_code column (DOI 10.5281/zenodo.23082590)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "sabin_case",
+     "externalId": "future-generations-v-ministry-of-the-environment-and-others_f076",
+     "url": "https://www.climatecasechart.com/document/future-generations-v-ministry-of-the-environment-and-others_f076",
+     "relation": "skos:exactMatch",
+     "note": "case page (not a filing)",
+     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cpr_family",
+     "externalId": "Sabin.family.6393.0",
+     "url": "https://app.climatepolicyradar.org/document/future-generations-v-ministry-of-the-environment-and-others_f076",
+     "relation": "skos:exactMatch",
+     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cclw",
+     "externalId": "Sabin.family.6393.0",
+     "url": "https://climate-laws.org/document/future-generations-v-ministry-of-the-environment-and-others_f076",
+     "relation": "skos:exactMatch",
+     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "source": "Climate Change Laws of the World page (import_id)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    }
+   ],
+   "decisions": [
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000005-X",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000005-X",
+     "name": "Future Generations, Superior Tribunal of Bogota, first-instance tutela judgment (11001-22-03-000-2018-00319-00)",
+     "date": "2018-02-12",
+     "court": "Tribunal Superior del Distrito Judicial de Bogota, Sala Civil Especializada en Restitucion de Tierras",
+     "status": "active",
+     "links": [
+      {
+       "scheme": "court_number",
+       "externalId": "11001-22-03-000-2018-00319-00",
+       "relation": "skos:exactMatch",
+       "note": "radicacion of the first-instance tutela; no official online text found",
+       "source": "Supreme Court of Justice of Colombia website (first page of the judgment); Sabin case number",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      }
+     ]
+    },
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000006-8",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000006-8",
+     "name": "Future Generations, Supreme Court of Justice, Civil Chamber, STC4360-2018 (11001-22-03-000-2018-00319-01)",
+     "date": "2018-04-05",
+     "court": "Corte Suprema de Justicia, Sala de Casacion Civil",
+     "status": "active",
+     "links": [
+      {
+       "scheme": "court_number",
+       "externalId": "STC4360-2018",
+       "url": "https://www.cortesuprema.gov.co/corte/wp-content/uploads/2018/04/STC4360-2018-2018-00319-011.pdf",
+       "relation": "skos:exactMatch",
+       "note": "official text (Spanish, scanned PDF); Colombia does not use ECLI",
+       "source": "Supreme Court of Justice of Colombia website (first page of the judgment)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "11001-22-03-000-2018-00319-01",
+       "relation": "skos:exactMatch",
+       "note": "radicacion of the appeal (impugnacion) before the Supreme Court",
+       "source": "Supreme Court of Justice of Colombia website (first page of the judgment)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "@id": "https://www.climpact.it/id/CL-C-000004-8",
+   "@type": "skos:Concept",
+   "identifier": "CL-C-000004-8",
+   "name": "Verein KlimaSeniorinnen Schweiz and Others v. Switzerland",
+   "date": "2024-04-09",
+   "court": "European Court of Human Rights",
+   "status": "active",
+   "citationCodePrefix": "KLS",
+   "firstRelease": "TRACE 0.1",
+   "links": [
+    {
+     "scheme": "trace_citation_prefix",
+     "externalId": "KLS",
+     "relation": "skos:exactMatch",
+     "note": "citation codes KLS-0001... of TRACE 0.1 cite this case; the prefix is a label of the case, never an identifier",
+     "source": "TRACE 0.1 dataset, citation_code column (DOI 10.5281/zenodo.23082590)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "sabin_case",
+     "externalId": "verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852",
+     "url": "https://www.climatecasechart.com/document/verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852",
+     "relation": "skos:exactMatch",
+     "note": "case page (not a filing)",
+     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cpr_family",
+     "externalId": "Sabin.family.15540.0",
+     "url": "https://app.climatepolicyradar.org/document/verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852",
+     "relation": "skos:exactMatch",
+     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cclw",
+     "externalId": "Sabin.family.15540.0",
+     "url": "https://climate-laws.org/document/verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852",
+     "relation": "skos:exactMatch",
+     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "source": "Climate Change Laws of the World page (import_id)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "sabin_case",
+     "externalId": "association-of-swiss-senior-women-for-climate-protection-v-federal-department-of-the-environment-transport-energy-and-communications-detec-and-others_0123",
+     "url": "https://www.climatecasechart.com/document/association-of-swiss-senior-women-for-climate-protection-v-federal-department-of-the-environment-transport-energy-and-communications-detec-and-others_0123",
+     "relation": "skos:relatedMatch",
+     "note": "the Swiss domestic proceeding (No. A-2992/2017, Federal Supreme Court) that preceded the application to Strasbourg; a different case, not yet given a CLIMPACT id",
+     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "wikidata",
+     "externalId": "Q125453801",
+     "url": "https://www.wikidata.org/wiki/Q125453801",
+     "relation": "skos:exactMatch",
+     "note": "instance of legal case and judgment: one item for case and judgment",
+     "source": "Wikidata API (wbgetentities)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    }
+   ],
+   "decisions": [
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000007-6",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000007-6",
+     "name": "KlimaSeniorinnen, European Court of Human Rights, Grand Chamber judgment (application no. 53600/20)",
+     "date": "2024-04-09",
+     "court": "European Court of Human Rights, Grand Chamber",
+     "status": "active",
+     "links": [
+      {
+       "scheme": "ecli",
+       "externalId": "ECLI:CE:ECHR:2024:0409JUD005360020",
+       "url": "https://hudoc.echr.coe.int/eng?i=001-233206",
+       "relation": "skos:exactMatch",
+       "source": "HUDOC (ECHR case-law database), query by application number",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "hudoc",
+       "externalId": "001-233206",
+       "url": "https://hudoc.echr.coe.int/eng?i=001-233206",
+       "relation": "skos:exactMatch",
+       "note": "English text",
+       "source": "HUDOC (ECHR case-law database), query by application number",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "hudoc",
+       "externalId": "001-233258",
+       "url": "https://hudoc.echr.coe.int/fre?i=001-233258",
+       "relation": "skos:closeMatch",
+       "note": "French text (both texts authentic)",
+       "source": "HUDOC (ECHR case-law database), query by application number",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "53600/20",
+       "relation": "skos:exactMatch",
+       "note": "application number",
+       "source": "HUDOC (ECHR case-law database), query by application number",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "@id": "https://www.climpact.it/id/CL-C-000005-6",
+   "@type": "skos:Concept",
+   "identifier": "CL-C-000005-6",
+   "name": "Obligations of States in respect of Climate Change (Request for Advisory Opinion), International Court of Justice",
+   "date": "2025-07-23",
+   "court": "International Court of Justice",
+   "status": "active",
+   "citationCodePrefix": "ICJ",
+   "firstRelease": "TRACE 0.1",
+   "links": [
+    {
+     "scheme": "trace_citation_prefix",
+     "externalId": "ICJ",
+     "relation": "skos:exactMatch",
+     "note": "citation codes ICJ-0001... of TRACE 0.1 cite this case; the prefix is a label of the case, never an identifier",
+     "source": "TRACE 0.1 dataset, citation_code column (DOI 10.5281/zenodo.23082590)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "sabin_case",
+     "externalId": "request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213",
+     "url": "https://www.climatecasechart.com/document/request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213",
+     "relation": "skos:exactMatch",
+     "note": "case page (not a filing)",
+     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cpr_family",
+     "externalId": "Sabin.family.18913.0",
+     "url": "https://app.climatepolicyradar.org/document/request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213",
+     "relation": "skos:exactMatch",
+     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cclw",
+     "externalId": "Sabin.family.18913.0",
+     "url": "https://climate-laws.org/document/request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213",
+     "relation": "skos:exactMatch",
+     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "source": "Climate Change Laws of the World page (import_id)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "wikidata",
+     "externalId": "Q135448119",
+     "url": "https://www.wikidata.org/wiki/Q135448119",
+     "relation": "skos:exactMatch",
+     "note": "instance of legal case and advisory opinion: one item for case and opinion",
+     "source": "Wikidata API (wbgetentities)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "court_url",
+     "externalId": "https://www.icj-cij.org/case/187",
+     "url": "https://www.icj-cij.org/case/187",
+     "relation": "skos:exactMatch",
+     "note": "official case page; the ICJ does not use ECLI",
+     "source": "International Court of Justice website, case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "court_number",
+     "externalId": "General List No. 187",
+     "relation": "skos:exactMatch",
+     "source": "International Court of Justice website, case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    }
+   ],
+   "decisions": [
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000008-4",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000008-4",
+     "name": "ICJ Advisory Opinion of 23 July 2025 (General List No. 187)",
+     "date": "2025-07-23",
+     "court": "International Court of Justice",
+     "status": "active",
+     "links": []
+    }
+   ]
+  },
+  {
+   "@id": "https://www.climpact.it/id/CL-C-000006-4",
+   "@type": "skos:Concept",
+   "identifier": "CL-C-000006-4",
+   "name": "Climate Emergency and Human Rights (Request for Advisory Opinion by Chile and Colombia), Inter-American Court of Human Rights",
+   "date": "2025-05-29",
+   "court": "Inter-American Court of Human Rights",
+   "status": "active",
+   "citationCodePrefix": "IAC",
+   "firstRelease": "TRACE 0.1",
+   "links": [
+    {
+     "scheme": "trace_citation_prefix",
+     "externalId": "IAC",
+     "relation": "skos:exactMatch",
+     "note": "citation codes IAC-0001... of TRACE 0.1 cite this case; the prefix is a label of the case, never an identifier",
+     "source": "TRACE 0.1 dataset, citation_code column (DOI 10.5281/zenodo.23082590)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "sabin_case",
+     "externalId": "request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd",
+     "url": "https://www.climatecasechart.com/document/request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd",
+     "relation": "skos:exactMatch",
+     "note": "case page (not a filing)",
+     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cpr_family",
+     "externalId": "Sabin.family.18528.0",
+     "url": "https://app.climatepolicyradar.org/document/request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd",
+     "relation": "skos:exactMatch",
+     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    },
+    {
+     "scheme": "cclw",
+     "externalId": "Sabin.family.18528.0",
+     "url": "https://climate-laws.org/document/request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd",
+     "relation": "skos:exactMatch",
+     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "source": "Climate Change Laws of the World page (import_id)",
+     "checkedOn": "2026-10-10",
+     "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+    }
+   ],
+   "decisions": [
+    {
+     "@id": "https://www.climpact.it/id/CL-D-000009-2",
+     "@type": "schema:Legislation",
+     "identifier": "CL-D-000009-2",
+     "name": "Advisory Opinion OC-32/25 of 29 May 2025 (notified 3 July 2025)",
+     "date": "2025-05-29",
+     "court": "Inter-American Court of Human Rights",
+     "status": "active",
+     "links": [
+      {
+       "scheme": "court_url",
+       "externalId": "https://www.corteidh.or.cr/docs/opiniones/seriea_32_esp.pdf",
+       "url": "https://www.corteidh.or.cr/docs/opiniones/seriea_32_esp.pdf",
+       "relation": "skos:exactMatch",
+       "note": "official text (Spanish); the Court does not use ECLI",
+       "source": "Inter-American Court of Human Rights website (cover page of the opinion)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_url",
+       "externalId": "https://www.corteidh.or.cr/docs/opiniones/seriea_32_en.pdf",
+       "url": "https://www.corteidh.or.cr/docs/opiniones/seriea_32_en.pdf",
+       "relation": "skos:closeMatch",
+       "note": "official English version (AO-32/25)",
+       "source": "Inter-American Court of Human Rights website (cover page of the opinion)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      },
+      {
+       "scheme": "court_number",
+       "externalId": "OC-32/25",
+       "relation": "skos:exactMatch",
+       "note": "Series A No. 32",
+       "source": "Inter-American Court of Human Rights website (cover page of the opinion)",
+       "checkedOn": "2026-10-10",
+       "checkedBy": "CLIMPACT team, automated check, to be reviewed"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
