@@ -16,7 +16,7 @@
   <a href="https://github.com/astral-sh/ruff"><img alt="Code style: ruff" src="https://img.shields.io/badge/code%20style-ruff-261230"></a>
 </p>
 
-<p align="center"><sub>DOI reserved: 10.5281/zenodo.23082522 (active on publication)</sub></p>
+<p align="center"><sub>DOI reserved: 10.5281/zenodo.23275400 (active on publication)</sub></p>
 
 > **Beta.** TRACE 0.1 is a first release. Every proposal it makes is open to checking by the CLIMPACT research team: at
 > release 414 of the 7,893 citations are verified, and the others are machine proposals, not findings. The
@@ -269,7 +269,7 @@ appear only as pseudonyms), the time spent on each row and the free-text notes.
 
 | Record | DOI |
 |---|---|
-| TRACE 0.1, code (the DOI to cite) | 10.5281/zenodo.23082522 |
+| TRACE 0.1, code (the DOI to cite) | 10.5281/zenodo.23275400 |
 | TRACE 0.1, data | 10.5281/zenodo.23082590 |
 | Corpus index, tiers 1 and 2 (public) | 10.5281/zenodo.23116958 |
 | Corpus index, tier 3 (restricted, on request) | 10.5281/zenodo.23116960 |
@@ -376,7 +376,7 @@ Next: TRACE 0.2. The whole corpus read again with our own reasoning reranker, tr
 ## How to cite
 
 > Naglieri, G., Buono, E., Garofalo, C., Saracino, C., Dell'Atti, L., Rojas Verdugo, G. A. (2026). *CLIMPACT TRACE 0.1: Traceable Reception
-> and Attribution in Climate-law Evidence.* CLIMPACT, University of Bari. Zenodo. DOI reserved: 10.5281/zenodo.23082522
+> and Attribution in Climate-law Evidence.* CLIMPACT, University of Bari. Zenodo. DOI reserved: 10.5281/zenodo.23275400
 > (active on publication).
 
 The data and the corpus index have DOIs of their own: data 10.5281/zenodo.23082590; corpus index

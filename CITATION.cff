@@ -28,7 +28,7 @@ authors:
     affiliation: "CLIMPACT, University of Bari"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.23082522"
+    value: "10.5281/zenodo.23275400"
     description: "TRACE 0.1, code: reserved DOI of the Zenodo deposit, active on publication"
   - type: doi
     value: "10.5281/zenodo.23082590"
