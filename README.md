@@ -228,8 +228,9 @@ English renderings of the prompts and the codebook are in `translations/` (each 
 - **DeepSeek V4 Flash**, the large language model that reads the citations (codes L). We serve it with vLLM on
   NVIDIA H100 GPUs at ReCaS-Bari; the weights come from the official DeepSeek release (DeepSeek-V4-Flash-0731, MIT
   licence). The readers call it through an OpenAI-compatible endpoint (`--base-url`, key in `chat/chiave`).
-- **TRACE-Reranker (T01).** A LoRA adapter on Qwen3-Reranker-4B; the adapter is to be published on Zenodo with the
-  release.
+- **Computing and energy.** TRACE 0.1 used 1,355 GPU-hours on NVIDIA H100 GPUs at ReCaS-Bari (25 September to 9 October 2026), about 0.8 to 1.5 MWh at the level of the data centre on a literature range of PUE, since ReCaS does not publish its own; the technical report gives the method and its limits.
+- **TRACE-Reranker (T01).** A LoRA adapter on Qwen3-Reranker-4B, published on Zenodo with the release; its scores are
+  computed by `trace punteggi`.
 - **TRACE-Reranker, reasoning (T04).** A LoRA adapter on Qwen3.5-9B (revision c2022362, Apache-2.0), in `peft` format,
   published on Zenodo with the release with its prompt, its measurement and a check that it fits the base model.
 - **The platform database**, only to load proposals (`--scrivi`): any implementation of `tracepipe.banca.BancaDati`.
