@@ -33,15 +33,15 @@
 For a climate judgment (the *cited case*), TRACE finds every later filing that cites it, in the Climate Litigation
 Database, and records for each citation what the citing text does with it: which principles of the judgment it takes
 up, and on which nearby pages the argument continues. TRACE works for any judgment that has a case file; TRACE 0.1,
-the first release, follows six: Urgenda, Neubauer, Future Generations, KlimaSeniorinnen, the ICJ climate advisory
+the first release, follows these judgments and advisory opinions: Urgenda, Neubauer, Future Generations, KlimaSeniorinnen, the ICJ climate advisory
 opinion and the Inter-American Court advisory opinion OC-32/25. It is built to grow beyond judgments, to laws, policies
 and the other sources through which climate-law reasoning travels (see [What comes next](#what-comes-next)).
 
-Every step leaves a **version code** (`L05`, `R11`, `T01`...) on what it proposes. The codes, with the exact models,
+Every step leaves a **version code** (such as `L05`, `R11`, `T01`) on what it proposes. The codes, with the exact models,
 instructions, settings, data and code of each version, are in [`versioni/registro.json`](versioni/registro.json): the
 registry is the single source, and where this page differs from it the registry is right.
 
-<p align="center"><img alt="TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. A general method to trace how climate judgments are received in later litigation; TRACE 0.1 applies it to six landmark judgments." src="assets/banner.png" width="100%"></p>
+<p align="center"><img alt="TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. A general method to trace how climate judgments are received in later litigation; TRACE 0.1 applies it to the judgments and advisory opinions it follows." src="assets/banner.png" width="100%"></p>
 
 ## Index
 
@@ -186,7 +186,7 @@ What is in English, and what is not:
 
 | In English | Italian, kept as it ran |
 |---|---|
-| This page, the model cards, the citation file, `docs/`, `scripts/`; comments and docstrings of `tracepipe/`; screen messages and `--help` of `trace`; the Zenodo data (every column), the corpus index READMEs; the English registry fields `*_en` | Names of modules, functions, classes and command options (renaming them would break every import and every documented command); the prompts the readers sent (`tracepipe/istruzioni.py`, `tracepipe/lettura_coppia.py`); the codebook (`codebook/`); the case files (`cited-cases/`); `versioni/` and `legacy/tools/`, frozen as they ran; values written to the platform database (`una`, `due`, `incerta`, `testo`, `nota`...), which are protocol codes |
+| This page, the model cards, the citation file, `docs/`, `scripts/`; comments and docstrings of `tracepipe/`; screen messages and `--help` of `trace`; the Zenodo data (every column), the corpus index READMEs; the English registry fields `*_en` | Names of modules, functions, classes and command options (renaming them would break every import and every documented command); the prompts the readers sent (`tracepipe/istruzioni.py`, `tracepipe/lettura_coppia.py`); the codebook (`codebook/`); the case files (`cited-cases/`); `versioni/` and `legacy/tools/`, frozen as they ran; the N01 scripts in `tools/`, and the N01 working method and bibliography in `data/influence/`; values written to the platform database (for example `una`, `due`, `incerta`, `testo`, `nota`), which are protocol codes |
 
 English renderings of the prompts and the codebook are in `translations/` (each file says at the top which original it translates and the SHA-256 of that original). The quotations from the filings (`canonical`, `testo`, `verbatim` in the case files, `sentence` and `passage` in the data) are in the language of the filing and are never translated. The case files and the paragraph maps are in Italian, as the readers used them, with the quotations from the filings in their original language; English translations sit next to them in `cited-cases/` (`*.en.md`, `*.en.yaml`), each stating the SHA-256 of the Italian file it translates.
 
@@ -220,7 +220,7 @@ English renderings of the prompts and the codebook are in `translations/` (each 
 
 ## What you need to run it
 
-- **The corpus texts.** The filings are not redistributed here (terms of the Sabin Center for Climate Change Law). They
+- **The corpus texts.** The filings are not redistributed here (terms of the Climate Litigation Database, climatecasechart.com). They
   are public on the Climate Litigation Database; [`legacy/tools/001_build_markdown.py`](legacy/tools/001_build_markdown.py)
   turns the downloaded PDFs into the page-marked text the pipeline reads, and the public corpus index (see
   [Data](#data)) lists every document with its source URL and the SHA-256 of the PDF used, with a script that rebuilds
@@ -240,7 +240,7 @@ English renderings of the prompts and the codebook are in `translations/` (each 
 
 | What | Why | Where to get it |
 |---|---|---|
-| Texts of the filings | Sabin Center terms; party filings can carry their authors' rights | The Climate Litigation Database; the corpus index, tiers 1 to 3 below |
+| Texts of the filings | Terms of the Climate Litigation Database; party filings can carry their authors' rights | The Climate Litigation Database; the corpus index, tiers 1 to 3 below |
 | Model weights (T01, T02, T03, T04) | Size | Zenodo, to be published with the release |
 | DeepSeek V4 Flash weights | Third-party model | The official DeepSeek release (MIT) |
 | Readings, scores, human judgments | Platform data with filing text in them | Released as data on Zenodo, to be published with the release |
@@ -249,7 +249,7 @@ English renderings of the prompts and the codebook are in `translations/` (each 
 
 ## Data
 
-The citation dataset of TRACE 0.1 holds 7,893 citations of the six judgments in 541 later filings
+The citation dataset of TRACE 0.1 holds 7,893 citations of the judgments it follows in 541 later filings
 (record 10.5281/zenodo.23082590, CC BY-NC 4.0).
 
 The corpus index of TRACE 0.1 (the index live on 5 October 2026: 578,146 pages of 17,039 documents, 7,042 citations
@@ -269,7 +269,7 @@ per citation judged by the CLIMPACT team, discarded citations included with the 
 of the citation, who speaks, where it sits, the principles and the surrounding pages it gives two columns each, the
 machine proposal (`machine_*`) and the team's decision (`team_*`), and it adds the outcome (confirmed, discarded or
 reclassified), `blind` (whether the judgment was given without the proposal on the screen), the codebook version, the
-date and a pseudonymous `coder` (coder A, coder B...). For double-coded citations it adds the second coder's outcome,
+date and a pseudonymous `coder` (coder A, coder B and so on). For double-coded citations it adds the second coder's outcome,
 function and principles and whether the outcomes agree. Not published: coders' names, accounts and emails (coders
 appear only as pseudonyms), the time spent on each row and the free-text notes.
 
@@ -286,11 +286,9 @@ appear only as pseudonyms), the time spent on each row and the free-text notes.
 your institution and which TRACE results you want to verify. If the request fits, the research team grants access to a
 restricted Zenodo record (DOI 10.5281/zenodo.23116960); the file is never sent by email. Conditions: research use
 only; no redistribution of the file or of any substantial part of it, and no publication of the text of party
-filings; keep it securely and delete it when the verification is over; cite the source, «Climate Litigation Database, Sabin Center for Climate Change Law and
-Climate Policy Radar», and CLIMPACT TRACE 0.1.
+filings; keep it securely and delete it when the verification is over; cite the source, «Climate Litigation Database (climatecasechart.com). Data provided by the Sabin Center for Climate Change Law. Platform operated by Climate Policy Radar.», and CLIMPACT TRACE 0.1.
 
-The documents come from the Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law
-School) with Climate Policy Radar, read through its public API (snapshot of 26 July 2026, update of 19 September 2026).
+The documents come from the Climate Litigation Database (climatecasechart.com), read through its public API (snapshot of 26 July 2026, update of 19 September 2026).
 Data provided by the Sabin Center for Climate Change Law. Platform operated by Climate Policy Radar.
 
 ## How to verify
@@ -299,7 +297,7 @@ Data provided by the Sabin Center for Climate Change Law. Platform operated by C
   sample or the live scripts are skipped, each with its reason. On the team's machine, with the private data, the
   whole suite of this repository runs (558 tests).
 - **Reference harness.** Every class of `tracepipe` reproduces a legacy script. A harness, kept with the private data,
-  runs the legacy scripts and the package on a fixed sample (180 rows from the six cases, filing texts included, with
+  runs the legacy scripts and the package on a fixed sample (180 rows from all the judgments it follows, filing texts included, with
   the database, DeepSeek V4 Flash and the clock replaced by recorded fakes) and compares every output file: 298 of
   298 files and 67 of 67 journals equal, in compatibility mode. The sample is not redistributed because it contains
   filing texts.
@@ -326,9 +324,90 @@ Data provided by the Sabin Center for Climate Change Law. Platform operated by C
 
 <p align="center"><img alt="How TRACE follows a judgment: find every citation by name, map the judgment, score the surrounding pages, read five times and keep the majority, people verify" src="assets/gallery/how-it-works.png" width="100%"></p>
 
-<p align="center"><img alt="The six judgments of TRACE 0.1, with the citations found by name and the documents they are in" src="assets/gallery/six-judgments.png" width="100%"></p>
+<p align="center"><img alt="The judgments and advisory opinions TRACE 0.1 follows, with the citations found by name and the documents they are in" src="assets/gallery/six-judgments.png" width="100%"></p>
 
 <p align="center"><img alt="Every proposal carries the code of the version that made it, and the registry records what each code ran with" src="assets/gallery/version-codes.png" width="100%"></p>
+
+## Influence (rule N01, beta) and the TRACE Judicial Impact Index
+
+N01 measures how far a judgment travels in later litigation and how much courts use it. It is a beta rule (version
+`N01-beta-2026-10-11`), deterministic, with no model of its own: it reads the citations TRACE has already found.
+
+**The unit is the citing case**, the dispute, not the row or the filing: several filings of one case count once, so long
+filings do not weigh more. Each pair of citing case and judgment sits on the highest step any of its citations reaches:
+
+| Step | Meaning |
+|---|---|
+| R1 Mentioned | the name appears, with no argument built on it |
+| R2 Argued by a party | a party, an amicus or an intervener uses it to argue |
+| R3 Named by a court | the court names it |
+| R4 Relied on by a court | the court uses it in its reasoning, to follow, distinguish or criticise it |
+
+**Three separate measures**, never merged: *reach* (cases at R1 or above), *mobilisation* (cases at R2 or above) and
+*judicial reception* (cases at R4).
+
+**The TRACE Judicial Impact Index** is the sum over the citing cases of the weight of the step each one reaches: ¼ for
+R1, ½ for R2, ¾ for R3, 1 for R4. The weights are not chosen: they are the expected values of weights drawn uniformly
+under the only constraint we can defend, the order of the steps (Barron and Barrett 1996). The 90% range counts three
+sources of uncertainty over 1,000 draws: the machine's reading errors, estimated document by document from the
+citations the team checked (after Egami et al. 2023; the checked citations were not drawn at random, so the correction
+is provisional); the sampling of the citing cases; and the weights. Sensitivity is reported apart: variants of the
+thresholds of the steps and of the readings (all rows, checked rows only, corrected for reading errors), and 5,000
+ordered weightings (Lahdelma, Hokkanen and Salminen 1998).
+
+The index does not replace the three measures, and it does not rank the judgments: they have different ages and a
+different coverage in the corpus (Urgenda is almost complete, the others partial). A citation shows that a judgment
+was used, not that it caused an outcome (Choi and Gulati 2008).
+
+| Judgment | Index (90% range) | Cases at R4, corrected for reading errors (90% range) |
+|---|---:|---:|
+| Urgenda | 87 (60 to 121) | 38 (28 to 48) |
+| Neubauer | 64 (43 to 87) | 27 (18 to 37) |
+| KlimaSeniorinnen | 43 (31 to 53) | 24 (17 to 32) |
+| Future Generations | 23 (13 to 40) | 7 (2 to 12) |
+| ICJ Advisory Opinion | 23 (13 to 34) | 8 (3 to 14) |
+| Advisory Opinion OC-32/25 | 23 (12 to 33) | 7 (3 to 12) |
+
+**Further measures**
+
+- *Conversion*: among the cases where a party argues with the judgment and a court document is in the corpus, the share where the court relies on it (Hansford and Spriggs 2006).
+- *Beyond its own jurisdiction*: cases at R4 outside the jurisdiction of the judgment, and their share of the index.
+- *Contestation*: among the cases at R4, those where the court distinguishes or criticises the judgment.
+- *Legal traditions*: the legal families and continents reached (Zweigert and Kötz 1998), from a declared table (`n01_paesi.json`).
+- *Co-reception (canon)*: the cases that receive two judgments together, at R4 and at any step (Small 1973).
+- *Genealogy between the judgments*: where one of the judgments TRACE 0.1 follows cites another, shown as a graph, with no measure.
+- *Profile of use*: among the cases at R4, the shares that follow, distinguish and criticise the judgment.
+- *Speed* (EXPERIMENTAL): years from the judgment to the first case at R4, and to the first at R4 in another jurisdiction.
+- *Half-life and growth over time* (EXPERIMENTAL): the median age of the citing cases and the cumulative curve by years since the judgment (Black and Spriggs 2013). Many documents carry only the year of their case, so these dates are rough.
+- *Principles that travel* (EXPERIMENTAL): each principle of the judgment by jurisdiction, on the cases at R2 or above. It rests on the machine's reading of the principles, whose F1 against the team was about 0.54 in the blind check.
+
+**Coming in later versions**
+
+- The second level of the network: the citations among the citing cases (the extraction starts on 14 October 2026), and with it PageRank and other measures of centrality (Fowler et al. 2007).
+- The level of the citing court.
+- A blind check of 80 citations drawn at random, which will replace the current correction and narrow the ranges.
+- The half-life of the younger judgments.
+
+**Files.** The scripts are in [`tools/`](tools): `n01_influenza.py` computes the measures and the index,
+`n01_atti_dei_casi.py` adds to each citing case the list of its filings. They are the working-tree tools as they ran
+(comments in Italian; paths of the working tree; they read the platform database, read only). The data snapshot used
+by the TRACE site is in [`data/influence/`](data/influence), with its `SHA256SUMS`: `n01_site.json` (the figures of the
+site), `n01_misure.json` (all the measures), `n01_soglie.json` (the thresholds of the steps), `n01_giurisdizioni.json`
+and `n01_paesi.json` (jurisdictions, legal families, continents), and, in Italian, the working method
+`METODO-INFLUENZA-BOZZA.md` and the bibliography `BIBLIOGRAFIA-N01.md`. The SHA-256 of the script and of the
+thresholds file are recorded inside `n01_site.json`.
+
+**References**
+
+- Barron, F. Hutton, and Bruce E. Barrett. 1996. «Decision Quality Using Ranked Attribute Weights». *Management Science* 42 (11): 1515–1523. https://doi.org/10.1287/mnsc.42.11.1515.
+- Black, Ryan C., and James F. Spriggs II. 2013. «The Citation and Depreciation of U.S. Supreme Court Precedent». *Journal of Empirical Legal Studies* 10 (2): 325–358.
+- Choi, Stephen J., and G. Mitu Gulati. 2008. «Bias in Judicial Citations: A Window into the Behavior of Judges?». *Journal of Legal Studies* 37 (1): 87–129. https://doi.org/10.1086/588263.
+- Egami, Naoki, Musashi Hinck, Brandon M. Stewart, and Hanying Wei. 2023. «Using Imperfect Surrogates for Downstream Inference: Design-Based Supervised Learning for Social Science Applications of Large Language Models». In *Advances in Neural Information Processing Systems 36 (NeurIPS 2023)*. https://proceedings.neurips.cc/paper_files/paper/2023/hash/d862f7f5445255090de13b825b880d59-Abstract.html.
+- Fowler, James H., Timothy R. Johnson, James F. Spriggs II, Sangick Jeon, and Paul J. Wahlbeck. 2007. «Network Analysis and the Law: Measuring the Legal Importance of Precedents at the U.S. Supreme Court». *Political Analysis* 15 (3): 324–346.
+- Hansford, Thomas G., and James F. Spriggs II. 2006. *The Politics of Precedent on the U.S. Supreme Court*. Princeton: Princeton University Press.
+- Lahdelma, Risto, Joonas Hokkanen, and Pekka Salminen. 1998. «SMAA – Stochastic Multiobjective Acceptability Analysis». *European Journal of Operational Research* 106 (1): 137–143.
+- Small, Henry. 1973. «Co-citation in the Scientific Literature: A New Measure of the Relationship between Two Documents». *Journal of the American Society for Information Science* 24 (4): 265–269.
+- Zweigert, Konrad, and Hein Kötz. 1998. *An Introduction to Comparative Law*. 3rd ed. Translated by Tony Weir. Oxford: Oxford University Press.
 
 ## Repository
 
@@ -342,6 +421,8 @@ codebook/       coding categories and rules for hard cases
 translations/   English renderings of the Italian prompts and codebook (reading aids, next to the frozen originals)
 scripts/        verify_registry.py
 reproduce/      the scripts behind the figures of the technical report (see Reproducing every figure in the report)
+tools/          the N01 influence scripts (see Influence (rule N01, beta) and the TRACE Judicial Impact Index)
+data/influence/ the N01 data snapshot used by the TRACE site, with SHA256SUMS
 examples/       a tiny synthetic corpus to try the code
 assets/         images of this page
 ```
@@ -371,16 +452,16 @@ option, and every script can also run from files.
 | Figure in the report | Script | Inputs (level) | Command | Checked against the published figure |
 |---|---|---|---|---|
 | Dataset counts: 7,893 citations in 541 documents, 414 checked, 6,778 with five readings, rules R11 to R16, 651 team judgments (430 counted: 414 confirmed, 16 discarded), 108 blind | `prepare_dataset.py check` | dataset files (a) | `python reproduce/prepare_dataset.py check --dataset <dataset folder>` | yes, same counts, SHA256SUMS match |
-| The dataset files themselves (citations CSV and JSONL, team judgments CSV and JSONL, README, SHA256SUMS) | `prepare_dataset.py build` (with `team_judgments.py`) | `dati_ricchi.json`, `casi.json`, `globo/dati.js` (c); team judgments from Firestore (c) or from the published JSONL (a) | `python reproduce/prepare_dataset.py build --map-dir <map folder> --out-dir <out> --team-judgments-from trace-0.1-team-judgments.jsonl` | yes, all six files byte-identical to the deposit |
+| The dataset files themselves (citations CSV and JSONL, team judgments CSV and JSONL, README, SHA256SUMS) | `prepare_dataset.py build` (with `team_judgments.py`) | `dati_ricchi.json`, `casi.json`, `globo/dati.js` (c); team judgments from Firestore (c) or from the published JSONL (a) | `python reproduce/prepare_dataset.py build --map-dir <map folder> --out-dir <out> --team-judgments-from trace-0.1-team-judgments.jsonl` | yes, all six files byte-identical to the deposit; the wording of the dataset README template was revised on 11 October 2026, so a build made since then gives a README (and its line in SHA256SUMS) that differs from the deposit in wording only |
 | First blind figure: machine-team agreement blind against visible (outcome, function, speaker, principles F1, same set) with Wilson and bootstrap intervals | `blind_agreement.py` | team judgments and citations JSONL (a); `dati_ricchi.json` for the citing filing of discarded rows (c, optional) | `python reproduce/blind_agreement.py --team-judgments trace-0.1-team-judgments.jsonl --citations trace-0.1-citations.jsonl [--rich-data dati_ricchi.json] --out cieca.json` | yes: identical with `--rich-data`; from public files only, the same point figures, bootstrap intervals differ in the third decimal (11 codes without a public filing) |
 | Krippendorff's alpha of repeated DeepSeek readings, per case (type, principles L04 and L05; within run, between runs, four coders) | `krippendorff_alpha.py` | raw DeepSeek V4 Flash readings (c); `cited-cases/` (a) | `python reproduce/krippendorff_alpha.py --root <project root> --out alfa_2026-10-02` | same output as the original tool on the same files; the reading files of L04/L05 have grown since 02/10, so the "within run" alpha of L04/L05 is not the frozen one (type and between-run alpha are identical) |
 | T04 across nine seeds: 0.718 +/- 0.028 on the 137 rows of the jury, difference from the untrained model -0.004 [-0.024, +0.017] | `t04_seeds.py` (runs the measuring step of the frozen `versioni/T04/`) | answers of each seed and of the untrained 9B, T04 training set, team judgments of the measure (c) | `python reproduce/t04_seeds.py measure --seeds-dir <semi> --base q9_rrl.jsonl --data dati.jsonl.gz --verita verita.json --insieme insieme.json --out t04_semi.json` | yes, summary and per-seed files byte-identical |
 | T04 compared with DeepSeek V4 Flash (R11 and published proposal), T01 and the team | `compare_t04.py` | live rows snapshot and T04 answers (c); training ids `versioni/T04/esempi_di_addestramento_id.txt` (a) | `python reproduce/compare_t04.py --rows righe_vive.jsonl.gz --answers-dir esiti --insieme insieme.json --r11-judged r11_su_giudicate.json --out-dir <out>` | yes, JSON, CSV and report byte-identical |
-| T04 training (the published adapter) | `train_t04.py` (runs the frozen `versioni/T04/`, after checking its SHA-256 against the registry) | training set with the texts of the filings (b, c); Qwen3.5-9B; one GPU | `python reproduce/train_t04.py verify`, then `python reproduce/train_t04.py addestra --root <project root> -- --pesi <Qwen3.5-9B> --piega 0 ...` | not re-run (GPU); frozen files match the registry |
-| The proposals of the TRACE 0.1 data (rules R12, R13, R15, R16: principles, uncertain flag, missing-proof flag, surrounding pages and their proofs, supporting sentence) | `golden_rules.py` (the package: `trace carica ripresa --composizione R12` ... `R16`) | the five raw readings of DeepSeek V4 Flash, the rows with their surrounding pages, the type readings, the copies taken before every write (c); the texts of the filings (b) | `TRACE_ROOT=<private root> python reproduce/golden_rules.py` | yes: R15 recomputed on 7,473 rows, 7,184 compared with the state written on 4 October 2026, 0 different; R16 on 483 rows, 472 compared, 0 different (the others have no later state to compare with). The raw readings are not in the dataset nor in the deposits, so this check runs only on the team's machine; `examples/synthetic/` lets anyone run the same rules on invented data |
+| T04 training (the published adapter) | `train_t04.py` (runs the frozen `versioni/T04/`, after checking its SHA-256 against the registry) | training set with the texts of the filings (b, c); Qwen3.5-9B; one GPU | `python reproduce/train_t04.py verify`, then `python reproduce/train_t04.py addestra --root <project root> -- --pesi <Qwen3.5-9B> --piega 0 <other options>` | not re-run (GPU); frozen files match the registry |
+| The proposals of the TRACE 0.1 data (rules R12, R13, R15, R16: principles, uncertain flag, missing-proof flag, surrounding pages and their proofs, supporting sentence) | `golden_rules.py` (the package: `trace carica ripresa --composizione R12` to `R16`) | the five raw readings of DeepSeek V4 Flash, the rows with their surrounding pages, the type readings, the copies taken before every write (c); the texts of the filings (b) | `TRACE_ROOT=<private root> python reproduce/golden_rules.py` | yes: R15 recomputed on 7,473 rows, 7,184 compared with the state written on 4 October 2026, 0 different; R16 on 483 rows, 472 compared, 0 different (the others have no later state to compare with). The raw readings are not in the dataset nor in the deposits, so this check runs only on the team's machine; `examples/synthetic/` lets anyone run the same rules on invented data |
 | The count gate (which machine rows enter the totals: 3 of 5 readings by name, 4 of 5 descriptive, team judgment first) | `count_gate.py` | rows snapshot and reading files (c) | `python reproduce/count_gate.py --rows <rows.jsonl.gz> --readings-dir <training>` | same decision as the original on all 9,356 live rows of 07/10 |
 
-| T01 scores (TRACE-Reranker 0.1) of the surrounding pages | `trace punteggi prepara` / `trace punteggi calcola` (package module `tracepipe/punteggio_t01.py`; the frozen original is `versioni/T01/ripresa_punteggi.py`) | the pairs of a case, built from the texts of the filings (b); the three T01 adapters on Zenodo; Qwen3-Reranker-4B; one GPU | `trace punteggi prepara --caso urgenda ...`, then `trace punteggi calcola ...` | yes: 800 of 800 published Urgenda scores identical on an NVIDIA H100 in bf16 (10/10/2026); on Apple MPS the scores differ by up to 0.016, from the hardware arithmetic |
+| T01 scores (TRACE-Reranker 0.1) of the surrounding pages | `trace punteggi prepara` / `trace punteggi calcola` (package module `tracepipe/punteggio_t01.py`; the frozen original is `versioni/T01/ripresa_punteggi.py`) | the pairs of a case, built from the texts of the filings (b); the three T01 adapters on Zenodo; Qwen3-Reranker-4B; one GPU | `trace punteggi prepara --caso urgenda <options>`, then `trace punteggi calcola <options>` | yes: 800 of 800 published Urgenda scores identical on an NVIDIA H100 in bf16 (10/10/2026); on Apple MPS the scores differ by up to 0.016, from the hardware arithmetic |
 
 ### Figures without a script in this folder yet
 

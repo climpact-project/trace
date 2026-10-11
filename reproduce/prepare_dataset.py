@@ -166,7 +166,7 @@ def build(a):
         STATO = '- Every citation in this release was checked by the CLIMPACT team.'
     else:
         # the beta under verification, the verified share said once as a fact (3/10/2026)
-        STATO = (f'- TRACE 0.1 is a beta release under verification by the CLIMPACT research team, for all six judgments: at release, '
+        STATO = (f'- TRACE 0.1 is a beta release under verification by the CLIMPACT research team, for all the judgments it follows: at release, '
                  f'{verificate:,} of {len(righe):,} citations have been verified, and the others are **machine proposals**. Read '
                  '`review_status` before using a row, and do not present a proposal as a finding.')
         print(f'ATTENZIONE: controllate {verificate} su {len(righe)}, il README lo dice')
@@ -236,7 +236,7 @@ def build(a):
     print('giudizi del team', GJ)
     LEGGIMI = f"""# CLIMPACT TRACE 0.1, dataset
 
-The citations of six climate judgments and advisory opinions ({elenco_nomi}) found by CLIMPACT TRACE 0.1 in later climate litigation.
+The citations of the climate judgments and advisory opinions that CLIMPACT TRACE 0.1 follows ({elenco_nomi}), found in later climate litigation.
 
 - {len(righe):,} citations in {documenti:,} documents.
 {STATO}
@@ -259,7 +259,7 @@ The citations of six climate judgments and advisory opinions ({elenco_nomi}) fou
 | cited_judgment | the judgment or advisory opinion cited |
 | document_id, document_name, document_type, document_date, document_year | the citing document |
 | court, country | where the citing document comes from |
-| document_url | the document in the Sabin Center Climate Litigation Database |
+| document_url | the document in the Climate Litigation Database (climatecasechart.com) |
 | page | page of the citing document where the citation is |
 | citation_function | what the citation does with the judgment (Substantive, Descriptive, Distinguishing, Critical, Chain mention) |
 | who_speaks | who makes the citation (the court, a party, an amicus curiae, an intervener) |
@@ -295,7 +295,7 @@ The citations of six climate judgments and advisory opinions ({elenco_nomi}) fou
 | blind | yes if the coder gave the judgment without the machine proposal on the screen, no if it was visible; empty for the September pilot screen |
 | codebook_version | version of the coding guide the coder followed |
 | judged_on | date of the judgment (no time) |
-| coder | pseudonym of the coder (coder A, coder B, ...), numbered by the date of each coder's first judgment and stable across the file |
+| coder | pseudonym of the coder (coder A, coder B and so on), numbered by the date of each coder's first judgment and stable across the file |
 | second_coder, second_outcome, second_function, second_principles, agreement_outcome | for double-coded citations, the second coder's pseudonym, outcome, citation function and principles, and whether the two outcomes agree (yes or no) |
 
 For a discarded citation the team columns for function, speaker, principles and pages are empty: the coders do not judge them once the citation is discarded. A team column is also empty when the judgment came from the September pilot screen, which did not record it. The machine columns show the proposals as they were made, so for citations the team judged they can be compared with the decision.
@@ -306,7 +306,7 @@ Not published: the coders' names, accounts and emails (the coders appear only as
 
 ## Source and licence
 
-The citing documents come from the Sabin Center for Climate Change Law, Climate Litigation Database (climatecasechart.com), with Climate Policy Radar, read through its public API. The sentences and passages are short excerpts of those documents. Following the Center's terms, this dataset is released under **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**. The code and models of TRACE are a separate record, under the MIT licence. The technical report in both records describes every version code.
+The citing documents come from the Climate Litigation Database (climatecasechart.com), read through its public API. Data provided by the Sabin Center for Climate Change Law. Platform operated by Climate Policy Radar. The sentences and passages are short excerpts of those documents. Following the terms of the source, this dataset is released under **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**. The code and models of TRACE are a separate record, under the MIT licence. The technical report in both records describes every version code.
 
 ## Citation
 

@@ -1,0 +1,33 @@
+{
+  "versione": "N01-paesi-2026-10-11",
+  "nota": "Famiglia giuridica e continente per giurisdizione, dichiarati a mano. La classificazione per famiglie e' contestata in letteratura (Zweigert e Koetz): qui serve solo a contare quante tradizioni giuridiche una sentenza raggiunge. 'misto' = sistemi con componenti civil e common law; 'sovranazionale' = corti e organi internazionali o regionali.",
+  "home": {
+    "urgenda": ["Netherlands"],
+    "neubauer": ["Germany"],
+    "future-generations": ["Colombia"],
+    "klimaseniorinnen": ["European Court of Human Rights", "Switzerland"],
+    "cig-parere-clima": ["International Court of Justice"],
+    "idh-oc-32-25": ["Inter-American System"]
+  },
+  "giurisdizioni": {
+    "Argentina": ["civil law", "Americas"], "Australia": ["common law", "Oceania"], "Austria": ["civil law", "Europe"],
+    "Belgium": ["civil law", "Europe"], "Brazil": ["civil law", "Americas"], "Canada": ["misto", "Americas"],
+    "Chile": ["civil law", "Americas"], "Colombia": ["civil law", "Americas"], "Czech Republic": ["civil law", "Europe"],
+    "Estonia": ["civil law", "Europe"], "Finland": ["civil law", "Europe"], "France": ["civil law", "Europe"],
+    "Germany": ["civil law", "Europe"], "Hungary": ["civil law", "Europe"], "India": ["common law", "Asia"],
+    "Indonesia": ["civil law", "Asia"], "Ireland": ["common law", "Europe"], "Italy": ["civil law", "Europe"],
+    "Japan": ["civil law", "Asia"], "Luxembourg": ["civil law", "Europe"], "Malaysia": ["common law", "Asia"],
+    "Mexico": ["civil law", "Americas"], "Netherlands": ["civil law", "Europe"], "New Zealand": ["common law", "Oceania"],
+    "Norway": ["civil law", "Europe"], "Pakistan": ["common law", "Asia"], "Papua New Guinea": ["common law", "Oceania"],
+    "Peru": ["civil law", "Americas"], "Philippines": ["misto", "Asia"], "Portugal": ["civil law", "Europe"],
+    "Romania": ["civil law", "Europe"], "South Africa": ["misto", "Africa"], "South Korea": ["civil law", "Asia"],
+    "Spain": ["civil law", "Europe"], "Sweden": ["civil law", "Europe"], "Switzerland": ["civil law", "Europe"],
+    "Taiwan": ["civil law", "Asia"], "Uganda": ["common law", "Africa"], "United Kingdom": ["common law", "Europe"],
+    "United States": ["common law", "Americas"],
+    "European Court of Human Rights": ["sovranazionale", "Europe"], "European Union": ["sovranazionale", "Europe"],
+    "Inter-American System": ["sovranazionale", "Americas"], "African System": ["sovranazionale", "Africa"],
+    "International Court of Justice": ["sovranazionale", "Internazionale"], "International Tribunal for the Law of the Sea": ["sovranazionale", "Internazionale"],
+    "International Criminal Court": ["sovranazionale", "Internazionale"], "United Nations": ["sovranazionale", "Internazionale"],
+    "OECD": ["sovranazionale", "Internazionale"], "World Trade Organization": ["sovranazionale", "Internazionale"]
+  }
+}

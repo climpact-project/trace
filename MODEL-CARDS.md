@@ -1,6 +1,6 @@
 # TRACE 0.1 model cards
 
-The models trained by the CLIMPACT project (University of Bari) for TRACE 0.1, and the large language model whose readings make the proposals today, DeepSeek V4 Flash. Each has a version code in the TRACE registry (`versioni/registro.json`): the letter T marks a model trained by the project. They are research releases: T01, T02 and T03 were trained and evaluated on one cited judgment, Urgenda (Supreme Court of the Netherlands, 20 December 2019, and the two earlier instances), and used since on six cited cases; T04 was trained on four cited judgments (74 of its 94 examples from Urgenda).
+The models trained by the CLIMPACT project (University of Bari) for TRACE 0.1, and the large language model whose readings make the proposals today, DeepSeek V4 Flash. Each has a version code in the TRACE registry (`versioni/registro.json`): the letter T marks a model trained by the project. They are research releases: T01, T02 and T03 were trained and evaluated on one cited judgment, Urgenda (Supreme Court of the Netherlands, 20 December 2019, and the two earlier instances), and used since on all the judgments TRACE 0.1 follows; T04 was trained on four cited judgments (74 of its 94 examples from Urgenda).
 
 Every proposal is open to the research team, who confirm or correct it: at release 414 of the 7,893 citations are verified, and the others are machine proposals. The models never decide a citation on their own.
 
@@ -58,7 +58,7 @@ DeepSeek V4 Flash (deepseek-ai/DeepSeek-V4-Flash-0731, MIT licence) is a large l
 - A surrounding page is proposed only when the evidence quoted by the readings is really on the page.
 - A principle proposed by the readings without evidence found on the page is kept and flagged, not dropped: dropping did not improve agreement with the team and lowered recall.
 
-Why five: between two independent majorities, on 300 rows of all six cases, Krippendorff's alpha is 0.66 with one reading, 0.78 with three and 0.83 with five on the principles, and 0.67, 0.78 and 0.83 on the type; five is the first number of readings above 0.80, a threshold declared in advance as a convention. Below 0.80 even at five readings: the principles of KlimaSeniorinnen (0.68), the type for the ICJ advisory opinion (0.72) and for the Inter-American Court advisory opinion (0.76).
+Why five: between two independent majorities, on 300 rows of all the judgments TRACE 0.1 follows, Krippendorff's alpha is 0.66 with one reading, 0.78 with three and 0.83 with five on the principles, and 0.67, 0.78 and 0.83 on the type; five is the first number of readings above 0.80, a threshold declared in advance as a convention. Below 0.80 even at five readings: the principles of KlimaSeniorinnen (0.68), the type for the ICJ advisory opinion (0.72) and for the Inter-American Court advisory opinion (0.76).
 
 ## L13, the reading of a close pair (applied with S08 on 8 October 2026)
 
@@ -140,7 +140,7 @@ TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 
 
 ## Common to all
 
-- Source corpus: Climate Litigation Database of the Sabin Center for Climate Change Law (Columbia Law School) with Climate Policy Radar, read through its public API. Three data versions: D01, Documents: Climate Litigation Database, public API snapshot (26 July 2026); D02, Documents: D01 with OCR text of unreadable pages (3,171 pages in 94 filings from 2 October 2026); D03, Documents: D02 with Markdown for 277 filings of the 19/09/2026 update. The texts of the filings are not redistributed.
+- Source corpus: the Climate Litigation Database (climatecasechart.com), read through its public API. Data provided by the Sabin Center for Climate Change Law. Platform operated by Climate Policy Radar. Three data versions: D01, Documents: Climate Litigation Database, public API snapshot (26 July 2026); D02, Documents: D01 with OCR text of unreadable pages (3,171 pages in 94 filings from 2 October 2026); D03, Documents: D02 with Markdown for 277 filings of the 19/09/2026 update. The texts of the filings are not redistributed.
 - Name search: the rows of this release come from S01, S02, S03, S05, S06, S07 (Name search: footnote-aware grouping, descriptive references, same-page dedup) and S08 (Close pairs); S05, Name search on normalised text, with readmitted and new forms (in use from 2 October 2026). It finds every citation found by the earlier version S03 at the same position and adds new ones only: on a reading of the new rows, 155 of 163 were real citations (95.1%, Wilson 95% interval 90.6-97.5%).
 - Hardware: NVIDIA H100 80GB, ReCaS-Bari data centre (INFN and University of Bari); DeepSeek V4 Flash runs on them with vLLM.
 - Every version is recorded with base model revision, weight fingerprints, training data, settings, instructions and code in the TRACE registry, with a note where a text is reconstructed rather than copied.

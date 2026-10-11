@@ -11,7 +11,7 @@ named. They use synthetic data only.
 ## 1. Deduplication in `RicercaPerNome.esegui`
 
 **(a) Constructor argument, CLI flag, default. Not a defect.** `dedup_per_atto` was already a constructor argument
-(`RicercaPerNome(..., dedup_per_atto=False)`) and a CLI flag (`trace cerca --dedup-per-atto`, `store_true`). The default
+(`dedup_per_atto=False` in `RicercaPerNome`) and a CLI flag (`trace cerca --dedup-per-atto`, `store_true`). The default
 is the old global deduplication. A `--compat` harness run reproduces the expected outputs, with the result given at the
 end of this note.
 Tests: `test_deduplica_predefinita_come_il_vecchio_ciclo` runs 300 random row sets. For each one, the default
@@ -100,4 +100,4 @@ without a file, because either one would have stopped the run.
 - full pytest: 506 passed and 1 skipped. Of these, 15 are in `tests/test_ricerca_giro3.py`.
 - harness in `--compat` mode (`prove/esegui_pacchetto.py`, compared by `prove/confronta.py`): all 298 files are equal
   to the expected outputs, with 0 different, 0 missing and 0 extra. All 67 journals are equal (compared without tool
-  name and arguments). Steps 13 (search) and 14 (merge) are included for all six cases.
+  name and arguments). Steps 13 (search) and 14 (merge) are included for all the judgments TRACE 0.1 follows.

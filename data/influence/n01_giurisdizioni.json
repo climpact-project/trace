@@ -1,0 +1,29 @@
+{
+  "versione": "N01-giurisdizioni-2026-10-11",
+  "regola": "Il campo giurisdizioni e' una stringa con ';' in ordine non uniforme. Vale il primo pezzo che e' un Paese (elenco 'paesi'); se non ce n'e', il primo pezzo che e' un foro sovranazionale (tabella 'fori'); altrimenti 'non determinata'. Il Paese vince sul foro: un caso nato in un Paese e arrivato a Strasburgo conta per il Paese.",
+  "paesi": ["Argentina", "Australia", "Austria", "Belgium", "Brazil", "Canada", "Chile", "Colombia", "Czech Republic", "Estonia", "Finland", "France", "Germany", "Hungary", "India", "Indonesia", "Ireland", "Italy", "Japan", "Luxembourg", "Malaysia", "Mexico", "Netherlands", "New Zealand", "Norway", "Pakistan", "Papua New Guinea", "Peru", "Philippines", "Portugal", "Romania", "South Africa", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Uganda", "United Kingdom", "United States"],
+  "fori": {
+    "U.S.": "United States",
+    "England and Wales": "United Kingdom",
+    "Scotland": "United Kingdom",
+    "European Court of Human Rights": "European Court of Human Rights",
+    "Inter-American Court of Human Rights": "Inter-American System",
+    "Inter-American Commission on Human Rights": "Inter-American System",
+    "Inter-American System of Human Rights": "Inter-American System",
+    "African Court on Human and People's Rights": "African System",
+    "International Court of Justice": "International Court of Justice",
+    "International Tribunal for the Law of the Sea": "International Tribunal for the Law of the Sea",
+    "International Criminal Court": "International Criminal Court",
+    "European Court of Justice": "European Union",
+    "European Union": "European Union",
+    "European Commission": "European Union",
+    "United Nations": "United Nations",
+    "United Nations Human Rights Committee": "United Nations",
+    "United Nations Committee on the Rights of the Child": "United Nations",
+    "United Nations Special Rapporteurs": "United Nations",
+    "UN Special Procedures": "United Nations",
+    "OECD": "OECD",
+    "World Trade Organization": "World Trade Organization",
+    "WTO Dispute Settlement Body": "World Trade Organization"
+  }
+}

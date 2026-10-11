@@ -1,0 +1,67 @@
+{
+  "versione": "N01-beta-2026-10-11",
+  "nota": "Parametri della regola N01 (influenza). Solo soglie e ordini, nessun peso numerico fisso: i pesi esistono solo nella prova di sensibilita, estratti a caso nel rispetto dell'ordine dei gradini.",
+  "reti_vive": [
+    "lessicale",
+    "entrambe",
+    "descrittiva"
+  ],
+  "tipi_argomentativi": [
+    "sostanziale",
+    "distinguente",
+    "critica"
+  ],
+  "tipi_non_argomentativi": [
+    "menzione_in_catena",
+    "descrittiva",
+    "vuoto",
+    "implicita",
+    ""
+  ],
+  "voce_corte": [
+    "corte"
+  ],
+  "sede_motivazione": [
+    "motivazione"
+  ],
+  "principi_neutri": [
+    "nessuno",
+    "altro"
+  ],
+  "polarita": {
+    "sostanziale": 1,
+    "descrittiva": 1,
+    "distinguente": 0,
+    "critica": -1,
+    "menzione_in_catena": 0
+  },
+  "date_decisioni": {
+    "urgenda": "2015-06-24",
+    "neubauer": "2021-03-24",
+    "future-generations": "2018-04-05",
+    "klimaseniorinnen": "2024-04-09",
+    "cig-parere-clima": "2025-07-23",
+    "idh-oc-32-25": "2025-05-29"
+  },
+  "copertura": {
+    "urgenda": "quasi completa",
+    "neubauer": "parziale",
+    "future-generations": "parziale",
+    "klimaseniorinnen": "parziale",
+    "cig-parere-clima": "parziale",
+    "idh-oc-32-25": "parziale"
+  },
+  "sensibilita": {
+    "estrazioni_pesi": 5000,
+    "imputazioni": 1000,
+    "seme": 20261012
+  },
+  "casi_delle_decisioni": {
+    "urgenda-foundation-v-state-of-the-netherlands_3297": "urgenda",
+    "neubauer-et-al-v-germany_0a3e": "neubauer",
+    "verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852": "klimaseniorinnen",
+    "request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213": "cig-parere-clima",
+    "request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd": "idh-oc-32-25"
+  },
+  "nota_casi_delle_decisioni": "Mappa a mano caso citante -> decisione bersaglio (rete fra le decisioni). Future Generations non ha un caso nel corpus con questo id: da completare."
+}
