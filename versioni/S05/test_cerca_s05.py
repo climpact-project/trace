@@ -4,7 +4,7 @@ Two kinds of test:
 
 - synthetic texts: hyphenation at line breaks, line breaks inside multi-word forms, typographic hyphens and spaces,
   whole-word acronyms, and positions that stay those of the ORIGINAL text;
-- the real corpus (skipped when ``markdown/`` is absent): on all six cases, every S03 match is still an S05 match with
+- the real corpus (skipped when ``markdown/`` is absent): on all the cases TRACE 0.1 follows, every S03 match is still an S05 match with
   the same start and end, and every S03 citation (group of matches, whose start is the row id) is still found at the
   same id. A citation whose group now begins earlier, because a new S05 match sits less than 200 characters before it
   (``cerca.fondi``), is still found at its id by the platform matching of ``unisci_e_aggiungi.py`` (a row covers the
@@ -126,7 +126,7 @@ def test_e_nome_come_s03_sulle_forme_esatte():
         assert S05.e_nome(testo, m) == S03.e_nome(testo, m)
 
 
-# ── the real corpus, all six cases ─────────────────────────────────────────────────────────────────────────────────
+# ── the real corpus, all the cases TRACE 0.1 follows ─────────────────────────────────────────────────────────────────────────────────
 
 CORPUS = (RADICE / 'markdown').exists() and (RADICE / 'cited-cases' / 'urgenda-S05.yaml').exists()
 

@@ -24,7 +24,7 @@
   }
  },
  "name": "CLIMPACT case identifiers: crosswalk to external identifiers",
- "description": "One CLIMPACT identifier per case (CL-C-000001-3) and per decision (CL-D-000001-7), with the equivalent identifiers in the Sabin Center Climate Litigation Database, Climate Policy Radar, Climate Change Laws of the World, ECLI, Wikidata and the courts. Rules: RULES.md.",
+ "description": "One CLIMPACT identifier per case (CL-C-000001-3) and per decision (CL-D-000001-7), with the equivalent identifiers in the Climate Litigation Database, Climate Policy Radar, Climate Change Laws of the World, ECLI, Wikidata and the courts. Rules: RULES.md.",
  "publisher": "CLIMPACT, University of Bari Aldo Moro",
  "license": "https://creativecommons.org/licenses/by/4.0/",
  "dateModified": "2026-10-10",
@@ -55,7 +55,7 @@
      "url": "https://www.climatecasechart.com/document/urgenda-foundation-v-state-of-the-netherlands_3297",
      "relation": "skos:exactMatch",
      "note": "case page (not a filing)",
-     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "source": "Climate Litigation Database export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
     },
@@ -64,7 +64,7 @@
      "externalId": "Sabin.family.2823.0",
      "url": "https://app.climatepolicyradar.org/document/urgenda-foundation-v-state-of-the-netherlands_3297",
      "relation": "skos:exactMatch",
-     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "note": "same record as the Climate Litigation Database case page, served by Climate Policy Radar",
      "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -74,7 +74,7 @@
      "externalId": "Sabin.family.2823.0",
      "url": "https://climate-laws.org/document/urgenda-foundation-v-state-of-the-netherlands_3297",
      "relation": "skos:exactMatch",
-     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "note": "no separate CCLW litigation record: CCLW shows the Climate Litigation Database family",
      "source": "Climate Change Laws of the World page (import_id)",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -239,7 +239,7 @@
      "url": "https://www.climatecasechart.com/document/neubauer-et-al-v-germany_0a3e",
      "relation": "skos:exactMatch",
      "note": "case page (not a filing)",
-     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "source": "Climate Litigation Database export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
     },
@@ -248,7 +248,7 @@
      "externalId": "Sabin.family.11817.0",
      "url": "https://app.climatepolicyradar.org/document/neubauer-et-al-v-germany_0a3e",
      "relation": "skos:exactMatch",
-     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "note": "same record as the Climate Litigation Database case page, served by Climate Policy Radar",
      "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -258,7 +258,7 @@
      "externalId": "Sabin.family.11817.0",
      "url": "https://climate-laws.org/document/neubauer-et-al-v-germany_0a3e",
      "relation": "skos:exactMatch",
-     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "note": "no separate CCLW litigation record: CCLW shows the Climate Litigation Database family",
      "source": "Climate Change Laws of the World page (import_id)",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -390,7 +390,7 @@
      "url": "https://www.climatecasechart.com/document/future-generations-v-ministry-of-the-environment-and-others_f076",
      "relation": "skos:exactMatch",
      "note": "case page (not a filing)",
-     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "source": "Climate Litigation Database export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
     },
@@ -399,7 +399,7 @@
      "externalId": "Sabin.family.6393.0",
      "url": "https://app.climatepolicyradar.org/document/future-generations-v-ministry-of-the-environment-and-others_f076",
      "relation": "skos:exactMatch",
-     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "note": "same record as the Climate Litigation Database case page, served by Climate Policy Radar",
      "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -409,7 +409,7 @@
      "externalId": "Sabin.family.6393.0",
      "url": "https://climate-laws.org/document/future-generations-v-ministry-of-the-environment-and-others_f076",
      "relation": "skos:exactMatch",
-     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "note": "no separate CCLW litigation record: CCLW shows the Climate Litigation Database family",
      "source": "Climate Change Laws of the World page (import_id)",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -430,7 +430,7 @@
        "externalId": "11001-22-03-000-2018-00319-00",
        "relation": "skos:exactMatch",
        "note": "radicacion of the first-instance tutela; no official online text found",
-       "source": "Supreme Court of Justice of Colombia website (first page of the judgment); Sabin case number",
+       "source": "Supreme Court of Justice of Colombia website (first page of the judgment); Climate Litigation Database case number",
        "checkedOn": "2026-10-10",
        "checkedBy": "CLIMPACT team, automated check, to be reviewed"
       }
@@ -494,7 +494,7 @@
      "url": "https://www.climatecasechart.com/document/verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852",
      "relation": "skos:exactMatch",
      "note": "case page (not a filing)",
-     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "source": "Climate Litigation Database export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
     },
@@ -503,7 +503,7 @@
      "externalId": "Sabin.family.15540.0",
      "url": "https://app.climatepolicyradar.org/document/verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852",
      "relation": "skos:exactMatch",
-     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "note": "same record as the Climate Litigation Database case page, served by Climate Policy Radar",
      "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -513,7 +513,7 @@
      "externalId": "Sabin.family.15540.0",
      "url": "https://climate-laws.org/document/verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852",
      "relation": "skos:exactMatch",
-     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "note": "no separate CCLW litigation record: CCLW shows the Climate Litigation Database family",
      "source": "Climate Change Laws of the World page (import_id)",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -524,7 +524,7 @@
      "url": "https://www.climatecasechart.com/document/association-of-swiss-senior-women-for-climate-protection-v-federal-department-of-the-environment-transport-energy-and-communications-detec-and-others_0123",
      "relation": "skos:relatedMatch",
      "note": "the Swiss domestic proceeding (No. A-2992/2017, Federal Supreme Court) that preceded the application to Strasbourg; a different case, not yet given a CLIMPACT id",
-     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "source": "Climate Litigation Database export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
     },
@@ -617,7 +617,7 @@
      "url": "https://www.climatecasechart.com/document/request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213",
      "relation": "skos:exactMatch",
      "note": "case page (not a filing)",
-     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "source": "Climate Litigation Database export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
     },
@@ -626,7 +626,7 @@
      "externalId": "Sabin.family.18913.0",
      "url": "https://app.climatepolicyradar.org/document/request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213",
      "relation": "skos:exactMatch",
-     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "note": "same record as the Climate Litigation Database case page, served by Climate Policy Radar",
      "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -636,7 +636,7 @@
      "externalId": "Sabin.family.18913.0",
      "url": "https://climate-laws.org/document/request-for-an-advisory-opinion-on-the-obligations-of-states-with-respect-to-climate-change_0213",
      "relation": "skos:exactMatch",
-     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "note": "no separate CCLW litigation record: CCLW shows the Climate Litigation Database family",
      "source": "Climate Change Laws of the World page (import_id)",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -709,7 +709,7 @@
      "url": "https://www.climatecasechart.com/document/request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd",
      "relation": "skos:exactMatch",
      "note": "case page (not a filing)",
-     "source": "Sabin Center export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
+     "source": "Climate Litigation Database export of 2026-10-04 (Case ID, Internal Case ID) and the case page",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
     },
@@ -718,7 +718,7 @@
      "externalId": "Sabin.family.18528.0",
      "url": "https://app.climatepolicyradar.org/document/request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd",
      "relation": "skos:exactMatch",
-     "note": "same record as the Sabin case page, served by Climate Policy Radar",
+     "note": "same record as the Climate Litigation Database case page, served by Climate Policy Radar",
      "source": "Climate Policy Radar family page (import_id), corpus Academic.corpus.Litigation.n0000",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"
@@ -728,7 +728,7 @@
      "externalId": "Sabin.family.18528.0",
      "url": "https://climate-laws.org/document/request-for-an-advisory-opinion-on-the-scope-of-the-state-obligations-for-responding-to-the-climate-emergency_fbcd",
      "relation": "skos:exactMatch",
-     "note": "no separate CCLW litigation record: CCLW shows the Sabin family",
+     "note": "no separate CCLW litigation record: CCLW shows the Climate Litigation Database family",
      "source": "Climate Change Laws of the World page (import_id)",
      "checkedOn": "2026-10-10",
      "checkedBy": "CLIMPACT team, automated check, to be reviewed"

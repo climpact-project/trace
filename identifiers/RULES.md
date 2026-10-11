@@ -1,6 +1,6 @@
 # CLIMPACT identifiers
 
-One stable identifier for every object that CLIMPACT works on (cases and decisions now; later filings, laws, policies, media items, principles and traces), with a public crosswalk to the identifiers that other databases and the courts use. This folder starts with the six cases cited in CLIMPACT TRACE 0.1 and their decisions.
+One stable identifier for every object that CLIMPACT works on (cases and decisions now; later filings, laws, policies, media items, principles and traces), with a public crosswalk to the identifiers that other databases and the courts use. This folder starts with the cases cited in CLIMPACT TRACE 0.1 and their decisions.
 
 This folder is published separately from TRACE 0.1. The TRACE 0.1 dataset, its Zenodo records and its report are unchanged.
 
@@ -16,7 +16,7 @@ Licence: all files of this folder are released under [CC BY 4.0](https://creativ
 
 ## The cases and their decisions
 
-| Case | Name | TRACE 0.1 citation codes | Sabin Center case page | Wikidata |
+| Case | Name | TRACE 0.1 citation codes | Climate Case Chart page | Wikidata |
 |---|---|---|---|---|
 | CL-C-000001-3 | Urgenda Foundation v. State of the Netherlands | URG- | urgenda-foundation-v-state-of-the-netherlands_3297 | Q79372212 |
 | CL-C-000002-1 | Neubauer et al. v. Germany | NEU- | neubauer-et-al-v-germany_0a3e | Q118901973 |
@@ -62,7 +62,7 @@ The often-quoted ECLI:NL:HR:2019:2007 is the English translation of the 2019 Urg
 
 Worked example, `CL-C-000001`, with the remainder modulo 11 taken at each step: C = 12, so (0 + 12) x 2 = 24, remainder 2; five zeros: 4, 8, 16 = 5, 10, 20 = 9; then (9 + 1) x 2 = 20 = 9; check (12 - 9) mod 11 = 3, hence `CL-C-000001-3`. `cifra_controllo()`, `valido()` and `nuovo_identificativo()` in `verifica_crosswalk.py` compute and verify it, with tests.
 
-The identifier carries no country, court, classification or year, so it has no reason to change. Its form cannot be confused with a Sabin Center slug or with a TRACE 0.1 citation code.
+The identifier carries no country, court, classification or year, so it has no reason to change. Its form cannot be confused with a Climate Case Chart slug or with a TRACE 0.1 citation code.
 
 **Stable address**: `https://www.climpact.it/id/<identifier>`, for example `https://www.climpact.it/id/CL-C-000001-3`. The type is inside the identifier, so the address does not repeat it. The longer form `https://www.climpact.it/id/<type>/<identifier>` (type as a word: case, decision, filing, law, policy, media, principle, trace) redirects to the short one. An identifier that does not exist returns 404.
 
@@ -78,7 +78,7 @@ The identifier carries no country, court, classification or year, so it has no r
 
 A citation often names the case without saying which decision ("the Urgenda case"); others cite one decision precisely (the 2019 Supreme Court judgment, by its ECLI). Both levels exist:
 
-- the **case** (C) is the proceeding: the dispute between the same parties in the same forum, from the claim to the last decision. It is what the Sabin Center calls a case and what the TRACE 0.1 citation codes point to;
+- the **case** (C) is the proceeding: the dispute between the same parties in the same forum, from the claim to the last decision. It is what Climate Case Chart calls a case and what the TRACE 0.1 citation codes point to;
 - a **decision** (D) is a judgment, order or advisory opinion. It has its own identifier because it can be cited on its own and has its own ECLI. Its case is recorded in `ids.csv` (column `case_id`) and in the JSON (the decisions of each case).
 
 ## Hard cases
@@ -106,11 +106,11 @@ Schemes: `sabin_case` (the case page on climatecasechart.com, not the pages of s
 
 Relations (SKOS): `exactMatch` the same thing; `closeMatch` the same thing in another form (translation, duplicate record); `narrowMatch` a part of it; `relatedMatch` related, not the same.
 
-- A case has at most one `exactMatch` towards the Sabin Center, and a Sabin Center case is the `exactMatch` of at most one CLIMPACT case.
+- A case has at most one `exactMatch` towards Climate Case Chart, and a Climate Case Chart case is the `exactMatch` of at most one CLIMPACT case.
 - The pair (scheme, external identifier) is unique in the whole table.
 - Every link says where it was read, when, and by whom.
 
-The Sabin Center database is served by Climate Policy Radar: the same case has the same slug on climatecasechart.com, app.climatepolicyradar.org and climate-laws.org, with family identifier `Sabin.family.<n>.0`. Climate Change Laws of the World has no separate litigation record for these cases, and the crosswalk says so rather than inventing one.
+The Climate Case Chart database is served by Climate Policy Radar: the same case has the same slug on climatecasechart.com, app.climatepolicyradar.org and climate-laws.org, with family identifier `Sabin.family.<n>.0`. Climate Change Laws of the World has no separate litigation record for these cases, and the crosswalk says so rather than inventing one.
 
 ## Check
 
@@ -119,7 +119,7 @@ python3 verifica_crosswalk.py --offline   # check-digit tests, form, uniqueness,
 python3 verifica_crosswalk.py             # also every URL and its content
 ```
 
-A 200 answer is not enough: the check reads the family identifier and slug on the Sabin Center, Climate Policy Radar and CCLW pages, asks Wikidata whether the item exists and is not a redirect, looks up Dutch ECLIs in the open data of rechtspraak.nl, and looks for the ECLI on the German court page. Sites that refuse automated requests (HUDOC at present) are reported for a manual check, not as errors. The script never corrects anything.
+A 200 answer is not enough: the check reads the family identifier and slug on the Climate Case Chart, Climate Policy Radar and CCLW pages, asks Wikidata whether the item exists and is not a redirect, looks up Dutch ECLIs in the open data of rechtspraak.nl, and looks for the ECLI on the German court page. Sites that refuse automated requests (HUDOC at present) are reported for a manual check, not as errors. The script never corrects anything.
 
 ## Not found (10 October 2026)
 

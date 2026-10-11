@@ -72,7 +72,7 @@ def costruisci():
         },
         'name': 'CLIMPACT case identifiers: crosswalk to external identifiers',
         'description': 'One CLIMPACT identifier per case (CL-C-000001-3) and per decision (CL-D-000001-7), with the '
-                       'equivalent identifiers in the Sabin Center Climate Litigation Database, Climate Policy Radar, '
+                       'equivalent identifiers in the Climate Litigation Database, Climate Policy Radar, '
                        'Climate Change Laws of the World, ECLI, Wikidata and the courts. Rules: RULES.md.',
         'publisher': 'CLIMPACT, University of Bari Aldo Moro',
         'license': 'https://creativecommons.org/licenses/by/4.0/',
