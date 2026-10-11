@@ -6,7 +6,7 @@
   "compito": "I documenti: atti, pagine, testo estratto. Tutte le citazioni vengono da qui.",
   "data": "2026-07-26",
   "stato": "in uso",
-  "fonte": "Sabin Center for Climate Change Law (Columbia Law School) con Climate Policy Radar, letto dalle API pubbliche",
+  "fonte": "Climate Litigation Database (climatecasechart.com), letto dalle API pubbliche. Data provided by the Sabin Center for Climate Change Law. Platform operated by Climate Policy Radar.",
   "versione": "CCC-whole_data_dump-2026-07-26",
   "pesi": [
    {
@@ -2543,7 +2543,7 @@
   "compito": "Come D02, piu' 277 atti scaricati con l'aggiornamento del Climate Litigation Database del 19/09/2026 che avevano il testo ma non il Markdown (metadati mai fusi in metadata.csv). Markdown scritti con lo stesso front matter di build_markdown.py, testo intatto, nessun Markdown esistente toccato; 7.671 pagine aggiunte all'indice delle pagine.",
   "data": "2026-10-02",
   "stato": "in uso dal caricamento del ciclo S05",
-  "fonte": "Sabin Center for Climate Change Law, aggiornamento del 19/09/2026 (aggiornamenti/da-scaricare-ccc-2026-09-19.csv)",
+  "fonte": "Climate Litigation Database (climatecasechart.com), aggiornamento del 19/09/2026 (aggiornamenti/da-scaricare-ccc-2026-09-19.csv)",
   "versione": "CCC-whole_data_dump-2026-09-19 (solo i 277 atti)",
   "pesi": [
    {
@@ -2583,7 +2583,7 @@
   "compito": "Come D04 (D03 piu' 27 atti del 19/09 riscaricati e 20 non PDF), confrontato col dump del Climate Litigation Database del 04/10/2026 riga per riga contro i Markdown sul disco (document_id e indirizzo, non il manifest). Scaricati con fetch_sabin.py corretto (gia' fatto = coppia atto+indirizzo con http 200; mai una riga http 0; 403/404 ritentati una volta; stessi byte di un file gia' presente = nessuna copia) 631 indirizzi a una richiesta al secondo: 147 file nuovi, 468 identici a file gia' nel corpus (rinumerazioni -N alla fonte, tutti con un Markdown gemello), 16 falliti. Testo con l'OCR deciso PER PAGINA (meno di 200 caratteri, la soglia dell'indice, o illeggibile per freni.leggibile), ocrmypdf/tesseract come D02, solo le pagine scelte; si sostituisce solo se l'OCR e' leggibile e piu' lungo (regola di D02 per le illeggibili). 146 Markdown nuovi in markdown/ (5.973 pagine, 461 rifatte con l'OCR) e una versione nuova di un atto gia' presente a parte; le 111 scansioni col solo timbro rifatte (3.474 pagine provate, 2.974 sostituite) in training/d05/markdown_ocr/, accanto al Markdown vivo che non si tocca. Indice delle pagine D05: D04 senza le 1.298 righe vecchie dei 111 piu' 10.129 pagine nuove o rifatte, 586.977 righe.",
   "data": "2026-10-04",
   "stato": "preparato: le righe si caricano dopo la ricerca S07 sui documenti di training/d05/PRONTO.json",
-  "fonte": "Sabin Center for Climate Change Law con Climate Policy Radar, dump del 04/10/2026",
+  "fonte": "Climate Litigation Database (climatecasechart.com), dump del 04/10/2026",
   "versione": "CCC-whole_data_dump-2026-10-04",
   "pesi": [
    {
@@ -3053,7 +3053,7 @@
   "compito": "Come D03, piu' (1) 27 atti dell'aggiornamento del 19/09/2026 mai scaricati (fetch_sabin.py aveva trovato occupato il nome troncato e scritto in manifest.jsonl, con http 0, l'impronta del file di luglio): riscaricati il 03/10 con un nome nuovo, impronte vere in manifest_supplemento_2026-10-03.jsonl (manifest.jsonl non toccato); 26 file nuovi, 1 identico alla fonte a un atto gia' nel corpus (Suncor amicus-brief-18 = amicus-brief-21, _b0d1) e non riscritto; (2) 20 atti non PDF (16 .docx, 3 .doc, 1 .png) mai estratti, perche' extract_text.py legge solo i PDF. Testo come il corpus (PyMuPDF, OCR Vision solo dove il testo e' inservibile, con freni.leggibile), Markdown con il front matter di build_markdown.py, nomi nuovi in creazione esclusiva, nessun file esistente toccato; 1.025 pagine aggiunte all'indice delle pagine (il vivo di prima resta in index/pagine/pagine.prima-D04.jsonl.gz). Le righe trovate dalla ricerca per nome S05 sui soli documenti nuovi hanno provenienza.corpus D04 ed estrazione S05, e ricevono le stesse letture delle altre: cinque del tipo e cinque L05 sulle pagine attorno R10, composte con R11, freni compresi.",
   "data": "2026-10-03",
   "stato": "in uso dal caricamento del ciclo D04 (righe con provenienza.corpus D04)",
-  "fonte": "Sabin Center for Climate Change Law, aggiornamento del 19/09/2026, scaricato di nuovo il 03/10/2026",
+  "fonte": "Climate Litigation Database (climatecasechart.com), aggiornamento del 19/09/2026, scaricato di nuovo il 03/10/2026",
   "versione": "CCC-whole_data_dump-2026-09-19 (27 atti) e file non PDF di luglio",
   "pesi": [
    {

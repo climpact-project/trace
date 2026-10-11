@@ -244,7 +244,7 @@ def test_letture_valide_su_ogni_riga_r11() -> None:
 
 def test_nessuna_coppia_di_sonde_entro_la_soglia_dei_refusi() -> None:
     """``canonico`` brings a typo back to the closest id at difflib 0.85: two real ids of one series that close would
-    collapse into each other. Checked on every probe series of the six cases (03/10/2026: the closest pair is 0.59)."""
+    collapse into each other. Checked on every probe series of the cases TRACE 0.1 follows (03/10/2026: the closest pair is 0.59)."""
     import difflib
     import itertools
 

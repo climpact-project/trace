@@ -14,7 +14,7 @@ This folder is published separately from TRACE 0.1. The TRACE 0.1 dataset, its Z
 
 Licence: all files of this folder are released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The TRACE 0.1 dataset keeps its own licence.
 
-## The six cases and their decisions
+## The cases and their decisions
 
 | Case | Name | TRACE 0.1 citation codes | Sabin Center case page | Wikidata |
 |---|---|---|---|---|
@@ -72,7 +72,7 @@ The identifier carries no country, court, classification or year, so it has no r
 - **Never reused.** A wrong, merged or split identifier stays in the register with its status.
 - **Merge** (two identifiers turn out to be the same object): the older one (lower number) stays; the other gets `status = merged` and `replaced_by`, and its address redirects to the remaining one.
 - **Split** (one identifier covered two objects): two new identifiers; the old one gets `status = split` and `replaced_by` with both.
-- The six TRACE 0.1 cases got numbers 1 to 6 in the order of the TRACE case register; their decisions got numbers 1 to 9 in the same order, and by date within each case.
+- The TRACE 0.1 cases got numbers 1 to 6 in the order of the TRACE case register; their decisions got numbers 1 to 9 in the same order, and by date within each case.
 
 ## Case and decision
 
@@ -87,7 +87,7 @@ A citation often names the case without saying which decision ("the Urgenda case
 - **Original and translation with separate ECLIs** (the Netherlands): one decision; the original is `exactMatch`, the translation `closeMatch`.
 - **First instance and appeal** (Future Generations: Superior Tribunal of Bogota, Supreme Court): one case, two decisions.
 - **Joined complaints** (Neubauer: four constitutional complaints decided together): one case, one decision; the four docket numbers are `narrowMatch`.
-- **One dispute in different forums** (KlimaSeniorinnen: the Swiss domestic proceeding and the Strasbourg case, two cases in the Sabin Center database too): two cases, linked with `relatedMatch`. The TRACE case is the Strasbourg one; the Swiss one will get its own identifier when it first appears.
+- **One dispute in different forums** (KlimaSeniorinnen: the Swiss domestic proceeding and the Strasbourg case, two cases in the Climate Litigation Database too): two cases, linked with `relatedMatch`. The TRACE case is the Strasbourg one; the Swiss one will get its own identifier when it first appears.
 - **Advisory opinions** (ICJ, Inter-American Court): the advisory proceeding is the case, the opinion is its decision. These courts do not use ECLI: their docket number and official URL are used instead.
 - **A decision known by many names** (Klimabeschluss, Neubauer, 1 BvR 2656/18): names are search forms, never new identifiers.
 - **Two external records for the same thing** (two Wikidata items for Neubauer): one `exactMatch`, the other `closeMatch` with a note.
@@ -96,7 +96,7 @@ A citation often names the case without saying which decision ("the Urgenda case
 
 The codes `URG-0001`, `NEU-…`, `FGC-…`, `KLS-…`, `IAC-…`, `ICJ-…` stay as published. From TRACE 0.2 a trace gets a T identifier, and the 0.1 codes remain valid as its aliases. Each prefix is the citation-code prefix of one case (`scheme = trace_citation_prefix` in the crosswalk). New cited cases get a unique prefix of three or four letters. Grouping is always done on the case identifier, never on the prefix.
 
-`citations_to_cases.csv` has one row for each of the 7,893 citations of TRACE 0.1: `citation_code`, `case_id`, `decision_id`, `decision_basis`, `document_id` (the Sabin Center filing that cites), `document_url`, `dataset_doi`. The case comes from the citation-code prefix. `decision_id` is filled only when it is determined: the case has one decision (`decision_basis = only decision of the case`), or the citing sentence carries an identifier of one decision only, such as an ECLI or a docket number (`identifier in the sentence`). Court names or years in the sentence are not used. For Urgenda and Future Generations most citations name the case without an identifier, and their decision stays empty.
+`citations_to_cases.csv` has one row for each of the 7,893 citations of TRACE 0.1: `citation_code`, `case_id`, `decision_id`, `decision_basis`, `document_id` (the filing in the Climate Litigation Database that cites), `document_url`, `dataset_doi`. The case comes from the citation-code prefix. `decision_id` is filled only when it is determined: the case has one decision (`decision_basis = only decision of the case`), or the citing sentence carries an identifier of one decision only, such as an ECLI or a docket number (`identifier in the sentence`). Court names or years in the sentence are not used. For Urgenda and Future Generations most citations name the case without an identifier, and their decision stays empty.
 
 ## The crosswalk
 
@@ -126,6 +126,6 @@ A 200 answer is not enough: the check reads the family identifier and slug on th
 - Wikidata: no item for Future Generations or for Advisory Opinion OC-32/25.
 - ECLI: none exists for the Colombian, ICJ and Inter-American decisions.
 - No official online text of the first-instance Future Generations judgment (Superior Tribunal of Bogota, 12 February 2018).
-- No separate Climate Change Laws of the World record for any of the six cases.
+- No separate Climate Change Laws of the World record for any of the cases TRACE 0.1 follows.
 
 All links were checked on 10 October 2026 by an automated check of the CLIMPACT team, still to be reviewed by a person.
