@@ -130,7 +130,7 @@ Next: TRACE 0.2. The whole corpus read again with our own reasoning reranker, tr
 
 ## The retriever
 
-TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 0.25) served the July semantic search for implicit uptake without a citation. That search is paused: a check of the July results found about one real implicit uptake per hundred candidate pages. The retriever is **not part of this release**: it has no version code, no code copy and no weight fingerprint in the registry, and it is not in the Zenodo deposit. It will be redone with real citing passages as queries and re-evaluated on that task before any release, and it will enter the registry with a T code at that point.
+The July semantic search for implicit uptake without a citation used multilingual-e5-large (within S01). TRACE-Retriever (pplx-embed-v1-4b with a LoRA adapter on the query side, weight 0.25) was tried from 29 September, in the experiment S04. That search is paused: a check of the July results found about one real implicit uptake per hundred candidate pages. The retriever is **not part of this release**: it has no version code, no code copy and no weight fingerprint in the registry, and it is not in the Zenodo deposit. It will be redone with real citing passages as queries and re-evaluated on that task before any release, and it will enter the registry with a T code at that point.
 
 ## Limits common to all the figures
 
