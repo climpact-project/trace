@@ -31,8 +31,9 @@ dependencies = ["pyyaml", "rapidfuzz"]
 [project.optional-dependencies]
 deepseek = ["openai"]
 firestore = ["google-cloud-firestore"]
+schema = ["jsonschema>=4.18", "openpyxl"]
 pdf = ["pymupdf"]
-dev = ["pytest", "ruff", "pymupdf"]
+dev = ["pytest", "ruff", "pymupdf", "jsonschema>=4.18"]
 
 [project.urls]
 Homepage = "https://www.climpact.it/site/data/trace"
