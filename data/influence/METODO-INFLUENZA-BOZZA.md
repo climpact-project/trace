@@ -33,6 +33,8 @@ L'influenza si conta **sul caso citante**, cioè sulla controversia, e sul docum
 - Perché il caso: più atti della stessa controversia (ricorso, replica, decisione) non sono più casi influenzati. Contarli a parte moltiplica la stessa ricezione.
 - Alternativa scartata: un tetto di 3 righe per documento. È arbitrario, lascia ancora il peso agli atti lunghi e non risolve gli atti multipli dello stesso caso.
 - La riga resta l'unità di **prova**: ogni cifra si apre sulle righe che la sostengono, come oggi nella mappa.
+- **La controversia è quella del database** (decisione del PI, 15/10/2026). I casi che il Climate Litigation Database riunisce in una stessa raccolta (bundle) contano come un caso solo; nessun legame dedotto dai nomi. Tabella in `n01_controversie.json`, rifatta da `tools/n01_controversie.py` sull'ultimo dump. Al 15/10 tocca solo Juliana v. United States: 8 schede, un caso.
+- **Filtro di sensibilità «senza USA»** (15/10/2026). L'indice principale conta tutti gli atti; `--senza-usa` toglie gli atti di corti statunitensi (le decisioni citate restano) e serve da prova di robustezza, non da correzione.
 
 ### 2.2 Una scala ordinale di ricezione al posto di un prodotto di pesi
 

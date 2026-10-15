@@ -14,7 +14,18 @@ import n01_influenza as N
 p = pathlib.Path(sys.argv[1])
 sito = json.loads(p.read_text())
 righe = N.leggi_firestore(list(sito['decisioni'].keys()))
-for k, d in sito['decisioni'].items():
+# le controversie unite come nell'indice (15/10/2026): gli atti di tutte le schede di una raccolta stanno sotto il caso
+# che l'indice ha tenuto per quella raccolta (quello di casi_elenco)
+racc = json.loads(N.CONTROVERSIE.read_text()).get('caso_controversia', {}) if N.CONTROVERSIE.exists() else {}
+tenuti = {racc[c['id']]: c['id'] for b in ([sito['decisioni']] + ([sito['senza_usa']['decisioni']] if 'senza_usa' in sito else []))
+          for d in b.values() for c in d.get('casi_elenco', []) if c['id'] in racc}
+for rs in righe.values():
+    for r in rs:
+        b = racc.get(r.get('case_id'))
+        if b in tenuti:
+            r['case_id'] = tenuti[b]
+blocchi = [sito['decisioni']] + ([sito['senza_usa']['decisioni']] if 'senza_usa' in sito else [])
+for k, d in ((k, d) for b in blocchi for k, d in b.items()):
     atti = collections.defaultdict(set)
     for r in righe[k]:
         if r.get('case_id') and r.get('document_id'):

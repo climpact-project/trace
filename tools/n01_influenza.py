@@ -24,6 +24,7 @@ CARTELLA = QUI / 'pubblicazione' / 'influenza'
 SOGLIE = CARTELLA / 'n01_soglie.json'
 GIURISDIZIONI = CARTELLA / 'n01_giurisdizioni.json'
 DATE_DOC = QUI / 'pubblicazione' / 'mappa' / 'date_documenti.json'
+CONTROVERSIE = CARTELLA / 'n01_controversie.json'
 PREFISSI = {'urgenda': 'URG', 'neubauer': 'NEU', 'future-generations': 'FGC', 'klimaseniorinnen': 'KLS',
             'cig-parere-clima': 'ICJ', 'idh-oc-32-25': 'IAC'}
 GRADINI = (1, 2, 3, 4)
@@ -66,6 +67,34 @@ def leggi_firestore(casi):
 def leggi_file(percorso, casi):
     d = json.loads(pathlib.Path(percorso).read_text())
     return {caso: d.get(PREFISSI[caso], d.get(caso, [])) for caso in casi}
+
+
+def unisci_controversie(dati, tabella):
+    """I casi di una stessa raccolta (bundle) del database diventano un caso solo (regola del PI, 15/10/2026).
+
+    Il caso che resta e' quello della raccolta con piu' righe (a parita', il primo in ordine): cosi' id e nome restano
+    quelli di una scheda vera del database. L'id originale resta in 'case_id_originale'."""
+    mappa = tabella.get('caso_controversia', {})
+    righe_per = collections.Counter(r.get('case_id') for rs in dati.values() for r in rs)
+    rappr = {}
+    for cid, n in sorted(righe_per.items(), key=lambda kv: (-kv[1], kv[0])):
+        b = mappa.get(cid)
+        if b and b not in rappr:
+            rappr[b] = cid
+    nomi = {}
+    for rs in dati.values():
+        for r in rs:
+            nomi.setdefault(r.get('case_id'), r.get('case_name'))
+    unite = collections.defaultdict(set)
+    for rs in dati.values():
+        for r in rs:
+            b = mappa.get(r.get('case_id'))
+            if b and rappr[b] != r.get('case_id'):
+                unite[rappr[b]].add(r['case_id'])
+                r['case_id_originale'] = r['case_id']
+                r['case_id'] = rappr[b]
+                r['case_name'] = nomi[rappr[b]]
+    return {k: sorted(v) for k, v in unite.items()}
 
 
 # ── campi ────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -652,6 +681,10 @@ def main():
     ap.add_argument('--uscita', default=str(CARTELLA / 'n01_misure.json'))
     ap.add_argument('--esiti', default='gs://climpact-drp.firebasestorage.app/site-content/data/trace-0.1/mappa/casi.json.gz',
                     help="il file dei casi della mappa (esito per chi ha agito, letto in automatico): percorso o gs://")
+    ap.add_argument('--senza-usa', action='store_true',
+                    help="toglie gli atti di corti statunitensi (filtro di sensibilita', 15/10/2026); le decisioni citate restano")
+    ap.add_argument('--senza-controversie', action='store_true',
+                    help="non unisce i casi di una stessa raccolta del database (il conto di prima del 15/10/2026)")
     ap.add_argument('--scrivi', action='store_true', help='scrive le schede N01 in trace_versioni e trace_misure')
     a = ap.parse_args()
     casi = [c.strip() for c in a.casi.split(',') if c.strip()]
@@ -660,16 +693,25 @@ def main():
     date_doc = json.loads(DATE_DOC.read_text()) if DATE_DOC.exists() else {}
     esiti = leggi_esiti(a.esiti)
     dati = leggi_file(a.da_file, casi) if a.da_file else leggi_firestore(casi)
+    contr = json.loads(CONTROVERSIE.read_text()) if CONTROVERSIE.exists() and not a.senza_controversie else {}
+    unite = unisci_controversie(dati, contr) if contr else {}
+    if a.senza_usa:
+        dati = {k: [x for x in v if giur(x.get('giurisdizioni')) != 'United States'] for k, v in dati.items()}
     r = calcola(dati, S, giur, date_doc, esiti)
+    r['controversie_unite'] = unite
     r['versione'] = {'regola': 'N01', 'versione': S['versione'], 'calcolato_il': dt.datetime.now().isoformat(timespec='seconds'),
                      'casi': casi, 'sha256_script': sha(pathlib.Path(__file__)), 'sha256_soglie': sha(SOGLIE),
-                     'sha256_giurisdizioni': sha(GIURISDIZIONI), 'fonte': a.da_file or 'firestore corpus_rows'}
+                     'sha256_giurisdizioni': sha(GIURISDIZIONI), 'fonte': a.da_file or 'firestore corpus_rows',
+                     'controversie': {'file': CONTROVERSIE.name, 'sha256': sha(CONTROVERSIE), 'dump': contr.get('fonte')} if contr else None,
+                     'filtro': 'senza atti di corti statunitensi' if a.senza_usa else None}
     pathlib.Path(a.uscita).write_text(json.dumps(r, ensure_ascii=False, indent=1, default=str))
     sito = per_il_sito(r)
     pathlib.Path(a.uscita).with_name('n01_sito.json').write_text(json.dumps(sito, ensure_ascii=False, default=str))
     for k, v in r['decisioni'].items():
         print(k, v['righe_vive'], 'casi', v['tutte']['casi_per_gradino'], 'validate', v['righe_validate'])
     if a.scrivi:
+        if a.senza_usa:
+            sys.exit('--scrivi con --senza-usa no: le schede N01 sono quelle del conto con tutti gli atti')
         scrivi_firestore(r, sito)
 
 

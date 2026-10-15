@@ -32,39 +32,36 @@
   "urgenda": {
    "copertura": "quasi completa",
    "data_decisione": "2015-06-24",
-   "righe_lette": 2039,
+   "righe_lette": 1602,
    "righe_per_esito": {
-    "tenuta": 1661,
-    "esclusa": 363,
-    "esito_scartata": 7,
-    "fusa": 8
+    "tenuta": 1602
    },
-   "righe_vive": 1661,
+   "righe_vive": 1602,
    "righe_validate": 384,
-   "quota_validata": 0.231,
+   "quota_validata": 0.24,
    "indice": {
-    "valore": 87.0,
-    "mediana": 90.4,
-    "p05": 60.1,
-    "p95": 120.7,
+    "valore": 79.5,
+    "mediana": 82.1,
+    "p05": 55.5,
+    "p95": 108.1,
     "anni_dalla_decisione": 11.3,
-    "per_anno": 7.7,
-    "per_anno_p05": 5.3,
-    "per_anno_p95": 10.7,
-    "tasso_ricezione_giudiziale": 0.213
+    "per_anno": 7.0,
+    "per_anno_p05": 4.9,
+    "per_anno_p95": 9.6,
+    "tasso_ricezione_giudiziale": 0.236
    },
    "tutte": {
     "casi_per_gradino": {
-     "R1": 26,
-     "R2": 53,
-     "R3": 32,
+     "R1": 21,
+     "R2": 51,
+     "R3": 25,
      "R4": 30
     },
-    "portata_casi": 141,
-    "mobilitazione_casi": 115,
+    "portata_casi": 127,
+    "mobilitazione_casi": 106,
     "ricezione_giudiziale_casi": 30,
-    "attenzione_giudiziale_casi": 62,
-    "giurisdizioni_portata": 42,
+    "attenzione_giudiziale_casi": 55,
+    "giurisdizioni_portata": 40,
     "giurisdizioni_ricezione": 18,
     "elenco_giurisdizioni_ricezione": [
      "Australia",
@@ -86,18 +83,18 @@
      "South Korea",
      "United Kingdom"
     ],
-    "documenti": 344,
+    "documenti": 334,
     "curva_casi_per_anni_dalla_decisione": {
-     "0": 6,
-     "1": 4,
-     "2": 8,
-     "3": 12,
+     "0": 4,
+     "1": 3,
+     "2": 7,
+     "3": 9,
      "4": 16,
-     "5": 26,
+     "5": 24,
      "6": 12,
-     "7": 19,
-     "8": 15,
-     "9": 6,
+     "7": 18,
+     "8": 13,
+     "9": 4,
      "10": 17
     },
     "profilo_R4_casi_per_tipo": {
@@ -108,12 +105,12 @@
    "solo_validate": {
     "casi_per_gradino": {
      "R1": 19,
-     "R2": 34,
+     "R2": 32,
      "R3": 13,
      "R4": 17
     },
-    "portata_casi": 83,
-    "mobilitazione_casi": 64,
+    "portata_casi": 81,
+    "mobilitazione_casi": 62,
     "ricezione_giudiziale_casi": 17,
     "attenzione_giudiziale_casi": 30,
     "giurisdizioni_portata": 31,
@@ -143,8 +140,8 @@
      "5": 14,
      "6": 8,
      "7": 11,
-     "8": 14,
-     "9": 2,
+     "8": 13,
+     "9": 1,
      "10": 9
     },
     "profilo_R4_casi_per_tipo": {
@@ -154,49 +151,49 @@
    },
    "varianti": {
     "corte_ovunque_R4": {
-     "R1": 26,
-     "R2": 53,
+     "R1": 21,
+     "R2": 51,
      "R3": 0,
-     "R4": 62
+     "R4": 55
     },
     "descrittiva_argomenta": {
-     "R1": 16,
-     "R2": 63,
-     "R3": 20,
+     "R1": 12,
+     "R2": 60,
+     "R3": 13,
      "R4": 42
     },
     "senza_bassa_confidenza_o_tipo_incerto": {
-     "R1": 27,
-     "R2": 48,
-     "R3": 31,
+     "R1": 22,
+     "R2": 46,
+     "R3": 24,
      "R4": 27
     },
     "solo_validate": {
      "R1": 19,
-     "R2": 34,
+     "R2": 32,
      "R3": 13,
      "R4": 17
     },
     "corretta_per_errore_di_lettura": {
      "R1": {
-      "mediana": 25,
-      "p05": 17,
-      "p95": 35
+      "mediana": 22,
+      "p05": 14,
+      "p95": 31
      },
      "R2": {
-      "mediana": 50,
-      "p05": 38,
-      "p95": 61
+      "mediana": 45,
+      "p05": 34,
+      "p95": 56
      },
      "R3": {
-      "mediana": 27,
-      "p05": 18,
-      "p95": 38
+      "mediana": 23,
+      "p05": 14,
+      "p95": 32
      },
      "R4": {
-      "mediana": 38,
-      "p05": 28,
-      "p95": 48
+      "mediana": 36,
+      "p05": 27,
+      "p95": 47
      }
     }
    },
@@ -216,74 +213,74 @@
      "quota_punteggio": 50.02
     },
     "propria_quota": {
-     "casi": 65,
-     "casi_R2_piu": 63,
+     "casi": 62,
+     "casi_R2_piu": 60,
      "casi_R4": 17,
      "neutro": false,
      "casi_per_gradino": {
       "R1": 2,
-      "R2": 39,
-      "R3": 7,
+      "R2": 37,
+      "R3": 6,
       "R4": 17
      },
-     "quota_diviso": 52.03,
-     "quota_punteggio": 41.18
+     "quota_diviso": 49.53,
+     "quota_punteggio": 39.84
     },
     "target_giudiziale": {
-     "casi": 71,
-     "casi_R2_piu": 65,
+     "casi": 69,
+     "casi_R2_piu": 64,
      "casi_R4": 16,
      "neutro": false,
      "casi_per_gradino": {
-      "R1": 6,
-      "R2": 37,
+      "R1": 5,
+      "R2": 36,
       "R3": 12,
       "R4": 16
      },
-     "quota_diviso": 52.33,
-     "quota_punteggio": 43.94
+     "quota_diviso": 51.33,
+     "quota_punteggio": 42.93
     },
     "dovere_diligenza": {
-     "casi": 48,
-     "casi_R2_piu": 42,
+     "casi": 47,
+     "casi_R2_piu": 41,
      "casi_R4": 12,
      "neutro": false,
      "casi_per_gradino": {
       "R1": 6,
-      "R2": 28,
+      "R2": 27,
       "R3": 2,
       "R4": 12
      },
-     "quota_diviso": 32.42,
-     "quota_punteggio": 23.4
+     "quota_diviso": 32.08,
+     "quota_punteggio": 22.95
     },
     "nessuno": {
-     "casi": 99,
-     "casi_R2_piu": 50,
+     "casi": 85,
+     "casi_R2_piu": 45,
      "casi_R4": 8,
      "neutro": true,
      "casi_per_gradino": {
-      "R1": 49,
+      "R1": 40,
       "R2": 10,
-      "R3": 32,
+      "R3": 27,
       "R4": 8
      },
-     "quota_diviso": 99.0,
+     "quota_diviso": 85.0,
      "quota_punteggio": 0.0
     },
     "ordine_non_legge": {
-     "casi": 43,
-     "casi_R2_piu": 36,
+     "casi": 42,
+     "casi_R2_piu": 35,
      "casi_R4": 7,
      "neutro": false,
      "casi_per_gradino": {
       "R1": 7,
-      "R2": 22,
+      "R2": 21,
       "R3": 7,
       "R4": 7
      },
-     "quota_diviso": 32.33,
-     "quota_punteggio": 14.96
+     "quota_diviso": 31.33,
+     "quota_punteggio": 14.7
     },
     "altro": {
      "casi": 20,
@@ -327,41 +324,41 @@
     },
     "curva_per_gradino": {
      "R1": {
-      "0": 6,
-      "1": 4,
-      "2": 8,
-      "3": 12,
-      "4": 16,
-      "5": 26,
-      "6": 12,
-      "7": 19,
-      "8": 15,
-      "9": 6,
-      "10": 17
-     },
-     "R2": {
-      "0": 6,
+      "0": 4,
       "1": 3,
       "2": 7,
-      "3": 10,
-      "4": 14,
-      "5": 17,
-      "6": 9,
+      "3": 9,
+      "4": 16,
+      "5": 24,
+      "6": 12,
       "7": 18,
       "8": 13,
       "9": 4,
+      "10": 17
+     },
+     "R2": {
+      "0": 4,
+      "1": 3,
+      "2": 6,
+      "3": 8,
+      "4": 14,
+      "5": 17,
+      "6": 9,
+      "7": 17,
+      "8": 11,
+      "9": 3,
       "10": 14
      },
      "R3": {
-      "0": 3,
+      "0": 1,
       "1": 1,
       "2": 3,
-      "3": 6,
+      "3": 4,
       "4": 6,
       "5": 9,
       "6": 8,
-      "7": 11,
-      "8": 10,
+      "7": 10,
+      "8": 8,
       "9": 1,
       "10": 4
      },
@@ -468,7 +465,6 @@
       "non_determinabile": 6,
       "perso": 4,
       "pendente": 8,
-      "non_letto": 5,
       "vinto": 1,
       "vinto_in_parte": 1,
       "ritirato_o_transatto": 1
@@ -477,20 +473,19 @@
       "perso": 20,
       "ritirato_o_transatto": 1,
       "pendente": 19,
-      "vinto": 4,
-      "non_determinabile": 3,
+      "vinto": 5,
       "vinto_in_parte": 2,
       "non_letto": 4
      },
      "R3": {
-      "perso": 6,
-      "non_determinabile": 5,
-      "vinto": 3,
-      "non_letto": 6,
+      "perso": 5,
+      "non_determinabile": 4,
+      "vinto": 2,
       "pendente": 4,
       "vinto_in_parte": 4,
       "ritirato_o_transatto": 1,
-      "non_applicabile": 3
+      "non_applicabile": 3,
+      "non_letto": 2
      },
      "R4": {
       "perso": 16,
@@ -504,20 +499,20 @@
    },
    "nuove": {
     "decomposizione": {
-     "parti": 33.0,
-     "corti": 54.0,
-     "quota_corti": 0.621
+     "parti": 30.75,
+     "corti": 48.75,
+     "quota_corti": 0.613
     },
     "conversione": {
-     "casi_con_parte_e_corte": 36,
+     "casi_con_parte_e_corte": 34,
      "convertiti": 20,
-     "tasso": 0.556
+     "tasso": 0.588
     },
     "transnazionale": {
      "casi_R4": 30,
      "casi_R4_estero": 25,
      "quota_R4": 0.833,
-     "quota_indice": 0.922
+     "quota_indice": 0.918
     },
     "velocita": {
      "anni_primo_R4": 2.4,
@@ -530,26 +525,26 @@
     },
     "diffusione": {
      "famiglie": {
-      "civil law": 70,
-      "common law": 44,
+      "civil law": 65,
+      "common law": 35,
       "sovranazionale": 22,
       "misto": 5
      },
      "n_famiglie": 4,
      "continenti": {
-      "Europe": 57,
+      "Europe": 53,
       "Oceania": 12,
-      "Americas": 48,
+      "Americas": 40,
       "Internazionale": 8,
-      "Asia": 15,
+      "Asia": 13,
       "Africa": 1
      },
-     "quota_fuori_continente": 0.596
+     "quota_fuori_continente": 0.583
     },
     "emivita": {
-     "eta_mediana_anni": 6.0,
+     "eta_mediana_anni": 6.3,
      "anni_dalla_sentenza": 11.3,
-     "casi_datati": 141,
+     "casi_datati": 127,
      "nota": null
     },
     "principi_viaggio": {
@@ -598,10 +593,10 @@
        "Netherlands": 5,
        "European Court of Human Rights": 4,
        "France": 4,
-       "United States": 4,
        "United Kingdom": 4,
        "New Zealand": 4,
        "Germany": 3,
+       "United States": 3,
        "Italy": 2,
        "Japan": 2,
        "Belgium": 2,
@@ -624,14 +619,14 @@
        "United Nations": 1,
        "International Criminal Court": 1
       },
-      "casi": 65,
-      "quota_transnazionale": 0.923
+      "casi": 64,
+      "quota_transnazionale": 0.922
      },
      "propria_quota": {
       "giurisdizioni": {
-       "United States": 7,
        "Netherlands": 6,
        "New Zealand": 5,
+       "United States": 4,
        "European Court of Human Rights": 4,
        "Australia": 3,
        "United Kingdom": 3,
@@ -660,17 +655,17 @@
        "India": 1,
        "Japan": 1
       },
-      "casi": 63,
-      "quota_transnazionale": 0.905
+      "casi": 60,
+      "quota_transnazionale": 0.9
      },
      "dovere_diligenza": {
       "giurisdizioni": {
        "Netherlands": 5,
-       "United States": 3,
        "France": 3,
        "United Kingdom": 3,
        "Canada": 3,
        "New Zealand": 3,
+       "United States": 2,
        "Australia": 2,
        "South Korea": 2,
        "Switzerland": 1,
@@ -692,14 +687,14 @@
        "Japan": 1,
        "OECD": 1
       },
-      "casi": 42,
-      "quota_transnazionale": 0.881
+      "casi": 41,
+      "quota_transnazionale": 0.878
      },
      "ordine_non_legge": {
       "giurisdizioni": {
        "Brazil": 6,
        "Netherlands": 5,
-       "United States": 4,
+       "United States": 3,
        "Canada": 2,
        "Peru": 1,
        "Switzerland": 1,
@@ -721,8 +716,8 @@
        "Belgium": 1,
        "Japan": 1
       },
-      "casi": 36,
-      "quota_transnazionale": 0.861
+      "casi": 35,
+      "quota_transnazionale": 0.857
      }
     }
    },
@@ -732,29 +727,29 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 1.0,
      "indice": {
-      "mediana": 49.5,
-      "p05": 29.83,
-      "p95": 68.55
+      "mediana": 49.4,
+      "p05": 30.04,
+      "p95": 68.46
      }
     },
     "target_giudiziale": {
      "rango_modale": 2,
-     "probabilita_rango_modale": 0.989,
+     "probabilita_rango_modale": 0.995,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 45.06,
-      "p05": 27.6,
-      "p95": 61.7
+      "mediana": 44.18,
+      "p05": 27.53,
+      "p95": 60.26
      }
     },
     "propria_quota": {
      "rango_modale": 3,
-     "probabilita_rango_modale": 0.989,
+     "probabilita_rango_modale": 0.995,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 42.33,
-      "p05": 26.2,
-      "p95": 58.18
+      "mediana": 40.42,
+      "p05": 25.4,
+      "p95": 55.07
      }
     },
     "dovere_diligenza": {
@@ -762,9 +757,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 28.95,
-      "p05": 17.22,
-      "p95": 40.75
+      "mediana": 28.39,
+      "p05": 17.14,
+      "p95": 39.81
      }
     },
     "ordine_non_legge": {
@@ -772,9 +767,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 24.97,
-      "p05": 14.09,
-      "p95": 35.76
+      "mediana": 24.39,
+      "p05": 13.97,
+      "p95": 34.88
      }
     }
    },
@@ -863,7 +858,7 @@
      "gradino": "R3",
      "giurisdizione": "Papua New Guinea",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Buni Morua v. China Harbour Engineering Company (PNG) Limited & Ors",
      "codice": "URG-0082"
     },
@@ -924,20 +919,20 @@
      "codice": "URG-0103"
     },
     "daniel-billy-and-others-v-australia-torres-strait-islanders-petition_191e": {
-     "gradino": "R3",
+     "gradino": "R2",
      "giurisdizione": "United Nations",
-     "documenti": 2,
-     "righe": 8,
+     "documenti": 1,
+     "righe": 5,
      "nome": "Daniel Billy and others v Australia (Torres Strait Islanders Petition)",
-     "codice": "URG-2011"
+     "codice": "URG-0106"
     },
     "declic-et-al-v-the-romanian-government_2585": {
-     "gradino": "R3",
+     "gradino": "R2",
      "giurisdizione": "Romania",
-     "documenti": 2,
-     "righe": 3,
+     "documenti": 1,
+     "righe": 1,
      "nome": "Declic et al. v. The Romanian Government",
-     "codice": "URG-0112"
+     "codice": "URG-0111"
     },
     "denman-aberdeen-muswellbrook-scone-healthy-environment-group-inc-damsheg-v-mach-energy-australia-pty-ltd_32f0": {
      "gradino": "R2",
@@ -959,7 +954,7 @@
      "gradino": "R4",
      "giurisdizione": "South Korea",
      "documenti": 12,
-     "righe": 45,
+     "righe": 42,
      "nome": "Do-Hyun Kim et al. v. South Korea",
      "codice": "URG-0158"
     },
@@ -1015,7 +1010,7 @@
      "gradino": "R2",
      "giurisdizione": "Netherlands",
      "documenti": 2,
-     "righe": 15,
+     "righe": 14,
      "nome": "FossielVrij NL v. KLM",
      "codice": "URG-0210"
     },
@@ -1026,14 +1021,6 @@
      "righe": 3,
      "nome": "Foster v. Washington Department of Ecology",
      "codice": "URG-1664"
-    },
-    "fridays-for-future-estonia-v-eesti-energia_4504": {
-     "gradino": "R3",
-     "giurisdizione": "Estonia",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Fridays for Future Estonia v. Eesti Energia",
-     "codice": "URG-0226"
     },
     "friends-of-the-earth-and-others-v-secretary-of-state-for-transport_a403": {
      "gradino": "R2",
@@ -1071,7 +1058,7 @@
      "gradino": "R4",
      "giurisdizione": "Australia",
      "documenti": 2,
-     "righe": 7,
+     "righe": 6,
      "nome": "Gloucester Resources Limited v. Minister for Planning",
      "codice": "URG-0262"
     },
@@ -1087,17 +1074,9 @@
      "gradino": "R2",
      "giurisdizione": "Austria",
      "documenti": 1,
-     "righe": 4,
+     "righe": 3,
      "nome": "Greenpeace et al. v. Austria",
      "codice": "URG-0267"
-    },
-    "greenpeace-international-v-energy-transfer_29bd": {
-     "gradino": "R1",
-     "giurisdizione": "Netherlands",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Greenpeace International v. Energy Transfer",
-     "codice": "URG-0271"
     },
     "greenpeace-italy-et-al-v-eni-s-p-a-the-italian-ministry-of-economy-and-finance-and-cassa-depositi-e-prestiti-s-p-a_d341": {
      "gradino": "R4",
@@ -1159,7 +1138,7 @@
      "gradino": "R2",
      "giurisdizione": "Spain",
      "documenti": 1,
-     "righe": 17,
+     "righe": 16,
      "nome": "Greenpeace v. Spain I",
      "codice": "URG-0444"
     },
@@ -1183,7 +1162,7 @@
      "gradino": "R1",
      "giurisdizione": "Inter-American System",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Hearing on Climate Change Before the Inter-American Commission on Human Rights",
      "codice": "URG-0458"
     },
@@ -1219,12 +1198,12 @@
      "nome": "In re Hawai‘i Electric Light Co.",
      "codice": "URG-0493"
     },
-    "in-re-united-states_b264": {
+    "juliana-v-united-states_83f7": {
      "gradino": "R3",
      "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "In re United States",
+     "documenti": 10,
+     "righe": 23,
+     "nome": "Juliana v. United States",
      "codice": "URG-0494"
     },
     "institute-of-amazonian-studies-v-brazil_4826": {
@@ -1266,22 +1245,6 @@
      "righe": 2,
      "nome": "Julia Habana et. al., v. Mexico (Unconstitutionality of the reform to the Electricity Industry Law)",
      "codice": "URG-0520"
-    },
-    "juliana-v-united-states_83f7": {
-     "gradino": "R2",
-     "giurisdizione": "United States",
-     "documenti": 2,
-     "righe": 13,
-     "nome": "Juliana v. United States",
-     "codice": "URG-0527"
-    },
-    "juliana-v-united-states_83df": {
-     "gradino": "R2",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 2,
-     "nome": "Juliana v. United States",
-     "codice": "URG-0536"
     },
     "juliana-youth-v-united-states-of-america-jovenes-ex-juliana-v-estados-unidos-de-america_92f3": {
      "gradino": "R3",
@@ -1343,7 +1306,7 @@
      "gradino": "R2",
      "giurisdizione": "Taiwan",
      "documenti": 1,
-     "righe": 7,
+     "righe": 6,
      "nome": "Liao and others v. Ministry of Environment (Administrative Case)",
      "codice": "URG-0626"
     },
@@ -1351,7 +1314,7 @@
      "gradino": "R2",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Lighthiser v. Trump",
      "codice": "URG-0632"
     },
@@ -1366,8 +1329,8 @@
     "mathur-et-al-v-his-majesty-the-king-in-right-of-ontario_edc5": {
      "gradino": "R4",
      "giurisdizione": "Canada",
-     "documenti": 5,
-     "righe": 21,
+     "documenti": 4,
+     "righe": 18,
      "nome": "Mathur, et al. v. His Majesty the King in Right of Ontario",
      "codice": "URG-0659"
     },
@@ -1375,7 +1338,7 @@
      "gradino": "R4",
      "giurisdizione": "Netherlands",
      "documenti": 8,
-     "righe": 197,
+     "righe": 194,
      "nome": "Milieudefensie et al. v. Royal Dutch Shell plc.",
      "codice": "URG-0669"
     },
@@ -1383,7 +1346,7 @@
      "gradino": "R2",
      "giurisdizione": "Netherlands",
      "documenti": 2,
-     "righe": 53,
+     "righe": 51,
      "nome": "Milieudefensie et al. v. Shell plc (No New Oil and Gas Fields Case)",
      "codice": "URG-0855"
     },
@@ -1391,7 +1354,7 @@
      "gradino": "R2",
      "giurisdizione": "Netherlands",
      "documenti": 10,
-     "righe": 117,
+     "righe": 112,
      "nome": "Milieudefensie v. ING Group and ING Bank",
      "codice": "URG-0870"
     },
@@ -1402,14 +1365,6 @@
      "righe": 2,
      "nome": "Ministério Público do Estado do Pará vs. Estado do Pará (Landfills and Climate Impact Assessment in Pará)",
      "codice": "URG-0975"
-    },
-    "ministry-of-environment-and-forestry-v-pt-waringin-agro-jaya_50c8": {
-     "gradino": "R1",
-     "giurisdizione": "Indonesia",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Ministry of Environment and Forestry v. PT Waringin Agro Jaya",
-     "codice": "URG-0977"
     },
     "mk-ranjitsinh-et-al-v-union-of-india-et-al-modification-of-april-2021-judgment_d1de": {
      "gradino": "R3",
@@ -1439,7 +1394,7 @@
      "gradino": "R3",
      "giurisdizione": "United States",
      "documenti": 2,
-     "righe": 3,
+     "righe": 2,
      "nome": "Navahine F. v. Hawai‘i Department of Transportation",
      "codice": "URG-1762"
     },
@@ -1447,7 +1402,7 @@
      "gradino": "R4",
      "giurisdizione": "Germany",
      "documenti": 6,
-     "righe": 63,
+     "righe": 62,
      "nome": "Neubauer, et al. v. Germany",
      "codice": "URG-1047"
     },
@@ -1471,7 +1426,7 @@
      "gradino": "R3",
      "giurisdizione": "France",
      "documenti": 2,
-     "righe": 6,
+     "righe": 5,
      "nome": "Notre Affaire à Tous Les Amis de la Terre, and Oxfam France v. BNP Paribas",
      "codice": "URG-1088"
     },
@@ -1503,7 +1458,7 @@
      "gradino": "R3",
      "giurisdizione": "South Korea",
      "documenti": 1,
-     "righe": 5,
+     "righe": 4,
      "nome": "Opinion of the National Human Rights Commission on the Constitutional Complaints on Constitutionality of Carbon Neutrality Act",
      "codice": "URG-1101"
     },
@@ -1514,14 +1469,6 @@
      "righe": 4,
      "nome": "Pabai Pabai and Guy Paul Kabai v. Commonwealth of Australia",
      "codice": "URG-1106"
-    },
-    "parakula-selts-mtu-vs-environmental-board_e67c": {
-     "gradino": "R3",
-     "giurisdizione": "Estonia",
-     "documenti": 1,
-     "righe": 2,
-     "nome": "Päraküla selts MTÜ vs. Environmental Board",
-     "codice": "URG-1108"
     },
     "plan-b-earth-and-others-v-prime-minister_1b1e": {
      "gradino": "R4",
@@ -1591,7 +1538,7 @@
      "gradino": "R3",
      "giurisdizione": "African System",
      "documenti": 18,
-     "righe": 59,
+     "righe": 58,
      "nome": "Request for an advisory opinion on the human rights obligations of African states in addressing the climate crisis",
      "codice": "URG-1145"
     },
@@ -1631,7 +1578,7 @@
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Roberts v. Department of Natural Resources, Board of Oil, Gas, & Mining",
      "codice": "URG-1370"
     },
@@ -1703,7 +1650,7 @@
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 3,
+     "righe": 1,
      "nome": "Suncor Energy (U.S.A.) Inc. v. County Commissioners of Boulder County",
      "codice": "URG-1416"
     },
@@ -1731,27 +1678,11 @@
      "nome": "Thomson v. Minister for Climate Change Issues",
      "codice": "URG-1426"
     },
-    "united-states-v-u-s-district-court-for-district-of-oregon_a0a6": {
-     "gradino": "R2",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 2,
-     "nome": "United States v. U.S. District Court for District of Oregon",
-     "codice": "URG-1429"
-    },
-    "united-states-v-u-s-district-court-for-the-district-of-oregon_98ff": {
-     "gradino": "R2",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 5,
-     "nome": "United States v. U.S. District Court for the District of Oregon",
-     "codice": "URG-1434"
-    },
     "verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852": {
      "gradino": "R4",
      "giurisdizione": "European Court of Human Rights",
      "documenti": 11,
-     "righe": 87,
+     "righe": 85,
      "nome": "Verein KlimaSeniorinnen Schweiz and Others v. Switzerland",
      "codice": "URG-1443"
     },
@@ -1759,7 +1690,7 @@
      "gradino": "R4",
      "giurisdizione": "Belgium",
      "documenti": 11,
-     "righe": 117,
+     "righe": 112,
      "nome": "VZW Klimaatzaak v. Kingdom of Belgium & Others",
      "codice": "URG-1540"
     },
@@ -1775,7 +1706,7 @@
      "gradino": "R2",
      "giurisdizione": "South Korea",
      "documenti": 1,
-     "righe": 7,
+     "righe": 6,
      "nome": "Woodpecker et al. v. South Korea",
      "codice": "URG-1670"
     },
@@ -1783,7 +1714,7 @@
      "gradino": "R2",
      "giurisdizione": "Japan",
      "documenti": 2,
-     "righe": 7,
+     "righe": 6,
      "nome": "Youth Climate Case Japan for Tomorrow",
      "codice": "URG-1673"
     },
@@ -1794,14 +1725,6 @@
      "righe": 5,
      "nome": "Youth Verdict v. Waratah Coal",
      "codice": "URG-1676"
-    },
-    "juliana-v-united-states_522f": {
-     "gradino": "R3",
-     "giurisdizione": "United States",
-     "documenti": 2,
-     "righe": 2,
-     "nome": "Juliana v. United States",
-     "codice": "URG-1685"
     },
     "indigenous-leaders-of-aidesep-and-feconau-et-al-vs-louis-dreyfus-company-b-v_2c22": {
      "gradino": "R2",
@@ -1819,30 +1742,6 @@
      "nome": "Opinion of the National Human Rights Commission on the climate crisis and human rights",
      "codice": "URG-1709"
     },
-    "energy-transfer-lp-v-greenpeace-international_52ea": {
-     "gradino": "R1",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 2,
-     "nome": "Energy Transfer LP v. Greenpeace International",
-     "codice": "URG-1757"
-    },
-    "united-states-v-u-s-district-court-for-the-district-of-oregon_52f5": {
-     "gradino": "R3",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "United States v. U.S. District Court for the District of Oregon",
-     "codice": "URG-1797"
-    },
-    "united-states-v-u-s-district-court-for-the-district-of-oregon_94c4": {
-     "gradino": "R3",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "United States v. U.S. District Court for the District of Oregon",
-     "codice": "URG-1798"
-    },
     "plan-b-earth-and-others-v-united-kingdom_2a63": {
      "gradino": "R2",
      "giurisdizione": "European Court of Human Rights",
@@ -1850,14 +1749,6 @@
      "righe": 1,
      "nome": "Plan B.Earth and Others v United Kingdom",
      "codice": "URG-1857"
-    },
-    "r-v-bramwell-et-al-the-shell-six-case_2074": {
-     "gradino": "R1",
-     "giurisdizione": "United Kingdom",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "R v. Bramwell et al (“The Shell Six case”)",
-     "codice": "URG-1860"
     },
     "trans-mountain-pipeline-ulc-v-mivasair_647d": {
      "gradino": "R3",
@@ -1898,53 +1789,42 @@
      "righe": 1,
      "nome": "MPPA vs Estado do Pará (Environmental licensing and CONANDA Resolution 215/2018)",
      "codice": "URG-2001"
-    },
-    "byung-in-kim-et-al-v-south-korea_fb0f": {
-     "gradino": "R1",
-     "giurisdizione": "South Korea",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Byung-In Kim et al. v. South Korea",
-     "codice": "URG-2010"
     }
    }
   },
   "neubauer": {
    "copertura": "parziale",
    "data_decisione": "2021-03-24",
-   "righe_lette": 2709,
+   "righe_lette": 2351,
    "righe_per_esito": {
-    "tenuta": 2391,
-    "esclusa": 311,
-    "fusa": 6,
-    "esito_scartata": 1
+    "tenuta": 2351
    },
-   "righe_vive": 2391,
+   "righe_vive": 2351,
    "righe_validate": 90,
    "quota_validata": 0.038,
    "indice": {
-    "valore": 63.8,
-    "mediana": 65.3,
-    "p05": 43.0,
-    "p95": 87.3,
-    "anni_dalla_decisione": 5.5,
-    "per_anno": 11.5,
-    "per_anno_p05": 7.7,
-    "per_anno_p95": 15.7,
-    "tasso_ricezione_giudiziale": 0.255
+    "valore": 63.5,
+    "mediana": 66.0,
+    "p05": 41.2,
+    "p95": 86.6,
+    "anni_dalla_decisione": 5.6,
+    "per_anno": 11.4,
+    "per_anno_p05": 7.4,
+    "per_anno_p95": 15.6,
+    "tasso_ricezione_giudiziale": 0.257
    },
    "tutte": {
     "casi_per_gradino": {
-     "R1": 14,
+     "R1": 13,
      "R2": 49,
      "R3": 13,
      "R4": 26
     },
-    "portata_casi": 102,
+    "portata_casi": 101,
     "mobilitazione_casi": 88,
     "ricezione_giudiziale_casi": 26,
     "attenzione_giudiziale_casi": 39,
-    "giurisdizioni_portata": 31,
+    "giurisdizioni_portata": 30,
     "giurisdizioni_ricezione": 12,
     "elenco_giurisdizioni_ricezione": [
      "Australia",
@@ -1960,9 +1840,9 @@
      "South Korea",
      "United Nations"
     ],
-    "documenti": 211,
+    "documenti": 208,
     "curva_casi_per_anni_dalla_decisione": {
-     "0": 39,
+     "0": 38,
      "1": 20,
      "2": 17,
      "3": 10,
@@ -2007,19 +1887,19 @@
    },
    "varianti": {
     "corte_ovunque_R4": {
-     "R1": 14,
+     "R1": 13,
      "R2": 49,
      "R3": 0,
      "R4": 39
     },
     "descrittiva_argomenta": {
-     "R1": 6,
+     "R1": 5,
      "R2": 57,
      "R3": 10,
      "R4": 29
     },
     "senza_bassa_confidenza_o_tipo_incerto": {
-     "R1": 17,
+     "R1": 15,
      "R2": 45,
      "R3": 13,
      "R4": 23
@@ -2038,17 +1918,17 @@
      },
      "R2": {
       "mediana": 43,
-      "p05": 34,
+      "p05": 33,
       "p95": 53
      },
      "R3": {
-      "mediana": 17,
+      "mediana": 16,
       "p05": 9,
       "p95": 25
      },
      "R4": {
       "mediana": 27,
-      "p05": 18,
+      "p05": 19,
       "p95": 37
      }
     }
@@ -2153,17 +2033,17 @@
      "quota_punteggio": 21.57
     },
     "nessuno": {
-     "casi": 74,
+     "casi": 72,
      "casi_R2_piu": 41,
      "casi_R4": 4,
      "neutro": true,
      "casi_per_gradino": {
-      "R1": 33,
-      "R2": 19,
-      "R3": 18,
+      "R1": 31,
+      "R2": 20,
+      "R3": 17,
       "R4": 4
      },
-     "quota_diviso": 74.0,
+     "quota_diviso": 72.0,
      "quota_punteggio": 0.0
     },
     "neubauer.vorwirkung_liberta_intertemporale": {
@@ -2258,7 +2138,7 @@
     },
     "curva_per_gradino": {
      "R1": {
-      "0": 39,
+      "0": 38,
       "1": 20,
       "2": 17,
       "3": 10,
@@ -2379,7 +2259,7 @@
      "R1": {
       "non_determinabile": 4,
       "pendente": 8,
-      "non_letto": 2
+      "non_letto": 1
      },
      "R2": {
       "perso": 18,
@@ -2408,9 +2288,9 @@
    },
    "nuove": {
     "decomposizione": {
-     "parti": 28.0,
+     "parti": 27.75,
      "corti": 35.75,
-     "quota_corti": 0.561
+     "quota_corti": 0.563
     },
     "conversione": {
      "casi_con_parte_e_corte": 23,
@@ -2421,7 +2301,7 @@
      "casi_R4": 26,
      "casi_R4_estero": 15,
      "quota_R4": 0.577,
-     "quota_indice": 0.631
+     "quota_indice": 0.63
     },
     "velocita": {
      "anni_primo_R4": 0.3,
@@ -2436,7 +2316,7 @@
      "famiglie": {
       "civil law": 77,
       "common law": 9,
-      "sovranazionale": 15,
+      "sovranazionale": 14,
       "misto": 1
      },
      "n_famiglie": 4,
@@ -2446,14 +2326,14 @@
       "Asia": 9,
       "Oceania": 3,
       "Africa": 1,
-      "Internazionale": 6
+      "Internazionale": 5
      },
-     "quota_fuori_continente": 0.441
+     "quota_fuori_continente": 0.436
     },
     "emivita": {
      "eta_mediana_anni": null,
-     "anni_dalla_sentenza": 5.5,
-     "casi_datati": 102,
+     "anni_dalla_sentenza": 5.6,
+     "casi_datati": 101,
      "nota": "too recent to estimate"
     },
     "principi_viaggio": {
@@ -2663,49 +2543,49 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 1.0,
      "indice": {
-      "mediana": 40.51,
-      "p05": 24.38,
+      "mediana": 40.73,
+      "p05": 24.52,
       "p95": 57.54
      }
     },
     "neubauer.budget_residuo": {
      "rango_modale": 2,
-     "probabilita_rango_modale": 0.838,
+     "probabilita_rango_modale": 0.835,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 34.85,
-      "p05": 19.44,
-      "p95": 50.77
+      "mediana": 35.08,
+      "p05": 19.72,
+      "p95": 50.92
      }
     },
     "neubauer.percorso_dopo_2030": {
      "rango_modale": 3,
-     "probabilita_rango_modale": 0.838,
+     "probabilita_rango_modale": 0.835,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 34.31,
-      "p05": 19.04,
-      "p95": 50.41
+      "mediana": 34.5,
+      "p05": 19.19,
+      "p95": 50.39
      }
     },
     "neubauer.dovere_oggettivo_posteri": {
      "rango_modale": 4,
-     "probabilita_rango_modale": 0.857,
+     "probabilita_rango_modale": 0.861,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 31.52,
-      "p05": 15.68,
-      "p95": 48.27
+      "mediana": 31.73,
+      "p05": 15.9,
+      "p95": 48.31
      }
     },
     "neubauer.dovere_protezione_vita_salute": {
      "rango_modale": 5,
-     "probabilita_rango_modale": 0.857,
+     "probabilita_rango_modale": 0.861,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 29.49,
-      "p05": 16.24,
-      "p95": 43.14
+      "mediana": 29.7,
+      "p05": 16.4,
+      "p95": 43.28
      }
     },
     "neubauer.ammissibilita_legittimazione": {
@@ -2713,9 +2593,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 21.55,
-      "p05": 11.25,
-      "p95": 32.34
+      "mediana": 21.68,
+      "p05": 11.44,
+      "p95": 32.38
      }
     },
     "neubauer.dimensione_internazionale": {
@@ -2723,9 +2603,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 20.62,
-      "p05": 10.58,
-      "p95": 31.01
+      "mediana": 20.76,
+      "p05": 10.7,
+      "p95": 31.06
      }
     },
     "neubauer.vorwirkung_liberta_intertemporale": {
@@ -2733,9 +2613,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 3.92,
-      "p05": 1.77,
-      "p95": 6.14
+      "mediana": 3.94,
+      "p05": 1.81,
+      "p95": 6.16
      }
     },
     "neubauer.proporzionalita_intergenerazionale": {
@@ -2743,9 +2623,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 1.46,
-      "p05": 0.39,
-      "p95": 2.57
+      "mediana": 1.47,
+      "p05": 0.41,
+      "p95": 2.58
      }
     },
     "neubauer.budget_co2_parametro": {
@@ -2753,9 +2633,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 0.97,
-      "p05": 0.26,
-      "p95": 1.71
+      "mediana": 0.98,
+      "p05": 0.27,
+      "p95": 1.72
      }
     },
     "neubauer.schutzpflicht_clima": {
@@ -2763,9 +2643,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 0.97,
-      "p05": 0.26,
-      "p95": 1.71
+      "mediana": 0.98,
+      "p05": 0.27,
+      "p95": 1.72
      }
     }
    },
@@ -2830,7 +2710,7 @@
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Animal Legal Defense Fund v. United States",
      "codice": "NEU-0079"
     },
@@ -2854,7 +2734,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 31,
+     "righe": 30,
      "nome": "Barbara Metz et al., v. Wintershall Dea AG",
      "codice": "NEU-0102"
     },
@@ -2886,7 +2766,7 @@
      "gradino": "R4",
      "giurisdizione": "Germany",
      "documenti": 2,
-     "righe": 80,
+     "righe": 78,
      "nome": "Cosima Rade, et al. v. Baden-Württemberg (BaWü)",
      "codice": "NEU-1775"
     },
@@ -2910,7 +2790,7 @@
      "gradino": "R4",
      "giurisdizione": "Germany",
      "documenti": 3,
-     "righe": 54,
+     "righe": 52,
      "nome": "Deutsche Umwelthilfe (DUH) v. Bayerische Motoren Werke AG (BMW)",
      "codice": "NEU-0194"
     },
@@ -2926,7 +2806,7 @@
      "gradino": "R4",
      "giurisdizione": "Germany",
      "documenti": 3,
-     "righe": 40,
+     "righe": 39,
      "nome": "Deutsche Umwelthilfe (DUH) v. Mercedes-Benz AG",
      "codice": "NEU-0221"
     },
@@ -2950,7 +2830,7 @@
      "gradino": "R4",
      "giurisdizione": "South Korea",
      "documenti": 7,
-     "righe": 64,
+     "righe": 63,
      "nome": "Do-Hyun Kim et al. v. South Korea",
      "codice": "NEU-2031"
     },
@@ -3030,7 +2910,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 141,
+     "righe": 136,
      "nome": "Greenpeace e.V. and Germanwatch e.V. v. Germany (Challenge on amended Federal Climate Protection Act)",
      "codice": "NEU-0399"
     },
@@ -3038,7 +2918,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 147,
+     "righe": 143,
      "nome": "Greenpeace e.V. and Germanwatch e.V. v. Germany (Failure to adopt effective climate measures in transport sector)",
      "codice": "NEU-0511"
     },
@@ -3078,7 +2958,7 @@
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Held v. State",
      "codice": "NEU-0615"
     },
@@ -3126,7 +3006,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 67,
+     "righe": 65,
      "nome": "Jannis Krüßmann, et al. v. Nordrhein-Westfalen (NRW)",
      "codice": "NEU-0636"
     },
@@ -3173,8 +3053,8 @@
     "lawyers-for-climate-action-nz-incorporated-v-the-climate-change-commission_0940": {
      "gradino": "R4",
      "giurisdizione": "New Zealand",
-     "documenti": 4,
-     "righe": 13,
+     "documenti": 3,
+     "righe": 12,
      "nome": "Lawyers for Climate Action NZ Incorporated v. The Climate Change Commission",
      "codice": "NEU-0706"
     },
@@ -3198,7 +3078,7 @@
      "gradino": "R2",
      "giurisdizione": "Taiwan",
      "documenti": 1,
-     "righe": 38,
+     "righe": 36,
      "nome": "Liao and others v. Ministry of Environment (Administrative Case)",
      "codice": "NEU-0768"
     },
@@ -3206,7 +3086,7 @@
      "gradino": "R2",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Lighthiser v. Trump",
      "codice": "NEU-0787"
     },
@@ -3230,7 +3110,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 69,
+     "righe": 68,
      "nome": "Marlene Lemme, et al. v. State of Bayern (constitutional claim)",
      "codice": "NEU-0851"
     },
@@ -3246,7 +3126,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 65,
+     "righe": 64,
      "nome": "Matteo Feind, et al. v. Niedersachsen",
      "codice": "NEU-0910"
     },
@@ -3262,7 +3142,7 @@
      "gradino": "R2",
      "giurisdizione": "Netherlands",
      "documenti": 2,
-     "righe": 8,
+     "righe": 7,
      "nome": "Milieudefensie et al. v. Shell plc (No New Oil and Gas Fields Case)",
      "codice": "NEU-0949"
     },
@@ -3350,7 +3230,7 @@
      "gradino": "R2",
      "giurisdizione": "African System",
      "documenti": 13,
-     "righe": 35,
+     "righe": 34,
      "nome": "Request for an advisory opinion on the human rights obligations of African states in addressing the climate crisis",
      "codice": "NEU-1040"
     },
@@ -3366,15 +3246,15 @@
      "gradino": "R4",
      "giurisdizione": "Inter-American System",
      "documenti": 22,
-     "righe": 77,
+     "righe": 75,
      "nome": "Request for an advisory opinion on the scope of the state obligations for responding to the climate emergency",
      "codice": "NEU-1111"
     },
     "request-for-an-advisory-opinion-submitted-by-the-commission-of-small-island-states-on-climate-change-and-international-law_bb72": {
      "gradino": "R4",
      "giurisdizione": "International Tribunal for the Law of the Sea",
-     "documenti": 3,
-     "righe": 12,
+     "documenti": 2,
+     "righe": 11,
      "nome": "Request for an Advisory Opinion submitted by the Commission of Small Island States on Climate Change and International Law",
      "codice": "NEU-2386"
     },
@@ -3390,7 +3270,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 77,
+     "righe": 76,
      "nome": "Steinmetz, et al. v. Germany II",
      "codice": "NEU-1241"
     },
@@ -3398,7 +3278,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 190,
+     "righe": 189,
      "nome": "Steinmetz, et al. v. Germany III",
      "codice": "NEU-1326"
     },
@@ -3406,7 +3286,7 @@
      "gradino": "R2",
      "giurisdizione": "Germany",
      "documenti": 1,
-     "righe": 105,
+     "righe": 103,
      "nome": "Steinmetz, et al. v. Germany",
      "codice": "NEU-1419"
     },
@@ -3414,7 +3294,7 @@
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Suncor Energy (U.S.A.) Inc. v. County Commissioners of Boulder County",
      "codice": "NEU-1477"
     },
@@ -3434,12 +3314,12 @@
      "nome": "Tristan Runge, et al. v. State of Saxony",
      "codice": "NEU-1486"
     },
-    "united-states-v-u-s-district-court-for-the-district-of-oregon_98ff": {
+    "juliana-v-united-states_83f7": {
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 3,
-     "nome": "United States v. U.S. District Court for the District of Oregon",
+     "righe": 2,
+     "nome": "Juliana v. United States",
      "codice": "NEU-1519"
     },
     "verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852": {
@@ -3478,7 +3358,7 @@
      "gradino": "R2",
      "giurisdizione": "South Korea",
      "documenti": 1,
-     "righe": 8,
+     "righe": 6,
      "nome": "Woodpecker et al. v. South Korea",
      "codice": "NEU-1604"
     },
@@ -3546,14 +3426,6 @@
      "nome": "Declic et al. v. The Romanian Government",
      "codice": "NEU-1995"
     },
-    "ds-593-european-union-certain-measures-concerning-palm-oil-and-oil-palm-crop-based-biofuels_ecb7": {
-     "gradino": "R1",
-     "giurisdizione": "World Trade Organization",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "DS-593: European Union — Certain measures concerning palm oil and oil palm crop-based biofuels",
-     "codice": "NEU-2047"
-    },
     "opinion-of-the-national-human-rights-commission-on-the-climate-crisis-and-human-rights_77ae": {
      "gradino": "R2",
      "giurisdizione": "South Korea",
@@ -3591,34 +3463,33 @@
   "future-generations": {
    "copertura": "parziale",
    "data_decisione": "2018-04-05",
-   "righe_lette": 262,
+   "righe_lette": 202,
    "righe_per_esito": {
-    "tenuta": 217,
-    "esclusa": 45
+    "tenuta": 202
    },
-   "righe_vive": 217,
+   "righe_vive": 202,
    "righe_validate": 54,
-   "quota_validata": 0.249,
+   "quota_validata": 0.267,
    "indice": {
-    "valore": 22.8,
-    "mediana": 25.7,
-    "p05": 13.3,
-    "p95": 39.7,
+    "valore": 21.2,
+    "mediana": 22.7,
+    "p05": 12.1,
+    "p95": 35.2,
     "anni_dalla_decisione": 8.5,
-    "per_anno": 2.7,
-    "per_anno_p05": 1.6,
-    "per_anno_p95": 4.7,
-    "tasso_ricezione_giudiziale": 0.08
+    "per_anno": 2.5,
+    "per_anno_p05": 1.4,
+    "per_anno_p95": 4.1,
+    "tasso_ricezione_giudiziale": 0.089
    },
    "tutte": {
     "casi_per_gradino": {
-     "R1": 24,
-     "R2": 15,
+     "R1": 20,
+     "R2": 14,
      "R3": 7,
      "R4": 4
     },
-    "portata_casi": 50,
-    "mobilitazione_casi": 26,
+    "portata_casi": 45,
+    "mobilitazione_casi": 25,
     "ricezione_giudiziale_casi": 4,
     "attenzione_giudiziale_casi": 11,
     "giurisdizioni_portata": 25,
@@ -3629,15 +3500,15 @@
      "Netherlands",
      "Peru"
     ],
-    "documenti": 93,
+    "documenti": 89,
     "curva_casi_per_anni_dalla_decisione": {
-     "0": 3,
+     "0": 2,
      "1": 7,
-     "2": 13,
+     "2": 11,
      "3": 7,
      "4": 6,
      "5": 4,
-     "6": 5,
+     "6": 3,
      "7": 5
     },
     "profilo_R4_casi_per_tipo": {
@@ -3646,12 +3517,12 @@
    },
    "solo_validate": {
     "casi_per_gradino": {
-     "R1": 10,
+     "R1": 9,
      "R2": 8,
      "R3": 3,
      "R4": 1
     },
-    "portata_casi": 22,
+    "portata_casi": 21,
     "mobilitazione_casi": 12,
     "ricezione_giudiziale_casi": 1,
     "attenzione_giudiziale_casi": 4,
@@ -3668,7 +3539,7 @@
      "3": 1,
      "4": 4,
      "5": 2,
-     "6": 2,
+     "6": 1,
      "7": 4
     },
     "profilo_R4_casi_per_tipo": {
@@ -3677,39 +3548,39 @@
    },
    "varianti": {
     "corte_ovunque_R4": {
-     "R1": 24,
-     "R2": 15,
+     "R1": 20,
+     "R2": 14,
      "R3": 0,
      "R4": 11
     },
     "descrittiva_argomenta": {
-     "R1": 16,
-     "R2": 23,
+     "R1": 12,
+     "R2": 22,
      "R3": 6,
      "R4": 5
     },
     "senza_bassa_confidenza_o_tipo_incerto": {
-     "R1": 26,
-     "R2": 15,
-     "R3": 4,
+     "R1": 21,
+     "R2": 14,
+     "R3": 3,
      "R4": 3
     },
     "solo_validate": {
-     "R1": 10,
+     "R1": 9,
      "R2": 8,
      "R3": 3,
      "R4": 1
     },
     "corretta_per_errore_di_lettura": {
      "R1": {
-      "mediana": 19,
-      "p05": 13,
-      "p95": 26
+      "mediana": 16,
+      "p05": 10,
+      "p95": 23
      },
      "R2": {
-      "mediana": 17,
-      "p05": 11,
-      "p95": 24
+      "mediana": 16,
+      "p05": 10,
+      "p95": 22
      },
      "R3": {
       "mediana": 7,
@@ -3717,7 +3588,7 @@
       "p95": 12
      },
      "R4": {
-      "mediana": 7,
+      "mediana": 6,
       "p05": 2,
       "p95": 12
      }
@@ -3725,32 +3596,18 @@
    },
    "principi": {
     "future-generations.deforestazione_minaccia_diritti": {
-     "casi": 26,
-     "casi_R2_piu": 19,
+     "casi": 25,
+     "casi_R2_piu": 18,
      "casi_R4": 3,
      "neutro": false,
      "casi_per_gradino": {
       "R1": 7,
-      "R2": 13,
+      "R2": 12,
       "R3": 3,
       "R4": 3
      },
-     "quota_diviso": 17.78,
-     "quota_punteggio": 11.72
-    },
-    "future-generations.diritti_generazioni_future": {
-     "casi": 14,
-     "casi_R2_piu": 14,
-     "casi_R4": 2,
-     "neutro": false,
-     "casi_per_gradino": {
-      "R1": 0,
-      "R2": 11,
-      "R3": 1,
-      "R4": 2
-     },
-     "quota_diviso": 9.0,
-     "quota_punteggio": 6.2
+     "quota_diviso": 17.28,
+     "quota_punteggio": 11.33
     },
     "future-generations.ammissibilita_conexidad": {
      "casi": 14,
@@ -3765,6 +3622,20 @@
      },
      "quota_diviso": 11.2,
      "quota_punteggio": 4.8
+    },
+    "future-generations.diritti_generazioni_future": {
+     "casi": 13,
+     "casi_R2_piu": 13,
+     "casi_R4": 2,
+     "neutro": false,
+     "casi_per_gradino": {
+      "R1": 0,
+      "R2": 10,
+      "R3": 1,
+      "R4": 2
+     },
+     "quota_diviso": 8.67,
+     "quota_punteggio": 6.11
     },
     "future-generations.bioma_soggetto_diritti": {
      "casi": 10,
@@ -3795,17 +3666,17 @@
      "quota_punteggio": 7.8
     },
     "nessuno": {
-     "casi": 34,
-     "casi_R2_piu": 10,
+     "casi": 28,
+     "casi_R2_piu": 9,
      "casi_R4": 0,
      "neutro": true,
      "casi_per_gradino": {
-      "R1": 24,
+      "R1": 19,
       "R2": 2,
-      "R3": 8,
+      "R3": 7,
       "R4": 0
      },
-     "quota_diviso": 34.0,
+     "quota_diviso": 28.0,
      "quota_punteggio": 0.0
     }
    },
@@ -3821,17 +3692,17 @@
     },
     "curva_per_gradino": {
      "R1": {
-      "0": 3,
+      "0": 2,
       "1": 7,
-      "2": 13,
+      "2": 11,
       "3": 7,
       "4": 6,
       "5": 4,
-      "6": 5,
+      "6": 3,
       "7": 5
      },
      "R2": {
-      "0": 3,
+      "0": 2,
       "1": 5,
       "2": 7,
       "3": 1,
@@ -3946,16 +3817,14 @@
      "R1": {
       "perso": 9,
       "vinto": 3,
-      "pendente": 7,
+      "pendente": 6,
       "non_applicabile": 1,
-      "non_determinabile": 1,
-      "vinto_in_parte": 1,
-      "non_letto": 2
+      "vinto_in_parte": 1
      },
      "R2": {
       "perso": 3,
       "pendente": 6,
-      "non_determinabile": 3,
+      "non_determinabile": 2,
       "vinto_in_parte": 1,
       "non_applicabile": 1,
       "vinto": 1
@@ -3976,9 +3845,9 @@
    },
    "nuove": {
     "decomposizione": {
-     "parti": 13.5,
+     "parti": 12.0,
      "corti": 9.25,
-     "quota_corti": 0.407
+     "quota_corti": 0.435
     },
     "conversione": {
      "casi_con_parte_e_corte": 5,
@@ -3989,7 +3858,7 @@
      "casi_R4": 4,
      "casi_R4_estero": 3,
      "quota_R4": 0.75,
-     "quota_indice": 0.923
+     "quota_indice": 0.918
     },
     "velocita": {
      "anni_primo_R4": 1.7,
@@ -4002,26 +3871,26 @@
     },
     "diffusione": {
      "famiglie": {
-      "common law": 9,
-      "civil law": 28,
+      "common law": 6,
+      "civil law": 26,
       "sovranazionale": 11,
       "misto": 2
      },
      "n_famiglie": 4,
      "continenti": {
-      "Americas": 25,
+      "Americas": 22,
       "Internazionale": 4,
-      "Europe": 14,
+      "Europe": 12,
       "Asia": 3,
       "Africa": 2,
       "Oceania": 2
      },
-     "quota_fuori_continente": 0.5
+     "quota_fuori_continente": 0.511
     },
     "emivita": {
      "eta_mediana_anni": 3.1,
      "anni_dalla_sentenza": 8.5,
-     "casi_datati": 50,
+     "casi_datati": 45,
      "nota": null
     },
     "principi_viaggio": {
@@ -4030,11 +3899,11 @@
        "Argentina": 2,
        "Brazil": 2,
        "Mexico": 2,
-       "United States": 2,
        "Peru": 1,
        "Colombia": 1,
        "Philippines": 1,
        "OECD": 1,
+       "United States": 1,
        "African System": 1,
        "International Court of Justice": 1,
        "Inter-American System": 1,
@@ -4043,24 +3912,24 @@
        "Belgium": 1,
        "France": 1
       },
-      "casi": 19,
-      "quota_transnazionale": 0.947
+      "casi": 18,
+      "quota_transnazionale": 0.944
      },
      "future-generations.diritti_generazioni_future": {
       "giurisdizioni": {
        "Brazil": 3,
        "Argentina": 2,
-       "United States": 2,
        "Peru": 1,
        "Colombia": 1,
        "African System": 1,
        "International Court of Justice": 1,
        "Inter-American System": 1,
        "Netherlands": 1,
+       "United States": 1,
        "Belgium": 1
       },
-      "casi": 14,
-      "quota_transnazionale": 0.929
+      "casi": 13,
+      "quota_transnazionale": 0.923
      },
      "future-generations.ammissibilita_conexidad": {
       "giurisdizioni": {
@@ -4108,49 +3977,49 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 1.0,
      "indice": {
-      "mediana": 13.47,
-      "p05": 6.69,
-      "p95": 20.66
-     }
-    },
-    "future-generations.diritti_generazioni_future": {
-     "rango_modale": 2,
-     "probabilita_rango_modale": 0.743,
-     "probabilita_primo": 0.0,
-     "indice": {
-      "mediana": 8.27,
-      "p05": 4.0,
-      "p95": 12.44
+      "mediana": 12.98,
+      "p05": 6.68,
+      "p95": 19.67
      }
     },
     "future-generations.ammissibilita_conexidad": {
-     "rango_modale": 3,
-     "probabilita_rango_modale": 0.743,
+     "rango_modale": 2,
+     "probabilita_rango_modale": 0.558,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 7.76,
-      "p05": 4.13,
-      "p95": 11.43
+      "mediana": 7.78,
+      "p05": 4.22,
+      "p95": 11.31
+     }
+    },
+    "future-generations.diritti_generazioni_future": {
+     "rango_modale": 3,
+     "probabilita_rango_modale": 0.558,
+     "probabilita_primo": 0.0,
+     "indice": {
+      "mediana": 7.81,
+      "p05": 3.91,
+      "p95": 11.54
      }
     },
     "future-generations.bioma_soggetto_diritti": {
      "rango_modale": 4,
-     "probabilita_rango_modale": 0.655,
+     "probabilita_rango_modale": 0.662,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 6.02,
-      "p05": 3.37,
-      "p95": 8.61
+      "mediana": 6.05,
+      "p05": 3.41,
+      "p95": 8.52
      }
     },
     "future-generations.rimedio_strutturale": {
      "rango_modale": 5,
-     "probabilita_rango_modale": 0.655,
+     "probabilita_rango_modale": 0.662,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 5.69,
-      "p05": 2.18,
-      "p95": 9.74
+      "mediana": 5.67,
+      "p05": 2.23,
+      "p95": 9.67
      }
     }
    },
@@ -4159,7 +4028,7 @@
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Aji P. v. State of Washington",
      "codice": "FGC-0002"
     },
@@ -4167,7 +4036,7 @@
      "gradino": "R2",
      "giurisdizione": "Peru",
      "documenti": 2,
-     "righe": 14,
+     "righe": 13,
      "nome": "Álvarez et al v. Peru",
      "codice": "FGC-0162"
     },
@@ -4223,7 +4092,7 @@
      "gradino": "R2",
      "giurisdizione": "Inter-American System",
      "documenti": 1,
-     "righe": 4,
+     "righe": 3,
      "nome": "Hearing on Climate Change Before the Inter-American Commission on Human Rights",
      "codice": "FGC-0028"
     },
@@ -4278,18 +4147,10 @@
     "juliana-v-united-states_83f7": {
      "gradino": "R2",
      "giurisdizione": "United States",
-     "documenti": 3,
-     "righe": 6,
+     "documenti": 5,
+     "righe": 7,
      "nome": "Juliana v. United States",
      "codice": "FGC-0153"
-    },
-    "juliana-v-united-states_522f": {
-     "gradino": "R2",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 2,
-     "nome": "Juliana v. United States",
-     "codice": "FGC-0255"
     },
     "juliana-youth-v-united-states-of-america-jovenes-ex-juliana-v-estados-unidos-de-america_92f3": {
      "gradino": "R1",
@@ -4319,7 +4180,7 @@
      "gradino": "R1",
      "giurisdizione": "Canada",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Mathur, et al. v. His Majesty the King in Right of Ontario",
      "codice": "FGC-0054"
     },
@@ -4407,17 +4268,9 @@
      "gradino": "R1",
      "giurisdizione": "Uganda",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Tsama William and Others v. Uganda’s Attorney General and Others",
      "codice": "FGC-0142"
-    },
-    "united-states-v-u-s-district-court-for-the-district-of-oregon_98ff": {
-     "gradino": "R1",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 2,
-     "nome": "United States v. U.S. District Court for the District of Oregon",
-     "codice": "FGC-0145"
     },
     "urgenda-foundation-v-state-of-the-netherlands_3297": {
      "gradino": "R2",
@@ -4459,14 +4312,6 @@
      "nome": "Do-Hyun Kim et al. v. South Korea",
      "codice": "FGC-0170"
     },
-    "driftless-area-land-conservancy-v-rural-utilities-service_d8cd": {
-     "gradino": "R1",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Driftless Area Land Conservancy v. Rural Utilities Service",
-     "codice": "FGC-0171"
-    },
     "duarte-agostinho-and-others-v-portugal-and-32-other-states_e05d": {
      "gradino": "R1",
      "giurisdizione": "European Court of Human Rights",
@@ -4487,7 +4332,7 @@
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Lighthiser v. Trump",
      "codice": "FGC-0179"
     },
@@ -4495,7 +4340,7 @@
      "gradino": "R3",
      "giurisdizione": "Australia",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Youth Verdict v. Waratah Coal",
      "codice": "FGC-0212"
     },
@@ -4506,22 +4351,6 @@
      "righe": 1,
      "nome": "A Sud et al. v. Italy",
      "codice": "FGC-0219"
-    },
-    "envol-vert-et-al-v-casino_fad5": {
-     "gradino": "R1",
-     "giurisdizione": "France",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Envol Vert et al. v. Casino",
-     "codice": "FGC-0224"
-    },
-    "hugues-falys-fian-greenpeace-ligue-des-droits-humains-v-totalenergies-the-farmer-case_5077": {
-     "gradino": "R1",
-     "giurisdizione": "Belgium",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Hugues Falys, FIAN, Greenpeace, Ligue des droits humains v. TotalEnergies (The Farmer Case)",
-     "codice": "FGC-0226"
     },
     "opinion-of-the-national-human-rights-commission-on-the-constitutional-complaints-on-constitutionality-of-carbon-neutrality-act_1cdf": {
      "gradino": "R3",
@@ -4534,8 +4363,8 @@
     "vzw-klimaatzaak-v-kingdom-of-belgium-others_da42": {
      "gradino": "R4",
      "giurisdizione": "Belgium",
-     "documenti": 2,
-     "righe": 6,
+     "documenti": 1,
+     "righe": 4,
      "nome": "VZW Klimaatzaak v. Kingdom of Belgium & Others",
      "codice": "FGC-0239"
     },
@@ -4560,24 +4389,22 @@
   "klimaseniorinnen": {
    "copertura": "parziale",
    "data_decisione": "2024-04-09",
-   "righe_lette": 1442,
+   "righe_lette": 1212,
    "righe_per_esito": {
-    "tenuta": 1258,
-    "esclusa": 178,
-    "esito_scartata": 6
+    "tenuta": 1212
    },
-   "righe_vive": 1258,
+   "righe_vive": 1212,
    "righe_validate": 54,
-   "quota_validata": 0.043,
+   "quota_validata": 0.045,
    "indice": {
     "valore": 43.2,
-    "mediana": 43.3,
-    "p05": 31.4,
-    "p95": 53.1,
+    "mediana": 42.8,
+    "p05": 31.2,
+    "p95": 52.5,
     "anni_dalla_decisione": 2.5,
-    "per_anno": 17.3,
-    "per_anno_p05": 12.5,
-    "per_anno_p95": 21.2,
+    "per_anno": 17.2,
+    "per_anno_p05": 12.4,
+    "per_anno_p95": 20.9,
     "tasso_ricezione_giudiziale": 0.441
    },
    "tutte": {
@@ -4687,14 +4514,14 @@
       "p95": 11
      },
      "R2": {
-      "mediana": 18,
+      "mediana": 19,
       "p05": 12,
       "p95": 26
      },
      "R3": {
       "mediana": 10,
-      "p05": 5,
-      "p95": 16
+      "p05": 4,
+      "p95": 17
      },
      "R4": {
       "mediana": 24,
@@ -4730,20 +4557,20 @@
       "R4": 16
      },
      "quota_diviso": 20.42,
-     "quota_punteggio": 15.64
+     "quota_punteggio": 15.44
     },
     "nessuno": {
-     "casi": 47,
-     "casi_R2_piu": 37,
+     "casi": 44,
+     "casi_R2_piu": 36,
      "casi_R4": 14,
      "neutro": true,
      "casi_per_gradino": {
-      "R1": 10,
+      "R1": 8,
       "R2": 12,
-      "R3": 11,
+      "R3": 10,
       "R4": 14
      },
-     "quota_diviso": 47.0,
+     "quota_diviso": 44.0,
      "quota_punteggio": 0.0
     },
     "klimaseniorinnen.requisiti_quadro_regolatorio": {
@@ -4771,7 +4598,7 @@
       "R3": 1,
       "R4": 14
      },
-     "quota_diviso": 19.58,
+     "quota_diviso": 19.08,
      "quota_punteggio": 16.85
     },
     "klimaseniorinnen.legittimazione_associazioni": {
@@ -4971,9 +4798,9 @@
      "R2": {
       "vinto": 2,
       "pendente": 17,
-      "perso": 1,
       "non_determinabile": 1,
-      "non_letto": 1
+      "non_letto": 1,
+      "perso": 1
      },
      "R3": {
       "pendente": 2,
@@ -5199,9 +5026,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 1.0,
      "indice": {
-      "mediana": 28.53,
-      "p05": 21.16,
-      "p95": 35.89
+      "mediana": 28.6,
+      "p05": 21.15,
+      "p95": 35.84
      }
     },
     "klimaseniorinnen.requisiti_quadro_regolatorio": {
@@ -5209,29 +5036,29 @@
      "probabilita_rango_modale": 0.958,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 24.04,
-      "p05": 17.76,
-      "p95": 30.29
+      "mediana": 24.08,
+      "p05": 17.82,
+      "p95": 30.25
      }
     },
     "klimaseniorinnen.margine_differenziato": {
      "rango_modale": 3,
-     "probabilita_rango_modale": 0.578,
+     "probabilita_rango_modale": 0.585,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 20.99,
-      "p05": 16.25,
-      "p95": 25.8
+      "mediana": 21.09,
+      "p05": 16.29,
+      "p95": 25.78
      }
     },
     "klimaseniorinnen.vittima_soglia_alta": {
      "rango_modale": 4,
-     "probabilita_rango_modale": 0.578,
+     "probabilita_rango_modale": 0.585,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 20.75,
-      "p05": 17.64,
-      "p95": 23.88
+      "mediana": 20.79,
+      "p05": 17.66,
+      "p95": 23.85
      }
     },
     "klimaseniorinnen.legittimazione_associazioni": {
@@ -5239,29 +5066,29 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 17.51,
-      "p05": 12.73,
-      "p95": 22.29
+      "mediana": 17.56,
+      "p05": 12.76,
+      "p95": 22.23
      }
     },
     "klimaseniorinnen.possibilita_reale": {
      "rango_modale": 6,
-     "probabilita_rango_modale": 0.737,
+     "probabilita_rango_modale": 0.751,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 9.51,
-      "p05": 6.23,
-      "p95": 12.8
+      "mediana": 9.54,
+      "p05": 6.22,
+      "p95": 12.78
      }
     },
     "klimaseniorinnen.prospettiva_intergenerazionale": {
      "rango_modale": 7,
-     "probabilita_rango_modale": 0.737,
+     "probabilita_rango_modale": 0.751,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 9.01,
-      "p05": 6.82,
-      "p95": 11.2
+      "mediana": 9.03,
+      "p05": 6.81,
+      "p95": 11.19
      }
     }
    },
@@ -5302,7 +5129,7 @@
      "gradino": "R4",
      "giurisdizione": "European Court of Human Rights",
      "documenti": 2,
-     "righe": 13,
+     "righe": 10,
      "nome": "Carême v. France",
      "codice": "KLS-0056"
     },
@@ -5310,7 +5137,7 @@
      "gradino": "R4",
      "giurisdizione": "Ireland",
      "documenti": 2,
-     "righe": 36,
+     "righe": 35,
      "nome": "Coolglass Windfarm Limited v. An Bord Pleanala",
      "codice": "KLS-0061"
     },
@@ -5342,7 +5169,7 @@
      "gradino": "R4",
      "giurisdizione": "European Court of Human Rights",
      "documenti": 2,
-     "righe": 15,
+     "righe": 13,
      "nome": "Duarte Agostinho and Others v. Portugal and 32 Other States",
      "codice": "KLS-0120"
     },
@@ -5358,7 +5185,7 @@
      "gradino": "R4",
      "giurisdizione": "Finland",
      "documenti": 3,
-     "righe": 12,
+     "righe": 11,
      "nome": "Finnish Association for Nature Conservation and others v Finland",
      "codice": "KLS-0128"
     },
@@ -5414,7 +5241,7 @@
      "gradino": "R4",
      "giurisdizione": "Netherlands",
      "documenti": 3,
-     "righe": 126,
+     "righe": 118,
      "nome": "Greenpeace Netherlands and 8 citizens of Bonaire v. The Netherlands",
      "codice": "KLS-0253"
     },
@@ -5446,7 +5273,7 @@
      "gradino": "R2",
      "giurisdizione": "Belgium",
      "documenti": 2,
-     "righe": 19,
+     "righe": 16,
      "nome": "Hugues Falys, FIAN, Greenpeace, Ligue des droits humains v. TotalEnergies (The Farmer Case)",
      "codice": "KLS-0383"
     },
@@ -5494,17 +5321,9 @@
      "gradino": "R2",
      "giurisdizione": "Taiwan",
      "documenti": 1,
-     "righe": 9,
+     "righe": 7,
      "nome": "Liao and others v. Ministry of Environment (Administrative Case)",
      "codice": "KLS-0508"
-    },
-    "lighthiser-v-trump_d4c2": {
-     "gradino": "R2",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 2,
-     "nome": "Lighthiser v. Trump",
-     "codice": "KLS-1417"
     },
     "milieudefensie-et-al-v-royal-dutch-shell-plc_c3e4": {
      "gradino": "R4",
@@ -5534,7 +5353,7 @@
      "gradino": "R3",
      "giurisdizione": "European Court of Human Rights",
      "documenti": 2,
-     "righe": 8,
+     "righe": 7,
      "nome": "Müllner v. Austria",
      "codice": "KLS-0581"
     },
@@ -5574,7 +5393,7 @@
      "gradino": "R4",
      "giurisdizione": "United Kingdom",
      "documenti": 1,
-     "righe": 34,
+     "righe": 33,
      "nome": "R(Friends of the Earth Ltd, Mr Kevin Jordan and Mr Doug Paulley) v Secretary of State for Environment, Food & Rural Affairs (challenge to the Third National Adaptation Programme)",
      "codice": "KLS-0916"
     },
@@ -5582,7 +5401,7 @@
      "gradino": "R4",
      "giurisdizione": "African System",
      "documenti": 26,
-     "righe": 129,
+     "righe": 121,
      "nome": "Request for an advisory opinion on the human rights obligations of African states in addressing the climate crisis",
      "codice": "KLS-0646"
     },
@@ -5590,7 +5409,7 @@
      "gradino": "R3",
      "giurisdizione": "International Court of Justice",
      "documenti": 2,
-     "righe": 11,
+     "righe": 10,
      "nome": "Request for an advisory opinion on the obligations of States with respect to climate change",
      "codice": "KLS-0735"
     },
@@ -5606,7 +5425,7 @@
      "gradino": "R3",
      "giurisdizione": "International Tribunal for the Law of the Sea",
      "documenti": 2,
-     "righe": 5,
+     "righe": 4,
      "nome": "Request for an Advisory Opinion submitted by the Commission of Small Island States on Climate Change and International Law",
      "codice": "KLS-0801"
     },
@@ -5614,7 +5433,7 @@
      "gradino": "R2",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Roberts v. Department of Natural Resources, Board of Oil, Gas, & Mining",
      "codice": "KLS-0803"
     },
@@ -5630,7 +5449,7 @@
      "gradino": "R4",
      "giurisdizione": "New Zealand",
      "documenti": 4,
-     "righe": 49,
+     "righe": 48,
      "nome": "Smith v. Attorney-General",
      "codice": "KLS-0810"
     },
@@ -5654,23 +5473,23 @@
      "gradino": "R1",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Suncor Energy (U.S.A.) Inc. v. County Commissioners of Boulder County",
      "codice": "KLS-0845"
     },
-    "united-states-v-u-s-district-court-for-the-district-of-oregon_98ff": {
+    "juliana-v-united-states_83f7": {
      "gradino": "R2",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 5,
-     "nome": "United States v. U.S. District Court for the District of Oregon",
+     "righe": 3,
+     "nome": "Juliana v. United States",
      "codice": "KLS-0847"
     },
     "uniterre-et-al-v-swiss-department-of-the-environment-swiss-farmers-case_4fb6": {
      "gradino": "R3",
      "giurisdizione": "Switzerland",
      "documenti": 2,
-     "righe": 26,
+     "righe": 19,
      "nome": "Uniterre et al. v. Swiss Department of the Environment (Swiss Farmers Case)",
      "codice": "KLS-0944"
     },
@@ -5686,7 +5505,7 @@
      "gradino": "R4",
      "giurisdizione": "Belgium",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "We Are Nature.Brussels and others v. Brussels-Capital Region",
      "codice": "KLS-0870"
     },
@@ -5737,44 +5556,50 @@
      "righe": 1,
      "nome": "Pabai Pabai and Guy Paul Kabai v. Commonwealth of Australia",
      "codice": "KLS-1361"
+    },
+    "lighthiser-v-trump_d4c2": {
+     "gradino": "R2",
+     "giurisdizione": "United States",
+     "documenti": 1,
+     "righe": 1,
+     "nome": "Lighthiser v. Trump",
+     "codice": "KLS-1417"
     }
    }
   },
   "cig-parere-clima": {
    "copertura": "parziale",
    "data_decisione": "2025-07-23",
-   "righe_lette": 1592,
+   "righe_lette": 1347,
    "righe_per_esito": {
-    "tenuta": 1419,
-    "esclusa": 171,
-    "esito_scartata": 2
+    "tenuta": 1347
    },
-   "righe_vive": 1419,
+   "righe_vive": 1347,
    "righe_validate": 22,
    "quota_validata": 0.016,
    "indice": {
-    "valore": 23.2,
-    "mediana": 23.7,
-    "p05": 13.1,
-    "p95": 33.7,
+    "valore": 22.2,
+    "mediana": 22.5,
+    "p05": 13.0,
+    "p95": 31.8,
     "anni_dalla_decisione": 1.2,
-    "per_anno": 19.1,
-    "per_anno_p05": 10.7,
-    "per_anno_p95": 27.7,
-    "tasso_ricezione_giudiziale": 0.15
+    "per_anno": 18.1,
+    "per_anno_p05": 10.6,
+    "per_anno_p95": 25.9,
+    "tasso_ricezione_giudiziale": 0.158
    },
    "tutte": {
     "casi_per_gradino": {
-     "R1": 5,
+     "R1": 4,
      "R2": 23,
-     "R3": 6,
+     "R3": 5,
      "R4": 6
     },
-    "portata_casi": 40,
-    "mobilitazione_casi": 35,
+    "portata_casi": 38,
+    "mobilitazione_casi": 34,
     "ricezione_giudiziale_casi": 6,
-    "attenzione_giudiziale_casi": 12,
-    "giurisdizioni_portata": 18,
+    "attenzione_giudiziale_casi": 11,
+    "giurisdizioni_portata": 17,
     "giurisdizioni_ricezione": 6,
     "elenco_giurisdizioni_ricezione": [
      "Belgium",
@@ -5784,9 +5609,9 @@
      "France",
      "Netherlands"
     ],
-    "documenti": 107,
+    "documenti": 104,
     "curva_casi_per_anni_dalla_decisione": {
-     "0": 40
+     "0": 38
     },
     "profilo_R4_casi_per_tipo": {
      "sostanziale": 6
@@ -5814,21 +5639,21 @@
    },
    "varianti": {
     "corte_ovunque_R4": {
-     "R1": 5,
+     "R1": 4,
      "R2": 23,
      "R3": 0,
-     "R4": 12
+     "R4": 11
     },
     "descrittiva_argomenta": {
      "R1": 2,
-     "R2": 26,
-     "R3": 5,
+     "R2": 25,
+     "R3": 4,
      "R4": 7
     },
     "senza_bassa_confidenza_o_tipo_incerto": {
      "R1": 4,
      "R2": 23,
-     "R3": 7,
+     "R3": 6,
      "R4": 3
     },
     "solo_validate": {
@@ -5839,40 +5664,40 @@
     },
     "corretta_per_errore_di_lettura": {
      "R1": {
-      "mediana": 7,
+      "mediana": 6,
       "p05": 2,
-      "p95": 13
+      "p95": 11
      },
      "R2": {
       "mediana": 19,
-      "p05": 13,
-      "p95": 26
+      "p05": 12,
+      "p95": 25
      },
      "R3": {
-      "mediana": 6,
+      "mediana": 5,
       "p05": 1,
-      "p95": 11
+      "p95": 10
      },
      "R4": {
       "mediana": 8,
       "p05": 3,
-      "p95": 14
+      "p95": 13
      }
     }
    },
    "principi": {
     "nessuno": {
-     "casi": 28,
+     "casi": 26,
      "casi_R2_piu": 22,
      "casi_R4": 4,
      "neutro": true,
      "casi_per_gradino": {
-      "R1": 6,
+      "R1": 4,
       "R2": 13,
       "R3": 5,
       "R4": 4
      },
-     "quota_diviso": 28.0,
+     "quota_diviso": 26.0,
      "quota_punteggio": 0.0
     },
     "cig-parere-clima.diligenza_stringente_clima": {
@@ -6002,13 +5827,13 @@
     },
     "curva_per_gradino": {
      "R1": {
-      "0": 40
+      "0": 38
      },
      "R2": {
-      "0": 35
+      "0": 34
      },
      "R3": {
-      "0": 12
+      "0": 11
      },
      "R4": {
       "0": 6
@@ -6102,22 +5927,21 @@
     },
     "esito_per_gradino": {
      "R1": {
-      "pendente": 4,
+      "pendente": 3,
       "vinto": 1
      },
      "R2": {
       "pendente": 14,
       "vinto": 1,
-      "non_determinabile": 1,
       "perso": 3,
+      "non_determinabile": 1,
       "non_letto": 4
      },
      "R3": {
       "non_applicabile": 1,
       "vinto_in_parte": 1,
       "vinto": 2,
-      "perso": 1,
-      "non_letto": 1
+      "perso": 1
      },
      "R4": {
       "vinto_in_parte": 3,
@@ -6128,9 +5952,9 @@
    },
    "nuove": {
     "decomposizione": {
-     "parti": 12.75,
-     "corti": 10.5,
-     "quota_corti": 0.452
+     "parti": 12.5,
+     "corti": 9.75,
+     "quota_corti": 0.438
     },
     "conversione": {
      "casi_con_parte_e_corte": 3,
@@ -6154,26 +5978,26 @@
     },
     "diffusione": {
      "famiglie": {
-      "civil law": 19,
+      "civil law": 18,
       "common law": 10,
-      "misto": 4,
+      "misto": 3,
       "sovranazionale": 7
      },
      "n_famiglie": 4,
      "continenti": {
-      "Americas": 18,
+      "Americas": 17,
       "Europe": 11,
       "Oceania": 4,
       "Asia": 3,
       "Internazionale": 2,
-      "Africa": 2
+      "Africa": 1
      },
-     "quota_fuori_continente": 0.95
+     "quota_fuori_continente": 0.947
     },
     "emivita": {
      "eta_mediana_anni": null,
      "anni_dalla_sentenza": 1.2,
-     "casi_datati": 40,
+     "casi_datati": 38,
      "nota": "too recent to estimate"
     },
     "principi_viaggio": {
@@ -6290,9 +6114,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 1.0,
      "indice": {
-      "mediana": 13.72,
-      "p05": 6.35,
-      "p95": 21.17
+      "mediana": 13.93,
+      "p05": 6.38,
+      "p95": 21.23
      }
     },
     "cig-parere-clima.fossili_illecito": {
@@ -6300,29 +6124,29 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 11.45,
-      "p05": 5.35,
-      "p95": 17.64
+      "mediana": 11.64,
+      "p05": 5.36,
+      "p95": 17.68
      }
     },
     "cig-parere-clima.ndc_discrezionalita_limitata": {
      "rango_modale": 3,
-     "probabilita_rango_modale": 0.966,
+     "probabilita_rango_modale": 0.958,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 7.73,
-      "p05": 3.62,
-      "p95": 11.88
+      "mediana": 7.84,
+      "p05": 3.6,
+      "p95": 11.95
      }
     },
     "cig-parere-clima.erga_omnes": {
      "rango_modale": 4,
-     "probabilita_rango_modale": 0.966,
+     "probabilita_rango_modale": 0.958,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 6.49,
-      "p05": 3.17,
-      "p95": 9.76
+      "mediana": 6.59,
+      "p05": 3.18,
+      "p95": 9.79
      }
     },
     "cig-parere-clima.obiettivo_1_5": {
@@ -6330,9 +6154,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 5.49,
+      "mediana": 5.58,
       "p05": 2.26,
-      "p95": 8.76
+      "p95": 8.78
      }
     },
     "cig-parere-clima.non_lex_specialis": {
@@ -6340,9 +6164,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 4.0,
+      "mediana": 4.05,
       "p05": 1.84,
-      "p95": 6.17
+      "p95": 6.19
      }
     },
     "cig-parere-clima.continuita_stato": {
@@ -6350,7 +6174,7 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 0.5,
+      "mediana": 0.51,
       "p05": 0.14,
       "p95": 0.86
      }
@@ -6373,14 +6197,6 @@
      "nome": "Anti-advertising activists (Liège banners case)",
      "codice": "ICJ-0002"
     },
-    "association-of-the-tenharim-morogita-indigenous-people-apitem-vs-federal-government-ibama-funai-and-state-of-amazonas-structural-dispute-over-the-tenharim-marmelos-indigenous-land_6ff6": {
-     "gradino": "R1",
-     "giurisdizione": "Brazil",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Association of the Tenharim Morogitá Indigenous People (Apitem) vs. Federal Government, IBAMA, FUNAI, and State of Amazonas (Structural dispute over the Tenharim Marmelos Indigenous Land)",
-     "codice": "ICJ-0003"
-    },
     "denman-aberdeen-muswellbrook-scone-healthy-environment-group-inc-damsheg-v-mach-energy-australia-pty-ltd_32f0": {
      "gradino": "R2",
      "giurisdizione": "Australia",
@@ -6389,19 +6205,11 @@
      "nome": "Denman Aberdeen Muswellbrook Scone Healthy Environment Group Inc (DAMSHEG) v MACH Energy Australia Pty Ltd",
      "codice": "ICJ-0004"
     },
-    "dunn-v-wisconsin-public-service-commission_adb7": {
-     "gradino": "R2",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 2,
-     "nome": "Dunn v. Wisconsin Public Service Commission",
-     "codice": "ICJ-0814"
-    },
     "dykstra-et-al-v-saskatchewan-power-corporation-et-al_ddd1": {
      "gradino": "R2",
      "giurisdizione": "Canada",
      "documenti": 1,
-     "righe": 10,
+     "righe": 8,
      "nome": "Dykstra et al. v. Saskatchewan Power Corporation et al.",
      "codice": "ICJ-0011"
     },
@@ -6433,7 +6241,7 @@
      "gradino": "R4",
      "giurisdizione": "European Court of Human Rights",
      "documenti": 1,
-     "righe": 7,
+     "righe": 6,
      "nome": "Greenpeace Nordic and Others v. Norway",
      "codice": "ICJ-0831"
     },
@@ -6476,14 +6284,6 @@
      "righe": 7,
      "nome": "Lho’imggin et al. v. Her Majesty the Queen",
      "codice": "ICJ-0092"
-    },
-    "lighthiser-v-trump_d4c2": {
-     "gradino": "R2",
-     "giurisdizione": "United States",
-     "documenti": 1,
-     "righe": 3,
-     "nome": "Lighthiser v. Trump",
-     "codice": "ICJ-0835"
     },
     "ma-et-al-v-kepco-et-al_cbd7": {
      "gradino": "R2",
@@ -6536,8 +6336,8 @@
     "request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis_2579": {
      "gradino": "R3",
      "giurisdizione": "African System",
-     "documenti": 52,
-     "righe": 995,
+     "documenti": 51,
+     "righe": 935,
      "nome": "Request for an advisory opinion on the human rights obligations of African states in addressing the climate crisis",
      "codice": "ICJ-1553"
     },
@@ -6565,6 +6365,14 @@
      "nome": "Australian Conservation Foundation Inc v Minister for the Environment and Water; Friends of Australian Rock Art Inc v Minister for the Environment and Water",
      "codice": "ICJ-0762"
     },
+    "dunn-v-wisconsin-public-service-commission_adb7": {
+     "gradino": "R2",
+     "giurisdizione": "United States",
+     "documenti": 1,
+     "righe": 1,
+     "nome": "Dunn v. Wisconsin Public Service Commission",
+     "codice": "ICJ-0814"
+    },
     "federal-public-prosecutors-office-v-ana-paula-moura-de-souza-deforestation-and-climate-damage-in-the-pae-antimary_2c16": {
      "gradino": "R3",
      "giurisdizione": "Brazil",
@@ -6572,6 +6380,14 @@
      "righe": 1,
      "nome": "Federal Public Prosecutor’s Office v. Ana Paula Moura de Souza (Deforestation and climate damage in the PAE Antimary)",
      "codice": "ICJ-0815"
+    },
+    "lighthiser-v-trump_d4c2": {
+     "gradino": "R2",
+     "giurisdizione": "United States",
+     "documenti": 1,
+     "righe": 2,
+     "nome": "Lighthiser v. Trump",
+     "codice": "ICJ-0835"
     },
     "verein-klimaseniorinnen-schweiz-and-others-v-switzerland_6852": {
      "gradino": "R1",
@@ -6625,7 +6441,7 @@
      "gradino": "R2",
      "giurisdizione": "Sweden",
      "documenti": 3,
-     "righe": 6,
+     "righe": 5,
      "nome": "Aurora v Sweden (Aurora Case)",
      "codice": "ICJ-1258"
     },
@@ -6665,63 +6481,54 @@
      "gradino": "R3",
      "giurisdizione": "New Zealand",
      "documenti": 3,
-     "righe": 36,
+     "righe": 34,
      "nome": "Smith v. Attorney-General",
      "codice": "ICJ-1476"
-    },
-    "sustaining-the-wild-coast-npc-and-others-v-minister-of-mineral-resources-and-energy-and-others_9a3c": {
-     "gradino": "R3",
-     "giurisdizione": "South Africa",
-     "documenti": 1,
-     "righe": 3,
-     "nome": "Sustaining the Wild Coast NPC and Others v. Minister of Mineral Resources and Energy and Others",
-     "codice": "ICJ-1483"
     }
    }
   },
   "idh-oc-32-25": {
    "copertura": "parziale",
    "data_decisione": "2025-05-29",
-   "righe_lette": 1312,
+   "righe_lette": 1179,
    "righe_per_esito": {
-    "tenuta": 1216,
-    "esclusa": 96
+    "tenuta": 1179
    },
-   "righe_vive": 1216,
+   "righe_vive": 1179,
    "righe_validate": 9,
-   "quota_validata": 0.007,
+   "quota_validata": 0.008,
    "indice": {
-    "valore": 22.8,
-    "mediana": 22.4,
-    "p05": 12.2,
-    "p95": 32.5,
+    "valore": 21.8,
+    "mediana": 21.4,
+    "p05": 11.3,
+    "p95": 30.6,
     "anni_dalla_decisione": 1.4,
-    "per_anno": 16.6,
-    "per_anno_p05": 8.9,
-    "per_anno_p95": 23.8,
-    "tasso_ricezione_giudiziale": 0.154
+    "per_anno": 15.8,
+    "per_anno_p05": 8.2,
+    "per_anno_p95": 22.2,
+    "tasso_ricezione_giudiziale": 0.162
    },
    "tutte": {
     "casi_per_gradino": {
-     "R1": 6,
+     "R1": 5,
      "R2": 20,
-     "R3": 7,
+     "R3": 6,
      "R4": 6
     },
-    "portata_casi": 39,
-    "mobilitazione_casi": 33,
+    "portata_casi": 37,
+    "mobilitazione_casi": 32,
     "ricezione_giudiziale_casi": 6,
-    "attenzione_giudiziale_casi": 13,
-    "giurisdizioni_portata": 17,
+    "attenzione_giudiziale_casi": 12,
+    "giurisdizioni_portata": 16,
     "giurisdizioni_ricezione": 3,
     "elenco_giurisdizioni_ricezione": [
      "African System",
      "Brazil",
      "European Court of Human Rights"
     ],
-    "documenti": 93,
+    "documenti": 90,
     "curva_casi_per_anni_dalla_decisione": {
-     "0": 35,
+     "0": 33,
      "1": 4
     },
     "profilo_R4_casi_per_tipo": {
@@ -6750,21 +6557,21 @@
    },
    "varianti": {
     "corte_ovunque_R4": {
-     "R1": 6,
+     "R1": 5,
      "R2": 20,
      "R3": 0,
-     "R4": 13
+     "R4": 12
     },
     "descrittiva_argomenta": {
-     "R1": 5,
+     "R1": 4,
      "R2": 21,
-     "R3": 6,
+     "R3": 5,
      "R4": 7
     },
     "senza_bassa_confidenza_o_tipo_incerto": {
-     "R1": 6,
+     "R1": 4,
      "R2": 20,
-     "R3": 4,
+     "R3": 3,
      "R4": 6
     },
     "solo_validate": {
@@ -6775,23 +6582,23 @@
     },
     "corretta_per_errore_di_lettura": {
      "R1": {
-      "mediana": 8,
-      "p05": 3,
+      "mediana": 7,
+      "p05": 2,
       "p95": 13
      },
      "R2": {
-      "mediana": 18,
+      "mediana": 17,
       "p05": 11,
       "p95": 24
      },
      "R3": {
       "mediana": 6,
       "p05": 2,
-      "p95": 12
+      "p95": 11
      },
      "R4": {
-      "mediana": 7,
-      "p05": 3,
+      "mediana": 6,
+      "p05": 2,
       "p95": 12
      }
     }
@@ -6812,17 +6619,17 @@
      "quota_punteggio": 3.75
     },
     "nessuno": {
-     "casi": 28,
-     "casi_R2_piu": 19,
+     "casi": 26,
+     "casi_R2_piu": 18,
      "casi_R4": 2,
      "neutro": true,
      "casi_per_gradino": {
-      "R1": 9,
+      "R1": 8,
       "R2": 11,
-      "R3": 6,
+      "R3": 5,
       "R4": 2
      },
-     "quota_diviso": 28.0,
+     "quota_diviso": 26.0,
      "quota_punteggio": 0.0
     },
     "idh-oc-32-25.diligenza_rafforzata": {
@@ -6949,15 +6756,15 @@
     },
     "curva_per_gradino": {
      "R1": {
-      "0": 35,
+      "0": 33,
       "1": 4
      },
      "R2": {
-      "0": 29,
+      "0": 28,
       "1": 4
      },
      "R3": {
-      "0": 12,
+      "0": 11,
       "1": 1
      },
      "R4": {
@@ -7054,7 +6861,7 @@
      "R1": {
       "perso": 2,
       "pendente": 2,
-      "non_letto": 2
+      "non_letto": 1
      },
      "R2": {
       "pendente": 12,
@@ -7066,7 +6873,7 @@
      "R3": {
       "vinto": 4,
       "non_applicabile": 1,
-      "non_letto": 2
+      "non_letto": 1
      },
      "R4": {
       "vinto_in_parte": 3,
@@ -7078,9 +6885,9 @@
    },
    "nuove": {
     "decomposizione": {
-     "parti": 11.5,
-     "corti": 11.25,
-     "quota_corti": 0.495
+     "parti": 11.25,
+     "corti": 10.5,
+     "quota_corti": 0.483
     },
     "conversione": {
      "casi_con_parte_e_corte": 2,
@@ -7091,7 +6898,7 @@
      "casi_R4": 6,
      "casi_R4_estero": 6,
      "quota_R4": 1.0,
-     "quota_indice": 0.978
+     "quota_indice": 0.977
     },
     "velocita": {
      "anni_primo_R4": 0.1,
@@ -7104,27 +6911,27 @@
     },
     "diffusione": {
      "famiglie": {
-      "civil law": 25,
+      "civil law": 24,
       "common law": 5,
-      "misto": 2,
+      "misto": 1,
       "sovranazionale": 6,
       "non classificata": 1
      },
      "n_famiglie": 4,
      "continenti": {
-      "Americas": 27,
+      "Americas": 26,
       "Oceania": 2,
       "Europe": 5,
       "Internazionale": 2,
-      "Africa": 2,
+      "Africa": 1,
       "non classificato": 1
      },
-     "quota_fuori_continente": 0.308
+     "quota_fuori_continente": 0.297
     },
     "emivita": {
      "eta_mediana_anni": null,
      "anni_dalla_sentenza": 1.4,
-     "casi_datati": 39,
+     "casi_datati": 37,
      "nota": "too recent to estimate"
     },
     "principi_viaggio": {
@@ -7223,9 +7030,9 @@
      "probabilita_rango_modale": 0.552,
      "probabilita_primo": 0.552,
      "indice": {
-      "mediana": 8.45,
-      "p05": 3.73,
-      "p95": 13.23
+      "mediana": 8.51,
+      "p05": 3.74,
+      "p95": 13.2
      }
     },
     "idh-oc-32-25.clima_sano_autonomo": {
@@ -7233,39 +7040,39 @@
      "probabilita_rango_modale": 0.56,
      "probabilita_primo": 0.438,
      "indice": {
-      "mediana": 8.48,
-      "p05": 4.45,
-      "p95": 12.5
+      "mediana": 8.52,
+      "p05": 4.42,
+      "p95": 12.47
      }
     },
     "idh-oc-32-25.valutazione_impatto_climatico": {
      "rango_modale": 3,
-     "probabilita_rango_modale": 0.804,
+     "probabilita_rango_modale": 0.807,
      "probabilita_primo": 0.01,
      "indice": {
-      "mediana": 5.48,
+      "mediana": 5.5,
       "p05": 3.67,
-      "p95": 7.32
+      "p95": 7.31
      }
     },
     "idh-oc-32-25.scienza_disinformazione": {
      "rango_modale": 4,
-     "probabilita_rango_modale": 0.732,
+     "probabilita_rango_modale": 0.748,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 4.46,
+      "mediana": 4.51,
       "p05": 1.2,
-      "p95": 7.77
+      "p95": 7.75
      }
     },
     "idh-oc-32-25.natura_soggetto_diritti": {
      "rango_modale": 5,
-     "probabilita_rango_modale": 0.884,
+     "probabilita_rango_modale": 0.897,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 3.73,
-      "p05": 1.37,
-      "p95": 6.11
+      "mediana": 3.76,
+      "p05": 1.36,
+      "p95": 6.1
      }
     },
     "idh-oc-32-25.jus_cogens_dano_irreversible": {
@@ -7273,9 +7080,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 2.23,
-      "p05": 0.61,
-      "p95": 3.95
+      "mediana": 2.24,
+      "p05": 0.6,
+      "p95": 3.92
      }
     },
     "idh-oc-32-25.prova_agevolata": {
@@ -7283,9 +7090,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 1.49,
+      "mediana": 1.5,
       "p05": 0.4,
-      "p95": 2.59
+      "p95": 2.58
      }
     },
     "idh-oc-32-25.mobilita_climatica": {
@@ -7293,9 +7100,9 @@
      "probabilita_rango_modale": 1.0,
      "probabilita_primo": 0.0,
      "indice": {
-      "mediana": 0.99,
+      "mediana": 1.0,
       "p05": 0.27,
-      "p95": 1.73
+      "p95": 1.72
      }
     }
    },
@@ -7304,7 +7111,7 @@
      "gradino": "R4",
      "giurisdizione": "Brazil",
      "documenti": 1,
-     "righe": 5,
+     "righe": 1,
      "nome": "ADI 7582 (Indigenous Genocide Law)",
      "codice": "IAC-0001"
     },
@@ -7344,7 +7151,7 @@
      "gradino": "R2",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Dunn v. Wisconsin Public Service Commission",
      "codice": "IAC-0016"
     },
@@ -7352,7 +7159,7 @@
      "gradino": "R1",
      "giurisdizione": "Canada",
      "documenti": 1,
-     "righe": 2,
+     "righe": 1,
      "nome": "Dykstra et al. v. Saskatchewan Power Corporation et al.",
      "codice": "IAC-0018"
     },
@@ -7408,7 +7215,7 @@
      "gradino": "R4",
      "giurisdizione": "European Court of Human Rights",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Greenpeace Nordic and Others v. Norway",
      "codice": "IAC-0039"
     },
@@ -7440,7 +7247,7 @@
      "gradino": "R2",
      "giurisdizione": "Inter-American System",
      "documenti": 1,
-     "righe": 139,
+     "righe": 137,
      "nome": "Juliana Youth v. United States of America (Jóvenes ex Juliana v. Estados Unidos de América)",
      "codice": "IAC-0704"
     },
@@ -7456,7 +7263,7 @@
      "gradino": "R2",
      "giurisdizione": "United States",
      "documenti": 1,
-     "righe": 3,
+     "righe": 2,
      "nome": "Lighthiser v. Trump",
      "codice": "IAC-0751"
     },
@@ -7487,8 +7294,8 @@
     "request-for-an-advisory-opinion-on-the-human-rights-obligations-of-african-states-in-addressing-the-climate-crisis_2579": {
      "gradino": "R4",
      "giurisdizione": "African System",
-     "documenti": 47,
-     "righe": 891,
+     "documenti": 46,
+     "righe": 866,
      "nome": "Request for an advisory opinion on the human rights obligations of African states in addressing the climate crisis",
      "codice": "IAC-0269"
     },
@@ -7595,22 +7402,6 @@
      "righe": 1,
      "nome": "Smith v. Attorney-General",
      "codice": "IAC-1283"
-    },
-    "arayara-institute-vs-ambar-sul-energia-s-a-aneel-and-federal-union-ute-candiota-iii_a2a6": {
-     "gradino": "R1",
-     "giurisdizione": "Brazil",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Arayara Institute vs. Âmbar Sul Energia S.A., ANEEL and Federal Union (UTE Candiota III)",
-     "codice": "IAC-1284"
-    },
-    "sustaining-the-wild-coast-npc-and-others-v-minister-of-mineral-resources-and-energy-and-others_9a3c": {
-     "gradino": "R3",
-     "giurisdizione": "South Africa",
-     "documenti": 1,
-     "righe": 1,
-     "nome": "Sustaining the Wild Coast NPC and Others v. Minister of Mineral Resources and Energy and Others",
-     "codice": "IAC-1287"
     }
    }
   }
@@ -7621,9 +7412,9 @@
    "probabilita_rango_modale": 1.0,
    "probabilita_primo": 1.0,
    "indice": {
-    "mediana": 87.18,
-    "p05": 54.74,
-    "p95": 118.5
+    "mediana": 79.68,
+    "p05": 51.12,
+    "p95": 107.51
    }
   },
   "neubauer": {
@@ -7631,9 +7422,9 @@
    "probabilita_rango_modale": 1.0,
    "probabilita_primo": 0.0,
    "indice": {
-    "mediana": 63.7,
-    "p05": 40.55,
-    "p95": 87.09
+    "mediana": 63.48,
+    "p05": 40.49,
+    "p95": 86.65
    }
   },
   "klimaseniorinnen": {
@@ -7648,32 +7439,32 @@
   },
   "cig-parere-clima": {
    "rango_modale": 4,
-   "probabilita_rango_modale": 0.493,
+   "probabilita_rango_modale": 0.554,
    "probabilita_primo": 0.0,
    "indice": {
-    "mediana": 23.25,
-    "p05": 12.67,
-    "p95": 33.84
+    "mediana": 22.31,
+    "p05": 12.1,
+    "p95": 32.45
    }
   },
   "idh-oc-32-25": {
    "rango_modale": 5,
-   "probabilita_rango_modale": 0.492,
+   "probabilita_rango_modale": 0.552,
    "probabilita_primo": 0.0,
    "indice": {
-    "mediana": 22.74,
-    "p05": 12.83,
-    "p95": 32.63
+    "mediana": 21.74,
+    "p05": 12.27,
+    "p95": 31.27
    }
   },
   "future-generations": {
    "rango_modale": 6,
-   "probabilita_rango_modale": 0.558,
+   "probabilita_rango_modale": 0.613,
    "probabilita_primo": 0.0,
    "indice": {
-    "mediana": 21.97,
-    "p05": 10.95,
-    "p95": 37.25
+    "mediana": 20.71,
+    "p05": 10.6,
+    "p95": 33.99
    }
   }
  },
@@ -7682,193 +7473,193 @@
    "urgenda": {
     "neubauer": {
      "casi": 59,
-     "jaccard": 0.321,
-     "coseno": 0.492,
-     "atteso": 58.7
+     "jaccard": 0.349,
+     "coseno": 0.521,
+     "atteso": 56.8
     },
     "future-generations": {
-     "casi": 39,
-     "jaccard": 0.257,
-     "coseno": 0.464,
-     "atteso": 28.8
+     "casi": 36,
+     "jaccard": 0.265,
+     "coseno": 0.476,
+     "atteso": 25.3
     },
     "klimaseniorinnen": {
      "casi": 35,
-     "jaccard": 0.212,
-     "coseno": 0.384,
-     "atteso": 34.0
+     "jaccard": 0.232,
+     "coseno": 0.404,
+     "atteso": 33.2
     },
     "cig-parere-clima": {
      "casi": 18,
-     "jaccard": 0.11,
-     "coseno": 0.24,
-     "atteso": 23.0
+     "jaccard": 0.122,
+     "coseno": 0.259,
+     "atteso": 21.4
     },
     "idh-oc-32-25": {
      "casi": 14,
-     "jaccard": 0.084,
-     "coseno": 0.189,
-     "atteso": 22.4
+     "jaccard": 0.093,
+     "coseno": 0.204,
+     "atteso": 20.8
     }
    },
    "neubauer": {
     "urgenda": {
      "casi": 59,
-     "jaccard": 0.321,
-     "coseno": 0.492,
-     "atteso": 58.7
+     "jaccard": 0.349,
+     "coseno": 0.521,
+     "atteso": 56.8
     },
     "future-generations": {
-     "casi": 25,
+     "casi": 24,
      "jaccard": 0.197,
-     "coseno": 0.35,
-     "atteso": 20.8
+     "coseno": 0.356,
+     "atteso": 20.1
     },
     "klimaseniorinnen": {
      "casi": 31,
-     "jaccard": 0.238,
-     "coseno": 0.4,
-     "atteso": 24.6
+     "jaccard": 0.24,
+     "coseno": 0.402,
+     "atteso": 26.4
     },
     "cig-parere-clima": {
      "casi": 14,
-     "jaccard": 0.109,
-     "coseno": 0.219,
-     "atteso": 16.7
+     "jaccard": 0.112,
+     "coseno": 0.226,
+     "atteso": 17.0
     },
     "idh-oc-32-25": {
      "casi": 12,
-     "jaccard": 0.093,
-     "coseno": 0.19,
-     "atteso": 16.2
+     "jaccard": 0.095,
+     "coseno": 0.196,
+     "atteso": 16.5
     }
    },
    "future-generations": {
     "urgenda": {
-     "casi": 39,
-     "jaccard": 0.257,
-     "coseno": 0.464,
-     "atteso": 28.8
+     "casi": 36,
+     "jaccard": 0.265,
+     "coseno": 0.476,
+     "atteso": 25.3
     },
     "neubauer": {
-     "casi": 25,
+     "casi": 24,
      "jaccard": 0.197,
-     "coseno": 0.35,
-     "atteso": 20.8
+     "coseno": 0.356,
+     "atteso": 20.1
     },
     "klimaseniorinnen": {
-     "casi": 15,
-     "jaccard": 0.16,
-     "coseno": 0.276,
-     "atteso": 12.0
+     "casi": 14,
+     "jaccard": 0.156,
+     "coseno": 0.272,
+     "atteso": 11.7
     },
     "cig-parere-clima": {
      "casi": 7,
-     "jaccard": 0.084,
-     "coseno": 0.157,
-     "atteso": 8.2
+     "jaccard": 0.092,
+     "coseno": 0.169,
+     "atteso": 7.6
     },
     "idh-oc-32-25": {
      "casi": 8,
-     "jaccard": 0.099,
-     "coseno": 0.181,
-     "atteso": 8.0
+     "jaccard": 0.108,
+     "coseno": 0.196,
+     "atteso": 7.4
     }
    },
    "klimaseniorinnen": {
     "urgenda": {
      "casi": 35,
-     "jaccard": 0.212,
-     "coseno": 0.384,
-     "atteso": 34.0
+     "jaccard": 0.232,
+     "coseno": 0.404,
+     "atteso": 33.2
     },
     "neubauer": {
      "casi": 31,
-     "jaccard": 0.238,
-     "coseno": 0.4,
-     "atteso": 24.6
+     "jaccard": 0.24,
+     "coseno": 0.402,
+     "atteso": 26.4
     },
     "future-generations": {
-     "casi": 15,
-     "jaccard": 0.16,
-     "coseno": 0.276,
-     "atteso": 12.0
+     "casi": 14,
+     "jaccard": 0.156,
+     "coseno": 0.272,
+     "atteso": 11.7
     },
     "cig-parere-clima": {
      "casi": 17,
-     "jaccard": 0.207,
-     "coseno": 0.35,
-     "atteso": 9.6
+     "jaccard": 0.212,
+     "coseno": 0.359,
+     "atteso": 9.9
     },
     "idh-oc-32-25": {
      "casi": 13,
-     "jaccard": 0.153,
-     "coseno": 0.271,
-     "atteso": 9.4
+     "jaccard": 0.157,
+     "coseno": 0.278,
+     "atteso": 9.7
     }
    },
    "cig-parere-clima": {
     "urgenda": {
      "casi": 18,
-     "jaccard": 0.11,
-     "coseno": 0.24,
-     "atteso": 23.0
+     "jaccard": 0.122,
+     "coseno": 0.259,
+     "atteso": 21.4
     },
     "neubauer": {
      "casi": 14,
-     "jaccard": 0.109,
-     "coseno": 0.219,
-     "atteso": 16.7
+     "jaccard": 0.112,
+     "coseno": 0.226,
+     "atteso": 17.0
     },
     "future-generations": {
      "casi": 7,
-     "jaccard": 0.084,
-     "coseno": 0.157,
-     "atteso": 8.2
+     "jaccard": 0.092,
+     "coseno": 0.169,
+     "atteso": 7.6
     },
     "klimaseniorinnen": {
      "casi": 17,
-     "jaccard": 0.207,
-     "coseno": 0.35,
-     "atteso": 9.6
+     "jaccard": 0.212,
+     "coseno": 0.359,
+     "atteso": 9.9
     },
     "idh-oc-32-25": {
-     "casi": 25,
-     "jaccard": 0.463,
-     "coseno": 0.633,
-     "atteso": 6.4
+     "casi": 23,
+     "jaccard": 0.442,
+     "coseno": 0.613,
+     "atteso": 6.2
     }
    },
    "idh-oc-32-25": {
     "urgenda": {
      "casi": 14,
-     "jaccard": 0.084,
-     "coseno": 0.189,
-     "atteso": 22.4
+     "jaccard": 0.093,
+     "coseno": 0.204,
+     "atteso": 20.8
     },
     "neubauer": {
      "casi": 12,
-     "jaccard": 0.093,
-     "coseno": 0.19,
-     "atteso": 16.2
+     "jaccard": 0.095,
+     "coseno": 0.196,
+     "atteso": 16.5
     },
     "future-generations": {
      "casi": 8,
-     "jaccard": 0.099,
-     "coseno": 0.181,
-     "atteso": 8.0
+     "jaccard": 0.108,
+     "coseno": 0.196,
+     "atteso": 7.4
     },
     "klimaseniorinnen": {
      "casi": 13,
-     "jaccard": 0.153,
-     "coseno": 0.271,
-     "atteso": 9.4
+     "jaccard": 0.157,
+     "coseno": 0.278,
+     "atteso": 9.7
     },
     "cig-parere-clima": {
-     "casi": 25,
-     "jaccard": 0.463,
-     "coseno": 0.633,
-     "atteso": 6.4
+     "casi": 23,
+     "jaccard": 0.442,
+     "coseno": 0.613,
+     "atteso": 6.2
     }
    }
   },
@@ -8072,7 +7863,7 @@
    "da": "neubauer",
    "a": "urgenda",
    "gradino": "R4",
-   "righe": 63
+   "righe": 62
   },
   {
    "da": "cig-parere-clima",
@@ -8090,7 +7881,7 @@
    "da": "klimaseniorinnen",
    "a": "urgenda",
    "gradino": "R4",
-   "righe": 87
+   "righe": 85
   },
   {
    "da": "cig-parere-clima",
@@ -8102,7 +7893,7 @@
    "da": "idh-oc-32-25",
    "a": "neubauer",
    "gradino": "R4",
-   "righe": 77
+   "righe": 75
   },
   {
    "da": "klimaseniorinnen",
@@ -8138,7 +7929,7 @@
    "da": "cig-parere-clima",
    "a": "klimaseniorinnen",
    "gradino": "R3",
-   "righe": 11
+   "righe": 10
   },
   {
    "da": "idh-oc-32-25",
@@ -8159,10 +7950,21 @@
    "righe": 1
   }
  ],
+ "controversie_unite": {
+  "juliana-v-united-states_83f7": [
+   "in-re-united-states_b264",
+   "juliana-v-united-states_522f",
+   "juliana-v-united-states_83df",
+   "united-states-v-u-s-district-court-for-district-of-oregon_a0a6",
+   "united-states-v-u-s-district-court-for-the-district-of-oregon_52f5",
+   "united-states-v-u-s-district-court-for-the-district-of-oregon_94c4",
+   "united-states-v-u-s-district-court-for-the-district-of-oregon_98ff"
+  ]
+ },
  "versione": {
   "regola": "N01",
   "versione": "N01-beta-2026-10-11",
-  "calcolato_il": "2026-10-11T15:07:34",
+  "calcolato_il": "2026-10-15T05:44:40",
   "casi": [
    "urgenda",
    "neubauer",
@@ -8171,9 +7973,15 @@
    "cig-parere-clima",
    "idh-oc-32-25"
   ],
-  "sha256_script": "4d9312cecc5f4579c1ace37b9f0aa933922dfb1a6fd26d774adc57505138a68b",
+  "sha256_script": "b94cdab42618b94ff9a4da062d4f0e1ec6cc05f348945a96c2793dbb716d042f",
   "sha256_soglie": "ec4b48616359b58aef0b9ffacd7c938889985b0e3447d524f277fb742f6b2051",
   "sha256_giurisdizioni": "9540f81af3afc0a47e2f4656d8daef3d53c8ba472e38d8647f216c6e6787a9f3",
-  "fonte": "firestore corpus_rows"
+  "fonte": "/Users/giuseppenagieri/sabin-corpus/pubblicazione/influenza/ristretto-7893-2026-10-15/corpus_rows_7893.json",
+  "controversie": {
+   "file": "n01_controversie.json",
+   "sha256": "7229ae154ac88c9389621b0975d3fe85a46bf3e6a34fc2c28e690ea76f5ea3b8",
+   "dump": "CCC-whole_data_dump-2026-10-12.zip"
+  },
+  "filtro": null
  }
 }
