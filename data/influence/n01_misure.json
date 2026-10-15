@@ -7964,7 +7964,7 @@
  "versione": {
   "regola": "N01",
   "versione": "N01-beta-2026-10-11",
-  "calcolato_il": "2026-10-15T05:44:40",
+  "calcolato_il": "2026-10-15T06:50:00",
   "casi": [
    "urgenda",
    "neubauer",
@@ -7973,10 +7973,10 @@
    "cig-parere-clima",
    "idh-oc-32-25"
   ],
-  "sha256_script": "b94cdab42618b94ff9a4da062d4f0e1ec6cc05f348945a96c2793dbb716d042f",
-  "sha256_soglie": "ec4b48616359b58aef0b9ffacd7c938889985b0e3447d524f277fb742f6b2051",
+  "sha256_script": "03a178c7e463ba4723d7d3b66cfc5919adf89c4b9cda1a88f01fb869141c156f",
+  "sha256_soglie": "7f7bf9b9b5f3965ea3d9f1710bffdfb84f491dfc9a5a371c5424424ced076b8a",
   "sha256_giurisdizioni": "9540f81af3afc0a47e2f4656d8daef3d53c8ba472e38d8647f216c6e6787a9f3",
-  "fonte": "/Users/giuseppenagieri/sabin-corpus/pubblicazione/influenza/ristretto-7893-2026-10-15/corpus_rows_7893.json",
+  "fonte": "pubblicazione/influenza/ristretto-7893-2026-10-15/corpus_rows_7893.json",
   "controversie": {
    "file": "n01_controversie.json",
    "sha256": "7229ae154ac88c9389621b0975d3fe85a46bf3e6a34fc2c28e690ea76f5ea3b8",

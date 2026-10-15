@@ -126,15 +126,36 @@ def motivo_esclusione(r, S):
     return None
 
 
+def luogo(r, solo_proposto=False):
+    """(opinione, parte, voce) della citazione nell'atto (L16 fase B, L17 fase C; §29.2 punto 3): la decisione nel
+    portale, poi la proposta. None dove la fase non c'e' ancora."""
+    sz, vc = r.get('proposto_sezione') or {}, r.get('proposto_voce') or {}
+    man = (lambda k: None) if solo_proposto else (lambda k: r.get(k) or None)
+    return (man('validato_opinione') or sz.get('opinione') or None,
+            man('validato_parte_atto') or sz.get('parte') or None,
+            man('validato_voce') or vc.get('voce') or None)
+
+
+def in_motivazione(r, S, solo_proposto=False):
+    """PROPOSTA A, scelta dal PI il 15/10/2026: dove la mappa dell'atto c'e', decide lei. In R4 solo la motivazione
+    della maggioranza, con la corte che parla con parole sue o riassume; fatti, difese riportate, dispositivo, opinioni
+    separate e testo altrui copiato restano R3. Una voce non ancora letta (fase C) non toglie niente. Dove la mappa non
+    c'e' (atti non letti dalla fase B) resta la `sede` di prima."""
+    opinione, parte, voce = luogo(r, solo_proposto)
+    A = S.get('sezione_R4')
+    if A and (opinione or parte):
+        return (opinione in A['opinione'] and parte in A['parte'] and (voce is None or voce in A['voce']))
+    return (campo(r, 'sede', solo_proposto) or '') in S['sede_motivazione']
+
+
 def gradino(r, S, solo_proposto=False, variante='base'):
     tipo = campo(r, 'tipo_citazione', solo_proposto) or ''
     voce = campo(r, 'chi_parla', solo_proposto) or ''
-    sede = campo(r, 'sede', solo_proposto) or ''
     argomentativo = tipo in S['tipi_argomentativi'] or (variante == 'descrittiva_argomenta' and tipo == 'descrittiva')
     if voce in S['voce_corte']:
         if variante == 'corte_ovunque_R4':
             return 4
-        return 4 if (sede in S['sede_motivazione'] and argomentativo) else 3
+        return 4 if (in_motivazione(r, S, solo_proposto) and argomentativo) else 3
     return 2 if argomentativo else 1
 
 
