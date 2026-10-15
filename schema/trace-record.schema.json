@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.climpact.it/schema/trace-record/0.1.0",
+  "title": "CLIMPACT TRACE record",
+  "description": "One record of TRACE, the same shape for every corpus: J (judicial: the Climate Litigation Database), N (laws and policies: Climate Change Laws of the World) and M (media). A record says that one document of a corpus refers to one cited case, where, what the machine proposed, what the team decided, how it was produced and who may read which part of it. Field names are English and stable; the working fields of the pipeline (Italian) are mapped onto them by tracepipe.traccia.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "corpus", "kind", "ids", "cited", "citing", "provenance", "review", "access"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "corpus": {
+      "description": "The corpus letter. The letter closes every code born in that corpus (URG-0146-J, NEU-0001-N, URG-0001-M).",
+      "enum": ["J", "N", "M"]
+    },
+    "kind": {
+      "description": "occurrence: one place in one document where the cited case is referred to (J and N, and M once occurrences are read). item: one whole document about the case, no place inside it (M today: one article).",
+      "enum": ["occurrence", "item"]
+    },
+    "ids": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code"],
+      "properties": {
+        "trace_id": {
+          "description": "The CLIMPACT identifier of the record (type T for an occurrence, type M for a media item), once assigned. Never reused.",
+          "type": ["string", "null"],
+          "pattern": "^CL-[TM]-[0-9]{6}-[0-9X]$"
+        },
+        "code": {
+          "description": "The working code with the corpus letter, as shown everywhere.",
+          "$ref": "#/$defs/code"
+        },
+        "aliases": {
+          "description": "Earlier forms of the same code that stay valid (URG-0146 for URG-0146-J).",
+          "type": "array",
+          "items": {"$ref": "#/$defs/code"},
+          "uniqueItems": true
+        },
+        "anchor": {
+          "description": "What identifies an occurrence independently of the text version: the citing document, the page, the prefix of the cited case, the SHA-256 of the normalised citing sentence (16 hex) and of the passage (8 hex). char_start is not part of it, because it moves when the text of the document is rebuilt.",
+          "type": ["string", "null"],
+          "pattern": "^[^\\s|]+\\|[0-9]+\\|[A-Z]{2,5}\\|[0-9a-f]{16}\\|[0-9a-f]{8}$"
+        }
+      }
+    },
+    "cited": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code_prefix", "label"],
+      "properties": {
+        "case_id": {"type": ["string", "null"], "pattern": "^CL-C-[0-9]{6}-[0-9X]$"},
+        "decision_id": {"type": ["string", "null"], "pattern": "^CL-D-[0-9]{6}-[0-9X]$"},
+        "decision_basis": {"enum": [null, "only decision of the case", "identifier in the sentence"]},
+        "code_prefix": {"type": "string", "pattern": "^[A-Z]{2,5}$"},
+        "label": {"$ref": "#/$defs/text"}
+      }
+    },
+    "citing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "document_id"],
+      "properties": {
+        "source": {
+          "description": "Where the citing document comes from.",
+          "enum": ["climate-litigation-database", "climate-change-laws-of-the-world", "nexis"]
+        },
+        "document_id": {"description": "The id of the document in its source (slug for the Climate Litigation Database and CCLW, URN for Nexis).", "type": "string", "minLength": 1},
+        "document_import_id": {"description": "The internal id of Climate Policy Radar (Sabin.document.N.M), the key their systems join on.", "type": ["string", "null"]},
+        "family_id": {"description": "The case (Climate Litigation Database) or the family (CCLW) the document belongs to, as a slug.", "type": ["string", "null"]},
+        "family_import_id": {"type": ["string", "null"]},
+        "bundle_ids": {"type": "array", "items": {"type": "string"}},
+        "title": {"$ref": "#/$defs/text_or_null"},
+        "family_title": {"$ref": "#/$defs/text_or_null"},
+        "document_type": {"$ref": "#/$defs/text_or_null"},
+        "date": {"type": ["string", "null"], "pattern": "^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$"},
+        "languages": {"type": "array", "items": {"type": "string"}},
+        "geography_iso": {
+          "description": "ISO 3166 codes as the source gives them (alpha-3 for countries, ISO 3166-2 for subdivisions), plus the Climate Policy Radar codes for no country (XAA) and international bodies (XAB).",
+          "type": "array",
+          "items": {"type": "string", "pattern": "^([A-Z]{3}|[A-Z]{2}-[A-Z0-9]{1,3}|X[A-Z]{2})$"}
+        },
+        "geography_label": {"$ref": "#/$defs/text_or_null"},
+        "court": {"$ref": "#/$defs/text_or_null"},
+        "outlet": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "name": {"$ref": "#/$defs/text"},
+            "country": {"$ref": "#/$defs/text_or_null"},
+            "scope": {"type": ["string", "null"]},
+            "format": {"type": ["string", "null"]},
+            "publisher": {"type": ["string", "null"]},
+            "wikidata": {"type": ["string", "null"], "pattern": "^Q[0-9]+$"}
+          }
+        },
+        "url": {"type": ["string", "null"], "format": "uri"}
+      }
+    },
+    "location": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "page": {"type": ["integer", "null"], "minimum": 1},
+        "char_start": {"description": "Offset in the extracted text of text_version: a position, not an identity.", "type": ["integer", "null"], "minimum": 0},
+        "text_version": {"type": ["string", "null"], "$ref": "#/$defs/version_code_or_null"},
+        "where_in_text": {"type": ["string", "null"]},
+        "form_found": {"$ref": "#/$defs/text_or_null"}
+      }
+    },
+    "evidence": {
+      "description": "Words of the citing document. Never present for corpus M: the licence of the media texts forbids it.",
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "sentence": {"$ref": "#/$defs/text_or_null"},
+        "passage": {"$ref": "#/$defs/text_or_null"}
+      }
+    },
+    "classification": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "citation_function": {"description": "The codebook types (codebook/citazioni.yaml); Implicit is the codebook type implicita.", "enum": [null, "Substantive", "Descriptive", "Distinguishing", "Critical", "Chain mention", "Implicit", "Not determinable"]},
+        "who_speaks": {"enum": [null, "The court", "A party", "An amicus curiae", "An intervener", "Not determinable"]},
+        "reference_kind": {"enum": [null, "named", "descriptive"]},
+        "principles": {"type": "array", "items": {"$ref": "#/$defs/text"}},
+        "cited_paragraphs": {"type": "array", "items": {"type": "string"}},
+        "surrounding_pages": {"type": "array", "items": {"type": "integer"}},
+        "level": {"description": "R1 to R4 (J), N1 to N4 (N), once set.", "type": ["string", "null"], "pattern": "^[RN][1-4]$"},
+        "subjects": {"description": "Subject terms of the source with their weight (Nexis classification, corpus M).", "type": "array", "items": {"type": "object", "required": ["name"], "properties": {"name": {"type": "string"}, "weight": {"type": ["number", "null"]}}}},
+        "relevance": {"type": ["string", "null"]}
+      }
+    },
+    "provenance": {
+      "description": "The version codes of the steps that produced the record, as in versioni/registro.json.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["found_by"],
+      "properties": {
+        "found_by": {"$ref": "#/$defs/version_code_or_null"},
+        "corpus_version": {"$ref": "#/$defs/version_code_or_null"},
+        "proposal_rule": {"$ref": "#/$defs/version_code_or_null"},
+        "five_readings": {"type": ["boolean", "null"]},
+        "link_rule": {"description": "For N: the companion that anchored the name (S07-N-v3).", "$ref": "#/$defs/text_or_null"},
+        "query_fingerprint": {"description": "For M: the fingerprint of the Nexis query that produced the item.", "type": ["string", "null"]},
+        "batch": {"type": ["string", "null"]}
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["proposed", "checked", "discarded"]}
+      }
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier", "licence"],
+      "properties": {
+        "tier": {"description": "1 public map without text; 2 public text of decisions and acts of public authorities; 3 full index, on request.", "enum": [1, 2, 3]},
+        "licence": {"type": "string"},
+        "attribution": {"type": ["string", "null"]}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"corpus": {"const": "M"}}},
+      "then": {
+        "properties": {
+          "evidence": {"type": "null"},
+          "citing": {"properties": {"source": {"const": "nexis"}}}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"corpus": {"const": "J"}}},
+      "then": {"properties": {"citing": {"properties": {"source": {"const": "climate-litigation-database"}}}}}
+    },
+    {
+      "if": {"properties": {"corpus": {"const": "N"}}},
+      "then": {"properties": {"citing": {"properties": {"source": {"const": "climate-change-laws-of-the-world"}}}}}
+    },
+    {
+      "if": {"properties": {"kind": {"const": "occurrence"}}},
+      "then": {"required": ["location"], "properties": {"location": {"type": "object", "required": ["page"]}}}
+    }
+  ],
+  "$defs": {
+    "code": {"type": "string", "pattern": "^[A-Z]{2,5}-[0-9]{1,6}(-[JNM])?$"},
+    "version_code_or_null": {"type": ["string", "null"], "pattern": "^[A-Z]{1,2}[0-9]{2}(-[JNM])?(-v[0-9]+)?$"},
+    "text": {
+      "description": "Text without control characters (a NUL byte breaks the CSV readers).",
+      "type": "string",
+      "pattern": "^[^\\u0000-\\u0008\\u000B\\u000C\\u000E-\\u001F]*$"
+    },
+    "text_or_null": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/text"}]}
+  }
+}
