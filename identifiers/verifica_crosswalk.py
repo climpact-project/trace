@@ -16,7 +16,8 @@ Offline checks (always):
   - towards the Sabin Center, a case has at most one exactMatch, and a Sabin case is the exactMatch of at most one
     CLIMPACT case;
   - crosswalk.json is the one that genera_crosswalk_json.py builds from the two CSV files;
-  - citations_to_cases.csv has one row per TRACE 0.1 citation, unique codes, existing cases and decisions.
+  - citations_to_cases.csv has one row per TRACE 0.1 citation, unique codes, existing cases and decisions, and
+    citation_code_corpus equal to citation_code + '-J'.
 
 Online checks (skipped with --offline): every URL is fetched, and a 200 is not enough: the content must say the
 expected thing (the same family id and slug on the Sabin Center, Climate Policy Radar and CCLW pages; the item on
@@ -219,6 +220,8 @@ def controllo_citazioni(visti):
             errori.append(f'{c}: il prefisso non e\' quello del caso {r["case_id"]}')
         if r['decision_id'] and (r['decision_id'] not in visti or visti[r['decision_id']]['case_id'] != r['case_id']):
             errori.append(f'{c}: decisione {r["decision_id"]} inesistente o di un altro caso')
+        if r.get('citation_code_corpus') != c + '-J':
+            errori.append(f'{c}: citation_code_corpus deve essere {c}-J (le citazioni della 0.1 sono giudiziarie)')
         if bool(r['decision_id']) != bool(r['decision_basis']):
             errori.append(f'{c}: decision_id e decision_basis non vanno insieme')
         if not r['document_id'] or not r['document_url'].startswith('https://www.climatecasechart.com/documents/'):
