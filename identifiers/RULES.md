@@ -56,6 +56,8 @@ The often-quoted ECLI:NL:HR:2019:2007 is the English translation of the 2019 Urg
 | M | media item | reserved |
 | R | principle of the codebook | reserved |
 | T | trace: the record of one citation or reception (from TRACE 0.2) | reserved |
+| K | court or other body that decides (from the single list of courts) | reserved |
+| S | parliamentary act: a debate record, motion, question, bill document or other record of a parliament | reserved |
 
 - **Number**: six digits, in sequence within each type.
 - **Check digit**: ISO 7064 Mod 11-2, the algorithm of ORCID, computed over the type and the number. The type letter counts as one symbol with its ISO 7064 / IBAN value (A = 10 ... Z = 35), followed by the six digits; the result is 0-9 or X. So `CL-C-000001` and `CL-L-000001` have different check digits. The check catches every single wrong digit, every swap of two adjacent digits, and every change between reserved types (their values are all different modulo 11).
@@ -64,7 +66,7 @@ Worked example, `CL-C-000001`, with the remainder modulo 11 taken at each step: 
 
 The identifier carries no country, court, classification or year, so it has no reason to change. Its form cannot be confused with a Climate Case Chart slug or with a TRACE 0.1 citation code.
 
-**Stable address**: `https://www.climpact.it/id/<identifier>`, for example `https://www.climpact.it/id/CL-C-000001-3`. The type is inside the identifier, so the address does not repeat it. The longer form `https://www.climpact.it/id/<type>/<identifier>` (type as a word: case, decision, filing, law, policy, media, principle, trace) redirects to the short one. An identifier that does not exist returns 404.
+**Stable address**: `https://www.climpact.it/id/<identifier>`, for example `https://www.climpact.it/id/CL-C-000001-3`. The type is inside the identifier, so the address does not repeat it. The longer form `https://www.climpact.it/id/<type>/<identifier>` (type as a word: case, decision, filing, law, policy, media, principle, trace, court, parliamentary) redirects to the short one. An identifier that does not exist returns 404.
 
 ## Assignment
 

@@ -2,7 +2,7 @@
 
 Form of an identifier: CL-<type>-<six digits>-<check>, for example CL-C-000001-3 (a case) or CL-D-000003-3
 (a decision). Types: C case/proceeding, D decision, F filing/document, L law or legal act, P policy, M media item,
-R principle, T trace. The check is ISO 7064 Mod 11-2 (as in ORCID) over the type and the number: the type letter
+R principle, T trace, K court, S parliamentary act. The check is ISO 7064 Mod 11-2 (as in ORCID) over the type and the number: the type letter
 counts as one symbol with its ISO 7064 / IBAN value (A = 10 ... Z = 35), then the six digits; result 0-9 or X.
 
 Offline checks (always):
@@ -42,7 +42,8 @@ QUI = pathlib.Path(__file__).resolve().parent
 UA = 'CLIMPACT-crosswalk-check/1.0 (+https://www.climpact.it)'
 # i tipi riservati (10/10/2026); oggi si assegnano solo C e D
 TIPI = {'C': 'case', 'D': 'decision', 'F': 'filing', 'L': 'law', 'P': 'policy', 'M': 'media',
-        'R': 'principle', 'T': 'trace'}
+        'R': 'principle', 'T': 'trace',
+        'K': 'court', 'S': 'parliamentary'}
 FORMA = re.compile(r'^CL-([A-Z])-(\d{6})-([0-9X])$')
 RELAZIONI = {'exactMatch', 'closeMatch', 'narrowMatch', 'broadMatch', 'relatedMatch'}
 
