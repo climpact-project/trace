@@ -43,6 +43,10 @@ registry is the single source, and where this page differs from it the registry 
 
 <p align="center"><img alt="TRACE 0.1: Traceable Reception and Attribution in Climate-law Evidence. A general method to trace how climate judgments are received in later litigation; TRACE 0.1 applies it to the judgments and advisory opinions it follows." src="assets/banner.png" width="100%"></p>
 
+## TRACE 0.2 codes
+
+From 21 October 2026 the pipeline uses fixed three-digit codes: the typology letter, three digits and the corpus (S070-J, search by name; L110-J, passages and surrounding pages; C460, completeness check). The version is written beside the code (L110-J v1) and the position in the pipeline is kept in the registry. The two-digit codes on this page (`L05`, `R11`, `T01` ...) are those of the published TRACE 0.1 release and stay valid for its data and report. The 0.2 steps in order are in [`docs/CODES-0.2.md`](docs/CODES-0.2.md); every 0.1 code with the 0.2 code that replaces it, or «no successor», is in [`docs/ARCHIVE-OF-CODES.md`](docs/ARCHIVE-OF-CODES.md). Both files are generated from the CLIMPACT code registry, not written by hand.
+
 ## Index
 
 The pipeline step by step: what each step does, the class of the maintained package that does it, the scripts that did
