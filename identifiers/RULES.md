@@ -56,9 +56,12 @@ The often-quoted ECLI:NL:HR:2019:2007 is the English translation of the 2019 Urg
 | M | media item | reserved |
 | R | principle of the codebook | reserved |
 | T | trace: the record of one citation or reception (from TRACE 0.2) | reserved |
+| G | government: a cabinet, from its start date to its end date (ParlGov, WhoGov, Wikidata; one code per government, the other sources as aliases) | assigned from 24 October 2026 |
+| A | political party (one code per Party Facts party; ParlGov, Manifesto, CHES and WhoGov identifiers as aliases) | assigned from 24 October 2026 |
 
 - **Number**: six digits, in sequence within each type.
-- **Check digit**: ISO 7064 Mod 11-2, the algorithm of ORCID, computed over the type and the number. The type letter counts as one symbol with its ISO 7064 / IBAN value (A = 10 ... Z = 35), followed by the six digits; the result is 0-9 or X. So `CL-C-000001` and `CL-L-000001` have different check digits. The check catches every single wrong digit, every swap of two adjacent digits, and every change between reserved types (their values are all different modulo 11).
+- **Check digit**: ISO 7064 Mod 11-2, the algorithm of ORCID, computed over the type and the number. The type letter counts as one symbol with its ISO 7064 / IBAN value (A = 10 ... Z = 35), followed by the six digits; the result is 0-9 or X. So `CL-C-000001` and `CL-L-000001` have different check digits. The check catches every single wrong digit, every swap of two adjacent digits, and every change between two types of different classes modulo 11.
+- **Letters in the same class** (rule of 24 October 2026). There are eleven classes modulo 11, and C, D, F, K, L, M, P, R, S, T, U (K, S and U are reserved in the CLIMPACT registry) already filled all of them: G falls in the class of R, A in the class of L, so a swap G/R or A/L is not caught by the check digit. The check digit protects the six digits, as in ORCID. A new letter is chosen only if the letters of its class are clearly distinct to the eye and to the ear (G/R and A/L yes; never pairs such as C/G, O/Q, I/J, U/V), and the letter states the type, which every tool always shows by name next to the code. `verifica_crosswalk.py` tests type changes only between different classes and fails if two letters share a class outside the decided pairs.
 
 Worked example, `CL-C-000001`, with the remainder modulo 11 taken at each step: C = 12, so (0 + 12) x 2 = 24, remainder 2; five zeros: 4, 8, 16 = 5, 10, 20 = 9; then (9 + 1) x 2 = 20 = 9; check (12 - 9) mod 11 = 3, hence `CL-C-000001-3`. `cifra_controllo()`, `valido()` and `nuovo_identificativo()` in `verifica_crosswalk.py` compute and verify it, with tests.
 

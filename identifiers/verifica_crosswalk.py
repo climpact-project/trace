@@ -42,7 +42,10 @@ QUI = pathlib.Path(__file__).resolve().parent
 UA = 'CLIMPACT-crosswalk-check/1.0 (+https://www.climpact.it)'
 # i tipi riservati (10/10/2026); oggi si assegnano solo C e D
 TIPI = {'C': 'case', 'D': 'decision', 'F': 'filing', 'L': 'law', 'P': 'policy', 'M': 'media',
-        'R': 'principle', 'T': 'trace'}
+        'R': 'principle', 'T': 'trace', 'G': 'government', 'A': 'party'}
+# G e A (24/10/2026) stanno nella classe modulo 11 di R e di L: coppie decise perche' ben distinte a vista e a voce
+CLASSE = lambda t: (ord(t) - 55) % 11
+STESSA_CLASSE_PERMESSA = {frozenset('RG'), frozenset('LA')}
 FORMA = re.compile(r'^CL-([A-Z])-(\d{6})-([0-9X])$')
 RELAZIONI = {'exactMatch', 'closeMatch', 'narrowMatch', 'broadMatch', 'relatedMatch'}
 
@@ -111,11 +114,15 @@ def prove_cifra_controllo():
                     if valido(f'CL-{tipo}-{scambiato}-{cifra}'):
                         errori.append(f'accettato uno scambio di cifre da {giusto}')
             for altro in TIPI:
-                if altro != tipo and valido(f'CL-{altro}-{numero}-{cifra}'):
+                if altro != tipo and CLASSE(altro) != CLASSE(tipo) and valido(f'CL-{altro}-{numero}-{cifra}'):
                     errori.append(f'accettato un cambio di tipo da {giusto} a {altro}')
             for c in '0123456789X':
                 if c != cifra and valido(f'CL-{tipo}-{numero}-{c}'):
                     errori.append(f'accettata una cifra di controllo sbagliata per {giusto}')
+    for t in TIPI:
+        for u in TIPI:
+            if t < u and CLASSE(t) == CLASSE(u) and frozenset(t + u) not in STESSA_CLASSE_PERMESSA:
+                errori.append(f'lettere {t} e {u} nella stessa classe senza decisione')
     for sbagliato in ('CC-000001', 'CL-000001-X', 'CL-C-000001', 'CL-C-00001-3', 'CL-c-000001-3', 'CL-C-000001-x',
                       'CL-Q-000001-' + cifra_controllo('Q000001'), 'CL-C-000001-3-D01'):
         if valido(sbagliato):
