@@ -10,6 +10,10 @@ itself determines it, and decision_basis says how:
 otherwise decision_id stays empty. Court names or years in the sentence are not used: they are not identifiers, and
 a sentence can name a court while citing the case as a whole.
 
+citation_code is the code as published in TRACE 0.1 (URG-0146) and is never rewritten; citation_code_corpus is the same
+code with the letter of its corpus (URG-0146-J: J judicial, N laws and policies, M media). All 0.1 citations are
+judicial, so the letter is J; a code that already ends in a corpus letter is not suffixed twice.
+
 Usage: python3 genera_citazioni_casi.py [path of trace-0.1-citations.jsonl]
 """
 
@@ -21,7 +25,16 @@ import sys
 QUI = pathlib.Path(__file__).resolve().parent
 PREDEFINITO = QUI.parent / 'trace-0.1' / 'zenodo-dati' / 'trace-0.1-citations.jsonl'
 DOI_DATASET = '10.5281/zenodo.23082590'
-COLONNE = ['citation_code', 'case_id', 'decision_id', 'decision_basis', 'document_id', 'document_url', 'dataset_doi']
+COLONNE = ['citation_code', 'citation_code_corpus', 'case_id', 'decision_id', 'decision_basis', 'document_id', 'document_url', 'dataset_doi']
+LETTERE_CORPUS = ('J', 'N', 'M')   # J judicial, N laws and policies (CCLW), M media
+CORPUS_01 = 'J'                     # every citation of TRACE 0.1 is judicial
+
+
+def codice_con_corpus(codice, lettera=CORPUS_01):
+    """URG-0146 -> URG-0146-J; a code that already ends in a corpus letter is left as it is."""
+    if codice.rsplit('-', 1)[-1] in LETTERE_CORPUS:
+        return codice
+    return f'{codice}-{lettera}'
 
 
 def segni_delle_decisioni(ids, links):
@@ -59,7 +72,8 @@ def costruisci(percorso):
             trovate = sorted({d for d in decisioni.get(caso, []) if any(s in frase for s in segni[d])})
             if len(trovate) == 1:
                 decisione, base = trovate[0], 'identifier in the sentence'
-        righe.append({'citation_code': c['citation_code'], 'case_id': caso, 'decision_id': decisione,
+        righe.append({'citation_code': c['citation_code'],
+                      'citation_code_corpus': codice_con_corpus(c['citation_code']), 'case_id': caso, 'decision_id': decisione,
                       'decision_basis': base, 'document_id': c['document_id'], 'document_url': c['document_url'],
                       'dataset_doi': DOI_DATASET})
     return righe
